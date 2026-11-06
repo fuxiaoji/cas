@@ -1,0 +1,13 @@
+{
+  "id": "cas-original-score-v1",
+  "provenance": "Original CAS note sequences and instrument synthesis, rendered by ../render_score.py. The renderer reads no recordings, samples or third-party music.",
+  "usage": "CAS standard releases and local playtest builds.",
+  "encoding": "Stereo Ogg Opus, 24 kHz input, 36 kbit/s constrained VBR",
+  "tracks": [
+    {"cue": "prologue", "title": "未明的海", "file": "prologue.ogg", "loop": true, "bytes": 106373, "sha256": "b0b543c851093e2d03ab150dc04349b597452c253cc7cace3618803e2291745d"},
+    {"cue": "maneuver", "title": "静默巡航", "file": "maneuver.ogg", "loop": true, "bytes": 111838, "sha256": "4fa8663b5d3b7a3d2bb7a5af2387ba08f538c31453d4b3f07c4ea199b715a163"},
+    {"cue": "engagement", "title": "交火线", "file": "engagement.ogg", "loop": true, "bytes": 165068, "sha256": "322109df5fa8d991eb3e376a0cf8ac9d2d50e2e5b1a6dcc428b207734f5cf89e"},
+    {"cue": "victory", "title": "晨旗", "file": "victory.ogg", "loop": false, "bytes": 53146, "sha256": "7f533ff016614c398fc0296b726011c1ba42cfae52d967aa488ebb5a129aa518"},
+    {"cue": "defeat", "title": "潮退", "file": "defeat.ogg", "loop": false, "bytes": 62543, "sha256": "ec8cc8e96f53db554fc2abe9fcbd8ddf46515f05e8d733d63f3ad3f0257add83"}
+  ]
+}

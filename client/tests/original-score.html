@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<title>CAS score test</title>
+<div id="root"></div>
+<script type="module">
+import {createElement as h, useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import {useOriginalScore} from '../src/audio/OriginalScore';
+
+function Fixture() {
+  const [scene, setScene] = useState('off');
+  const [paused, setPaused] = useState(false);
+  const score = useOriginalScore({scene, paused, settingsKey: 'cas.score-qa'});
+  return h('main', null,
+    ...['off', 'prologue', 'maneuver', 'engagement', 'victory', 'defeat'].map(value =>
+      h('button', {key: value, onClick: () => setScene(value)}, value)),
+    h('button', {onClick: () => setPaused(!paused)}, 'pause/resume'),
+    h('button', {onClick: () => score.setEnabled(!score.enabled)}, 'mute/unmute'),
+    h('button', {onClick: () => score.setVolume(0.2)}, 'low volume'));
+}
+
+createRoot(document.getElementById('root')).render(h(Fixture));
+</script>
+</html>
