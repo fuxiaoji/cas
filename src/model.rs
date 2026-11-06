@@ -7,7 +7,9 @@ pub const WIDTH: f64 = 24_000.;
 pub const HEIGHT: f64 = 14_000.;
 pub const KNOT: f64 = 1852. / 3600.;
 pub const YARD: f64 = 0.9144;
-pub const VERSION: &str = "cas-stage0-v1";
+pub const LEGACY_VERSION: &str = "cas-stage0-v1";
+pub const VERSION: &str = "cas-battle-v2";
+pub const SHELL_FLIGHT: u32 = 8;
 pub const SCENARIO: &str = "白昼接敌 · 5 对 5 演习";
 pub type E<T> = Result<T, String>;
 
@@ -157,6 +159,8 @@ pub struct DamageSpeed {
 #[derive(Clone, Debug, Deserialize)]
 pub struct GunDef {
     pub name: String,
+    #[serde(default)]
+    pub caliber_mm: f64,
     pub range_yd: Vec<f64>,
     pub damage: Vec<f64>,
     pub barrels: u32,
@@ -281,6 +285,8 @@ pub struct Ship {
     pub flooding: Vec<Casualty>,
     pub fire_control_damage: bool,
     pub gun_mount_destroyed: Vec<bool>,
+    pub gun_mount_bearings: Vec<Option<f64>>,
+    pub gun_bearing_until: u32,
     pub engineering_speed_levels: usize,
     pub jammed_until: u32,
 }
@@ -366,6 +372,10 @@ pub struct Contact {
     pub ship: u32,
     #[serde(skip)]
     pub first_cycle: u32,
+    #[serde(skip)]
+    pub acquisition_base_yd: u32,
+    #[serde(skip)]
+    pub acquisition_range_yd: u32,
 }
 impl Contact {
     pub fn p(&self) -> P {
@@ -377,7 +387,6 @@ impl Contact {
 }
 #[derive(Clone, Debug)]
 pub struct Torpedo {
-    pub id: u32,
     pub side: usize,
     pub ship: u32,
     pub p: P,
@@ -388,6 +397,10 @@ pub struct Torpedo {
     pub count: u32,
     pub traveled: f64,
     pub born: u32,
+    pub origin: P,
+    pub view_ids: [Option<u32>; 2],
+    pub launch_sighted: bool,
+    pub impact_sighted: bool,
     pub contact_fuze: bool,
     pub single_mode: bool,
     pub tested: Vec<u32>,
@@ -404,6 +417,10 @@ pub struct Fire {
 
 #[derive(Clone, Debug, Serialize)]
 pub struct Event {
+    #[serde(skip)]
+    pub view_ids: [Option<u32>; 2],
+    #[serde(skip)]
+    pub voice_cues: [Option<&'static str>; 2],
     pub tick: u32,
     pub kind: &'static str,
     pub text: String,

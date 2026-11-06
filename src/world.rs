@@ -1,4 +1,4 @@
-use crate::{model::*, movement::fallback_leader};
+use crate::{model::*, movement::fallback_leader, projectile::Shell};
 use serde_json::{json, Value};
 use std::sync::OnceLock;
 
@@ -16,6 +16,11 @@ pub struct World {
     pub contacts: [Vec<Contact>; 2],
     pub next_contacts: [u32; 2],
     pub torps: Vec<Torpedo>,
+    pub shells: Vec<Shell>,
+    pub version: &'static str,
+    pub event_ids: [u32; 2],
+    pub shell_ids: [u32; 2],
+    pub torp_ids: [u32; 2],
     pub pending: Vec<Fire>,
     pub events: Vec<Event>,
     pub result: Option<Outcome>,
@@ -23,13 +28,13 @@ pub struct World {
     pub tick: u32,
     pub player: usize,
     pub rng: u64,
+    pub optics_rng: u64,
     pub seed: u32,
     pub enemy: String,
     pub variant: String,
     pub profile: String,
     pub leader_slot: usize,
     pub commands: Vec<Entry>,
-    pub next_torp: u32,
     pub fired_this_cycle: Vec<u32>,
     pub incoming_this_cycle: Vec<u32>,
     pub gun_streak: Vec<(u32, u32, u32)>,
@@ -43,7 +48,7 @@ impl World {
         profile: &str,
         leader_slot: usize,
     ) -> E<Self> {
-        if !matches!(variant, "" | "challenge") {
+        if !matches!(variant, "" | "challenge" | "night") {
             return Err("未知演习想定".into());
         }
         Ai::new(profile, "manual").validate()?;
@@ -65,6 +70,11 @@ impl World {
             contacts: [vec![], vec![]],
             next_contacts: [1, 1],
             torps: vec![],
+            shells: vec![],
+            version: VERSION,
+            event_ids: [0, 0],
+            shell_ids: [0, 0],
+            torp_ids: [0, 0],
             pending: vec![],
             events: vec![],
             result: None,
@@ -72,13 +82,13 @@ impl World {
             tick: 0,
             player,
             rng: (seed as u64) ^ 0xa643de5dbcc8e65f,
+            optics_rng: (seed as u64) ^ 0x83f232c98e16baf9,
             seed,
             enemy: enemy.into(),
             variant: variant.into(),
             profile: profile.into(),
             leader_slot,
             commands: vec![],
-            next_torp: 1,
             fired_this_cycle: vec![],
             incoming_this_cycle: vec![],
             gun_streak: vec![(0, 0, 0); 10],
@@ -87,7 +97,7 @@ impl World {
             let (ids, x, y, h, inc, name) = if s == 0 {
                 (
                     ["fletcher", "cleveland", "fletcher", "fletcher", "fletcher"],
-                    4200.,
+                    if variant == "night" { 7650. } else { 4200. },
                     6550.,
                     90.,
                     -450.,
@@ -96,7 +106,7 @@ impl World {
             } else {
                 (
                     ["kagero", "sendai", "kagero", "kagero", "kagero"],
-                    19_800.,
+                    if variant == "night" { 16_350. } else { 19_800. },
                     7650.,
                     270.,
                     450.,
@@ -166,6 +176,8 @@ impl World {
                     flooding: vec![],
                     fire_control_damage: false,
                     gun_mount_destroyed: vec![false; d.gun.mounts.len()],
+                    gun_mount_bearings: vec![None; d.gun.mounts.len()],
+                    gun_bearing_until: 0,
                     engineering_speed_levels: 0,
                     jammed_until: 0,
                 });
@@ -193,10 +205,10 @@ impl World {
         w.add(
             3,
             "start",
-            if variant == "challenge" {
-                "越级挑战 · 3 对 5。击沉两艘敌舰并让至少一艘己舰存活。"
-            } else {
-                "虚构演习 · 白昼能见度良好。双方各 5 艘；45 分钟按击沉数决胜。"
+            match variant {
+                "challenge" => "越级挑战 · 3 对 5。击沉两艘敌舰并让至少一艘己舰存活。",
+                "night" => "虚构夜间演习 · 能见度 20%，海况 2。双方各 5 艘；45 分钟按击沉数决胜。",
+                _ => "虚构演习 · 白昼能见度良好。双方各 5 艘；45 分钟按击沉数决胜。",
             }
             .into(),
             None,
@@ -206,10 +218,16 @@ impl World {
         Ok(w)
     }
     pub fn from_save(s: Saved, tick: u32) -> E<Self> {
-        if s.version != VERSION {
-            return Err("此存档使用另一个规则版本".into());
+        let version = match s.version.as_str() {
+            VERSION => VERSION,
+            LEGACY_VERSION => LEGACY_VERSION,
+            _ => return Err("此存档使用另一个规则版本".into()),
+        };
+        let last_tick = LIMIT + if version == VERSION { SHELL_FLIGHT } else { 0 };
+        if version == LEGACY_VERSION && s.variant == "night" {
+            return Err("此版本没有夜间演习".into());
         }
-        if s.tick > LIMIT || tick > s.tick || s.commands.len() > 10_000 {
+        if s.tick > last_tick || tick > s.tick || s.commands.len() > 10_000 {
             return Err("存档超出演习范围".into());
         }
         if s.commands.iter().any(|v| v.tick > s.tick)
@@ -229,6 +247,7 @@ impl World {
             },
             s.leader_slot,
         )?;
+        w.version = version;
         let mut commands = s.commands.into_iter().peekable();
         loop {
             while commands
@@ -250,7 +269,7 @@ impl World {
     }
     pub fn save(&self) -> Saved {
         Saved {
-            version: VERSION.into(),
+            version: self.version.into(),
             seed: self.seed,
             side: side_name(self.player).into(),
             enemy: self.enemy.clone(),
@@ -298,12 +317,7 @@ impl World {
         self.contacts[owner].iter().any(|c| c.ship == id)
     }
     pub fn d(&mut self, sides: u32) -> u32 {
-        let mut r = self.rng;
-        r ^= r << 13;
-        r ^= r >> 7;
-        r ^= r << 17;
-        self.rng = r;
-        (r % sides as u64) as u32 + 1
+        roll(&mut self.rng, sides)
     }
     pub fn add(
         &mut self,
@@ -314,7 +328,19 @@ impl World {
         p: Option<P>,
     ) {
         let (x, y) = p.map_or((None, None), |p| (Some(p.x), Some(p.y)));
+        let view_ids = seat_ids(mask, &mut self.event_ids);
+        let cue = match kind {
+            "start" => Some("battle_start"),
+            "contact" => Some("contact"),
+            "torpedo_detected" => Some("torpedo_warning"),
+            "hit" => Some("hit"),
+            "torpedo_hit" => Some("torpedo_hit"),
+            "damage" => Some("damage"),
+            _ => None,
+        };
         self.events.push(Event {
+            view_ids,
+            voice_cues: view_ids.map(|id| id.and(cue)),
             tick: self.tick,
             kind,
             text,
@@ -324,10 +350,49 @@ impl World {
             mask,
         });
     }
+    pub(crate) fn last_voice(&mut self, seat: usize, cue: Option<&'static str>) {
+        if let Some(event) = self
+            .events
+            .last_mut()
+            .filter(|e| e.view_ids[seat].is_some())
+        {
+            event.voice_cues[seat] = cue;
+        }
+    }
+    pub(crate) fn visible_events(&self, owner: usize, limit: Option<usize>) -> Vec<Value> {
+        let mut picked: Vec<_> = self
+            .events
+            .iter()
+            .rev()
+            .filter(|e| e.mask & (1 << owner) != 0)
+            .take(limit.unwrap_or(usize::MAX))
+            .collect();
+        picked.reverse();
+        picked
+            .into_iter()
+            .map(|e| {
+                let mut v = json!(e);
+                v["id"] = json!(e.view_ids[owner]);
+                if let Some(cue) = e.voice_cues[owner] {
+                    v["voiceCue"] = json!(cue);
+                }
+                v
+            })
+            .collect()
+    }
     pub fn observation(&self, owner: usize) -> Value {
         let ships:Vec<_>=self.ships.iter().filter(|s|s.side==owner&&s.alive()).map(|s|{
             let d=&self.data.ships[s.def];
-            json!({"id":s.id,"name":s.name,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
+            let guns:Vec<_>=d.gun.mounts.iter().enumerate().map(|(index,m)|{
+                let bearing=if self.tick<s.gun_bearing_until && !s.gun_mount_destroyed[index] {s.gun_mount_bearings[index]}else{None};
+                json!({"index":index,"barrels":m.barrels,"destroyed":s.gun_mount_destroyed[index],"arc":m.arc,"arc2":m.arc2,"bearing":bearing})
+            }).collect();
+            let tubes:Vec<_>=d.torpedo.iter().flat_map(|t|t.mounts.iter().enumerate()).map(|(index,m)|json!({"index":index,"tubes":m.tubes,"spent":s.torp_mount_used[index]})).collect();
+            json!({"gunRange":d.gun.range_yd.last().copied().unwrap_or(0.)*YARD,
+                "torpedoRange":d.torpedo.as_ref().map_or(0.,|t|t.range_yd*YARD),
+                "systems":{"guns":guns,"tubes":tubes,"directorDamaged":s.fire_control_damage,
+                    "engineeringLevels":s.engineering_speed_levels,"fires":s.fires.len(),"floods":s.flooding.len(),"maxSpeed":self.max_speed(s)},
+                "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
                 "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo})
         }).collect();
@@ -342,24 +407,27 @@ impl World {
         let torpedoes: Vec<_> = self
             .torps
             .iter()
-            .filter(|t| t.side == owner)
-            .map(|t| json!({"id":t.id,"x":t.p.x,"y":t.p.y,"heading":t.h,"own":true}))
+            .filter_map(|t| {
+                t.view_ids[owner].map(|id| {
+                    let own = t.side == owner;
+                    let mut v = json!({"id":id,"x":t.p.x,"y":t.p.y,"heading":t.h,"own":own});
+                    if own {
+                        v["from"] = json!(t.origin);
+                        v["count"] = json!(t.count);
+                    }
+                    v
+                })
+            })
             .collect();
-        let mut events: Vec<_> = self
-            .events
-            .iter()
-            .rev()
-            .filter(|e| e.mask & (1 << owner) != 0)
-            .take(90)
-            .collect();
-        events.reverse();
+        let events = self.visible_events(owner, Some(90));
+        let shells = self.shell_observation(owner);
         json!({"tick":self.tick,"limit":LIMIT,"width":WIDTH,"height":HEIGHT,"side":side_name(owner),
-            "scenario":if self.variant=="challenge"{"少舰迎击 · 3 对 5 挑战"}else{SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
-            "events":events,"result":self.result,"islands":self.islands})
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result,"islands":self.islands})
     }
     pub fn external(&mut self, r: Value) -> E<()> {
-        if self.result.is_some() {
-            return Err("演习已结束".into());
+        if self.result.is_some() || (self.version != LEGACY_VERSION && self.action_closed()) {
+            return Err("演习已结束或正在等待末轮弹着".into());
         }
         let s = self.player;
         match r.get("op").and_then(Value::as_str) {
@@ -390,8 +458,17 @@ impl World {
         });
         Ok(())
     }
+    fn action_closed(&self) -> bool {
+        self.tick >= LIMIT || (0..2).any(|s| !self.ships.iter().any(|i| i.side == s && i.alive()))
+    }
     pub fn advance(&mut self) {
+        let settle_only = self.version != LEGACY_VERSION && self.action_closed();
         self.tick += 1;
+        if settle_only {
+            self.advance_shells();
+            self.check_outcome();
+            return;
+        }
         let before: Vec<_> = self.ships.iter().map(|s| s.p).collect();
         self.move_ships();
         self.move_torpedoes(&before);
@@ -404,8 +481,12 @@ impl World {
         }
         self.resolve_fire(false);
         self.resolve_damage_control();
+        self.advance_shells();
         self.check_outcome();
-        if self.result.is_none() && (self.tick == 1 || self.tick % 20 == 0) {
+        if self.result.is_none()
+            && (self.version == LEGACY_VERSION || !self.action_closed())
+            && (self.tick == 1 || self.tick % 20 == 0)
+        {
             self.drive_ai();
         }
     }
@@ -419,6 +500,7 @@ impl World {
             Some("CAS-8.1"),
             Some(p),
         );
+        self.last_voice(owner, Some("own_sunk"));
         if self.knows(1 - owner, id) {
             self.add(
                 1 << (1 - owner),
@@ -427,6 +509,7 @@ impl World {
                 Some("CAS-8.1"),
                 Some(p),
             );
+            self.last_voice(1 - owner, Some("enemy_sunk"));
         }
         for v in &mut self.contacts {
             v.retain(|c| c.ship != id);
@@ -467,7 +550,7 @@ impl World {
             })
             .collect();
         let wiped = |side: usize| !self.ships.iter().any(|s| s.side == side && s.alive());
-        if self.tick >= LIMIT || wiped(0) || wiped(1) {
+        if self.action_closed() && self.shells.is_empty() {
             let (a, b) = (lost[1], lost[0]);
             let winner = if a > b {
                 "allies"
@@ -500,6 +583,36 @@ impl World {
                 Some("RTS-EXERCISE-01"),
                 None,
             );
+            for seat in 0..2 {
+                self.last_voice(
+                    seat,
+                    if winner == "draw" {
+                        None
+                    } else if winner == side_name(seat) {
+                        Some("victory")
+                    } else {
+                        Some("defeat")
+                    },
+                );
+            }
         }
     }
+}
+
+pub(crate) fn seat_ids(mask: u8, seq: &mut [u32; 2]) -> [Option<u32>; 2] {
+    std::array::from_fn(|side| {
+        (mask & (1 << side) != 0).then(|| {
+            seq[side] += 1;
+            seq[side]
+        })
+    })
+}
+
+pub(crate) fn roll(state: &mut u64, sides: u32) -> u32 {
+    let mut r = *state;
+    r ^= r << 13;
+    r ^= r >> 7;
+    r ^= r << 17;
+    *state = r;
+    (r % sides as u64) as u32 + 1
 }

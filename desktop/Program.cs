@@ -21,7 +21,7 @@ internal static class Program
         var browser = new WebView2 { DefaultBackgroundColor = System.Drawing.Color.FromArgb(9, 25, 35) };
         var shell = new Window
         {
-            Title = "CAS · 白昼演习",
+            Title = "CAS · 即时海战试玩",
             Width = 1360, Height = 850, MinWidth = 740, MinHeight = 390,
             WindowStartupLocation = WindowStartupLocation.CenterScreen,
             Background = new SolidColorBrush(Color.FromRgb(9, 25, 35)),
@@ -164,7 +164,7 @@ internal static class Program
               worker.postMessage({ id: current, request: payload });
             });
             const info = await request({ op: 'info' });
-            if (info.version !== 'cas-stage0-v1' || info.tickSeconds !== 1) {
+            if (info.version !== 'cas-battle-v2' || info.tickSeconds !== 1) {
               throw Error('Unexpected engine identity: ' + JSON.stringify(info));
             }
             const start = await request({ op: 'new', seed: 6106, side: 'allies', enemy: 'coord' });
@@ -189,10 +189,23 @@ internal static class Program
             if (past.tick !== 1 || !same(replay) || !same(still) || !same(restored)) {
               throw Error('The offline save, load and replay did not agree.');
             }
+            const night = await request({ op: 'new', seed: 6106, variant: 'night' });
+            if (night.variant !== 'night' || night.ships?.length !== 5) throw Error('The offline night exercise did not start.');
+            const campaign = await request({ op: 'campaign' });
+            const rows = campaign.scenarios;
+            if (rows?.length !== 16 || rows.some(row => row.playable !== false)) throw Error('The offline historical catalogue did not load.');
             const ready = () => document.querySelector('canvas') && document.querySelectorAll('[data-ship]').length === 5;
             const deadline = Date.now() + 8000;
             while (!ready() && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 75));
             if (!ready()) throw Error('The packaged battle map did not render five friendly ships.');
+            const shipTab = [...document.querySelectorAll('.staff-tabs button')].find(button => button.textContent.trim() === '舰况');
+            if (!shipTab) throw Error('The packaged ship status tab was missing.');
+            shipTab.click();
+            const readyPortrait = () => [...document.querySelectorAll('.ship-portrait img')].find(img => img.complete && img.naturalWidth > 0);
+            const portraitDeadline = Date.now() + 6000;
+            while (!readyPortrait() && Date.now() < portraitDeadline) await new Promise(resolve => setTimeout(resolve, 75));
+            const portrait = readyPortrait();
+            if (!portrait) throw Error('The packaged ship status portrait did not load offline.');
             const harborButton = [...document.querySelectorAll('button')].find(button => button.textContent.trim() === '母港');
             let harborNavigation = false;
             if (harborButton) {
@@ -207,7 +220,9 @@ internal static class Program
             const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
             send({ ok: true, version: info.version, scenario: info.scenario, tickBefore: start.tick, tickAfter: after.tick,
               ownShips: count, savedTick: moved.tick, replayTick: replay.tick, saveReplayMatch: true, stateSha256,
-              battleMapRendered: true, harborNavigation, viewport: [innerWidth, innerHeight] });
+              battleMapRendered: true, harborNavigation, nightExerciseStarted: true, historicalCatalogueRows: rows.length,
+              shipPortrait: portrait.closest('[data-character]').dataset.character,
+              viewport: [innerWidth, innerHeight] });
           } catch (e) {
             send({ ok: false, error: String(e) });
           } finally {

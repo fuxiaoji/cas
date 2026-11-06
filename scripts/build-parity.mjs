@@ -14,7 +14,7 @@ const json = value => JSON.stringify(value, (_, item) =>
 const encode = new TextEncoder();
 const decode = new TextDecoder('utf-8', { fatal: true });
 
-async function verify(side, fleet, variant = '') {
+async function verify(side, fleet, variant = '', seed = 6106) {
   const { instance } = await WebAssembly.instantiate(source, {});
   const api = instance.exports;
   function call(req) {
@@ -27,13 +27,18 @@ async function verify(side, fleet, variant = '') {
 
   const commands = [
     { op: 'info' },
-    { op: 'new', seed: 6106, side, enemy: 'torpedo', variant },
+    { op: 'new', seed, side, enemy: 'torpedo', variant },
     { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true },
     { op: 'step', seconds: 2700 },
-    { op: 'report' },
-    { op: 'save' },
   ];
   const wasmOutput = commands.map(call);
+  if (!wasmOutput.at(-1).data?.result) {
+    commands.push({ op: 'step', seconds: 8 });
+    wasmOutput.push(call(commands.at(-1)));
+  }
+  const end = wasmOutput.at(-1).data;
+  commands.push({ op: 'report' }, { op: 'save' });
+  wasmOutput.push(...commands.slice(-2).map(call));
   commands.push({ op: 'replay', save: wasmOutput.at(-1).data });
   wasmOutput.push(call(commands.at(-1)));
   const result = spawnSync(native, { input: commands.map(command => JSON.stringify(command)).join('\n') + '\n', encoding: 'utf8', maxBuffer: 8 * 1024 * 1024 });
@@ -45,15 +50,17 @@ async function verify(side, fleet, variant = '') {
     assert(nativeOutput[i].ok, `${side}/${command.op} native rejected: ${nativeOutput[i].error}`);
     assert.equal(json(wasmOutput[i]), json(nativeOutput[i]), `${side}/${command.op} diverged between Windows native and WASM`);
   }
-  const [, start, , end, report] = wasmOutput.map(row => row.data);
+  const start = wasmOutput[1].data;
+  const report = wasmOutput.at(-3).data;
   assert.equal(start.ships.length, variant === 'challenge' ? 3 : 5);
+  assert.equal(start.variant, variant);
   assert(end.result, `${side}: exercise failed to produce a result`);
   assert.equal(json(wasmOutput.at(-1).data), json(end), `${side}: replay diverged from live result`);
-  return { side, variant: variant || 'exercise', seed: 6106, tick: end.tick, result: end.result, visibleEvents: report.events.length,
+  return { side, variant: variant || 'exercise', seed, tick: end.tick, result: end.result, visibleEvents: report.events.length,
     canonicalSha256: createHash('sha256').update(json(wasmOutput)).digest('hex') };
 }
 
-const runs = [await verify('allies', 1), await verify('axis', 2), await verify('allies', 1, 'challenge')];
+const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), await verify('allies', 1, 'challenge'), await verify('allies', 1, 'night')];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

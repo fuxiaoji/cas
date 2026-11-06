@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-campaign-horaniu-source-v1",
+  "scenario_id": "cas-rs-horaniu",
+  "ibs_id": "IBS-S-14",
+  "title": "霍腊纽海战",
+  "title_en": "The Battle off Horaniu",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": { "document": "rising_sun_5e", "pdf_pages": [89], "printed_pages": [88] },
+  "start": { "date_local": "1943-08-18", "time_local": "00:32", "location": "韦拉拉韦拉岛北方", "map_type": "open_ocean_with_coastal_objective" },
+  "environment": { "light": "night", "sky": "clear", "moon": "full", "visibility_pct": 50, "wind_from_deg": 135, "wind_speed_knots": 5, "sea_state": 1 },
+  "forces": {
+    "allies": {
+      "commander": "CAPT Thomas J. Ryan",
+      "column": ["Nicholas", "O’Bannon", "Taylor", "Chevalier"],
+      "class": "Fletcher", "kind": "DD", "course_deg": 295, "speed_knots": 30
+    },
+    "axis": {
+      "commander": "RADM Matsuji Ijuin",
+      "support": [
+        { "unit": "Desdiv 7", "ships": [{ "name": "Sazanami", "class": "Fubuki", "kind": "DD", "flagship": true }, { "name": "Hamakaze", "class": "Kagero", "kind": "DD" }] },
+        { "unit": "Desdiv 17", "ships": [{ "name": "Isokaze", "class": "Kagero", "kind": "DD", "radar": "Mk2 Mod 2 (Type 22)" }, { "name": "Shigure", "class": "Shiratsuyu", "kind": "DD" }] }
+      ],
+      "convoy_escort": [{ "class": "T.14", "kind": "PT", "count": 1 }, { "class": "CH.15", "kind": "PC", "count": 2 }, { "class": "Toku Daihatsu", "kind": "armed landing craft", "count": 2 }, { "class": "Type C AB-Tei", "kind": "armored boat", "count": 1 }],
+      "convoy": [{ "class": "Type A Daihatsu", "kind": "MLC", "count": 13 }, { "class": "T.14", "kind": "PT", "count": 3 }],
+      "small_craft_classes_are_source_estimates": true,
+      "convoy_course_deg": 130,
+      "convoy_speed_knots": 8,
+      "support_heading_text": "northwest",
+      "support_speed_knots": 20
+    }
+  },
+  "deployment_refs": {
+    "sazanami_from_nicholas": { "bearing_deg": 315, "distance_nmi": 9.5 },
+    "convoy_from_nicholas": { "bearing_deg": 285, "distance_nmi": 9 },
+    "convoy_from_sazanami": { "bearing_relative": "port_beam", "distance_nmi": 4 },
+    "isokaze_from_sazanami": { "bearing_relative": "starboard_bow", "distance_yd": 3000 },
+    "shigure_from_sazanami": { "bearing_relative": "starboard_bow", "distance_yd": 4000 },
+    "horaniu_from_convoy": { "bearing_text": "southeast", "distance_nmi_approx": 22 },
+    "coast_from_convoy": { "bearing_deg": 180, "distance_nmi": 11 }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "截击东京快车。",
+      "decisive": { "all_of": [{ "type": "opposing_destroyers_sunk_at_least", "count": 2 }, { "type": "opposing_daihatsus_sunk_at_least", "count": 7 }] },
+      "tactical": { "all_of": [{ "type": "opposing_destroyers_damaged_at_least", "count": 2, "damage_pct": 50 }, { "type": "opposing_daihatsus_sunk_at_least", "count": 4 }] }
+    },
+    "axis": {
+      "orders": "护送运输编队至霍腊纽后返回布因；遇强敌时可让驳船自行前进，避免驱逐舰损失。",
+      "decisive": { "all_of": [{ "type": "no_own_destroyers_lost" }, { "type": "barges_reach_horaniu", "fraction": 1 }] },
+      "tactical": { "all_of": [{ "type": "no_own_destroyers_lost" }, { "type": "barges_reach_horaniu", "fraction": 0.5 }] }
+    }
+  },
+  "blockers": [
+    { "id": "horaniu-deployment", "kind": "source_or_design", "detail": "以尼古拉斯为基准的两组极坐标不能与距涟号左正横 4 海里的描述精确重合；源页未精确指定各小艇队位、右前方角度、舰距或岸线形状。需要核对并选择可复盘的 RTS 几何。" },
+    { "id": "horaniu-classes", "kind": "period_data", "detail": "核验驱逐舰时期配置及 Type 22，录入四类小型战斗艇和 Type A 登陆驳船（原书对小艇型号为估算）。" },
+    { "id": "horaniu-convoy", "kind": "engine", "detail": "需实现夜间识别、雷达、海岸和抵达判定，确定 Daihatsu 判定是否计入两艘武装大发，并确定半数取整、退出条件与优先级。" }
+  ]
+}

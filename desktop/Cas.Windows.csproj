@@ -8,7 +8,7 @@
     <AssemblyName>CAS</AssemblyName>
     <RootNamespace>Cas.Windows</RootNamespace>
     <Version>0.1.0</Version>
-    <Product>CAS · 白昼演习</Product>
+    <Product>CAS · 即时海战试玩</Product>
     <Platforms>x64</Platforms>
     <PlatformTarget>x64</PlatformTarget>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>

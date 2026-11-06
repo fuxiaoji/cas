@@ -3,6 +3,9 @@ mod combat;
 mod damage;
 mod model;
 mod movement;
+mod night;
+mod projectile;
+mod sighting;
 mod world;
 use model::*;
 use serde_json::{json, Value};
@@ -27,6 +30,8 @@ impl Engine {
         let op = r.get("op").and_then(Value::as_str).ok_or("缺少操作")?;
         match op {
             "info" => Ok(json!({"version":VERSION,"scenario":SCENARIO,"tickSeconds":1})),
+            "campaign" => serde_json::from_str(include_str!("../data/campaign/crosswalk.json"))
+                .map_err(|e| format!("无法读取战役档案：{e}")),
             "new" => {
                 let seed = match r.get("seed") {
                     None => 6106,
@@ -72,7 +77,6 @@ impl Engine {
                 let w = self.world.as_mut().ok_or("请先开始演习")?;
                 let player = w.player;
                 match op {
-                    "info" => Ok(json!({"version":VERSION,"scenario":SCENARIO,"tickSeconds":1})),
                     "observe" => Ok(w.observation(player)),
                     "step" => {
                         let n = r
@@ -91,9 +95,9 @@ impl Engine {
                         Ok(w.observation(player))
                     }
                     "save" => Ok(json!(w.save())),
-                    "report" => Ok(
-                        json!({"result":w.result,"events":w.events.iter().filter(|e|e.mask&(1<<player)!=0).collect::<Vec<_>>()}),
-                    ),
+                    "report" => {
+                        Ok(json!({"result":w.result,"events":w.visible_events(player,None)}))
+                    }
                     "preview_route" => w.preview(player, &r),
                     "preview_reform" => w.preview_reform(player, &r),
                     "aim" => w.preview_aim(player, &r),

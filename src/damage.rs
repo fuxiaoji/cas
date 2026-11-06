@@ -223,6 +223,7 @@ impl World {
             amount,
         };
         let s = self.ship_mut(victim).unwrap();
+        let side = s.side;
         if flood {
             s.flooding.push(casualty);
         } else {
@@ -230,6 +231,9 @@ impl World {
         }
         let label = if flood { "进水" } else { "起火" };
         self.damage_message(victim, format!("{label} · 严重度 {percentage}%"), "CAS-8.2");
+        if !flood {
+            self.last_voice(side, Some("fire"));
+        }
         if immediate {
             self.secondary_loss(victim, (amount + 1e-9).floor(), "鱼雷进水");
         }

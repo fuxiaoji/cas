@@ -97,8 +97,12 @@ const sessionProbe = `(async () => {
     const restore = await ask({ op: 'load', save });
     const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(end)));
     const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
+    const night = await ask({ op: 'new', seed: 6106, variant: 'night' });
+    const campaign = await ask({ op: 'campaign' });
     return { origin: location.href, viewport: [innerWidth, innerHeight], version: info.version,
       ownShips: start.ships.length, tickBefore: start.tick, tickAfter: end.tick, stateSha256,
+      nightExerciseStarted: night.variant === 'night' && night.ships?.length === 5,
+      historicalCatalogueRows: campaign.scenarios?.length, allHistoryLocked: campaign.scenarios?.every(row => row.playable === false),
       sameReplay: JSON.stringify(end) === JSON.stringify(replay), sameRestore: JSON.stringify(end) === JSON.stringify(restore) };
   } finally { worker.terminate(); }
 })()`;
@@ -137,6 +141,11 @@ try {
   await first.touch('touchCancel');
 
   const button = label => `Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === '${label}' || b.getAttribute('aria-label') === '${label}')`;
+  await first.evaluate(`${button('舰况')}.click()`);
+  const shipPortrait = await waitFor('the packaged ship portrait in offline ship status', () => first.evaluate(`(() => {
+    const img = Array.from(document.querySelectorAll('.ship-portrait img')).find(item => item.complete && item.naturalWidth > 0);
+    return img?.closest('[data-character]')?.dataset.character ?? null;
+  })()`));
   const harbor = await first.evaluate(`Boolean(${button('母港')})`);
   if (harbor) {
     await first.evaluate(`${button('母港')}.click()`);
@@ -148,14 +157,17 @@ try {
   }
   const probe = await first.evaluate(sessionProbe);
   assert.equal(probe.origin, origin);
-  assert.equal(probe.version, 'cas-stage0-v1');
+  assert.equal(probe.version, 'cas-battle-v2');
   assert.equal(probe.ownShips, 5);
   assert.equal(probe.tickBefore, 0);
   assert.equal(probe.tickAfter, 360);
+  assert.equal(probe.nightExerciseStarted, true);
+  assert.equal(probe.historicalCatalogueRows, 16);
+  assert.equal(probe.allHistoryLocked, true);
   assert(probe.sameReplay && probe.sameRestore, 'Offline replay and saved battle must agree');
   assert(probe.viewport[0] > probe.viewport[1], 'Battle WebView must be landscape');
   await first.evaluate("localStorage.setItem('cas.android-smoke', 'native-webview-origin-persists')");
-  detail = { ...probe, touchCancelNoCommand: true, backgroundCancelsGesture: true, harborNavigation: harbor };
+  detail = { ...probe, touchCancelNoCommand: true, backgroundCancelsGesture: true, shipPortrait, harborNavigation: harbor };
 } finally { first.close(); }
 
 // Model a normal close/reopen: background the app first, which lets WebView's

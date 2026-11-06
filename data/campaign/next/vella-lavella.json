@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-campaign-vella-lavella-source-v1",
+  "scenario_id": "cas-rs-vella-lavella",
+  "ibs_id": "IBS-S-13",
+  "title": "韦拉拉韦拉岛海战",
+  "title_en": "Battle of Vella Lavella",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": { "document": "rising_sun_5e", "pdf_pages": [90], "printed_pages": [89] },
+  "start": { "date_local": "1943-10-06", "time_local": "22:30", "location": "韦拉拉韦拉岛西北海域", "map_type": "open_ocean_with_coastal_objective" },
+  "environment": { "light": "night", "moon": "nearly_quarter_east", "visibility_pct": 30, "squall_visibility_pct": 2, "squalls": "numerous_local", "wind_from_deg": 135, "wind_speed_knots": 10, "sea_state": 2 },
+  "forces": {
+    "allies": {
+      "northern": { "course_deg": 210, "speed_knots": 30, "column": [{ "ship": "Selfridge", "class": "Porter", "flagship": true }, { "ship": "Chevalier", "class": "Fletcher" }, { "ship": "O’Bannon", "class": "Fletcher" }] },
+      "southern": { "course_deg": 345, "speed_knots": 25, "column": [{ "ship": "Ralph Talbot", "class_as_printed": "Gridley", "class_resolution": "blocked", "flagship": true }, { "ship": "Taylor", "class": "Fletcher" }, { "ship": "La Vallette", "class": "Fletcher" }] }
+    },
+    "axis": {
+      "support_main": { "course_deg": 35, "speed_knots": 25, "column": [{ "ship": "Akigumo", "class": "Kagero", "flagship": true }, { "ship": "Isokaze", "class": "Kagero", "radar": "Mk2 Mod 2 (Type 22)" }, { "ship": "Kazagumo", "class": "Yugumo" }, { "ship": "Yugumo", "class": "Yugumo" }] },
+      "support_detached": { "course_deg": 210, "speed_knots": 30, "column": [{ "ship": "Shigure", "class": "Shiratsuyu" }, { "ship": "Samidare", "class": "Shiratsuyu" }] },
+      "destroyer_transports": { "course_deg": 140, "speed_knots": 8, "ships": [{ "ship": "Fumizuki", "class": "Mutsuki" }, { "ship": "Matsukaze", "class": "Kamikaze" }, { "ship": "Yunagi", "class": "Kamikaze" }] },
+      "small_craft_transports": { "course_deg": 140, "speed_knots": 8, "units": [{ "class": "CH.15", "kind": "PC", "count": 4 }, { "class": "T.14", "kind": "PT", "count": 4 }, { "class": "Type A Daihatsu", "kind": "MLC", "count": 4 }] },
+      "air": [{ "class": "F1M2 Pete", "count": 1, "initial_area": "above_allied_northern" }]
+    }
+  },
+  "deployment_refs": {
+    "marquana_bay_from_selfridge": { "bearing_deg": 157, "distance_nmi": 10 },
+    "support_main_from_selfridge": { "bearing_deg": 270, "distance_nmi": 10 },
+    "shigure_from_selfridge": { "bearing_deg": 295, "distance_nmi": 13 },
+    "transport_groups_from_selfridge": { "bearing_deg": 305, "distance_nmi": 15 },
+    "allied_southern_from_selfridge": { "bearing_deg": 210, "distance_nmi": 22 }
+  },
+  "initial_information": { "selfridge_contacts": ["support_main", "support_detached"], "selfridge_has_transport_contact": false, "southern_group_within_tbs": false },
+  "objectives": {
+    "allies": {
+      "orders": "阻断日军撤离。",
+      "decisive": { "all_of": [{ "type": "transport_group_ships_sunk_at_least", "count": 3, "tonnage_gt": 100 }, { "type": "prevent_transport_group_arrival", "location": "marquana_bay" }] },
+      "tactical": { "all_of": [{ "type": "axis_ships_damaged_at_least", "count": 3, "damage_pct_gte": 50, "tonnage_gt": 100 }] }
+    },
+    "axis": {
+      "orders": "到马尔夸纳湾撤出守军，返回布因。",
+      "garrison_strength": 589,
+      "decisive": { "all_of": [{ "type": "allied_destroyers_sunk_at_least", "count": 3 }, { "type": "transport_groups_arrive_undamaged", "location": "marquana_bay" }] },
+      "tactical": { "all_of": [{ "type": "allied_destroyers_damaged_at_least", "count": 2, "damage_pct_gte": 50 }, { "type": "transport_groups_arrive_undamaged", "location": "marquana_bay" }] }
+    }
+  },
+  "blockers": [
+    { "id": "vella-ralph-talbot-class", "kind": "source_conflict", "detail": "本页作 Gridley；《Rising Sun》PDF 87（86）明确作 Bagley，《American Fleets》PDF 21（A-18）亦将 386–393 舰号列入 Bagley、Gridley 名单另列四舰。待核对舰号与原书勘误后才绑定时期配置。" },
+    { "id": "vella-weather-sensor-air", "kind": "engine", "detail": "需要按原页载入局部 2% 飑雨、Type 22、初始单舰敌情、TBS 通信范围、在空水上侦察机与多个初始编队。" },
+    { "id": "vella-map-and-objective", "kind": "source_or_design", "detail": "需确定双运输队各自锚点、各舰队形间隔、战斗海域、抵达与离图判定、100 吨排水量口径；用不同阶段分开处理原页的作战指令与胜利条件。" }
+  ]
+}

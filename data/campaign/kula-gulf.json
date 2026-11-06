@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-campaign-kula-gulf-source-v1",
+  "scenario_id": "cas-rs-kula-gulf",
+  "ibs_id": "IBS-S-02",
+  "title": "库拉湾海战",
+  "title_en": "Battle of Kula Gulf",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": { "document": "rising_sun_5e", "pdf_pages": [85, 86], "printed_pages": [84, 85] },
+  "start": { "date_local": "1943-07-06", "time_local": "01:36", "location": "科隆班加拉岛外库拉湾", "map_type": "coastal" },
+  "environment": { "light": "night", "moon": "none", "visibility_pct": 10, "wind_from_deg": 135, "wind_speed_knots": 5, "sea_state": 1 },
+  "forces": {
+    "allies": {
+      "unit": "Task Group 36.1",
+      "commander": "RADM Walden L. Ainsworth",
+      "radar": "SG",
+      "radar_controlled_guns": true,
+      "ships": [
+        { "name": "Honolulu", "class": "Brooklyn 1st group", "kind": "CL", "flagship": true },
+        { "name": "Helena", "class": "Brooklyn 2nd group", "kind": "CL" },
+        { "name": "St. Louis", "class": "Brooklyn 2nd group", "kind": "CL" },
+        { "names": ["Nicholas", "O’Bannon", "Radford", "Jenkins"], "class": "Fletcher", "kind": "DD" }
+      ]
+    },
+    "axis": {
+      "unit": "Reinforcement Group",
+      "commander": "RADM Terou Akiyama",
+      "screen": [
+        { "name": "Niizuki", "class": "Akizuki", "kind": "DD", "flagship": true, "radar": "Mk2 Mod 2 (Type 22)" },
+        { "name": "Suzukaze", "class": "Shiratsuyu", "kind": "DD" },
+        { "name": "Tanikaze", "class": "Kagero", "kind": "DD" }
+      ],
+      "first_transport": [
+        { "names": ["Mochizuki", "Mikazuki"], "class": "Mutsuki", "kind": "DD", "flagship": "Mochizuki" },
+        { "name": "Hamakaze", "class": "Kagero", "kind": "DD" }
+      ],
+      "second_transport": [
+        { "names": ["Amagiri", "Hatsuyuki"], "class": "Fubuki", "kind": "DD", "flagship": "Amagiri" },
+        { "names": ["Nagatsuki", "Satsuki"], "class": "Mutsuki", "kind": "DD" }
+      ]
+    }
+  },
+  "deployment_refs": {
+    "allied_column_text": ["Nicholas", "O’Bannon", "Honolulu", "Helena", "St. Louis", "Radford", "Jenkins"],
+    "allied_column_map": ["Nicholas", "O’Bannon", "Honolulu", "Helena", "St. Louis", "Jenkins", "Radford"],
+    "allied_course_deg": 292,
+    "allied_speed_knots": 25,
+    "axis_column": ["Niizuki", "Suzukaze", "Tanikaze", "Amagiri", "Hatsuyuki", "Nagatsuki", "Satsuki"],
+    "axis_course_deg": 350,
+    "axis_speed_knots": 21,
+    "niizuki_from_nicholas": { "bearing_deg": 205, "distance_nmi": 12 },
+    "first_transport_map_note": "图示望月、三日月、滨风卸载，距图注记号向南 8.5 海里；不在正文七舰纵队中。"
+  },
+  "objectives": {
+    "allies": {
+      "orders": "在维拉附近截击东京快车。",
+      "decisive": { "type": "damage_point_ratio", "ratio": 2 },
+      "tactical": { "type": "damage_point_ratio_strictly_above", "ratio": 1 }
+    },
+    "axis": {
+      "orders": "在维拉卸下人员和补给，天亮前返回布因；屏护组掩护运输舰。",
+      "decisive": { "all_of": [{ "type": "opposing_cruisers_sunk_at_least", "count": 2 }, { "type": "supply_destroyers_within_range_continuously", "count": 3, "landmark": "Vila", "distance_nmi": 1, "duration_seconds": 1800 }] },
+      "tactical": { "all_of": [{ "type": "opposing_cruisers_sunk_at_least", "count": 1 }, { "type": "supply_destroyers_within_range_continuously", "count": 3, "landmark": "Vila", "distance_nmi": 1, "duration_seconds": 1800 }] }
+    }
+  },
+  "blockers": [
+    { "id": "kula-order-conflict", "kind": "source_or_design", "detail": "正文的美军舰尾次序为 Radford、Jenkins，部署图标记相反；需记录裁决版本。还须核查卸载组的初始海图位置、维拉目标位置和小队自主离队时点。" },
+    { "id": "kula-night-hulls", "kind": "period_data_and_engine", "detail": "核验夜间 SG 与 Type 22、各舰精确时期记录、两型布鲁克林级及日方驱逐舰并接入夜战、雷达火控、岸线和连续卸载目标。" },
+    { "id": "kula-victory", "kind": "engine", "detail": "需定义损伤点比值、零损伤、双方目标同时达成及撤离终止判序；不能套用演习击沉数。" }
+  ]
+}

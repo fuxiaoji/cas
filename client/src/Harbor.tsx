@@ -1,16 +1,18 @@
 import { useState } from 'react';
+import { CampaignArchive } from './CampaignArchive';
 import { profileNames, sideNames } from './engine';
 import type { Profile, Side } from './engine';
 import { drawRecruit, getGunnery, hulls, lessons, meetsRoster, receiveChallenge, receiveStarter, rosters } from './port';
 import type { Hull, PortLaunch, PortState } from './port';
 import './harbor.css';
 
-type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge';
+type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge' | 'archive';
 type Props = { state: PortState; change: (reducer: (current: PortState) => PortState) => void;
   onReturn: () => void; onLaunch: (options: PortLaunch) => void; busy: boolean; error?: string };
 const tabs: { id: HarborTab; name: string }[] = [
   { id: 'training', name: '舰桥学堂' }, { id: 'fleet', name: '舰库与编队' },
   { id: 'recruit', name: '本机征募' }, { id: 'challenge', name: '越级挑战' },
+  { id: 'archive', name: 'CAS 战役档案' },
 ];
 function HarborArt() {
   return <svg className="harbor-art" aria-hidden="true" viewBox="0 0 800 275" preserveAspectRatio="xMidYMax slice">
@@ -130,6 +132,7 @@ export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props
               {state.challengeClaim ? '已领取挑战奖励' : '领取挑战奖励'}</button></div>
           <p className="harbor-fine">首通奖励：雷击 AI 与 2 张常驻券。</p>
         </section>}
+        {tab === 'archive' && <CampaignArchive busy={busy} onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night' })} />}
       </section>
     </div>
   </main>;

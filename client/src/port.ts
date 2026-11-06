@@ -32,7 +32,7 @@ export interface PortState {
   wallet: Wallet; marks: number; pity: Wallet; owned: Partial<Record<Hull, number>>;
   profiles: Profile[]; preset: FleetPreset; upSide: Side; sequence: number; history: Draw[];
 }
-export type PortLaunch = { side: Side; profile: Profile; leaderSlot: number; variant?: 'challenge'; training?: boolean };
+export type PortLaunch = { side: Side; profile: Profile; leaderSlot: number; variant?: 'challenge' | 'night'; training?: boolean };
 function fresh(): PortState {
   return { version: 1, lessons: [], starter: false, challengeClear: false, challengeClaim: false,
     wallet: { standard: 0, up: 0 }, marks: 0, pity: { standard: 0, up: 0 }, owned: {},

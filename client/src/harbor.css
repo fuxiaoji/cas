@@ -41,6 +41,27 @@
 .recruit-result > span, .recruit-result small { font-size: 11px; color: var(--muted); }
 .recruit-result strong { color: var(--brass); font: 700 21px var(--serif); }
 .lesson-signal { color: var(--brass); }
+.night-card { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 13px; margin-bottom: 15px; background: linear-gradient(104deg, #263c53, #152a3c 76%); border: 1px solid #4c6679; }
+.night-card span { font-size: 10px; color: #b7c6d3; }
+.night-card h3 { font: 700 20px var(--serif); color: var(--brass); margin: 2px 0 4px; }
+.night-card p { font-size: 11px; color: #c2d2d8; line-height: 1.45; }
+.night-card button { white-space: nowrap; }
+.archive-toolbar { display: flex; justify-content: flex-end; padding: 6px 0; font-size: 11px; color: var(--muted); }
+.archive-toolbar select { margin-left: 4px; font-size: 11px; }
+.archive-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid #3b5662; }
+.archive-list details { border-bottom: 1px solid #344f5c; }
+.archive-list summary { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto auto; align-items: center; gap: 7px; padding: 7px 0; cursor: pointer; }
+.archive-list summary::-webkit-details-marker { display: none; }
+.archive-list summary::before { content: '›'; color: var(--brass); }
+.archive-list details[open] summary::before { transform: rotate(90deg); }
+.archive-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 9px; font-size: 12px; }
+.archive-name time { font: 10px var(--numbers); color: var(--muted); }
+.archive-tag, .archive-lock { font-size: 10px; color: #b9ccd0; }
+.archive-tag.exact_historical_counterpart { color: #9dd0c3; }
+.archive-tag.related_alternate { color: #e1bf85; }
+.archive-lock { border: 1px solid #48616d; padding: 2px 4px; white-space: nowrap; }
+.archive-detail { display: grid; gap: 6px; padding: 4px 15px 9px; color: #c2d3d4; font-size: 11px; line-height: 1.55; }
+.archive-detail small { color: var(--muted); }
 @media (max-height: 500px) {
   .harbor-head { padding: 4px 10px; min-height: 42px; gap: 9px; }
   .harbor-head h1 { font-size: 17px; }
@@ -51,6 +72,8 @@
   .harbor-hero p { display: none; }
   .harbor-section { padding: 9px 13px 16px; }
   .harbor-tabs { padding: 8px 6px; }
+  .night-card { padding: 6px 8px; margin-bottom: 8px; }
+  .night-card h3 { font-size: 16px; }
 }
 @media (max-width: 640px) {
   .hull-inventory { grid-template-columns: repeat(2, minmax(0, 1fr)); }

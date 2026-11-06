@@ -7,7 +7,18 @@ export interface Position extends Point { heading: number; speed: number }
 export interface Ship extends Position {
   id: number; name: string; kind: 'dd' | 'cl'; fleet: number | null;
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
+  classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
 }
+export interface ShipSystems {
+  guns: { index: number; barrels: number; destroyed: boolean; arc?: [number, number]; arc2?: [number, number] | null; bearing?: number | null }[];
+  tubes: { index: number; tubes: number; spent: boolean }[];
+  directorDamaged: boolean; engineeringLevels: number; fires: number; floods: number; maxSpeed: number;
+}
+export interface Shell extends Point {
+  id: number; heading: number; progress: number; from?: Point; to?: Point;
+  launchTick: number; impactTick: number; own: boolean; barrels?: number;
+}
+export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number }
 export interface Contact extends Position { id: string; kind?: string; name?: string }
 export interface Path { ship: number; points: Point[] }
 export interface AiConfig {
@@ -17,13 +28,13 @@ export interface Fleet {
   id: number; name: string; leader: number; members: number[];
   mode: Maneuver; speed: number; points: Point[]; paths: Path[]; ai: AiConfig; notice?: string;
 }
-export interface LogEvent { tick: number; kind: string; text: string; rule?: string; x?: number; y?: number }
+export interface LogEvent { id?: number | string; tick: number; kind: string; text: string; rule?: string; x?: number; y?: number; voiceCue?: string }
 export interface Result { winner: string; allies: number; axis: number; primary?: boolean }
 export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;
-  variant?: string;
+  variant?: string; settling?: boolean;
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
-  torpedoes: (Point & { id: number; heading: number; own: boolean })[];
+  torpedoes: Torpedo[]; shells?: Shell[];
   events: LogEvent[]; result: Result | null; islands: Point[][];
 }
 export interface RoutePreview { valid: boolean; error?: string; paths: Path[]; speed: number }

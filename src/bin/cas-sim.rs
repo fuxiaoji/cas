@@ -26,11 +26,16 @@ fn main() -> ExitCode {
         } else {
             ("gunnery", "torpedo")
         };
-        call(json!({"op":"new","seed":seed,"side":side,"enemy":other,"profile":mine}));
+        let variant = args.get(4).map(String::as_str).unwrap_or("");
+        call(
+            json!({"op":"new","seed":seed,"side":side,"enemy":other,"profile":mine,"variant":variant}),
+        );
         call(
             json!({"op":"ai","fleet":f,"profile":mine,"mode":"auto","move":true,"gun":true,"torpedo":true}),
         );
-        call(json!({"op":"step","seconds":2700}));
+        if call(json!({"op":"step","seconds":2700}))["settling"] == true {
+            call(json!({"op":"step","seconds":8}));
+        }
         let report = call(json!({"op":"report"}));
         let save = call(json!({"op":"save"}));
         let replay = call(json!({"op":"replay","save":save}));

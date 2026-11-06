@@ -56,12 +56,12 @@ struct Shot {
     reaction: bool,
 }
 #[derive(Clone)]
-struct Impact {
-    victim: u32,
+pub(crate) struct Impact {
+    pub(crate) victim: u32,
     amount: f64,
     owner: usize,
     torpedo: bool,
-    at: P,
+    pub(crate) at: P,
     penetrated: bool,
     flood_hits: u32,
 }
@@ -76,6 +76,10 @@ struct Launch {
 
 impl World {
     pub fn detect(&mut self, initial: bool) {
+        if self.variant == "night" {
+            self.detect_night();
+            return;
+        }
         let rules = &self.data.rules;
         for s in 0..2 {
             let observers: Vec<_> = self
@@ -162,11 +166,17 @@ impl World {
                     first_cycle: known.map_or(if initial { 0 } else { self.tick / CYCLE }, |x| {
                         x.first_cycle
                     }),
+                    acquisition_base_yd: 0,
+                    acquisition_range_yd: 0,
                 });
             }
         }
     }
     pub fn update_tracks(&mut self) {
+        if self.variant == "night" {
+            self.update_night_tracks();
+            return;
+        }
         // A contact can be tracked continuously once spotted; checks are still only made on CAS intervals.
         for s in 0..2 {
             let mut lost = 0;
@@ -566,7 +576,10 @@ impl World {
         } else {
             [0, -1, -2][target_aspect]
         };
-        if s.p.dist(t.p) / YARD <= gun.range_yd[0] / 2. {
+        if self.variant == "night" {
+            modifiers +=
+                crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None);
+        } else if s.p.dist(t.p) / YARD <= gun.range_yd[0] / 2. {
             modifiers += 4;
         }
         if s.fire_control_damage {
@@ -591,7 +604,21 @@ impl World {
         let chance = (base + modifiers as f64 * if b <= 1 { 4. } else { 2. }).clamp(0., 90.);
         let roll = self.d(100);
         self.gun_streak[(s.id - 1) as usize] = (t.id, cycle, streak);
-        self.ship_mut(s.id).unwrap().gun_cycle = Some(cycle);
+        let bearing = (t.p - s.p).heading();
+        let relative = norm(bearing - s.h);
+        let bearings = gun
+            .mounts
+            .iter()
+            .enumerate()
+            .map(|(i, m)| {
+                (!s.gun_mount_destroyed[i] && m_arc(relative, m.arc, m.arc2)).then_some(bearing)
+            })
+            .collect();
+        let until = self.tick + SHELL_FLIGHT;
+        let firing = self.ship_mut(s.id).unwrap();
+        firing.gun_cycle = Some(cycle);
+        firing.gun_mount_bearings = bearings;
+        firing.gun_bearing_until = until;
         self.fired_this_cycle.push(s.id);
         self.incoming_this_cycle.push(t.id);
         let range = ["近", "中", "远", "极远"][b];
@@ -616,6 +643,9 @@ impl World {
             Some(s.p),
         );
         if roll as f64 > chance {
+            if self.version != LEGACY_VERSION {
+                self.launch_shell(&s, &t, shot.barrels, shot.reaction, None);
+            }
             return None;
         }
         let multiplier = gun_multiplier(&self.data.rules, shot.barrels, b);
@@ -633,7 +663,7 @@ impl World {
                 damage = libm::round(damage * 0.1);
             }
         }
-        Some(Impact {
+        let impact = Impact {
             victim: t.id,
             amount: damage,
             owner: s.side,
@@ -641,15 +671,18 @@ impl World {
             at: t.p,
             penetrated,
             flood_hits: 0,
-        })
+        };
+        if self.version == LEGACY_VERSION {
+            Some(impact)
+        } else {
+            self.launch_shell(&s, &t, shot.barrels, shot.reaction, Some(impact));
+            None
+        }
     }
     fn fire_torp(&mut self, l: Launch) {
         let s = self.ship(l.ship).unwrap().clone();
         let d = self.data.ships[s.def].torpedo.as_ref().unwrap();
-        let id = self.next_torp;
-        self.next_torp += 1;
-        self.torps.push(Torpedo {
-            id,
+        let mut torpedo = Torpedo {
             side: l.side,
             ship: l.ship,
             p: s.p,
@@ -660,10 +693,14 @@ impl World {
             count: l.count,
             traveled: 0.,
             born: self.tick,
+            origin: s.p,
+            view_ids: crate::world::seat_ids(1 << l.side, &mut self.torp_ids),
+            launch_sighted: false,
+            impact_sighted: false,
             contact_fuze: d.contact_fuze,
             single_mode: false,
             tested: vec![],
-        });
+        };
         let tick = self.tick;
         let ship = self.ship_mut(l.ship).unwrap();
         ship.ammo -= l.count;
@@ -679,6 +716,8 @@ impl World {
             Some("CAS-6.3.1"),
             Some(s.p),
         );
+        self.observe_torpedo_launch(&mut torpedo);
+        self.torps.push(torpedo);
     }
     fn hit_rolls(&mut self, table: &str, run: f64, spread: u32, stopped: bool) -> u32 {
         let r = &self.data.rules["torpedo_hit"][table];
@@ -777,6 +816,9 @@ impl World {
                 }
                 torp.count -= hits;
                 torp.single_mode = true;
+                if t.side != torp.side {
+                    torp.impact_sighted = true;
+                }
                 let mut damage = torp.warhead * hits as f64;
                 if a == 2 {
                     damage *= 0.5;
@@ -802,6 +844,9 @@ impl World {
                         Some("CAS-6.3.2"),
                         Some(t.p),
                     );
+                    if t.side == torp.side {
+                        self.last_voice(torp.side, Some("friendly_fire"));
+                    }
                 }
                 impacts.push(Impact {
                     victim: id,
@@ -820,12 +865,13 @@ impl World {
             torp.traveled += step;
             torp.remaining -= step;
             if torp.count > 0 && torp.remaining > 1e-7 && end.on_chart() {
+                self.observe_torpedo_wake(&mut torp);
                 self.torps.push(torp);
             }
         }
         self.apply_impacts(impacts);
     }
-    fn apply_impacts(&mut self, v: Vec<Impact>) {
+    pub(crate) fn apply_impacts(&mut self, v: Vec<Impact>) {
         let mut phase = vec![(0., 0., 0_u32, false); self.ships.len()];
         for i in v {
             let Some(s) = self.ship(i.victim) else {
@@ -861,6 +907,10 @@ impl World {
                     Some(rule),
                     Some(i.at),
                 );
+                if i.torpedo {
+                    // The actual hit already carried the torpedo-hit cue.
+                    self.last_voice(i.owner, None);
+                }
             }
             if hp <= 0. {
                 self.sank(i.victim);

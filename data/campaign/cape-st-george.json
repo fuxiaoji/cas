@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-campaign-cape-st-george-source-v1",
+  "scenario_id": "cas-rs-cape-st-george",
+  "ibs_id": "IBS-S-05",
+  "title": "圣乔治角海战",
+  "title_en": "Battle of Cape St. George",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": { "document": "rising_sun_5e", "pdf_pages": [92], "printed_pages": [91] },
+  "start": { "date_local": "1943-11-25", "time_local": "01:43", "location": "布卡岛与新爱尔兰岛之间", "map_type": "open_ocean" },
+  "environment": {
+    "light": "night",
+    "cloud_cover_pct": 75,
+    "squalls": "scattered_rain_squalls",
+    "visibility_pct": 10,
+    "moonrise_local": "04:25",
+    "moonrise_improves_visibility": false,
+    "wind_from_deg": 115,
+    "wind_speed_knots": 15,
+    "sea_state": 1
+  },
+  "groups": [
+    {
+      "id": "us-desdiv-45",
+      "side": "allies",
+      "role": "interception",
+      "unit": "Desron 23 / Desdiv 45",
+      "commander": "CAPT Arleigh A. Burke",
+      "leader": "ausburne",
+      "course_deg": 0,
+      "speed_knots": 23,
+      "formation": "line_ahead",
+      "column_spacing_yd": null,
+      "leader_position": { "type": "scenario_reference" },
+      "members_in_order": ["ausburne", "claxton", "dyson"]
+    },
+    {
+      "id": "us-desdiv-46",
+      "side": "allies",
+      "role": "interception",
+      "unit": "Desron 23 / Desdiv 46",
+      "commander": null,
+      "leader": "converse",
+      "course_deg": 0,
+      "speed_knots": 23,
+      "formation": "line_ahead",
+      "column_spacing_yd": null,
+      "leader_position": { "type": "bearing_from_ship", "ship": "dyson", "bearing_deg": 240, "distance": 3000, "unit": "yd" },
+      "members_in_order": ["converse", "spence"]
+    },
+    {
+      "id": "ijn-desdiv-31",
+      "side": "axis",
+      "role": "screen",
+      "unit": "Buka Reinforcement Element / Desdiv 31",
+      "commander": "CAPT Kiyoto Kagawa",
+      "leader": "onami",
+      "course_deg": 280,
+      "speed_knots": 25,
+      "formation": "line_ahead",
+      "column_spacing_yd": null,
+      "leader_position": { "type": "bearing_from_ship", "ship": "ausburne", "bearing_deg": 80, "distance": 11, "unit": "nmi" },
+      "members_in_order": ["onami", "makinami"]
+    },
+    {
+      "id": "ijn-destroyer-transport-group",
+      "side": "axis",
+      "role": "destroyer_transport",
+      "unit": "Buka Reinforcement Element / Destroyer Transport Group",
+      "commander": "CAPT Katsumori Yamashiro",
+      "leader": "amagiri",
+      "course_deg": 280,
+      "speed_knots": 25,
+      "formation": "line_ahead",
+      "column_spacing_yd": null,
+      "leader_position": { "type": "astern_of_group", "group": "ijn-desdiv-31", "distance": 13000, "unit": "yd", "reference_ship": null },
+      "members_in_order": ["amagiri", "yugiri", "uzuki"]
+    }
+  ],
+  "ships": [
+    { "id": "ausburne", "name": "Charles F. Ausburne", "class": "Fletcher", "kind": "DD", "flagship": true, "period_record": "fletcher_1943_review" },
+    { "id": "claxton", "name": "Claxton", "class": "Fletcher", "kind": "DD", "flagship": false, "period_record": "fletcher_1943_review" },
+    { "id": "dyson", "name": "Dyson", "class": "Fletcher", "kind": "DD", "flagship": false, "period_record": "fletcher_1943_review" },
+    { "id": "converse", "name": "Converse", "class": "Fletcher", "kind": "DD", "flagship": null, "period_record": "fletcher_1943_review" },
+    { "id": "spence", "name": "Spence", "class": "Fletcher", "kind": "DD", "flagship": false, "period_record": "fletcher_1943_review" },
+    { "id": "onami", "name": "Onami", "class": "Yugumo", "kind": "DD", "flagship": true, "period_record": "yugumo_1943_asw_refit_review" },
+    { "id": "makinami", "name": "Makinami", "class": "Yugumo", "kind": "DD", "flagship": false, "period_record": "yugumo_1943_asw_refit_review" },
+    { "id": "amagiri", "name": "Amagiri", "class": "Fubuki", "kind": "DD", "flagship": true, "period_record": "fubuki_1936_amagiri_aug_1943_review" },
+    { "id": "yugiri", "name": "Yugiri", "class": "Fubuki", "kind": "DD", "flagship": false, "period_record": "fubuki_1936_yugiri_aug_nov_1943_review" },
+    { "id": "uzuki", "name": "Uzuki", "class": "Mutsuki", "kind": "DD", "flagship": false, "period_record": "mutsuki_uzuki_oct_1943_review" }
+  ],
+  "period_records": {
+    "fletcher_1943_review": {
+      "hull_source": { "document": "american_fleets", "pdf_pages": [20], "printed_pages": ["A-17"] },
+      "legacy_comparison": { "document": "rising_sun_form10", "pdf_pages": [270, 272, 273, 276, 284], "printed_pages": [270, 272, 273, 276, 284] },
+      "note": "现有 1942 年昼战舰型不能代替各舰的 1943 年雷达与火控；先核对本型 SC-2/SG 基线及各舰电子设备。"
+    },
+    "yugumo_1943_asw_refit_review": {
+      "hull_source": { "document": "emperors_fleet", "pdf_pages": [27], "printed_pages": ["A-24"] },
+      "legacy_comparison": { "document": "rising_sun_form10", "pdf_pages": [89, 93], "printed_pages": [89, 93] },
+      "note": "原页分别列出两舰 1943 年反潜改装。不能把同级其他舰的 Type 22 雷达条目套到这两舰。"
+    },
+    "fubuki_1936_amagiri_aug_1943_review": {
+      "hull_source": { "document": "emperors_fleet", "pdf_pages": [29, 30], "printed_pages": ["A-26", "A-27"] },
+      "legacy_comparison": { "document": "rising_sun_form10", "pdf_pages": [153], "printed_pages": [153] },
+      "note": "采用 1936 改装舰型条目为起点；原页列出该舰 1943 年 8 月反潜改装和 1944 年才安装 Type 22 的记录。"
+    },
+    "fubuki_1936_yugiri_aug_nov_1943_review": {
+      "hull_source": { "document": "emperors_fleet", "pdf_pages": [29, 30], "printed_pages": ["A-26", "A-27"] },
+      "legacy_comparison": { "document": "rising_sun_form10", "pdf_pages": [171], "printed_pages": [171] },
+      "note": "原页将 Type 22 与反潜改装列为 1943 年 8–11 月批次，旧版有同一时期卡；导入前仍需核对相应五版雷达规则和该舰生效配置。"
+    },
+    "mutsuki_uzuki_oct_1943_review": {
+      "hull_source": { "document": "emperors_fleet", "pdf_pages": [30, 31], "printed_pages": ["A-27", "A-28"] },
+      "legacy_comparison": { "document": "rising_sun_form10", "pdf_pages": [183], "printed_pages": [183] },
+      "note": "核对 1943 年 10 月武备变化和较早的舰艉改装，不采用该舰 1944 年雷达改装。"
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "截击布卡到拉包尔的撤离线，敌情未现则于清晨向南撤出补给。",
+      "decisive": { "all_of": [{ "type": "opposing_ships_sunk_at_least", "kind": "DD", "count": 3 }, { "type": "all_own_ships_damage_at_most_pct", "kind": "DD", "pct": 25 }] },
+      "tactical": { "all_of": [{ "type": "opposing_ships_sunk_at_least", "kind": "DD", "count": 2 }] }
+    },
+    "axis": {
+      "orders": "向布卡运送 920 名战斗人员，将 700 名机场人员撤往拉包尔。",
+      "decisive": { "all_of": [{ "type": "all_own_ships_escape" }, { "type": "all_own_ships_damage_strictly_below_pct", "pct": 25 }] },
+      "tactical": { "all_of": [{ "type": "group_escapes", "group": "ijn-destroyer-transport-group" }, { "type": "group_undamaged", "group": "ijn-destroyer-transport-group" }] }
+    },
+    "adjudication": { "escape_boundary": null, "time_limit_seconds": null, "simultaneous_success_policy": null }
+  },
+  "troop_transport": {
+    "source": { "document": "rising_sun_5e", "pdf_pages": [92, 93], "printed_pages": [91, 92] },
+    "individual_loads_at_start": null,
+    "note": "剧本给的是行动总人数，未给开局各舰载荷。不能把总数平分或推断三舰满雷；载兵澄清涉及鱼雷装载、载员重创和损管，原文在恰好半编制处同时使用含等号的两档，需核实后裁决。"
+  },
+  "optional_variants": [{ "id": "agano-reinforcement", "axis_added": ["Agano", "Noshiro"], "class": "Agano", "kind": "CL", "enabled": false }],
+  "blockers": [
+    { "id": "cape-st-george-hulls", "kind": "period_data", "detail": "完成三种日方驱逐舰的炮雷、射界、损伤和精确改装记录，并核验美方 1943 年配置及双方雷达数据。" },
+    { "id": "cape-st-george-night", "kind": "engine", "detail": "实现并核验夜间视距、天气、识别及雷达接触／火控；按舰与时段裁决，不能为全队共享未发现目标。" },
+    { "id": "cape-st-george-setup", "kind": "source_or_design", "detail": "原页未给各纵队内间距，也未指定日方运输组距屏护组 13,000 码所取基准舰；先核查通用条款，否则将选择记录为 RTS 改编。" },
+    { "id": "cape-st-george-exit", "kind": "source_or_design", "detail": "剧本未列明撤离触发、通用局限或并发胜利判序；采用可复盘的独立判定，避免继承昼战击沉数或旧作离图特例。" },
+    { "id": "cape-st-george-troops", "kind": "source_and_engine", "detail": "核验开局是否载兵、逐舰载荷和适用的鱼雷／损管规则；不能把战役命令人数当作已经上船的人数。" }
+  ]
+}

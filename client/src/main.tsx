@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BattleMap } from './BattleMap';
+import { alertKind, ShipSchematic } from './BattlePresentation';
 import { Harbor } from './Harbor';
 import { ask, clock, maneuverNames, profileNames, sideNames } from './engine';
 import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, Weapon } from './engine';
@@ -11,9 +12,9 @@ import './style.css';
 const SAVE_KEY = 'cas.exercise.autosave.v1';
 const options = [1, 2, 4, 8] as const;
 type Speed = typeof options[number];
-type Tab = 'fleet' | 'ai' | 'log';
+type Tab = 'fleet' | 'ship' | 'ai' | 'log';
 interface Replay { data: unknown; end: number }
-const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile };
+const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' };
 const aimAction: Record<Weapon, string> = { gun: '炮击', torpedo: '雷击' };
 const descriptions: Record<Profile, string> = {
   coord: '保持编队，在火力与机动之间取平衡。',
@@ -31,7 +32,7 @@ function Mark() {
 }
 
 function eventTone(event: LogEvent) {
-  if (/sunk|damage|hit|impact/i.test(event.kind)) return 'strike';
+  if (alertKind(event)) return 'strike';
   if (/gun|torpedo|fire/i.test(event.kind)) return 'fire';
   if (/order|route|accepted/i.test(event.kind)) return 'order';
   return 'plain';
@@ -57,6 +58,7 @@ function App() {
   const [dialog, setDialog] = useState(false);
   const [setup, setSetup] = useState(defaultSetup);
   const [resultDismissed, setResultDismissed] = useState(false);
+  const [session, setSession] = useState(0);
   const [port, setPort] = useState(loadPort);
   const [portOpen, setPortOpen] = useState(false);
   const [portError, setPortError] = useState<string>();
@@ -89,12 +91,15 @@ function App() {
     }
   }
   function learn(id: Lesson) {
-    if (!replay && o?.variant !== 'challenge') setPort((state) => recordLesson(state, id));
+    if (!replay && o?.variant !== 'challenge' && o?.variant !== 'night') setPort((state) => recordLesson(state, id));
   }
   function resetDraft() { setEditMode(undefined); setWaypoints([]); setCruise(undefined); setPreview(undefined); setReformPreview(undefined); }
   function resetPanel() {
+    setSession((value) => value + 1);
     resetDraft(); setFleetId(undefined); setShipId(undefined); setSuggestion(undefined);
     setTab('fleet'); setRunning(false); setReplay(undefined); setResultDismissed(false);
+    window.clearTimeout(noticeTimer.current);
+    setNotice('');
     timeAccumulator.current = 0;
   }
   async function persist(toast = false) {
@@ -280,7 +285,7 @@ function App() {
     if (!o) return;
     try {
       const report = replay ? { result: o.result, events: o.events } : await ask<{ result: Result | null; events: LogEvent[] }>({ op: 'report' });
-      const title = ['CAS 海图指挥台', '虚构昼间演习', sideNames[o.side], '模拟时间 ' + clock(o.tick)];
+      const title = ['CAS 海图指挥台', o.scenario, sideNames[o.side], '模拟时间 ' + clock(o.tick)];
       const rows = report.events.map((event) => [clock(event.tick), event.text, event.rule ?? ''].filter(Boolean).join('  '));
       const blob = new Blob(['\uFEFF' + title.concat('', rows).join('\r\n')], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
@@ -295,18 +300,20 @@ function App() {
     timeAccumulator.current = 0;
     setRunning((value) => !value);
   }
-  function openSetup() { setRunning(false); setDialog(true); }
+  function openSetup() { setRunning(false); setSetup((current) => ({ ...current, variant: o?.variant === 'night' ? 'night' : '' })); setDialog(true); }
   async function launchFromHarbor(launch: PortLaunch) {
     setBusy(true); setPortError(undefined);
     try {
       const { training: isTraining, ...options } = launch;
       const next = await ask<Observation>({ op: 'new', ...defaultSetup, ...options });
-      resetPanel(); update(next); setPortOpen(false); setTraining(!!isTraining); setPresetActive(!isTraining);
+      resetPanel(); update(next); setPortOpen(false); setTraining(!!isTraining); setPresetActive(!isTraining && launch.variant !== 'night');
       await persist();
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
   }
-  const tabs: { key: Tab; title: string }[] = [{ key: 'fleet', title: '编队' }, { key: 'ai', title: '战术 AI' }, { key: 'log', title: '战情' }];
+  const tabs: { key: Tab; title: string }[] = [
+    { key: 'fleet', title: '编队' }, { key: 'ship', title: '舰况' }, { key: 'ai', title: '战术 AI' }, { key: 'log', title: '战情' },
+  ];
   const fire = (ship: number, weapon: Weapon, target: string, heading?: number) => {
     void command({ op: 'fire', ship, weapon, target, heading }, () => {
       hint('已下达' + aimAction[weapon] + '命令，执行进度见战情。');
@@ -326,10 +333,11 @@ function App() {
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
   const editing = !!editMode && !replay && !finished;
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
-  return <main className="command-shell">
+  return <main className={'command-shell' + (o.variant === 'night' ? ' night-exercise' : '')}>
     <header className="masthead">
       <div className="brand"><Mark /><div><span>CAS 战术演习</span><h1>海图指挥台</h1></div></div>
-      <div className="exercise-label"><span className="live-dot" data-active={running} />{replay ? '战局重演' : finished ? '演习结束' : running ? '演习进行中' : '演习暂停'}</div>
+      <div className="exercise-label"><span className="live-dot" data-active={running} />
+        {replay ? '战局重演' : finished ? '演习结束' : o.settling ? '末批炮弹飞行中' : running ? '演习进行中' : '演习暂停'}</div>
       <div className="clock-deck">
         <span className="time"><strong>{clock(o.tick)}</strong><small> / {clock(replay?.end ?? o.limit)}</small></span>
         <button className="clock-play" type="button" aria-label={running ? '暂停演习' : '开始演习'} onClick={toggleClock} disabled={busy || (finished && !replay)}>
@@ -349,6 +357,7 @@ function App() {
       <section className="chart-column">
         <BattleMap
           observation={o} fleet={fleet} selected={selected?.id} disabled={busy || !!replay || finished}
+          session={session} running={running} speed={speed} replaying={!!replay}
           editing={editing} waypoints={waypoints} preview={preview} reformPreview={reformPreview} onSelect={selectShip} onAddPoint={addPoint}
           onMovePoint={movePoint} onFire={fire} onCancelFire={() => learn('cancel')} onHint={hint}
         />
@@ -367,7 +376,7 @@ function App() {
         </div>}
         {!replay && finished && !resultDismissed && <div className="result-screen">
           <div className="result-card">
-            <p>{o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : '昼间水面演习结束'}</p>
+            <p>{o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
             <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>
             <div className="score"><span>同盟 {result?.allies}</span><span>轴心 {result?.axis}</span></div>
             <div className="actions"><button type="button" className="primary" onClick={() => void startReplay()}>重演战局</button>
@@ -431,6 +440,7 @@ function App() {
               </button>)}
               {selected && selected.fleet === fleet.id && <div className="ship-inspect">
                 <span>{selected.hp > 0 ? selected.speed.toFixed(0) + ' 节' : '已失能'} · {selected.ammo} 枚雷</span>
+                <button type="button" onClick={() => setTab('ship')}>舰体示意</button>
                 {selected.hp > 0 && selected.id !== fleet.leader && !replay && !finished && <>
                   <button type="button" onClick={() => void command({ op: 'lead', fleet: fleet.id, ship: selected.id }, () => {
                     learn('lead'); hint('已更换领舰。若领舰不在队首，可先重整或选回队首舰。');
@@ -441,6 +451,8 @@ function App() {
             </section>
           </>}
           {tab === 'fleet' && !fleet && <p className="empty-state">当前没有可指挥编队。</p>}
+          {tab === 'ship' && (selected ? <ShipSchematic ship={selected} ships={o.ships} select={selectShip} /> :
+            <p className="empty-state">本席没有可查看的舰艇。</p>)}
           {tab === 'ai' && fleet && <section className="ai-panel">
             <div className="group-heading"><h2>战术指挥官</h2><span>{fleet.name}</span></div>
             <label>AI 风格 <select value={fleet.ai.profile} disabled={!!replay || finished} onChange={(event) => changeAi({ ...fleet.ai, profile: event.target.value as Profile })}>
@@ -473,7 +485,7 @@ function App() {
             </div>
             {!latest.length && <p className="empty-state">开始演习后，这里会记录接触、开火与战果。</p>}
             <ol>{latest.map((event, index) =>
-              <li key={String(event.tick) + ':' + index} className={'log-event ' + eventTone(event)}>
+              <li key={event.id ?? (String(event.tick) + ':' + index)} className={'log-event ' + eventTone(event)}>
                 <time>{clock(event.tick)}</time><div>{event.text}{event.rule && <small>{event.rule}</small>}</div>
               </li>
             )}</ol>
@@ -487,7 +499,10 @@ function App() {
     </div>
     {dialog && <div className="dialog-backdrop" onPointerDown={(event) => { if (event.target === event.currentTarget && !busy) setDialog(false); }}>
       <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="演习设置">
-        <p>虚构昼间演习</p><h2>重新部署舰队</h2>
+        <p>虚构水面演习</p><h2>重新部署舰队</h2>
+        <label>演习时段 <select value={setup.variant} onChange={(event) => setSetup({ ...setup, variant: event.target.value as typeof setup.variant })}>
+          <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option>
+        </select></label>
         <label>所属方 <select value={setup.side} onChange={(event) => setSetup({ ...setup, side: event.target.value as Side })}>
           <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
         </select></label>

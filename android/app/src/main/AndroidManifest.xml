@@ -3,7 +3,7 @@
     <application
         android:allowBackup="false"
         android:icon="@drawable/cas_icon"
-        android:label="CAS · 白昼演习"
+        android:label="CAS · 即时海战试玩"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.NoActionBar"
         android:usesCleartextTraffic="false">

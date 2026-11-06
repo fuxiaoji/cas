@@ -1,0 +1,734 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-campaign-crosswalk-v1",
+  "baseline": {
+    "name": "铁底湾手游 0.6.9",
+    "commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+    "scenario_index": "mobile/content/campaign-scenarios.json",
+    "briefings": "mobile/content/campaign-briefings.json",
+    "initial_stage_evidence": "docs/mobile-content-audit-20261104.md"
+  },
+  "source_path_root": "CAS带翻译/CAS带翻译",
+  "documents": {
+    "rising_sun_5e": {
+      "path": "剧本/Rising_Sun_5th_ed_Std_1_Oct_25.pdf",
+      "edition": "5th edition, 1 Oct 2025",
+      "sha256": "7340f4b5b089a7441109faab5baf0e93f42819a9ba2cc1ad88c1e9f3a00d3118"
+    },
+    "steel_typhoon_5e": {
+      "path": "剧本/Steel_Typhoon_5th_ed_Std_1_Oct_25.pdf",
+      "edition": "5th edition, 1 Oct 2025",
+      "sha256": "8530bf265875057749a47ea7029dac15fac220496fc27f4f03114be57517f4f9"
+    },
+    "gruppe_nord": {
+      "path": "剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+      "edition": "2012 standard, local bilingual reference",
+      "sha256": "afc7979a51b966b98e58f73276855982e5e87330978597e71bc19a82ae013d3a"
+    },
+    "clear_the_coast": {
+      "path": "剧本/Clear_the_Coast.pdf",
+      "edition": "local edition",
+      "sha256": "52e9744f978ae4241707f5b853dd0e68dac7e982e53671f52eaf87dd02cfd531"
+    },
+    "mighty_midgets": {
+      "path": "剧本/Mighty_Midgets_2nd_edition.pdf",
+      "edition": "second edition",
+      "sha256": "9ad66fd19e14378f983f83067ec49e9eee08f68fa4bac1f47e38a9c0da273b3d"
+    },
+    "no_sailor": {
+      "path": "剧本/No_Sailor_But_a_Fool_2nd_Printing.pdf",
+      "edition": "second printing",
+      "sha256": "0a9b135d4c64f53794522e9b7a6e3ea9d880269af88efc3d128a7b1e3b9baeba"
+    },
+    "bywater": {
+      "path": "剧本/Bywater_s_War_2012_Standard.pdf",
+      "edition": "2012 standard",
+      "sha256": "24b53352844724934759280de7aede88d5c02818f97a174b264344891a7972c6"
+    },
+    "american_fleets": {
+      "path": "船表/American_Fleets_2012_Standard.pdf",
+      "edition": "2012 standard",
+      "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b"
+    },
+    "emperors_fleet": {
+      "path": "船表/The_Emperor_s_Fleet.pdf",
+      "edition": "local edition",
+      "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53"
+    },
+    "rising_sun_form10": {
+      "path": "船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "edition": "legacy Form 10s; comparison only",
+      "sha256": "9c54d934670f1065097de33f7092d15cebf73dcdf6143f693d43e1e95a599fb4"
+    }
+  },
+  "excluded": [
+    {
+      "stage_id": "CAMP-NIGHT-01",
+      "kind": "training",
+      "reason": "夜战教学编排，单独迁移，不计入 16 场双线战役。"
+    }
+  ],
+  "scenarios": [
+    {
+      "ibs_id": "IBS-S-03",
+      "ibs_title": "通道行动",
+      "ibs_date": "1940-11-28",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 3,
+        "printed_page": 4,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-01",
+        "CAMP-AXIS-01"
+      ],
+      "classification": "unverified",
+      "cas": null,
+      "playable": false,
+      "note": "旧作简报确认是 1940 年 11 月 28–29 日普利茅斯外海的标枪号行动。本地英吉利海峡和德国海军剧本目录未定位同一交战；不能用 1942 年刻耳柏洛斯行动或 1944 年隧道行动替代。",
+      "checked_sources": [
+        {
+          "document": "gruppe_nord",
+          "pdf_pages": [
+            3
+          ],
+          "printed_pages": [
+            2
+          ]
+        },
+        {
+          "document": "clear_the_coast",
+          "pdf_pages": [
+            3
+          ],
+          "printed_pages": [
+            2
+          ]
+        },
+        {
+          "document": "mighty_midgets",
+          "pdf_pages": [
+            3
+          ],
+          "printed_pages": [
+            2
+          ]
+        },
+        {
+          "document": "no_sailor",
+          "pdf_pages": [
+            4
+          ],
+          "printed_pages": [
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "ibs_id": "IBS-S-01",
+      "ibs_title": "埃斯佩兰斯角海战",
+      "ibs_date": "1942-10-11",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 1,
+        "printed_page": 2,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-02",
+        "CAMP-AXIS-02"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-cape-esperance",
+        "title": "Battle of Cape Esperance",
+        "start_date": "1942-10-11",
+        "start_time_local": "23:24",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            65
+          ],
+          "printed_pages": [
+            64
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "CAS 默认开局 23:24，可另选 23:39 或 23:45；CAS 基础编制不把旧作增援船队搬上战场。"
+    },
+    {
+      "ibs_id": "IBS-S-05",
+      "ibs_title": "圣乔治角海战",
+      "ibs_date": "1943-11-25",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 5,
+        "printed_page": 6,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-03",
+        "CAMP-AXIS-03"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-cape-st-george",
+        "title": "Battle of Cape St. George",
+        "start_date": "1943-11-25",
+        "start_time_local": "01:43",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            92
+          ],
+          "printed_pages": [
+            91
+          ]
+        },
+        "verification": "scenario_page_transcribed",
+        "import": "cape-st-george.json"
+      },
+      "playable": false,
+      "note": "CAS 双方共 10 艘驱逐舰；日军运输组属于开局编制，与旧作增援分组不同。"
+    },
+    {
+      "ibs_id": "IBS-S-02",
+      "ibs_title": "库拉湾海战",
+      "ibs_date": "1943-07-06",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 2,
+        "printed_page": 3,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-04",
+        "CAMP-AXIS-04"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-kula-gulf",
+        "title": "Battle of Kula Gulf",
+        "start_date": "1943-07-06",
+        "start_time_local": "01:36",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            85,
+            86
+          ],
+          "printed_pages": [
+            84,
+            85
+          ]
+        },
+        "verification": "scenario_page_transcribed",
+        "import": "kula-gulf.json"
+      },
+      "playable": false,
+      "note": "PDF 86 为部署图；正文与部署图的美军舰尾次序有一处冲突，先登记，未选定。"
+    },
+    {
+      "ibs_id": "IBS-S-04",
+      "ibs_title": "塔萨法隆格海战",
+      "ibs_date": "1942-11-30",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 4,
+        "printed_page": 5,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-05",
+        "CAMP-AXIS-05"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-tassafaronga",
+        "title": "Battle of Tassafaronga",
+        "start_date": "1942-11-30",
+        "start_time_local": "23:08",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            75,
+            76
+          ],
+          "printed_pages": [
+            74,
+            75
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "PDF 76 为部署图；补给桶任务不能替换成只数击沉。"
+    },
+    {
+      "ibs_id": "IBS-S-06",
+      "ibs_title": "第二次瓜达卡纳尔岛海战",
+      "ibs_date": "1942-11-15",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 6,
+        "printed_page": 7,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-06",
+        "CAMP-AXIS-06"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-guadalcanal-ii",
+        "title": "Second Battle of Guadalcanal",
+        "start_date": "1942-11-14",
+        "start_time_local": "23:00",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            73,
+            74
+          ],
+          "printed_pages": [
+            72,
+            73
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "CAS 在 11 月 14 日 23:00 开始，跨至旧作标记的 11 月 15 日；同一次交战，保留两方日期。"
+    },
+    {
+      "ibs_id": "IBS-S-07",
+      "ibs_title": "所罗门群岛海战",
+      "ibs_date": "1928-07-03",
+      "ibs_kind": "fiction",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 7,
+        "printed_page": 8,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-07",
+        "CAMP-AXIS-07"
+      ],
+      "classification": "ibs_original_or_absent",
+      "cas": null,
+      "playable": false,
+      "note": "旧作为未签订华盛顿海军条约的架空想定。CAS 有相近的假想战背景，但《Bywater’s War》1926–28 单元的六个剧本不对应这场交战。",
+      "checked_sources": [
+        {
+          "document": "bywater",
+          "pdf_pages": [
+            3,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "printed_pages": [
+            2,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        }
+      ]
+    },
+    {
+      "ibs_id": "IBS-S-08",
+      "ibs_title": "科隆班加拉岛海战",
+      "ibs_date": "1943-07-13",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 8,
+        "printed_page": 9,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-08",
+        "CAMP-AXIS-08"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-kolombangara",
+        "title": "The Battle of Kolombangara",
+        "start_date": "1943-07-13",
+        "start_time_local": "01:00",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            87
+          ],
+          "printed_pages": [
+            86
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "以正文与舰表为准，目录中美方舰种概述不可用作编制。"
+    },
+    {
+      "ibs_id": "IBS-S-09",
+      "ibs_title": "第一次瓜达卡纳尔岛海战",
+      "ibs_date": "1942-11-13",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 9,
+        "printed_page": 10,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-09",
+        "CAMP-AXIS-09"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-guadalcanal-i",
+        "title": "First Battle of Guadalcanal",
+        "start_date": "1942-11-13",
+        "start_time_local": "01:24",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            71,
+            72
+          ],
+          "printed_pages": [
+            70,
+            71
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "PDF 72 含历史结局和部署图。"
+    },
+    {
+      "ibs_id": "IBS-S-10",
+      "ibs_title": "萨沃岛海战",
+      "ibs_date": "1942-08-09",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 10,
+        "printed_page": 11,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-10",
+        "CAMP-AXIS-10"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-savo-island",
+        "title": "The Battle of Savo Island",
+        "start_date": "1942-08-09",
+        "start_time_local": "00:52",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            52,
+            53,
+            54
+          ],
+          "printed_pages": [
+            51,
+            52,
+            53
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "PDF 53 为部署图，PDF 54 为部署正文及裁决。"
+    },
+    {
+      "ibs_id": "IBS-S-11",
+      "ibs_title": "奥古斯塔皇后湾海战",
+      "ibs_date": "1943-11-02",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 12,
+        "printed_page": 13,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-11",
+        "CAMP-AXIS-11"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-empress-augusta-bay",
+        "title": "Battle of Empress Augusta Bay",
+        "start_date": "1943-11-02",
+        "start_time_local": "02:27",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            91
+          ],
+          "printed_pages": [
+            90
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "CAS 目录拼写有误，采用正文。"
+    },
+    {
+      "ibs_id": "IBS-S-12",
+      "ibs_title": "布干维尔岛海战（第一战队出击！）",
+      "ibs_date": "1928-03-03",
+      "ibs_kind": "fiction",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 13,
+        "printed_page": 14,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-12",
+        "CAMP-AXIS-12"
+      ],
+      "classification": "ibs_original_or_absent",
+      "cas": null,
+      "playable": false,
+      "note": "旧作为未签订华盛顿海军条约的架空想定。CAS 有相近的假想战背景，但《Bywater’s War》1926–28 单元的六个剧本不对应这场交战。",
+      "checked_sources": [
+        {
+          "document": "bywater",
+          "pdf_pages": [
+            3,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "printed_pages": [
+            2,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        }
+      ]
+    },
+    {
+      "ibs_id": "IBS-S-13",
+      "ibs_title": "韦拉拉韦拉岛海战",
+      "ibs_date": "1943-10-06",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 14,
+        "printed_page": 15,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-13",
+        "CAMP-AXIS-13"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-vella-lavella",
+        "title": "Battle of Vella Lavella",
+        "start_date": "1943-10-06",
+        "start_time_local": "22:30",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            90
+          ],
+          "printed_pages": [
+            89
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "为十月六日撤离交战；与 PDF 88 的八月六日韦拉湾海战不同。"
+    },
+    {
+      "ibs_id": "IBS-S-14",
+      "ibs_title": "霍腊纽海战",
+      "ibs_date": "1943-08-18",
+      "ibs_kind": "history",
+      "ibs_source": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 15,
+        "printed_page": 16,
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-14",
+        "CAMP-AXIS-14"
+      ],
+      "classification": "exact_historical_counterpart",
+      "cas": {
+        "scenario_id": "cas-rs-horaniu",
+        "title": "The Battle off Horaniu",
+        "start_date": "1943-08-18",
+        "start_time_local": "00:32",
+        "source": {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            89
+          ],
+          "printed_pages": [
+            88
+          ]
+        },
+        "verification": "scenario_page_transcribed",
+        "import": "horaniu.json"
+      },
+      "playable": false,
+      "note": "CAS 编制包含登陆驳船，不能按旧作驱逐舰对战直接移植。"
+    },
+    {
+      "ibs_id": "IBS-S-EM-01",
+      "ibs_title": "第二次马里亚纳海战（内南洋水雷强袭战）",
+      "ibs_date": "1944-06-21",
+      "ibs_kind": "fiction",
+      "ibs_source": {
+        "document": "extensions/erma/scenario/second-battle-of-the-philippine-sea-zh.pdf",
+        "pdf_pages": [
+          1,
+          2
+        ],
+        "status": "verified_source"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-15",
+        "CAMP-AXIS-15"
+      ],
+      "classification": "related_alternate",
+      "cas": {
+        "scenario_id": "cas-st-philippine-sea-night-pursuit",
+        "title": "Battle of the Philippine Sea: Night Pursuit",
+        "start_date": "1944-06-21",
+        "start_time_local": "04:00",
+        "source": {
+          "document": "steel_typhoon_5e",
+          "pdf_pages": [
+            46,
+            47
+          ],
+          "printed_pages": [
+            45,
+            46
+          ]
+        },
+        "verification": "title_and_start_visually_checked",
+        "import": null
+      },
+      "playable": false,
+      "note": "共同背景和日期，但 CAS 为舰载机夜间追击，旧作为两支架空水面舰队对决。禁止以其中一个的阵位或判定覆盖另一个。"
+    },
+    {
+      "ibs_id": "IBS-S-FM-01",
+      "ibs_title": "铁底湾的回响·午夜舰队决战（虚构想定）",
+      "ibs_date": "1944-10-25",
+      "ibs_kind": "fiction",
+      "ibs_source": {
+        "document": "user_commissioned_fictional_scenario",
+        "status": "design",
+        "design_notes": "虚构推演：参考1942-1944所罗门夜战与莱特湾海战编成；编队参考历史雷击编队（挺身攻击队/东京快车/31节伯克/李式战列纵队）。舰船数据全部来自已核验记录（记录手册/舰级卡/二马扩展）。"
+      },
+      "stage_ids": [
+        "CAMP-ALLIES-16",
+        "CAMP-AXIS-16"
+      ],
+      "classification": "ibs_original_or_absent",
+      "cas": null,
+      "playable": false,
+      "note": "旧作原创 1944-10-25 铁底湾大编队夜战，参照所罗门夜战及莱特湾编制；CAS 同日莱特湾各场的海域、交战双方及任务不同。",
+      "checked_sources": [
+        {
+          "document": "rising_sun_5e",
+          "pdf_pages": [
+            4,
+            5
+          ],
+          "printed_pages": [
+            3,
+            4
+          ]
+        },
+        {
+          "document": "steel_typhoon_5e",
+          "pdf_pages": [
+            3,
+            60,
+            62,
+            64,
+            66
+          ],
+          "printed_pages": [
+            2,
+            59,
+            61,
+            63,
+            65
+          ]
+        }
+      ]
+    }
+  ]
+}

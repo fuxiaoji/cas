@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "source_project": "铁底湾",
+  "source_commit": "3ba9c5b01c48a3e7f8bb104da5d9f7ad4b1456a9",
+  "source_manifest": "mobile/content/fleet-portrait-manifest.json",
+  "scope": "CAS local developer and test builds; public distribution rights not established.",
+  "assets": [
+    {
+      "cas_class_id": "fletcher",
+      "ibs_character_id": "IBS-U-USN-FLETCHER",
+      "character_name": "弗莱彻",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-fletcher.png",
+      "path": "fletcher.png",
+      "sha256": "43910f725219330a044f6bce08bd77719118c246c8f868404b13e3113403428c",
+      "mapping": "class_representative"
+    },
+    {
+      "cas_class_id": "cleveland",
+      "ibs_character_id": "IBS-U-USN-UNNAMED-T01-R26",
+      "character_name": "克利夫兰",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r26.png",
+      "path": "cleveland.png",
+      "sha256": "275643134b2cb2b5d5032cfddbe1e3043785a9c6e276335d2f36ee3b269d9c90",
+      "mapping": "class_representative"
+    },
+    {
+      "cas_class_id": "kagero",
+      "ibs_character_id": "IBS-U-IJN-KAGERO",
+      "character_name": "阳炎",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kagero.png",
+      "path": "kagero.png",
+      "sha256": "22bf931585c659b9073ac2a75023f4783d1fd7bd3667b86043d22b27dd3e6f0d",
+      "mapping": "class_representative"
+    },
+    {
+      "cas_class_id": "sendai",
+      "ibs_character_id": "IBS-U-IJN-SENDAI",
+      "character_name": "川内",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-sendai.png",
+      "path": "sendai.png",
+      "sha256": "eaefdc9bad95f5e5119b8fb1ce6916f0e82af6840fc2be076b323b163d3a9c10",
+      "mapping": "class_representative"
+    }
+  ]
+}

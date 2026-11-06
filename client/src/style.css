@@ -135,7 +135,7 @@ h1, h2, h3, p { margin: 0; }
 .replay-bar span { font: 11px var(--numbers); }
 .replay-bar button { min-height: 25px; padding: 2px 5px; font-size: 11px; }
 .staff-panel { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; background: var(--panel-deep); border-left: 1px solid var(--edge); }
-.staff-tabs { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0 12px; gap: 2px; border-bottom: 1px solid var(--edge); }
+.staff-tabs { display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 12px; gap: 2px; border-bottom: 1px solid var(--edge); }
 .staff-tabs button {
   min-height: 41px; background: none; border: 0; border-radius: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 4px;
 }
@@ -287,3 +287,7 @@ h1, h2, h3, p { margin: 0; }
   .maneuver-section { padding-inline: 5px; }
   .group-heading > span, .map-legend output, .map-note { display: none; }
 }
+.tactical-turret { position:absolute; width:4px; height:4px; margin:-2px; border-radius:50%; background:#9db7b9; pointer-events:none; z-index:1; transition:rotate 220ms ease-out; }
+.tactical-turret::after { content:''; position:absolute; left:1.5px; width:1px; height:5px; bottom:3px; background:currentColor; color:#a2bdbe; }
+.tactical-turret.trained, .tactical-turret.trained::after { background:#ffe08c; }
+@media (prefers-reduced-motion:reduce) { .tactical-turret { transition:none; } }

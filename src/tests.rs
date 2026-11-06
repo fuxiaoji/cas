@@ -132,6 +132,63 @@ fn duel_has_exchange_and_full_replay() {
     }
     assert_eq!(w.result, replay.result);
 }
+
+#[test]
+fn night_keeps_hidden_contacts_out_and_replays_real_exchange() {
+    let mut e = Engine::default();
+    let new = ask(
+        &mut e,
+        json!({"op":"new","seed":6106,"variant":"night","enemy":"torpedo","profile":"gunnery"}),
+    );
+    assert_eq!(
+        new["environment"],
+        json!({"light":"night","visibility":20,"sea_state":2,"precipitation":false})
+    );
+    assert_eq!(new["contacts"], json!([]));
+    assert_eq!(new["torpedoes"], json!([]));
+    assert_eq!(
+        e.handle(json!({"op":"aim","ship":1,"weapon":"gun","target":"C01"}))["ok"],
+        false
+    );
+    ask(
+        &mut e,
+        json!({"op":"ai","fleet":1,"profile":"gunnery","mode":"auto","move":true,"gun":true,"torpedo":true}),
+    );
+    let mut end = ask(&mut e, json!({"op":"step","seconds":2700}));
+    if end["settling"] == true {
+        end = ask(&mut e, json!({"op":"step","seconds":8}));
+    }
+    assert!(!end["result"].is_null());
+    let report = ask(&mut e, json!({"op":"report"}));
+    for kind in ["contact", "lost", "gun", "hit", "damage"] {
+        assert!(
+            report["events"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|v| v["kind"] == kind),
+            "missing {kind}"
+        );
+    }
+    let save = ask(&mut e, json!({"op":"save"}));
+    assert_eq!(ask(&mut e, json!({"op":"replay","save":save})), end);
+}
+
+#[test]
+fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
+    use std::collections::BTreeSet;
+    let rows = ask(&mut Engine::default(), json!({"op":"campaign"}));
+    let scenarios = rows["scenarios"].as_array().unwrap();
+    assert_eq!(scenarios.len(), 16);
+    let mut stages = BTreeSet::new();
+    for item in scenarios {
+        assert_eq!(item["playable"], false);
+        for id in item["stage_ids"].as_array().unwrap() {
+            assert!(stages.insert(id.as_str().unwrap()));
+        }
+    }
+    assert_eq!(stages.len(), 32);
+}
 #[test]
 fn close_range_torpedo_uses_actual_mount_and_advancing_spread() {
     let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
@@ -221,4 +278,114 @@ fn deployment_lead_change_keeps_route_available() {
         json!({"op":"preview_route","fleet":1,"mode":"follow","points":[{"x":6800,"y":6550}]}),
     );
     assert_eq!(p["valid"], true, "{p}");
+}
+
+fn forced_short_range_shell(hidden_to_target: bool) -> World {
+    let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+    w.fleets[1].ai = Ai::new("coord", "manual");
+    w.ship_mut(1).unwrap().p = P { x: 6000., y: 6200. };
+    w.ship_mut(6).unwrap().p = P { x: 6000., y: 7430. };
+    w.detect(true);
+    if hidden_to_target {
+        w.contacts[1].retain(|c| c.ship != 1);
+    }
+    // Find an actual attack roll below the verified short-range gunnery threshold.
+    w.rng = (1..1024)
+        .find(|&candidate| {
+            w.rng = candidate;
+            w.d(100) <= 30
+        })
+        .unwrap();
+    let target = w.contacts[0]
+        .iter()
+        .find(|c| c.ship == 6)
+        .unwrap()
+        .id
+        .clone();
+    w.tick = 179;
+    w.external(json!({"op":"fire","ship":1,"weapon":"gun","target":target}))
+        .unwrap();
+    w
+}
+
+#[test]
+fn shells_move_for_eight_ticks_then_resolve_without_leaking_hidden_origin() {
+    for hidden in [false, true] {
+        let mut w = forced_short_range_shell(hidden);
+        let hp = w.ship(6).unwrap().hp;
+        w.advance();
+        let initial = w.observation(0);
+        let s = &initial["shells"][0];
+        let mounts = initial["ships"][0]["systems"]["guns"].as_array().unwrap();
+        assert_eq!(
+            mounts.iter().filter(|m| m["bearing"].is_number()).count(),
+            5
+        );
+        assert!(initial["contacts"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|c| c.get("systems").is_none()));
+        assert_eq!(s["launchTick"], 180);
+        assert_eq!(s["impactTick"], 188);
+        assert_eq!(s["progress"], 0.);
+        assert_eq!(
+            w.observation(1)["shells"].as_array().unwrap().len(),
+            usize::from(!hidden)
+        );
+        assert_eq!(w.ship(6).unwrap().hp, hp);
+        for _ in 0..4 {
+            w.advance();
+        }
+        let mid = w.observation(0);
+        assert_eq!(mid["shells"][0]["id"], s["id"]);
+        assert_eq!(mid["shells"][0]["progress"], 0.5);
+        assert!(mid["shells"][0]["y"].as_f64().unwrap() > s["y"].as_f64().unwrap());
+        assert_eq!(w.ship(6).unwrap().hp, hp);
+        for _ in 0..4 {
+            w.advance();
+        }
+        let end = w.observation(1);
+        assert!(end["shells"].as_array().unwrap().is_empty());
+        assert!(w.ship(6).unwrap().hp < hp);
+        assert!(end["events"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|e| e["kind"] == "damage" && e["tick"] == 188 && e["voiceCue"] == "damage"));
+    }
+}
+
+#[test]
+fn last_salvo_settles_at_deadline_and_seat_event_ids_do_not_leak() {
+    let mut w = forced_short_range_shell(false);
+    w.tick = LIMIT - 1;
+    w.pending[0].expires = LIMIT;
+    w.add(2, "test-private", "不可见".into(), None, None);
+    w.advance();
+    assert!(w.result.is_none());
+    assert_eq!(w.observation(0)["settling"], true);
+    assert!(w.external(json!({"op":"lead","fleet":1,"ship":2})).is_err());
+    for _ in 0..SHELL_FLIGHT {
+        w.advance();
+    }
+    assert_eq!(w.tick, LIMIT + SHELL_FLIGHT);
+    assert!(w.result.is_some());
+    for side in 0..2 {
+        for (i, e) in w.visible_events(side, None).iter().enumerate() {
+            assert_eq!(e["id"], i + 1);
+        }
+    }
+    assert!(!w.observation(0).to_string().contains("不可见"));
+}
+
+#[test]
+fn legacy_save_keeps_original_instant_cas_gunnery() {
+    let mut w = forced_short_range_shell(false);
+    w.version = LEGACY_VERSION;
+    let hp = w.ship(6).unwrap().hp;
+    w.advance();
+    assert!(w.shells.is_empty());
+    assert!(w.ship(6).unwrap().hp < hp);
+    assert_eq!(w.save().version, LEGACY_VERSION);
 }
