@@ -1,0 +1,28 @@
+plugins { id 'com.android.application' version '8.9.2' }
+
+android {
+    namespace 'org.casnaval.exercise'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'org.casnaval.exercise'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0'
+    }
+    sourceSets.main.assets.srcDirs = [rootProject.file('../client/dist')]
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+tasks.named('preBuild') {
+    doFirst {
+        ['index.html', 'engine-worker.js', 'cas_core.wasm'].each { file ->
+            if (!rootProject.file("../client/dist/$file").isFile()) {
+                throw new GradleException('Build the CAS web bundle before building Android.')
+            }
+        }
+    }
+}

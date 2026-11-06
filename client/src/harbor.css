@@ -1,0 +1,58 @@
+.harbor { min-height: 0; height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr); background: #0c2331; }
+.harbor-head { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 20px; padding: 11px 24px; border-bottom: 1px solid #395460; }
+.harbor-head h1 { font: 700 25px var(--serif); letter-spacing: .14em; }
+.harbor-head div:first-child span { font-size: 10px; color: var(--muted); letter-spacing: .12em; }
+.harbor-wallet { display: flex; gap: 14px; color: var(--muted); font-size: 11px; }
+.harbor-wallet b { color: var(--brass); font: 14px var(--numbers); }
+.harbor-body { display: grid; grid-template-columns: minmax(112px, 19vw) minmax(0, 1fr); min-height: 0; }
+.harbor-tabs { display: flex; flex-direction: column; gap: 5px; padding: 17px 11px; border-right: 1px solid #395460; }
+.harbor-tabs button { background: transparent; border-color: transparent; text-align: left; color: #b5cbd0; padding: 8px 10px; }
+.harbor-tabs button[aria-pressed=true] { border-color: #81714f; background: #23393d; color: var(--brass); }
+.harbor-tabs > span { color: #9aadb0; font-size: 10px; margin: auto 0 0 9px; }
+.harbor-content { overflow: auto; scrollbar-color: #4f6c76 #0c2331; }
+.harbor-hero { position: relative; isolation: isolate; min-height: 165px; height: clamp(165px, 27vh, 270px); display: flex; align-items: flex-end; padding: 22px 26px; overflow: hidden; }
+.harbor-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #102633d7, transparent 65%); }
+.harbor-art { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; }
+.harbor-hero p { color: #a3b6b5; font-size: 11px; margin-bottom: 5px; letter-spacing: .1em; }
+.harbor-hero h2 { font: 700 34px var(--serif); color: #f2d397; letter-spacing: .09em; }
+.harbor-section { padding: 19px 26px 24px; max-width: 845px; }
+.harbor-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 7px; margin-bottom: 7px; border-bottom: 1px solid #395460; }
+.harbor-title h3 { font-size: 14px; letter-spacing: .06em; }
+.harbor-title > span { color: var(--muted); font-size: 11px; }
+.harbor-action { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; margin-top: 11px; }
+.harbor-action label { color: #b5cbd0; font-size: 12px; }
+.harbor-action select { margin-left: 3px; font-size: 12px; }
+.harbor-action > span { color: var(--muted); font-size: 11px; }
+.harbor-action button[aria-pressed=true] { color: var(--brass); border-color: #b69362; }
+.harbor-fine { margin-top: 9px; font-size: 12px; color: #b1c9ca; line-height: 1.65; }
+.harbor-error { margin: 10px 26px 0; color: #efaf92; }
+.lesson-list { list-style: none; padding: 0; margin: 0; }
+.lesson-list li { display: grid; grid-template-columns: 23px 1fr; gap: 7px; padding: 6px 0; border-bottom: 1px solid #2c4650; }
+.lesson-list li > span { font: 11px var(--numbers); color: #9fbbb9; }
+.lesson-list li.active-lesson > span, .lesson-list li.active-lesson strong { color: var(--brass); }
+.lesson-list strong { font-size: 12px; }
+.lesson-list p { font-size: 11px; color: #acc1c3; margin-top: 2px; }
+.hull-inventory { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; margin-bottom: 15px; }
+.hull-inventory > div { display: flex; flex-direction: column; gap: 3px; border: 1px solid #425d64; padding: 7px; color: var(--brass); }
+.hull-inventory > div.unowned { color: #b1c8c7; background: #112b38; }
+.hull-inventory span, .hull-inventory small { font-size: 10px; color: var(--muted); }
+.hull-inventory strong { font-size: 12px; }
+.recruit-result { display: grid; gap: 5px; background: #213638; border-left: 2px solid #b59363; margin-top: 12px; padding: 10px; }
+.recruit-result > span, .recruit-result small { font-size: 11px; color: var(--muted); }
+.recruit-result strong { color: var(--brass); font: 700 21px var(--serif); }
+.lesson-signal { color: var(--brass); }
+@media (max-height: 500px) {
+  .harbor-head { padding: 4px 10px; min-height: 42px; gap: 9px; }
+  .harbor-head h1 { font-size: 17px; }
+  .harbor-head div:first-child span { display: none; }
+  .harbor-wallet { gap: 8px; }
+  .harbor-hero { height: 95px; min-height: 95px; padding: 8px 13px; }
+  .harbor-hero h2 { font-size: 25px; }
+  .harbor-hero p { display: none; }
+  .harbor-section { padding: 9px 13px 16px; }
+  .harbor-tabs { padding: 8px 6px; }
+}
+@media (max-width: 640px) {
+  .hull-inventory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .harbor-wallet { gap: 6px; }
+}

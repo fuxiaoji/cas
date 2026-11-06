@@ -1,0 +1,11 @@
+CAS · 白昼演习（Windows 原型）
+
+完整解压后双击 CAS.exe。游戏可以离线启动，不要求注册。
+需要 Windows x64 和 Microsoft Edge WebView2 Runtime；已随系统安装时无需再装。
+本机进度由 CAS 专用窗口保存，目录是 %LOCALAPPDATA%\CASNaval\Stage0\WebView2。
+
+进入战术海图后，选编队、选机动方式、在海图上加航点并确认。
+舰上出现炮或雷的标记时，可以拖向己方已经发现的目标。
+想取消时，把指针拖入取消区再松手，或按 Esc。
+
+本包用于验证虚构昼战演习。原始规则书、舰表和想定文件未随包分发。
