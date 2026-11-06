@@ -19,7 +19,7 @@
 | 11 | IBS-S-11 奥古斯塔皇后湾海战 | **同一交战**。《Rising Sun》PDF 91（90）；[原页数据](../../data/campaign/empress-augusta-bay.json)。采用正文的 Empress Augusta Bay 拼写。 |
 | 12 | IBS-S-12 布干维尔岛海战（第一战队出击！） | **架空／无对应**。查《Bywater’s War》PDF 3、27–37（2、26–36）；《Rising Sun》目录里的布干维尔想定是 1942 年的空战，另有 1943 年历史交战。 |
 | 13 | IBS-S-13 韦拉拉韦拉岛海战 | **同一交战**。《Rising Sun》PDF 90（89）；[原页数据](../../data/campaign/vella-lavella.json)。这是 1943 年 10 月 6 日的撤离战。 |
-| 14 | IBS-S-14 霍腊纽海战 | **同一交战**。《Rising Sun》PDF 89（88）；[原页数据](../../data/campaign/horaniu.json)。 |
+| 14 | IBS-S-14 霍腊纽海战 | **同一交战**。《Rising Sun》PDF 89（88）；[原页数据](../../data/campaign/horaniu.json)及[小艇、舰卡与出航差额](horaniu-source-gates.md)。 |
 | 15 | IBS-S-EM-01 第二次马里亚纳海战 | **相关架空想定**。《Steel Typhoon》PDF 46–47（45–46）夜间追击与旧关日期、战区相同，但 CAS 是美舰载机对日舰队，旧作是架空水面舰队对决。 |
 | 16 | IBS-S-FM-01 铁底湾的回响·午夜舰队决战 | **旧作原创／无对应**。《Steel Typhoon》PDF 60、62、64、66（59、61、63、65）所载莱特湾不同交战，均不能替代旧作的铁底湾大舰队。 |
 

@@ -4,6 +4,7 @@ from collections import Counter
 from datetime import date, time
 from hashlib import file_digest
 import json
+from math import atan2, cos, degrees, hypot, isclose, radians, sin
 from pathlib import Path
 import re
 import subprocess
@@ -253,6 +254,40 @@ def verify_roster(crosswalk, campaign_rows, cape_ships, repository):
     return len(by_id)
 
 
+def verify_horaniu_basis():
+    record = load(CAMPAIGN / "horaniu.json")
+    period = load(CAMPAIGN / "period" / "horaniu-1943.json")
+    small = load(ROOT / "data" / "rules" / "small-craft-source.json")
+    assert record["playable"] is False and period["status"] == "source_only_not_runtime_ready"
+    assert period["start"]["geometry_conflict"]["selection"] is None
+    assert period["start"]["destination_arrival_boundary"] is None
+    named = period["named_destroyers"]
+    assert len({ship["id"] for ship in named}) == len(named) == 8
+    assert Counter(ship["side"] for ship in named) == {"allies": 4, "axis": 4}
+    assert all(ship["profile"] in period["profiles"] for ship in named)
+    assert [ship["name"] for ship in named if ship["side"] == "allies"] == record["forces"]["allies"]["column"]
+    craft = period["small_craft"]
+    transport, = (ship for ship in craft if ship["class_ref"] == "daihatsu_type_a")
+    assert (transport["formation"], transport["count"]) == ("convoy", 13)
+    assert period["objective_reading_for_rts_fixture"]["japan_tactical"]["convoy_type_a_arrived_min"] == (transport["count"] + 1) // 2
+    for ship in craft:
+        if ship["class_ref"] is None:
+            assert ship["candidate_ref"] in small["unbound_candidates"]
+        else:
+            assert ship["class_ref"] in small["classes"]
+    assert all(ship["class_ref"] is None for ship in craft if ship["scenario_label"] == "T.14 MTB")
+    refs = period["start"]["from_nicholas"]
+    def p(ref):
+        bearing = radians(ref["bearing_deg_true"])
+        return ref["range_nmi"] * sin(bearing), ref["range_nmi"] * cos(bearing)
+    sx, sy = p(refs["sazanami"])
+    cx, cy = p(refs["convoy"])
+    conflict = period["start"]["geometry_conflict"]
+    assert isclose(hypot(cx - sx, cy - sy), conflict["convoy_from_sazanami_derived_range_nmi"], abs_tol=1e-6)
+    assert isclose(degrees(atan2(cx - sx, cy - sy)) % 360, conflict["convoy_from_sazanami_derived_bearing_deg_true"], abs_tol=1e-6)
+    return len(named)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--ibs-worktree", type=Path, help="Optionally check the pinned 铁底湾 0.6.9 Git objects")
@@ -260,6 +295,7 @@ def main():
     crosswalk = load(CAMPAIGN / "crosswalk.json")
     rows, linked, next_records = verify_imports(crosswalk)
     cape_ships = verify_cape_st_george()
+    horaniu_ships = verify_horaniu_basis()
     roster_count = verify_roster(crosswalk, rows, cape_ships, args.ibs_worktree)
     originals = ROOT / crosswalk["source_path_root"]
     checked_sources = 0
@@ -271,7 +307,7 @@ def main():
     if args.ibs_worktree:
         verify_baseline(crosswalk, rows, args.ibs_worktree)
     print(f"CAS campaign: {len(rows)} scenarios, 32 legacy stages, {len(linked)} catalogued and {len(next_records)} staged source-only imports; "
-          f"{roster_count} legacy identities, {len(cape_ships)} dated Cape St. George instances; "
+          f"{roster_count} legacy identities, {len(cape_ships)} dated Cape St. George and {horaniu_ships} source-only Horaniu destroyers; "
           f"{checked_sources} local PDF hashes; pinned legacy baseline: {'checked' if args.ibs_worktree else 'not requested'}")
 
 

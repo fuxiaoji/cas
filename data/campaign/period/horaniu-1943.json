@@ -1,0 +1,52 @@
+{
+  "id": "horaniu_1943_08_18",
+  "status": "source_only_not_runtime_ready",
+  "scenario_source": {"source": "rising_sun_5e", "pdf_page": 89, "printed_page": 88},
+  "start": {
+    "local_date": "1943-08-18", "local_time": "00:32", "ambient_light_pct": 50,
+    "sky": "clear", "moon": "full", "sea_state": 1, "wind_from_deg_true": 135, "wind_knots": 5,
+    "us_column": {"course_deg_true": 295, "speed_knots": 30, "order": ["nicholas", "obannon", "taylor", "chevalier"]},
+    "japan_screen": {"course_text": "northwest", "speed_knots": 20, "flagship": "sazanami", "rear_of_flagship": "hamakaze", "starboard_bow_separations_yd": {"isokaze": 3000, "shigure": 4000}},
+    "from_nicholas": {"sazanami": {"bearing_deg_true": 315, "range_nmi": 9.5}, "convoy": {"bearing_deg_true": 285, "range_nmi": 9}},
+    "convoy": {"course_deg_true": 130, "speed_knots": 8, "to_horaniu_distance_nmi_approx": 22, "shore_south_nmi": 11},
+    "geometry_conflict": {"convoy_from_sazanami_source": "4 nmi off the port beam", "convoy_from_sazanami_derived_bearing_deg_true": 204.240271, "convoy_from_sazanami_derived_range_nmi": 4.812448, "derived_when_using_from_nicholas": true, "selection": null},
+    "time_limit_seconds": null, "destination_arrival_boundary": null
+  },
+  "named_destroyers": [
+    {"id": "nicholas", "name": "Nicholas", "side": "allies", "profile": "fletcher_1943", "named_form_pdf": 281, "form_date": "1942-06", "form_radar": ["SC-2", "SG", "Mk4"]},
+    {"id": "obannon", "name": "O’Bannon", "side": "allies", "profile": "fletcher_1943", "named_form_pdf": 282, "form_date": "1942-07", "form_radar": ["SC-2", "SG", "Mk4"]},
+    {"id": "taylor", "name": "Taylor", "side": "allies", "profile": "fletcher_1943", "named_form_pdf": 286, "form_date": "1942-09", "form_radar": ["SC-2", "SG", "Mk4"]},
+    {"id": "chevalier", "name": "Chevalier", "side": "allies", "profile": "fletcher_1943", "named_form_pdf": 271, "form_date": "1942-08", "form_radar": ["SC-2", "SG", "Mk4"]},
+    {"id": "sazanami", "name": "Sazanami", "side": "axis", "profile": "fubuki_1936_horaniu", "named_form_pdf": 162, "form_date": "1942-04/1942-06", "asw_refit_date": "1943-04/1943-06", "x_gun_removal_after_scenario": "1943-09/1943-10"},
+    {"id": "hamakaze", "name": "Hamakaze", "side": "axis", "profile": "kagero_1943_horaniu", "named_form_pdf": 101, "form_date": "1942-04/1942-05", "form_radar": ["Mk2 Mod2 (Type 22)"], "scenario_radar": null, "x_gun_removal_after_scenario": "1943-09"},
+    {"id": "isokaze", "name": "Isokaze", "side": "axis", "profile": "kagero_1943_horaniu", "named_form_pdf": 104, "form_date": "1942-04/1942-05", "form_radar": [], "scenario_radar": ["jp_type22_ss"], "x_gun_removal_after_scenario": "1943-11"},
+    {"id": "shigure", "name": "Shigure", "side": "axis", "profile": "shiratsuyu_horaniu", "named_form_pdf": 133, "form_date": "1943-02/1943-03", "form_radar": []}
+  ],
+  "profiles": {
+    "fletcher_1943": {"ref": "cape-st-george-1943.json#fletcher_1943", "sources": [{"source": "american_fleets", "pdf_pages": [20,108,119]}]},
+    "fubuki_1936_horaniu": {"class": "Fubuki (1936 refit)", "size": "C", "crew": 221, "displacement_std_tons": 2090, "gs": 4, "damage_points": [0,27,53,80,95,106], "speed_knots": [34,26,17,8,0,null], "gun": {"ref": "ij_127mm_50_3rd_year", "mounts": [{"arc_code":"F","barrels":2},{"arc_code":"A","barrels":2},{"arc_code":"A","barrels":2}]}, "torpedo": {"ref":"type93_1_mod1_or_2", "mounts": [3,3,3], "reserve_per_mount": null, "reload_seconds": 900}, "sources": [{"source":"emperors_fleet","pdf_pages":[29,30]},{"source":"rising_sun_form10","pdf_pages":[162,163]}]},
+    "kagero_1943_horaniu": {"class": "Kagero", "size": "C", "crew": 240, "displacement_std_tons": 2065, "gs": 4, "damage_points": [0,35,69,104,124,138], "speed_knots": [35,26,18,9,0,null], "gun": {"ref":"ij_127mm_50_3rd_year", "mounts": [{"arc_code":"F","barrels":2},{"arc_code":"A","barrels":2},{"arc_code":"A","barrels":2}]}, "torpedo": {"ref":"type93_1_mod1_or_2", "mounts":[4,4], "reserve_per_mount":[4,4], "reload_seconds":360}, "sources":[{"source":"emperors_fleet","pdf_pages":[28]}]},
+    "shiratsuyu_horaniu": {"class": "Shiratsuyu", "size": "C", "crew":180, "displacement_std_tons":1712, "gs":4, "damage_points":[0,31,61,92,110,122], "speed_knots":[34,26,17,8,0,null], "gun":{"ref":"ij_127mm_50_3rd_year", "mounts":[{"arc_code":"F","barrels":2},{"arc_code":"A","barrels":2}]}, "torpedo":{"ref":"type93_1_mod1_or_2","mounts":[4,4],"reserve_per_mount":[4,4],"reload_seconds":360}, "sources":[{"source":"emperors_fleet","pdf_pages":[28,29]},{"source":"rising_sun_form10","pdf_pages":[133]}]}
+  },
+  "weapons": {
+    "ij_127mm_50_3rd_year": {"source":"emperors_fleet", "pdf_page":97, "range_yd":[6000,12000,16000,20000], "COM":{"belt":[5,3,2,2],"deck":[null,null,1,2],"dp":[16,13,11,10]}, "HE":{"belt":[2,1,1,1],"deck":[null,null,1,1],"dp":[17,14,13,11]}},
+    "type93_1_mod1_or_2": {"source":"emperors_fleet", "pdf_page":105, "warhead_dp":95, "speed_range":[{"knots":49,"range_yd":22000},{"knots":41,"range_yd":35000},{"knots":37,"range_yd":43800}]}
+  },
+  "small_craft": [
+    {"scenario_label":"Type A Daihatsu", "formation":"convoy", "count":13, "class_ref":"daihatsu_type_a", "type_estimated_by_scenario":true},
+    {"scenario_label":"Toku Daihatsu", "formation":"escort", "count":2, "class_ref":"toku_daihatsu", "type_estimated_by_scenario":true},
+    {"scenario_label":"Type C AB-Tei armored boat", "formation":"escort", "count":1, "class_ref":null, "candidate_ref":"type_c_mlc_not_ab_tei", "type_estimated_by_scenario":true},
+    {"scenario_label":"CH.15-class PC", "formation":"escort", "count":2, "class_ref":null, "candidate_ref":"ch13_not_ch15", "type_estimated_by_scenario":true},
+    {"scenario_label":"T.14 MTB", "formation":"escort", "count":1, "class_ref":null, "candidate_ref":"t14_1944", "type_estimated_by_scenario":true},
+    {"scenario_label":"T.14 MTB", "formation":"convoy", "count":3, "class_ref":null, "candidate_ref":"t14_1944", "type_estimated_by_scenario":true}
+  ],
+  "objective_reading_for_rts_fixture": {
+    "us_decisive": {"destroyers_sunk_min":2,"convoy_type_a_sunk_min":7},
+    "us_tactical": {"destroyers_damage_fraction_min":0.5,"destroyers_at_damage_threshold_min":2,"convoy_type_a_sunk_min":4,"sunk_dd_counts_as_damaged":true},
+    "japan_decisive": {"destroyers_sunk_max":0,"convoy_type_a_arrived_min":13},
+    "japan_tactical": {"destroyers_sunk_max":0,"convoy_type_a_arrived_min":7},
+    "toku_count_for_us": null,
+    "japan_decisive_requires_undamaged_barges": null,
+    "interpretation_notes": ["Inclusive DD threshold and counting sunk ships are monotonicity decisions, not additional text in the source.","The scenario's 13-barge narrative and separate escort list support a Type-A arrival denominator; U.S. text does not resolve Toku inclusion.","Half of 13 means minimum 7 arriving; safely gives no explicit damage threshold or boundary."]
+  }
+}

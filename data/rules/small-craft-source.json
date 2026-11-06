@@ -1,0 +1,35 @@
+{
+  "id": "cas-5e-small-craft-source-v1",
+  "status": "source_only_no_engine_binding",
+  "rules": {
+    "structural_damage": {"source":"cas_5e_main", "section":"8.1 / 8.1.1", "pdf_page":100, "printed_page":"8-1", "size_classes":["F","G"], "deduct_damage_points":false, "automatic_sink_threshold_times_original_dp":2, "window_wording_as_printed":"in a single turn", "accumulation_window":"Tactical Turn", "turn_length_source_pdf_page":11, "accumulation_window_seconds":180, "fire_and_flood_damage":"immediate", "ordinary_damage_speed_steps":false},
+    "critical_quantity": {"source":"cas_5e_main", "section":"8.1.2 / Damage Ratio Table", "pdf_page":102, "printed_page":"8-3", "size_classes":["F","G"], "denominator":"original_damage_points", "accumulation_window":"phase", "minimum_ratio":0.01, "threshold_rows_are_lower_bound":true, "die":"D6", "threshold_rows":[[0.01,0,0,0,0,0,1],[0.1,0,0,0,0,1,2],[0.2,0,0,0,1,2,3],[0.3,0,0,1,2,3,4],[0.4,0,1,2,3,4,5],[0.5,1,2,3,4,5,6],[0.6,2,3,4,5,6,7],[0.7,3,4,5,6,7,8],[0.8,4,5,6,7,8,9],[0.9,5,6,7,8,9,10],[1,6,7,8,9,10,11]], "add_one_per_complete_ratio_above_one":0.2},
+    "critical_types": {"source":"cas_5e_main", "section":"8.1.2 / Critical Hit Table", "pdf_page":101, "printed_page":"8-2", "die":"D20", "combatant_small":{"weapon":[1,5],"personnel":[6,8],"engineering":[9,11],"flotation":[12,14],"fire":[15,18],"sensors_comms":[19,19],"bridge":[20,20]}, "cargo_small":{"weapon":[1,2],"cargo":[3,7],"personnel":[8,9],"engineering":[10,11],"flotation":[12,14],"fire":[15,18],"sensors_comms":[19,19],"bridge":[20,20]}, "unarmed_cargo_weapon_becomes":"cargo", "small_landing_craft_table_family_confirmed":null},
+    "flotation": {"source":"cas_5e_main", "section":"8.3 / Flotation", "pdf_page":107, "printed_page":"8-8", "hits_to_sink":{"F":5,"G":4}, "speed_levels_lost_per_hit":1},
+    "main_gun_close_exclusion": {"source":"cas_5e_main", "section":"6.1.6", "pdf_page":63, "printed_page":"6-7", "firing_size_classes":["A","B","C"], "target_size_classes":["F","G"], "limit_yards":250, "original_boundary_word":"within", "equal_distance_policy":null},
+    "light_aa_surface": {"source":"cas_5e_main", "section":"6.1.5", "pdf_page":62, "printed_page":"6-6", "range_end_yd":[500,1000,1500,2500], "hit_pct":[60,40,10,5], "damage_rating_multipliers":[4,3,3,2], "target_rating_max_fraction":0.5, "divide_to_quarters_at_rating":1, "divide_to_eighths_at_rating":2, "rating_modifiers_columns":["min_rating","max_rating","short_or_medium","long","extreme"], "rating_modifiers":[[0,0.5,0,0,0],[0.51,1,1,0,0],[1.01,1.5,2,1,0],[1.51,2,3,1,0],[2.01,2.5,4,2,1],[2.51,3,5,2,1],[3.01,3.5,6,3,1],[3.51,4,7,3,2],[4.01,null,8,4,3]], "gunnery_modifiers":"GS4m"}
+  },
+  "classes": {
+    "daihatsu_type_a": {"source":"emperors_fleet", "pdf_page":39, "printed_page":"A-36", "category":"MLC", "size":"G", "radar_size":"VSmall", "entered_service_year":1940, "crew":7, "displacement_std_tons":20, "propulsion":"diesel", "armor":0, "annex_printed_gs":"IV", "maximum_dp":4.7, "dp_speed_step_thresholds":null, "speed_knots":[11,8,6,3,0,null], "mounts":[{"weapon":"type93_13_2mm_76","arc_code":"F","barrels":1},{"weapon":"type93_13_2mm_76","arc_code":"A","barrels":1}], "light_aa":0.1, "remarks_percent":-25, "army_capacity":{"troops":115,"cargo_tons":12}, "navy_capacity":{"troops":80,"cargo_tons":10}, "type95_tanks_capacity":1},
+    "toku_daihatsu": {"source":"emperors_fleet", "pdf_page":39, "printed_page":"A-36", "category":"MLC", "size":"F", "radar_size":"VSmall", "entered_service_year":1940, "crew":15, "displacement_tons_as_printed":35, "propulsion":"diesel", "armor":0, "annex_printed_gs":"I", "maximum_dp":6.8, "dp_speed_step_thresholds":null, "speed_knots":[11,8,6,3,0,null], "mounts":[{"weapon":"type96_25mm_60","arc_code":"PW","barrels":1},{"weapon":"type96_25mm_60","arc_code":"SW","barrels":1},{"weapon":"type96_25mm_60","arc_code":"A","barrels":1}], "light_aa":0.4, "remarks_percent":-50, "length_m":17, "capacity":{"troops":100,"cargo_tons":16,"tanks":1}}
+  },
+  "weapon_rows": {
+    "type93_13_2mm_76": {"source":"emperors_fleet","pdf_page":97,"printed_page":"C-1","shell":"APNC","range_yd":[200,600,900,1100],"belt":[1,1,1,0],"deck":[null,null,0,0],"damage":[1.8,1.5,1.3,1.2]},
+    "type96_25mm_60": {"source":"emperors_fleet","pdf_page":97,"printed_page":"C-1","shell":"APNC","range_yd":[300,800,1300,1600],"belt":[2,2,1,1],"deck":[null,null,1,1],"damage":[3,2,2,1.8]},
+    "11th_year_8cm_40": {"source":"emperors_fleet","pdf_page":97,"printed_page":"C-1","range_yd":[3500,7100,9400,11800],"HE":{"belt":[1,0,0,0],"deck":[null,null,0,0],"damage":[12,10,9,8]},"SpCOM":{"belt":[3,2,1,1],"deck":[null,null,0,1],"damage":[10,8,7,6]}}
+  },
+  "unbound_candidates": {
+    "type_c_mlc_not_ab_tei": {"source":"emperors_fleet","pdf_page":39,"printed_page":"A-36","class":"Type C MLC","size":"F","max_knots":17,"dp":5.6,"armor":1,"small_gun_barrels":3,"reason":"Annex entry does not establish Type C AB-Tei as the same class."},
+    "ch13_not_ch15": {"source":"emperors_fleet","pdf_page":33,"printed_page":"A-30","class":"Ch.13-class Chaser","size":"D","entered_service_year":1939,"crew":68,"displacement_std_tons":438,"damage_points":[0,12,25,37,44,49],"speed_knots":[16,12,8,4,0,null],"weapon":"11th_year_8cm_40","gun_mount":{"arc_code":"F","barrels":1},"reason":"Annex mentions specific related numbers but does not map CH.15 to this class."},
+    "t14_1944": {"source":"emperors_fleet","pdf_pages":[37,38,105],"printed_pages":["A-34","A-35","F-1"],"class":"T.14 MTB","size":"G","radar_size":"VSmall","entered_service_year":1944,"crew":7,"displacement_std_tons":15,"max_dp":3.4,"speed_knots":[33,25,17,8,0,null],"torpedo":{"mounts":[1,1],"weapon":"Type 2 450 mm","weapon_ioc_year":1944},"reason":"Annex's hull and torpedo entry both postdate 1943 scenario; scenarios explicitly estimate small-craft type. T.23/25 is a candidate only, not an automatic substitution."}
+  },
+  "source_fixtures": [
+    {"class":"daihatsu_type_a","same_turn_impacts_dp":[4.7,4.7],"sinks_from_structural_damage":true},
+    {"class":"daihatsu_type_a","two_separate_turn_impacts_dp":[4.7,4.7],"sinks_from_structural_damage":false},
+    {"class":"toku_daihatsu","same_turn_impacts_dp":[6.8,6.79],"sinks_from_structural_damage":false},
+    {"class":"toku_daihatsu","same_turn_impacts_dp":[6.8,6.8],"sinks_from_structural_damage":true},
+    {"original_dp":1.8,"phase_dp":0.4,"expected_critical_ratio_bucket":0.2,"critical_count_on_d6_6":3},
+    {"table":"cargo_small","d20":7,"expected_type":"cargo"},
+    {"table":"combatant_small","d20":7,"expected_type":"personnel"}
+  ]
+}

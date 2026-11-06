@@ -7,6 +7,7 @@ use std::{collections::BTreeMap, sync::OnceLock};
 mod legacy;
 pub(crate) mod live;
 pub(crate) mod channel;
+pub mod horaniu;
 pub use legacy::{Deployment as LegacyDeployment, MapGeometry as LegacyMapGeometry};
 
 const CROSSWALK: &str = include_str!("../data/campaign/crosswalk.json");
