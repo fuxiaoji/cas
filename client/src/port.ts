@@ -3,7 +3,7 @@ import { normalizeCampaignProgress } from './campaign-progress';
 import type { CampaignProgress } from './campaign-progress';
 
 export const PORT_KEY = 'cas.harbor.progress.v1';
-const MAX_HISTORY = 20;
+const MAX_HISTORY = 50;
 export const hulls = {
   fletcher: { name: '弗莱彻级', side: 'allies', kind: '驱逐舰', max: 4 },
   cleveland: { name: '克利夫兰级', side: 'allies', kind: '轻巡洋舰', max: 1 },
@@ -25,10 +25,10 @@ export const lessons = [
   { id: 'override', name: '从 AI 手中接管', detail: '在战术 AI 中托管一项，然后亲自下达该项命令。' },
 ] as const;
 export type Lesson = typeof lessons[number]['id'];
-type Pool = 'standard' | 'up';
+export type Pool = 'standard' | 'up';
 type Wallet = Record<Pool, number>;
 export interface FleetPreset { side: Side; leaderSlot: number; profile: Profile }
-interface Draw { id: number; pool: Pool; hull: Hull; duplicate: boolean; guaranteed: boolean }
+interface Draw { id: number; pool: Pool; hull: Hull; duplicate: boolean; guaranteed: boolean; batchSize?: 10 }
 export interface PortState {
   version: 1; lessons: Lesson[]; starter: boolean; challengeClear: boolean; challengeClaim: boolean;
   wallet: Wallet; marks: number; pity: Wallet; owned: Partial<Record<Hull, number>>;
@@ -89,11 +89,9 @@ export function meetsRoster(s: PortState, side: Side, challenge = false) {
   for (const id of rosters[side].slice(0, challenge ? 3 : 5)) needed[id] = (needed[id] ?? 0) + 1;
   return (Object.keys(needed) as Hull[]).every((id) => (s.owned[id] ?? 0) >= (needed[id] ?? Infinity));
 }
-export function drawRecruit(s: PortState, pool: Pool): PortState {
-  if (s.wallet[pool] <= 0 || !s.starter) return s;
-  const source = crypto.getRandomValues(new Uint32Array(2));
-  const chance = source[0] / 4294967296;
-  const side = pool === 'up' ? s.upSide : source[1] % 2 === 0 ? 'allies' : 'axis';
+function drawOne(s: PortState, pool: Pool, chanceWord: number, sideWord: number): PortState {
+  const chance = chanceWord / 4294967296;
+  const side = pool === 'up' ? s.upSide : sideWord % 2 === 0 ? 'allies' : 'axis';
   const guaranteed = s.pity[pool] >= 9;
   const rare = guaranteed || chance < .15;
   const id = rosters[side][rare ? 1 : 0];
@@ -104,6 +102,25 @@ export function drawRecruit(s: PortState, pool: Pool): PortState {
     pity: { ...s.pity, [pool]: rare ? 0 : s.pity[pool] + 1 },
     owned: duplicate ? s.owned : { ...s.owned, [id]: quantity + 1 },
     marks: s.marks + (duplicate ? rare ? 3 : 1 : 0), sequence: draw.id, history: [draw, ...s.history].slice(0, MAX_HISTORY) };
+}
+
+export function drawRecruit(s: PortState, pool: Pool, source = crypto.getRandomValues(new Uint32Array(2))): PortState {
+  const count = source.length / 2;
+  if ((count !== 1 && count !== 10) || s.wallet[pool] < count || !s.starter) return s;
+  let result = s;
+  for (let i = 0; i < count; i++) result = drawOne(result, pool, source[2 * i], source[2 * i + 1]);
+  if (count === 1) return result;
+  const [last, ...earlier] = result.history;
+  return { ...result, history: [{ ...last, batchSize: 10 }, ...earlier] };
+}
+
+export function recruitReceipt(history: PortState['history'], id: number) {
+  const last = history.find(draw => draw.id === id);
+  if (!last) return [];
+  if (last.batchSize !== 10) return [last];
+  const batch = history.filter(draw => draw.pool === last.pool && draw.id > id - 10 && draw.id <= id)
+    .sort((a, b) => a.id - b.id);
+  return batch.length === 10 && batch.every((draw, index) => draw.id === id - 9 + index) ? batch : [last];
 }
 export function receiveChallenge(s: PortState): PortState {
   if (!s.challengeClear || s.challengeClaim) return s;

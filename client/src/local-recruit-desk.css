@@ -1,0 +1,60 @@
+/* Pool presentation adapted from the original 0.6.11 recruit desk. */
+.cas-recruit-desk { color: #d8e6eb; }
+.cas-recruit-desk .recruit-pool-tabs { display: flex; gap: 9px; margin-bottom: 10px; }
+.cas-recruit-desk .recruit-pool-tabs button {
+  flex: 1; min-height: 48px; padding: 6px 12px; text-align: left;
+  background: #102d42; border-color: #769da858; color: #b3d1da;
+}
+.cas-recruit-desk .recruit-pool-tabs button[aria-pressed="true"] {
+  border-color: #eccd8d; background: linear-gradient(100deg,#3a5265,#1c3e55);
+  color: #ffe1a6; box-shadow: inset 3px 0 #e8c885;
+}
+.cas-recruit-desk .recruit-pool-tabs strong { display: block; font: 18px var(--serif); }
+.cas-recruit-desk .recruit-pool-tabs small { display: block; margin-top: 3px; font-size: 10px; color: #b3ced8; }
+.cas-recruit-desk .recruit-stage {
+  position: relative; isolation: isolate; overflow: hidden; min-height: 220px;
+  background: linear-gradient(100deg,#102d42eb 15%,#203c6177),url('./assets/harbor/harbor-night.png') center/cover;
+  border: 1px solid #9ab8c147;
+}
+.cas-recruit-desk .recruit-halo {
+  position: absolute; right: 4%; top: 8%; height: 83%; aspect-ratio: 1; z-index: -1;
+  border: 1px solid #8ec8d250; border-radius: 50%; box-shadow: 0 0 0 24px #82bed30e,0 0 0 55px #82bed307;
+}
+.cas-recruit-desk .recruit-feature-art {
+  position: absolute; right: 0; top: 1%; width: min(50%,360px); height: 142%; object-fit: contain; object-position: center top;
+  filter: drop-shadow(0 8px 22px #051322); pointer-events: none; z-index: -1;
+}
+.cas-recruit-desk .recruit-feature-copy {
+  width: min(73%, 540px); min-height: inherit; padding: clamp(10px,3vw,30px);
+  background: linear-gradient(90deg,#09283bea 18%,#09283b72 78%,transparent);
+}
+.cas-recruit-desk .recruit-grade { color: #e9c27b; font-size: 11px; }
+.cas-recruit-desk .recruit-feature-copy h3 { margin: 5px 0 8px; color: #fff1ca; font: 500 clamp(22px,3.5vw,42px) var(--serif); }
+.cas-recruit-desk .recruit-feature-copy p { margin: 0 0 8px; color: #c3d4dc; font-size: 12px; line-height: 1.55; }
+.cas-recruit-desk .recruit-meter, .cas-recruit-desk .recruit-actions { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; }
+.cas-recruit-desk .recruit-meter { margin: 10px 0; font-size: 12px; }
+.cas-recruit-desk .recruit-meter span { padding: 4px 8px; color: #c5e4e7; background: #153c48; border: 1px solid #76c8c86b; }
+.cas-recruit-desk.is-up .recruit-meter span:first-child { background: #3f3b38; border-color: #dfbe7d80; color: #f5d699; }
+.cas-recruit-desk .recruit-meter b { color: #f2d595; font-variant-numeric: tabular-nums; }
+.cas-recruit-desk .recruit-actions button, .cas-recruit-desk .recruit-review { min-height: 40px; padding: 4px 9px; font-size: 11px; }
+.cas-recruit-desk .recruit-review { margin-top: 6px; }
+.cas-recruit-desk .recruit-ticket-help {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 7px 12px;
+  margin: 9px 0; padding: 9px 11px; border-left: 2px solid #d5b979; background: #173448; color: #f1d398;
+}
+.cas-recruit-desk .recruit-ticket-help strong { font-size: 12px; }
+.cas-recruit-desk .recruit-ticket-help p { margin: 4px 0 0; color: #b4cbd4; font-size: 11px; }
+.cas-recruit-desk .recruit-ticket-help button { margin-right: 4px; min-height: 36px; font-size: 11px; }
+.cas-recruit-desk .recruit-rules { border-top: 1px solid #819fa74d; padding: 8px 0; font-size: 11px; color: #bed1d7; }
+.cas-recruit-desk .recruit-rules summary { cursor: pointer; min-height: 27px; font-size: 12px; color: #e5e8de; }
+.cas-recruit-desk .recruit-rules p { line-height: 1.6; margin: 5px 0; }
+.cas-recruit-desk .recruit-rules :is(ol,ul) { padding-left: 19px; line-height: 1.8; }
+@media (max-width: 780px), (max-height: 480px) {
+  .cas-recruit-desk .recruit-pool-tabs { margin-bottom: 5px; }
+  .cas-recruit-desk .recruit-pool-tabs button { min-height: 39px; }
+  .cas-recruit-desk .recruit-stage { min-height: 172px; }
+  .cas-recruit-desk .recruit-feature-copy { width: 83%; padding: 9px 12px; }
+  .cas-recruit-desk .recruit-feature-copy h3 { margin: 3px 0; }
+  .cas-recruit-desk .recruit-feature-art { right: -6%; width: 49%; opacity: .88; }
+  .cas-recruit-desk .recruit-meter { margin-block: 6px; }
+}

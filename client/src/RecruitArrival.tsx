@@ -17,14 +17,17 @@ function HarborPlot() {
 
 // A reveal can only read a CAS receipt already present in the account state.
 // Dismissing, skipping or replaying it never rolls another draw.
-export function RecruitArrival({ receipt, replay, onClose }: {
-  receipt: PortState['history'][number]; replay: boolean; onClose: () => void;
+export function RecruitArrival({ receipts, replay, onClose }: {
+  receipts: PortState['history']; replay: boolean; onClose: () => void;
 }) {
   const label = useId();
   const dialog = useRef<HTMLDialogElement>(null);
   const primary = useRef<HTMLButtonElement>(null);
   const [phase, setPhase] = useState<'scan' | 'arrival' | 'receipt'>(() => replay ? 'receipt' :
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'arrival' : 'scan');
+  const [index, setIndex] = useState(0);
+  const receipt = receipts[index];
+  const more = phase === 'arrival' && index + 1 < receipts.length;
   const hull = hulls[receipt.hull];
   const portrait = shipPortrait(receipt.hull);
   useLayoutEffect(() => {
@@ -44,8 +47,14 @@ export function RecruitArrival({ receipt, replay, onClose }: {
     return () => window.clearTimeout(timer);
   }, [phase]);
 
+  function advance() {
+    if (phase === 'receipt') onClose();
+    else if (phase === 'scan') setPhase('arrival');
+    else if (more) setIndex(value => value + 1);
+    else setPhase('receipt');
+  }
   const title = phase === 'scan' ? '港灯正在引航' : phase === 'arrival' ? '舰船到港' : '到港清册';
-  return <dialog ref={dialog} className="recruit-arrival" aria-labelledby={label} data-draw-id={receipt.id} data-phase={phase}
+  return <dialog ref={dialog} className="recruit-arrival" aria-labelledby={label} data-draw-id={receipts.at(-1)!.id} data-phase={phase}
     data-hull={receipt.hull} onCancel={(event) => { event.preventDefault(); onClose(); }}>
     <header><div><span>{receipt.pool === 'up' ? '阵营 UP 池' : '常驻池'} · 本机征募</span><h2 id={label}>{title}</h2></div>
       <button type="button" onClick={phase === 'receipt' ? onClose : () => setPhase('receipt')}>
@@ -53,7 +62,12 @@ export function RecruitArrival({ receipt, replay, onClose }: {
       </button>
     </header>
     <div className="arrival-content">
-      {phase === 'scan' ? <div className="arrival-scan"><HarborPlot /><div aria-hidden="true" /><p>收到舰船呼号</p></div> : <>
+      {phase === 'scan' ? <div className="arrival-scan"><HarborPlot /><div aria-hidden="true" /><p>收到舰船呼号</p></div> :
+        phase === 'receipt' && receipts.length > 1 ? <ol className="arrival-batch" aria-label="本次到港清册">
+          {receipts.map(row => <li key={row.id} data-draw-id={row.id}>
+            <strong>{hulls[row.hull].name}</strong><span>{row.duplicate ? '转为舰队勋章' : '入列'}{row.guaranteed ? ' · 保底' : ''}</span>
+          </li>)}
+        </ol> : <>
         <div className="arrival-description">
           <span>{receipt.guaranteed ? '保底到港' : sideNames[hull.side]}</span>
           <h3>{hull.name}</h3><p>{receipt.guaranteed ? sideNames[hull.side] + ' · ' : ''}{hull.kind}</p>
@@ -65,9 +79,10 @@ export function RecruitArrival({ receipt, replay, onClose }: {
         </figure>
       </>}
     </div>
-    <footer><span>{phase === 'scan' ? '接舰信号' : '本次征募 1 艘'}</span>
-      <button ref={primary} type="button" onClick={phase === 'receipt' ? onClose : () => setPhase(phase === 'scan' ? 'arrival' : 'receipt')}>
-        {phase === 'scan' ? '查看舰船' : phase === 'arrival' ? '查看到港清册' : '确认入列'}
+    <footer><span>{phase === 'scan' ? '接舰信号' : phase === 'arrival' && receipts.length > 1 ?
+      `第 ${index + 1} / ${receipts.length} 艘` : `本次征募 ${receipts.length} 艘`}</span>
+      <button ref={primary} type="button" onClick={advance}>
+        {phase === 'scan' ? '查看舰船' : more ? '查看下一艘' : phase === 'arrival' ? '查看到港清册' : '确认入列'}
       </button>
     </footer>
   </dialog>;

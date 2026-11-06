@@ -3,10 +3,11 @@ import { CampaignArchive } from './CampaignArchive';
 import { claimCampaignRewards } from './campaign-progress';
 import type { CampaignLaunch } from './campaign-progress';
 import { RecruitArrival } from './RecruitArrival';
+import { LocalRecruitDesk } from './LocalRecruitDesk';
 import { buyWeeklyTicket, CHALLENGE_WEEKLY_LIMIT, CHALLENGE_WEEKLY_TICKETS, claimRepeat, claimWeeklySupply, WEEKLY_TICKET_PRICE, weeklyStatus } from './activities/week';
 import { profileNames, sideNames } from './engine';
 import type { Profile, Side } from './engine';
-import { drawRecruit, getGunnery, hulls, lessons, meetsRoster, receiveChallenge, receiveStarter, rosters } from './port';
+import { drawRecruit, getGunnery, hulls, lessons, meetsRoster, receiveChallenge, receiveStarter, recruitReceipt, rosters } from './port';
 import type { Hull, PortLaunch, PortState } from './port';
 import './harbor.css';
 
@@ -51,13 +52,13 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
   const { preset } = state;
   const canDeploy = state.starter && meetsRoster(state, preset.side);
   const canChallenge = state.starter && meetsRoster(state, preset.side, true);
-  const last = state.history.find((draw) => draw.pool === pool);
-  const arrivalReceipt = arrival && state.history.find((draw) => draw.id === arrival.id);
+  const arrivalReceipts = arrival ? recruitReceipt(state.history, arrival.id) : [];
   function setSide(side: Side) { change((s) => ({ ...s, preset: { ...s.preset, side, leaderSlot: 0 } })); }
-  function recruit() {
-    if (!state.starter || state.wallet[pool] < 1 || arrival) return;
-    setArrival({ id: state.sequence + 1, replay: false });
-    change((current) => drawRecruit(current, pool));
+  function recruit(count: 1 | 10) {
+    if (!state.starter || state.wallet[pool] < count || arrival) return;
+    const entropy = crypto.getRandomValues(new Uint32Array(count * 2));
+    setArrival({ id: state.sequence + count, replay: false });
+    change(current => drawRecruit(current, pool, entropy));
   }
   return <main className="harbor">
     <header className="harbor-head">
@@ -127,23 +128,9 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
             <button type="button" aria-pressed={economy === 'supply'} onClick={() => setEconomy('supply')}>补给商店</button>
             <button type="button" aria-pressed={economy === 'ai'} onClick={() => setEconomy('ai')}>AI 战术</button>
           </nav>
-          {economy === 'recruit' && <>
-          <div className="harbor-title"><h3>演习舰招募</h3><span>本机体验池</span></div>
-          <div className="harbor-action">
-            <button type="button" aria-pressed={pool === 'standard'} onClick={() => setPool('standard')}>常驻池</button>
-            <button type="button" aria-pressed={pool === 'up'} onClick={() => setPool('up')}>阵营 UP 池</button>
-          </div>
-          <p className="harbor-fine">{pool === 'standard' ? '常驻池可招募两个阵营，阵营等概率。' : 'UP 池当前招募：' + sideNames[state.upSide] + '，补充初始舰队以外的舰型。'}
-            驱逐舰 85%，轻巡洋舰 15%；连续 9 次未获得轻巡时，第 10 次必出。两池独立计数。</p>
-          <div className="harbor-action">
-            <button type="button" className="primary" disabled={!state.starter || state.wallet[pool] < 1} onClick={recruit}>用 1 张{pool === 'standard' ? '常驻' : ' UP '}券征募</button>
-            <span>距离保底至多 {10 - state.pity[pool]} 抽</span>
-          </div>
-          {last && <><div className="recruit-result" role="status">
-            <span>{last.guaranteed ? '保底到港' : '最新到港'}</span><strong>{hulls[last.hull].name}</strong>
-            <small>{last.duplicate ? '该舰型仓位已满，已转换为舰队勋章。' : '已编入本机舰库。'}</small>
-          </div><div className="harbor-action"><button type="button" onClick={() => setArrival({ id: last.id, replay: true })}>查看最近到港报告</button></div></>}
-          </>}
+          {economy === 'recruit' && <LocalRecruitDesk state={state} pool={pool} busy={busy || !!arrival} onPoolChange={setPool}
+            onRecruit={recruit} onReview={id => setArrival({ id, replay: true })} onTraining={() => setTab('training')}
+            onSupply={() => setEconomy('supply')} onCampaign={() => setTab('archive')} />}
           {economy === 'supply' && <>
             <div className="harbor-title"><h3>每周常驻券</h3><span>周一北京时间 00:00 刷新</span></div>
             <p className="harbor-fine">单机补给商店每周可兑换 1 张常驻券。</p>
@@ -180,6 +167,6 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
           onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night' })} />}
       </section>
     </div>
-    {arrival && arrivalReceipt && <RecruitArrival key={arrival.id} receipt={arrivalReceipt} replay={arrival.replay} onClose={() => setArrival(undefined)} />}
+    {arrival && arrivalReceipts.length > 0 && <RecruitArrival key={arrival.id} receipts={arrivalReceipts} replay={arrival.replay} onClose={() => setArrival(undefined)} />}
   </main>;
 }

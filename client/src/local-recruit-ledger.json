@@ -1,0 +1,11 @@
+{
+  "source_project": "铁底湾",
+  "source_mobile_version": "0.6.11",
+  "source_commit": "41a1fb93063673ac8f84388a8f326a8b1a5fc3d5",
+  "components": {
+    "mobile/src/economy/RecruitDesk.tsx": "62188950fa40402a0a041b9636fc8824626c1f451e806aaa9717a48b8a75459a",
+    "mobile/src/economy/recruit-desk.css": "e7d5f9cbda955bc27d3357c3484611570b1ec1882f5f0d00b69c5515a932c0a2"
+  },
+  "scope": "CAS local development and tests. Artwork is reused from the CAS harbor and ship portrait ledgers; no additional assets are copied.",
+  "adaptation": "Use the original pool desk, theater illustration, balances, action layout and draw history with the actual CAS local four-class pool, existing guarantee and ledger. Server economy is separate."
+}
