@@ -1,0 +1,150 @@
+.online-fleet {
+  --fleet-ink: #edf0e7;
+  --fleet-soft: #a8c2c8;
+  --fleet-brass: #e5c792;
+  --fleet-line: #46616b;
+  --fleet-water: #102d3c;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100dvh;
+  color: var(--fleet-ink);
+  background: #071b27;
+  font: 14px/1.45 "Microsoft YaHei UI", sans-serif;
+}
+.online-fleet button, .online-fleet input, .online-fleet select {
+  min-height: 38px;
+  padding: .4rem .62rem;
+  border: 1px solid var(--fleet-line);
+  border-radius: 3px;
+  background: #163746;
+  color: inherit;
+  font: inherit;
+}
+.online-fleet button { cursor: pointer; }
+.online-fleet button:disabled { cursor: default; opacity: .56; }
+.online-fleet button:focus-visible, .online-fleet input:focus-visible, .online-fleet select:focus-visible {
+  outline: 2px solid var(--fleet-brass);
+  outline-offset: 2px;
+}
+.online-fleet button:not(:disabled):hover, .online-fleet button[aria-pressed="true"] {
+  border-color: var(--fleet-brass);
+  color: var(--fleet-brass);
+}
+.online-fleet__header, .online-fleet__builder > header, .online-fleet__preset-tools, .online-fleet__footer {
+  display: flex;
+  align-items: center;
+  gap: .72rem;
+}
+.online-fleet__header {
+  padding: .55rem clamp(.72rem, 2vw, 1.5rem);
+  border-bottom: 1px solid var(--fleet-line);
+  background: #102b3a;
+}
+.online-fleet__header > button:last-child { margin-inline-start: auto; }
+.online-fleet h1, .online-fleet h2, .online-fleet p { margin: 0; }
+.online-fleet h1, .online-fleet h2 {
+  color: var(--fleet-brass);
+  font-family: "Noto Serif CJK SC", SimSun, serif;
+  font-weight: 600;
+}
+.online-fleet h1 { font-size: clamp(22px, 3.3vw, 32px); }
+.online-fleet h2 { font-size: 19px; }
+.online-fleet__header > span { color: var(--fleet-soft); font-size: .85em; }
+.online-fleet__workspace {
+  display: grid;
+  grid-template-columns: minmax(245px, 4fr) minmax(0, 6fr);
+  gap: 1px;
+  min-height: 0;
+  background: var(--fleet-line);
+}
+.online-fleet__roster, .online-fleet__builder {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  background: var(--fleet-water);
+}
+.online-fleet__roster nav, .online-fleet__builder > header {
+  box-sizing: border-box;
+  min-height: 53px;
+  padding: .45rem clamp(.72rem, 2vw, 1.5rem);
+  border-bottom: 1px solid var(--fleet-line);
+  background: #0c2735;
+}
+.online-fleet__roster nav { display: flex; gap: .5rem; }
+.online-fleet__roster nav small { padding-left: .2rem; color: var(--fleet-soft); }
+.online-fleet__builder > header, .online-fleet__preset-tools { justify-content: space-between; }
+.online-fleet__builder > header > span { color: var(--fleet-soft); font-variant-numeric: tabular-nums; }
+.online-fleet__scroll {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: .75rem clamp(.72rem, 2vw, 1.5rem);
+  scrollbar-color: #54737e transparent;
+}
+.online-fleet__search { display: grid; gap: .25rem; color: var(--fleet-soft); }
+.online-fleet__search input, .online-fleet__fields :is(input, select) { background: #0a2230; min-width: 0; width: 100%; }
+.online-fleet p.online-fleet__caption, .online-fleet p.online-fleet__rule { margin: .5rem 0; color: var(--fleet-soft); font-size: .89em; }
+.online-fleet__rows { list-style: none; margin: .5rem 0; padding: 0; }
+.online-fleet__rows > li + li { margin-top: .32rem; }
+.online-fleet__rows button {
+  display: grid;
+  grid-template-columns: minmax(33px, auto) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .62rem;
+  width: 100%;
+  border-left: 2px solid #72909b;
+  text-align: left;
+}
+.online-fleet__rows button[aria-pressed="true"] { border-left-color: var(--fleet-brass); background: #204657; }
+.online-fleet__rows strong { font-weight: 600; overflow-wrap: anywhere; }
+.online-fleet__rows small { color: var(--fleet-soft); }
+.online-fleet__rows span > small { display: block; }
+.online-fleet__hull-code { color: var(--fleet-brass); font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.online-fleet__preset-icon { width: 22px; height: 22px; fill: none; stroke: var(--fleet-brass); stroke-width: 1.5; }
+.online-fleet__builder fieldset { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+.online-fleet__fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .48rem .65rem; }
+.online-fleet__fields label { display: grid; gap: .24rem; min-width: 0; color: var(--fleet-soft); font-size: .88em; }
+.online-fleet__fields :is(input, select) { box-sizing: border-box; color: var(--fleet-ink); }
+.online-fleet__name { grid-column: 1 / -1; }
+.online-fleet__lineup { list-style: none; counter-reset: station; padding: 0; margin: .7rem 0 0; }
+.online-fleet__lineup li {
+  display: grid;
+  grid-template-columns: 2.1rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .36rem;
+  padding: .17rem .4rem;
+  border-top: 1px solid var(--fleet-line);
+  counter-increment: station;
+}
+.online-fleet__lineup li::before { content: counter(station, decimal-leading-zero); color: var(--fleet-soft); }
+.online-fleet__lineup small { margin-inline-start: .6rem; color: var(--fleet-brass); }
+.online-fleet__lineup button { min-height: 33px; }
+.online-fleet p.online-fleet__empty, .online-fleet p.online-fleet__loading { padding: .75rem; color: var(--fleet-soft); }
+.online-fleet p.online-fleet__empty { border: 1px dashed var(--fleet-line); }
+.online-fleet__footer {
+  justify-content: space-between;
+  padding: .52rem clamp(.72rem, 2vw, 1.5rem) max(.52rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--fleet-line);
+  background: #0a2534;
+}
+.online-fleet__feedback { min-width: 0; color: var(--fleet-soft); font-size: .85em; }
+.online-fleet__feedback p[role="status"] { color: var(--fleet-ink); }
+.online-fleet__error { color: #ffbcac; }
+.online-fleet__actions { display: flex; flex-shrink: 0; gap: .45rem; }
+.online-fleet button.primary { background: var(--fleet-brass); color: #15303c; border-color: #f0d8a7; font-weight: 650; }
+.online-fleet button.primary:not(:disabled):hover { background: #f1d9a6; color: #142c38; }
+@media (max-height: 450px) and (orientation: landscape) {
+  .online-fleet { font-size: 13px; }
+  .online-fleet__header, .online-fleet__roster nav, .online-fleet__builder > header { padding-block: .32rem; }
+  .online-fleet__roster nav, .online-fleet__builder > header { min-height: 49px; }
+  .online-fleet__scroll { padding-block: .55rem; }
+}
+@media (max-width: 560px) and (orientation: portrait) {
+  .online-fleet__workspace { grid-template-columns: 1fr; grid-auto-rows: max-content; overflow-y: auto; }
+  .online-fleet__roster { max-height: 43dvh; }
+  .online-fleet__builder { grid-template-rows: auto auto; }
+  .online-fleet__footer { flex-wrap: wrap; }
+  .online-fleet__actions { margin-inline-start: auto; }
+}
