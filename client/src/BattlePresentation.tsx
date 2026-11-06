@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { clock } from './engine';
-import type { GunMount, LogEvent, Observation, Point, Shell, Ship, Torpedo } from './engine';
+import type { GunMount, LogEvent, Observation, Point, Shell, Ship, Torpedo, TorpedoSettings } from './engine';
 import { shipPortrait } from './shipPortraits';
 import './battle-presentation.css';
 
@@ -9,7 +9,7 @@ type EventTag = 'sunk' | 'critical' | 'damage' | 'hit' | 'leader';
 export function alertKind(event: LogEvent): EventTag | undefined {
   if (event.kind === 'sunk') return 'sunk';
   if (/^(critical|crit|fire_damage|flood_damage)$/.test(event.kind)) return 'critical';
-  if (/^(damage|collision|grounding)$/.test(event.kind)) return 'damage';
+  if (/^(damage|collision|grounding|torpedo_protection)$/.test(event.kind)) return 'damage';
   if (/^(hit|torpedo_hit)$/.test(event.kind)) return 'hit';
   if (event.kind === 'leader') return 'leader';
   return undefined;
@@ -226,8 +226,12 @@ function GunMountReadiness({ mount, slot, tick }: { mount: GunMount; slot: numbe
   </li>;
 }
 
-export function ShipSchematic({ ship, ships, select, tick = 0 }: { ship: Ship; ships: Ship[]; select: (ship: Ship) => void; tick?: number }) {
+export function ShipSchematic({ ship, ships, select, tick = 0, torpedo }: {
+  ship: Ship; ships: Ship[]; select: (ship: Ship) => void; tick?: number;
+  torpedo?: { settings: TorpedoSettings; change: (settings: TorpedoSettings) => void };
+}) {
   const systems = ship.systems;
+  const torpedoCap = Math.min(6, Math.max(0, ...(systems?.tubes.map(tube => tube.remaining ?? 0) ?? [])));
   const timedGuns = systems?.guns.some((mount) => mount.readyTick !== undefined || mount.training !== undefined);
   const portrait = shipPortrait(ship.classId, ship.characterId);
   const hp = Math.round(ship.hp * 10) / 10;
@@ -238,7 +242,7 @@ export function ShipSchematic({ ship, ships, select, tick = 0 }: { ship: Ship; s
   };
   return <section className="ship-schematic" aria-label="舰艇状态">
     <div className="schematic-head">
-      <div><span>{ship.kind === 'cl' ? '轻巡洋舰' : '驱逐舰'}</span><h2>{ship.name}</h2></div>
+      <div><span>{ship.kind === 'bb' ? '战列舰' : ship.kind === 'cl' ? '轻巡洋舰' : '驱逐舰'}</span><h2>{ship.name}</h2></div>
       {ships.length > 1 && <select aria-label="查看舰艇" value={ship.id} onChange={(event) => chooseShip(event.target.value)}>
         {ships.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
       </select>}
@@ -275,15 +279,33 @@ export function ShipSchematic({ ship, ships, select, tick = 0 }: { ship: Ship; s
         </div></div>}
         <div className="mount-row"><span>鱼雷管</span><div>
           {systems.tubes.length ? systems.tubes.map((tube, slot) => <span key={tube.index} className={'mount-icon tube ' + (tube.spent ? 'spent' : 'ready')}
-            aria-label={'鱼雷座 ' + (slot + 1) + '，' + tube.tubes + ' 联装，' + (tube.spent ? '不可用' : '未使用')}
-            title={tube.spent ? '该座已使用或不可用' : '该座尚未使用'}>{tube.spent ? '−' : tube.tubes}</span>) : <small>未装</small>}
+            aria-label={'鱼雷座 ' + (slot + 1) + '，' + tube.tubes + ' 联装，' + (tube.spent ? '不可用' : tube.remaining === undefined ? '未使用' : `余 ${tube.remaining} 枚`)}
+            title={tube.spent ? '该座已使用或不可用' : tube.remaining === undefined ? '该座尚未使用' : `剩 ${tube.remaining} / ${tube.tubes} 枚`}>
+            {tube.spent ? '−' : tube.remaining ?? tube.tubes}</span>) : <small>未装</small>}
         </div></div>
+        {torpedo && torpedoCap > 0 && <div className="torpedo-settings" aria-label="直航鱼雷设置">
+          <label>鱼雷定深 <select value={torpedo.settings.depth ?? 'shallow'} onChange={event =>
+            torpedo.change({ ...torpedo.settings, depth: event.target.value === 'deep' ? 'deep' : 'shallow' })}>
+            <option value="shallow">浅航</option><option value="deep">深航</option>
+          </select></label>
+          <label>齐射数量 <select value={torpedo.settings.count ?? ''} onChange={event =>
+            torpedo.change({ ...torpedo.settings, count: event.target.value ? Number(event.target.value) : undefined })}>
+            <option value="">单座全发</option>
+            {torpedo.settings.count !== undefined && torpedo.settings.count > torpedoCap &&
+              <option value={torpedo.settings.count} disabled>{torpedo.settings.count} 枚（库存不足）</option>}
+            {Array.from({ length: torpedoCap }, (_, index) => index + 1).map(count => <option key={count} value={count}>{count} 枚</option>)}
+          </select></label>
+        </div>}
       </div>
       <dl className="system-status">
         <div><dt>火控</dt><dd className={systems.directorDamaged ? 'system-warning' : ''}>{systems.directorDamaged ? '受损' : '正常'}</dd></div>
         <div><dt>动力</dt><dd className={systems.engineeringLevels > 0 ? 'system-warning' : ''}>{systems.engineeringLevels > 0 ? '受损 ' + systems.engineeringLevels + ' 级' : '正常'}</dd></div>
         <div><dt>火灾</dt><dd className={systems.fires > 0 ? 'system-warning' : ''}>{systems.fires ? systems.fires + ' 处' : '无'}</dd></div>
         <div><dt>进水</dt><dd className={systems.floods > 0 ? 'system-flood' : ''}>{systems.floods ? systems.floods + ' 处' : '无'}</dd></div>
+        {systems.torpedoProtection && <>
+          <div><dt>左舷水下防护</dt><dd>{Math.round(systems.torpedoProtection.port)} / {systems.torpedoProtection.capacity}</dd></div>
+          <div><dt>右舷水下防护</dt><dd>{Math.round(systems.torpedoProtection.starboard)} / {systems.torpedoProtection.capacity}</dd></div>
+        </>}
       </dl>
       <p className="schematic-foot">现速 {ship.speed.toFixed(1)} 节 · 可用上限 {systems.maxSpeed.toFixed(1)} 节 · 余雷 {ship.ammo} 枚</p>
     </> : <p className="schematic-foot">当前战斗记录没有提供分系统状态。</p>}

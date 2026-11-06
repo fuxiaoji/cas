@@ -6,7 +6,7 @@ use crate::{
 use serde_json::{json, Value};
 
 // Hosts pin this version until both clients and the match service are upgraded.
-pub(crate) const DUEL_VERSION: &str = "cas-realtime-v8";
+pub(crate) const DUEL_VERSION: &str = crate::realtime::CURVE_VERSION;
 
 impl Engine {
     pub fn handle_host(&mut self, request: Value) -> Value {

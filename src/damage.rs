@@ -95,8 +95,8 @@ impl World {
     pub(crate) fn progressive_criticals(&self) -> bool {
         matches!(
             self.version,
-            crate::realtime::VERSION | crate::realtime::IMPACT_VERSION
-                | crate::campaign::live::VERSION | crate::campaign::live::IMPACT_VERSION
+            crate::realtime::VERSION | crate::realtime::CURVE_VERSION | crate::realtime::IMPACT_VERSION
+                | crate::campaign::live::VERSION | crate::campaign::live::CURVE_VERSION | crate::campaign::live::IMPACT_VERSION
         )
     }
 
@@ -121,7 +121,7 @@ impl World {
             let ship = self.ship_mut(victim).unwrap();
             ship.hp = ship.hp.min(max_remaining);
             ship.gun_mount_destroyed.fill(true);
-            ship.torp_mount_used.fill(true);
+            ship.torp_mount_remaining.fill(0);
             self.surface_damage[index].massive = true;
             self.damage_message(victim, "船体遭受重大损伤，武器失效".into(), "CAS-8.1.10");
             return;

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent as ReactPointer } from 'react';
 import { ask, clock } from './engine';
-import type { Aim, Contact, Fleet, Observation, Point, RoutePreview, Ship, Weapon } from './engine';
+import type { Aim, Contact, Fleet, Observation, Point, RoutePreview, Ship, TorpedoSettings, Weapon } from './engine';
 import { alertKind, BattleAlerts, BattleProjectiles, mountStatus } from './BattlePresentation';
 
 type MapProps = {
@@ -11,7 +11,8 @@ type MapProps = {
   editing: boolean; waypoints: Point[]; preview?: RoutePreview; reformPreview?: RoutePreview;
   onSelect: (ship: Ship) => void; onAddPoint: (point: Point) => void;
   onMovePoint: (index: number, point: Point) => void;
-  onFire: (ship: number, weapon: Weapon, target: string, heading?: number) => void;
+  torpedoSettings?: Record<number, TorpedoSettings>;
+  onFire: (ship: number, weapon: Weapon, target: string, heading?: number, torpedo?: TorpedoSettings) => void;
   onCancelFire?: () => void;
   onTorpedoAim?: (adjusted: boolean) => void;
   onInspectMap?: () => void;
@@ -23,6 +24,7 @@ type MapProps = {
 interface Gesture {
   pointer: number; ship: number; weapon: Weapon; cursor: Point; start: Point; contact?: Contact;
   anchor?: Point; aim?: Aim; aimTick?: number; heading?: number; baseHeading?: number; cancelled: boolean; loading?: boolean;
+  torpedo?: TorpedoSettings;
 }
 type SurfaceDrag =
   | { pointer: number; start: Point; waypoint: number }
@@ -374,7 +376,8 @@ export function BattleMap(props: MapProps) {
   }
   function aimAt(ship: number, id: string, weapon: Weapon, heading?: number) {
     const nonce = ++aimSequence.current;
-    void (props.requestAim ?? ask)<Aim>({ op: 'aim', ship, target: id, weapon, ...(heading !== undefined ? { heading } : {}) }).then((aim) => {
+    const torpedo = weapon === 'torpedo' ? gestureRef.current?.torpedo : undefined;
+    void (props.requestAim ?? ask)<Aim>({ op: 'aim', ship, target: id, weapon, ...torpedo, ...(heading !== undefined ? { heading } : {}) }).then((aim) => {
       const current = gestureRef.current;
       if (!current || current.contact?.id !== id || nonce !== aimSequence.current) return;
       update({ ...current, loading: false, aim, aimTick: o.tick, heading: heading === undefined ? aim.heading : current.heading, baseHeading: current.baseHeading ?? aim.heading });
@@ -402,7 +405,8 @@ export function BattleMap(props: MapProps) {
     event.preventDefault();
     const start = relative(event);
     viewport.current!.setPointerCapture(event.pointerId);
-    update({ pointer: event.pointerId, ship: ship.id, weapon, start, cursor: start, cancelled: false });
+    const torpedo = weapon === 'torpedo' ? props.torpedoSettings?.[ship.id] : undefined;
+    update({ pointer: event.pointerId, ship: ship.id, weapon, torpedo, start, cursor: start, cancelled: false });
   }
   function pointerDown(event: ReactPointer<HTMLDivElement>) {
     if (disabled || event.button !== 0 || event.target !== canvas.current) return;
@@ -475,14 +479,14 @@ export function BattleMap(props: MapProps) {
         else if (hit) props.onFire(active.ship, active.weapon, hit.id);
         else if (distance(p, active.start) > 10) props.onHint('没有下令。请拖到一个可见敌舰。');
       } else if (active.anchor && active.contact && active.aim && active.heading !== undefined) {
-        const adjusted = active.baseHeading !== undefined && Math.abs(active.heading - active.baseHeading) > .15;
+        const adjusted = active.baseHeading !== undefined && Math.abs(wrap(active.heading - active.baseHeading + 180) - 180) > .15;
         const id = active.contact.id;
         const held = o.contacts.some(contact => contact.id === id)
           || o.radarContacts?.some(contact => contact.id === id && contact.torpedoForShipIds?.includes(active.ship));
         if (!held) props.onHint('未发射：接触已经丢失。');
         else if (!inArcs(active.heading, active.aim.arcs)) props.onHint('未发射：鱼雷航向超出发射扇区。');
         else if (!adjusted && !active.aim.valid) props.onHint(active.aim.error ?? '推荐射向当前不可用。');
-        else props.onFire(active.ship, active.weapon, active.contact.id, adjusted ? active.heading : undefined);
+        else props.onFire(active.ship, active.weapon, active.contact.id, adjusted ? active.heading : undefined, active.torpedo);
       } else if (distance(p, active.start) > 10) props.onHint(active.aim?.error ?? '未发射：在敌舰上短暂停留，等推荐射向出现。');
       return;
     }
@@ -572,7 +576,8 @@ export function BattleMap(props: MapProps) {
         gesture.weapon === 'gun' && target ? (gesture.aim?.error || (firstFireTick !== undefined ? `${gesture.aim?.mounts?.length} 座炮可用 · 预计首炮 ${clock(firstFireTick)} · 松手下令` :
           gesture.aim?.barrels ? `${gesture.aim.barrels} 门炮可用 · 松手下令` : '正在校核射界')) :
         gesture.aim?.friendly ? '注意：已知友舰可能进入雷迹' :
-        aimInArc === false ? (gesture.aim?.error ?? '射向超出扇区') : gesture.aim ? (gesture.aim.error ?? '拖动微调，松手下令') :
+        aimInArc === false ? (gesture.aim?.error ?? '射向超出扇区') : gesture.aim ? (gesture.aim.error ?? (gesture.aim.torpedoCount
+          ? `${gesture.aim.depth === 'deep' ? '深航' : '浅航'} ${gesture.aim.torpedoCount} 枚 · 拖动微调，松手下令` : '拖动微调，松手下令')) :
         target && gesture.weapon === 'gun' ? '松手下令' : '可拖至取消区'}</span>
     </div>}
     <div ref={cancelWell} className={'cancel-well' + (gesture ? ' visible' : '') + (gesture?.cancelled ? ' hot' : '')} aria-hidden={!gesture}>

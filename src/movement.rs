@@ -153,7 +153,8 @@ pub fn swept_separation(a: P, b: P, c: P, d: P) -> f64 {
 
 impl World {
     pub(crate) fn curved_movement(&self) -> bool {
-        matches!(self.version, crate::realtime::VERSION | crate::campaign::live::VERSION)
+        matches!(self.version, crate::realtime::VERSION | crate::realtime::CURVE_VERSION
+            | crate::campaign::live::VERSION | crate::campaign::live::CURVE_VERSION)
     }
 
     pub(crate) fn max_speed(&self, ship: &Ship) -> f64 {

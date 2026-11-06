@@ -28,7 +28,7 @@ import { OnlineSupply } from './OnlineSupply';
 import { OnlineFleetEditor } from './OnlineFleetEditor';
 import { OnlineDuelLobby } from './OnlineDuelLobby';
 import { ask, clock, closeSession, maneuverNames, profileNames, sideNames } from './engine';
-import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, Weapon } from './engine';
+import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, TorpedoSettings, Weapon } from './engine';
 import { grantPrologue, hulls, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
 import type { Hull, Lesson, PortLaunch } from './port';
 import './style.css';
@@ -113,6 +113,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const [evidence, setEvidence] = useState<TrainingEvidence>({});
   const [nightTarget, setNightTarget] = useState('');
   const [lightPreview, setLightPreview] = useState<LightPreview>();
+  const [torpedoSettings, setTorpedoSettings] = useState<Record<number, TorpedoSettings>>({});
   const courseLive = useRef<CourseId | undefined>(undefined);
   const courseEvent = useRef(0);
   const savedExercise = useRef<unknown>(undefined);
@@ -191,6 +192,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     resetDraft(); setFleetId(undefined); setShipId(undefined); setSuggestion(undefined);
     setTab('fleet'); setRunning(false); setReplay(undefined); setResultDismissed(false); setConfirmSurrender(false);
     setNightTarget(''); setLightPreview(undefined);
+    setTorpedoSettings({});
     window.clearTimeout(noticeTimer.current);
     setNotice('');
     timeAccumulator.current = 0;
@@ -687,8 +689,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const tabs: { key: Tab; title: string }[] = [
     { key: 'fleet', title: '编队' }, { key: 'ship', title: '舰况' }, { key: 'ai', title: '战术 AI' }, { key: 'log', title: '战情' },
   ];
-  const fire = (ship: number, weapon: Weapon, target: string, heading?: number) => {
-    void command({ op: 'fire', ship, weapon, target, heading }, () => {
+  const fire = (ship: number, weapon: Weapon, target: string, heading?: number, torpedo?: TorpedoSettings) => {
+    void command({ op: 'fire', ship, weapon, target, heading, ...torpedo }, () => {
       hint(weapon === 'gun' && o?.realtimeGunnery ? '已下达炮击命令，炮座转向并装填完成后各自发射。' :
         '已下达' + aimAction[weapon] + '命令，执行进度见战情。');
       if (weapon === 'gun' || heading !== undefined) learn(weapon);
@@ -780,6 +782,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           cameraCue={o.variant === 'prologue' ? { id: '第五驱逐小队', fleet: 1, zoom: 1.22 } : undefined}
           session={session} running={cloudBattle ? !finished : running} speed={cloudBattle ? 4 : speed} replaying={!!replay}
           requestAim={inspectBattle}
+          torpedoSettings={o.torpedoDepths ? torpedoSettings : undefined}
           editing={editing} waypoints={waypoints} preview={preview} reformPreview={reformPreview} onSelect={selectShip} onAddPoint={addPoint}
           onMovePoint={movePoint} onFire={fire} onCancelFire={() => { learn('cancel'); record('fireCancelled'); }} onHint={hint}
           onTorpedoAim={(adjusted) => record(adjusted ? 'torpedoAdjusted' : 'torpedoAimed')}
@@ -916,7 +919,11 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             </section>
           </>}
           {tab === 'fleet' && !fleet && <p className="empty-state">当前没有可指挥编队。</p>}
-          {tab === 'ship' && (selected ? <><ShipSchematic ship={selected} ships={o.ships} select={selectShip} tick={o.tick} />
+          {tab === 'ship' && (selected ? <><ShipSchematic ship={selected} ships={o.ships} select={selectShip} tick={o.tick}
+            torpedo={o.torpedoDepths && !finished && !replay ? {
+              settings: torpedoSettings[selected.id] ?? {},
+              change: (settings) => setTorpedoSettings(current => ({ ...current, [selected.id]: settings })),
+            } : undefined} />
             {!!selected.systems?.radars?.length && <section className="night-tools" aria-label="舰上雷达">
               <h3>舰上雷达</h3>{selected.systems.radars.map(set => <button key={set.id} type="button"
                 aria-pressed={set.powered} disabled={set.disabled || finished || !!replay}

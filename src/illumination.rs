@@ -69,7 +69,7 @@ impl World {
         self.light_shot(s,self.contact(owner,target)?)?;
         if self.pending.iter().any(|o|o.ship==ship&&o.weapon=="illumination") {return Err("该舰已有照明弹指令".into());}
         let name=s.name.clone();
-        self.pending.push(Fire{side:owner,ship,target:target.into(),weapon:"illumination".into(),heading:None,expires:(self.tick/CYCLE+1)*CYCLE});
+        self.pending.push(Fire{side:owner,ship,target:target.into(),weapon:"illumination".into(),heading:None,expires:(self.tick/CYCLE+1)*CYCLE,torpedo:TorpedoOrder::default()});
         self.add(1<<owner,"illumination_ordered",format!("{name} · 照明弹已下令"),Some("CAS-5.4.4.5"),None);
         Ok(())
     }

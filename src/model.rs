@@ -158,6 +158,8 @@ pub struct ShipDef {
     pub length_m: f64,
     pub armor_belt: f64,
     pub armor_deck: f64,
+    #[serde(default)]
+    pub torpedo_protection_dp: f64,
     pub in_service_year: u32,
     pub accel_high_knots_per_turn: f64,
     pub brake_knots_per_turn: f64,
@@ -291,7 +293,8 @@ pub struct Ship {
     pub gun_cycle: Option<u32>,
     pub illumination_cycle: Option<u32>,
     pub torp_cycle: Option<u32>,
-    pub torp_mount_used: Vec<bool>,
+    pub torp_mount_remaining: Vec<u32>,
+    pub torpedo_protection: [f64; 2],
     pub track: Option<Track>,
     pub free_speed: f64,
     pub fires: Vec<Casualty>,
@@ -418,6 +421,7 @@ pub struct Torpedo {
     pub launch_sighted: bool,
     pub impact_sighted: bool,
     pub contact_fuze: bool,
+    pub deep: bool,
     pub single_mode: bool,
     pub tested: Vec<u32>,
 }
@@ -429,6 +433,14 @@ pub struct Fire {
     pub target: String,
     pub heading: Option<f64>,
     pub expires: u32,
+    pub torpedo: TorpedoOrder,
+}
+
+#[derive(Clone, Copy, Debug, Default)]
+pub struct TorpedoOrder {
+    pub deep: bool,
+    pub mount: Option<usize>,
+    pub count: Option<u32>,
 }
 
 #[derive(Clone, Debug, Serialize)]

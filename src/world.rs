@@ -238,7 +238,8 @@ impl World {
             id, def, side, fleet: Some(fleet), name, p, h, speed: 0., escaped: false,
             hp: d.dp, ammo: d.torpedo.as_ref().map_or(0, |t| t.tubes),
             gun_cycle: None, illumination_cycle: None, torp_cycle: None,
-            torp_mount_used: vec![false; d.torpedo.as_ref().map_or(0, |t| t.mounts.len().max(1))],
+            torp_mount_remaining: d.torpedo.iter().flat_map(|t| t.mounts.iter().map(|m| m.tubes)).collect(),
+            torpedo_protection: [d.torpedo_protection_dp; 2],
             track: None, free_speed: 0., fires: vec![], flooding: vec![], fire_control_damage: false,
             gun_mount_destroyed: vec![false; d.gun.mounts.len()],
             gun_mount_bearings: vec![None; d.gun.mounts.len()], gun_bearing_until: 0,
@@ -253,10 +254,12 @@ impl World {
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
             crate::realtime::VERSION => crate::realtime::VERSION,
+            crate::realtime::CURVE_VERSION => crate::realtime::CURVE_VERSION,
             crate::realtime::IMPACT_VERSION => crate::realtime::IMPACT_VERSION,
             crate::realtime::CADENCE_VERSION => crate::realtime::CADENCE_VERSION,
             crate::realtime::LEGACY_VERSION => crate::realtime::LEGACY_VERSION,
             live::VERSION => live::VERSION,
+            live::CURVE_VERSION => live::CURVE_VERSION,
             live::IMPACT_VERSION => live::IMPACT_VERSION,
             live::CADENCE_VERSION => live::CADENCE_VERSION,
             live::LEGACY_VERSION => live::LEGACY_VERSION,
@@ -265,7 +268,7 @@ impl World {
         let realtime = crate::realtime::is_realtime_version(version);
         if s.duel
             && (cfg!(target_arch = "wasm32")
-                || version != "cas-realtime-v8"
+                || version != crate::realtime::CURVE_VERSION
                 || s.side != "allies"
                 || s.enemy != "coord"
                 || s.profile != "coord"
@@ -282,7 +285,7 @@ impl World {
             return Err("存档命令的席位无效".into());
         }
         if matches!(s.variant.as_str(), crate::prologue::VARIANT | crate::illumination::RADAR_TRAINING)
-            && version != crate::realtime::VERSION
+            && !matches!(version, crate::realtime::VERSION | crate::realtime::CURVE_VERSION)
         {
             return Err("该教学存档的规则版本不符".into());
         }
@@ -488,7 +491,12 @@ impl World {
                 if self.realtime() { self.realtime_mount_view(s,index,&mut view); }
                 view
             }).collect();
-            let tubes:Vec<_>=d.torpedo.iter().flat_map(|t|t.mounts.iter().enumerate()).map(|(index,m)|json!({"index":index,"tubes":m.tubes,"spent":s.torp_mount_used[index]})).collect();
+            let tubes:Vec<_>=d.torpedo.iter().flat_map(|t|t.mounts.iter().enumerate()).map(|(index,m)|{
+                let remaining = s.torp_mount_remaining[index];
+                let mut view = json!({"index":index,"tubes":m.tubes,"spent":remaining == 0});
+                if self.torpedo_depths() { view["remaining"] = json!(remaining); }
+                view
+            }).collect();
             let mut data = json!({"gunRange":d.gun.range_yd.last().copied().unwrap_or(0.)*YARD,
                 "torpedoRange":d.torpedo.as_ref().map_or(0.,|t|t.range_yd*YARD),
                 "systems":{"guns":guns,"tubes":tubes,"directorDamaged":s.fire_control_damage,
@@ -508,6 +516,9 @@ impl World {
                 if let Some(order) = &s.battery.order {
                     data["gunTarget"] = json!(order.target);
                 }
+            }
+            if self.torpedo_depths() && d.torpedo_protection_dp > 0. {
+                data["systems"]["torpedoProtection"] = json!({"port":s.torpedo_protection[0],"starboard":s.torpedo_protection[1],"capacity":d.torpedo_protection_dp});
             }
             data
         }).collect();
@@ -529,6 +540,7 @@ impl World {
                     if own {
                         v["from"] = json!(t.origin);
                         v["count"] = json!(t.count);
+                        if self.torpedo_depths() { v["depth"] = json!(if t.deep { "deep" } else { "shallow" }); }
                     }
                     if self.realtime() {
                         if let Some(start) = if own { Some(t.origin) } else { t.first_visible } {
@@ -560,6 +572,7 @@ impl World {
         }
         if self.has_starshells() { view["illuminations"]=json!(self.visible_illumination(owner)); }
         if self.realtime() { view["realtimeGunnery"] = json!(true); }
+        if self.torpedo_depths() { view["torpedoDepths"] = json!(true); }
         view
     }
     pub fn external(&mut self, r: Value) -> E<()> {

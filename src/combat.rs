@@ -80,9 +80,41 @@ struct Launch {
     h: f64,
     mount: usize,
     count: u32,
+    deep: bool,
 }
 
 impl World {
+    pub(crate) fn torpedo_depths(&self) -> bool {
+        matches!(self.version, crate::realtime::VERSION | crate::campaign::live::VERSION)
+    }
+
+    fn torpedo_order(&self, request: &Value) -> E<TorpedoOrder> {
+        let specified = ["depth", "mount", "count"].iter().any(|key| request.get(key).is_some());
+        if specified && !self.torpedo_depths() {
+            return Err("本局规则版本使用默认浅航整座齐射".into());
+        }
+        let deep = match request.get("depth") {
+            None => false,
+            Some(value) if value == "shallow" => false,
+            Some(value) if value == "deep" => true,
+            _ => return Err("鱼雷定深无效".into()),
+        };
+        let mount = request.get("mount").map(|_| u(request, "mount").map(|mount| mount as usize)).transpose()?;
+        let count = request.get("count").map(|value| {
+            value.as_u64().filter(|count| (1..=6).contains(count)).map(|count| count as u32)
+                .ok_or("单座齐射须选择 1 至 6 枚鱼雷")
+        }).transpose()?;
+        Ok(TorpedoOrder { deep, mount, count })
+    }
+
+    fn torpedo_can_hit(&self, ship: &Ship, deep: bool) -> bool {
+        match self.data.ships[ship.def].size.as_str() {
+            "A" | "B" => true,
+            "F" | "G" => !self.curved_movement(),
+            _ => !deep,
+        }
+    }
+
     pub fn detect(&mut self, initial: bool) {
         if self.environment().light == crate::night::Light::Night {
             self.detect_night();
@@ -292,7 +324,7 @@ impl World {
     }
     fn torp_candidate(&self, s: &Ship, c: &Contact) -> bool {
         let (a, b) = self.project_launch(s, c);
-        !self.is_reaction(c) && self.torp_solution(&a, &b, None).3.is_none()
+        !self.is_reaction(c) && self.torp_solution(&a, &b, None, TorpedoOrder::default()).3.is_none()
     }
     fn torpedo_contact(&self, s: &Ship, target: &str) -> E<std::borrow::Cow<'_, Contact>> {
         if let Ok(c) = self.contact(s.side, target) { return Ok(std::borrow::Cow::Borrowed(c)); }
@@ -302,20 +334,25 @@ impl World {
         }
         Err("目标接触已丢失".into())
     }
-    fn mount(&self, s: &Ship, h: f64) -> Option<(usize, u32)> {
+    fn mount(&self, s: &Ship, h: f64, order: TorpedoOrder) -> Option<(usize, u32)> {
         let def = self.data.ships[s.def].torpedo.as_ref()?;
         let a = norm(h - s.h);
         def.mounts
             .iter()
             .enumerate()
-            .find(|(i, m)| !s.torp_mount_used[*i] && m_arc(a, m.arc, m.arc2))
-            .map(|(i, m)| (i, m.tubes.min(s.ammo).min(6)))
+            .filter(|(i, m)| order.mount.is_none_or(|mount| *i == mount) && m_arc(a, m.arc, m.arc2))
+            .find_map(|(i, _)| {
+                let remaining = s.torp_mount_remaining[i].min(s.ammo).min(6);
+                let count = order.count.unwrap_or(remaining);
+                (count > 0 && count <= remaining).then_some((i, count))
+            })
     }
-    fn friendly_torp(&self, s: &Ship, h: f64, r: f64, v: f64) -> bool {
+    fn friendly_torp(&self, s: &Ship, h: f64, r: f64, v: f64, deep: bool) -> bool {
         let forward = P::bearing(h);
         self.ships
             .iter()
             .filter(|t| t.id != s.id && t.side == s.side && t.alive())
+            .filter(|t| !self.torpedo_depths() || self.torpedo_can_hit(t, deep))
             .any(|t| {
                 let vel = P::bearing(t.h) * (t.speed * KNOT);
                 let offset = t.p - s.p;
@@ -334,6 +371,7 @@ impl World {
         s: &Ship,
         c: &Contact,
         angle: Option<f64>,
+        order: TorpedoOrder,
     ) -> (f64, f64, bool, Option<String>) {
         let Some(t) = &self.data.ships[s.def].torpedo else {
             return (0., 0., false, Some("这艘舰未装鱼雷".into()));
@@ -343,23 +381,24 @@ impl World {
         let h = norm(angle.unwrap_or(suggest));
         let reason = if s.ammo == 0 {
             Some("鱼雷已耗尽")
-        } else if self.curved_movement() && c.kind.is_some()
-            && self.ship(c.ship).is_some_and(|target| matches!(self.data.ships[target.def].size.as_str(), "F" | "G"))
+        } else if c.kind.is_some() && self.ship(c.ship).is_some_and(|target| !self.torpedo_can_hit(target, order.deep))
         {
-            Some("直航鱼雷无法击中这类小艇")
+            Some(if order.deep { "深航直航鱼雷无法击中此吃水级别" } else { "直航鱼雷无法击中这类小艇" })
         } else if self.is_reaction(c) {
             Some("刚发现的接触不能在此窗口放雷")
         } else if angle.is_none() && intercept_range > range {
             Some("预计交会点超出鱼雷航程")
-        } else if self.mount(s, h).is_none() {
-            Some("射向不在剩余发射管的可用扇区")
+        } else if self.mount(s, h, order).is_none() {
+            Some(if order.count.is_some() || order.mount.is_some() {
+                "指定齐射数量超出可用发射管，或射向超出该座射界"
+            } else { "射向不在剩余发射管的可用扇区" })
         } else {
             None
         };
         (
             h,
             range,
-            self.friendly_torp(s, h, range, t.speed_knots * KNOT),
+            self.friendly_torp(s, h, range, t.speed_knots * KNOT, order.deep),
             reason.map(str::to_owned),
         )
     }
@@ -394,24 +433,32 @@ impl World {
             return Ok(solution);
         }
         let c = self.torpedo_contact(s, target)?;
+        let order = self.torpedo_order(r)?;
         let angle = r
             .get("heading")
             .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
             .transpose()?;
         let (future, projected) = self.project_launch(s, &c);
-        let (h, range, friendly, error) = self.torp_solution(&future, &projected, angle);
+        let (h, range, friendly, error) = self.torp_solution(&future, &projected, angle, order);
         let arcs: Vec<_> = self.data.ships[s.def]
             .torpedo
             .iter()
             .flat_map(|t| t.mounts.iter().enumerate())
-            .filter(|(i, _)| !s.torp_mount_used[*i])
+            .filter(|(i, _)| order.mount.is_none_or(|mount| *i == mount)
+                && s.torp_mount_remaining[*i].min(s.ammo) >= order.count.unwrap_or(1))
             .flat_map(|(_, m)| [Some(m.arc), m.arc2])
             .flatten()
             .map(|a| json!({"from":norm(a[0]+future.h),"to":norm(a[1]+future.h)}))
             .collect();
-        Ok(
-            json!({"heading":h,"range":range,"arcs":arcs,"friendly":friendly,"valid":error.is_none(),"error":error}),
-        )
+        let mut view = json!({"heading":h,"range":range,"arcs":arcs,"friendly":friendly,"valid":error.is_none(),"error":error});
+        if self.torpedo_depths() {
+            view["depth"] = json!(if order.deep { "deep" } else { "shallow" });
+            if let Some((mount, count)) = self.mount(&future, h, order) {
+                view["torpedoMount"] = json!(mount);
+                view["torpedoCount"] = json!(count);
+            }
+        }
+        Ok(view)
     }
     pub fn queue_fire(&mut self, owner: usize, r: &Value, manual: bool) -> E<()> {
         let id = u(r, "ship")?;
@@ -430,6 +477,7 @@ impl World {
         }
         let mut heading = None;
         let mut reaction = false;
+        let mut torpedo = TorpedoOrder::default();
         match weapon {
             "gun" => {
                 let (c, _) = self.gun_contact(s, target)?;
@@ -441,17 +489,23 @@ impl World {
             }
             "torpedo" => {
                 let c = self.torpedo_contact(s, target)?;
+                torpedo = self.torpedo_order(r)?;
                 let angle = r
                     .get("heading")
                     .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
                     .transpose()?;
                 let (future, projected) = self.project_launch(s, &c);
-                let (h, _, friendly, err) = self.torp_solution(&future, &projected, angle);
+                let (h, _, friendly, err) = self.torp_solution(&future, &projected, angle, torpedo);
                 if let Some(e) = err {
                     return Err(e);
                 }
                 if friendly && !manual {
                     return Err("AI 不向已知友舰航迹放雷".into());
+                }
+                if self.torpedo_depths() {
+                    let (mount, count) = self.mount(&future, h, torpedo).ok_or("指定发射座不可用")?;
+                    torpedo.mount = Some(mount);
+                    torpedo.count = Some(count);
                 }
                 heading = Some(h);
             }
@@ -467,6 +521,7 @@ impl World {
             target: target.into(),
             heading,
             expires,
+            torpedo,
         });
         if manual {
             if let Some(f) = fleet.and_then(|i| self.fleet_mut(i)) {
@@ -595,11 +650,11 @@ impl World {
         if s.jammed_until > self.tick {
             return Err("该舰正在处理转向损伤".into());
         }
-        let (h, _, _, e) = self.torp_solution(s, &c, p.heading);
+        let (h, _, _, e) = self.torp_solution(s, &c, p.heading, p.torpedo);
         if let Some(e) = e {
             return Err(e);
         }
-        let (mount, count) = self.mount(s, h).ok_or("发射管已不可用")?;
+        let (mount, count) = self.mount(s, h, p.torpedo).ok_or("发射管已不可用")?;
         if count == 0 {
             return Err("发射管没有鱼雷".into());
         }
@@ -609,6 +664,7 @@ impl World {
             h,
             mount,
             count,
+            deep: p.torpedo.deep,
         })
     }
     pub(crate) fn gun_values(&self,s:&Ship,t:&Ship,b:usize,barrels:u32,radar_only:bool,planned_targets:&[u32],extra:i32,prelight:bool)->(f64,u32){
@@ -830,20 +886,26 @@ impl World {
             launch_sighted: false,
             impact_sighted: false,
             contact_fuze: d.contact_fuze,
+            deep: l.deep,
             single_mode: false,
             tested: vec![],
         };
         let tick = self.tick;
+        let per_tube = self.torpedo_depths();
         let ship = self.ship_mut(l.ship).unwrap();
         ship.ammo -= l.count;
         ship.torp_cycle = Some(tick / CYCLE);
-        ship.torp_mount_used[l.mount] = true;
+        if per_tube {
+            ship.torp_mount_remaining[l.mount] -= l.count;
+        } else {
+            ship.torp_mount_remaining[l.mount] = 0;
+        }
         self.add(
             1 << l.side,
             "torpedo",
             format!(
-                "{} 发射 {} 枚{}直航鱼雷 · 航向 {:.0}°",
-                s.name, l.count, d.name, l.h
+                "{} 发射 {} 枚{}{}直航鱼雷 · 航向 {:.0}°",
+                s.name, l.count, d.name, if !per_tube { "" } else if l.deep { "深航" } else { "浅航" }, l.h
             ),
             Some("CAS-6.3.1"),
             Some(s.p),
@@ -914,7 +976,7 @@ impl World {
                 .ships
                 .iter()
                 .filter(|s| s.alive() && s.id != torp.ship && !torp.tested.contains(&s.id))
-                .filter(|s| !cas_capital_targets || !matches!(self.data.ships[s.def].size.as_str(), "F" | "G"))
+                .filter(|s| self.torpedo_can_hit(s, torp.deep))
                 .filter_map(|s| {
                     let a = before[(s.id - 1) as usize] - torp.p;
                     let b = s.p - end;
@@ -937,7 +999,8 @@ impl World {
             for (id, at) in candidates {
                 let t = self.ship(id).unwrap().clone();
                 let d = &self.data.ships[t.def];
-                let a = aspect(t.h, norm(torp.h + 180.));
+                let incoming = norm(torp.h + 180.);
+                let a = aspect(t.h, incoming);
                 let table = if cas_capital_targets && d.size == "A" {
                     ["I", "II", "IV"][a]
                 } else if d.size == "B" {
@@ -963,8 +1026,12 @@ impl World {
                     torp.impact_sighted = true;
                 }
                 let mut damage = torp.warhead * hits as f64;
+                let mut penetrating_hits = hits;
                 if a == 2 {
                     damage *= 0.5;
+                } else if torp.deep {
+                    let side = usize::from(delta(t.h, incoming) > 0.);
+                    (damage, penetrating_hits) = self.absorb_deep_torpedoes(id, side, torp.warhead, hits);
                 } else if cas_capital_targets && matches!(d.size.as_str(), "A" | "B") {
                     damage *= match d.armor_belt {
                         belt if belt <= 5. => 1.,
@@ -1000,15 +1067,17 @@ impl World {
                         self.last_voice(torp.side, Some("friendly_fire"));
                     }
                 }
-                impacts.push(Impact {
-                    victim: id,
-                    amount: damage,
-                    owner: torp.side,
-                    torpedo: true,
-                    at: t.p,
-                    penetrated: true,
-                    flood_hits: if torp.contact_fuze { hits } else { 0 },
-                });
+                if damage > 0. {
+                    impacts.push(Impact {
+                        victim: id,
+                        amount: damage,
+                        owner: torp.side,
+                        torpedo: true,
+                        at: t.p,
+                        penetrated: true,
+                        flood_hits: if torp.contact_fuze { penetrating_hits } else { 0 },
+                    });
+                }
                 if torp.count == 0 {
                     break;
                 }
@@ -1022,6 +1091,31 @@ impl World {
             }
         }
         self.apply_impacts(impacts);
+    }
+
+    fn absorb_deep_torpedoes(&mut self, victim: u32, side: usize, warhead: f64, hits: u32) -> (f64, u32) {
+        let ship = self.ship(victim).expect("torpedo impact target");
+        let cap = self.data.ships[ship.def].torpedo_protection_dp / 3.;
+        let mut remaining = ship.torpedo_protection[side];
+        if remaining <= 0. {
+            return (warhead * hits as f64, hits);
+        }
+        let mut damage = 0.;
+        let mut penetrating = 0;
+        let initial = remaining;
+        let owner = ship.side;
+        let at = ship.p;
+        let name = ship.name.clone();
+        for _ in 0..hits {
+            let absorbed = warhead.min(cap).min(remaining);
+            remaining -= absorbed;
+            damage += warhead - absorbed;
+            penetrating += u32::from(warhead > absorbed);
+        }
+        self.ship_mut(victim).unwrap().torpedo_protection[side] = remaining;
+        self.add(1 << owner, "torpedo_protection", format!("{name} · {}舷水下防护吸收 {:.1} DP，余 {:.1} DP",
+            if side == 0 { "左" } else { "右" }, initial - remaining, remaining), Some("CAS-8.1.7.2"), Some(at));
+        (damage, penetrating)
     }
     pub(crate) fn apply_impacts(&mut self, v: Vec<Impact>) {
         let mut phase = vec![(0., 0., 0_u32, false); self.ships.len()];
@@ -1147,5 +1241,49 @@ mod tests {
         assert_eq!(gun_multiplier(&w.data.rules, 12, 3), 2.);
         assert_eq!(gun_multiplier(&w.data.rules, 5, 0), 3.);
         assert_eq!(gun_multiplier(&w.data.rules, 4, 1), 2.);
+    }
+
+    #[test]
+    fn split_salvo_spends_only_the_selected_mount_and_revalidates() {
+        let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        w.enable_realtime().unwrap();
+        let p = w.ship(1).unwrap().p + P::bearing(165.) * 3_000.;
+        w.ship_mut(6).unwrap().p = p;
+        w.detect(true);
+        let target = w.contacts[0].iter().find(|c| c.ship == 6).unwrap().id.clone();
+        let order = json!({"op":"fire","ship":1,"target":target,"weapon":"torpedo","heading":165.,"mount":0,"count":2});
+        let aim = w.preview_aim(0, &order).unwrap();
+        assert_eq!(aim["valid"], true, "{aim}");
+        assert_eq!(aim["torpedoCount"], 2);
+        w.queue_fire(0, &order, true).unwrap();
+        w.tick = CYCLE;
+        w.resolve_fire(true);
+        assert_eq!(w.torps.len(), 1);
+        assert_eq!(w.torps[0].count, 2);
+        assert_eq!(w.ship(1).unwrap().torp_mount_remaining, [3, 5]);
+        assert_eq!(w.ship(1).unwrap().ammo, 8);
+        let mut oversized = order.clone();
+        oversized["count"] = json!(4);
+        assert!(w.queue_fire(0, &oversized, true).is_err());
+        assert!(w.pending.is_empty());
+        let mut deep = order;
+        deep["depth"] = json!("deep");
+        assert_eq!(w.preview_aim(0, &deep).unwrap()["valid"], false);
+    }
+
+    #[test]
+    fn deep_torpedo_uses_one_side_and_one_third_per_hit() {
+        let mut w = World::new(6106, 0, "coord", crate::prologue::VARIANT, "coord", 0).unwrap();
+        let yamato = w.ships.iter().find(|s| s.name == "大和").unwrap().id;
+        let hp = w.ship(yamato).unwrap().hp;
+        assert!(w.torpedo_can_hit(w.ship(yamato).unwrap(), true));
+        assert!(!w.torpedo_can_hit(w.ship(1).unwrap(), true));
+        assert_eq!(w.absorb_deep_torpedoes(yamato, 0, 50., 1), (0., 0));
+        assert_eq!(w.absorb_deep_torpedoes(yamato, 0, 95., 3), (140., 3));
+        assert_eq!(w.absorb_deep_torpedoes(yamato, 0, 50., 1), (50., 1));
+        assert_eq!(w.ship(yamato).unwrap().torpedo_protection, [0., 195.]);
+        assert_eq!(w.ship(yamato).unwrap().hp, hp);
+        assert_eq!(w.visible_events(0, None).iter().filter(|e| e["kind"] == "torpedo_protection").count(), 0);
+        assert_eq!(w.visible_events(1, None).iter().filter(|e| e["kind"] == "torpedo_protection").count(), 2);
     }
 }

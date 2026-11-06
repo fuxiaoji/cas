@@ -11,13 +11,14 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
-pub(crate) const VERSION: &str = "cas-campaign-v8";
+pub(crate) const VERSION: &str = "cas-campaign-v9";
+pub(crate) const CURVE_VERSION: &str = "cas-campaign-v8";
 pub(crate) const IMPACT_VERSION: &str = "cas-campaign-v7";
 pub(crate) const CADENCE_VERSION: &str = "cas-campaign-v6";
 pub(crate) const LEGACY_VERSION: &str = "cas-campaign-v5";
 
 pub(crate) fn is_campaign_version(version: &str) -> bool {
-    matches!(version, VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
+    matches!(version, VERSION | CURVE_VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
 }
 pub(crate) const CONTENT: &str = "cas-cape-runtime-v1";
 pub(crate) const VARIANT: &str = "cape-st-george-rts";

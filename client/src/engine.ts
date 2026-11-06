@@ -4,6 +4,7 @@ export type Side = 'allies' | 'axis';
 export type Profile = 'coord' | 'gunnery' | 'torpedo';
 export type Maneuver = 'follow' | 'sync';
 export type Weapon = 'gun' | 'torpedo';
+export type TorpedoSettings = { depth?: 'shallow' | 'deep'; count?: number };
 export interface Point { x: number; y: number }
 export interface Position extends Point { heading: number; speed: number }
 export interface Ship extends Position {
@@ -19,15 +20,16 @@ export interface GunMount {
 }
 export interface ShipSystems {
   guns: GunMount[];
-  tubes: { index: number; tubes: number; spent: boolean }[];
+  tubes: { index: number; tubes: number; spent: boolean; remaining?: number }[];
   directorDamaged: boolean; engineeringLevels: number; fires: number; floods: number; maxSpeed: number;
+  torpedoProtection?: { port: number; starboard: number; capacity: number };
   radars?: { id: string; name: string; powered: boolean; disabled: boolean }[];
 }
 export interface Shell extends Point {
   id: number; heading: number; progress: number; from?: Point; to?: Point;
   launchTick: number; impactTick: number; own: boolean; barrels?: number; arcHeightM?: number;
 }
-export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number; trail?: Point[] }
+export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number; trail?: Point[]; depth?: TorpedoSettings['depth'] }
 export interface Contact extends Position { id: string; kind?: string; name?: string }
 export interface RadarContact extends Point { id: string; lastSeenTick: number; direct: boolean; usableForShipIds: number[];
   torpedoForShipIds?: number[]; shared?: (Point & { lastSeenTick: number }) | null }
@@ -43,7 +45,7 @@ export interface LogEvent { id?: number | string; tick: number; kind: string; te
 export interface Result { winner: string; allies: number; axis: number; primary?: boolean | string; grade?: CampaignGrade }
 export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;
-  variant?: string; settling?: boolean; realtimeGunnery?: boolean;
+  variant?: string; settling?: boolean; realtimeGunnery?: boolean; torpedoDepths?: boolean;
   environment?: { light: 'night' | 'day' | 'twilight'; visibility: number; sea_state: number; precipitation: boolean };
   campaign?: CampaignMission & { withdrawalX?: number };
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
@@ -57,6 +59,7 @@ export interface Aim {
   heading: number; range: number; arcs: { from: number; to: number }[];
   friendly: boolean; valid: boolean; error?: string; barrels?: number;
   mounts?: { index: number; turnSeconds: number; readyTick: number }[];
+  torpedoCount?: number; torpedoMount?: number; depth?: TorpedoSettings['depth'];
 }
 export interface Suggestion { orders: Request[]; text: string }
 export type Request = { op: string; [key: string]: unknown };

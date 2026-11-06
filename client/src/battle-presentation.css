@@ -52,6 +52,9 @@
 .mount-icon.tube { border-radius: 3px; }
 .mount-icon.lost { color: #ffc2a9; border-color: #b17f70; background: #543a3c; }
 .mount-icon.spent { border-style: dashed; background: none; color: #b9c7c5; opacity: .8; }
+.torpedo-settings { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 3px 0 5px; }
+.torpedo-settings label { display: flex; align-items: center; gap: 4px; color: #c5d4d1; font-size: 10px; }
+.torpedo-settings select { min-height: 26px; }
 .gun-readiness { padding: 3px 0 5px; }
 .gun-readiness-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; color: #c5d4d1; font-size: 11px; }
 .gun-readiness-heading b { color: #efd49c; font: 10px var(--numbers), sans-serif; overflow-wrap: anywhere; }
