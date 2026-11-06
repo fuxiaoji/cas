@@ -155,6 +155,16 @@ try {
   await first.evaluate(`${button('轴心战线')}.click()`);
   await waitFor('16 Axis campaign stages and Cape record', () => first.evaluate(`document.querySelectorAll('[data-stage-id^="CAMP-AXIS-"]').length === 16 &&
     Boolean(document.querySelector('[data-source-stage="CAMP-AXIS-03"]'))`));
+  const sourceStages = ['02', '03', '04', '05', '06', '08', '09', '10', '11', '13', '14'];
+  for (const node of sourceStages.filter(node => node !== '03')) {
+    const stage = 'CAMP-AXIS-' + node;
+    await first.evaluate(`document.querySelector('[data-stage-id="${stage}"] summary').click()`);
+    await waitFor('source record for ' + stage, () => first.evaluate(`Boolean(document.querySelector('[data-source-stage="${stage}"]'))`));
+    if (node === '04') {
+      assert(await first.evaluate(`document.querySelector('[data-source-stage="${stage}"]').textContent.includes('损伤点比达到 2:1')`),
+        'The original Kula Gulf damage ratio must render in the packaged archive');
+    }
+  }
   await first.evaluate(`${button('返回母港')}.click()`);
   await continueExercise(first);
   const commandCount = () => first.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(saveKey)}))?.commands?.length ?? 0`);
@@ -205,7 +215,8 @@ try {
   assert(probe.viewport[0] > probe.viewport[1], 'Battle WebView must be landscape');
   await first.evaluate("localStorage.setItem('cas.android-smoke', 'native-webview-origin-persists')");
   detail = { ...probe, touchCancelNoCommand: true, backgroundCancelsGesture: true, shipPortrait,
-    harborNavigation: true, historicalStageIds: 32, offlineLocalAccountRegistered: true };
+    harborNavigation: true, historicalStageIds: 32, historicalSourceRecordsRendered: sourceStages.length,
+    kulaGulfDamageRatioRendered: true, offlineLocalAccountRegistered: true };
 } finally { first.close(); }
 
 // Model a normal close/reopen: background the app first, which lets WebView's
