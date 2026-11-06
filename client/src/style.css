@@ -220,6 +220,7 @@ h1, h2, h3, p { margin: 0; }
 .actions { display: flex; gap: 7px; margin-top: 12px; justify-content: flex-end; }
 .result-card .actions { justify-content: center; }
 .setup-dialog input { width: 100px; }
+.setup-dialog { max-height: calc(100dvh - 24px); overflow-y: auto; }
 .startup { display: grid; align-content: center; justify-items: center; gap: 14px; height: 100%; padding: 20px; text-align: center; }
 .startup h1 { font-family: var(--serif); color: var(--brass); }
 .startup p { color: var(--muted); }
@@ -296,3 +297,7 @@ h1, h2, h3, p { margin: 0; }
 .night-tools h3 small { font-weight: normal; color: #a3c7d6; margin-inline-start: 6px; }
 .night-tools label { display: flex; gap: 6px; align-items: center; color: #b1cbd8; font-size: 12px; }
 .night-tools select { flex: 1; min-width: 0; }
+.realtime-badge { margin-left: .35em; color: #e4c894; white-space: nowrap; }
+.setup-dialog .realtime-option { display: flex; align-items: center; gap: .5em; }
+.setup-dialog .realtime-option input { width: auto; min-height: 0; }
+.radio-toggle { display: flex; align-items: center; gap: .35rem; margin: .45rem 0; color: var(--muted); font-size: .8rem; }

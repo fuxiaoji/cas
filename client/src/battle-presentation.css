@@ -52,6 +52,22 @@
 .mount-icon.tube { border-radius: 3px; }
 .mount-icon.lost { color: #ffc2a9; border-color: #b17f70; background: #543a3c; }
 .mount-icon.spent { border-style: dashed; background: none; color: #b9c7c5; opacity: .8; }
+.gun-readiness { padding: 3px 0 5px; }
+.gun-readiness-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 5px; color: #c5d4d1; font-size: 11px; }
+.gun-readiness-heading b { color: #efd49c; font: 10px var(--numbers), sans-serif; overflow-wrap: anywhere; }
+.gun-readiness ul { display: grid; gap: 3px; list-style: none; padding: 0; margin: 4px 0 0; }
+.mount-readiness {
+  --mount-tone: #bce4d0; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 6px;
+  min-height: 18px; padding: 2px 5px; color: #d0dfdb; background: #112c37; border-left: 2px solid var(--mount-tone);
+  font-size: 10px; font-variant-numeric: tabular-nums;
+}
+.mount-readiness small { color: #9ab5b6; margin-left: 2px; }
+.mount-readiness b { color: var(--mount-tone); font-size: inherit; font-weight: 500; }
+.mount-readiness.turning { --mount-tone: #f2ce82; }
+.mount-readiness.loading { --mount-tone: #9ad7e4; }
+.mount-readiness.lost { --mount-tone: #f3a589; }
+.battle-map .tactical-turret.turning, .battle-map .tactical-turret.turning::after { background: #f2ce82; }
+.battle-map .tactical-turret.loading, .battle-map .tactical-turret.loading::after { background: #9ad7e4; }
 .system-status { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; margin: 6px 0; }
 .system-status > div { display: flex; justify-content: space-between; align-items: baseline; gap: 4px; border-bottom: 1px solid #38535e; padding: 4px 0; font-size: 10px; }
 .system-status dt { color: var(--muted); }

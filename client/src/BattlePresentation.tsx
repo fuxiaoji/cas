@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { clock } from './engine';
-import type { LogEvent, Observation, Point, Shell, Ship, Torpedo } from './engine';
+import type { GunMount, LogEvent, Observation, Point, Shell, Ship, Torpedo } from './engine';
 import { shipPortrait } from './shipPortraits';
 import './battle-presentation.css';
 
@@ -85,7 +85,9 @@ function paintShell(ctx: CanvasRenderingContext2D, shell: Shell, previous: Shell
   const progress = clamp((previous?.progress ?? (shell.from ? 0 : shell.progress)) * (1 - blend) + shell.progress * blend, 0, 1);
   const ground = project(groundPoint, map);
   const knownGeometry = shell.from && shell.to;
-  const ceiling = knownGeometry ? clamp(Math.hypot(shell.from!.x - shell.to!.x, shell.from!.y - shell.to!.y) * map.ratio * .17, 14, 60) : 0;
+  const ceiling = !knownGeometry ? 0 : shell.arcHeightM !== undefined ?
+    Math.min(shell.arcHeightM * map.ratio, map.height * .22) :
+    clamp(Math.hypot(shell.from!.x - shell.to!.x, shell.from!.y - shell.to!.y) * map.ratio * .17, 14, 60);
   const airborne = { x: ground.x, y: ground.y - shellHeight(progress, ceiling) };
   const color = shell.own ? '#ffdc9c' : '#ff9f88';
   if (knownGeometry) {
@@ -109,23 +111,54 @@ function paintShell(ctx: CanvasRenderingContext2D, shell: Shell, previous: Shell
   ctx.shadowBlur = 0;
 }
 
+const samePoint = (a: Point, b: Point) => Math.hypot(a.x - b.x, a.y - b.y) < .01;
+function pointWithinLeg(point: Point, start: Point, end: Point) {
+  const dx = end.x - start.x, dy = end.y - start.y;
+  const along = ((point.x - start.x) * dx + (point.y - start.y) * dy) / (dx * dx + dy * dy);
+  return along > 0 && along < 1 && samePoint(point, interpolate(start, end, along));
+}
+
 function paintTorpedo(ctx: CanvasRenderingContext2D, torpedo: Torpedo, previous: Torpedo | undefined, blend: number, map: Projection) {
-  const origin = torpedo.own ? torpedo.from : undefined;
-  const head = project(interpolate(previous ?? origin ?? torpedo, torpedo, blend), map);
-  const start = origin ? project(origin, map) : previous ? project(previous, map) : undefined;
-  const color = torpedo.own ? '#cfe899' : '#fb9b84';
-  if (start) {
-    const travel = Math.hypot(head.x - start.x, head.y - start.y);
-    if (travel > 1) {
-      ctx.beginPath(); ctx.moveTo(start.x, start.y); ctx.lineTo(head.x, head.y);
-      ctx.lineWidth = 1; ctx.strokeStyle = torpedo.own ? '#c4df795a' : '#fcb2905c';
-      ctx.setLineDash([2, 4]); ctx.stroke(); ctx.setLineDash([]);
-      const tail = interpolate(head, start, Math.min(1, 26 / travel));
-      const wake = ctx.createLinearGradient(tail.x, tail.y, head.x, head.y);
-      wake.addColorStop(0, '#d3e29a08'); wake.addColorStop(1, color);
-      ctx.beginPath(); ctx.moveTo(tail.x, tail.y); ctx.lineTo(head.x, head.y);
-      ctx.lineWidth = 1.7; ctx.strokeStyle = wake; ctx.stroke();
+  // An enemy wake has no fallback launch origin. On first contact or reacquisition
+  // the renderer can only paint the points the current seat is allowed to see.
+  const wake = torpedo.trail?.length ? [...torpedo.trail] : torpedo.own && torpedo.from ? [torpedo.from] : [];
+  if (!wake.length || !samePoint(wake[wake.length - 1], torpedo)) wake.push(torpedo);
+  let headIndex = wake.length - 1;
+  let headPoint: Point = torpedo;
+  if (previous && blend < 1) {
+    let previousIndex = wake.findIndex((point) => samePoint(point, previous));
+    // The engine can compress a straight wake to two endpoints. A previous head
+    // outside the currently allowed track must never be used to bridge a gap.
+    if (previousIndex < 0) {
+      const next = wake.findIndex((point, i) => i > 0 && pointWithinLeg(previous, wake[i - 1], point));
+      if (next > 0) {
+        wake.splice(next, 0, previous);
+        previousIndex = next;
+        headIndex++;
+      }
     }
+    if (previousIndex >= 0 && previousIndex < headIndex) {
+      const leg = previousIndex + (headIndex - previousIndex) * blend;
+      headIndex = Math.floor(leg);
+      headPoint = interpolate(wake[headIndex], wake[headIndex + 1], leg - headIndex);
+    }
+  }
+  const head = project(headPoint, map);
+  const start = project(wake[0], map);
+  const color = torpedo.own ? '#cfe899' : '#fb9b84';
+  if (Math.hypot(head.x - start.x, head.y - start.y) > 1) {
+    const trace = ctx.createLinearGradient(start.x, start.y, head.x, head.y);
+    trace.addColorStop(0, color + '58'); trace.addColorStop(.7, color + 'a0'); trace.addColorStop(1, color);
+    ctx.beginPath(); ctx.moveTo(start.x, start.y);
+    for (let i = 1; i <= headIndex; i++) {
+      const at = project(wake[i], map);
+      ctx.lineTo(at.x, at.y);
+    }
+    ctx.lineTo(head.x, head.y);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.lineWidth = 3.5; ctx.strokeStyle = color + '20'; ctx.stroke();
+    ctx.lineWidth = 1.45; ctx.strokeStyle = trace; ctx.stroke();
+    ctx.lineCap = 'butt'; ctx.lineJoin = 'miter';
   }
   dot(ctx, head, 2, color);
 }
@@ -174,11 +207,28 @@ export function BattleProjectiles({ observation, map, running, speed }: {
     return () => cancelAnimationFrame(raf);
   }, [observation, map.left, map.bottom, map.ratio, map.width, map.height, running, speed]);
   return <canvas ref={canvas} className="projectile-layer" aria-hidden="true"
-    data-shells={observation.shells?.length ?? 0} data-torpedoes={observation.torpedoes.length} />;
+    data-shells={observation.shells?.length ?? 0} data-torpedoes={observation.torpedoes.length}
+    data-torpedo-trails={observation.torpedoes.filter((torpedo) => (torpedo.trail?.length ?? 0) > 1).length} />;
 }
 
-export function ShipSchematic({ ship, ships, select }: { ship: Ship; ships: Ship[]; select: (ship: Ship) => void }) {
+export function mountStatus(mount: GunMount, tick: number) {
+  const remaining = Math.max(0, (mount.readyTick ?? tick) - tick);
+  return mount.destroyed ? 'lost' : mount.training ? 'turning' : remaining ? 'loading' : 'ready';
+}
+
+function GunMountReadiness({ mount, slot, tick }: { mount: GunMount; slot: number; tick: number }) {
+  const state = mountStatus(mount, tick);
+  const remaining = Math.max(0, (mount.readyTick ?? tick) - tick);
+  const reload = remaining > 0 ? `装填 ${remaining} 秒` : '';
+  const status = state === 'lost' ? '损毁' : state === 'turning' ? (reload ? `转炮 · ${reload}` : '转炮') : reload || '就绪';
+  return <li className={'mount-readiness ' + state} data-gun-mount={mount.index} data-ready-tick={mount.readyTick}>
+    <span>炮座 {slot + 1} <small>{mount.barrels} 门</small></span><b>{status}</b>
+  </li>;
+}
+
+export function ShipSchematic({ ship, ships, select, tick = 0 }: { ship: Ship; ships: Ship[]; select: (ship: Ship) => void; tick?: number }) {
   const systems = ship.systems;
+  const timedGuns = systems?.guns.some((mount) => mount.readyTick !== undefined || mount.training !== undefined);
   const portrait = shipPortrait(ship.classId, ship.characterId);
   const hp = Math.round(ship.hp * 10) / 10;
   const damagePercent = clamp((ship.hp / ship.maxHp) * 100, 0, 100);
@@ -215,11 +265,14 @@ export function ShipSchematic({ ship, ships, select }: { ship: Ship; ships: Ship
     </div>
     {systems ? <>
       <div className="mount-rows">
-        <div className="mount-row"><span>炮座</span><div>
+        {timedGuns ? <div className="gun-readiness">
+          <div className="gun-readiness-heading"><span>主炮状态</span>{ship.gunTarget && <b>待发目标 {ship.gunTarget}</b>}</div>
+          <ul aria-label="炮座状态">{systems.guns.map((mount, slot) => <GunMountReadiness mount={mount} slot={slot} tick={tick} key={mount.index} />)}</ul>
+        </div> : <div className="mount-row"><span>炮座</span><div>
           {systems.guns.length ? systems.guns.map((gun, slot) => <span key={gun.index} className={'mount-icon ' + (gun.destroyed ? 'lost' : 'ready')}
             aria-label={'炮座 ' + (slot + 1) + '，' + gun.barrels + ' 门炮，' + (gun.destroyed ? '损毁' : '完好')}
             title={gun.destroyed ? '炮座已损毁' : '炮座完好'}>{gun.destroyed ? '×' : gun.barrels}</span>) : <small>未装</small>}
-        </div></div>
+        </div></div>}
         <div className="mount-row"><span>鱼雷管</span><div>
           {systems.tubes.length ? systems.tubes.map((tube, slot) => <span key={tube.index} className={'mount-icon tube ' + (tube.spent ? 'spent' : 'ready')}
             aria-label={'鱼雷座 ' + (slot + 1) + '，' + tube.tubes + ' 联装，' + (tube.spent ? '不可用' : '未使用')}

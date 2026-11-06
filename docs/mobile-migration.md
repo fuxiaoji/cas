@@ -8,6 +8,7 @@
 | `mobile/src/online/AccountPanel.tsx` 的登录区、`account.css` | `client/src/Login.tsx`；本机登录和注册接 `account.ts`。账号之间隔离，首个账号接续本机旧 CAS 离线档。 |
 | `mobile/src/prologue/script.ts`、角色立绘及结尾 CG | `client/src/prologue/`；保留剧情与选择。开场是有标记的真实 CAS 5 对 5 演示，三段实操在同一内核完成；具名五舰和原大舰队尚未完整装入内核。 |
 | `mobile/src/activities/ActivityCenter.tsx`、`activity.css`、`check-in.ts`，以及 `mobile/src/meta/store.ts` 周奖励 | `client/src/activities/`；已接前六天的奖励、周补给商店和挑战奖励。第七天北卡罗来纳在对应 CAS 舰卡及战列舰能力核验后启用。 |
+| `mobile/src/economy/ShipArrival.tsx`、`ship-arrival.css` | `client/src/RecruitArrival.tsx`；复用到港演出。只在实际征募入账后显示当次 CAS 舰娘、兑换勋章和保底结果。 |
 
 | 原手游模块 | 保留的体验 | 接到 CAS 的验收条件 |
 | --- | --- | --- |
@@ -18,8 +19,8 @@
 | 开场序章 | 保留舰队演出、五位初始舰娘、对白选择、选领舰、教学和一次性奖励。 | 对照旧 `docs/mobile-prologue-plan-20261105.md` 与 `mobile/src/prologue/script.ts`。大编队演出用实际 CAS 对局录制；交互部分检验多航点、同步、拖炮雷和接管。Fletcher、Maury／Gridley、Perkins／Drayton／Lamson 的 Mahan 系在美舰 Annex A PDF 20–22（A-17–19）有定位；仍需冻结演出时期并核对舰号与实装，尤其 Lamson 的后期特改。不能用现有四张舰卡替代旧序章五名角色或全舰队。 |
 | AI 指挥官 | 保留原作人设、头像和擅长的任务。 | 旧 `tactical.py` 与 `formation_tactics.py` 的搜索、接近、交战、屏护、雷击和撤退条件转为实时状态；旧六角距离不作为 CAS 参数。全程使用本席观察和同一命令校验。 |
 
-指挥官语音的事件名对照旧 `mobile/src/events.ts`、`mobile/src/sound.ts` 及 `mobile/public/audio/manifest.json`。v2 战报已带本席 `voiceCue` 和连续事件 ID，可消费真实开战、发现、命中、误击、受损、起火、沉没与胜负。鱼雷发射迹象只给通用提醒；真正发现尾迹后才以最近己舰为参考给前／后／左／右。仅收到己方报告的命中才触发对应语音。后续播放器用局号、席位和事件 ID 去重；重连、回看或倍速跳转不重播旧事件。播报与音乐分别设置，应用进后台暂停。v2 包未接语音播放器或复制旧音频；旧作第三方配音、音乐的本地使用记录不作为本项目公开发行凭证。
+指挥官语音的事件名对照旧 `mobile/src/events.ts`、`mobile/src/sound.ts` 及 `mobile/public/audio/manifest.json`。本地试玩的舰队电台使用旧作按阵营播放的通用录音，按局、席位和本席事件 ID 去重；重演、跳转和回到前台不会重新播旧事件。鱼雷发射迹象只给通用提醒；确认尾迹后由内核以最近己舰为参考给方向。后台或演习暂停时暂停播报。三位指挥官专属音频和 BGM 未迁入。阵营录音只在显式开启本地试玩音频的构建中打包，标准生产构建不含这些录音。
 
 舰况立绘以稳定 ID 匹配。同名历史舰将来用核验后的角色 ID；目前弗莱彻、克利夫兰、阳炎、川内是四种通用演习舰的舰型代表，标注于界面。四张本地测试素材的原路径、ID、哈希和范围见[立绘台账](../client/src/assets/portraits/ledger.json)。
 
-炮位按 CAS 主规则 §2.2.1–2.2.2、§6.1.1–6.1.3（PDF 13–14、57、61）及对应 Annex A 射界使用。视图只转动能指向合法目标的己方炮位；220 毫秒转动是界面动画，不是舰炮数值，不推迟发射。炮弹实体采用八模拟秒的实时改编，命中及损伤量在合法 CAS 开火窗口决定、到达后入账；这可能让同窗口的后续动作和原书立即记账不同。鱼雷速度、航程和命中仍由核验表裁决。规则缺口和区别登记在[覆盖台账](rules/coverage.md)。
+新局默认由 `cas-realtime-v4` 的炮座状态决定能否开火和何时开火。画面跟随真实横转、装填和炮弹飞行；主炮按核验的 CAS 射程、穿深和伤害基础值裁决，装填和弹速列为 RTS 改编。旧版存档继续读取原先的转炮动画和八秒弹着。鱼雷速度、航程和命中仍由核验表裁决，尾迹只显示本席已观测到的航段。详见[实时主炮登记](rules/realtime-gunnery-sources.md)和[覆盖台账](rules/coverage.md)。

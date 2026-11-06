@@ -7,6 +7,7 @@ import type { HarborTab } from './Harbor';
 import { GrowthPort } from './GrowthPort';
 import type { LobbySection } from './GrowthPort';
 import { Login } from './Login';
+import { useBattleVoice } from './audio/BattleVoice';
 import { ActivityCenter } from './activities/ActivityCenter';
 import { recordChallengeClear } from './activities/week';
 import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY, STARTER_DD_IDS } from './prologue';
@@ -26,7 +27,7 @@ const options = [1, 2, 4, 8] as const;
 type Speed = typeof options[number];
 type Tab = 'fleet' | 'ship' | 'ai' | 'log';
 interface Replay { data: unknown; end: number }
-const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' | 'radar' };
+const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' | 'radar', realtime: true };
 type LightPreview = { valid: boolean; error?: string; mount?: number };
 const aimAction: Record<Weapon, string> = { gun: '炮击', torpedo: '雷击' };
 const descriptions: Record<Profile, string> = {
@@ -102,6 +103,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const selected = o?.ships.find((ship) => ship.id === shipId) ?? ships.find((ship) => ship.id === fleet?.leader) ?? ships[0];
   const result = o?.result;
   const finished = Boolean(result);
+  const radio = useBattleVoice({ session, observation: o, live: !portOpen, replaying: !!replay,
+    paused: !running && !finished, settingsKey: profile.id + ':fleet-radio' });
   const contactCount = (o?.contacts.length ?? 0) + (o?.radarContacts?.length ?? 0);
 
   function record(...signals: TrainingSignal[]) {
@@ -311,8 +314,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     try {
       const next = await ask<Observation>({ op: 'new', ...setup });
       challengeId.current = undefined;
-      resetPanel(); update(next); setDialog(false); setTraining(false); setPresetActive(false);
       await persist();
+      resetPanel(); update(next); setDialog(false); setTraining(false); setPresetActive(false);
     } catch (error) { hint(errorText(error)); }
     finally { setBusy(false); }
   }
@@ -435,7 +438,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   ];
   const fire = (ship: number, weapon: Weapon, target: string, heading?: number) => {
     void command({ op: 'fire', ship, weapon, target, heading }, () => {
-      hint('已下达' + aimAction[weapon] + '命令，执行进度见战情。');
+      hint(weapon === 'gun' && o?.realtimeGunnery ? '已下达炮击命令，炮座转向并装填完成后各自发射。' :
+        '已下达' + aimAction[weapon] + '命令，执行进度见战情。');
       if (weapon === 'gun' || heading !== undefined) learn(weapon);
       if (weapon === 'gun') record('gunOrdered');
       else record('torpedoAimed', 'torpedoOrdered', ...(heading === undefined ? [] : ['torpedoAdjusted' as const]));
@@ -483,7 +487,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     <header className="masthead">
       <div className="brand"><Mark /><div><span>CAS 战术演习</span><h1>海图指挥台</h1></div></div>
       <div className="exercise-label"><span className="live-dot" data-active={running} />
-        {replay ? '战局重演' : finished ? '演习结束' : o.settling ? '末批炮弹飞行中' : running ? '演习进行中' : '演习暂停'}</div>
+        {replay ? '战局重演' : finished ? '演习结束' : o.settling ? '末批炮弹飞行中' : running ? '演习进行中' : '演习暂停'}
+        {o.realtimeGunnery && <small className="realtime-badge">实时主炮</small>}</div>
       <div className="clock-deck">
         <span className="time"><strong>{clock(o.tick)}</strong><small> / {clock(replay?.end ?? o.limit)}</small></span>
         <button className="clock-play" type="button" aria-label={running ? '暂停演习' : '开始演习'} onClick={toggleClock} disabled={busy || (finished && !replay)}>
@@ -541,6 +546,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           {course && <TrainingCoach course={course} evidence={evidence}
             onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
           {course && finished && !trainingCourseDone(course, evidence) && <p className="inline-warning">演习已结束。退出后可重新开始本课。</p>}
+          {!!selected?.gunTarget && !replay && !finished && <section className="night-tools" aria-label="本舰待发炮击">
+            <h3>待发炮击 <small>{selected.name} → {selected.gunTarget}</small></h3>
+            <button type="button" disabled={busy} onClick={() => void command({ op: 'gun_cancel', ship: selected.id }, () => hint('已撤销尚未发射的炮座。'))}>取消待发炮击</button>
+          </section>}
           {o.variant === 'night-training' && !replay && <section className="night-tools" aria-label="照明">
             <h3>照明弹 <small>{selected?.name}</small></h3>
             <label>可见接触 <select value={o.contacts.some(c => c.id === nightTarget) ? nightTarget : ''}
@@ -617,7 +626,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             </section>
           </>}
           {tab === 'fleet' && !fleet && <p className="empty-state">当前没有可指挥编队。</p>}
-          {tab === 'ship' && (selected ? <><ShipSchematic ship={selected} ships={o.ships} select={selectShip} />
+          {tab === 'ship' && (selected ? <><ShipSchematic ship={selected} ships={o.ships} select={selectShip} tick={o.tick} />
             {!!selected.systems?.radars?.length && <section className="night-tools" aria-label="舰上雷达">
               <h3>舰上雷达</h3>{selected.systems.radars.map(set => <button key={set.id} type="button"
                 aria-pressed={set.powered} disabled={set.disabled || finished || !!replay}
@@ -654,6 +663,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
               <button type="button" onClick={() => void exportLog()}>导出</button>
               {!replay && <button type="button" disabled={o.tick === 0 || busy} onClick={() => void startReplay()}>重演</button>}
             </div>
+            {radio.available && <label className="radio-toggle"><input type="checkbox" checked={radio.enabled}
+              onChange={event => radio.setEnabled(event.target.checked)} /> 舰队电台语音</label>}
             {!latest.length && <p className="empty-state">开始演习后，这里会记录接触、开火与战果。</p>}
             <ol>{latest.map((event, index) =>
               <li key={event.id ?? (String(event.tick) + ':' + index)} className={'log-event ' + eventTone(event)}>
@@ -674,6 +685,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         <label>演习时段 <select value={setup.variant} onChange={(event) => setSetup({ ...setup, variant: event.target.value as typeof setup.variant })}>
           <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option><option value="radar">1943 夜间雷达演习</option>
         </select></label>
+        <label className="realtime-option"><input type="checkbox" checked={setup.realtime} onChange={event => setSetup({ ...setup, realtime: event.target.checked })} /> 实时主炮</label>
+        <p className="field-note">实时主炮按炮座装填和转向发射。关闭时使用旧版计划火力窗口。</p>
         <label>所属方 <select value={setup.side} onChange={(event) => setSetup({ ...setup, side: event.target.value as Side })}>
           <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
         </select></label>
@@ -681,6 +694,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
         </select></label>
         <label>演习编号 <input type="number" min={0} max={4294967295} value={setup.seed} onChange={(event) => setSetup({ ...setup, seed: Math.max(0, Math.min(4294967295, Math.trunc(Number(event.target.value)))) })} /></label>
+        {radio.available && <label>电台音量 <input type="range" min={0} max={1} step={0.05} value={radio.volume}
+          onChange={event => radio.setVolume(Number(event.target.value))} /></label>}
         <p className="field-note">开始新演习会替换当前本机进度。</p>
         <div className="actions"><button type="button" onClick={() => setDialog(false)} disabled={busy}>返回</button>
           <button type="button" className="primary" onClick={() => void newExercise()} disabled={busy}>开始新演习</button></div>

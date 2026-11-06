@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties, PointerEvent as ReactPointer } from 'react';
-import { ask } from './engine';
+import { ask, clock } from './engine';
 import type { Aim, Contact, Fleet, Observation, Point, RoutePreview, Ship, Weapon } from './engine';
-import { alertKind, BattleAlerts, BattleProjectiles } from './BattlePresentation';
+import { alertKind, BattleAlerts, BattleProjectiles, mountStatus } from './BattlePresentation';
 
 type MapProps = {
   observation: Observation; fleet?: Fleet; selected?: number; disabled: boolean;
@@ -19,7 +19,7 @@ type MapProps = {
 
 interface Gesture {
   pointer: number; ship: number; weapon: Weapon; cursor: Point; start: Point; contact?: Contact;
-  anchor?: Point; aim?: Aim; heading?: number; baseHeading?: number; cancelled: boolean; loading?: boolean;
+  anchor?: Point; aim?: Aim; aimTick?: number; heading?: number; baseHeading?: number; cancelled: boolean; loading?: boolean;
 }
 type SurfaceDrag =
   | { pointer: number; start: Point; waypoint: number }
@@ -36,7 +36,9 @@ const inArcs = (heading: number, arcs: Aim['arcs']) => arcs.some(({ from, to }) 
 
 function pointStyle(point: Point): CSSProperties { return { left: point.x, top: point.y }; }
 
-function TurretBarrel({ at, bearing: next, rest, active }: { at: Point; bearing: number; rest: number; active: boolean }) {
+function TurretBarrel({ at, bearing: next, rest, active, mount, state }: {
+  at: Point; bearing: number; rest: number; active: boolean; mount: number; state?: ReturnType<typeof mountStatus>;
+}) {
   const barrel = useRef<HTMLSpanElement>(null);
   const last = useRef(rest);
   useLayoutEffect(() => {
@@ -45,7 +47,8 @@ function TurretBarrel({ at, bearing: next, rest, active }: { at: Point; bearing:
     element.style.rotate = `${last.current}deg`;
   }, [next]);
   return <span ref={barrel} aria-hidden="true" data-turret-active={active ? 'true' : 'false'}
-    className={'tactical-turret' + (active ? ' trained' : '')} style={pointStyle(at)} />;
+    data-mount={mount} data-bearing={next} data-turret-state={state}
+    className={'tactical-turret' + (active ? ' trained' : '') + (state ? ' ' + state : '')} style={pointStyle(at)} />;
 }
 
 function symbol(context: CanvasRenderingContext2D, at: Point, heading: number, kind: string, color: string, filled: boolean) {
@@ -342,13 +345,19 @@ export function BattleMap(props: MapProps) {
     void ask<Aim>({ op: 'aim', ship, target: id, weapon, ...(heading !== undefined ? { heading } : {}) }).then((aim) => {
       const current = gestureRef.current;
       if (!current || current.contact?.id !== id || nonce !== aimSequence.current) return;
-      update({ ...current, loading: false, aim, heading: heading === undefined ? aim.heading : current.heading, baseHeading: current.baseHeading ?? aim.heading });
+      update({ ...current, loading: false, aim, aimTick: o.tick, heading: heading === undefined ? aim.heading : current.heading, baseHeading: current.baseHeading ?? aim.heading });
     }, (error: Error) => {
       const current = gestureRef.current;
       if (!current || current.contact?.id !== id || nonce !== aimSequence.current) return;
       update({ ...current, loading: false, aim: { heading: 0, range: 0, arcs: [], valid: false, friendly: false, error: error.message } });
     });
   }
+  useEffect(() => {
+    const active = gestureRef.current;
+    if (!o.realtimeGunnery || !active || active.weapon !== 'gun' || !active.contact || active.cancelled || active.loading ||
+      (active.aimTick !== undefined && o.tick - active.aimTick < 2)) return;
+    aimAt(active.ship, active.contact.id, 'gun');
+  }, [o.tick, o.realtimeGunnery]);
   function start(event: ReactPointer<HTMLButtonElement>, ship: Ship, weapon?: Weapon) {
     if (event.button !== 0 || disabled) return;
     event.stopPropagation();
@@ -375,7 +384,8 @@ export function BattleMap(props: MapProps) {
       if (active.weapon === 'gun') {
         const hit = cancelled ? undefined : nearestContact(p, event.pointerType === 'touch', active.ship);
         const changed = hit?.id !== active.contact?.id;
-        update({ ...active, cursor: p, contact: hit, cancelled, aim: changed ? undefined : active.aim, loading: changed ? !!hit : active.loading });
+        update({ ...active, cursor: p, contact: hit, cancelled, aim: changed ? undefined : active.aim,
+          aimTick: changed ? undefined : active.aimTick, loading: changed ? !!hit : active.loading });
         if (changed && hit) aimAt(active.ship, hit.id, 'gun');
         return;
       }
@@ -453,6 +463,8 @@ export function BattleMap(props: MapProps) {
   }
 
   const aimInArc = gesture?.aim && gesture.heading !== undefined && inArcs(gesture.heading, gesture.aim.arcs);
+  const firstFireTick = o.realtimeGunnery && gesture?.weapon === 'gun' && gesture.aim?.valid && gesture.aim.mounts?.length ?
+    Math.min(...gesture.aim.mounts.map(({ readyTick }) => readyTick)) : undefined;
   return <div
     className={'battle-map' + (editing ? ' map-editing' : '')}
     ref={viewport} aria-label="战术海图"
@@ -477,17 +489,18 @@ export function BattleMap(props: MapProps) {
       const title = ship.name;
       return <div key={ship.id} className={'map-ship' + (focused ? ' focused' : '')}
         data-ship={ship.id} style={pointStyle(point)}>
-        {(focused || gesture?.ship === ship.id || ship.systems?.guns.some((mount) => mount.bearing != null)) && ship.systems?.guns.map((mount, index, mounts) => {
+        {(focused || gesture?.ship === ship.id || (o.realtimeGunnery ? !!ship.gunTarget : ship.systems?.guns.some((mount) => mount.bearing != null))) && ship.systems?.guns.map((mount, index, mounts) => {
           if (mount.destroyed) return null;
           const fraction = (index + .5) / mounts.length;
           const offset = (0.5 - fraction) * (ship.kind === 'cl' ? 24 : 18);
           const rest = wrap(ship.heading + (fraction > .5 ? 180 : 0));
-          const previewBearing = gesture?.ship === ship.id && gesture.weapon === 'gun' && gesture.aim?.valid && target ? bearing(point, screen(target)) : undefined;
+          const previewBearing = !o.realtimeGunnery && gesture?.ship === ship.id && gesture.weapon === 'gun' && gesture.aim?.valid && target ? bearing(point, screen(target)) : undefined;
           const relative = previewBearing === undefined ? 0 : wrap(previewBearing - ship.heading);
           const canTrack = previewBearing !== undefined && [mount.arc, mount.arc2].some((arc) => arc && inArcs(relative, [{ from: arc[0], to: arc[1] }]));
           const trained = (canTrack ? previewBearing : undefined) ?? mount.bearing;
           return <TurretBarrel key={mount.index} at={onBearing({ x: 0, y: 0 }, ship.heading, offset)}
-            bearing={trained ?? rest} rest={rest} active={trained != null} />;
+            bearing={trained ?? rest} rest={rest} active={o.realtimeGunnery ? !!mount.training : trained != null}
+            state={o.realtimeGunnery ? mountStatus(mount, o.tick) : undefined} mount={mount.index} />;
         })}
         <button type="button" className="ship-hull" aria-label={title}
           onPointerDown={(event) => start(event, ship, canGun === canTorpedo ? undefined : canGun ? 'gun' : 'torpedo')}
@@ -504,15 +517,17 @@ export function BattleMap(props: MapProps) {
     <div className="map-compass"><Compass /></div>
     <BattleAlerts events={o.events} tick={o.tick} session={session} enabled={!replaying} />
     <div className="map-note">
-      <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : '昼间水面演习'}</strong>
+      <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : o.realtimeGunnery ? '实时炮击演习' : '昼间水面演习'}</strong>
       <span>{editing ? '拖动编号航点可修正航线' : o.variant === 'radar' ? '虚构夜间演习 · 雷达回波 R' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
     </div>
-    {gesture && <div className={'gesture-tip' + (gesture.aim?.friendly || gesture.aim?.valid === false || (gesture.weapon === 'torpedo' && aimInArc === false) ? ' warning' : '')}>
+    {gesture && <div className={'gesture-tip' + (gesture.aim?.friendly || gesture.aim?.valid === false || (gesture.weapon === 'torpedo' && aimInArc === false) ? ' warning' : '')}
+      data-first-fire-tick={firstFireTick}>
       <strong>{gesture.weapon === 'gun' ? (target ? '炮击 ' + (target.name ?? target.id) : '炮击 · 拖向敌舰') :
         gesture.loading ? '正在计算推荐射向' : gesture.aim && gesture.heading !== undefined ? '鱼雷瞄准 ' + String(Math.round(gesture.heading) % 360).padStart(3, '0') + '°' :
         target ? '在接触上短暂停留' : '鱼雷 · 拖向敌舰'}</strong>
       <span>{gesture.cancelled ? '松手取消，不消耗弹药' :
-        gesture.weapon === 'gun' && target ? (gesture.aim?.error || (gesture.aim?.barrels ? String(gesture.aim.barrels) + ' 门炮可用 · 松手下令' : '正在校核射界')) :
+        gesture.weapon === 'gun' && target ? (gesture.aim?.error || (firstFireTick !== undefined ? `${gesture.aim?.mounts?.length} 座炮可用 · 预计首炮 ${clock(firstFireTick)} · 松手下令` :
+          gesture.aim?.barrels ? `${gesture.aim.barrels} 门炮可用 · 松手下令` : '正在校核射界')) :
         gesture.aim?.friendly ? '注意：已知友舰可能进入雷迹' :
         aimInArc === false ? (gesture.aim?.error ?? '射向超出扇区') : gesture.aim ? (gesture.aim.error ?? '拖动微调，松手下令') :
         target && gesture.weapon === 'gun' ? '松手下令' : '可拖至取消区'}</span>

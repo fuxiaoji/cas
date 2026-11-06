@@ -18,6 +18,15 @@ const reports=[];
 const q=(op,params={})=>page.evaluate(async request=>(await import(performance.getEntriesByType('resource').filter(e=>e.name.includes('/src/engine.ts')).at(-1)?.name ?? '/src/engine.ts')).ask(request),{op,...params});
 const wait=ms=>page.waitForTimeout(ms);
 const btn=(label)=>page.getByRole('button',{name:label,exact:true});
+async function finishChallenge() {
+  const state=await q('step',{seconds:2699});
+  if (!state.result) await q('step',{seconds:121}); // Allow the final v4 ballistic flight to land.
+  await btn('推进一秒').click();
+  const actual=(await q('observe')).result;
+  assert(actual?.primary, JSON.stringify(actual));
+  await page.locator('.result-card h2').filter({hasText:'挑战目标达成'}).waitFor();
+  return q('observe');
+}
 async function pos(x,y) {
   const b=await page.locator('.battle-map').boundingBox();
   const s=Math.min((b.width-65)/24000,(b.height-42)/14000);
@@ -130,7 +139,8 @@ assert(afterFire.torpedoes.length>0 || launches.length>0);
 reports.push({torpedoCancelled:true,recommended,adjusted,manualHeading:after.commands.at(-1).request.heading,launches:launches.slice(-4),gunExecuted:all.events.some(e=>e.kind==='gun'||e.text.includes('开炮'))});
 await btn('推进一秒').click();await wait(100);
 await page.screenshot({path:root+'/05-executed.png'});
-await btn('完成课程').click();
+try { await btn('完成课程').click({timeout: 3000}); }
+catch (error) { throw new Error(await page.locator('.training-coach').innerText(), { cause: error }); }
 const training=await page.locator('.harbor-title').first().textContent();
 assert.match(training,/7 \/ 7/);
 await page.screenshot({path:root+'/harbor-lessons.png'});
@@ -139,17 +149,40 @@ await page.getByRole('button',{name:'已领取初始舰队',exact:true}).waitFor
 await btn('本机征募').click();
 await btn('阵营 UP 池').click();
 await btn('用 1 张 UP 券征募').click();
+const arrival=page.getByRole('dialog');
+await arrival.waitFor();
+await btn('跳过动画').click();
+await arrival.getByRole('heading',{name:'到港清册'}).waitFor();
+assert.match(await arrival.locator('h3').textContent(),/阳炎级|川内级/);
+const firstDrawId=await arrival.getAttribute('data-draw-id');
+const arrivalArt=arrival.getByRole('img');
+await arrivalArt.evaluate(img=>img.decode());
+assert(await arrivalArt.evaluate(img=>img.naturalWidth>0));
+await page.screenshot({path:root+'/harbor-arrival.png'});
+await btn('确认入列').click();
 await page.locator('.recruit-result').waitFor();
 assert.match(await page.locator('.harbor-wallet').textContent(),/UP 券 9/);
 assert.match(await page.locator('.recruit-result').textContent(),/阳炎级|川内级/);
+await btn('查看最近到港报告').click();
+await arrival.waitFor();
+assert.equal(await arrival.getAttribute('data-draw-id'),firstDrawId);
+await page.keyboard.press('Escape');
+await arrival.waitFor({state:'hidden'});
+assert.match(await page.locator('.harbor-wallet').textContent(),/UP 券 9/);
 await page.screenshot({path:root+'/harbor-recruit.png'});
 await btn('常驻池').click();
 const coin=async()=>Number((await page.locator('.harbor-wallet span').last().textContent()).match(/\d+/)?.[0]);
 const standard=btn('用 1 张常驻券征募');
-for(let i=0;i<10&&(await coin())<6;i++) await standard.click();
+async function drawAndClose(button) {
+  await button.click();
+  await arrival.waitFor();
+  await page.keyboard.press('Escape');
+  await arrival.waitFor({state:'hidden'});
+}
+for(let i=0;i<10&&(await coin())<6;i++) await drawAndClose(standard);
 if((await coin())<6){
   await btn('阵营 UP 池').click();
-  for(let i=0;i<9&&(await coin())<6;i++) await btn('用 1 张 UP 券征募').click();
+  for(let i=0;i<9&&(await coin())<6;i++) await drawAndClose(btn('用 1 张 UP 券征募'));
 }
 assert((await coin())>=6,'could not obtain 6 medals after using 20 starter tickets');
 const balance=async (label)=>Number(await page.locator('.harbor-wallet span').filter({hasText:label}).locator('b').textContent());
@@ -166,7 +199,7 @@ await btn('母港').click();await page.locator('.growth-challenge-entry').click(
 await page.locator('.battle-map').waitFor();
 const challenge=await q('observe');
 assert.equal(challenge.variant,'challenge');assert.equal(challenge.ships.length,3);
-reports.push({trainingCompleted:7,starterClaimed:true,oneRecruitUp:true,presetLeader:'cl',challengeShipCount:3});
+reports.push({trainingCompleted:7,starterClaimed:true,oneRecruitUp:true,arrivalReplayedWithoutCharge:true,presetLeader:'cl',challengeShipCount:3});
 await page.reload();
 await signInLocal(page,'cas-offline-qa');
 await resumeExercise(page);
@@ -179,10 +212,7 @@ await btn('返回母港').click();
 await resumeExercise(page);
 await btn('战术 AI').click();
 await page.getByLabel('指挥权限').selectOption('auto');
-await q('step',{seconds:2699});
-await btn('推进一秒').click();
-await page.locator('.result-card h2').filter({hasText:'挑战目标达成'}).waitFor();
-const cleared=await q('observe');
+const cleared=await finishChallenge();
 assert.equal(cleared.result.primary,true);
 await page.screenshot({path:root+'/harbor-challenge-clear.png'});
 await btn('母港').click();await page.locator('.growth-challenge-entry').click();
@@ -198,10 +228,7 @@ for(let i=0;i<4;i++){
   await page.locator('.battle-map').waitFor();
   await btn('战术 AI').click();
   await page.getByLabel('指挥权限').selectOption('auto');
-  await q('step',{seconds:2699});
-  await btn('推进一秒').click();
-  await page.locator('.result-card h2').filter({hasText:'挑战目标达成'}).waitFor();
-  wins.push((await q('observe')).result);
+  wins.push((await finishChallenge()).result);
   await btn('母港').click();await page.locator('.growth-challenge-entry').click();
 }
 const beforeRepeat=await balance('常驻券');

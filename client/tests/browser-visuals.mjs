@@ -28,6 +28,10 @@ async function loadedPortrait(surface, characterId, name) {
 await page.goto(url);
 await signInLocal(page,'cas-visual-qa',true);
 await resumeExercise(page);
+await btn('演习设置').click();
+await page.getByRole('checkbox',{name:'实时主炮'}).uncheck();
+await btn('开始新演习').click();
+await page.getByRole('dialog').waitFor({state:'hidden'});
 const initial=await q('observe');
 const chosen=initial.ships[0];
 assert(chosen.gunRange>0&&chosen.torpedoRange>0);

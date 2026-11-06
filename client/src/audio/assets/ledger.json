@@ -1,0 +1,121 @@
+{
+  "source_worktree": "F:/Codex/worktrees/android-mobile/铁底湾",
+  "source_commit": "3ba9c5b01c48a3e7f8bb104da5d9f7ad4b1456a9",
+  "source_manifest": "mobile/public/audio/manifest.json",
+  "original_rights": "Third-party audio: World of Warships faction radio; no public distribution clearance recorded.",
+  "usage": "Private CAS offline playtests only. Development server or opt-in VITE_CAS_LOCAL_VOICE=1 build; never attributed to an original CAS commander.",
+  "assets": [
+    {
+      "path": "wows-us-battle_start-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-battle_start-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "battle_start",
+      "sha256": "0d5eef2b82964b518b12d98b829bc0fab36f46afd20020913193ad50154b48a2"
+    },
+    {
+      "path": "wows-us-contact-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-contact-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "contact",
+      "sha256": "95caa74b9b02db14f827b84b29a3faa7de3cb4adba1337dc482d2d1e99214100"
+    },
+    {
+      "path": "wows-us-torpedo_warning-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-torpedo_warning-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "torpedo_warning",
+      "sha256": "be79f0fa87ea8e1b430038984e780b8944a2511fd8f8c88493d0fafadec70dbe"
+    },
+    {
+      "path": "wows-us-hit-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-hit-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "hit",
+      "sha256": "bc9e8ee5012dc9fe31c0c02b273a9dbb9fc55586eb0e48dce2d389eb730e9a08"
+    },
+    {
+      "path": "wows-us-damage-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-damage-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "damage",
+      "sha256": "c37dc6c5081a5a2c6061adb5a205eaceb31e52517c394f0d23b31d2bf0123ab0"
+    },
+    {
+      "path": "wows-us-fire-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-fire-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "fire",
+      "sha256": "803eaa40262bc6549f65b7419aa4fe9e5af6868c333dc58a601ff25773d7d4fb"
+    },
+    {
+      "path": "wows-us-enemy_sunk-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-enemy_sunk-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "enemy_sunk",
+      "sha256": "35e69f35ebc91cf564482f0423331f9d7164bfef22dd2e4ad691fbcd2ceae61d"
+    },
+    {
+      "path": "wows-us-friendly_fire-0.m4a",
+      "source_path": "mobile/public/audio/wows-us-friendly_fire-0.m4a",
+      "original_pack": "wows-us",
+      "original_cue": "friendly_fire",
+      "sha256": "3a9e09d7065891221d9b1d58a32142b4ddb27ed379c30b5858cd282e7e5a9270"
+    },
+    {
+      "path": "wows-jp-battle_start-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-battle_start-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "battle_start",
+      "sha256": "bcc3715c7dbdef78b211eee739bef03fd8291f5bb8e0c39826ca576067a70a1a"
+    },
+    {
+      "path": "wows-jp-contact-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-contact-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "contact",
+      "sha256": "336a2f8fecf728cd4a4c644ee9c15dfe8d396acb987ef0182dff674bd5731251"
+    },
+    {
+      "path": "wows-jp-torpedo_warning-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-torpedo_warning-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "torpedo_warning",
+      "sha256": "afa116125fba7ba2756be3e0c960aae4b9821778e30e5d1d002c4399882eebd9"
+    },
+    {
+      "path": "wows-jp-hit-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-hit-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "hit",
+      "sha256": "18837018c8ab50ab9bb8d50676bc73d927977d0c2e7e164f589e02c0a302e421"
+    },
+    {
+      "path": "wows-jp-damage-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-damage-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "damage",
+      "sha256": "0dad1ac5b52936d5846f56891ee34da71ebf439804955e82180832ba25bcb32e"
+    },
+    {
+      "path": "wows-jp-fire-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-fire-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "fire",
+      "sha256": "4161202a2cbbf97f124a371172fbe91b86d25aeed27a5877e5306b94301fd1f7"
+    },
+    {
+      "path": "wows-jp-enemy_sunk-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-enemy_sunk-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "enemy_sunk",
+      "sha256": "cb04edfd9faf139c0e7583332f0a645d64565701219eb4a03967c8338a8caa3b"
+    },
+    {
+      "path": "wows-jp-friendly_fire-0.m4a",
+      "source_path": "mobile/public/audio/wows-jp-friendly_fire-0.m4a",
+      "original_pack": "wows-jp",
+      "original_cue": "friendly_fire",
+      "sha256": "601738254a115d8cd255e2376cb2057b7e60469ee592aaa8f643111800c87028"
+    }
+  ]
+}

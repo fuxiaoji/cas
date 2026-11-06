@@ -8,18 +8,24 @@ export interface Ship extends Position {
   id: number; name: string; kind: 'dd' | 'cl'; fleet: number | null;
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
+  gunTarget?: string;
+}
+export interface GunMount {
+  index: number; barrels: number; destroyed: boolean;
+  arc?: [number, number]; arc2?: [number, number] | null; bearing?: number | null;
+  readyTick?: number; training?: boolean;
 }
 export interface ShipSystems {
-  guns: { index: number; barrels: number; destroyed: boolean; arc?: [number, number]; arc2?: [number, number] | null; bearing?: number | null }[];
+  guns: GunMount[];
   tubes: { index: number; tubes: number; spent: boolean }[];
   directorDamaged: boolean; engineeringLevels: number; fires: number; floods: number; maxSpeed: number;
   radars?: { id: string; name: string; powered: boolean; disabled: boolean }[];
 }
 export interface Shell extends Point {
   id: number; heading: number; progress: number; from?: Point; to?: Point;
-  launchTick: number; impactTick: number; own: boolean; barrels?: number;
+  launchTick: number; impactTick: number; own: boolean; barrels?: number; arcHeightM?: number;
 }
-export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number }
+export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number; trail?: Point[] }
 export interface Contact extends Position { id: string; kind?: string; name?: string }
 export interface RadarContact extends Point { id: string; lastSeenTick: number; direct: boolean; usableForShipIds: number[]; shared?: (Point & { lastSeenTick: number }) | null }
 export interface Path { ship: number; points: Point[] }
@@ -34,7 +40,7 @@ export interface LogEvent { id?: number | string; tick: number; kind: string; te
 export interface Result { winner: string; allies: number; axis: number; primary?: boolean }
 export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;
-  variant?: string; settling?: boolean;
+  variant?: string; settling?: boolean; realtimeGunnery?: boolean;
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
   radarContacts?: RadarContact[];
   illuminations?: (Point & { radius: number; expires: number; own: boolean })[];
@@ -45,6 +51,7 @@ export interface RoutePreview { valid: boolean; error?: string; paths: Path[]; s
 export interface Aim {
   heading: number; range: number; arcs: { from: number; to: number }[];
   friendly: boolean; valid: boolean; error?: string; barrels?: number;
+  mounts?: { index: number; turnSeconds: number; readyTick: number }[];
 }
 export interface Suggestion { orders: Request[]; text: string }
 export type Request = { op: string; [key: string]: unknown };

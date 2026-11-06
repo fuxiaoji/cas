@@ -90,6 +90,16 @@ async function waitForLegalAim(weapon) {
 }
 
 async function waitForWeapon(weapon, issuedTick) {
+  if (weapon === 'gun' && (await observed()).realtimeGunnery) {
+    for (let elapsed = 1; elapsed <= 90; elapsed++) {
+      const world = await step();
+      if (world.events.some(event => event.tick > issuedTick && event.kind === 'gun')) {
+        assert(world.tick < issuedTick + 90, 'Gun must not wait for the next CAS tactical window');
+        return world;
+      }
+    }
+    assert.fail(`No real-time gun launch after t=${issuedTick}`);
+  }
   const phase = 180 - issuedTick % 180;
   if (phase > 1) await q('step', { seconds: phase - 1 });
   await step();
@@ -138,7 +148,7 @@ try {
   await planRoute('follow', [followPoints]);
   const gun = await waitForLegalAim('gun');
   await dragWeapon('gun', gun.world, gun.ship, gun.contact);
-  await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('门炮可用'));
+  await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('预计首炮'));
   await page.mouse.up();
   await page.getByRole('status').filter({ hasText: '已下达炮击' }).waitFor();
   await waitForWeapon('gun', gun.world.tick);
@@ -224,10 +234,11 @@ try {
     const litGun = await aimFrom(lit, 'gun');
     assert(litGun);
     await dragWeapon('gun', lit, litGun.ship, litGun.contact);
-    await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('门炮可用'));
+    await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('预计首炮'));
     await page.mouse.up();
     await page.getByRole('status').filter({ hasText: '已下达炮击' }).waitFor();
-    assert((await advanceTo(720)).events.some((event) => event.kind === 'gun' && event.tick > lit.tick));
+    const litShot = await waitForWeapon('gun', lit.tick);
+    assert(litShot.tick < 720, 'Night training should fire before the next tactical window');
     const inRange = await advanceTo(770);
     const nightTorpedo = await aimFrom(inRange, 'torpedo');
     assert(nightTorpedo);
@@ -242,7 +253,9 @@ try {
     await screenshot('15-integrated-night-complete');
     await button('完成课程').click();
     await button('复习夜战教学').waitFor();
-    checks.push({ nightRealRoute: true, contactTick: 360, ownIlluminationTick: 540, ownGunTick: 720, ownTorpedoTick: 900, nightCheckpoints: 10 });
+    checks.push({ nightRealRoute: true, contactTick: contacted.tick, ownIlluminationTick: lit.tick,
+      ownGunTick: litShot.events.find(e => e.kind === 'gun' && e.tick > lit.tick).tick,
+      ownTorpedoTick: afterNightAttack.tick, nightCheckpoints: 10 });
   }
   assert.deepEqual(errors, []);
   await fs.writeFile(`${destination}/browser-story-receipt.json`, JSON.stringify(checks, null, 2));
