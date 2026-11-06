@@ -465,6 +465,8 @@ pub struct Outcome {
 pub struct Entry {
     pub tick: u32,
     pub request: serde_json::Value,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub seat: Option<String>,
 }
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -483,4 +485,6 @@ pub struct Saved {
     pub campaign: Option<crate::campaign::live::Start>,
     pub tick: u32,
     pub commands: Vec<Entry>,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub duel: bool,
 }

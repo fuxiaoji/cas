@@ -14,6 +14,7 @@ pub struct World {
     pub(crate) field: Field,
     pub(crate) campaign: Option<live::Start>,
     pub(crate) campaign_result: Option<crate::campaign::Outcome>,
+    pub(crate) host_duel: bool,
     pub data: &'static Data,
     pub ships: Vec<Ship>,
     pub fleets: Vec<Fleet>,
@@ -63,6 +64,7 @@ impl World {
             field: Field::EXERCISE,
             campaign: None,
             campaign_result: None,
+            host_duel: false,
             data,
             ships: vec![],
             fleets: vec![],
@@ -261,6 +263,24 @@ impl World {
             _ => return Err("此存档使用另一个规则版本".into()),
         };
         let realtime = crate::realtime::is_realtime_version(version);
+        if s.duel
+            && (cfg!(target_arch = "wasm32")
+                || version != "cas-realtime-v8"
+                || s.side != "allies"
+                || s.enemy != "coord"
+                || s.profile != "coord"
+                || s.leader_slot != 0
+                || !s.variant.is_empty()
+                || s.campaign.is_some())
+        {
+            return Err("双席对局存档与权威想定不符".into());
+        }
+        if s.commands.iter().any(|entry| match &entry.seat {
+            Some(seat) => !s.duel || side(seat).is_err(),
+            None => s.duel,
+        }) {
+            return Err("存档命令的席位无效".into());
+        }
         if matches!(s.variant.as_str(), crate::prologue::VARIANT | crate::illumination::RADAR_TRAINING)
             && version != crate::realtime::VERSION
         {
@@ -312,13 +332,18 @@ impl World {
         } else {
             w.version = version;
         }
+        if s.duel {
+            w.set_duel_seats();
+        }
         let mut commands = s.commands.into_iter().peekable();
         loop {
             while commands
                 .peek()
                 .is_some_and(|e| e.tick == w.tick && e.tick <= tick)
             {
-                w.external(commands.next().unwrap().request)
+                let entry = commands.next().unwrap();
+                let owner = entry.seat.as_deref().map(side).transpose()?.unwrap_or(w.player);
+                w.external_for(owner, entry.request)
                     .map_err(|e| format!("重演命令失败：{e}"))?;
             }
             if w.tick >= tick {
@@ -343,6 +368,7 @@ impl World {
             campaign: self.campaign.clone(),
             tick: self.tick,
             commands: self.commands.clone(),
+            duel: self.host_duel,
         }
     }
     pub fn ship(&self, id: u32) -> Option<&Ship> {
@@ -537,10 +563,24 @@ impl World {
         view
     }
     pub fn external(&mut self, r: Value) -> E<()> {
+        self.external_for(self.player, r)
+    }
+    pub(crate) fn set_duel_seats(&mut self) {
+        self.host_duel = true;
+        for fleet in &mut self.fleets {
+            fleet.ai = Ai::new("coord", "manual");
+        }
+    }
+    pub(crate) fn external_for(&mut self, s: usize, r: Value) -> E<()> {
+        if s > 1 || (!self.host_duel && s != self.player) {
+            return Err("当前席位不可下令".into());
+        }
+        if self.host_duel && self.commands.len() >= 10_000 {
+            return Err("双席对局已达到命令记录上限".into());
+        }
         if self.result.is_some() || (self.version != LEGACY_VERSION && self.action_closed()) {
             return Err("演习已结束或正在等待末轮弹着".into());
         }
-        let s = self.player;
         if self.variant == crate::prologue::VARIANT {
             let commanded_fleet = r.get("fleet").and_then(Value::as_u64);
             let commanded_ship = r.get("ship").and_then(Value::as_u64);
@@ -564,6 +604,9 @@ impl World {
                 self.fleet_for(s, id)?;
                 let ai: Ai = serde_json::from_value(r.clone()).map_err(|_| "AI 配置不完整")?;
                 ai.validate()?;
+                if self.host_duel && ai.mode == "auto" {
+                    return Err("线上约战的 AI 只提供建议".into());
+                }
                 self.fleet_mut(id).unwrap().ai = ai;
                 self.add(
                     1 << s,
@@ -578,6 +621,7 @@ impl World {
         self.commands.push(Entry {
             tick: self.tick,
             request: r,
+            seat: self.host_duel.then(|| side_name(s).into()),
         });
         Ok(())
     }

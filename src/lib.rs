@@ -3,6 +3,8 @@ pub mod campaign;
 mod combat;
 mod damage;
 mod illumination;
+#[cfg(not(target_arch = "wasm32"))]
+mod match_host;
 mod model;
 mod movement;
 mod night;
@@ -80,6 +82,9 @@ impl Engine {
                 let v = r.get("save").ok_or("没有存档")?;
                 let s: Saved =
                     serde_json::from_value(v.clone()).map_err(|_| "无法读取 CAS 存档")?;
+                if s.duel {
+                    return Err("双席对局由权威主机恢复".into());
+                }
                 let tick = if op == "replay" {
                     r.get("tick")
                         .and_then(Value::as_u64)

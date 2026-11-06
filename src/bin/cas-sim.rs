@@ -49,7 +49,7 @@ fn main() -> ExitCode {
     } else {
         for line in io::stdin().lock().lines().map_while(Result::ok) {
             let r = match serde_json::from_str::<Value>(&line) {
-                Ok(r) => engine.handle(r),
+                Ok(r) => engine.handle_host(r),
                 Err(e) => json!({"ok":false,"error":e.to_string()}),
             };
             println!("{r}");
