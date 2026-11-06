@@ -12,7 +12,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-def smoke(sim=None):
+def smoke(sim=None, duels=False):
     with socket.socket() as reservation:
         reservation.bind(("127.0.0.1", 0))
         port = reservation.getsockname()[1]
@@ -39,8 +39,11 @@ def smoke(sim=None):
         log = Path(tmp) / "uvicorn.log"
         env = {**os.environ, "CAS_ACCOUNT_DB": str(db)}
         env.pop("CAS_SIM_PATH", None)
+        env.pop("CAS_ENABLE_DUELS", None)
         if sim is not None:
             env["CAS_SIM_PATH"] = str(Path(sim).resolve(strict=True))
+        if duels:
+            env["CAS_ENABLE_DUELS"] = "1"
         cmd = [sys.executable, "-m", "uvicorn", "server.accounts:app", "--host", "127.0.0.1",
                "--port", str(port), "--log-level", "warning"]
         with log.open("w+", encoding="utf-8") as output:
@@ -59,6 +62,7 @@ def smoke(sim=None):
                         time.sleep(0.1)
                 assert ready["service"] == "cas-free-economy" and ready["real_payments"] is False
                 assert ready["pve_available"] is (sim is not None)
+                assert ready["pvp_available"] is duels and ready["ranked_pvp"] is False
                 auth = ask("/auth/register", {"username": "cas-smoke", "password": "temporary-smoke-password"})
                 token = auth["token"]
                 from server.accounts import AccountService
@@ -100,6 +104,28 @@ def smoke(sim=None):
                 assert welcome["meta"]["wallet"]["credits"] == 500 and welcome["meta"]["wallet"]["standard_tickets"] == 2
                 assert ask("/progression", token=rookie)["check_in"]["claimed"] == 1
                 assert ask("/progression", token=token)["check_in"]["claimed"] == 0
+                duel_evidence = None
+                if duels:
+                    invited = ask("/pvp/invites", {"request_id": "http-duel-invite"}, token)
+                    guest = ask(f"/pvp/invites/{invited['code']}/join", {"request_id": "http-duel-join"}, enemy["token"])
+                    duel_path = "/pvp/matches/" + guest["match_id"]
+                    host = ask(duel_path, token=token)
+                    assert (host["seat"], guest["seat"]) == ("allies", "axis")
+                    assert [ship["id"] for ship in host["view"]["ships"]] == [1, 2, 3, 4, 5]
+                    assert [ship["id"] for ship in guest["view"]["ships"]] == [6, 7, 8, 9, 10]
+                    expect_status(404, duel_path, token=rookie)
+                    for seat_token, fleet, x, y in ((token, 1, 16000, 6550), (enemy["token"], 2, 8000, 7650)):
+                        route = {"request_id": "http-duel-route", "revision": 0, "command": {
+                            "op": "route", "fleet": fleet, "mode": "follow", "speed": 26, "points": [{"x": x, "y": y}]}}
+                        accepted = ask(duel_path + "/commands", route, seat_token)
+                        assert accepted["revision"] == 1 and accepted == ask(duel_path + "/commands", route, seat_token)
+                    time.sleep(.35)
+                    assert ask(duel_path, token=token)["tick"] > 0
+                    final = ask(duel_path + "/surrender", {"request_id": "http-duel-surrender"}, enemy["token"])
+                    assert final["result"]["winner"] == "allies" and final["end_reason"] == "surrender"
+                    assert ask(duel_path + "/report", token=token)["result"] == final["result"]
+                    duel_evidence = {"sameMatch": True, "privateSeats": True, "outsiderDenied": True,
+                                     "idempotentRoutes": True, "clockAdvanced": True, "surrenderSettled": True}
                 assert ask("/auth/logout", token=token, method="POST")["logged_out"]
                 expect_status(401, "/me", token=token)
             finally:
@@ -108,6 +134,7 @@ def smoke(sim=None):
     print(json.dumps({"ok": True, "service": "cas-free-economy", "realHttp": True, "idempotentDraw": True,
                       "serverMail": True, "ledgerEntries": 2, "logoutRevoked": True,
                       "rookieCheckIn": {"slot": 1, "credits": 500, "standardTickets": 2, "idempotent": True, "isolated": True},
+                      "nativeUnrankedDuel": duel_evidence,
                       "nativeCapePvE": ({"stageId": started["stage_id"], "seat": started["view"]["side"],
                                          "tick": observed["tick"], "revision": observed["revision"],
                                          "crossAccountDenied": True, "earlyClaimDenied": True,
@@ -117,4 +144,8 @@ def smoke(sim=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sim", type=Path, help="optional native CAS CLI to test authenticated Cape PvE too")
-    smoke(parser.parse_args().sim)
+    parser.add_argument("--duels", action="store_true", help="also test the opt-in native two-seat trial")
+    args = parser.parse_args()
+    if args.duels and args.sim is None:
+        parser.error("--duels requires --sim")
+    smoke(args.sim, args.duels)

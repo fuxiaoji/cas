@@ -9,7 +9,7 @@ python -m pip install -r server/requirements.txt
 python -m uvicorn server.accounts:app --host 127.0.0.1 --port 8021
 ```
 
-访问 `http://127.0.0.1:8021/docs` 查看接口。数据库默认独立存放在 `server/data/cas-accounts.sqlite3`；`CAS_ACCOUNT_DB` 可指定另一个 CAS 数据库。应用标识和版本门会拒绝已有的其他项目数据库，旧版 CAS 库会保留资产并迁入战局表。服务只用于本机回环测试，无公开账号服务、对战匹配或支付。
+访问 `http://127.0.0.1:8021/docs` 查看接口。数据库默认独立存放在 `server/data/cas-accounts.sqlite3`。`CAS_ACCOUNT_DB` 可指定另一个 CAS 数据库。应用标识和版本门会拒绝其他项目数据库，旧版 CAS 库会保留资产并迁入战局表。此服务用于本机回环测试。
 
 | 方法 | 路径 | 请求与结果 |
 |---|---|---|
@@ -97,6 +97,27 @@ python -m uvicorn server.accounts:app --host 127.0.0.1 --port 8021
 
 云目录目前仅供收藏与草案编辑。演习的通用舰型和战役借舰由各自想定加载。CAS 个人出战配置和点表尚待建立，因此 `combat_ready`、`ranked_ready` 和列表的 `ranked_available` 均为 `false`。旧作舰价没有参与任何预算判断。
 
+### 双人非排位演习
+
+双席身份、排队与结算参考铁底湾 0.6.7 的 `mobile/mobile_pvp.py`，战斗使用 CAS 原生内核的 `cas-realtime-v8` 固定昼间 5 对 5。将 `CAS_SIM_PATH` 指向支持原生 `match_*` 的二进制，再设置 `$env:CAS_ENABLE_DUELS = '1'` 后启动回环服务。启动会实际建立双席手动演习检查版本。启用后，`/health` 的 `pvp_available` 为真，`ranked_pvp` 仍为假。
+
+| 方法 | 路径 | 行为 |
+|---|---|---|
+| GET | `/pvp/status` | 本账号的待用邀请、排队状态、最近对局摘要。 |
+| POST | `/pvp/invites` | 创建有效期 15 分钟的邀请。 |
+| POST | `/pvp/invites/{code}/join` | 持有效邀请的另一账号加入，邀请方为同盟，加入方为轴心。 |
+| POST | `/pvp/invites/{code}/cancel` | 由邀请方取消尚未开局的邀请。 |
+| POST | `/pvp/queue`、`/pvp/queue/cancel` | 排队匹配固定 5 对 5 或取消排队。等待最久的有效队列先匹配。 |
+| GET | `/pvp/matches/{id}` | 查看或重连本人座席，返回本席观察及修订号。 |
+| POST | `/pvp/matches/{id}/commands` | `{request_id,revision,command}`，按本人座席校验及执行命令。 |
+| POST | `/pvp/matches/{id}/inspect` | `{command}`，仅查本席预览或 AI 建议。 |
+| GET | `/pvp/matches/{id}/report` | 本席可见战报。 |
+| POST | `/pvp/matches/{id}/surrender` | 由本人认输，已经结算的对局返回原战果。 |
+
+除预览外，POST 使用 `{request_id}` 去重，重复提交返回同一答复。每个账号同时最多有一场进行中。两席共用服务端 4× 模拟时钟，分别保存本席命令修订号。双方可在同一模拟秒各提交一条合法命令，另一席的修订号不会妨碍本人。查询时每次最多追赶 120 模拟秒，完整快照和双方战报保存在独立的 `*-duels.sqlite3`，当前对局固定原生二进制的 SHA-256。终局结果和双方视图在一笔事务中写入，后到的终局请求不会覆盖战果。
+
+目前开放固定演习的邀请与快速匹配。双方手动下令，可以查看本席建议。个人舰队、3000／10000 点表、排位、MMR、赛季及发奖等待对应出战与平衡验证。结算只记演习战果。客户端每次只收到本席观察或战报，完整命令日志、随机种子与原生快照保存在服务端。
+
 ### 验证
 
 ```powershell
@@ -105,5 +126,7 @@ python -m unittest -v server.test_accounts server.test_battle_pve server.test_ac
 python -m server.smoke_http --sim .\target\release\cas-sim.exe
 python -m server.import_catalog 'F:/Codex/worktrees/android-mobile/铁底湾'
 ```
+
+双人专项可设置 `$env:CAS_TEST_DUEL_SIM_PATH = (Resolve-Path '.\target\release\cas-sim.exe').Path`，然后执行 `python -m unittest -v server.test_duels` 与 `python -m server.smoke_http --sim .\target\release\cas-sim.exe --duels`。专项测试使用隔离的临时账号库和双人库，运行两席实际炮击、放雷与损伤到自然结束，也覆盖并发投降只结算一次。
 
 HTTP 冒烟在临时 SQLite 中实际启动回环 Uvicorn，覆盖注册、发信领取、扣券、签到领取与隔离、同请求重试、账本、退出，以及轴心标准档圣乔治角开局、自动推进、命令重试和其他账号拒绝。完整测试另以注入的服务器时钟和种子跑到真实 CAS 战术／决定性胜利、五路并发领取、差额补领、账号隔离和重启恢复；签到测试跨北京时间午夜、漏签、日期回退和第七日冻结。时钟和种子注入仅在测试代码内，实际 HTTP 不接收这些字段。没有编译原生程序时，权威 PvE 测试会跳过，经济和签到仍可独立运行。目录验证只读取旧仓的固定 Git 对象。
