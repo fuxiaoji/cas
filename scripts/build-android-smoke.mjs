@@ -10,6 +10,9 @@ const packageName = 'org.casnaval.exercise';
 const origin = 'https://appassets.androidplatform.net/index.html';
 const activity = `${packageName}/.MainActivity`;
 const run = (...args) => execFileSync(adb, ['-s', serial, ...args], { encoding: 'utf8', timeout: 10000 }).trim();
+const testName = 'CASQA-' + Date.now();
+const testPassword = 'CAS offline smoke 2026';
+const button = label => `Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === ${JSON.stringify(label)} || b.getAttribute('aria-label') === ${JSON.stringify(label)})`;
 
 async function waitFor(description, test, ms = 20000) {
   const end = Date.now() + ms;
@@ -20,6 +23,34 @@ async function waitFor(description, test, ms = 20000) {
     await delay(250);
   } while (Date.now() < end);
   throw new Error(`Timed out waiting for ${description}`, { cause: last });
+}
+
+async function openProduct(view, register) {
+  await waitFor('local account login', () => view.evaluate("Boolean(document.querySelector('main.login-screen'))"));
+  if (register) await view.evaluate(`${button('新用户，创建账号')}.click()`);
+  const submit = button(register ? '注册并进入母港' : '登录并进入母港');
+  await waitFor('enabled local account form', () => view.evaluate(`Boolean(${submit})`));
+  await view.evaluate(`(() => {
+    function fill(id, value) {
+      const input = document.getElementById(id);
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, value);
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    fill('account-username', ${JSON.stringify(testName)});
+    fill('account-password', ${JSON.stringify(testPassword)});
+    ${submit}.click();
+  })()`);
+  await waitFor('authenticated harbor', () => view.evaluate("Boolean(document.querySelector('.growth-campaign-entry'))"));
+  const account = await view.evaluate(`JSON.parse(localStorage.getItem('cas.accounts.local.v1')).find(account => account.name === ${JSON.stringify(testName)})`);
+  assert(account?.id && account.verifier !== testPassword, 'The app stores an offline account verifier');
+  return 'cas.profile.' + account.id + '.cas.exercise.autosave.v1';
+}
+
+async function continueExercise(view) {
+  await view.evaluate(`${button('打开主菜单')}.click()`);
+  await waitFor('continue exercise is enabled', () => view.evaluate(`Boolean(${button('继续演习')} && !${button('继续演习')}.disabled)`));
+  await view.evaluate(`${button('继续演习')}.click()`);
+  await waitFor('the actual tactical chart', () => view.evaluate("Boolean(document.querySelector('canvas') && document.querySelector('[data-ship]'))"));
 }
 
 async function connect() {
@@ -102,19 +133,31 @@ const sessionProbe = `(async () => {
     return { origin: location.href, viewport: [innerWidth, innerHeight], version: info.version,
       ownShips: start.ships.length, tickBefore: start.tick, tickAfter: end.tick, stateSha256,
       nightExerciseStarted: night.variant === 'night' && night.ships?.length === 5,
-      historicalCatalogueRows: campaign.scenarios?.length, allHistoryLocked: campaign.scenarios?.every(row => row.playable === false),
+      historicalCatalogueRows: campaign.scenarios?.length, historicalSourceRecords: campaign.scenarios?.filter(row => row.cas?.import).length,
+      allHistoryLocked: campaign.scenarios?.every(row => row.playable === false),
       sameReplay: JSON.stringify(end) === JSON.stringify(replay), sameRestore: JSON.stringify(end) === JSON.stringify(restore) };
   } finally { worker.terminate(); }
 })()`;
 
 const airplaneMode = run('shell', 'settings', 'get', 'global', 'airplane_mode_on');
 assert.equal(airplaneMode, '1', 'Enable airplane mode on the dedicated CAS test device before running this test.');
+run('shell', 'am', 'force-stop', packageName);
 run('shell', 'am', 'start', '-W', '-n', activity);
 const first = await connect();
 let detail;
+let saveKey;
 try {
-  await waitFor('the actual tactical chart', () => first.evaluate("Boolean(document.querySelector('canvas') && document.querySelector('[data-ship]'))"));
-  const commandCount = () => first.evaluate("JSON.parse(localStorage.getItem('cas.exercise.autosave.v1'))?.commands?.length ?? 0");
+  saveKey = await openProduct(first, true);
+  await first.evaluate("document.querySelector('.growth-campaign-entry').click()");
+  await waitFor('16 allied campaign stages', () => first.evaluate(`document.querySelectorAll('[data-stage-id^="CAMP-ALLIES-"]').length === 16`));
+  await first.evaluate(`document.querySelector('[data-stage-id="CAMP-ALLIES-03"] summary').click()`);
+  await waitFor('the Cape St. George source record', () => first.evaluate(`Boolean(document.querySelector('[data-source-stage="CAMP-ALLIES-03"]'))`));
+  await first.evaluate(`${button('轴心战线')}.click()`);
+  await waitFor('16 Axis campaign stages and Cape record', () => first.evaluate(`document.querySelectorAll('[data-stage-id^="CAMP-AXIS-"]').length === 16 &&
+    Boolean(document.querySelector('[data-source-stage="CAMP-AXIS-03"]'))`));
+  await first.evaluate(`${button('返回母港')}.click()`);
+  await continueExercise(first);
+  const commandCount = () => first.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(saveKey)}))?.commands?.length ?? 0`);
   const before = await commandCount();
   const weapon = await waitFor('a reachable deck weapon badge', () => first.evaluate(`Array.from(document.querySelectorAll('.weapon:not(:disabled)')).map(button => {
     const box = button.getBoundingClientRect(), x = Math.round(box.x + box.width / 2), y = Math.round(box.y + box.height / 2);
@@ -140,21 +183,14 @@ try {
   assert.equal(await commandCount(), before, 'Switching apps mid-gesture must not submit a command');
   await first.touch('touchCancel');
 
-  const button = label => `Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === '${label}' || b.getAttribute('aria-label') === '${label}')`;
   await first.evaluate(`${button('舰况')}.click()`);
   const shipPortrait = await waitFor('the packaged ship portrait in offline ship status', () => first.evaluate(`(() => {
     const img = Array.from(document.querySelectorAll('.ship-portrait img')).find(item => item.complete && item.naturalWidth > 0);
     return img?.closest('[data-character]')?.dataset.character ?? null;
   })()`));
-  const harbor = await first.evaluate(`Boolean(${button('母港')})`);
-  if (harbor) {
-    await first.evaluate(`${button('母港')}.click()`);
-    for (const item of ['舰桥学堂', '舰库与编队', '本机征募', '越级挑战']) {
-      await waitFor(`CAS harbor navigation: ${item}`, () => first.evaluate(`Boolean(${button(item)})`));
-    }
-    await first.evaluate(`${button('返回海图')}.click()`);
-    await waitFor('the tactical chart after leaving harbor', () => first.evaluate("Boolean(document.querySelector('canvas'))"));
-  }
+  await first.evaluate(`${button('母港')}.click()`);
+  await waitFor('real return to harbor', () => first.evaluate("Boolean(document.querySelector('.growth-campaign-entry'))"));
+  await continueExercise(first);
   const probe = await first.evaluate(sessionProbe);
   assert.equal(probe.origin, origin);
   assert.equal(probe.version, 'cas-battle-v2');
@@ -163,11 +199,13 @@ try {
   assert.equal(probe.tickAfter, 360);
   assert.equal(probe.nightExerciseStarted, true);
   assert.equal(probe.historicalCatalogueRows, 16);
+  assert.equal(probe.historicalSourceRecords, 11);
   assert.equal(probe.allHistoryLocked, true);
   assert(probe.sameReplay && probe.sameRestore, 'Offline replay and saved battle must agree');
   assert(probe.viewport[0] > probe.viewport[1], 'Battle WebView must be landscape');
   await first.evaluate("localStorage.setItem('cas.android-smoke', 'native-webview-origin-persists')");
-  detail = { ...probe, touchCancelNoCommand: true, backgroundCancelsGesture: true, shipPortrait, harborNavigation: harbor };
+  detail = { ...probe, touchCancelNoCommand: true, backgroundCancelsGesture: true, shipPortrait,
+    harborNavigation: true, historicalStageIds: 32, offlineLocalAccountRegistered: true };
 } finally { first.close(); }
 
 // Model a normal close/reopen: background the app first, which lets WebView's
@@ -180,10 +218,11 @@ const second = await connect();
 try {
   assert.equal(await second.evaluate("localStorage.getItem('cas.android-smoke')"), 'native-webview-origin-persists');
   await second.evaluate("localStorage.removeItem('cas.android-smoke')");
-  await waitFor('the chart after restarting Android app', () => second.evaluate("Boolean(document.querySelector('canvas'))"));
-  const saved = await second.evaluate("Boolean(localStorage.getItem('cas.exercise.autosave.v1'))");
+  assert.equal(await openProduct(second, false), saveKey, 'Restart login returns to the same local profile');
+  await continueExercise(second);
+  const saved = await second.evaluate(`Boolean(localStorage.getItem(${JSON.stringify(saveKey)}))`);
   assert(saved, 'The product should autosave the battle as well as the smoke key');
-  const evidence = { ok: true, serial, airplaneMode: true, localStorageSurvivedRestart: true, appAutosavePresent: saved, ...detail };
+  const evidence = { ok: true, serial, airplaneMode: true, localStorageSurvivedRestart: true, sameLocalAccountAfterRestart: true, appAutosavePresent: saved, ...detail };
   const out = resolve(evidencePath);
   await mkdir(dirname(out), { recursive: true });
   await writeFile(out, JSON.stringify(evidence, null, 2) + '\n', { flag: 'wx' });

@@ -1,0 +1,10 @@
+{
+  "source_project": "铁底湾",
+  "source_commit": "3ba9c5b01c48a3e7f8bb104da5d9f7ad4b1456a9",
+  "source_record": "mobile/ASSETS.md",
+  "scope": "CAS local developer and test builds",
+  "assets": [
+    {"path":"harbor-night.png","source_path":"mobile/public/harbor-night.png","sha256":"dc8da8a003bcd02476fe6160b13df0c1787375470e22108def661bd9d367e6a6"},
+    {"path":"login-instructor.png","source_path":"mobile/public/characters/fsm-formation.png","sha256":"16eff47ba894c6f2530f0af75996c5c3d50b3807cdad5ace5c4a89d2a5459e0a"}
+  ]
+}

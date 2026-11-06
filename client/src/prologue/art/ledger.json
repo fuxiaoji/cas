@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "source_project": "铁底湾",
+  "source_commit": "3ba9c5b01c48a3e7f8bb104da5d9f7ad4b1456a9",
+  "source_script": "mobile/src/prologue/script.ts",
+  "script_sha256": "08ae7773d0859c0e0feaf2971265004573dcd4748b9ecc5800d1f812d58a399d",
+  "source_manifest": "mobile/content/prologue-art-manifest.json",
+  "scope": "CAS local developer and test builds; public distribution rights not established.",
+  "assets": [
+    {
+      "id": "baixi",
+      "ship_id": null,
+      "source_path": "mobile/public/characters/prologue/baixi.png",
+      "old_url": "/characters/prologue/baixi.png",
+      "path": "baixi.png",
+      "sha256": "890fbf78c4b1bfe0c550ba9c2937a943985b316df90e0e8e03b333ab52b67a23"
+    },
+    {
+      "id": "fletcher-anime-final",
+      "ship_id": "IBS-U-USN-FLETCHER",
+      "source_path": "mobile/public/characters/ships/fletcher-anime-face.png",
+      "old_url": "/characters/ships/fletcher-anime-face.png",
+      "path": "fletcher-anime-face.png",
+      "sha256": "42a60e16d716d8e49d78c5264f6589cb37a8ed019108d52006b8f043db772c9a"
+    },
+    {
+      "id": "perkins-anime-face",
+      "ship_id": "IBS-U-USN-PERKINS",
+      "source_path": "mobile/public/characters/ships/perkins-anime-face.png",
+      "old_url": "/characters/ships/perkins-anime-face.png",
+      "path": "perkins-anime-face.png",
+      "sha256": "89cf47b2054b42d8e613a01fa28265db6fcb9e2c9002c93d6d49145700e2b6fd"
+    },
+    {
+      "id": "maury-anime-final",
+      "ship_id": "IBS-U-USN-MAURY",
+      "source_path": "mobile/public/characters/ships/maury-anime-face.png",
+      "old_url": "/characters/ships/maury-anime-face.png",
+      "path": "maury-anime-face.png",
+      "sha256": "830cd80259e73899b08a8878263d31d6fea10ad4f05f1eeff19d87982fdc5624"
+    },
+    {
+      "id": "drayton-anime-final",
+      "ship_id": "IBS-U-USN-DRAYTON",
+      "source_path": "mobile/public/characters/ships/drayton-anime-face.png",
+      "old_url": "/characters/ships/drayton-anime-face.png",
+      "path": "drayton-anime-face.png",
+      "sha256": "48aa06b3fcb768dba387043543d596beac9e245001dd9e15f044f7dc339b08d8"
+    },
+    {
+      "id": "lamson-anime-final",
+      "ship_id": "IBS-U-USN-LAMSON",
+      "source_path": "mobile/public/characters/ships/lamson-anime-face.png",
+      "old_url": "/characters/ships/lamson-anime-face.png",
+      "path": "lamson-anime-face.png",
+      "sha256": "2cf45a19f12728baaf69ebec2796af847b6265fb46d33ff4960ce97a7c6d318d"
+    },
+    {
+      "id": "prologue-victory-pov",
+      "ship_id": null,
+      "source_path": "mobile/public/story/prologue-victory-pov.png",
+      "old_url": "/story/prologue-victory-pov.png",
+      "path": "prologue-victory-pov.png",
+      "sha256": "cc43322160a33a3f8a72e2a9c8c34a6a8ad9f3f5359da768ccdd25c36be8ab35"
+    }
+  ]
+}

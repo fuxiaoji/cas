@@ -12,6 +12,8 @@ type MapProps = {
   onMovePoint: (index: number, point: Point) => void;
   onFire: (ship: number, weapon: Weapon, target: string, heading?: number) => void;
   onCancelFire?: () => void;
+  onInspectMap?: () => void;
+  onInspectContact?: (id: string) => void;
   onHint: (message: string) => void;
 };
 
@@ -109,10 +111,11 @@ export function BattleMap(props: MapProps) {
   const rangedShip = o.ships.find((ship) => ship.id === selected && ship.hp > 0);
   const gunRange = rangedShip?.gunRange ?? 0;
   const torpedoRange = rangedShip?.torpedoRange ?? 0;
-  const target = o.contacts.find((contact) => contact.id === gesture?.contact?.id);
-  const night = o.variant === 'night';
+  const tracks = [...o.contacts, ...(o.radarContacts ?? []).map((report) => ({ ...report, heading: 0, speed: 0, kind: 'radar', name: undefined }))];
+  const target = tracks.find((contact) => contact.id === gesture?.contact?.id);
+  const night = ['night', 'night-training', 'radar'].includes(o.variant ?? '');
   const labelLanes: Point[][] = [[], [], [], [], []];
-  const contacts = o.contacts.map((contact) => {
+  const contacts = tracks.map((contact) => {
     const at = screen(contact);
     const lane = labelLanes.findIndex((points) => points.every((point) => Math.abs(at.x - point.x) >= 26 || Math.abs(at.y - point.y) >= 40));
     if (lane !== -1) labelLanes[lane].push(at);
@@ -258,7 +261,15 @@ export function BattleMap(props: MapProps) {
       ctx.beginPath(); ctx.arc(p.x, p.y, 6 + age * 3, 0, TAU); ctx.strokeStyle = splash ? '#c6d9df' : COLORS.enemy;
       ctx.globalAlpha = .85 - age * .1; ctx.stroke(); ctx.globalAlpha = 1;
     }
-    for (const contact of o.contacts) {
+    for (const mark of o.illuminations ?? []) {
+      const p = screen(mark);
+      const radius = Math.max(5, mark.radius * mapRatio);
+      const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, radius);
+      glow.addColorStop(0, '#f8dfa683'); glow.addColorStop(1, '#ffe0a800');
+      ctx.beginPath(); ctx.arc(p.x, p.y, radius, 0, TAU); ctx.fillStyle = glow; ctx.fill();
+      ctx.strokeStyle = '#ffe0a87d'; ctx.stroke();
+    }
+    for (const contact of tracks) {
       const p = screen(contact);
       ctx.beginPath(); ctx.arc(p.x, p.y, target?.id === contact.id ? 21 : 14, 0, TAU);
       ctx.strokeStyle = target?.id === contact.id ? (gesture?.aim?.valid === false ? COLORS.enemy : COLORS.gold) : '#efae875c';
@@ -266,7 +277,8 @@ export function BattleMap(props: MapProps) {
       if (contact.kind && /^(dd|cl)$/i.test(contact.kind)) symbol(ctx, p, contact.heading, contact.kind, COLORS.enemy, false);
       else {
         ctx.beginPath(); ctx.moveTo(p.x, p.y - 8); ctx.lineTo(p.x + 7, p.y); ctx.lineTo(p.x, p.y + 8); ctx.lineTo(p.x - 7, p.y); ctx.closePath();
-        ctx.fillStyle = '#502e31'; ctx.fill(); ctx.strokeStyle = COLORS.enemy; ctx.stroke();
+        ctx.fillStyle = contact.kind === 'radar' ? '#254a5a' : '#502e31'; ctx.fill();
+        ctx.strokeStyle = contact.kind === 'radar' ? '#8dd6ef' : COLORS.enemy; ctx.stroke();
       }
     }
     for (const ship of o.ships) {
@@ -316,9 +328,10 @@ export function BattleMap(props: MapProps) {
     const box = cancelWell.current?.getBoundingClientRect();
     return !!box && event.clientX >= box.left && event.clientX <= box.right && event.clientY >= box.top && event.clientY <= box.bottom;
   };
-  function nearestContact(point: Point, touch: boolean) {
+  function nearestContact(point: Point, touch: boolean, gunFrom?: number) {
     let closest: Contact | undefined; let best = touch ? 28 : 22;
-    for (const contact of o.contacts) {
+    for (const contact of tracks) {
+      if (contact.kind === 'radar' && (gunFrom === undefined || !o.radarContacts?.find(report => report.id === contact.id)?.usableForShipIds.includes(gunFrom))) continue;
       const gap = distance(screen(contact), point);
       if (gap < best) { best = gap; closest = contact; }
     }
@@ -360,7 +373,7 @@ export function BattleMap(props: MapProps) {
     if (active && active.pointer === event.pointerId) {
       const cancelled = overCancel(event);
       if (active.weapon === 'gun') {
-        const hit = cancelled ? undefined : nearestContact(p, event.pointerType === 'touch');
+        const hit = cancelled ? undefined : nearestContact(p, event.pointerType === 'touch', active.ship);
         const changed = hit?.id !== active.contact?.id;
         update({ ...active, cursor: p, contact: hit, cancelled, aim: changed ? undefined : active.aim, loading: changed ? !!hit : active.loading });
         if (changed && hit) aimAt(active.ship, hit.id, 'gun');
@@ -411,7 +424,7 @@ export function BattleMap(props: MapProps) {
       if (cancelled) { props.onCancelFire?.(); return; }
       if (disabled) return;
       if (active.weapon === 'gun') {
-        const hit = nearestContact(p, event.pointerType === 'touch');
+        const hit = nearestContact(p, event.pointerType === 'touch', active.ship);
         if (hit && active.contact?.id === hit.id && active.aim?.valid === false) props.onHint(active.aim.error ?? '此目标当前不可炮击。');
         else if (hit) props.onFire(active.ship, active.weapon, hit.id);
         else if (distance(p, active.start) > 10) props.onHint('没有下令。请拖到一个可见敌舰。');
@@ -431,6 +444,10 @@ export function BattleMap(props: MapProps) {
         const point = world(p);
         if (inside(point)) props.onAddPoint(point);
         else props.onHint('航点须落在演习海域内。');
+      } else if (!editing && distance(drag.start, p) < 8) {
+        const contact = nearestContact(p, event.pointerType === 'touch');
+        if (contact && props.onInspectContact) props.onInspectContact(contact.id);
+        else props.onInspectMap?.();
       }
     }
   }
@@ -488,7 +505,7 @@ export function BattleMap(props: MapProps) {
     <BattleAlerts events={o.events} tick={o.tick} session={session} enabled={!replaying} />
     <div className="map-note">
       <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : '昼间水面演习'}</strong>
-      <span>{editing ? '拖动编号航点可修正航线' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
+      <span>{editing ? '拖动编号航点可修正航线' : o.variant === 'radar' ? '虚构夜间演习 · 雷达回波 R' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
     </div>
     {gesture && <div className={'gesture-tip' + (gesture.aim?.friendly || gesture.aim?.valid === false || (gesture.weapon === 'torpedo' && aimInArc === false) ? ' warning' : '')}>
       <strong>{gesture.weapon === 'gun' ? (target ? '炮击 ' + (target.name ?? target.id) : '炮击 · 拖向敌舰') :

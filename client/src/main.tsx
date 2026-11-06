@@ -3,10 +3,22 @@ import { createRoot } from 'react-dom/client';
 import { BattleMap } from './BattleMap';
 import { alertKind, ShipSchematic } from './BattlePresentation';
 import { Harbor } from './Harbor';
-import { ask, clock, maneuverNames, profileNames, sideNames } from './engine';
+import type { HarborTab } from './Harbor';
+import { GrowthPort } from './GrowthPort';
+import type { LobbySection } from './GrowthPort';
+import { Login } from './Login';
+import { ActivityCenter } from './activities/ActivityCenter';
+import { recordChallengeClear } from './activities/week';
+import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY, STARTER_DD_IDS } from './prologue';
+import type { StarterDDId } from './prologue';
+import { TrainingCoach, trainingCourseDone } from './tutorial';
+import type { CourseId, TrainingEvidence, TrainingSignal } from './tutorial';
+import { profileKey } from './account';
+import type { LocalProfile } from './account';
+import { ask, clock, closeSession, maneuverNames, profileNames, sideNames } from './engine';
 import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, Weapon } from './engine';
-import { lessons, loadPort, recordLesson, writePort } from './port';
-import type { Lesson, PortLaunch } from './port';
+import { grantPrologue, hulls, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
+import type { Hull, Lesson, PortLaunch } from './port';
 import './style.css';
 
 const SAVE_KEY = 'cas.exercise.autosave.v1';
@@ -14,7 +26,8 @@ const options = [1, 2, 4, 8] as const;
 type Speed = typeof options[number];
 type Tab = 'fleet' | 'ship' | 'ai' | 'log';
 interface Replay { data: unknown; end: number }
-const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' };
+const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' | 'radar' };
+type LightPreview = { valid: boolean; error?: string; mount?: number };
 const aimAction: Record<Weapon, string> = { gun: '炮击', torpedo: '雷击' };
 const descriptions: Record<Profile, string> = {
   coord: '保持编队，在火力与机动之间取平衡。',
@@ -38,7 +51,10 @@ function eventTone(event: LogEvent) {
   return 'plain';
 }
 
-function App() {
+function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => void }) {
+  const accountSaveKey = profileKey(profile, SAVE_KEY);
+  const accountPortKey = profileKey(profile, PORT_KEY);
+  const storyKey = profileKey(profile, PROLOGUE_STORAGE_KEY);
   const [o, setObservation] = useState<Observation>();
   const [loadError, setLoadError] = useState('');
   const [running, setRunning] = useState(false);
@@ -59,10 +75,21 @@ function App() {
   const [setup, setSetup] = useState(defaultSetup);
   const [resultDismissed, setResultDismissed] = useState(false);
   const [session, setSession] = useState(0);
-  const [port, setPort] = useState(loadPort);
-  const [portOpen, setPortOpen] = useState(false);
+  const [port, setPort] = useState(() => loadPort(accountPortKey));
+  const [portOpen, setPortOpen] = useState(true);
+  const [section, setSection] = useState<HarborTab | 'activities'>();
+  const [mainMenu, setMainMenu] = useState(false);
   const [portError, setPortError] = useState<string>();
   const [training, setTraining] = useState(false);
+  const [storyOpen, setStoryOpen] = useState(false);
+  const [story, setStory] = useState(() => loadPrologue(storyKey));
+  const [course, setCourse] = useState<CourseId>();
+  const [evidence, setEvidence] = useState<TrainingEvidence>({});
+  const [nightTarget, setNightTarget] = useState('');
+  const [lightPreview, setLightPreview] = useState<LightPreview>();
+  const courseLive = useRef<CourseId | undefined>(undefined);
+  const savedExercise = useRef<unknown>(undefined);
+  const challengeId = useRef<string | undefined>(undefined);
   const [presetActive, setPresetActive] = useState(false);
   const inFlight = useRef(false);
   const initialized = useRef(false);
@@ -75,37 +102,57 @@ function App() {
   const selected = o?.ships.find((ship) => ship.id === shipId) ?? ships.find((ship) => ship.id === fleet?.leader) ?? ships[0];
   const result = o?.result;
   const finished = Boolean(result);
-  const contactCount = o?.contacts.length ?? 0;
+  const contactCount = (o?.contacts.length ?? 0) + (o?.radarContacts?.length ?? 0);
+
+  function record(...signals: TrainingSignal[]) {
+    if (!courseLive.current || !signals.length) return;
+    setEvidence((value) => signals.every(signal => value[signal]) ? value :
+      { ...value, ...Object.fromEntries(signals.map(signal => [signal, true])) });
+  }
 
   function hint(message: string) {
     window.clearTimeout(noticeTimer.current);
     setNotice(message);
     noticeTimer.current = window.setTimeout(() => setNotice(''), 4200);
   }
-  function update(observation: Observation) {
+  function update(observation: Observation, live = true) {
     clockTick.current = observation.tick;
     setObservation(observation);
     if (observation.result) setRunning(false);
-    if (observation.variant === 'challenge' && observation.result?.primary) {
-      setPort((state) => state.challengeClear ? state : { ...state, challengeClear: true });
+    if (courseLive.current) {
+      const kinds = new Set(observation.events.map(event => event.kind));
+      const events: TrainingSignal[] = [];
+      if (kinds.has('gun')) events.push('gunFired');
+      if (kinds.has('torpedo')) events.push('torpedoFired');
+      if (kinds.has('illumination')) events.push('lightApplied');
+      if (observation.result) events.push('finished');
+      record(...events);
+    }
+    if (live && observation.variant === 'challenge' && observation.result?.primary) {
+      const id = challengeId.current;
+      const now = Date.now();
+      setPort((state) => recordChallengeClear(state, id, now));
     }
   }
   function learn(id: Lesson) {
-    if (!replay && o?.variant !== 'challenge' && o?.variant !== 'night') setPort((state) => recordLesson(state, id));
+    if (!replay && (!o?.variant || courseLive.current === 'day')) setPort((state) => recordLesson(state, id));
   }
   function resetDraft() { setEditMode(undefined); setWaypoints([]); setCruise(undefined); setPreview(undefined); setReformPreview(undefined); }
   function resetPanel() {
     setSession((value) => value + 1);
     resetDraft(); setFleetId(undefined); setShipId(undefined); setSuggestion(undefined);
     setTab('fleet'); setRunning(false); setReplay(undefined); setResultDismissed(false);
+    setNightTarget(''); setLightPreview(undefined);
     window.clearTimeout(noticeTimer.current);
     setNotice('');
     timeAccumulator.current = 0;
   }
   async function persist(toast = false) {
+    if (courseLive.current) return;
+    const id = challengeId.current;
     try {
-      const data = await ask<unknown>({ op: 'save' });
-      localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+      const data = await ask<Record<string, unknown>>({ op: 'save' });
+      localStorage.setItem(accountSaveKey, JSON.stringify(id && data.variant === 'challenge' ? { ...data, localChallengeId: id } : data));
       lastSave.current = clockTick.current;
       if (toast) hint('演习已保存，下次打开可继续。');
     } catch (error) { if (toast) hint('保存失败：' + errorText(error)); }
@@ -117,9 +164,13 @@ function App() {
     void (async () => {
       try {
         try {
-          const saved = localStorage.getItem(SAVE_KEY);
+          const saved = localStorage.getItem(accountSaveKey);
           if (saved) {
-            const observation = await ask<Observation>({ op: 'load', save: JSON.parse(saved) });
+            const { localChallengeId, ...save } = JSON.parse(saved);
+            const observation = await ask<Observation>({ op: 'load', save });
+            if (observation.variant === 'challenge' && typeof localChallengeId === 'string' && /^[0-9a-f-]{36}$/i.test(localChallengeId)) {
+              challengeId.current = localChallengeId;
+            }
             lastSave.current = observation.tick; update(observation); return;
           }
         } catch {
@@ -132,9 +183,13 @@ function App() {
     return () => window.clearTimeout(noticeTimer.current);
   }, []);
   useEffect(() => {
-    try { writePort(port); }
+    try { writePort(port, accountPortKey); }
     catch { hint('本机无法保存母港进度。'); }
   }, [port]);
+  useEffect(() => {
+    try { savePrologue(story, storyKey); }
+    catch { setPortError('本机无法保存序章进度。'); }
+  }, [story, storyKey]);
 
   useEffect(() => {
     if (!running || busy || finished) return;
@@ -154,7 +209,7 @@ function App() {
         : { op: 'step', seconds };
       void ask<Observation>(request).then((observation) => {
         if (disposed && replay) return;
-        update(observation);
+        update(observation, !replay);
         if (replay && observation.tick >= replay.end) setRunning(false);
         if (!replay && (observation.result || observation.tick - lastSave.current >= 20)) void persist();
       }, (error) => { if (!disposed) { hint(errorText(error)); setRunning(false); } }).finally(() => { inFlight.current = false; });
@@ -176,11 +231,24 @@ function App() {
     let active = true;
     const timer = window.setTimeout(() => {
       void ask<RoutePreview>({ op: 'preview_route', fleet: fleet.id, mode: editMode, points: waypoints, speed: cruise })
-        .then((value) => { if (active) setPreview(value); },
+        .then((value) => { if (active) {
+          setPreview(value);
+          if (value.valid && (editMode === 'sync' || waypoints.length >= 2)) record(editMode === 'follow' ? 'followPreview' : 'syncPreview');
+        } },
           (error) => { if (active) setPreview({ valid: false, paths: [], speed: cruise ?? fleet.speed, error: errorText(error) }); });
     }, 65);
     return () => { active = false; window.clearTimeout(timer); };
   }, [fleet?.id, editMode, waypoints, cruise, refreshAt, replay]);
+
+  useEffect(() => {
+    if (o?.variant !== 'night-training' || !selected || !nightTarget || !o.contacts.some(c => c.id === nightTarget) || replay) {
+      setLightPreview(undefined); return;
+    }
+    let active = true;
+    void ask<LightPreview>({ op: 'illumination_preview', ship: selected.id, target: nightTarget })
+      .then(value => { if (active) setLightPreview(value); }, error => { if (active) setLightPreview({ valid: false, error: errorText(error) }); });
+    return () => { active = false; };
+  }, [o?.variant, selected?.id, nightTarget, refreshAt, replay, o?.events.at(-1)?.id]);
 
   async function command(request: Request, after?: () => void) {
     if (replay || finished) return;
@@ -213,6 +281,7 @@ function App() {
     setReformPreview(undefined);
     setPreview(undefined);
     setEditMode(mode);
+    record(mode === 'follow' ? 'followMode' : 'syncMode');
   }
   async function checkReform() {
     if (!fleet) return;
@@ -241,6 +310,7 @@ function App() {
     setBusy(true); setRunning(false);
     try {
       const next = await ask<Observation>({ op: 'new', ...setup });
+      challengeId.current = undefined;
       resetPanel(); update(next); setDialog(false); setTraining(false); setPresetActive(false);
       await persist();
     } catch (error) { hint(errorText(error)); }
@@ -248,13 +318,13 @@ function App() {
   }
   async function oneStep() {
     if (busy || !o || o.result || inFlight.current) return;
-    if (running) setRunning(false);
+    if (running) { setRunning(false); record('paused'); }
     setBusy(true);
     try {
-      if (replay) update(await ask<Observation>({ op: 'replay', save: replay.data, tick: Math.min(replay.end, o.tick + 1) }));
+      if (replay) update(await ask<Observation>({ op: 'replay', save: replay.data, tick: Math.min(replay.end, o.tick + 1) }), false);
       else {
         const next = await ask<Observation>({ op: 'step', seconds: 1 });
-        update(next); if (next.result) void persist();
+        update(next); record('stepped'); if (next.result) void persist();
       }
     } catch (error) { hint(errorText(error)); }
     finally { setBusy(false); }
@@ -265,14 +335,14 @@ function App() {
     try {
       const data = await ask<unknown>({ op: 'save' });
       const initial = await ask<Observation>({ op: 'replay', save: data, tick: 0 });
-      setReplay({ data, end: o.tick }); update(initial); resetDraft();
+      setReplay({ data, end: o.tick }); update(initial, false); resetDraft();
     } catch (error) { hint(errorText(error)); }
     finally { setBusy(false); }
   }
   async function replayAt(tick: number) {
     if (!replay) return;
     setRunning(false);
-    try { update(await ask<Observation>({ op: 'replay', save: replay.data, tick })); }
+    try { update(await ask<Observation>({ op: 'replay', save: replay.data, tick }), false); }
     catch (error) { hint(errorText(error)); }
   }
   async function exitReplay() {
@@ -298,18 +368,67 @@ function App() {
     if (busy || (finished && !replay)) return;
     if (replay && o && o.tick >= replay.end) { void replayAt(0); return; }
     timeAccumulator.current = 0;
+    if (running) record('paused');
     setRunning((value) => !value);
   }
-  function openSetup() { setRunning(false); setSetup((current) => ({ ...current, variant: o?.variant === 'night' ? 'night' : '' })); setDialog(true); }
+  function openSetup() { setRunning(false); setSetup((current) => ({ ...current, variant: o?.variant === 'night' ? 'night' : o?.variant === 'radar' ? 'radar' : '' })); setDialog(true); }
+  async function startCourse(id: CourseId, side: Side = 'allies', leader?: StarterDDId) {
+    if (busy || !o || courseLive.current) return;
+    setBusy(true); setRunning(false); setPortError(undefined);
+    try {
+      savedExercise.current = await ask<unknown>({ op: 'save' });
+      const variant = id === 'night' ? 'night-training' : '';
+      const ddSlots = [0, 2, 3, 4];
+      const leaderSlot = leader ? ddSlots[Math.max(0, STARTER_DD_IDS.indexOf(leader)) % ddSlots.length] : 0;
+      const next = await ask<Observation>({ op: 'new', ...defaultSetup, side, variant, leaderSlot });
+      setEvidence({}); courseLive.current = id; setCourse(id);
+      resetPanel(); update(next); setPortOpen(false); setStoryOpen(false); setTraining(false); setPresetActive(false);
+    } catch (error) { setPortError(errorText(error)); }
+    finally { setBusy(false); }
+  }
+  async function leaveCourse(complete: boolean) {
+    const id = courseLive.current;
+    if (!id || busy || (complete && !trainingCourseDone(id, evidence))) return;
+    setRunning(false); setBusy(true);
+    try {
+      const saved = savedExercise.current;
+      const exercise = saved ? await ask<Observation>({ op: 'load', save: saved }) : await ask<Observation>({ op: 'new', ...defaultSetup });
+      courseLive.current = undefined; savedExercise.current = undefined;
+      resetPanel(); update(exercise); setCourse(undefined); setPortOpen(true);
+      if (id === 'day' || id === 'night') {
+        setSection('training');
+        if (complete) setPort(state => state.courses.includes(id) ? state : { ...state, courses: [...state.courses, id] });
+      } else {
+        setSection(undefined); setStoryOpen(true);
+        if (complete) setStory(progress => completePrologueBattle(progress, id));
+      }
+      void persist();
+    } catch (error) { hint('未能返回：' + errorText(error)); }
+    finally { setBusy(false); }
+  }
   async function launchFromHarbor(launch: PortLaunch) {
     setBusy(true); setPortError(undefined);
     try {
       const { training: isTraining, ...options } = launch;
       const next = await ask<Observation>({ op: 'new', ...defaultSetup, ...options });
-      resetPanel(); update(next); setPortOpen(false); setTraining(!!isTraining); setPresetActive(!isTraining && launch.variant !== 'night');
+      challengeId.current = options.variant === 'challenge' ? crypto.randomUUID() : undefined;
       await persist();
+      resetPanel(); update(next); setPortOpen(false); setTraining(!!isTraining); setPresetActive(!isTraining && launch.variant !== 'night');
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
+  }
+  function navigateLobby(value: LobbySection) {
+    const sections = { academy: 'training', campaign: 'archive', challenge: 'challenge', fleet: 'fleet', economy: 'recruit', activities: 'activities' } as const;
+    setPortError(undefined); setSection(sections[value]);
+  }
+  function openPort() {
+    if (courseLive.current) { void leaveCourse(false); return; }
+    setRunning(false); setPortError(undefined); setSection(undefined); setPortOpen(true);
+  }
+  function showTab(next: Tab) {
+    setTab(next);
+    if (next === 'fleet') record('fleetViewed');
+    if (next === 'log') record('reportViewed');
   }
   const tabs: { key: Tab; title: string }[] = [
     { key: 'fleet', title: '编队' }, { key: 'ship', title: '舰况' }, { key: 'ai', title: '战术 AI' }, { key: 'log', title: '战情' },
@@ -318,11 +437,38 @@ function App() {
     void command({ op: 'fire', ship, weapon, target, heading }, () => {
       hint('已下达' + aimAction[weapon] + '命令，执行进度见战情。');
       if (weapon === 'gun' || heading !== undefined) learn(weapon);
-      if (fleet?.ai.mode === 'auto' && fleet.ai[weapon]) learn('override');
+      if (weapon === 'gun') record('gunOrdered');
+      else record('torpedoAimed', 'torpedoOrdered', ...(heading === undefined ? [] : ['torpedoAdjusted' as const]));
+      if (fleet?.ai.mode === 'auto' && fleet.ai[weapon]) { learn('override'); record('override'); }
     });
   };
 
-  if (portOpen) return <Harbor state={port} change={setPort} onReturn={() => setPortOpen(false)} onLaunch={(options) => void launchFromHarbor(options)} busy={busy} error={portError} />;
+  if (portOpen) {
+    if (storyOpen) return <PrologueScene progress={story} onProgress={setStory} busy={busy || !o}
+      error={portError ?? loadError} claimed={port.prologueReward}
+      rewards={['同盟演习舰队（首次领取初始舰队时）', '补给币 2,000', '常驻券与 UP 券各 10 张（首次领取初始舰队时）']}
+      onBattle={(stage, leader) => void startCourse(stage, 'allies', leader)}
+      onFinish={() => { setPort(grantPrologue); setStoryOpen(false); }}
+      onExit={() => { setPortError(undefined); setStoryOpen(false); }} />;
+    if (section === 'activities') return <ActivityCenter state={port} change={setPort} onClose={() => setSection(undefined)} />;
+    if (section) return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onLaunch={(options) => void launchFromHarbor(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} />;
+    return <>
+      <GrowthPort state={port} onNavigate={navigateLobby} onHome={() => setMainMenu(true)}
+        onReplayPrologue={() => { setStoryOpen(true); setPortError(undefined); }}
+        onWatch={id => setPort(s => Object.hasOwn(hulls,id) && (s.owned[id as Hull] ?? 0) > 0 ? { ...s, watch: id as Hull } : s)} />
+      {mainMenu && <div className="dialog-backdrop" onClick={e=>{if(e.target===e.currentTarget)setMainMenu(false);}}>
+        <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="主菜单">
+          <h2>主菜单</h2><p className="field-note">当前指挥官：{profile.name}</p>
+          {loadError && <p role="alert">无法打开海图：{loadError}</p>}
+          <div className="actions">
+            <button type="button" onClick={()=>setMainMenu(false)}>返回母港</button>
+            <button type="button" className="primary" disabled={!o || busy} onClick={()=>{setMainMenu(false);setPortOpen(false);}}>继续演习</button>
+            <button type="button" onClick={onLogout}>退出登录</button>
+          </div>
+        </section>
+      </div>}
+    </>;
+  }
   if (!o) return <main className="startup">
     <Mark /><h1>海图指挥台</h1>
     <p>{loadError ? '无法开始演习：' + loadError : '正在打开演习海图…'}</p>
@@ -333,7 +479,7 @@ function App() {
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
   const editing = !!editMode && !replay && !finished;
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
-  return <main className={'command-shell' + (o.variant === 'night' ? ' night-exercise' : '')}>
+  return <main className={'command-shell' + (['night','night-training','radar'].includes(o.variant ?? '') ? ' night-exercise' : '')}>
     <header className="masthead">
       <div className="brand"><Mark /><div><span>CAS 战术演习</span><h1>海图指挥台</h1></div></div>
       <div className="exercise-label"><span className="live-dot" data-active={running} />
@@ -349,8 +495,8 @@ function App() {
         )}</div>
       </div>
       <div className="header-actions">
-        <button type="button" className="new-exercise" onClick={openSetup} aria-label="演习设置">演习设置</button>
-        <button type="button" className="harbor-link" onClick={() => { setRunning(false); setPortError(undefined); setPortOpen(true); }}>母港</button>
+        {!course && <button type="button" className="new-exercise" onClick={openSetup} aria-label="演习设置">演习设置</button>}
+        <button type="button" className="harbor-link" disabled={busy} onClick={openPort}>{course ? '退出课程' : '母港'}</button>
       </div>
     </header>
     <div className="workspace">
@@ -359,7 +505,9 @@ function App() {
           observation={o} fleet={fleet} selected={selected?.id} disabled={busy || !!replay || finished}
           session={session} running={running} speed={speed} replaying={!!replay}
           editing={editing} waypoints={waypoints} preview={preview} reformPreview={reformPreview} onSelect={selectShip} onAddPoint={addPoint}
-          onMovePoint={movePoint} onFire={fire} onCancelFire={() => learn('cancel')} onHint={hint}
+          onMovePoint={movePoint} onFire={fire} onCancelFire={() => { learn('cancel'); record('fireCancelled'); }} onHint={hint}
+          onInspectMap={course ? () => record('mapViewed') : undefined}
+          onInspectContact={course === 'night' ? (id) => { setNightTarget(id); record('contactViewed'); } : undefined}
         />
         <div className="signal-strip">
           <span className="side-tag">{sideNames[o.side]}</span>
@@ -368,13 +516,13 @@ function App() {
             {training ? nextLesson ? '实操 · ' + nextLesson.detail : '实操完成 · 回母港领取初始舰队。' :
               latest[0] ? clock(latest[0].tick) + '  ' + latest[0].text : '出航后，命令与战斗事件会记入战情。'}
           </span>
-          <button type="button" className="text-button" onClick={() => setTab('log')}>战情记录</button>
+          <button type="button" className="text-button" onClick={() => showTab('log')}>战情记录</button>
         </div>
         {replay && <div className="replay-bar">
           <b>重演</b><input type="range" min={0} max={Math.max(1, replay.end)} value={o.tick} aria-label="重演时间" onChange={(event) => void replayAt(Number(event.target.value))} />
           <span>{clock(o.tick)}</span><button type="button" onClick={() => void exitReplay()}>返回现局</button>
         </div>}
-        {!replay && finished && !resultDismissed && <div className="result-screen">
+        {!course && !replay && finished && !resultDismissed && <div className="result-screen">
           <div className="result-card">
             <p>{o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
             <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>
@@ -387,9 +535,25 @@ function App() {
       </section>
       <aside className="staff-panel" aria-label="指挥面板">
         <nav className="staff-tabs" aria-label="面板">{tabs.map(({ key, title }) =>
-          <button key={key} type="button" aria-pressed={tab === key} onClick={() => setTab(key)}>{title}</button>
+          <button key={key} type="button" aria-pressed={tab === key} onClick={() => showTab(key)}>{title}</button>
         )}</nav>
         <div className="staff-scroll">
+          {course && <TrainingCoach course={course} evidence={evidence}
+            onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
+          {course && finished && !trainingCourseDone(course, evidence) && <p className="inline-warning">演习已结束。退出后可重新开始本课。</p>}
+          {o.variant === 'night-training' && !replay && <section className="night-tools" aria-label="照明">
+            <h3>照明弹 <small>{selected?.name}</small></h3>
+            <label>可见接触 <select value={o.contacts.some(c => c.id === nightTarget) ? nightTarget : ''}
+              onChange={event => { setLightPreview(undefined); setNightTarget(event.target.value); if (event.target.value) record('contactViewed'); }}>
+              <option value="">{o.contacts.length ? '选择接触' : '尚无目视接触'}</option>
+              {o.contacts.map(c => <option key={c.id} value={c.id}>{c.name ? c.name + ' · ' : ''}{c.id}</option>)}
+            </select></label>
+            {lightPreview?.error && <p className="field-note">{lightPreview.error}</p>}
+            <button type="button" disabled={busy || finished || !selected || !lightPreview?.valid}
+              onClick={() => selected && void command({ op: 'illuminate', ship: selected.id, target: nightTarget }, () => {
+                setLightPreview(undefined); record('lightAccepted'); hint('照明弹已下令；等待火力窗口。');
+              })}>下达照明弹{lightPreview?.valid && lightPreview.mount !== undefined ? ' · 炮座 ' + (lightPreview.mount + 1) : ''}</button>
+          </section>}
           {tab === 'fleet' && fleet && <>
             <div className="group-heading">
               {o.fleets.length > 1 ? <select aria-label="选择编队" value={fleet.id} onChange={(event) => { setFleetId(Number(event.target.value)); setShipId(undefined); resetDraft(); setSuggestion(undefined); }}>
@@ -410,11 +574,13 @@ function App() {
                 {preview?.error && <p className="inline-warning">{preview.error}</p>}
                 <div className="route-tools">
                   <button type="button" disabled={!waypoints.length} onClick={() => { setPreview(undefined); setWaypoints((list) => list.slice(0, -1)); }}>撤销一点</button>
-                  <button type="button" onClick={resetDraft}>取消草稿</button>
+                  <button type="button" onClick={() => { if (waypoints.length && editMode === 'follow') record('draftCancelled'); resetDraft(); }}>取消草稿</button>
                   <button type="button" className="primary" disabled={!preview?.valid || !waypoints.length}
                     onClick={() => void command({ op: 'route', fleet: fleet.id, mode: editMode, points: waypoints, speed: cruise }, () => {
-                      if (editMode === 'sync' || (editMode === 'follow' && waypoints.length >= 2)) learn(editMode);
-                      if (fleet.ai.mode === 'auto' && fleet.ai.move) learn('override');
+                      if (editMode === 'sync' || (editMode === 'follow' && waypoints.length >= 2)) {
+                        learn(editMode); record(editMode === 'follow' ? 'followAccepted' : 'syncAccepted');
+                      }
+                      if (fleet.ai.mode === 'auto' && fleet.ai.move) { learn('override'); record('override'); }
                       resetDraft(); hint('新航线已下达。');
                     })}>下达航线</button>
                 </div>
@@ -443,7 +609,7 @@ function App() {
                 <button type="button" onClick={() => setTab('ship')}>舰体示意</button>
                 {selected.hp > 0 && selected.id !== fleet.leader && !replay && !finished && <>
                   <button type="button" onClick={() => void command({ op: 'lead', fleet: fleet.id, ship: selected.id }, () => {
-                    learn('lead'); hint('已更换领舰。若领舰不在队首，可先重整或选回队首舰。');
+                    learn('lead'); record('lead'); hint('已更换领舰。若领舰不在队首，可先重整或选回队首舰。');
                   })}>设为领舰</button>
                   <button type="button" onClick={() => void command({ op: 'detach', fleet: fleet.id, ship: selected.id }, () => hint('该舰已脱离编队。'))}>脱队</button>
                 </>}
@@ -451,7 +617,12 @@ function App() {
             </section>
           </>}
           {tab === 'fleet' && !fleet && <p className="empty-state">当前没有可指挥编队。</p>}
-          {tab === 'ship' && (selected ? <ShipSchematic ship={selected} ships={o.ships} select={selectShip} /> :
+          {tab === 'ship' && (selected ? <><ShipSchematic ship={selected} ships={o.ships} select={selectShip} />
+            {!!selected.systems?.radars?.length && <section className="night-tools" aria-label="舰上雷达">
+              <h3>舰上雷达</h3>{selected.systems.radars.map(set => <button key={set.id} type="button"
+                aria-pressed={set.powered} disabled={set.disabled || finished || !!replay}
+                onClick={() => void command({ op: 'radar_set', ship: selected.id, radar: set.id, powered: !set.powered })}>{set.name} · {set.disabled ? '失能' : set.powered ? '开启' : '关闭'}</button>)}
+            </section>}</> :
             <p className="empty-state">本席没有可查看的舰艇。</p>)}
           {tab === 'ai' && fleet && <section className="ai-panel">
             <div className="group-heading"><h2>战术指挥官</h2><span>{fleet.name}</span></div>
@@ -493,7 +664,7 @@ function App() {
         </div>
         <footer className="staff-footer">
           <span>{replay ? '复盘模式' : '离线演习'}</span>
-          <button type="button" className="text-button" disabled={!!replay || busy} onClick={() => void persist(true)}>保存进度</button>
+          {!course && <button type="button" className="text-button" disabled={!!replay || busy} onClick={() => void persist(true)}>保存进度</button>}
         </footer>
       </aside>
     </div>
@@ -501,7 +672,7 @@ function App() {
       <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="演习设置">
         <p>虚构水面演习</p><h2>重新部署舰队</h2>
         <label>演习时段 <select value={setup.variant} onChange={(event) => setSetup({ ...setup, variant: event.target.value as typeof setup.variant })}>
-          <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option>
+          <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option><option value="radar">1943 夜间雷达演习</option>
         </select></label>
         <label>所属方 <select value={setup.side} onChange={(event) => setSetup({ ...setup, side: event.target.value as Side })}>
           <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
@@ -518,4 +689,9 @@ function App() {
   </main>;
 }
 
-createRoot(document.getElementById('root')!).render(<App />);
+function Entry() {
+  const [profile,setProfile]=useState<LocalProfile>();
+  return profile ? <App key={profile.id} profile={profile} onLogout={()=>{closeSession();setProfile(undefined);}} /> : <Login onLogin={setProfile} />;
+}
+
+createRoot(document.getElementById('root')!).render(<Entry />);

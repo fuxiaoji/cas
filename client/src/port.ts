@@ -1,6 +1,6 @@
 import type { Profile, Side } from './engine';
 
-const KEY = 'cas.harbor.progress.v1';
+export const PORT_KEY = 'cas.harbor.progress.v1';
 const MAX_HISTORY = 20;
 export const hulls = {
   fletcher: { name: '弗莱彻级', side: 'allies', kind: '驱逐舰', max: 4 },
@@ -31,34 +31,55 @@ export interface PortState {
   version: 1; lessons: Lesson[]; starter: boolean; challengeClear: boolean; challengeClaim: boolean;
   wallet: Wallet; marks: number; pity: Wallet; owned: Partial<Record<Hull, number>>;
   profiles: Profile[]; preset: FleetPreset; upSide: Side; sequence: number; history: Draw[];
+  credits: number; watch?: Hull; courses: string[]; attendance: number[];
+  prologueReward?: boolean;
+  challengeReceipts: Record<string, { time: number; first: boolean; claimed: boolean }>;
+  weeklySupply?: string; weeklyTicket?: string;
 }
 export type PortLaunch = { side: Side; profile: Profile; leaderSlot: number; variant?: 'challenge' | 'night'; training?: boolean };
 function fresh(): PortState {
   return { version: 1, lessons: [], starter: false, challengeClear: false, challengeClaim: false,
     wallet: { standard: 0, up: 0 }, marks: 0, pity: { standard: 0, up: 0 }, owned: {},
-    profiles: ['coord'], preset: { side: 'allies', leaderSlot: 0, profile: 'coord' }, upSide: 'axis', sequence: 0, history: [] };
+    profiles: ['coord'], preset: { side: 'allies', leaderSlot: 0, profile: 'coord' }, upSide: 'axis', sequence: 0, history: [],
+    credits: 0, courses: [], attendance: [], challengeReceipts: {} };
 }
 function nonnegative(value: unknown) { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0; }
-export function loadPort(): PortState {
+export function loadPort(key = PORT_KEY): PortState {
   try {
-    const s = JSON.parse(localStorage.getItem(KEY) ?? 'null') as PortState | null;
+    const s = JSON.parse(localStorage.getItem(key) ?? 'null') as PortState | null;
     if (!s || s.version !== 1 || !Array.isArray(s.lessons) || !Array.isArray(s.history) || !Array.isArray(s.profiles) ||
       !s.preset || !['allies', 'axis'].includes(s.preset.side) || !nonnegative(s.preset.leaderSlot) || s.preset.leaderSlot > 4 ||
       !s.owned || !s.wallet || !s.pity || !nonnegative(s.wallet.standard) || !nonnegative(s.wallet.up) ||
       !nonnegative(s.pity.standard) || !nonnegative(s.pity.up) || !nonnegative(s.marks) || !nonnegative(s.sequence)) return fresh();
-    return { ...s, upSide: s.upSide === 'allies' || s.upSide === 'axis' ? s.upSide : s.preset.side === 'allies' ? 'axis' : 'allies' };
+    const owned = Object.fromEntries((Object.keys(hulls) as Hull[]).filter(id => nonnegative(s.owned[id])).map(id => [id, Math.min(hulls[id].max, s.owned[id] ?? 0)]));
+    const challengeReceipts = Object.fromEntries(Object.entries(s.challengeReceipts ?? {}).filter(([id, row]) =>
+      /^[0-9a-f-]{36}$/i.test(id) && row && nonnegative(row.time) && typeof row.first === 'boolean' && typeof row.claimed === 'boolean'));
+    return { ...s, owned, challengeReceipts, credits: nonnegative(s.credits) ? s.credits : 0,
+      courses: Array.isArray(s.courses) ? [...new Set(s.courses.filter(v => typeof v === 'string'))] : [],
+      attendance: Array.isArray(s.attendance) ? [...new Set(s.attendance.filter(nonnegative))].sort((a,b)=>a-b).slice(0,7) : [],
+      watch: s.watch && Object.hasOwn(hulls, s.watch) ? s.watch : undefined,
+      upSide: s.upSide === 'allies' || s.upSide === 'axis' ? s.upSide : s.preset.side === 'allies' ? 'axis' : 'allies' };
   } catch { return fresh(); }
 }
-export function writePort(s: PortState) { localStorage.setItem(KEY, JSON.stringify(s)); }
+export function writePort(s: PortState, key = PORT_KEY) { localStorage.setItem(key, JSON.stringify(s)); }
 export function recordLesson(s: PortState, id: Lesson): PortState {
   return s.lessons.includes(id) ? s : { ...s, lessons: [...s.lessons, id] };
 }
 export function receiveStarter(s: PortState, side: Side): PortState {
   if (s.starter || !lessons.every(({ id }) => s.lessons.includes(id))) return s;
+  return starterFleet(s, side);
+}
+function starterFleet(s: PortState, side: Side): PortState {
   const owned = { ...s.owned };
   for (const hull of rosters[side]) owned[hull] = Math.min(hulls[hull].max, (owned[hull] ?? 0) + 1);
   return { ...s, starter: true, owned, preset: { ...s.preset, side, leaderSlot: 0 }, upSide: side === 'allies' ? 'axis' : 'allies',
     wallet: { standard: s.wallet.standard + 10, up: s.wallet.up + 10 } };
+}
+export function grantPrologue(s: PortState): PortState {
+  if (s.prologueReward) return s;
+  const next = s.starter ? s : starterFleet(s, 'allies');
+  return { ...next, credits: next.credits + 2000, prologueReward: true,
+    courses: next.courses.includes('prologue') ? next.courses : [...next.courses, 'prologue'] };
 }
 export function meetsRoster(s: PortState, side: Side, challenge = false) {
   const needed: Partial<Record<Hull, number>> = {};

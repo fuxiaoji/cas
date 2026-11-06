@@ -1,0 +1,16 @@
+.campaign-archive .campaign-controls { align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 8px 14px; }
+.campaign-archive .war-side-tabs { display: flex; gap: 5px; }
+.campaign-archive .war-side-tabs button { padding: 5px 10px; min-height: 32px; }
+.campaign-archive .war-side-tabs button[aria-pressed="true"] { color: #f6deb3; border-color: #c09c64; }
+.campaign-archive .archive-difficulty { font-size: 11px; color: var(--muted); margin: 0 0 7px; }
+.archive-source { display: grid; gap: 8px; padding: 8px 9px; margin-top: 3px; border: 1px solid #49616b; background: #132a37; }
+.archive-source h4 { margin: 0 0 5px; font-size: 12px; color: #e1d6b7; }
+.archive-source p, .archive-source ul { margin: 0; }
+.archive-source ul { padding-inline-start: 18px; }
+.archive-source .archive-sides { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+.archive-source .archive-sides section { padding: 6px 7px; border-left: 2px solid #66898b; overflow-wrap: anywhere; }
+.archive-source .archive-sides section + section { border-color: #ab8265; }
+.archive-source dl { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 3px 8px; margin: 6px 0 0; }
+.archive-source dt { color: #dfc693; }
+.archive-source dd { margin: 0; }
+@media (max-width: 540px) { .archive-source .archive-sides { grid-template-columns: 1fr; } }

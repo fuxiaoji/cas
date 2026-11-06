@@ -151,6 +151,46 @@ internal static class Program
           let worker;
           const send = data => chrome.webview.postMessage({ type: 'cas_native_smoke', ...data });
           try {
+            const button = label => [...document.querySelectorAll('button')].find(b =>
+              b.textContent.trim() === label || b.getAttribute('aria-label') === label);
+            const waitFor = async (description, check, ms = 8000) => {
+              const deadline = Date.now() + ms;
+              for (;;) {
+                const value = check();
+                if (value) return value;
+                if (Date.now() >= deadline) throw Error('Timed out waiting for ' + description);
+                await new Promise(resolve => setTimeout(resolve, 75));
+              }
+            };
+            const field = (id, value) => {
+              const input = document.getElementById(id);
+              Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, value);
+              input.dispatchEvent(new Event('input', { bubbles: true }));
+            };
+            await waitFor('the local account login', () => document.querySelector('main.login-screen'));
+            const user = 'CASSmokeWindows';
+            const password = 'CAS offline smoke 2026';
+            button('新用户，创建账号').click();
+            await waitFor('the registration form', () => button('注册并进入母港'));
+            field('account-username', user);
+            field('account-password', password);
+            button('注册并进入母港').click();
+            await waitFor('the authenticated harbor', () => document.querySelector('.growth-campaign-entry'));
+            const localProfile = JSON.parse(localStorage.getItem('cas.accounts.local.v1')).find(record => record.name === user);
+            if (!localProfile?.id || localProfile.verifier === password) throw Error('The offline account was not stored as a verifier.');
+            document.querySelector('.growth-campaign-entry').click();
+            await waitFor('16 allied campaign stages', () => document.querySelectorAll('[data-stage-id^="CAMP-ALLIES-"]').length === 16);
+            document.querySelector('[data-stage-id="CAMP-ALLIES-03"] summary').click();
+            await waitFor('Cape St. George primary source in the UI', () => document.querySelector('[data-source-stage="CAMP-ALLIES-03"]'));
+            button('轴心战线').click();
+            await waitFor('16 Axis stages and their Cape record', () => document.querySelectorAll('[data-stage-id^="CAMP-AXIS-"]').length === 16 &&
+              document.querySelector('[data-source-stage="CAMP-AXIS-03"]'));
+            button('返回母港').click();
+            (await waitFor('main harbor controls', () => button('打开主菜单'))).click();
+            (await waitFor('continue exercise', () => {
+              const next = button('继续演习');
+              return next && !next.disabled && next;
+            })).click();
             worker = new Worker(new URL('./engine-worker.js', document.baseURI));
             let id = 0;
             const request = payload => new Promise((resolve, reject) => {
@@ -193,7 +233,8 @@ internal static class Program
             if (night.variant !== 'night' || night.ships?.length !== 5) throw Error('The offline night exercise did not start.');
             const campaign = await request({ op: 'campaign' });
             const rows = campaign.scenarios;
-            if (rows?.length !== 16 || rows.some(row => row.playable !== false)) throw Error('The offline historical catalogue did not load.');
+            if (rows?.length !== 16 || rows.some(row => row.playable !== false) ||
+              rows.filter(row => row.cas?.import).length !== 11) throw Error('The offline historical catalogue did not load.');
             const ready = () => document.querySelector('canvas') && document.querySelectorAll('[data-ship]').length === 5;
             const deadline = Date.now() + 8000;
             while (!ready() && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 75));
@@ -206,21 +247,23 @@ internal static class Program
             while (!readyPortrait() && Date.now() < portraitDeadline) await new Promise(resolve => setTimeout(resolve, 75));
             const portrait = readyPortrait();
             if (!portrait) throw Error('The packaged ship status portrait did not load offline.');
-            const harborButton = [...document.querySelectorAll('button')].find(button => button.textContent.trim() === '母港');
-            let harborNavigation = false;
-            if (harborButton) {
-              harborButton.click();
-              await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-              const back = [...document.querySelectorAll('button')].find(button => button.textContent.trim() === '返回海图');
-              if (!back || !document.body.textContent.includes('本机征募')) throw Error('The packaged harbor did not render.');
-              back.click();
-              harborNavigation = true;
+            (await waitFor('battle return to harbor', () => button('母港'))).click();
+            (await waitFor('harbor menu after the exercise', () => button('打开主菜单'))).click();
+            (await waitFor('logout action', () => button('退出登录'))).click();
+            await waitFor('login after logout', () => document.querySelector('main.login-screen'));
+            field('account-username', user);
+            field('account-password', password);
+            button('登录并进入母港').click();
+            await waitFor('login restoring the same profile', () => document.querySelector('.growth-campaign-entry'));
+            if (!localStorage.getItem('cas.profile.' + localProfile.id + '.cas.exercise.autosave.v1')) {
+              throw Error('The exercise was not stored under the local account.');
             }
             const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(moved)));
             const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
             send({ ok: true, version: info.version, scenario: info.scenario, tickBefore: start.tick, tickAfter: after.tick,
               ownShips: count, savedTick: moved.tick, replayTick: replay.tick, saveReplayMatch: true, stateSha256,
-              battleMapRendered: true, harborNavigation, nightExerciseStarted: true, historicalCatalogueRows: rows.length,
+              battleMapRendered: true, harborNavigation: true, nightExerciseStarted: true, historicalCatalogueRows: rows.length,
+              historicalStageIds: 32, historicalSourceRecords: 11, offlineLocalAccountRoundtrip: true,
               shipPortrait: portrait.closest('[data-character]').dataset.character,
               viewport: [innerWidth, innerHeight] });
           } catch (e) {

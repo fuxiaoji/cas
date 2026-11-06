@@ -1,0 +1,73 @@
+.prologue-scene {
+  --pg-ink: #e7eef0; --pg-sand: #e4c38e; --pg-mist: #b8ced2;
+  display: grid; grid-template-rows: auto minmax(0,1fr); width: 100%; height: 100%; color: var(--pg-ink); background: #091928;
+}
+.prologue-header { min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 22px; background: #102737; border-bottom: 1px solid #54717a; }
+.prologue-wordmark { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+.prologue-wordmark > span { font-size: 11px; color: var(--pg-sand); }
+.prologue-wordmark > strong { color: var(--pg-ink); font: 700 23px/1.2 var(--serif); letter-spacing: .09em; }
+.prologue-wordmark > small { color: var(--pg-mist); font-size: 11px; }
+.prologue-header nav { display: flex; gap: 6px; }
+.prologue-deck { position: relative; isolation: isolate; min-height: 0; overflow: hidden; }
+.prologue-backdrop { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; }
+.prologue-deck::after { content: ''; position: absolute; z-index: -1; inset: 45% 0 0; pointer-events: none; background: linear-gradient(transparent, #061524e5); }
+.prologue-film { position: absolute; inset: 0; overflow: hidden; background: #0b203198; }
+.prologue-film-map { position: absolute; inset: 0 0 72px; pointer-events: none; }
+.prologue-film-map .battle-map { height: 100%; }
+.prologue-film-map .map-tools, .prologue-film-map .map-legend, .prologue-film-map .map-note { display: none; }
+.prologue-film-strip { position: absolute; inset: 12px 15px auto auto; display: flex; align-items: center; gap: 8px; }
+.prologue-film-strip span { padding: 5px 7px; color: #d3e7e5; border: 1px solid #5b777b; background: #102b37df; font-size: 11px; }
+.prologue-film-strip time { margin-left: 6px; color: #f0d3a3; font-family: var(--numbers); }
+.prologue-film-message { position: absolute; top: 31%; left: 8%; max-width: 70%; color: #c4d9d9; font-size: 13px; }
+.prologue-cinematic { position: absolute; inset: auto 0 0; min-height: 116px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 14px clamp(15px,5vw,68px) 18px; background: linear-gradient(transparent, #061723 40%); }
+.prologue-cinematic h1 { color: #f5dcac; font: 700 clamp(22px,4vw,48px)/1.2 var(--serif); margin: 2px 0 5px; letter-spacing: .11em; }
+.prologue-cinematic p { color: #c1d7db; font-size: 13px; }
+.prologue-cinematic span, .prologue-note > span { color: #d8bd86; font-size: 11px; }
+.prologue-cinematic button { flex: none; }
+.prologue-speaker-art { position: absolute; left: clamp(6px,7vw,135px); bottom: -20%; height: min(121%, 760px); width: 48%; object-fit: contain; object-position: center bottom; pointer-events: none; filter: drop-shadow(0 12px 28px #010a11a8); }
+.prologue-speaker-art.destroyer { height: min(104%, 645px); bottom: -16%; }
+.prologue-dialogue { position: absolute; inset: auto clamp(10px,5vw,62px) clamp(10px,4vh,36px); min-height: 138px; padding: 14px 17px 42px; border: 1px solid #6d8589; border-left: 3px solid #dcb985; background: #0d2534f7; box-shadow: 0 12px 26px #06132185; }
+.prologue-dialogue h2 { color: #edc991; font: 700 19px/1.2 var(--serif); margin: 0 0 9px; }
+.prologue-dialogue p { max-width: 68ch; font-size: clamp(14px, 1.55vw, 19px); color: #edf3ee; line-height: 1.65; overflow-wrap: anywhere; }
+.prologue-next { position: absolute; right: 12px; bottom: 9px; color: #ebca95; }
+.prologue-answers { display: flex; flex-wrap: wrap; gap: 5px 7px; margin: 12px 0 -29px; }
+.prologue-answers button { color: #e8ddd0; border-color: #6c8891; }
+.prologue-note { position: absolute; right: 8%; top: 19%; width: min(49%, 510px); max-height: 76%; overflow: auto; padding: clamp(15px,3vw,34px); background: #102b3deb; border: 1px solid #597681; border-top: 2px solid #b9915e; }
+.prologue-note h1 { color: #efcf94; font: 700 clamp(20px, 4vw, 49px)/1.18 var(--serif); margin: 8px 0 11px; }
+.prologue-note p { color: #d6e4e4; font-size: clamp(12px,1.55vw,17px); line-height: 1.6; margin-bottom: 16px; }
+.prologue-exercise { right: 0; left: 0; top: 0; bottom: 0; width: min(75%, 510px); margin: auto; height: fit-content; text-align: left; }
+.prologue-roster { position: absolute; inset: 5% 7%; display: grid; grid-template-rows: auto minmax(0,1fr) auto; gap: 11px; justify-items: center; align-items: stretch; }
+.prologue-roster > div:first-child { text-align: center; }
+.prologue-roster h1 { color: #efcf94; font: 700 clamp(20px, 3vw, 37px)/1.2 var(--serif); }
+.prologue-roster p { color: #d6e4e4; font-size: 12px; margin-top: 4px; }
+.prologue-roster-list { width: 100%; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 6px; min-height: 0; }
+.prologue-character { display: grid; grid-template-rows: minmax(0,1fr) auto auto; justify-items: center; align-items: center; gap: 2px; padding: 5px; min-height: 0; background: #122e40bd; border-color: #67828d; }
+.prologue-character[aria-pressed=true] { border-color: #e5c08c; box-shadow: inset 0 -3px #dcba7f; background: #274450f4; }
+.prologue-character img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.prologue-character strong { color: #efcf94; font-size: 13px; }
+.prologue-character small { color: #bbd2d4; font-size: 10px; }
+.prologue-victory { position: absolute; inset: 0; display: flex; align-items: flex-end; overflow: auto; }
+.prologue-victory > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 43%; z-index: -1; }
+.prologue-victory-text { width: min(100%, 840px); min-height: 155px; padding: 12px 6vw 20px; background: linear-gradient(90deg,#071c2bf5 10%,#071c2ba3 66%,transparent); }
+.prologue-victory-text h1 { color: #f3d39c; font: 700 clamp(22px, 4vw, 52px)/1.2 var(--serif); margin: 3px 0 6px; }
+.prologue-victory-text > span, .prologue-victory-text p { color: #e5ece6; font-size: 12px; margin-bottom: 8px; }
+.prologue-victory-text ul { display: flex; flex-wrap: wrap; gap: 4px 9px; list-style: none; padding: 0; margin: 5px 0 9px; }
+.prologue-victory-text li { color: #ead3a5; font-size: 11px; }
+.prologue-victory-text .prologue-reward-note { color: #bdd0cf; font-size: 10px; margin-bottom: 3px; }
+.prologue-error { position: absolute; bottom: 8px; right: 7px; max-width: 43%; padding: 5px 7px; z-index: 2; color: #ffd6b9; background: #512d2b; font-size: 12px; }
+@media(max-height: 510px) {
+  .prologue-header { min-height: 43px; padding: 3px 9px; }
+  .prologue-wordmark > strong { font-size: 18px; }
+  .prologue-header button, .prologue-deck button { min-height: 28px; }
+  .prologue-speaker-art { bottom: -25%; height: 135%; width: 52%; }
+  .prologue-speaker-art.destroyer { height: 117%; bottom: -19%; }
+  .prologue-dialogue { min-height: 109px; padding: 9px 10px 36px; }
+  .prologue-dialogue h2 { font-size: 15px; margin-bottom: 3px; }
+  .prologue-answers { margin-top: 6px; margin-bottom: -25px; }
+  .prologue-note { top: 10%; }
+  .prologue-exercise { top: 0; }
+  .prologue-cinematic { min-height: 88px; padding-bottom: 8px; }
+  .prologue-cinematic p { font-size: 11px; }
+  .prologue-roster { gap: 5px; }
+  .prologue-victory-text { min-height: 0; padding-block: 8px; }
+}

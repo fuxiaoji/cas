@@ -13,6 +13,7 @@ export interface ShipSystems {
   guns: { index: number; barrels: number; destroyed: boolean; arc?: [number, number]; arc2?: [number, number] | null; bearing?: number | null }[];
   tubes: { index: number; tubes: number; spent: boolean }[];
   directorDamaged: boolean; engineeringLevels: number; fires: number; floods: number; maxSpeed: number;
+  radars?: { id: string; name: string; powered: boolean; disabled: boolean }[];
 }
 export interface Shell extends Point {
   id: number; heading: number; progress: number; from?: Point; to?: Point;
@@ -20,6 +21,7 @@ export interface Shell extends Point {
 }
 export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number }
 export interface Contact extends Position { id: string; kind?: string; name?: string }
+export interface RadarContact extends Point { id: string; lastSeenTick: number; direct: boolean; usableForShipIds: number[]; shared?: (Point & { lastSeenTick: number }) | null }
 export interface Path { ship: number; points: Point[] }
 export interface AiConfig {
   profile: Profile; mode: 'manual' | 'suggest' | 'auto'; move: boolean; gun: boolean; torpedo: boolean;
@@ -34,6 +36,8 @@ export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;
   variant?: string; settling?: boolean;
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
+  radarContacts?: RadarContact[];
+  illuminations?: (Point & { radius: number; expires: number; own: boolean })[];
   torpedoes: Torpedo[]; shells?: Shell[];
   events: LogEvent[]; result: Result | null; islands: Point[][];
 }
@@ -53,6 +57,12 @@ export const maneuverNames: Record<Maneuver, string> = { follow: '领舰移动',
 let worker: Worker | undefined;
 let sequence = 0;
 const pending = new Map<number, { resolve: (value: unknown) => void; reject: (error: Error) => void }>();
+
+export function closeSession() {
+  worker?.terminate(); worker = undefined;
+  for (const request of pending.values()) request.reject(new Error('指挥官已退出登录。'));
+  pending.clear();
+}
 
 export function ask<T>(request: Request): Promise<T> {
   if (!worker) {

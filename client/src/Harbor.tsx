@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { CampaignArchive } from './CampaignArchive';
+import { buyWeeklyTicket, CHALLENGE_WEEKLY_LIMIT, CHALLENGE_WEEKLY_TICKETS, claimRepeat, claimWeeklySupply, WEEKLY_TICKET_PRICE, weeklyStatus } from './activities/week';
 import { profileNames, sideNames } from './engine';
 import type { Profile, Side } from './engine';
 import { drawRecruit, getGunnery, hulls, lessons, meetsRoster, receiveChallenge, receiveStarter, rosters } from './port';
 import type { Hull, PortLaunch, PortState } from './port';
 import './harbor.css';
 
-type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge' | 'archive';
+export type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge' | 'archive';
 type Props = { state: PortState; change: (reducer: (current: PortState) => PortState) => void;
-  onReturn: () => void; onLaunch: (options: PortLaunch) => void; busy: boolean; error?: string };
+  onReturn: () => void; onLaunch: (options: PortLaunch) => void; onCourse: (id: 'day' | 'night', side?: Side) => void;
+  busy: boolean; error?: string; initialTab?: HarborTab };
 const tabs: { id: HarborTab; name: string }[] = [
   { id: 'training', name: '舰桥学堂' }, { id: 'fleet', name: '舰库与编队' },
   { id: 'recruit', name: '本机征募' }, { id: 'challenge', name: '越级挑战' },
@@ -34,10 +36,12 @@ function HarborArt() {
   </svg>;
 }
 
-export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props) {
-  const [tab, setTab] = useState<HarborTab>('training');
+export function Harbor({ state, change, onReturn, onLaunch, onCourse, busy, error, initialTab = 'training' }: Props) {
+  const [tab, setTab] = useState<HarborTab>(initialTab);
   const [starterSide, setStarterSide] = useState<Side>(state.preset.side);
   const [pool, setPool] = useState<'standard' | 'up'>('standard');
+  const [economy, setEconomy] = useState<'recruit' | 'supply' | 'ai'>('recruit');
+  const week = weeklyStatus(state);
   const nextLesson = lessons.find(({ id }) => !state.lessons.includes(id));
   const { preset } = state;
   const canDeploy = state.starter && meetsRoster(state, preset.side);
@@ -48,9 +52,9 @@ export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props
     <header className="harbor-head">
       <div><span>CAS 舰队勤务</span><h1>母港</h1></div>
       <div className="harbor-wallet">
-        <span>常驻券 <b>{state.wallet.standard}</b></span><span>UP 券 <b>{state.wallet.up}</b></span><span>舰队勋章 <b>{state.marks}</b></span>
+        <span>补给币 <b>{state.credits.toLocaleString()}</b></span><span>常驻券 <b>{state.wallet.standard}</b></span><span>UP 券 <b>{state.wallet.up}</b></span><span>舰队勋章 <b>{state.marks}</b></span>
       </div>
-      <button type="button" onClick={onReturn} disabled={busy}>返回海图</button>
+      <button type="button" onClick={onReturn} disabled={busy}>返回母港</button>
     </header>
     <div className="harbor-body">
       <nav className="harbor-tabs" aria-label="母港区域">
@@ -71,7 +75,8 @@ export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props
             {!state.starter && <label>初始阵营 <select value={starterSide} onChange={(event) => setStarterSide(event.target.value as Side)}>
               <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
             </select></label>}
-            {nextLesson && <button type="button" className="primary" disabled={busy} onClick={() => onLaunch({ side: starterSide, profile: 'coord', leaderSlot: 0, training: true })}>进入实操演习</button>}
+            <button type="button" className="primary" disabled={busy} onClick={() => onCourse('day', starterSide)}>{state.courses.includes('day') ? '复习昼间实操' : '进入实操演习'}</button>
+            <button type="button" disabled={busy} onClick={() => onCourse('night')}>{state.courses.includes('night') ? '复习夜战教学' : '夜战教学'}</button>
             <button type="button" className={!nextLesson && !state.starter ? 'primary' : ''} disabled={!!nextLesson || state.starter}
               onClick={() => change((s) => receiveStarter(s, starterSide))}>{state.starter ? '已领取初始舰队' : '领取初始舰队'}</button>
           </div>
@@ -106,6 +111,12 @@ export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props
               onClick={() => change(getGunnery)}>{state.profiles.includes('gunnery') ? '已拥有炮战 AI' : '6 勋章兑换炮战 AI'}</button></div>
         </section>}
         {tab === 'recruit' && <section className="harbor-section">
+          <nav className="harbor-action" aria-label="补给分类">
+            <button type="button" aria-pressed={economy === 'recruit'} onClick={() => setEconomy('recruit')}>舰船征募</button>
+            <button type="button" aria-pressed={economy === 'supply'} onClick={() => setEconomy('supply')}>补给商店</button>
+            <button type="button" aria-pressed={economy === 'ai'} onClick={() => setEconomy('ai')}>AI 战术</button>
+          </nav>
+          {economy === 'recruit' && <>
           <div className="harbor-title"><h3>演习舰招募</h3><span>本机体验池</span></div>
           <div className="harbor-action">
             <button type="button" aria-pressed={pool === 'standard'} onClick={() => setPool('standard')}>常驻池</button>
@@ -121,6 +132,23 @@ export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props
             <span>{last.guaranteed ? '保底到港' : '最新到港'}</span><strong>{hulls[last.hull].name}</strong>
             <small>{last.duplicate ? '该舰型仓位已满，已转换为舰队勋章。' : '已编入本机舰库。'}</small>
           </div>}
+          </>}
+          {economy === 'supply' && <>
+            <div className="harbor-title"><h3>每周常驻券</h3><span>周一北京时间 00:00 刷新</span></div>
+            <p className="harbor-fine">单机补给商店每周可兑换 1 张常驻券。</p>
+            <div className="harbor-action"><button type="button" disabled={week.ticket || state.credits < WEEKLY_TICKET_PRICE}
+              onClick={() => change(s => buyWeeklyTicket(s))}>{week.ticket ? '本周已兑换' : WEEKLY_TICKET_PRICE + ' 补给币兑换'}</button></div>
+            <div className="harbor-title"><h3>每周实战补给</h3><span>{Math.min(week.count, 3)} / 3</span></div>
+            <p className="harbor-fine">本周达成 3 局越级挑战的主目标，可领取 500 补给币和 3 张常驻券。</p>
+            <div className="harbor-action"><button type="button" disabled={week.count < 3 || week.supply}
+              onClick={() => change(s => claimWeeklySupply(s))}>{week.supply ? '本周已领取' : '领取每周实战补给'}</button></div>
+          </>}
+          {economy === 'ai' && <>
+            <div className="harbor-title"><h3>AI 战术室</h3><span>拥有 {state.profiles.length} / 3</span></div>
+            <p className="harbor-fine">协同随账号开放。炮战可兑换；雷击通过越级挑战首通解锁。</p>
+            <div className="harbor-action"><button type="button" disabled={state.marks < 6 || state.profiles.includes('gunnery')}
+              onClick={() => change(getGunnery)}>{state.profiles.includes('gunnery') ? '已拥有炮战 AI' : '6 勋章兑换炮战 AI'}</button></div>
+          </>}
         </section>}
         {tab === 'challenge' && <section className="harbor-section">
           <div className="harbor-title"><h3>少舰迎击</h3><span>3 对 5</span></div>
@@ -131,6 +159,10 @@ export function Harbor({ state, change, onReturn, onLaunch, busy, error }: Props
             <button type="button" disabled={!state.challengeClear || state.challengeClaim} onClick={() => change(receiveChallenge)}>
               {state.challengeClaim ? '已领取挑战奖励' : '领取挑战奖励'}</button></div>
           <p className="harbor-fine">首通奖励：雷击 AI 与 2 张常驻券。</p>
+          <div className="harbor-title"><h3>复战周奖励</h3><span>{week.claimed} / {CHALLENGE_WEEKLY_LIMIT}</span></div>
+          <p className="harbor-fine">首通后每次达成主目标可领 {CHALLENGE_WEEKLY_TICKETS} 张常驻券，每周最多 {CHALLENGE_WEEKLY_LIMIT} 次。周一北京时间 00:00 刷新。</p>
+          <div className="harbor-action"><button type="button" disabled={!week.pending.length || week.claimed >= CHALLENGE_WEEKLY_LIMIT}
+            onClick={() => change(s => claimRepeat(s))}>领取复战奖励</button></div>
         </section>}
         {tab === 'archive' && <CampaignArchive busy={busy} onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night' })} />}
       </section>

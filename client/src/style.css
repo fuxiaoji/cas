@@ -291,3 +291,8 @@ h1, h2, h3, p { margin: 0; }
 .tactical-turret::after { content:''; position:absolute; left:1.5px; width:1px; height:5px; bottom:3px; background:currentColor; color:#a2bdbe; }
 .tactical-turret.trained, .tactical-turret.trained::after { background:#ffe08c; }
 @media (prefers-reduced-motion:reduce) { .tactical-turret { transition:none; } }
+.night-tools { display: grid; gap: 5px; margin: 8px 0; padding: 7px; border: 1px solid #56859a66; background: #122c40; }
+.night-tools h3 { font-size: 13px; color: #ead2a3; }
+.night-tools h3 small { font-weight: normal; color: #a3c7d6; margin-inline-start: 6px; }
+.night-tools label { display: flex; gap: 6px; align-items: center; color: #b1cbd8; font-size: 12px; }
+.night-tools select { flex: 1; min-width: 0; }
