@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Observation } from '../engine';
 import { baixisPortrait as baixiPortrait, prologueArt, prologueVictory } from './art';
 import { nextPrologueStep, PROLOGUE_LAST_STEP } from './originalScript';
+import { PrologueDialogue } from './PrologueDialogue';
 import { PrologueFilm } from './PrologueFilm';
-import { DD_PERSONALITIES, storyDialogue } from './story';
+import { DD_PERSONALITIES } from './story';
 import type { PrologueBattleStage, PrologueProgress, StarterDDId } from './story';
 import './prologue.css';
 
@@ -19,12 +20,6 @@ type Props = {
   rewards?: readonly string[];
   claimed?: boolean;
 };
-
-const memoryChoices = [
-  ['lost', '我……什么都想不起来。'],
-  ['duty', '先告诉我，舰队怎么样了？'],
-  ['trust', '你是谁？我能相信你吗？'],
-] as const;
 
 const exercises: Record<number, { stage: PrologueBattleStage; title: string; instruction: string }> = {
   7: { stage: 'follow', title: '第五驱逐编队 · 侧翼机动', instruction: '选择领舰移动，画出至少两个途经点，核对每艘舰的航迹后下令。用舰上的炮标完成一次实际炮击。' },
@@ -56,37 +51,17 @@ function BridgeBackdrop() {
 }
 
 export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit, busy = false, error, recording, rewards, claimed }: Props) {
-  const [visible, setVisible] = useState(0);
   const [reviewing, setReviewing] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [localError, setLocalError] = useState('');
   const step = progress.step;
-  const lines = storyDialogue(progress);
-  const line = lines[Math.min(progress.dialogue, lines.length - 1)];
-  const letters = Array.from(line?.text ?? '');
-  const complete = visible >= letters.length;
-  const wantsAnswer = step === 1 && progress.dialogue === lines.length - 1;
   const leader = DD_PERSONALITIES.find((ship) => ship.id === progress.leaderId) ?? DD_PERSONALITIES[0];
   const chapter = step < 7 ? '交接指挥' : step < 18 ? '侧翼机动' : step < 24 ? '改令同步' : step < 29 ? '编队雷击' : '黎明归港';
   const exercise = exercises[step];
 
-  useEffect(() => {
-    setVisible(0);
-    if (!line || reviewing || !letters.length) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setVisible(letters.length); return; }
-    let n = 0;
-    const timer = window.setInterval(() => { setVisible(++n); if (n >= letters.length) window.clearInterval(timer); }, 22);
-    return () => window.clearInterval(timer);
-  }, [step, progress.dialogue, line?.text, reviewing]);
-
   function patch(next: Partial<PrologueProgress>) { onProgress({ ...progress, ...next }); }
   function advance(flag?: string) {
     patch({ step: nextPrologueStep(step), dialogue: 0, flags: { ...progress.flags, ...(flag ? { [flag]: true } : {}) } });
-  }
-  function nextLine() {
-    if (!complete) { setVisible(letters.length); return; }
-    if (progress.dialogue + 1 < lines.length) patch({ dialogue: progress.dialogue + 1 });
-    else if (!wantsAnswer) advance();
   }
   async function finish() {
     if (claiming || busy) return;
@@ -114,16 +89,7 @@ export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit
           <button type="button" className="primary" onClick={() => reviewing ? setReviewing(false) : advance('cinema-0')}>{reviewing ? '返回当前剧情' : '进入舰桥'}</button>
         </section>
       </>}
-      {!reviewing && line && <>
-        {prologueArt(line.portrait) && <img className={'prologue-speaker-art' + (line.shipId ? ' destroyer' : '')} src={prologueArt(line.portrait)} alt={line.speaker} />}
-        <section className="prologue-dialogue" aria-label="剧情对话">
-          <h2>{line.speaker}</h2>
-          <p>{letters.slice(0, visible).join('')}</p>
-          {wantsAnswer && complete ? <div className="prologue-answers" aria-label="回应白汐">
-            {memoryChoices.map(([id, text]) => <button key={id} type="button" onClick={() => patch({ step: 2, dialogue: 0, answers: { ...progress.answers, memory: id } })}>{text}</button>)}
-          </div> : <button type="button" className="prologue-next" onClick={nextLine}>{complete ? '继续对话' : '显示整句'}</button>}
-        </section>
-      </>}
+      {!reviewing && <PrologueDialogue progress={progress} onProgress={onProgress} />}
       {!reviewing && step === 3 && <>
         <img className="prologue-speaker-art" src={baixiPortrait} alt="白汐" />
         <section className="prologue-note prologue-binding">

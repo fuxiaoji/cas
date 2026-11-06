@@ -1,8 +1,9 @@
 export type CourseId = 'day' | 'night' | 'follow' | 'sync' | 'torpedo';
 export type TrainingSignal = 'fleetViewed' | 'mapViewed' | 'lead' | 'followMode' | 'followPreview' | 'followAccepted'
-  | 'draftCancelled' | 'syncMode' | 'syncPreview' | 'syncAccepted' | 'gunOrdered' | 'gunFired' | 'fireCancelled'
+  | 'routePoint' | 'draftCancelled' | 'syncMode' | 'syncPreview' | 'syncAccepted' | 'gunOrdered' | 'gunFired' | 'fireCancelled'
   | 'torpedoAimed' | 'torpedoAdjusted' | 'torpedoOrdered' | 'torpedoFired' | 'override'
-  | 'paused' | 'stepped' | 'contactViewed' | 'lightAccepted' | 'lightApplied' | 'reportViewed' | 'finished';
+  | 'paused' | 'stepped' | 'contactViewed' | 'radarViewed' | 'radarPowered' | 'radarContactViewed'
+  | 'lightAccepted' | 'lightApplied' | 'reportViewed' | 'finished';
 export type TrainingEvidence = Partial<Record<TrainingSignal, boolean>>;
 export type TrainingStep = { id: string; title: string; instruction: string; reason: string; guide: string; require: TrainingSignal[] };
 

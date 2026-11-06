@@ -17,6 +17,12 @@
 .training-coach-actions button, .training-coach-compact-finish { min-height: 25px; padding: 2px 5px; font-size: 11px; }
 .training-coach-compact-finish { margin: 0 0 5px 7px; }
 .training-target { outline: 2px solid #ebc686; outline-offset: -2px; }
+.training-target:is(button,select) { box-shadow: 0 0 0 3px #ebc68642; }
+.battle-map.training-target { outline-offset: -5px; }
+.contact-label.training-target::before {
+  content: ''; position: absolute; inset: -13px auto auto -13px; width: 26px; height: 26px;
+  border: 2px solid #ebc686; border-radius: 50%; box-shadow: 0 0 0 3px #ebc68642; pointer-events: none;
+}
 @media (max-height: 500px) {
   .training-coach-head { padding-block: 2px; }
   .training-coach-head img { height: 26px; }

@@ -17,6 +17,7 @@ page.setDefaultTimeout(6500);
 
 const button = (name) => page.getByRole('button', { name, exact: true });
 const text = (line) => page.getByText(line, { exact: true });
+const dialogueText = (line) => page.locator('.prologue-dialogue p').filter({ hasText: line });
 const screenshot = (name) => page.screenshot({ path: `${destination}/${name}.png` });
 const q = (op, params = {}) => page.evaluate(async (request) => (await import(performance.getEntriesByType('resource')
   .filter((entry) => entry.name.includes('/src/engine.ts')).at(-1)?.name ?? '/src/engine.ts')).ask(request), { op, ...params });
@@ -127,18 +128,18 @@ try {
   await continueDialogue();
   await button('先告诉我，舰队怎么样了？').click();
   const duty = '你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。';
-  await text(duty).waitFor();
+  await dialogueText(duty).waitFor();
   await page.reload();
   await signInLocal(page, 'cas-story-qa');
   if (!await story.isVisible()) await page.getByRole('button', { name: /^序章/ }).click();
-  await text(duty).waitFor();
+  await dialogueText(duty).waitFor();
   await continueDialogue(); await continueDialogue();
   await button('接入辅助').click();
   for (let i = 0; i < 5; i++) await continueDialogue();
   await button('帕金斯').click();
   await screenshot('11-integrated-leader');
   await button('任命帕金斯为领舰').click();
-  await text('收到。我会替你守住队形，也会提醒你每一个遗漏。').waitFor();
+  await dialogueText('收到。我会替你守住队形，也会提醒你每一个遗漏。').waitFor();
   await continueDialogue(); await continueDialogue();
   checks.push({ actualOpeningShells: true, originalDutyBranchRestored: true, storyLeader: 'IBS-U-USN-PERKINS' });
 
