@@ -1,0 +1,505 @@
+use crate::{model::*, movement::fallback_leader};
+use serde_json::{json, Value};
+use std::sync::OnceLock;
+
+pub(crate) fn u(r: &Value, k: &str) -> E<u32> {
+    r.get(k)
+        .and_then(Value::as_u64)
+        .and_then(|n| u32::try_from(n).ok())
+        .ok_or_else(|| format!("缺少有效参数：{k}"))
+}
+static DATA: OnceLock<Result<Data, String>> = OnceLock::new();
+pub struct World {
+    pub data: &'static Data,
+    pub ships: Vec<Ship>,
+    pub fleets: Vec<Fleet>,
+    pub contacts: [Vec<Contact>; 2],
+    pub next_contacts: [u32; 2],
+    pub torps: Vec<Torpedo>,
+    pub pending: Vec<Fire>,
+    pub events: Vec<Event>,
+    pub result: Option<Outcome>,
+    pub islands: Vec<Vec<P>>,
+    pub tick: u32,
+    pub player: usize,
+    pub rng: u64,
+    pub seed: u32,
+    pub enemy: String,
+    pub variant: String,
+    pub profile: String,
+    pub leader_slot: usize,
+    pub commands: Vec<Entry>,
+    pub next_torp: u32,
+    pub fired_this_cycle: Vec<u32>,
+    pub incoming_this_cycle: Vec<u32>,
+    pub gun_streak: Vec<(u32, u32, u32)>,
+}
+impl World {
+    pub fn new(
+        seed: u32,
+        player: usize,
+        enemy: &str,
+        variant: &str,
+        profile: &str,
+        leader_slot: usize,
+    ) -> E<Self> {
+        if !matches!(variant, "" | "challenge") {
+            return Err("未知演习想定".into());
+        }
+        Ai::new(profile, "manual").validate()?;
+        if leader_slot >= if variant == "challenge" { 3 } else { 5 } {
+            return Err("领舰未在当前舰队内".into());
+        }
+        Ai::new(enemy, "auto").validate()?;
+        let data = DATA
+            .get_or_init(|| {
+                serde_json::from_str(include_str!("../data/stage0.json"))
+                    .map_err(|e| format!("无法加载昼战资料：{e}"))
+            })
+            .as_ref()
+            .map_err(Clone::clone)?;
+        let mut w = Self {
+            data,
+            ships: vec![],
+            fleets: vec![],
+            contacts: [vec![], vec![]],
+            next_contacts: [1, 1],
+            torps: vec![],
+            pending: vec![],
+            events: vec![],
+            result: None,
+            islands: vec![],
+            tick: 0,
+            player,
+            rng: (seed as u64) ^ 0xa643de5dbcc8e65f,
+            seed,
+            enemy: enemy.into(),
+            variant: variant.into(),
+            profile: profile.into(),
+            leader_slot,
+            commands: vec![],
+            next_torp: 1,
+            fired_this_cycle: vec![],
+            incoming_this_cycle: vec![],
+            gun_streak: vec![(0, 0, 0); 10],
+        };
+        for s in 0..2 {
+            let (ids, x, y, h, inc, name) = if s == 0 {
+                (
+                    ["fletcher", "cleveland", "fletcher", "fletcher", "fletcher"],
+                    4200.,
+                    6550.,
+                    90.,
+                    -450.,
+                    "第五驱逐编队",
+                )
+            } else {
+                (
+                    ["kagero", "sendai", "kagero", "kagero", "kagero"],
+                    19_800.,
+                    7650.,
+                    270.,
+                    450.,
+                    "第八水雷编队",
+                )
+            };
+            let mut members = Vec::new();
+            let mut slots: Vec<_> = ids
+                .into_iter()
+                .enumerate()
+                .take(if variant == "challenge" && s == player {
+                    3
+                } else {
+                    5
+                })
+                .collect();
+            if s == player {
+                let chosen = slots.remove(leader_slot);
+                slots.insert(0, chosen);
+            }
+            for (pos, (i, id)) in slots.into_iter().enumerate() {
+                let def = data
+                    .ships
+                    .iter()
+                    .position(|d| d.id.eq_ignore_ascii_case(id))
+                    .ok_or_else(|| format!("缺少已核验舰型 {id}"))?;
+                let d = &data.ships[def];
+                if ![side_name(s), if s == 0 { "blue" } else { "red" }].contains(&d.side.as_str())
+                    || !d.dp.is_finite()
+                    || d.dp <= 0.
+                    || d.gun.range_yd.len() != 4
+                    || d.gun.damage.len() != 4
+                    || d.gun.barrels == 0
+                    || d.gun.mounts.iter().map(|m| m.barrels).sum::<u32>() != d.gun.barrels
+                {
+                    return Err(format!("{id} 的阵营、损伤或舰炮字段无效"));
+                }
+                let ship = (w.ships.len() + 1) as u32;
+                members.push(ship);
+                w.ships.push(Ship {
+                    id: ship,
+                    def,
+                    side: s,
+                    fleet: Some(s as u32 + 1),
+                    name: if d.kind.eq_ignore_ascii_case("cl") {
+                        d.name.clone()
+                    } else {
+                        format!("{} {}", d.name, i + 1)
+                    },
+                    p: P {
+                        x: x + inc * pos as f64,
+                        y,
+                    },
+                    h,
+                    speed: 0.,
+                    hp: d.dp,
+                    ammo: d.torpedo.as_ref().map_or(0, |t| t.tubes),
+                    gun_cycle: None,
+                    torp_cycle: None,
+                    torp_mount_used: vec![
+                        false;
+                        d.torpedo.as_ref().map_or(0, |t| t.mounts.len().max(1))
+                    ],
+                    track: None,
+                    free_speed: 0.,
+                    fires: vec![],
+                    flooding: vec![],
+                    fire_control_damage: false,
+                    gun_mount_destroyed: vec![false; d.gun.mounts.len()],
+                    engineering_speed_levels: 0,
+                    jammed_until: 0,
+                });
+            }
+            w.fleets.push(Fleet {
+                id: s as u32 + 1,
+                side: s,
+                name: name.into(),
+                leader: members[0],
+                members,
+                mode: "follow".into(),
+                speed: 26.,
+                actual: 0.,
+                points: vec![],
+                ai: if s == player {
+                    Ai::new(profile, "manual")
+                } else {
+                    Ai::new(enemy, "auto")
+                },
+                notice: None,
+                last_ai_route: 0,
+                tactic: Tactic::Search,
+            });
+        }
+        w.add(
+            3,
+            "start",
+            if variant == "challenge" {
+                "越级挑战 · 3 对 5。击沉两艘敌舰并让至少一艘己舰存活。"
+            } else {
+                "虚构演习 · 白昼能见度良好。双方各 5 艘；45 分钟按击沉数决胜。"
+            }
+            .into(),
+            None,
+            None,
+        );
+        w.detect(true);
+        Ok(w)
+    }
+    pub fn from_save(s: Saved, tick: u32) -> E<Self> {
+        if s.version != VERSION {
+            return Err("此存档使用另一个规则版本".into());
+        }
+        if s.tick > LIMIT || tick > s.tick || s.commands.len() > 10_000 {
+            return Err("存档超出演习范围".into());
+        }
+        if s.commands.iter().any(|v| v.tick > s.tick)
+            || s.commands.windows(2).any(|a| a[0].tick > a[1].tick)
+        {
+            return Err("存档命令时序无效".into());
+        }
+        let mut w = Self::new(
+            s.seed,
+            side(&s.side)?,
+            &s.enemy,
+            &s.variant,
+            if s.profile.is_empty() {
+                "coord"
+            } else {
+                &s.profile
+            },
+            s.leader_slot,
+        )?;
+        let mut commands = s.commands.into_iter().peekable();
+        loop {
+            while commands
+                .peek()
+                .is_some_and(|e| e.tick == w.tick && e.tick <= tick)
+            {
+                w.external(commands.next().unwrap().request)
+                    .map_err(|e| format!("重演命令失败：{e}"))?;
+            }
+            if w.tick >= tick {
+                break;
+            }
+            if w.result.is_some() {
+                return Err("存档时钟越过战局结束".into());
+            }
+            w.advance();
+        }
+        Ok(w)
+    }
+    pub fn save(&self) -> Saved {
+        Saved {
+            version: VERSION.into(),
+            seed: self.seed,
+            side: side_name(self.player).into(),
+            enemy: self.enemy.clone(),
+            variant: self.variant.clone(),
+            profile: self.profile.clone(),
+            leader_slot: self.leader_slot,
+            tick: self.tick,
+            commands: self.commands.clone(),
+        }
+    }
+    pub fn ship(&self, id: u32) -> Option<&Ship> {
+        self.ships.get(id.checked_sub(1)? as usize)
+    }
+    pub fn ship_mut(&mut self, id: u32) -> Option<&mut Ship> {
+        self.ships.get_mut(id.checked_sub(1)? as usize)
+    }
+    pub fn fleet(&self, id: u32) -> Option<&Fleet> {
+        self.fleets.iter().find(|f| f.id == id)
+    }
+    pub fn fleet_mut(&mut self, id: u32) -> Option<&mut Fleet> {
+        self.fleets.iter_mut().find(|f| f.id == id)
+    }
+    pub fn fleet_for(&self, owner: usize, id: u32) -> E<&Fleet> {
+        self.fleet(id)
+            .filter(|f| {
+                f.side == owner
+                    && f.members
+                        .iter()
+                        .any(|&s| self.ship(s).is_some_and(Ship::alive))
+            })
+            .ok_or_else(|| "未找到可操作的己方编队".into())
+    }
+    pub fn ship_for(&self, owner: usize, id: u32) -> E<&Ship> {
+        self.ship(id)
+            .filter(|s| s.side == owner && s.alive())
+            .ok_or_else(|| "未找到可操作的己方舰艇".into())
+    }
+    pub fn contact(&self, owner: usize, id: &str) -> E<&Contact> {
+        self.contacts[owner]
+            .iter()
+            .find(|c| c.id == id)
+            .ok_or_else(|| "目标接触已丢失".into())
+    }
+    pub fn knows(&self, owner: usize, id: u32) -> bool {
+        self.contacts[owner].iter().any(|c| c.ship == id)
+    }
+    pub fn d(&mut self, sides: u32) -> u32 {
+        let mut r = self.rng;
+        r ^= r << 13;
+        r ^= r >> 7;
+        r ^= r << 17;
+        self.rng = r;
+        (r % sides as u64) as u32 + 1
+    }
+    pub fn add(
+        &mut self,
+        mask: u8,
+        kind: &'static str,
+        text: String,
+        rule: Option<&'static str>,
+        p: Option<P>,
+    ) {
+        let (x, y) = p.map_or((None, None), |p| (Some(p.x), Some(p.y)));
+        self.events.push(Event {
+            tick: self.tick,
+            kind,
+            text,
+            rule,
+            x,
+            y,
+            mask,
+        });
+    }
+    pub fn observation(&self, owner: usize) -> Value {
+        let ships:Vec<_>=self.ships.iter().filter(|s|s.side==owner&&s.alive()).map(|s|{
+            let d=&self.data.ships[s.def];
+            json!({"id":s.id,"name":s.name,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
+                "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
+                "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo})
+        }).collect();
+        let fleets:Vec<_>=self.fleets.iter().filter(|f|f.side==owner).filter_map(|f|{
+            let members:Vec<_>=f.members.iter().filter(|id|self.ship(**id).is_some_and(Ship::alive)).collect();
+            if members.is_empty(){return None}
+            let paths:Vec<_>=members.iter().filter_map(|&&id|self.ship(id).and_then(|s|s.track.as_ref()).filter(|t|!t.done())
+                .map(|t|json!({"ship":id,"points":t.remaining()}))).collect();
+            Some(json!({"id":f.id,"name":f.name,"leader":f.leader,"members":members,"mode":f.mode,"speed":f.speed,
+                "points":if paths.is_empty(){&[][..]}else{&f.points[..]},"paths":paths,"ai":f.ai,"notice":f.notice,"aiState":f.tactic.label()}))
+        }).collect();
+        let torpedoes: Vec<_> = self
+            .torps
+            .iter()
+            .filter(|t| t.side == owner)
+            .map(|t| json!({"id":t.id,"x":t.p.x,"y":t.p.y,"heading":t.h,"own":true}))
+            .collect();
+        let mut events: Vec<_> = self
+            .events
+            .iter()
+            .rev()
+            .filter(|e| e.mask & (1 << owner) != 0)
+            .take(90)
+            .collect();
+        events.reverse();
+        json!({"tick":self.tick,"limit":LIMIT,"width":WIDTH,"height":HEIGHT,"side":side_name(owner),
+            "scenario":if self.variant=="challenge"{"少舰迎击 · 3 对 5 挑战"}else{SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "events":events,"result":self.result,"islands":self.islands})
+    }
+    pub fn external(&mut self, r: Value) -> E<()> {
+        if self.result.is_some() {
+            return Err("演习已结束".into());
+        }
+        let s = self.player;
+        match r.get("op").and_then(Value::as_str) {
+            Some("route") => self.route(s, &r, true)?,
+            Some("lead") => self.lead(s, &r)?,
+            Some("detach") => self.detach(s, &r)?,
+            Some("reform") => self.reform(s, &r)?,
+            Some("fire") => self.queue_fire(s, &r, true)?,
+            Some("ai") => {
+                let id = u(&r, "fleet")?;
+                self.fleet_for(s, id)?;
+                let ai: Ai = serde_json::from_value(r.clone()).map_err(|_| "AI 配置不完整")?;
+                ai.validate()?;
+                self.fleet_mut(id).unwrap().ai = ai;
+                self.add(
+                    1 << s,
+                    "ai",
+                    "已更新编队指挥权限".into(),
+                    Some("RTS-AI-01"),
+                    None,
+                );
+            }
+            _ => return Err("存档包含无效命令".into()),
+        }
+        self.commands.push(Entry {
+            tick: self.tick,
+            request: r,
+        });
+        Ok(())
+    }
+    pub fn advance(&mut self) {
+        self.tick += 1;
+        let before: Vec<_> = self.ships.iter().map(|s| s.p).collect();
+        self.move_ships();
+        self.move_torpedoes(&before);
+        self.update_tracks();
+        if self.tick % CYCLE == 0 {
+            self.resolve_fire(true);
+            self.fired_this_cycle.clear();
+            self.incoming_this_cycle.clear();
+            self.detect(false);
+        }
+        self.resolve_fire(false);
+        self.resolve_damage_control();
+        self.check_outcome();
+        if self.result.is_none() && (self.tick == 1 || self.tick % 20 == 0) {
+            self.drive_ai();
+        }
+    }
+    pub fn sank(&mut self, id: u32) {
+        let Some(s) = self.ship(id) else { return };
+        let (owner, fl, p, name) = (s.side, s.fleet, s.p, s.name.clone());
+        self.add(
+            1 << owner,
+            "sunk",
+            format!("{name} 沉没"),
+            Some("CAS-8.1"),
+            Some(p),
+        );
+        if self.knows(1 - owner, id) {
+            self.add(
+                1 << (1 - owner),
+                "sunk",
+                "已观测到敌舰沉没".into(),
+                Some("CAS-8.1"),
+                Some(p),
+            );
+        }
+        for v in &mut self.contacts {
+            v.retain(|c| c.ship != id);
+        }
+        if let Some(f) = fl {
+            if self.fleet(f).is_some_and(|f| f.leader == id) {
+                if let Some(replacement) = fallback_leader(self, f, id) {
+                    let ids = self.fleet(f).unwrap().members.clone();
+                    for i in ids {
+                        let s = self.ship_mut(i).unwrap();
+                        s.track = None;
+                        s.speed = 0.;
+                    }
+                    let fleet = self.fleet_mut(f).unwrap();
+                    fleet.leader = replacement;
+                    fleet.points.clear();
+                    fleet.actual = 0.;
+                    fleet.notice =
+                        Some("领舰失能，已由下一艘可用舰接替。请为余队重下航路。".into());
+                    self.add(
+                        1 << owner,
+                        "leader",
+                        "领舰失能，已交接；编队等待重新下令。".into(),
+                        Some("RTS-NAV-02"),
+                        None,
+                    );
+                }
+            }
+        }
+    }
+    fn check_outcome(&mut self) {
+        let lost: Vec<u32> = (0..2)
+            .map(|side| {
+                self.ships
+                    .iter()
+                    .filter(|s| s.side == side && !s.alive())
+                    .count() as u32
+            })
+            .collect();
+        let wiped = |side: usize| !self.ships.iter().any(|s| s.side == side && s.alive());
+        if self.tick >= LIMIT || wiped(0) || wiped(1) {
+            let (a, b) = (lost[1], lost[0]);
+            let winner = if a > b {
+                "allies"
+            } else if b > a {
+                "axis"
+            } else {
+                "draw"
+            };
+            let primary = (self.variant == "challenge")
+                .then(|| lost[1 - self.player] >= 2 && !wiped(self.player));
+            self.result = Some(Outcome {
+                winner: winner.into(),
+                allies: a,
+                axis: b,
+                primary,
+            });
+            self.add(
+                3,
+                "end",
+                format!(
+                    "演习结束：同盟 {a} · 轴心 {b}。{}",
+                    if winner == "draw" {
+                        "平局"
+                    } else if winner == "allies" {
+                        "同盟胜出"
+                    } else {
+                        "轴心胜出"
+                    }
+                ),
+                Some("RTS-EXERCISE-01"),
+                None,
+            );
+        }
+    }
+}
