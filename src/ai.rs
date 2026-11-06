@@ -60,7 +60,9 @@ impl World {
         };
         let range = self.contacts[f.side]
             .iter()
-            .map(|c| lead.p.dist(c.p()))
+            .map(Contact::p)
+            .chain(self.radar_navigation_reports(lead))
+            .map(|p| lead.p.dist(p))
             .fold(f64::INFINITY, f64::min);
         if range.is_infinite() {
             Tactic::Search
@@ -88,17 +90,16 @@ impl World {
         let going = leader.track.as_ref().is_some_and(|t| !t.done());
         let chosen = c
             .iter()
-            .min_by(|a, b| leader.p.dist(a.p()).total_cmp(&leader.p.dist(b.p())));
+            .map(Contact::p)
+            .chain(self.radar_navigation_reports(leader))
+            .min_by(|a, b| leader.p.dist(*a).total_cmp(&leader.p.dist(*b)));
         if (!auto || fleet.ai.r#move)
             && (!going || self.tick.saturating_sub(fleet.last_ai_route) >= style.period)
         {
-            let target = chosen.map_or(
-                P {
-                    x: if owner == 0 { WIDTH - 5000. } else { 5000. },
-                    y: if owner == 0 { 5800. } else { 8000. },
-                },
-                Contact::p,
-            );
+            let target = chosen.unwrap_or(P {
+                x: if owner == 0 { WIDTH - 5000. } else { 5000. },
+                y: if owner == 0 { 5800. } else { 8000. },
+            });
             let angle = (target - leader.p).heading();
             let range = target.dist(leader.p);
             let prefer = if leader.p.y < HEIGHT * 0.52 { 1. } else { -1. };
@@ -193,8 +194,22 @@ impl World {
                 score(a).total_cmp(&score(b)).then_with(|| a.id.cmp(&b.id))
             });
             if (!auto || fleet.ai.gun) && self.can_gun(s) {
-                if let Some(t) = targets.iter().find(|c| self.gun_candidate(s, c)) {
-                    orders.push(json!({"op":"fire","ship":id,"target":t.id,"weapon":"gun"}));
+                let radar;
+                let chosen = if let Some(t) = targets.iter().find(|c| self.gun_candidate(s, c)) {
+                    Some(t.id.as_str())
+                } else {
+                    radar = self
+                        .radar_gun_contacts(s)
+                        .filter(|t| self.gun_candidate(s, t))
+                        .min_by(|a, b| {
+                            s.p.dist(a.p())
+                                .total_cmp(&s.p.dist(b.p()))
+                                .then_with(|| a.id.cmp(&b.id))
+                        });
+                    radar.as_ref().map(|r| r.id.as_str())
+                };
+                if let Some(t) = chosen {
+                    orders.push(json!({"op":"fire","ship":id,"target":t,"weapon":"gun"}));
                 }
             }
             if (!auto || fleet.ai.torpedo)

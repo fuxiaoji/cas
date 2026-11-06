@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-cape-st-george-1943-hulls-v1",
+  "scenario_id": "cas-rs-cape-st-george",
+  "as_of": "1943-11-25",
+  "status": "source_data_not_launchable",
+  "policy": "Scenario exceptions, then Fifth Edition rules, then annex class and dated refit entries. Legacy dated Form 10 is corroboration, with differences retained explicitly. Nulls and unresolved alternatives are not executable.",
+  "mount_sector_source": {"document":"cas_5e_main","pdf_pages":[13,14],"printed_pages":["2-1","2-2"]},
+  "maneuver_source": {"document":"cas_5e_main","pdf_pages":[23],"printed_pages":["3-2"]},
+  "maneuver_classes": {
+    "A": {"normal_advance_yd":400,"normal_loss_knots":2,"hard_advance_yd":300,"hard_loss_knots":3},
+    "C": {"normal_advance_yd":300,"normal_loss_knots":1,"hard_advance_yd":200,"hard_loss_knots":2},
+    "D": {"normal_advance_yd":200,"normal_loss_knots":1,"hard_advance_yd":100,"hard_loss_knots":2}
+  },
+  "weapon_models": {
+    "us_mk30_5in38": {
+      "source":{"document":"american_fleets","pdf_pages":[108],"printed_pages":["C-2"]},
+      "shells":{
+        "SpCOM":{"range_yd":[[0,5500],[5600,10900],[11000,14600],[14700,18200]],"belt":[7,4,3,2],"deck":[null,null,1,2],"damage_dp":[18,14,12,11]},
+        "COM":{"range_yd":[[0,5500],[5600,10900],[11000,14600],[14700,18200]],"belt":[5,3,2,2],"deck":[null,null,1,2],"damage_dp":[22,19,17,15]},
+        "HE":{"range_yd":[[0,7100],[7200,14300],[14400,19000],[19100,23800]],"belt":[2,1,1,1],"deck":[null,null,0,1],"damage_dp":[22,19,14,12]}
+      }
+    },
+    "jp_3rd_yr_127mm50": {
+      "source":{"document":"emperors_fleet","pdf_pages":[97],"printed_pages":["C-1"]},
+      "shells":{
+        "COM":{"range_yd":[[0,6000],[6100,12000],[12100,16000],[16100,20000]],"belt":[5,3,2,2],"deck":[null,null,1,2],"damage_dp":[16,13,11,10]},
+        "HE":{"range_yd":[[0,6000],[6100,12000],[12100,16000],[16100,20000]],"belt":[2,1,1,1],"deck":[null,null,1,1],"damage_dp":[17,14,13,11]}
+      }
+    },
+    "jp_3rd_yr_120mm45": {
+      "source":{"document":"emperors_fleet","pdf_pages":[97],"printed_pages":["C-1"]},
+      "shells":{
+        "COM":{"range_yd":[[0,5300],[5400,10600],[10700,14100],[14200,17600]],"belt":[4,3,2,1],"deck":[null,null,1,2],"damage_dp":[14,11,10,9]},
+        "HE":{"range_yd":[[0,5300],[5400,10600],[10700,14100],[14200,17600]],"belt":[1,1,1,0],"deck":[null,null,0,1],"damage_dp":[15,13,11,10]}
+      }
+    },
+    "us_mk15_tnt": {
+      "source":{"document":"american_fleets","pdf_pages":[119],"printed_pages":["F-1"]},
+      "torpedo":{"damage_dp":87,"range_speed_pairs_yd_knots":[[6000,45],[10000,34],[15000,27]],"diameter_mm":533}
+    },
+    "jp_type93_m1_mod1_2": {
+      "source":{"document":"emperors_fleet","pdf_pages":[105],"printed_pages":["F-1"]},
+      "torpedo":{"damage_dp":95,"range_speed_pairs_yd_knots":[[22000,49],[35000,41],[43800,37]],"diameter_mm":610,"propulsion":"steam"}
+    },
+    "jp_8th_yr_type_no2": {
+      "source":{"document":"emperors_fleet","pdf_pages":[105],"printed_pages":["F-1"]},
+      "torpedo":{"damage_dp":87,"range_speed_pairs_yd_knots":[[10900,38],[16400,32],[21900,28]],"diameter_mm":610,"propulsion":"steam"}
+    }
+  },
+  "profiles": {
+    "fletcher_1943": {
+      "class":"Fletcher","side":"allies","kind":"DD","source":{"document":"american_fleets","pdf_pages":[20],"printed_pages":["A-17"]},
+      "class_in_service_year":1942,"crew":273,"std_displacement_tons":2200,"size":"C","armor_rating":0,"gunnery_standard":4,
+      "turn_class":"A","accel_decel_knots_per_turn":[12,6,15],"damage_speed_rows_dp_knots":[[0,37],[36,28],[72,18],[108,9],[130,0],[144,null]],
+      "main_gun":"us_mk30_5in38","gun_mounts":[["F",1],["F",1],["P&S",1],["A",1],["A",1]],
+      "torpedo_mounts":{"model":"us_mk15_tnt","arc":"P&S","loaded_tubes_per_mount":[5,5],"reserve_per_mount":[0,0],"reload_seconds":null},
+      "asw":{"sonars":["Early QC series"],"depth_charge_launchers":"2 Mk3 rails, 6 Mk6 K-guns"}
+    },
+    "yugumo_1943_asw": {
+      "class":"Yugumo","side":"axis","kind":"DD","source":{"document":"emperors_fleet","pdf_pages":[27],"printed_pages":["A-24"]},
+      "class_in_service_year":1941,"crew":228,"std_displacement_tons":2110,"size":"C","armor_rating":0,"gunnery_standard":4,
+      "turn_class":"C","accel_decel_knots_per_turn":[12,6,15],"damage_speed_rows_dp_knots":[[0,35],[35,26],[70,18],[105,9],[126,0],[140,null]],
+      "main_gun":"jp_3rd_yr_127mm50","gun_mounts":[["F",2],["A",2],["A",2]],
+      "torpedo_mounts":{"model":"jp_type93_m1_mod1_2","arc":"P&S","loaded_tubes_per_mount":[4,4],"reserve_per_mount":[4,4],"reload_seconds":360},
+      "asw":{"sonars":["Type 93 passive","Type 93 Model 3 active"],"depth_charge_launchers":"2 rails, 2 twin Type 94 Y-guns","depth_charges":36}
+    },
+    "fubuki_1936_refit": {
+      "class":"Fubuki","side":"axis","kind":"DD","source":{"document":"emperors_fleet","pdf_pages":[29,30],"printed_pages":["A-26","A-27"]},
+      "class_in_service_year":1928,"crew":221,"std_displacement_tons":2090,"size":"C","armor_rating":0,"gunnery_standard":4,
+      "turn_class":"C","accel_decel_knots_per_turn":[12,6,15],"damage_speed_rows_dp_knots":[[0,34],[27,26],[53,17],[80,8],[95,0],[106,null]],"source_damage_modifier_pct":-15,
+      "main_gun":"jp_3rd_yr_127mm50","gun_mounts":[["F",2],["A",2],["A",2]],
+      "torpedo_mounts":{"model":"jp_type93_m1_mod1_2","arc":"P&S","loaded_tubes_per_mount":[3,3,3],"reserve_per_mount":null,"reload_seconds":null},
+      "asw":{"sonars":["Type 93 passive","Type 93 Model 1 active"],"depth_charge_launchers":"2 rails, 2 twin Type 94 Y-guns","depth_charges":36}
+    },
+    "mutsuki_1943_uzuki": {
+      "class":"Mutsuki","side":"axis","kind":"DD","source":{"document":"emperors_fleet","pdf_pages":[30,31],"printed_pages":["A-27","A-28"]},
+      "class_in_service_year":1925,"crew":150,"std_displacement_tons":1336,"size":"D","armor_rating":0,"gunnery_standard":4,
+      "turn_class":"D","accel_decel_knots_per_turn":[12,6,15],"damage_speed_rows_dp_knots":[[0,33],[22,25],[44,16],[66,8],[79,0],[88,null]],"source_damage_modifier_pct":-15,
+      "main_gun":"jp_3rd_yr_120mm45","gun_mounts":[["F",1],["A",1]],
+      "torpedo_mounts":{"model":null,"arc":"P&S","loaded_tubes_per_mount":[3,3],"reserve_per_mount":[2,2],"reload_seconds":900},
+      "asw":{"sonars":["Type 93 passive","Type 93 Model 1 active"],"depth_charge_launchers":"2 rails, 2 twin Type 94 Y-guns","depth_charges":36}
+    }
+  },
+  "instances": {
+    "ausburne":{"profile":"fletcher_1943","form10":{"document":"rising_sun_form10","pdf_pages":[270],"printed_pages":[270]},"radar_confirmed":["us_sc2","us_sg","us_mk4_fd"]},
+    "claxton":{"profile":"fletcher_1943","form10":{"document":"rising_sun_form10","pdf_pages":[272],"printed_pages":[272]},"radar_confirmed":["us_sc2","us_sg","us_mk4_fd"]},
+    "dyson":{"profile":"fletcher_1943","form10":{"document":"rising_sun_form10","pdf_pages":[276],"printed_pages":[276]},"radar_confirmed":["us_sc2","us_sg","us_mk4_fd"]},
+    "converse":{"profile":"fletcher_1943","form10":{"document":"rising_sun_form10","pdf_pages":[273],"printed_pages":[273]},"radar_confirmed":["us_sc2","us_sg","us_mk4_fd"]},
+    "spence":{"profile":"fletcher_1943","form10":{"document":"rising_sun_form10","pdf_pages":[284],"printed_pages":[284]},"radar_confirmed":["us_sc2","us_sg","us_mk4_fd"]},
+    "onami":{"profile":"yugumo_1943_asw","form10":{"document":"rising_sun_form10","pdf_pages":[93],"printed_pages":[93]},"radar_confirmed":[],"refit":"1943-08 to 1943-09 ASW refit"},
+    "makinami":{"profile":"yugumo_1943_asw","form10":{"document":"rising_sun_form10","pdf_pages":[89],"printed_pages":[89]},"radar_confirmed":[],"refit":"1943-04 to 1943-09 ASW refit"},
+    "amagiri":{"profile":"fubuki_1936_refit","form10":{"document":"rising_sun_form10","pdf_pages":[153],"printed_pages":[153]},"radar_confirmed":[],"refit":"1943-08 ASW refit; 1944-01 to 1944-02 Type 22 excluded"},
+    "yugiri":{"profile":"fubuki_1936_refit","form10":{"document":"rising_sun_form10","pdf_pages":[171],"printed_pages":[171]},"radar_confirmed":[],"radar_candidates":["jp_type22_ss"],"refit":"1943-08 to 1943-11 ASW refit and dated radar candidate"},
+    "uzuki":{"profile":"mutsuki_1943_uzuki","form10":{"document":"rising_sun_form10","pdf_pages":[183],"printed_pages":[183]},"radar_confirmed":[],"refit":"1942-09 to 1942-12 landing-barge stern; 1943-10 removes both beam 12cm guns"}
+  },
+  "conflicts": [
+    {"id":"fletcher-mk15-variant","status":"resolved_by_dated_forms","detail":"All five named dated forms list the 87-DP TNT torpedo. Annex F-1 also offers 99-DP Torpex from 1943 but gives no ship-specific assignment here."},
+    {"id":"fletcher-gun-table","status":"resolved_by_annex","detail":"Old forms print 18/13/12/10 damage for SpCOM; Annex C-2 gives 18/14/12/11. Use the matched Annex C-2 gun row; do not splice shells."},
+    {"id":"yugumo-gun-table","status":"resolved_by_annex","detail":"Dated forms print 12.7cm/50 mount names with the 12cm/45 range pattern. The identified 12.7cm/50 Annex C-1 rows control."},
+    {"id":"fubuki-damage","status":"resolved_by_annex","detail":"1936 Fubuki Annex A-27 prints 106 DP. Dated Amagiri and Yugiri Form 10s print 139 DP; the explicit 1936-refit annex row is retained, with no additional -15% applied."},
+    {"id":"fubuki-torpedo-reserve","status":"unresolved","detail":"Annex A-26 mount row lists 3 reserves for center mount with a 15-minute reload but the remark says no spares. Both dated Form 10s show reload marks on all three mounts. None of these alternatives is activated."},
+    {"id":"yugiri-type22-date","status":"unresolved","detail":"Annex A-26 lists Type 22 during August-November 1943 refit but gives no exact completion day; the November dated Form 10 gives no radar. Type 22 is a candidate only."},
+    {"id":"uzuki-torpedo-model","status":"unresolved","detail":"Annex A-27 class fit has 8th Year Type No. 2, without a dated replacement; the October 1943 Form 10 prints Type 93 data. Neither is selected."},
+    {"id":"troop-loadout","status":"unresolved","detail":"Rising Sun PDF 92 provides group orders rather than initial named-ship cargo; troops may change loadout per PDF 93. Full mount capacity is distinct from scenario ammunition actually embarked."}
+  ]
+}

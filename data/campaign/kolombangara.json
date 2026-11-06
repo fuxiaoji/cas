@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-rs-kolombangara-source-v1",
+  "scenario_id": "cas-rs-kolombangara",
+  "ibs_id": "IBS-S-08",
+  "title": "科隆班加拉岛海战",
+  "title_en": "The Battle of Kolombangara",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [
+      87
+    ],
+    "printed_pages": [
+      86
+    ]
+  },
+  "start": {
+    "date_local": "1943-07-13",
+    "time_local": "01:00",
+    "location": "科隆班加拉岛北海岸外",
+    "map_type": "open_ocean"
+  },
+  "environment": {
+    "light": "night",
+    "visibility_pct": 10,
+    "sea_state": 1,
+    "cloud_cover_pct": 100,
+    "cloud_ceiling_m": 1220,
+    "wind_from_deg": 135,
+    "wind_speed_knots": 5,
+    "local_squall_visibility_pct": [
+      5,
+      2
+    ]
+  },
+  "forces": {
+    "allies": [
+      {
+        "unit": "Crudiv 9",
+        "kind": "CL",
+        "ships": [
+          "Honolulu",
+          "St. Louis",
+          "Leander"
+        ]
+      },
+      {
+        "unit": "Desron 21",
+        "kind": "DD",
+        "ships": [
+          "Nicholas",
+          "O’Bannon",
+          "Taylor",
+          "Jenkins",
+          "Radford"
+        ]
+      },
+      {
+        "unit": "Desron 12",
+        "kind": "DD",
+        "ships": [
+          "Ralph Talbot",
+          "Maury",
+          "Buchanan",
+          "Woodworth",
+          "Gwin"
+        ]
+      },
+      {
+        "unit": "空中跟踪",
+        "kind": "PB-Y5A",
+        "ships": [
+          "PBY-5A"
+        ],
+        "airborne_count": 1
+      }
+    ],
+    "axis": [
+      {
+        "unit": "Desron 2 支援群",
+        "kind": "CL/DD",
+        "ships": [
+          "Jintsu",
+          "Yukikaze",
+          "Hamakaze",
+          "Yugure",
+          "Mikazuki",
+          "Kiyonami"
+        ]
+      },
+      {
+        "unit": "驱逐运输舰",
+        "kind": "DD",
+        "ships": [
+          "Satsuki",
+          "Minazuki",
+          "Yunagi",
+          "Matsukaze"
+        ],
+        "troops_each": 300
+      }
+    ]
+  },
+  "setup": {
+    "allies": {
+      "course_deg": 275,
+      "speed_knots": 28,
+      "tuki_point": [
+        260,
+        18,
+        "nmi"
+      ],
+      "column": "Nicholas, O’Bannon, Taylor, Radford, Jenkins, Honolulu, Leander, St. Louis, Ralph Talbot, Buchanan, Gwin, Maury, Woodworth"
+    },
+    "axis": {
+      "course_deg": 128,
+      "speed_knots": 30,
+      "tuki_point": [
+        205,
+        10,
+        "nmi"
+      ],
+      "mikazuki_from_nicholas": [
+        300,
+        15,
+        "nmi"
+      ],
+      "column": "Mikazuki, Jintsu, Yukikaze, Hamakaze, Kiyonami, Yugure, then transport destroyers"
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "截击东京快车，阻止维拉和蒙达补给。",
+      "decisive": "击沉三艘日舰，并阻止运输驱逐舰到达维拉。",
+      "tactical": "击沉三艘日舰。"
+    },
+    "axis": {
+      "orders": "把人员和补给运抵维拉后返回拉包尔。",
+      "decisive": "击沉至少两艘盟军巡洋舰，运输驱逐舰无损抵达维拉。",
+      "tactical": "运输驱逐舰无损抵达维拉。"
+    }
+  },
+  "special_rules": [
+    "每个 30 分钟中间回合按 D6/2 生成局部阵雨数；雨内视距 5% 或 2%。",
+    "Jintsu、Yukikaze 可测向美方空情搜索雷达（不包括 SG），只提供方位，没有距离。",
+    "另有 7 月 19 日日方替换编成，不纳入本开局。"
+  ],
+  "blockers": [
+    "缺运输抵达、雷达测向、局部雨团、空中跟踪和大编队完整时期舰卡。"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-rs-cape-esperance-source-v1",
+  "scenario_id": "cas-rs-cape-esperance",
+  "ibs_id": "IBS-S-01",
+  "title": "埃斯佩兰斯角海战",
+  "title_en": "Battle of Cape Esperance",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [
+      65
+    ],
+    "printed_pages": [
+      64
+    ]
+  },
+  "start": {
+    "date_local": "1942-10-11",
+    "time_local": "23:24",
+    "location": "萨沃岛西北",
+    "map_type": "open_ocean"
+  },
+  "environment": {
+    "light": "night",
+    "visibility_pct": 10,
+    "sea_state": 3,
+    "moon_pct": 1,
+    "civil_twilight_local": "05:39",
+    "dawn_local": "06:00",
+    "squalls": "萨沃岛西北 5 至 50 海里有强降雨"
+  },
+  "forces": {
+    "allies": [
+      {
+        "unit": "TF64 巡洋舰",
+        "kind": "CA/CL",
+        "ships": [
+          "San Francisco",
+          "Boise",
+          "Salt Lake City",
+          "Helena"
+        ]
+      },
+      {
+        "unit": "Desron 12",
+        "kind": "DD",
+        "ships": [
+          "Farenholt",
+          "Duncan",
+          "Laffey",
+          "Buchanan",
+          "McCalla"
+        ]
+      },
+      {
+        "unit": "空中侦察",
+        "kind": "SOC-3",
+        "ships": [
+          "SOC-3"
+        ],
+        "airborne_count": 1
+      }
+    ],
+    "axis": [
+      {
+        "unit": "Crudiv 6",
+        "kind": "CA",
+        "ships": [
+          "Aoba",
+          "Furutaka",
+          "Kinugasa"
+        ],
+        "floatplane_complement_pct": 50
+      },
+      {
+        "unit": "Desdiv 11",
+        "kind": "DD",
+        "ships": [
+          "Fubuki",
+          "Hatsuyuki"
+        ]
+      }
+    ]
+  },
+  "setup": {
+    "allies": {
+      "course_deg": 45,
+      "speed_knots": 15,
+      "column": "Farenholt, Duncan, Laffey, San Francisco, Boise, Salt Lake City, Helena, Buchanan, McCalla"
+    },
+    "axis": {
+      "course_deg": 135,
+      "speed_knots": 30,
+      "aoba_from_helena": {
+        "bearing_deg": 315,
+        "distance_nmi": 13.5
+      },
+      "screen": "Fubuki 左正横、Hatsuyuki 右正横；未给距离"
+    },
+    "optional_starts": [
+      {
+        "time_local": "23:39",
+        "enemy_contact_from_helena": {
+          "bearing_deg": 285,
+          "distance_nmi": 6
+        }
+      },
+      {
+        "time_local": "23:45",
+        "enemy_contact_from_helena": {
+          "bearing_deg": 300,
+          "distance_yd": 5000
+        }
+      }
+    ]
+  },
+  "objectives": {
+    "allies": {
+      "orders": "截击敌方巡洋舰部队。",
+      "decisive": "造成 3:1 损伤点比。",
+      "tactical": "造成 1.5:1 损伤点比。"
+    },
+    "axis": {
+      "orders": "炮击亨德森机场 90 分钟，压制驻场飞机。",
+      "decisive": "造成 3:1 损伤比。",
+      "tactical": "造成 1:1 损伤比。"
+    }
+  },
+  "special_rules": [
+    "美方在日方还击前先获得一个可射击的战术回合。",
+    "双方各在每个战术回合掷 D10，首次为 1 时己方停火一回合，之后不再掷。",
+    "23:45 开局只有 Helena 可在计划射击阶段开火，其他美舰需在反应射击前自行发现敌舰。"
+  ],
+  "blockers": [
+    "同窗停火和预先开火的想定触发未实现。",
+    "需三类巡洋舰、Bristol 及日方舰时期记录、局部雨幕和侦察机。",
+    "未给日舰两侧警戒间距；损伤比的零分母与平手处理待统一。"
+  ]
+}

@@ -389,3 +389,34 @@ fn legacy_save_keeps_original_instant_cas_gunnery() {
     assert!(w.ship(6).unwrap().hp < hp);
     assert_eq!(w.save().version, LEGACY_VERSION);
 }
+
+#[test]
+fn night_starshell_uses_a_real_contact_and_the_planned_fire_window() {
+    let mut e = Engine::default();
+    let start = ask(&mut e, json!({
+        "op":"new","seed":6106,"side":"allies","enemy":"gunnery","variant":"night-training"
+    }));
+    assert_eq!(start["contacts"], json!([]));
+    assert_eq!(e.handle(json!({"op":"illuminate","ship":5,"target":"C05"}))["ok"], false);
+    ask(&mut e, json!({"op":"route","fleet":1,"mode":"follow","speed":15,
+        "points":[{"x":13000,"y":6550},{"x":13000,"y":10400}]}));
+    ask(&mut e, json!({"op":"step","seconds":360}));
+    assert_eq!(ask(&mut e, json!({"op":"illumination_preview","ship":5,"target":"C05"}))["valid"], true);
+    let order = json!({"op":"illuminate","ship":5,"target":"C05"});
+    let queued = ask(&mut e, order.clone());
+    assert_eq!(queued["illuminations"], json!([]));
+    assert_eq!(e.handle(order)["ok"], false);
+    let early = ask(&mut e, json!({"op":"step","seconds":179}));
+    assert_eq!(early["illuminations"], json!([]));
+    let applied = ask(&mut e, json!({"op":"step","seconds":1}));
+    assert_eq!(applied["illuminations"][0]["own"], true);
+    assert_eq!(applied["illuminations"][0]["expires"], 720);
+    assert!(applied["illuminations"][0].get("target").is_none());
+    assert!(applied["events"].as_array().unwrap().iter().any(|event|
+        event["kind"] == "illumination" && event["tick"] == 540));
+    let save = ask(&mut e, json!({"op":"save"}));
+    assert_eq!(save["version"], "cas-illumination-v3");
+    assert_eq!(ask(&mut e, json!({"op":"replay","save":save})), applied);
+    let expired = ask(&mut e, json!({"op":"step","seconds":180}));
+    assert_eq!(expired["illuminations"], json!([]));
+}

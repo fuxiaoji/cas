@@ -1,10 +1,13 @@
 mod ai;
+pub mod campaign;
 mod combat;
 mod damage;
+mod illumination;
 mod model;
 mod movement;
 mod night;
 mod projectile;
+mod radar;
 mod sighting;
 mod world;
 use model::*;
@@ -32,6 +35,9 @@ impl Engine {
             "info" => Ok(json!({"version":VERSION,"scenario":SCENARIO,"tickSeconds":1})),
             "campaign" => serde_json::from_str(include_str!("../data/campaign/crosswalk.json"))
                 .map_err(|e| format!("无法读取战役档案：{e}")),
+            "campaign_detail" => campaign::detail(
+                r["id"].as_str().ok_or("请选择战役关卡")?,
+            ),
             "new" => {
                 let seed = match r.get("seed") {
                     None => 6106,
@@ -101,6 +107,7 @@ impl Engine {
                     "preview_route" => w.preview(player, &r),
                     "preview_reform" => w.preview_reform(player, &r),
                     "aim" => w.preview_aim(player, &r),
+                    "illumination_preview" => w.preview_illumination(player, &r),
                     "suggest" => {
                         let f = world::u(&r, "fleet")?;
                         let orders = w.suggestions(player, f)?;
@@ -116,7 +123,7 @@ impl Engine {
                         };
                         Ok(json!({"orders":orders,"text":text}))
                     }
-                    "route" | "fire" | "lead" | "detach" | "reform" | "ai" => {
+                    "route" | "fire" | "lead" | "detach" | "reform" | "ai" | "radar_set" | "illuminate" => {
                         w.external(r)?;
                         Ok(w.observation(player))
                     }

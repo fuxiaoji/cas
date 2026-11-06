@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-rs-savo-island-source-v1",
+  "scenario_id": "cas-rs-savo-island",
+  "ibs_id": "IBS-S-10",
+  "title": "萨沃岛海战",
+  "title_en": "The Battle of Savo Island",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [
+      52,
+      53,
+      54
+    ],
+    "printed_pages": [
+      51,
+      52,
+      53
+    ]
+  },
+  "start": {
+    "date_local": "1942-08-09",
+    "time_local": "00:52",
+    "location": "铁底湾",
+    "map_type": "scenario_chart"
+  },
+  "environment": {
+    "light": "night",
+    "visibility_pct": 10,
+    "sea_state": 3,
+    "cloud_cover_pct": 100,
+    "cloud_ceiling_m": 2000,
+    "storm_radius_nmi": 3,
+    "civil_twilight_local": "06:11",
+    "dawn_local": "06:33"
+  },
+  "forces": {
+    "allies": [
+      {
+        "unit": "TG62.6 雷达哨舰",
+        "kind": "DD",
+        "ships": [
+          "Blue",
+          "Ralph Talbot"
+        ]
+      },
+      {
+        "unit": "TG62.6 南队",
+        "kind": "CA/DD",
+        "ships": [
+          "Australia",
+          "Canberra",
+          "Chicago",
+          "Bagley",
+          "Patterson"
+        ]
+      },
+      {
+        "unit": "TG62.6 北队",
+        "kind": "CA/DD",
+        "ships": [
+          "Vincennes",
+          "Quincy",
+          "Astoria",
+          "Helm",
+          "Wilson"
+        ]
+      },
+      {
+        "unit": "TG62.4 东屏护",
+        "kind": "CL/DD",
+        "ships": [
+          "San Juan",
+          "Hobart",
+          "Monssen",
+          "Buchanan",
+          "Jarvis"
+        ]
+      },
+      {
+        "unit": "TG62.1 X-Ray 屏护",
+        "kind": "DMS/DD",
+        "ships": [
+          "Hopkins",
+          "Trever",
+          "Zane",
+          "Southard",
+          "Hovey",
+          "Dewey",
+          "Selfridge",
+          "Mugford"
+        ]
+      },
+      {
+        "unit": "TG62.1 X-Ray 运输",
+        "kind": "APA/AKA/AP",
+        "ships": [
+          "Fuller",
+          "American Legion",
+          "Bellatrix",
+          "McCawley",
+          "Barnett",
+          "George F. Elliott",
+          "Libra",
+          "Hunter Liggett",
+          "Alchiba",
+          "Betelgeuse",
+          "Formalhaut",
+          "Crescent City",
+          "President Hayes",
+          "President Adams",
+          "Alhena"
+        ]
+      },
+      {
+        "unit": "TG61.2 Yoke 屏护与分遣",
+        "kind": "DD",
+        "ships": [
+          "Henley",
+          "Ellet",
+          "Hull"
+        ]
+      },
+      {
+        "unit": "TG61.2 Yoke 运输",
+        "kind": "APA/APD",
+        "ships": [
+          "Heywood",
+          "Neville",
+          "Zellin",
+          "President Jackson",
+          "Colhoun",
+          "Little",
+          "Gregory",
+          "McKean"
+        ]
+      }
+    ],
+    "axis": [
+      {
+        "unit": "Crudiv 4",
+        "kind": "CA",
+        "ships": [
+          "Chokai"
+        ]
+      },
+      {
+        "unit": "Crudiv 6",
+        "kind": "CA",
+        "ships": [
+          "Aoba",
+          "Kinugasa",
+          "Furutaka",
+          "Kako"
+        ]
+      },
+      {
+        "unit": "Crudiv 18",
+        "kind": "CL",
+        "ships": [
+          "Tenryu",
+          "Yubari"
+        ]
+      },
+      {
+        "unit": "Desdiv 29",
+        "kind": "DD",
+        "ships": [
+          "Yunagi"
+        ]
+      }
+    ]
+  },
+  "setup": {
+    "chart_pdf_page": 53,
+    "allied_patrol_speed_knots": 12,
+    "allied_readiness": "Condition II",
+    "australia": "离开南队后使用独立巡逻线",
+    "axis": {
+      "course_deg": 135,
+      "speed_knots": 28,
+      "cruiser_spacing_yd": 1300,
+      "chokai_from_blue": [
+        345,
+        12000,
+        "yd"
+      ],
+      "blue_patrol_course_deg": 235,
+      "column_source_discrepancy": "部署译页写由良作末舰；基础编成列夕凪驱逐舰，且历史叙述为夕凪。George F. Elliott 在 X-Ray 名录与随 Hull 分遣描述中均有出现，不能重复生成。"
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "保护 X-Ray 和 Yoke 卸载。",
+      "decisive": "损伤比 3:1，且无运输舰受损达到 25%。",
+      "tactical": "损伤比 1:1，且无运输舰受损达到 50%。"
+    },
+    "axis": {
+      "orders": "摧毁伦加点与图拉吉外海运输船，0600 前撤到萨沃岛西北至少 120 海里。",
+      "decisive": "五艘运输舰被击沉或损伤超过 75%。",
+      "tactical": "造成 2:1 损伤点比。"
+    }
+  },
+  "special_rules": [
+    "盟军尚未进入战斗岗位，被发现后 D6/3 向上取整的回合数内不能开火。",
+    "日方依靠水上侦察机预知盟方北队、南队及 Yoke 运输队的位置。",
+    "两项备战变体以及日方备选增援均不纳入基础编成。"
+  ],
+  "blockers": [
+    "须核对跨页编成歧义、数字化全图与巡逻线，并实现运输、战备延迟、夜间雷暴及侦察接触。"
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-rs-tassafaronga-source-v1",
+  "scenario_id": "cas-rs-tassafaronga",
+  "ibs_id": "IBS-S-04",
+  "title": "塔萨法隆格海战",
+  "title_en": "Battle of Tassafaronga",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [
+      75,
+      76
+    ],
+    "printed_pages": [
+      74,
+      75
+    ]
+  },
+  "start": {
+    "date_local": "1942-11-30",
+    "time_local": "23:08",
+    "location": "铁底湾",
+    "map_type": "scenario_chart"
+  },
+  "environment": {
+    "light": "night",
+    "visibility_pct": 10,
+    "sea_state": 0,
+    "cloud_cover_pct": 100,
+    "wind_from_deg": 90,
+    "wind_speed_knots": [
+      3,
+      6
+    ]
+  },
+  "forces": {
+    "allies": [
+      {
+        "unit": "TG67.2.2–3",
+        "kind": "CA/CL",
+        "ships": [
+          "Minneapolis",
+          "New Orleans",
+          "Pensacola",
+          "Northampton",
+          "Honolulu"
+        ]
+      },
+      {
+        "unit": "TG67.2.4",
+        "kind": "DD",
+        "ships": [
+          "Fletcher",
+          "Drayton",
+          "Perkins",
+          "Lamson",
+          "Lardner",
+          "Maury"
+        ]
+      }
+    ],
+    "axis": [
+      {
+        "unit": "屏护组",
+        "kind": "DD",
+        "ships": [
+          "Naganami",
+          "Makinami",
+          "Takanami"
+        ]
+      },
+      {
+        "unit": "运输组 1",
+        "kind": "DD",
+        "ships": [
+          "Oyashio",
+          "Kuroshio",
+          "Kagero"
+        ]
+      },
+      {
+        "unit": "运输组 2",
+        "kind": "DD",
+        "ships": [
+          "Kawakaze",
+          "Suzukaze"
+        ]
+      }
+    ]
+  },
+  "setup": {
+    "chart_pdf_page": 76,
+    "allies": {
+      "course_deg": 320,
+      "speed_knots": 20,
+      "leading_dd_spacing_yd": 500,
+      "cruiser_spacing_yd": 1000,
+      "lead_dd_from_minneapolis": "左舷舰艏 30°、4,000 码",
+      "rear_dds_from_northampton": "左舷舰艉 2,000 码"
+    },
+    "axis": {
+      "course_deg": 140,
+      "speed_knots": 12,
+      "naganami_from_minneapolis": {
+        "bearing_deg": 283,
+        "distance_nmi": 11.9
+      },
+      "takanami_from_naganami": "左舷舰艏 30°、4,000 码"
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "阻止日军补给。",
+      "decisive": "日方成功交付不超过 120 补给分；美方受损达到 50% 的重巡最多一艘。",
+      "tactical": "日方成功交付不超过 240 补给分；美方被击沉重巡最多一艘。"
+    },
+    "axis": {
+      "orders": "在指定点卸下油桶，天亮前撤出岸基航空兵范围。",
+      "decisive": "日方总分至少 500。",
+      "tactical": null
+    }
+  },
+  "special_rules": [
+    {
+      "rule": "补给点 1.5 海里以内，每成功卸一串油桶得 20 分；每个点同时最多接收三艘驱逐舰的货物。每舰每战术回合卸一串，满卸五回合，卸货限速 2 节。",
+      "radius_nmi": 1.5,
+      "points_per_string": 20,
+      "max_simultaneous_dds": 3,
+      "strings_per_ship": 5,
+      "unloading_max_knots": 2
+    },
+    "未卸货的分数从日方总分扣除；对美舰造成每点伤害加一分。",
+    "除 Naganami、Takanami 外，载货日舰无雷备弹。",
+    "日方源页第二档 250 分也印作 Decisive，保留原文冲突，未重标为 Tactical。"
+  ],
+  "blockers": [
+    "补给点与岸线待按地图数字化；缺运输、卸货、补给分及期内舰卡。",
+    "需核定日方 250 分档原文重复标签；美方页上 'only one' 按最多一艘的解释待最终确认。"
+  ]
+}

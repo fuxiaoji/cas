@@ -277,6 +277,7 @@ pub struct Ship {
     pub hp: f64,
     pub ammo: u32,
     pub gun_cycle: Option<u32>,
+    pub illumination_cycle: Option<u32>,
     pub torp_cycle: Option<u32>,
     pub torp_mount_used: Vec<bool>,
     pub track: Option<Track>,

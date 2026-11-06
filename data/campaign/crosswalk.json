@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cas-campaign-crosswalk-v1",
+  "content_version": "cas-campaign-crosswalk-v2",
   "baseline": {
     "name": "铁底湾手游 0.6.9",
     "commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
@@ -10,6 +10,11 @@
   },
   "source_path_root": "CAS带翻译/CAS带翻译",
   "documents": {
+    "cas_5e_main": {
+      "path": "Command_at_Sea_5th_edition.pdf",
+      "edition": "5th edition",
+      "sha256": "caf6390ab8a0237c9c721b88998ef7eccb9aa961e7a7da4820fb6d7a3593e9d0"
+    },
     "rising_sun_5e": {
       "path": "剧本/Rising_Sun_5th_ed_Std_1_Oct_25.pdf",
       "edition": "5th edition, 1 Oct 2025",
@@ -157,8 +162,8 @@
             64
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "cape-esperance.json"
       },
       "playable": false,
       "note": "CAS 默认开局 23:24，可另选 23:39 或 23:45；CAS 基础编制不把旧作增援船队搬上战场。"
@@ -269,8 +274,8 @@
             75
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "tassafaronga.json"
       },
       "playable": false,
       "note": "PDF 76 为部署图；补给桶任务不能替换成只数击沉。"
@@ -307,8 +312,8 @@
             73
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "guadalcanal-ii.json"
       },
       "playable": false,
       "note": "CAS 在 11 月 14 日 23:00 开始，跨至旧作标记的 11 月 15 日；同一次交战，保留两方日期。"
@@ -396,8 +401,8 @@
             86
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "kolombangara.json"
       },
       "playable": false,
       "note": "以正文与舰表为准，目录中美方舰种概述不可用作编制。"
@@ -434,8 +439,8 @@
             71
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "guadalcanal-i.json"
       },
       "playable": false,
       "note": "PDF 72 含历史结局和部署图。"
@@ -474,8 +479,8 @@
             53
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "savo-island.json"
       },
       "playable": false,
       "note": "PDF 53 为部署图，PDF 54 为部署正文及裁决。"
@@ -510,8 +515,8 @@
             90
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "empress-augusta-bay.json"
       },
       "playable": false,
       "note": "CAS 目录拼写有误，采用正文。"
@@ -599,8 +604,8 @@
             89
           ]
         },
-        "verification": "title_and_start_visually_checked",
-        "import": null
+        "verification": "scenario_page_transcribed",
+        "import": "vella-lavella.json"
       },
       "playable": false,
       "note": "为十月六日撤离交战；与 PDF 88 的八月六日韦拉湾海战不同。"

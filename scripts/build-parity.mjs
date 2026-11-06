@@ -27,10 +27,19 @@ async function verify(side, fleet, variant = '', seed = 6106) {
 
   const commands = [
     { op: 'info' },
-    { op: 'new', seed, side, enemy: 'torpedo', variant },
+    { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant },
+  ];
+  if (variant === 'night-training') commands.push(
+    { op: 'route', fleet, mode: 'follow', speed: 15, points: [{ x: 13000, y: 6550 }, { x: 13000, y: 10400 }] },
+    { op: 'step', seconds: 360 },
+    { op: 'illumination_preview', ship: 5, target: 'C05' },
+    { op: 'illuminate', ship: 5, target: 'C05' },
+    { op: 'step', seconds: 180 },
+  );
+  commands.push(
     { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true },
     { op: 'step', seconds: 2700 },
-  ];
+  );
   const wasmOutput = commands.map(call);
   if (!wasmOutput.at(-1).data?.result) {
     commands.push({ op: 'step', seconds: 8 });
@@ -52,6 +61,8 @@ async function verify(side, fleet, variant = '', seed = 6106) {
   }
   const start = wasmOutput[1].data;
   const report = wasmOutput.at(-3).data;
+  if (variant === 'night-training') assert(report.events.some(e => e.kind === 'illumination' && e.tick === 540));
+  if (variant === 'radar' && side === 'allies') assert(report.events.some(e => e.kind === 'gun' && e.text.includes('水面搜索雷达')));
   assert.equal(start.ships.length, variant === 'challenge' ? 3 : 5);
   assert.equal(start.variant, variant);
   assert(end.result, `${side}: exercise failed to produce a result`);
@@ -60,7 +71,8 @@ async function verify(side, fleet, variant = '', seed = 6106) {
     canonicalSha256: createHash('sha256').update(json(wasmOutput)).digest('hex') };
 }
 
-const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), await verify('allies', 1, 'challenge'), await verify('allies', 1, 'night')];
+const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), await verify('allies', 1, 'challenge'),
+  await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training')];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

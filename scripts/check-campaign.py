@@ -17,6 +17,7 @@ EXPECTED_CLASSES = {
     "ibs_original_or_absent": 3,
     "unverified": 1,
 }
+ROSTER_FILE = "roster-crosswalk.json"
 
 
 def load(path):
@@ -100,8 +101,9 @@ def verify_imports(crosswalk):
             assert record["status"] == "source_transcribed"
             assert record["playable"] is False and record["blockers"]
             for side in ("axis", "allies"):
-                assert {"orders", "decisive", "tactical"} == record["objectives"][side].keys()
-    assert linked == {p.name for p in CAMPAIGN.glob("*.json")} - {"crosswalk.json"}
+                assert {"orders", "decisive", "tactical"} <= record["objectives"][side].keys()
+    assert linked == {p.name for p in CAMPAIGN.glob("*.json")} - {"crosswalk.json", ROSTER_FILE}
+    assert len(linked) == EXPECTED_CLASSES["exact_historical_counterpart"]
     for path in (CAMPAIGN / "next").glob("*.json"):
         record = load(path)
         row = rows[record["ibs_id"]]
@@ -115,6 +117,8 @@ def verify_imports(crosswalk):
         assert record["scenario_id"] not in next_records
         next_records.add(record["scenario_id"])
         refs.extend(sources(record))
+    for path in (CAMPAIGN / "period").glob("*.json"):
+        refs.extend(sources(load(path)))
     for ref in refs:
         assert ref["document"] in crosswalk["documents"]
         assert len(ref["pdf_pages"]) == len(ref["printed_pages"]) > 0
@@ -146,6 +150,82 @@ def verify_cape_st_george():
     assert goals["axis"]["decisive"]["all_of"][1] == {"type": "all_own_ships_damage_strictly_below_pct", "pct": 25}
     assert goals["allies"]["decisive"]["all_of"][1] == {"type": "all_own_ships_damage_at_most_pct", "kind": "DD", "pct": 25}
     assert all(value is None for value in goals["adjudication"].values())
+    period = load(CAMPAIGN / "period" / "cape-st-george-1943.json")
+    assert period["scenario_id"] == scenario["scenario_id"] and period["as_of"] == scenario["start"]["date_local"]
+    assert period["status"] == "source_data_not_launchable"
+    assert period["instances"].keys() == ships.keys()
+    classes = {}
+    for sid, instance in period["instances"].items():
+        group = next(g for g in groups.values() if sid in g["members_in_order"])
+        profile = period["profiles"][instance["profile"]]
+        assert (profile["side"], profile["class"], profile["kind"]) == (group["side"], ships[sid]["class"], ships[sid]["kind"])
+        assert profile["turn_class"] in period["maneuver_classes"]
+        assert profile["main_gun"] in period["weapon_models"]
+        assert profile["damage_speed_rows_dp_knots"][-1][1] is None  # sunk, not stopped
+        assert profile["damage_speed_rows_dp_knots"][0][1] >= group["speed_knots"]
+        assert all(arc in ("F", "A", "P&S") and barrels > 0 for arc, barrels in profile["gun_mounts"])
+        racks = profile["torpedo_mounts"]
+        assert racks["model"] is None or racks["model"] in period["weapon_models"]
+        assert racks["reserve_per_mount"] is None or len(racks["reserve_per_mount"]) == len(racks["loaded_tubes_per_mount"])
+        assert not set(instance["radar_confirmed"]) & set(instance.get("radar_candidates", []))
+        classes[profile["class"]] = profile["damage_speed_rows_dp_knots"][-1][0]
+    assert classes == {"Fletcher": 144, "Yugumo": 140, "Fubuki": 106, "Mutsuki": 88}
+    assert {i["id"] for i in period["conflicts"] if i["status"] == "unresolved"} == {
+        "fubuki-torpedo-reserve", "yugiri-type22-date", "uzuki-torpedo-model", "troop-loadout"
+    }
+    assert period["profiles"]["fubuki_1936_refit"]["torpedo_mounts"]["reserve_per_mount"] is None
+    assert period["profiles"]["mutsuki_1943_uzuki"]["torpedo_mounts"]["model"] is None
+    assert period["instances"]["yugiri"]["radar_confirmed"] == []
+    return ships
+
+
+def verify_roster(crosswalk, campaign_rows, cape_ships, repository):
+    roster = load(CAMPAIGN / ROSTER_FILE)
+    assert roster["baseline_commit"] == crosswalk["baseline"]["commit"]
+    assert roster["status"] == "identity_inventory_not_a_battle_pack"
+    by_id = {ship["ibs_ship_id"]: ship for ship in roster["ships"]}
+    assert len(roster["ships"]) == len(by_id) == 210
+    assert sum(bool(ship["campaign_memberships"]) for ship in by_id.values()) == 208
+    assert sum(ship["legacy_catalog_entry"] for ship in by_id.values()) == 22
+    assert {sid for sid, ship in by_id.items() if not ship["campaign_memberships"]} == {"IBS-U-USN-GEARING", "IBS-U-USN-MIDWAY"}
+    mapped = {}
+    for sid, ship in by_id.items():
+        assert sid.startswith("IBS-U-") and ship["ibs_character_id"].startswith("IBS-U-")
+        assert ship["side"] in {"allies", "axis"}
+        assert all(m["scenario_id"] in campaign_rows and isinstance(m["reinforcement"], bool) for m in ship["campaign_memberships"])
+        assert not {"cost", "combat_ready", "recruitable", "guns", "torpedoes", "dp"} & ship.keys()
+        if ship["cas_named_hull_status"] == "period_review":
+            inst = ship["cas_source_instance"]
+            assert inst["scenario_id"] == "cas-rs-cape-st-george" and inst["ship_id"] not in mapped
+            mapped[inst["ship_id"]] = sid
+        else:
+            assert ship["cas_named_hull_status"] == "unverified" and "cas_source_instance" not in ship
+    assert mapped.keys() == cape_ships.keys()
+    assert mapped["uzuki"] == "IBS-U-IJN-UZUKI-2"
+    prologue = load(CAMPAIGN / "period" / "prologue-us-destroyers.json")
+    assert prologue["status"] == "dated_source_records_not_a_frozen_sortie"
+    assert {ship["ibs_ship_id"] for ship in prologue["ships"]} == {
+        "IBS-U-USN-" + name for name in ("FLETCHER", "PERKINS", "MAURY", "DRAYTON", "LAMSON")
+    }
+    for entry in prologue["ships"]:
+        assert entry["name"] == by_id[entry["ibs_ship_id"]]["name"]
+        assert prologue["dated_fits"][entry["fit"]]["hull"] in prologue["hull_classes"]
+    if repository:
+        def read(rel):
+            return json.loads(subprocess.check_output(
+                ["git", "-C", str(repository), "show", f"{roster['baseline_commit']}:{rel}"]
+            ))
+        manifest, catalog, portrait = map(read, roster["sources"])
+        assert by_id.keys() == {s["ship_id"] for s in portrait["ships"]}
+        legacy_scenario = {s["id"]: s for s in manifest["ships"]}
+        legacy_catalog = {s["id"]: s for s in catalog["ships"]}
+        assert by_id.keys() == legacy_scenario.keys() | legacy_catalog.keys()
+        for sid, ship in by_id.items():
+            legacy = legacy_scenario.get(sid) or legacy_catalog[sid]
+            assert (ship["name"], ship["side"], ship["legacy_type"]) == (legacy["name"], legacy["side"], legacy["type"])
+            assert ship["legacy_catalog_entry"] == (sid in legacy_catalog)
+            assert ship["campaign_memberships"] == sorted(legacy.get("campaign_sources", []), key=lambda m: (m["scenario_id"], m["reinforcement"]))
+    return len(by_id)
 
 
 def main():
@@ -154,7 +234,8 @@ def main():
     args = parser.parse_args()
     crosswalk = load(CAMPAIGN / "crosswalk.json")
     rows, linked, next_records = verify_imports(crosswalk)
-    verify_cape_st_george()
+    cape_ships = verify_cape_st_george()
+    roster_count = verify_roster(crosswalk, rows, cape_ships, args.ibs_worktree)
     originals = ROOT / crosswalk["source_path_root"]
     checked_sources = 0
     if originals.is_dir():
@@ -165,6 +246,7 @@ def main():
     if args.ibs_worktree:
         verify_baseline(crosswalk, rows, args.ibs_worktree)
     print(f"CAS campaign: {len(rows)} scenarios, 32 legacy stages, {len(linked)} catalogued and {len(next_records)} staged source-only imports; "
+          f"{roster_count} legacy identities, {len(cape_ships)} dated Cape St. George instances; "
           f"{checked_sources} local PDF hashes; pinned legacy baseline: {'checked' if args.ibs_worktree else 'not requested'}")
 
 

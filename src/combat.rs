@@ -54,6 +54,7 @@ struct Shot {
     band: usize,
     barrels: u32,
     reaction: bool,
+    radar_only: bool,
 }
 #[derive(Clone)]
 pub(crate) struct Impact {
@@ -76,7 +77,7 @@ struct Launch {
 
 impl World {
     pub fn detect(&mut self, initial: bool) {
-        if self.variant == "night" {
+        if self.environment().light == crate::night::Light::Night {
             self.detect_night();
             return;
         }
@@ -173,7 +174,7 @@ impl World {
         }
     }
     pub fn update_tracks(&mut self) {
-        if self.variant == "night" {
+        if self.environment().light == crate::night::Light::Night {
             self.update_night_tracks();
             return;
         }
@@ -222,7 +223,7 @@ impl World {
             .mounts
             .iter()
             .enumerate()
-            .filter(|(i, m)| !s.gun_mount_destroyed[*i] && m_arc(direction, m.arc, m.arc2))
+            .filter(|(i, m)| !s.gun_mount_destroyed[*i] && !self.mount_lighting(s.id,*i) && m_arc(direction, m.arc, m.arc2))
             .map(|(_, m)| m.barrels)
             .sum();
         (barrels > 0).then_some((band, barrels))
@@ -234,16 +235,24 @@ impl World {
         self.gun_band(s, c).is_some()
             && (!self.is_reaction(c) || s.gun_cycle != Some(self.tick / CYCLE))
     }
+    fn gun_contact(&self, s: &Ship, target: &str) -> E<(std::borrow::Cow<'_, Contact>, bool)> {
+        match self.contact(s.side, target) {
+            Ok(visual) => return Ok((std::borrow::Cow::Borrowed(visual), false)),
+            Err(e) if !self.radar_enabled() => return Err(e),
+            Err(_) => (),
+        }
+        self.radar_gun_contact(s, target)
+            .map(|track| (std::borrow::Cow::Owned(track), true))
+            .ok_or_else(|| "本舰没有可用的目标接触".into())
+    }
     pub fn can_gun(&self, s: &Ship) -> bool {
         s.alive()
             && !self
                 .pending
                 .iter()
                 .any(|p| p.ship == s.id && p.weapon == "gun")
-            && self.contacts[s.side].iter().any(|c| {
-                self.gun_band(s, c).is_some()
-                    && (!self.is_reaction(c) || s.gun_cycle != Some(self.tick / CYCLE))
-            })
+            && (self.contacts[s.side].iter().any(|c| self.gun_candidate(s, c))
+                || self.radar_gun_contacts(s).any(|c| self.gun_candidate(s, &c)))
     }
     pub fn can_torp(&self, s: &Ship) -> bool {
         s.alive()
@@ -318,10 +327,10 @@ impl World {
         let id = u(r, "ship")?;
         let s = self.ship_for(owner, id)?;
         let target = r["target"].as_str().ok_or("请选择一个敌方接触")?;
-        let c = self.contact(owner, target)?;
         if r["weapon"] == "gun" {
+            let (c, radar_only) = self.gun_contact(s, target)?;
             let d = &self.data.ships[s.def];
-            let barrels = self.gun_band(s, c).map_or(0, |(_, k)| k);
+            let barrels = self.gun_band(s, &c).map_or(0, |(_, k)| k);
             let error = if barrels == 0 {
                 Some("目标超出射程或没有炮位能对准")
             } else if self
@@ -330,15 +339,18 @@ impl World {
                 .any(|p| p.ship == s.id && p.weapon == "gun")
             {
                 Some("该舰已有待执行的炮击")
-            } else if self.is_reaction(c) && s.gun_cycle == Some(self.tick / CYCLE) {
+            } else if self.is_reaction(&c) && s.gun_cycle == Some(self.tick / CYCLE) {
                 Some("该舰本窗口已开炮")
             } else {
                 None
             };
-            return Ok(
-                json!({"valid":error.is_none(),"barrels":barrels,"error":error,"heading":(c.p()-s.p).heading(),"arcs":[],"range":d.gun.range_yd[3]*YARD,"friendly":false}),
-            );
+            let mut solution = json!({"valid":error.is_none(),"barrels":barrels,"error":error,"heading":(c.p()-s.p).heading(),"arcs":[],"range":d.gun.range_yd[3]*YARD,"friendly":false});
+            if radar_only {
+                solution["targetSource"] = json!("surface_radar");
+            }
+            return Ok(solution);
         }
+        let c = self.contact(owner, target)?;
         let angle = r
             .get("heading")
             .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
@@ -362,7 +374,6 @@ impl World {
         let id = u(r, "ship")?;
         let s = self.ship_for(owner, id)?;
         let target = r["target"].as_str().ok_or("请把火力拖向一个接触")?;
-        let c = self.contact(owner, target)?;
         let weapon = r["weapon"].as_str().ok_or("武器不可用")?;
         if self
             .pending
@@ -372,14 +383,18 @@ impl World {
             return Err("该武器已有一条待执行命令".into());
         }
         let mut heading = None;
+        let mut reaction = false;
         match weapon {
             "gun" => {
-                self.gun_band(s, c).ok_or("目标超出射程或没有炮位能对准")?;
-                if self.is_reaction(c) && s.gun_cycle == Some(self.tick / CYCLE) {
+                let (c, _) = self.gun_contact(s, target)?;
+                self.gun_band(s, &c).ok_or("目标超出射程或没有炮位能对准")?;
+                reaction = self.is_reaction(&c);
+                if reaction && s.gun_cycle == Some(self.tick / CYCLE) {
                     return Err("该舰本战术窗口已开炮".into());
                 }
             }
             "torpedo" => {
+                let c = self.contact(owner, target)?;
                 let angle = r
                     .get("heading")
                     .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
@@ -422,12 +437,7 @@ impl World {
             format!(
                 "{source} · {}已下令，等待{}",
                 if weapon == "gun" { "炮击" } else { "鱼雷" },
-                if weapon == "gun"
-                    && self.contacts[owner]
-                        .iter()
-                        .find(|x| x.id == target)
-                        .is_some_and(|x| self.is_reaction(x))
-                {
+                if reaction {
                     "反应火力窗口"
                 } else {
                     "计划火力窗口"
@@ -440,27 +450,29 @@ impl World {
     }
     fn validate_shot(&self, p: &Fire, planned: bool) -> E<Option<Shot>> {
         let s = self.ship_for(p.side, p.ship)?;
-        let c = self.contact(p.side, &p.target)?;
+        let (c, radar_only) = self.gun_contact(s, &p.target)?;
         if !self.ship(c.ship).is_some_and(Ship::alive) {
             return Err("目标已失效".into());
         }
         let reaction = !planned;
-        if reaction && !self.is_reaction(c) {
+        if reaction && !self.is_reaction(&c) {
             return Ok(None);
         }
         if s.gun_cycle == Some(self.tick / CYCLE) {
             return Err("本窗口炮位已使用".into());
         }
-        let (band, barrels) = self.gun_band(s, c).ok_or("执行时目标已超出射程或射界")?;
+        let (band, barrels) = self.gun_band(s, &c).ok_or("执行时目标已超出射程或射界")?;
         Ok(Some(Shot {
             ship: s.id,
             target: c.ship,
             band,
             barrels,
             reaction,
+            radar_only,
         }))
     }
     pub fn resolve_fire(&mut self, planned: bool) {
+        self.resolve_illumination(planned);
         if self.pending.is_empty() {
             return;
         }
@@ -471,11 +483,15 @@ impl World {
         for p in pending {
             let run = if planned {
                 p.expires <= self.tick
+            } else if !self.radar_enabled() {
+                p.weapon == "gun" && self.contact(p.side, &p.target).is_ok_and(|c| self.is_reaction(c))
             } else {
                 p.weapon == "gun"
                     && self
-                        .contact(p.side, &p.target)
-                        .is_ok_and(|c| self.is_reaction(c))
+                        .ship_for(p.side, p.ship)
+                        .ok()
+                        .and_then(|s| self.gun_contact(s, &p.target).ok())
+                        .is_some_and(|(c, _)| self.is_reaction(&c))
             };
             if !run {
                 self.pending.push(p);
@@ -549,16 +565,12 @@ impl World {
             count,
         })
     }
-    fn fire_gun(&mut self, shot: Shot, planned_targets: &[u32]) -> Option<Impact> {
-        let s = self.ship(shot.ship)?.clone();
-        let t = self.ship(shot.target)?.clone();
-        let d = &self.data.ships[s.def];
+    pub(crate) fn gun_values(&self,s:&Ship,t:&Ship,b:usize,barrels:u32,radar_only:bool,planned_targets:&[u32],extra:i32,prelight:bool)->(f64,u32){
         let td = &self.data.ships[t.def];
-        let gun = &d.gun;
-        let b = shot.band;
+        let gun = &self.data.ships[s.def].gun;
         let base = n(&self.data.rules["gun_base_hit"][gun.gs.to_string()][b]);
-        let mut modifiers = 0_i32;
-        modifiers += ((shot.barrels.saturating_sub(1) / 2).min(5)) as i32;
+        let mut modifiers = extra;
+        modifiers += ((barrels.saturating_sub(1) / 2).min(5)) as i32;
         modifiers += if t.speed < 0.05 {
             2
         } else if t.speed <= 10. {
@@ -576,14 +588,16 @@ impl World {
         } else {
             [0, -1, -2][target_aspect]
         };
-        if self.variant == "night" {
-            modifiers +=
-                crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None);
+        if self.environment().light == crate::night::Light::Night {
+            modifiers += (!prelight).then(||self.illumination_modifier(s,t)).flatten().unwrap_or_else(||crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None));
         } else if s.p.dist(t.p) / YARD <= gun.range_yd[0] / 2. {
             modifiers += 4;
         }
         if s.fire_control_damage {
             modifiers -= 2;
+        }
+        if radar_only {
+            modifiers += crate::radar::search_fire_modifier();
         }
         if !planned_targets.contains(&s.id) && !self.incoming_this_cycle.contains(&s.id) {
             modifiers += 1;
@@ -601,7 +615,16 @@ impl World {
         if streak >= 3 {
             modifiers += 1
         }
-        let chance = (base + modifiers as f64 * if b <= 1 { 4. } else { 2. }).clamp(0., 90.);
+        ((base + modifiers as f64 * if b <= 1 { 4. } else { 2. }).clamp(0., 90.),streak)
+    }
+    fn fire_gun(&mut self, shot: Shot, planned_targets: &[u32]) -> Option<Impact> {
+        let s = self.ship(shot.ship)?.clone();
+        let t = self.ship(shot.target)?.clone();
+        let gun = &self.data.ships[s.def].gun;
+        let td = &self.data.ships[t.def];
+        let b=shot.band;
+        let cycle=self.tick/CYCLE;
+        let (chance,streak)=self.gun_values(&s,&t,b,shot.barrels,shot.radar_only,planned_targets,0,false);
         let roll = self.d(100);
         self.gun_streak[(s.id - 1) as usize] = (t.id, cycle, streak);
         let bearing = (t.p - s.p).heading();
@@ -611,7 +634,7 @@ impl World {
             .iter()
             .enumerate()
             .map(|(i, m)| {
-                (!s.gun_mount_destroyed[i] && m_arc(relative, m.arc, m.arc2)).then_some(bearing)
+                (!s.gun_mount_destroyed[i] && !self.mount_lighting(s.id,i) && m_arc(relative, m.arc, m.arc2)).then_some(bearing)
             })
             .collect();
         let until = self.tick + SHELL_FLIGHT;
@@ -625,7 +648,9 @@ impl World {
         self.add(
             1 << s.side,
             "gun",
-            format!(
+            if shot.radar_only {
+                format!("{} · 使用本舰水面搜索雷达炮击，{} 门", s.name, shot.barrels)
+            } else { format!(
                 "{} · {}{}射程，{} {} 门 · 命中阈值 {:.0}% / D100 {}",
                 s.name,
                 if shot.reaction {
@@ -638,12 +663,12 @@ impl World {
                 shot.barrels,
                 chance,
                 roll
-            ),
+            ) },
             Some("CAS-6.1.3"),
             Some(s.p),
         );
         if roll as f64 > chance {
-            if self.version != LEGACY_VERSION {
+            if self.version != LEGACY_VERSION && !shot.radar_only {
                 self.launch_shell(&s, &t, shot.barrels, shot.reaction, None);
             }
             return None;
@@ -672,7 +697,7 @@ impl World {
             penetrated,
             flood_hits: 0,
         };
-        if self.version == LEGACY_VERSION {
+        if self.version == LEGACY_VERSION || shot.radar_only {
             Some(impact)
         } else {
             self.launch_shell(&s, &t, shot.barrels, shot.reaction, Some(impact));

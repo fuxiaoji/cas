@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-rs-guadalcanal-i-source-v1",
+  "scenario_id": "cas-rs-guadalcanal-i",
+  "ibs_id": "IBS-S-09",
+  "title": "第一次瓜达卡纳尔岛海战",
+  "title_en": "First Battle of Guadalcanal",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [
+      71,
+      72
+    ],
+    "printed_pages": [
+      70,
+      71
+    ]
+  },
+  "start": {
+    "date_local": "1942-11-13",
+    "time_local": "01:24",
+    "location": "铁底湾",
+    "map_type": "scenario_chart"
+  },
+  "environment": {
+    "light": "night",
+    "visibility_pct": 10,
+    "sea_state": 3,
+    "cloud_cover_pct": 100,
+    "cloud_ceiling_m": 500,
+    "wind_from_deg": 90,
+    "wind_speed_knots": 9,
+    "moonset_local": "22:33",
+    "civil_twilight_local": "05:27",
+    "dawn_local": "05:49"
+  },
+  "forces": {
+    "allies": [
+      {
+        "unit": "TG67.4",
+        "kind": "CA/CL",
+        "ships": [
+          "San Francisco",
+          "Portland",
+          "Helena",
+          "Atlanta",
+          "Juneau"
+        ]
+      },
+      {
+        "unit": "Desdiv 10",
+        "kind": "DD",
+        "ships": [
+          "Cushing",
+          "Laffey",
+          "Sterett",
+          "O’Bannon"
+        ]
+      },
+      {
+        "unit": "Desron 12",
+        "kind": "DD",
+        "ships": [
+          "Aaron Ward",
+          "Barton",
+          "Monssen",
+          "Fletcher"
+        ]
+      }
+    ],
+    "axis": [
+      {
+        "unit": "Batdiv 11",
+        "kind": "BB",
+        "ships": [
+          "Hiei",
+          "Kirishima"
+        ]
+      },
+      {
+        "unit": "Desron 10",
+        "kind": "CL/DD",
+        "ships": [
+          "Nagara",
+          "Akatsuki",
+          "Ikazuchi",
+          "Inazuma",
+          "Amatsukaze",
+          "Yukikaze",
+          "Teruzuki"
+        ]
+      },
+      {
+        "unit": "Desron 4",
+        "kind": "DD",
+        "ships": [
+          "Asagumo",
+          "Harusame",
+          "Murasame",
+          "Yudachi",
+          "Samidare"
+        ]
+      },
+      {
+        "unit": "Desdiv 27 警戒队",
+        "kind": "DD",
+        "ships": [
+          "Yugure",
+          "Shiratsuyu",
+          "Shigure"
+        ]
+      }
+    ]
+  },
+  "setup": {
+    "chart_pdf_page": 72,
+    "allies": {
+      "course_deg": 280,
+      "speed_knots": 20,
+      "column": "Cushing, Laffey, Sterett, O’Bannon, Atlanta, San Francisco, Portland, Helena, Juneau, Aaron Ward, Barton, Monssen, Fletcher"
+    },
+    "axis": {
+      "course_deg": 120,
+      "speed_knots": 23,
+      "lead_pair_from_helena": [
+        310,
+        13.5,
+        "nmi"
+      ],
+      "nagara_ahead_of_hiei_yd": 2000,
+      "nagara_from_yudachi": [
+        340,
+        5000,
+        "yd"
+      ],
+      "port_screen_offset_yd": 1000,
+      "starboard_screen_offset_yd": 1000
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "阻止日方炮击亨德森机场，兼阻止塔萨法隆格附近的敌方补给。",
+      "decisive": "造成 2:1 损伤比且机场无损。",
+      "tactical": "迫使阿部撤退而未炮击机场。"
+    },
+    "axis": {
+      "orders": "炮击亨德森机场，掩护增援队卸载。",
+      "decisive": "造成 5:1 损伤比且机场受 3,000 DP。",
+      "tactical": "造成 3:1 损伤比。"
+    }
+  },
+  "special_rules": [
+    "每 30 分钟掷 D6；1 为 2% 视距，2–3 为 5%，4–6 为 10%。500 米低云底禁用侦察机。",
+    "日方战列舰和巡洋舰先射两个战术回合三式弹。美舰均有 SC；Portland、Helena、Juneau、Fletcher、O’Bannon 另有 SG。",
+    "可选撤退：比叡同时舰桥命中、有火情、损伤至少 25%，在被火炮或探照灯指向的回合以 25% 概率发撤退令。"
+  ],
+  "blockers": [
+    "缺海岸、机场目标、战列舰、特殊炮弹、舰桥损伤触发、雨幕与大编队。",
+    "Yudachi 在出场阵位有明确参照，但星舷艉部纵队名单不再列它，必须保留独立阵位直至数字化。"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-prologue-us-destroyers-source-v1",
+  "status": "dated_source_records_not_a_frozen_sortie",
+  "policy": "Preserve the exact older cards for each named configuration. Class, movement, DP and projectile rows use the Annex tables and the Fifth Edition rulebook. The fictional prologue must choose a common loadout date before these become fleet profiles.",
+  "rules_source": {"document":"cas_5e_main","pdf_pages":[13,14,23],"printed_pages":["2-1","2-2","3-2"]},
+  "gun_source": {"document":"american_fleets","pdf_pages":[108],"printed_pages":["C-2"]},
+  "torpedo_source": {"document":"american_fleets","pdf_pages":[119],"printed_pages":["F-1"]},
+  "selected_shell_candidate": {"mounts":"Mk21, Mk24, Mk30 5in/38","shell":"SpCOM","range_yd":[[0,5500],[5600,10900],[11000,14600],[14700,18200]],"belt":[7,4,3,2],"deck":[null,null,1,2],"damage_dp":[18,14,12,11]},
+  "selected_torpedo_candidate": {"model":"Mk15 TNT","damage_dp":87,"range_speed_pairs_yd_knots":[[6000,45],[10000,34],[15000,27]],"contact_fuzed":true},
+  "hull_classes": {
+    "fletcher": {"source":{"document":"american_fleets","pdf_pages":[20],"printed_pages":["A-17"]},"size":"C","turn_class":"A","in_service_year":1942,"gunnery_standard":4,"armor_rating":0,"crew":273,"std_displacement_tons":2200,"damage_speed_rows_dp_knots":[[0,37],[36,28],[72,18],[108,9],[130,0],[144,null]]},
+    "gridley": {"source":{"document":"american_fleets","pdf_pages":[21],"printed_pages":["A-18"]},"size":"C","turn_class":"C","in_service_year":1937,"gunnery_standard":4,"armor_rating":0,"crew":158,"std_displacement_tons":1590,"damage_speed_rows_dp_knots":[[0,38],[29,28],[58,19],[87,10],[104,0],[116,null]]},
+    "mahan": {"source":{"document":"american_fleets","pdf_pages":[22],"printed_pages":["A-19"]},"size":"D","turn_class":"D","in_service_year":1936,"gunnery_standard":4,"armor_rating":0,"crew":172,"std_displacement_tons":1500,"damage_speed_rows_dp_knots":[[0,36],[28,27],[56,18],[84,9],[101,0],[112,null]]}
+  },
+  "dated_fits": {
+    "fletcher_1942_october": {"hull":"fletcher","guns":["F","F","P&S","A","A"],"gun_mount":"Mk30","tubes":[["P&S",5],["P&S",5]],"radars":["SC-2","SG","Mk4 FD"],"light_aa":"4 40mm, 6–13 20mm as printed in Form 10"},
+    "maury_1941_december": {"hull":"gridley","guns":["F","F","A","A"],"gun_mount":"Mk24","tubes":[["P",4],["P",4],["S",4],["S",4]],"radars":[],"light_aa":"6 20mm"},
+    "drayton_1942_march_may": {"hull":"mahan","guns":["F","F","A","A"],"gun_mount":"Mk21","tubes":[["P",4],["S",4],["P&S",4]],"radars":[],"light_aa":"8 20mm as printed in Form 10"},
+    "perkins_1942_january_february": {"hull":"mahan","guns":["F","F","A","A"],"gun_mount":"Mk21","tubes":[["P",4],["S",4],["P&S",4]],"radars":["SC (CXBD)"],"light_aa":"6 20mm"},
+    "lamson_1941_december": {"hull":"mahan","guns":["F","F","P&S","A","A"],"gun_mount":"Mk21","tubes":[["P",4],["S",4],["P&S",4]],"radars":[],"light_aa":"4 .50 cal"}
+  },
+  "ships": [
+    {"ibs_ship_id":"IBS-U-USN-FLETCHER","name":"弗莱彻","name_en":"Fletcher","hull_number":445,"fit":"fletcher_1942_october","form10":{"document":"rising_sun_form10","pdf_pages":[277],"printed_pages":[277]},"period_label":"1942-10"},
+    {"ibs_ship_id":"IBS-U-USN-PERKINS","name":"帕金斯","name_en":"Perkins","hull_number":377,"fit":"perkins_1942_january_february","form10":{"document":"rising_sun_form10","pdf_pages":[332],"printed_pages":[332]},"period_label":"1942-01 / 1942-02 refit"},
+    {"ibs_ship_id":"IBS-U-USN-MAURY","name":"莫里","name_en":"Maury","hull_number":401,"fit":"maury_1941_december","form10":{"document":"rising_sun_form10","pdf_pages":[320],"printed_pages":[320]},"period_label":"1941-12"},
+    {"ibs_ship_id":"IBS-U-USN-DRAYTON","name":"德雷顿","name_en":"Drayton","hull_number":366,"fit":"drayton_1942_march_may","form10":{"document":"rising_sun_form10","pdf_pages":[330],"printed_pages":[330]},"period_label":"1942-03 / 1942-05 refit"},
+    {"ibs_ship_id":"IBS-U-USN-LAMSON","name":"拉姆森","name_en":"Lamson","hull_number":367,"fit":"lamson_1941_december","form10":{"document":"rising_sun_form10","pdf_pages":[331],"printed_pages":[331]},"period_label":"1941-12"}
+  ],
+  "review": [
+    "Fletcher entered service in 1942; the five named Form 10s cannot all be treated as a simultaneous December 1941 force.",
+    "The Mahan Annex lists class-wide search radar during 1942 and deletion of the beam gun in late 1942; Drayton and Perkins cards show the deletion on earlier named refits. Determine the exact desired narrative date before resolving Lamson radar fit and main battery.",
+    "The Annex records Lamson as the only Mahan hull that actually had the late-1945 two-rack deletion; this is not its December 1941 setup.",
+    "Gridley 1942 SC and late 1943 Mk4 entries identify Craven, not Maury. Do not copy them to Maury.",
+    "Tassafaronga source PDF 75 confirms all five named ships fought in the same US force, and identifies the Gridley, Mahan and Fletcher classes. Its 1942-11-30 date is a candidate, not a declared prologue date."
+  ],
+  "common_date_candidate_source": {"document":"rising_sun_5e","pdf_pages":[75],"printed_pages":[74]}
+}

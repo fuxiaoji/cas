@@ -1,4 +1,4 @@
-use crate::{model::*, movement::fallback_leader, projectile::Shell};
+use crate::{model::*, movement::fallback_leader, projectile::Shell, radar::{RadarState, RADAR_DRILL, RADAR_VERSION}};
 use serde_json::{json, Value};
 use std::sync::OnceLock;
 
@@ -16,6 +16,7 @@ pub struct World {
     pub contacts: [Vec<Contact>; 2],
     pub next_contacts: [u32; 2],
     pub torps: Vec<Torpedo>,
+    pub illumination: crate::illumination::Illumination,
     pub shells: Vec<Shell>,
     pub version: &'static str,
     pub event_ids: [u32; 2],
@@ -29,6 +30,7 @@ pub struct World {
     pub player: usize,
     pub rng: u64,
     pub optics_rng: u64,
+    pub(crate) radar: RadarState,
     pub seed: u32,
     pub enemy: String,
     pub variant: String,
@@ -48,7 +50,7 @@ impl World {
         profile: &str,
         leader_slot: usize,
     ) -> E<Self> {
-        if !matches!(variant, "" | "challenge" | "night") {
+        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING) {
             return Err("未知演习想定".into());
         }
         Ai::new(profile, "manual").validate()?;
@@ -70,8 +72,9 @@ impl World {
             contacts: [vec![], vec![]],
             next_contacts: [1, 1],
             torps: vec![],
+            illumination: Default::default(),
             shells: vec![],
-            version: VERSION,
+            version: match variant { RADAR_DRILL=>RADAR_VERSION,crate::illumination::TRAINING=>crate::illumination::VERSION,_=>VERSION },
             event_ids: [0, 0],
             shell_ids: [0, 0],
             torp_ids: [0, 0],
@@ -83,6 +86,7 @@ impl World {
             player,
             rng: (seed as u64) ^ 0xa643de5dbcc8e65f,
             optics_rng: (seed as u64) ^ 0x83f232c98e16baf9,
+            radar: RadarState::new(seed),
             seed,
             enemy: enemy.into(),
             variant: variant.into(),
@@ -97,7 +101,7 @@ impl World {
             let (ids, x, y, h, inc, name) = if s == 0 {
                 (
                     ["fletcher", "cleveland", "fletcher", "fletcher", "fletcher"],
-                    if variant == "night" { 7650. } else { 4200. },
+                    if matches!(variant,"night"|crate::illumination::TRAINING) { 7650. } else { 4200. },
                     6550.,
                     90.,
                     -450.,
@@ -106,7 +110,7 @@ impl World {
             } else {
                 (
                     ["kagero", "sendai", "kagero", "kagero", "kagero"],
-                    if variant == "night" { 16_350. } else { 19_800. },
+                    if matches!(variant,"night"|crate::illumination::TRAINING) { 16_350. } else { 19_800. },
                     7650.,
                     270.,
                     450.,
@@ -165,6 +169,7 @@ impl World {
                     hp: d.dp,
                     ammo: d.torpedo.as_ref().map_or(0, |t| t.tubes),
                     gun_cycle: None,
+                    illumination_cycle: None,
                     torp_cycle: None,
                     torp_mount_used: vec![
                         false;
@@ -181,6 +186,11 @@ impl World {
                     engineering_speed_levels: 0,
                     jammed_until: 0,
                 });
+                if variant == RADAR_DRILL && id == "fletcher" {
+                    // Fictional 1943 trial. Annex A A-17 gives the class fit;
+                    // the dated 1943 Form 10s corroborate the fitted set types.
+                    w.radar.equip_fletcher_1943(ship)?;
+                }
             }
             w.fleets.push(Fleet {
                 id: s as u32 + 1,
@@ -208,6 +218,8 @@ impl World {
             match variant {
                 "challenge" => "越级挑战 · 3 对 5。击沉两艘敌舰并让至少一艘己舰存活。",
                 "night" => "虚构夜间演习 · 能见度 20%，海况 2。双方各 5 艘；45 分钟按击沉数决胜。",
+                crate::illumination::TRAINING => "夜战教学 · 先建立接触，再使用照明弹和舰上火力。",
+                RADAR_DRILL => "虚构 1943 雷达演习 · 同盟驱逐舰试用 SG／SC-2。发现位置下一探测窗口转发。",
                 _ => "虚构演习 · 白昼能见度良好。双方各 5 艘；45 分钟按击沉数决胜。",
             }
             .into(),
@@ -215,15 +227,22 @@ impl World {
             None,
         );
         w.detect(true);
+        w.radar_detect();
         Ok(w)
     }
     pub fn from_save(s: Saved, tick: u32) -> E<Self> {
         let version = match s.version.as_str() {
             VERSION => VERSION,
             LEGACY_VERSION => LEGACY_VERSION,
+            RADAR_VERSION => RADAR_VERSION,
+            crate::illumination::VERSION => crate::illumination::VERSION,
             _ => return Err("此存档使用另一个规则版本".into()),
         };
-        let last_tick = LIMIT + if version == VERSION { SHELL_FLIGHT } else { 0 };
+        if (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
+            return Err("雷达演习与存档规则版本不符".into());
+        }
+        if (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
+        let last_tick = LIMIT + if version != LEGACY_VERSION { SHELL_FLIGHT } else { 0 };
         if version == LEGACY_VERSION && s.variant == "night" {
             return Err("此版本没有夜间演习".into());
         }
@@ -388,13 +407,17 @@ impl World {
                 json!({"index":index,"barrels":m.barrels,"destroyed":s.gun_mount_destroyed[index],"arc":m.arc,"arc2":m.arc2,"bearing":bearing})
             }).collect();
             let tubes:Vec<_>=d.torpedo.iter().flat_map(|t|t.mounts.iter().enumerate()).map(|(index,m)|json!({"index":index,"tubes":m.tubes,"spent":s.torp_mount_used[index]})).collect();
-            json!({"gunRange":d.gun.range_yd.last().copied().unwrap_or(0.)*YARD,
+            let mut data = json!({"gunRange":d.gun.range_yd.last().copied().unwrap_or(0.)*YARD,
                 "torpedoRange":d.torpedo.as_ref().map_or(0.,|t|t.range_yd*YARD),
                 "systems":{"guns":guns,"tubes":tubes,"directorDamaged":s.fire_control_damage,
                     "engineeringLevels":s.engineering_speed_levels,"fires":s.fires.len(),"floods":s.flooding.len(),"maxSpeed":self.max_speed(s)},
                 "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
                 "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
-                "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo})
+                "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
+            if self.radar_enabled() {
+                data["systems"]["radars"] = json!(self.radar.own_observation(s.id));
+            }
+            data
         }).collect();
         let fleets:Vec<_>=self.fleets.iter().filter(|f|f.side==owner).filter_map(|f|{
             let members:Vec<_>=f.members.iter().filter(|id|self.ship(**id).is_some_and(Ship::alive)).collect();
@@ -421,9 +444,14 @@ impl World {
             .collect();
         let events = self.visible_events(owner, Some(90));
         let shells = self.shell_observation(owner);
-        json!({"tick":self.tick,"limit":LIMIT,"width":WIDTH,"height":HEIGHT,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
-            "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result,"islands":self.islands})
+        let mut view = json!({"tick":self.tick,"limit":LIMIT,"width":WIDTH,"height":HEIGHT,"side":side_name(owner),
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result,"islands":self.islands});
+        if self.radar_enabled() {
+            view["radarContacts"] = json!(self.radar.observation(owner, &self.ships));
+        }
+        if self.has_starshells() { view["illuminations"]=json!(self.visible_illumination(owner)); }
+        view
     }
     pub fn external(&mut self, r: Value) -> E<()> {
         if self.result.is_some() || (self.version != LEGACY_VERSION && self.action_closed()) {
@@ -436,6 +464,8 @@ impl World {
             Some("detach") => self.detach(s, &r)?,
             Some("reform") => self.reform(s, &r)?,
             Some("fire") => self.queue_fire(s, &r, true)?,
+            Some("illuminate") => self.queue_illumination(s,&r)?,
+            Some("radar_set") => self.radar_power(s, &r)?,
             Some("ai") => {
                 let id = u(&r, "fleet")?;
                 self.fleet_for(s, id)?;
@@ -473,15 +503,18 @@ impl World {
         self.move_ships();
         self.move_torpedoes(&before);
         self.update_tracks();
+        self.radar_prune();
         if self.tick % CYCLE == 0 {
             self.resolve_fire(true);
             self.fired_this_cycle.clear();
             self.incoming_this_cycle.clear();
             self.detect(false);
+            self.radar_detect();
         }
         self.resolve_fire(false);
         self.resolve_damage_control();
         self.advance_shells();
+        self.radar_prune();
         self.check_outcome();
         if self.result.is_none()
             && (self.version == LEGACY_VERSION || !self.action_closed())

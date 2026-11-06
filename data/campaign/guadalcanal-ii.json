@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-rs-guadalcanal-ii-source-v1",
+  "scenario_id": "cas-rs-guadalcanal-ii",
+  "ibs_id": "IBS-S-06",
+  "title": "第二次瓜达卡纳尔岛海战",
+  "title_en": "Second Battle of Guadalcanal",
+  "status": "source_transcribed",
+  "playable": false,
+  "source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [
+      73,
+      74
+    ],
+    "printed_pages": [
+      72,
+      73
+    ]
+  },
+  "start": {
+    "date_local": "1942-11-14",
+    "time_local": "23:00",
+    "location": "铁底湾",
+    "map_type": "scenario_chart"
+  },
+  "environment": {
+    "light": "night",
+    "visibility_pct": 20,
+    "sea_state": 2,
+    "cloud_cover_pct": 25,
+    "cloud_ceiling_m": 3000,
+    "wind_from_deg": 170,
+    "wind_speed_knots": 7,
+    "moonset_local": "23:30",
+    "post_moonset_visibility_pct": 10,
+    "civil_twilight_local": "05:27",
+    "dawn_local": "05:49"
+  },
+  "forces": {
+    "allies": [
+      {
+        "unit": "TF64 主力",
+        "kind": "BB",
+        "ships": [
+          "Washington",
+          "South Dakota"
+        ],
+        "floatplanes_each": 2
+      },
+      {
+        "unit": "TF64 屏护",
+        "kind": "DD",
+        "ships": [
+          "Walke",
+          "Benham",
+          "Preston",
+          "Gwin"
+        ]
+      }
+    ],
+    "axis": [
+      {
+        "unit": "炮击队",
+        "kind": "BB/CA/DD",
+        "ships": [
+          "Asagumo",
+          "Teruzuki",
+          "Atago",
+          "Takao",
+          "Kirishima"
+        ]
+      },
+      {
+        "unit": "警戒队",
+        "kind": "CL/DD",
+        "ships": [
+          "Nagara",
+          "Shirayuki",
+          "Hatsuyuki",
+          "Samidare",
+          "Inazuma"
+        ]
+      },
+      {
+        "unit": "扫荡队",
+        "kind": "CL/DD",
+        "ships": [
+          "Sendai",
+          "Uranami",
+          "Ayanami",
+          "Shikinami"
+        ]
+      },
+      {
+        "unit": "运输护航",
+        "kind": "DD",
+        "ships": [
+          "Kagero",
+          "Hayashimo",
+          "Takanami",
+          "Naganami",
+          "Makinami",
+          "Suzukaze",
+          "Kawakaze",
+          "Umikaze",
+          "Oyashio",
+          "Kuroshio"
+        ]
+      },
+      {
+        "unit": "增援运输",
+        "kind": "transport",
+        "ships": [
+          "Kinugasa Maru",
+          "Hirokawa Maru",
+          "Yamaura Maru",
+          "Yamazuki Maru"
+        ]
+      }
+    ]
+  },
+  "setup": {
+    "chart_pdf_page": 74,
+    "allied_column": {
+      "course_deg": 270,
+      "speed_knots": 17,
+      "order": "Walke, Benham, Preston, Gwin, Washington, South Dakota"
+    },
+    "axis": {
+      "screen_course_deg": 185,
+      "screen_speed_knots": 28,
+      "screen_from_washington": [
+        313,
+        20,
+        "nmi"
+      ],
+      "bombardment_from_washington": [
+        313,
+        22,
+        "nmi"
+      ],
+      "reinforcement_course_deg": 135,
+      "reinforcement_speed_knots": 12,
+      "first_escort_entry_local": "00:15"
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders": "阻止敌方炮击亨德森机场与补给登陆。",
+      "decisive": "机场无损且增援队在 05:30 前未抵达目标。",
+      "tactical": "机场无损。"
+    },
+    "axis": {
+      "orders": "扫荡队清除美舰；炮击队炮击机场；增援队在塔萨法隆格卸货。",
+      "decisive": "两艘美战列舰均受损 50%，01:30 前对机场造成 300 DP，四艘运输舰在 05:30 前抵达。",
+      "tactical": "一艘美战列舰受损 50%，四艘运输舰在 05:30 前抵达。"
+    }
+  },
+  "special_rules": [
+    "日方炮击队战列舰、巡洋舰前三个战术回合只能使用三式弹。",
+    "华盛顿开局在萨沃岛东北已发现两个雷达目标。",
+    "三个岸上导航灯；岸外 2,000 码以外有深水。",
+    "源页为 Sendai/Shikinami 印有不合法的 180215°；炮击队另有 230°/12 节的战列舰纵队描述，时间标签未显式分隔。"
+  ],
+  "blockers": [
+    "缺地形、岸上目标、战列舰、远期增援、弹种换装及目标时限。",
+    "首局设置使用地图核清两个有歧义的原页航向/阵位，不擅自混用 23:57 变体。"
+  ]
+}

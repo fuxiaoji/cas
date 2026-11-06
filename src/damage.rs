@@ -162,6 +162,7 @@ impl World {
                 "fire" => self.add_casualty(victim, false, false, penetrated, 0, false),
                 "flooding" => self.add_casualty(victim, true, torpedo, penetrated, 0, false),
                 "engineering" => self.engineering_critical(victim, penetrated),
+                "sensor_comms" => self.radar_sensor_critical(victim),
                 // Systems below are identified by the source table but have no effect
                 // in this subset. No placeholder penalty is imposed on other systems.
                 _ => (),

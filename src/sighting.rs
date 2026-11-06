@@ -6,7 +6,7 @@ use crate::{
 
 impl World {
     pub(crate) fn environment(&self) -> Environment {
-        if self.variant == "night" {
+        if self.variant == "night" || self.radar_enabled() || self.has_starshells() {
             Environment::NIGHT
         } else {
             Environment::DAY
@@ -14,7 +14,7 @@ impl World {
     }
 
     fn fired_this_turn(&self, ship: &Ship) -> bool {
-        ship.gun_cycle == Some(self.tick / CYCLE)
+        ship.gun_cycle == Some(self.tick / CYCLE) || ship.illumination_cycle == Some(self.tick/CYCLE)
     }
 
     fn night_range(&self, observer: &Ship, target: &Ship) -> u32 {
