@@ -89,6 +89,7 @@ impl World {
             return;
         }
         let rules = &self.data.rules;
+        let full_sizes = self.curved_movement();
         for s in 0..2 {
             let observers: Vec<_> = self
                 .ships
@@ -108,7 +109,7 @@ impl World {
                 let mut margin = f64::NEG_INFINITY;
                 let known = old.iter().find(|c| c.ship == t.id);
                 let automatic = n(&rules["visual_automatic_yd"]);
-                let d = if known.is_some()
+                let die = if known.is_some()
                     || observers
                         .iter()
                         .any(|(p, _)| p.dist(t.p) <= automatic * YARD)
@@ -121,16 +122,22 @@ impl World {
                     .as_array()
                     .and_then(|a| {
                         a.iter()
-                            .position(|x| x.as_u64().is_some_and(|k| d as u64 <= k))
+                            .position(|x| x.as_u64().is_some_and(|k| die as u64 <= k))
                     })
                     .unwrap_or(4);
                 for (p, size) in &observers {
                     let d = t.p.dist(*p) / YARD;
-                    let base = rules["visual_base_yd"][size][&def.size]
-                        .as_u64()
-                        .unwrap_or(0);
+                    let base = if full_sizes {
+                        u64::from(crate::night::surface_base_range_yd(
+                            self.environment(), size, &def.size, t.speed, false, false,
+                        ))
+                    } else {
+                        rules["visual_base_yd"][size][&def.size].as_u64().unwrap_or(0)
+                    };
                     let limit = if known.is_some() {
                         base as f64
+                    } else if full_sizes {
+                        f64::from(crate::night::surface_detection_range_yd(base as u32, die as i32))
                     } else {
                         n(&rules["visual_chance_yd"][base.to_string()][column])
                     };
@@ -181,11 +188,13 @@ impl World {
         }
     }
     pub fn update_tracks(&mut self) {
-        if self.environment().light == crate::night::Light::Night {
+        let environment = self.environment();
+        if environment.light == crate::night::Light::Night {
             self.update_night_tracks();
             return;
         }
         // A contact can be tracked continuously once spotted; checks are still only made on CAS intervals.
+        let full_sizes = self.curved_movement();
         for s in 0..2 {
             let mut lost = 0;
             let ships = &self.ships;
@@ -194,10 +203,15 @@ impl World {
                 let t = &ships[(c.ship - 1) as usize];
                 let visible = t.alive()
                     && ships.iter().filter(|o| o.side == s && o.alive()).any(|o| {
-                        o.p.dist(t.p)
-                            <= YARD
-                                * n(&data.rules["visual_base_yd"][&data.ships[o.def].size]
-                                    [&data.ships[t.def].size])
+                        let (observer, target) = (&data.ships[o.def].size, &data.ships[t.def].size);
+                        let range = if full_sizes {
+                            f64::from(crate::night::surface_base_range_yd(
+                                environment, observer, target, t.speed, false, false,
+                            )).max(f64::from(crate::night::automatic_visual_yd()))
+                        } else {
+                            n(&data.rules["visual_base_yd"][observer][target])
+                        };
+                        o.p.dist(t.p) <= YARD * range
                     });
                 if visible {
                     c.x = t.p.x;
@@ -329,6 +343,10 @@ impl World {
         let h = norm(angle.unwrap_or(suggest));
         let reason = if s.ammo == 0 {
             Some("鱼雷已耗尽")
+        } else if self.curved_movement() && c.kind.is_some()
+            && self.ship(c.ship).is_some_and(|target| matches!(self.data.ships[target.def].size.as_str(), "F" | "G"))
+        {
+            Some("直航鱼雷无法击中这类小艇")
         } else if self.is_reaction(c) {
             Some("刚发现的接触不能在此窗口放雷")
         } else if angle.is_none() && intercept_range > range {
@@ -611,7 +629,7 @@ impl World {
             -3
         };
         let target_aspect = aspect(t.h, (s.p - t.p).heading());
-        modifiers += if td.size == "B" {
+        modifiers += if td.size == "B" || self.curved_movement() && td.size == "A" {
             [1, 0, -1][target_aspect]
         } else {
             [0, -1, -2][target_aspect]
@@ -689,6 +707,8 @@ impl World {
             self.add(1 << s.side, "gun", format!("{} · {}{}射程，{} 门主炮实际发射",
                 s.name, sight, range, volley.barrels),
                 Some("RTS-GUN-04"), Some(s.p));
+            self.last_event_ship(&s);
+            if self.curved_movement() { self.last_voice(s.side, Some("fire")); }
             let impact = if roll as f64 <= chance {
                 let multiplier = gun_multiplier(&self.data.rules, volley.battery_barrels, b);
                 let part = f64::from(volley.barrels) / f64::from(volley.battery_barrels) * f64::from(volley.reload) / f64::from(CYCLE);
@@ -828,11 +848,18 @@ impl World {
             Some("CAS-6.3.1"),
             Some(s.p),
         );
+        self.last_event_ship(&s);
+        if self.curved_movement() { self.last_voice(s.side, Some("fire")); }
         self.observe_torpedo_launch(&mut torpedo);
         self.torps.push(torpedo);
     }
     fn hit_rolls(&mut self, table: &str, run: f64, spread: u32, stopped: bool) -> u32 {
-        let r = &self.data.rules["torpedo_hit"][table];
+        static TABLE_I: std::sync::OnceLock<Value> = std::sync::OnceLock::new();
+        let r = if table == "I" {
+            TABLE_I.get_or_init(|| serde_json::from_str(include_str!("../data/rules/torpedo-table-i.json")).expect("verified CAS Table I"))
+        } else {
+            &self.data.rules["torpedo_hit"][table]
+        };
         let Some(rows) = r.as_array() else { return 0 };
         let k = (spread - 1) as usize;
         let usable: Vec<_> = rows
@@ -874,6 +901,7 @@ impl World {
         }
         let old = std::mem::take(&mut self.torps);
         let mut impacts = vec![];
+        let cas_capital_targets = self.curved_movement();
         for mut torp in old {
             if self.tick <= torp.born {
                 self.torps.push(torp);
@@ -886,6 +914,7 @@ impl World {
                 .ships
                 .iter()
                 .filter(|s| s.alive() && s.id != torp.ship && !torp.tested.contains(&s.id))
+                .filter(|s| !cas_capital_targets || !matches!(self.data.ships[s.def].size.as_str(), "F" | "G"))
                 .filter_map(|s| {
                     let a = before[(s.id - 1) as usize] - torp.p;
                     let b = s.p - end;
@@ -909,7 +938,9 @@ impl World {
                 let t = self.ship(id).unwrap().clone();
                 let d = &self.data.ships[t.def];
                 let a = aspect(t.h, norm(torp.h + 180.));
-                let table = if d.size == "B" {
+                let table = if cas_capital_targets && d.size == "A" {
+                    ["I", "II", "IV"][a]
+                } else if d.size == "B" {
                     ["II", "III", "V"][a]
                 } else {
                     ["III", "IV", "VI"][a]
@@ -934,6 +965,15 @@ impl World {
                 let mut damage = torp.warhead * hits as f64;
                 if a == 2 {
                     damage *= 0.5;
+                } else if cas_capital_targets && matches!(d.size.as_str(), "A" | "B") {
+                    damage *= match d.armor_belt {
+                        belt if belt <= 5. => 1.,
+                        belt if belt <= 10. => 0.9,
+                        belt if belt <= 20. => 0.75,
+                        belt if belt <= 30. => 0.6,
+                        belt if belt <= 40. => 0.5,
+                        _ => 0.4,
+                    };
                 } else if d.size == "B" {
                     damage *= if d.armor_belt <= 5. {
                         1.

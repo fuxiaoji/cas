@@ -119,6 +119,7 @@ pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile:
             mode: "follow".into(),
             speed: raw.speed_knots,
             actual: raw.speed_knots,
+            turn_degrees: 0.,
             points: vec![end],
             notice: None,
             ai: Ai::new(

@@ -813,7 +813,7 @@ impl RadarState {
 
 impl World {
     pub(crate) fn radar_enabled(&self) -> bool {
-        self.version == RADAR_VERSION || (self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT))
+        self.version == RADAR_VERSION || (self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT | crate::illumination::RADAR_TRAINING))
     }
 
     pub(crate) fn radar_detect(&mut self) {

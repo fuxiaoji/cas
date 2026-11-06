@@ -6,7 +6,8 @@ use crate::{
 };
 use serde_json::{json, Value};
 
-pub(crate) const VERSION: &str = "cas-realtime-v7";
+pub(crate) const VERSION: &str = "cas-realtime-v8";
+pub(crate) const IMPACT_VERSION: &str = "cas-realtime-v7";
 pub(crate) const CADENCE_VERSION: &str = "cas-realtime-v6";
 pub(crate) const LEGACY_VERSION: &str = "cas-realtime-v4";
 pub(crate) const MAX_FLIGHT: u32 = 120;
@@ -35,6 +36,11 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
                     train: 6.,
                 });
             }
+            "IBS-U-USN-FLETCHER" => return Some(Timings { reload: 4, train: 18. }),
+            "IBS-U-USN-PERKINS" | "IBS-U-USN-MAURY" | "IBS-U-USN-DRAYTON" | "IBS-U-USN-LAMSON" =>
+                return Some(Timings { reload: 5, train: 15. }),
+            "north-carolina" => return Some(Timings { reload: 30, train: 4. }),
+            "yamato" => return Some(Timings { reload: 40, train: 2. }),
             _ => (),
         }
     }
@@ -477,7 +483,7 @@ impl World {
 }
 
 pub(crate) fn is_realtime_version(version: &str) -> bool {
-    matches!(version, VERSION | CADENCE_VERSION | LEGACY_VERSION)
+    matches!(version, VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
         || crate::campaign::live::is_campaign_version(version)
 }
 
@@ -629,7 +635,7 @@ mod tests {
 
     #[test]
     fn first_launch_and_midflight_replay_have_same_shell_and_turret_state() {
-        for version in [LEGACY_VERSION, CADENCE_VERSION, VERSION] {
+        for version in [LEGACY_VERSION, CADENCE_VERSION, IMPACT_VERSION, VERSION] {
             assert_launch_and_midflight_replay(version);
         }
     }

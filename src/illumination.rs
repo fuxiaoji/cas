@@ -2,6 +2,7 @@ use crate::{model::*, night::{self, Lighting, StarshellProfile}, world::{u, Worl
 use serde_json::{json, Value};
 
 pub(crate) const TRAINING: &str = "night-training";
+pub(crate) const RADAR_TRAINING: &str = "night-radar-training";
 pub(crate) const VERSION: &str = "cas-illumination-v3";
 
 #[derive(Default)]
@@ -29,7 +30,9 @@ pub(crate) struct LightShot {
 }
 
 impl World {
-    pub(crate) fn has_starshells(&self) -> bool { self.version == VERSION || (self.realtime() && self.variant == TRAINING) }
+    pub(crate) fn has_starshells(&self) -> bool {
+        self.version == VERSION || (self.realtime() && matches!(self.variant.as_str(), TRAINING | RADAR_TRAINING))
+    }
 
     fn light_shot(&self, ship: &Ship, contact: &Contact) -> E<LightShot> {
         if !self.has_starshells() { return Err("此想定没有照明弹指令".into()); }
@@ -147,6 +150,7 @@ impl World {
             self.illumination.marks.push(Mark{center,source:s.id,target:t.id,owner:s.side,expires:self.tick+CYCLE,profile:plan.profile,
                 silhouette,front:forward<0&&right==0});
             self.add(1<<s.side,"illumination",format!("{} · 照明弹已起亮，炮座 {} 本窗口用于照明",s.name,plan.mount+1),Some("CAS-5.4.4.5"),Some(center));
+            self.last_event_ship(&s);
         }
     }
 

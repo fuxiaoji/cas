@@ -43,7 +43,21 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     { op: 'fire', ship: 1, weapon: 'gun', target: 'C01' },
     { op: 'step', seconds: 15 },
   );
-  if (channel) {
+  if (variant === 'prologue') {
+    commands.push(
+      { op: 'step', seconds: 204 },
+      { op: 'lead', fleet: 1, ship: 2 },
+      { op: 'route', fleet: 1, mode: 'follow', points: [{ x: 11600, y: 6600 }, { x: 14100, y: 6600 }] },
+    );
+  } else if (variant === 'night-radar-training') {
+    commands.push(
+      { op: 'radar_set', ship: 1, radar: 'us_sg', powered: true },
+      { op: 'step', seconds: 180 },
+      { op: 'step', seconds: 540 },
+      { op: 'illuminate', ship: 5, target: 'C03' },
+      { op: 'step', seconds: 180 },
+    );
+  } else if (channel) {
     const ownFleets = side === 'axis' ? [1, 2, 3] : [4, 5, 6, 7, 8];
     for (const fleet of ownFleets) commands.push(
       { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: side === 'axis', gun: true, torpedo: true });
@@ -94,8 +108,21 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     assert(gun && gun.tick > 0 && gun.tick < 180);
     assert(onTheWay && onTheWay.arcHeightM > 0 && onTheWay.impactTick - onTheWay.launchTick > 8);
   }
-  assert.equal(start.ships.length, variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
+  assert.equal(start.ships.length, variant === 'prologue' ? 9 : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
   assert.equal(start.variant, variant);
+  if (variant === 'prologue') {
+    const handover = wasmOutput[2].data;
+    assert.equal(handover.contacts.filter(contact => contact.kind === 'bb').length, 2);
+    assert(handover.shells.some(shell => shell.own) && handover.shells.some(shell => !shell.own));
+    assert(handover.torpedoes.some(torpedo => torpedo.own && torpedo.trail?.length > 1));
+    assert.equal(wasmOutput[3].data.fleets[0].leader, 2);
+  }
+  if (variant === 'night-radar-training') {
+    const radar = wasmOutput[3].data;
+    assert.equal(radar.contacts.length, 0);
+    assert(radar.radarContacts.some(contact => contact.usableForShipIds.includes(1)));
+    assert(wasmOutput[6].data.illuminations.some(mark => mark.own));
+  }
   if (channel) {
     assert.equal(start.environment.visibility, 5);
     assert(start.ships.every(ship => ship.classId === ship.characterId));
@@ -121,10 +148,12 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training'),
   await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
   await verify('allies', 1, 'radar', 6106, true),
-  await verify('allies', 1, 'cape-st-george-rts', 6111, true, true),
+  await verify('allies', 1, 'cape-st-george-rts', 6177, true, true),
   await verify('axis', 3, 'cape-st-george-rts', 6106, true, true),
-  await verify('allies', 4, 'channel-action-rts', 6106, true, true),
-  await verify('axis', 1, 'channel-action-rts', 71, true, true)];
+  await verify('allies', 4, 'channel-action-rts', 6107, true, true),
+  await verify('axis', 1, 'channel-action-rts', 53, true, true),
+  await verify('allies', 1, 'prologue', 6106, true),
+  await verify('allies', 1, 'night-radar-training', 6106, true)];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

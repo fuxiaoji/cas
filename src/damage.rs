@@ -95,7 +95,8 @@ impl World {
     pub(crate) fn progressive_criticals(&self) -> bool {
         matches!(
             self.version,
-            crate::realtime::VERSION | crate::campaign::live::VERSION
+            crate::realtime::VERSION | crate::realtime::IMPACT_VERSION
+                | crate::campaign::live::VERSION | crate::campaign::live::IMPACT_VERSION
         )
     }
 

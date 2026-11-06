@@ -99,7 +99,7 @@ impl World {
     }
 
     pub fn new(seed: u32, player: usize, enemy: &str, variant: &str, profile: &str, leader_slot: usize) -> E<Self> {
-        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING) {
+        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING | crate::illumination::RADAR_TRAINING | crate::prologue::VARIANT) {
             return Err("未知演习想定".into());
         }
         Ai::new(profile, "manual").validate()?;
@@ -107,13 +107,16 @@ impl World {
             return Err("领舰未在当前舰队内".into());
         }
         Ai::new(enemy, "auto").validate()?;
+        if variant == crate::prologue::VARIANT {
+            return crate::prologue::open(seed, player, enemy, profile, leader_slot);
+        }
         let data = Self::exercise_data()?;
         let mut w = Self::blank(data, seed, player, enemy, variant, profile, leader_slot);
         for s in 0..2 {
             let (ids, x, y, h, inc, name) = if s == 0 {
                 (
                     ["fletcher", "cleveland", "fletcher", "fletcher", "fletcher"],
-                    if matches!(variant,"night"|crate::illumination::TRAINING) { 7650. } else { 4200. },
+                    if matches!(variant,"night"|crate::illumination::TRAINING|crate::illumination::RADAR_TRAINING) { 7650. } else { 4200. },
                     6550.,
                     90.,
                     -450.,
@@ -122,7 +125,7 @@ impl World {
             } else {
                 (
                     ["kagero", "sendai", "kagero", "kagero", "kagero"],
-                    if matches!(variant,"night"|crate::illumination::TRAINING) { 16_350. } else { 19_800. },
+                    if matches!(variant,"night"|crate::illumination::TRAINING|crate::illumination::RADAR_TRAINING) { 16_350. } else { 19_800. },
                     7650.,
                     270.,
                     450.,
@@ -172,6 +175,7 @@ impl World {
                 mode: "follow".into(),
                 speed: 26.,
                 actual: 0.,
+                turn_degrees: 0.,
                 points: vec![],
                 ai: if s == player {
                     Ai::new(profile, "manual")
@@ -183,6 +187,20 @@ impl World {
                 tactic: Tactic::Search,
             });
         }
+        if variant == crate::illumination::RADAR_TRAINING {
+            if player != 0 || leader_slot != 0 {
+                return Err("雷达夜战教学使用同盟弗莱彻领舰".into());
+            }
+            w.enable_realtime()?;
+            w.radar.equip_fletcher_1943(1)?;
+            for radar in ["us_sg", "us_sc2"] {
+                w.radar_power(0, &json!({"ship":1,"radar":radar,"powered":false}))?;
+            }
+            for (seat, fleet, x, y) in [(0, 1, 12_400, 6550), (1, 2, 13_450, 7650)] {
+                w.fleet_mut(fleet).unwrap().ai = Ai::new("coord", "manual");
+                w.route(seat, &json!({"fleet":fleet,"mode":"follow","speed":15,"points":[{"x":x,"y":y}]}), true)?;
+            }
+        }
         w.add(
             3,
             "start",
@@ -190,6 +208,7 @@ impl World {
                 "challenge" => "越级挑战 · 3 对 5。击沉两艘敌舰并让至少一艘己舰存活。",
                 "night" => "虚构夜间演习 · 能见度 20%，海况 2。双方各 5 艘；45 分钟按击沉数决胜。",
                 crate::illumination::TRAINING => "夜战教学 · 先建立接触，再使用照明弹和舰上火力。",
+                crate::illumination::RADAR_TRAINING => "固定教演 · 舰上雷达关闭。编队已按预定航线接近目标。",
                 RADAR_DRILL => "虚构 1943 雷达演习 · 同盟驱逐舰试用 SG／SC-2。发现位置下一探测窗口转发。",
                 _ => "虚构演习 · 白昼能见度良好。双方各 5 艘；45 分钟按击沉数决胜。",
             }
@@ -232,14 +251,21 @@ impl World {
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
             crate::realtime::VERSION => crate::realtime::VERSION,
+            crate::realtime::IMPACT_VERSION => crate::realtime::IMPACT_VERSION,
             crate::realtime::CADENCE_VERSION => crate::realtime::CADENCE_VERSION,
             crate::realtime::LEGACY_VERSION => crate::realtime::LEGACY_VERSION,
             live::VERSION => live::VERSION,
+            live::IMPACT_VERSION => live::IMPACT_VERSION,
             live::CADENCE_VERSION => live::CADENCE_VERSION,
             live::LEGACY_VERSION => live::LEGACY_VERSION,
             _ => return Err("此存档使用另一个规则版本".into()),
         };
         let realtime = crate::realtime::is_realtime_version(version);
+        if matches!(s.variant.as_str(), crate::prologue::VARIANT | crate::illumination::RADAR_TRAINING)
+            && version != crate::realtime::VERSION
+        {
+            return Err("该教学存档的规则版本不符".into());
+        }
         if live::is_campaign_version(version) != s.campaign.is_some()
             || s.campaign.as_ref().is_some_and(|start| s.variant != start.variant()) {
             return Err("战役存档的规则或内容版本不符".into());
@@ -383,11 +409,19 @@ impl World {
             tick: self.tick,
             kind,
             text,
+            own_ship: None,
             rule,
             x,
             y,
             mask,
         });
+    }
+    pub(crate) fn last_event_ship(&mut self, ship: &Ship) {
+        if self.curved_movement() {
+            if let Some(event) = self.events.last_mut().filter(|e| e.mask == 1 << ship.side) {
+                event.own_ship = Some(ship.id);
+            }
+        }
     }
     pub(crate) fn last_voice(&mut self, seat: usize, cue: Option<&'static str>) {
         if let Some(event) = self
@@ -436,7 +470,9 @@ impl World {
                 "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
                 "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
-            if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
+            if self.variant == crate::prologue::VARIANT && d.id.starts_with("IBS-U-") {
+                data["characterId"] = json!(d.id);
+            } else if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
                 data["characterId"] = json!(character);
             }
             if self.radar_enabled() {
@@ -480,7 +516,7 @@ impl World {
         let events = self.visible_events(owner, Some(90));
         let shells = self.shell_observation(owner);
         let mut view = json!({"tick":self.tick,"limit":self.field.limit,"width":self.field.width,"height":self.field.height,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
             "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
         if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
         if self.radar_enabled() {
@@ -505,6 +541,15 @@ impl World {
             return Err("演习已结束或正在等待末轮弹着".into());
         }
         let s = self.player;
+        if self.variant == crate::prologue::VARIANT {
+            let commanded_fleet = r.get("fleet").and_then(Value::as_u64);
+            let commanded_ship = r.get("ship").and_then(Value::as_u64);
+            if commanded_fleet.is_some_and(|fleet| fleet != 1)
+                || commanded_ship.is_some_and(|id| self.ship(id as u32).and_then(|ship| ship.fleet) != Some(1))
+            {
+                return Err("序章由你指挥第五驱逐小队，其他编队按总指挥的命令行动".into());
+            }
+        }
         match r.get("op").and_then(Value::as_str) {
             Some("route") => self.route(s, &r, true)?,
             Some("lead") => self.lead(s, &r)?,
@@ -584,7 +629,9 @@ impl World {
         }
         self.radar_prune();
         self.check_outcome();
-        if self.result.is_none()
+        if self.variant == crate::prologue::VARIANT && self.result.is_none() && !self.action_closed() {
+            self.prologue_fire();
+        } else if self.result.is_none()
             && (self.version == LEGACY_VERSION || !self.action_closed())
             && (self.tick == 1 || self.tick % 20 == 0 || self.realtime() && self.tick % 4 == 0)
         {

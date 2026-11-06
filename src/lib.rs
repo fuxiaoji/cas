@@ -7,6 +7,7 @@ mod model;
 mod movement;
 mod night;
 mod projectile;
+mod prologue;
 mod radar;
 mod realtime;
 mod sighting;
@@ -67,7 +68,7 @@ impl Engine {
                     .unwrap_or(0) as usize;
                 let mut w = World::new(seed, side, enemy, variant, profile, leader_slot)?;
                 if let Some(opt) = r.get("realtime") {
-                    if opt.as_bool().ok_or("实时炮击选项无效")? {
+                    if opt.as_bool().ok_or("实时炮击选项无效")? && !w.realtime() {
                         w.enable_realtime()?;
                     }
                 }

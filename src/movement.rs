@@ -58,6 +58,85 @@ fn route_line(field: Field, ship: &Ship, points: &[P], advance: f64) -> E<Vec<P>
     Ok(line)
 }
 
+// One standard-rudder advance per 45° of arc. CAS specifies advance
+// between pivots, so this radius is a continuous-motion adaptation.
+fn append_arc(nodes: &mut Vec<P>, center: P, radius: f64, radial: f64, sweep: f64) {
+    let segments = (sweep.abs() / 2.).ceil() as u32;
+    for i in 1..=segments {
+        let angle = radial + sweep * f64::from(i) / f64::from(segments);
+        nodes.push((center + P::bearing(angle) * radius).snap());
+    }
+}
+
+fn curved_route(field: Field, ship: &Ship, points: &[P], advance: f64) -> E<Vec<P>> {
+    for (i, &point) in points.iter().enumerate() {
+        if !field.contains(point) {
+            return Err(format!("航点 {} 超出海图", i + 1));
+        }
+        let prior = if i == 0 { ship.p } else { points[i - 1] };
+        if prior.dist(point) < 80. {
+            return Err(format!("航段 {} 太短", i + 1));
+        }
+    }
+
+    let radius = advance / 45_f64.to_radians();
+    let bow = P::bearing(ship.h);
+    let first = points[0];
+    let first_change = delta(ship.h, (first - ship.p).heading());
+    let mut nodes = vec![ship.p];
+    if first_change.abs() > 1e-6 {
+        let start = if first_change.abs() > 10. {
+            ship.p + bow * advance
+        } else {
+            ship.p
+        };
+        let sign = first_change.signum();
+        let center = start + P::bearing(ship.h + sign * 90.) * radius;
+        let to_target = first - center;
+        if to_target.len() <= radius {
+            return Err("首个航点落在转向圆内，请把航点放远一些".into());
+        }
+        let radial = ship.h - sign * 90.;
+        let tangent = to_target.heading()
+            - sign * libm::acos(radius / to_target.len()).to_degrees();
+        let sweep = ((tangent - radial) * sign).rem_euclid(360.);
+        if sweep >= 180. {
+            return Err("首段没有足够的转向空间，请先在侧方放一个航点".into());
+        }
+        if start != ship.p {
+            nodes.push(start.snap());
+        }
+        append_arc(&mut nodes, center, radius, radial, sweep * sign);
+    }
+
+    // Waypoints are intersections of the approach and departure courses.
+    // Keep the same radius and cut the corner between the two tangents.
+    let mut prior = *nodes.last().unwrap();
+    for (i, pair) in points.windows(2).enumerate() {
+        let (point, next) = (pair[0], pair[1]);
+        let incoming = (point - prior).unit();
+        let outgoing = (next - point).unit();
+        let turn = delta(incoming.heading(), outgoing.heading());
+        if turn.abs() <= 1e-6 {
+            nodes.push(point.snap());
+            prior = point;
+            continue;
+        }
+        let cut = radius * libm::tan(turn.abs().to_radians() * 0.5);
+        if turn.abs() >= 179. || cut + 1e-4 >= prior.dist(point) || cut + 1e-4 >= point.dist(next) {
+            return Err(format!("航点 {} 没有足够空间转弯，请拉开航点", i + 1));
+        }
+        let start = point - incoming * cut;
+        let radial = incoming.heading() - turn.signum() * 90.;
+        let center = start - P::bearing(radial) * radius;
+        nodes.push(start.snap());
+        append_arc(&mut nodes, center, radius, radial, turn);
+        prior = point + outgoing * cut;
+    }
+    nodes.push(points.last().unwrap().snap());
+    Ok(nodes)
+}
+
 fn closest(a: P, b: P) -> f64 {
     let v = b - a;
     let d = v.dot(v);
@@ -73,6 +152,10 @@ pub fn swept_separation(a: P, b: P, c: P, d: P) -> f64 {
 }
 
 impl World {
+    pub(crate) fn curved_movement(&self) -> bool {
+        matches!(self.version, crate::realtime::VERSION | crate::campaign::live::VERSION)
+    }
+
     pub(crate) fn max_speed(&self, ship: &Ship) -> f64 {
         let def = &self.data.ships[ship.def];
         let damage = def.dp - ship.hp;
@@ -165,7 +248,11 @@ impl World {
             .map(|s| self.data.ships[s.def].turn_advance_yards * YARD)
             .fold(0., f64::max);
         let heading = P::bearing(lead.h);
-        let raw = route_line(self.field, lead, points, advance)?;
+        let raw = if self.curved_movement() {
+            curved_route(self.field, lead, points, advance)?
+        } else {
+            route_line(self.field, lead, points, advance)?
+        };
         let mut paths = Vec::new();
         if mode == "sync" {
             let axis = members
@@ -410,7 +497,9 @@ impl World {
         }
         let ids = f.members.clone();
         let old_id = f.leader;
-        let deployment = self.tick == 0;
+        let deployment = self.tick == 0
+            || self.variant == crate::prologue::VARIANT && id == 1
+                && self.tick == crate::prologue::HANDOVER_TICK && f.points.is_empty();
         if deployment {
             // Before the clock starts this is a deployment edit, never an in-battle jump.
             let old = self.ship(old_id).unwrap().p;
@@ -528,6 +617,7 @@ impl World {
             mode: "follow".into(),
             speed: actual.min(max),
             actual: actual.min(max),
+            turn_degrees: 0.,
             points: vec![],
             ai: Ai::new("coord", "manual"),
             notice: None,
@@ -555,7 +645,11 @@ impl World {
     pub fn move_ships(&mut self) {
         let mut proposal: Vec<(P, f64, f64, Option<f64>)> =
             self.ships.iter().map(|s| (s.p, s.h, 0., None)).collect();
+        let curved = self.curved_movement();
         for n in 0..self.fleets.len() {
+            if curved && self.tick.saturating_sub(1) % CYCLE == 0 {
+                self.fleets[n].turn_degrees = 0.;
+            }
             let f = &self.fleets[n];
             let active: Vec<_> = f
                 .members
@@ -585,14 +679,29 @@ impl World {
                 .map(|s| self.data.ships[s.def].brake_knots_per_turn)
                 .fold(100., f64::min);
             let max = self.fleet_max(f);
+            let accel = if curved && f.turn_degrees >= 45. { accel * 0.5 } else { accel };
             let k = if f.actual > target {
                 (f.actual - brake / CYCLE as f64).max(target).min(max)
             } else {
                 (f.actual + accel / CYCLE as f64).min(target)
             };
             let mut next_k = k;
-            let leader = self.ship(f.leader);
-            if let Some(l) = leader {
+            let mut turn_degrees = f.turn_degrees;
+            if curved && !jammed {
+                let heading_change = active
+                    .iter()
+                    .map(|s| {
+                        let t = s.track.as_ref().unwrap();
+                        delta(s.h, t.at((t.pos + k * KNOT).min(t.end)).1).abs()
+                    })
+                    .fold(0., f64::max);
+                let loss = active
+                    .iter()
+                    .map(|s| self.data.ships[s.def].speed_loss_knots)
+                    .fold(0., f64::max);
+                turn_degrees = (turn_degrees + heading_change).min(180.);
+                next_k = (k - (turn_degrees - f.turn_degrees) / 45. * loss).max(0.);
+            } else if let Some(l) = self.ship(f.leader) {
                 if let Some(t) = &l.track {
                     let next = t.at(t.pos + k * KNOT).1;
                     let turn = delta(l.h, next).abs();
@@ -620,6 +729,7 @@ impl World {
                     != Some("有舰因损伤掉速，已限制共同航速。可降速重下航路或将受损舰脱队。");
             let ff = &mut self.fleets[n];
             ff.actual = if jammed { 0. } else { next_k };
+            ff.turn_degrees = turn_degrees;
             if slowed {
                 ff.notice =
                     Some("有舰因损伤掉速，已限制共同航速。可降速重下航路或将受损舰脱队。".into());
@@ -698,4 +808,53 @@ pub(crate) fn paths_json(paths: &[(u32, Track)]) -> Vec<Value> {
         .iter()
         .map(|(id, t)| json!({"ship":id,"points":t.remaining()}))
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn round_waypoint_keeps_the_same_track_in_preview_and_execution() {
+        let points = [P { x: 6_200., y: 6_550. }, P { x: 6_200., y: 9_800. }];
+        for mode in ["follow", "sync"] {
+            let mut world = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+            world.enable_realtime().unwrap();
+            for fleet in &mut world.fleets { fleet.ai = Ai::new("coord", "manual"); }
+            let order = json!({"fleet":1,"mode":mode,"speed":20,"points":points});
+            let preview = world.preview(0, &order).unwrap();
+            assert_eq!(preview["valid"], true, "{preview}");
+            world.route(0, &order, true).unwrap();
+            let lead = world.ship(1).unwrap();
+            let track = lead.track.as_ref().unwrap().clone();
+            let corners: Vec<_> = track.nodes.windows(3).map(|nodes|
+                delta((nodes[1] - nodes[0]).heading(), (nodes[2] - nodes[1]).heading()).abs()).collect();
+            assert!(corners.iter().filter(|&&change| change > 1.).count() > 30);
+            assert!(corners.iter().all(|&change| change < 2.1));
+            assert!(track.nodes.iter().all(|p| p.dist(points[0]) > 100.));
+            let mut prev = lead.h;
+            for _ in 0..420 {
+                world.advance();
+                let lead = world.ship(1).unwrap();
+                assert!(delta(prev, lead.h).abs() < 4.);
+                assert_eq!(track.at(lead.track.as_ref().unwrap().pos).0, lead.p);
+                prev = lead.h;
+            }
+            assert!(world.ship(1).unwrap().h < 1.);
+            if mode == "sync" {
+                assert!(delta(world.ship(1).unwrap().h, world.ship(5).unwrap().h).abs() < 1e-4);
+            }
+        }
+    }
+
+    #[test]
+    fn a_short_reversal_is_rejected_instead_of_cutting_the_radius() {
+        let mut world = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        world.enable_realtime().unwrap();
+        let preview = world.preview(0, &json!({"fleet":1,"mode":"follow","points":[
+            {"x":6800,"y":6550},{"x":6200,"y":6650}
+        ]})).unwrap();
+        assert_eq!(preview["valid"], false);
+        assert!(preview["error"].as_str().unwrap().contains("没有足够空间转弯"));
+    }
 }

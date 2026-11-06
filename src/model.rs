@@ -367,6 +367,7 @@ pub struct Fleet {
     pub mode: String,
     pub speed: f64,
     pub actual: f64,
+    pub turn_degrees: f64,
     pub points: Vec<P>,
     pub ai: Ai,
     pub notice: Option<String>,
@@ -439,6 +440,8 @@ pub struct Event {
     pub tick: u32,
     pub kind: &'static str,
     pub text: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub own_ship: Option<u32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub rule: Option<&'static str>,
     #[serde(skip_serializing_if = "Option::is_none")]
