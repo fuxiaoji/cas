@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cas-cape-st-george-1943-hulls-v1",
+  "content_version": "cas-cape-st-george-1943-hulls-v2",
   "scenario_id": "cas-rs-cape-st-george",
   "as_of": "1943-11-25",
   "status": "source_data_not_launchable",
@@ -18,7 +18,7 @@
       "shells":{
         "SpCOM":{"range_yd":[[0,5500],[5600,10900],[11000,14600],[14700,18200]],"belt":[7,4,3,2],"deck":[null,null,1,2],"damage_dp":[18,14,12,11]},
         "COM":{"range_yd":[[0,5500],[5600,10900],[11000,14600],[14700,18200]],"belt":[5,3,2,2],"deck":[null,null,1,2],"damage_dp":[22,19,17,15]},
-        "HE":{"range_yd":[[0,7100],[7200,14300],[14400,19000],[19100,23800]],"belt":[2,1,1,1],"deck":[null,null,0,1],"damage_dp":[22,19,14,12]}
+        "HE":{"range_yd":[[0,7100],[7200,14300],[14400,19000],[19100,23800]],"belt":[2,1,1,1],"deck":[null,null,0,1],"damage_dp":[18,15,14,12]}
       }
     },
     "jp_3rd_yr_127mm50": {

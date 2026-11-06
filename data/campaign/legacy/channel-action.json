@@ -1,0 +1,231 @@
+{
+  "schema": "cas-legacy-deployment-v1",
+  "scenario_id": "cas-ibs-channel-action",
+  "ibs_id": "IBS-S-03",
+  "stage_ids": [
+    "CAMP-ALLIES-01",
+    "CAMP-AXIS-01"
+  ],
+  "title": "通道行动",
+  "date": "1940-11-28",
+  "classification": "unverified",
+  "playable": false,
+  "source": {
+    "baseline": "铁底湾手游 0.6.9",
+    "commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+    "scenario_yaml": "resources/derived/structured/scenarios/scenario-03.yaml",
+    "scenario": {
+      "document": "scenario-book-zh.pdf",
+      "pdf_page": 3,
+      "printed_page": 4,
+      "status": "verified_source"
+    },
+    "map_yaml": "resources/derived/structured/maps/main-map.yaml",
+    "scale": {
+      "document": "resources/originals/rules/iron-bottom-sound-iv-rules-zh.pdf",
+      "section": "1.2",
+      "pdf_page": 3,
+      "printed_page": 3
+    },
+    "mobile_index": "mobile/content/campaign-scenarios.json",
+    "mobile_briefing": "mobile/content/campaign-briefings.json",
+    "runtime": [
+      "mobile/progression.py::prepare_stage",
+      "backend/src/iron_bottom_sound/engine.py::reset",
+      "backend/src/iron_bottom_sound/data.py::build_initial_state",
+      "backend/src/iron_bottom_sound/night.py::initialize"
+    ]
+  },
+  "start": {
+    "legacy_mobile_mode": "classic",
+    "legacy_seed": 53,
+    "legacy_phase": "reinforcement",
+    "light_hint": "night",
+    "legacy_turn_limit": 4,
+    "legacy_printed_turn_limit": null,
+    "duration_candidate_seconds": 720,
+    "duration_authority": "rts_conversion_proposal_not_cas",
+    "deploy_mode": "scenario_positions",
+    "setup_order": null,
+    "setup_first_player": null,
+    "large_ship_types": null,
+    "small_ship_types": null,
+    "setup_zones": []
+  },
+  "map": {
+    "width_m": 22014.642892,
+    "height_m": 21671.28,
+    "columns": 46,
+    "rows": 39,
+    "legacy_printed_columns": 34,
+    "legacy_printed_rows": 27,
+    "terrain": "sea",
+    "land_hexes": [],
+    "coast_hexes": [],
+    "legacy_radar_blocking_hexes": [],
+    "land_polygons_m": [],
+    "coast_polygons_m": [],
+    "origin": "southwest_rectangle_corner",
+    "x_axis": "east",
+    "y_axis": "north",
+    "heading": "clockwise_from_north",
+    "legacy_layout": "flat_top_odd_q",
+    "hex_center_spacing_m": 548.64,
+    "legacy_hex_spacing_yards": 600,
+    "legacy_turn_seconds": 180,
+    "speed_authority": "rts_opening_speed_proposal_not_cas_hull_performance"
+  },
+  "ships": [
+    {
+      "ibs_ship_id": "IBS-U-KM-KARL-GALSTER",
+      "initial_hex": "O14",
+      "x_m": 6968.663937,
+      "y_m": 14264.64,
+      "legacy_heading": 4,
+      "heading_deg": 240,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "卡尔加尔斯特",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-KM-RICHARD-BEITZEN",
+      "initial_hex": "P13",
+      "x_m": 7443.800115,
+      "y_m": 14538.96,
+      "legacy_heading": 4,
+      "heading_deg": 240,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "里夏德·拜茨恩",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-KM-HANS-LODY",
+      "initial_hex": "R12",
+      "x_m": 8394.07247,
+      "y_m": 15087.6,
+      "legacy_heading": 4,
+      "heading_deg": 240,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "汉斯·洛迪",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-RN-JAVELIN",
+      "initial_hex": "R16",
+      "x_m": 8394.07247,
+      "y_m": 12893.04,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "标枪",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-RN-JUPITER",
+      "initial_hex": "S16",
+      "x_m": 8869.208647,
+      "y_m": 13167.36,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "朱庇特",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-RN-KASHMIR",
+      "initial_hex": "T15",
+      "x_m": 9344.344825,
+      "y_m": 13441.68,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "克什米尔",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-RN-JACKAL",
+      "initial_hex": "U15",
+      "x_m": 9819.481002,
+      "y_m": 13716.0,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "豺",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-RN-JERSEY",
+      "initial_hex": "V14",
+      "x_m": 10294.61718,
+      "y_m": 13990.32,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "泽西",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": null,
+      "cas_profile_id": null
+    }
+  ],
+  "formations": [],
+  "reinforcements": [],
+  "post_default_formation_setup": null,
+  "conflicts": [],
+  "objectives": {
+    "status": "legacy_intent_requires_cas_outcome_binding",
+    "intent": [
+      "同盟追击德国驱逐舰；击沉或使至少一艘丧失足够航速达战术目标，多艘达战略目标。",
+      "轴心保全全部驱逐舰速度与生存；在此基础上击沉至少两艘英舰可提升战果。"
+    ],
+    "legacy_scoring_evidence": {
+      "kind": "scenario_03_thresholds",
+      "evaluated_at": "end_of_turn_4",
+      "british": {
+        "tactical": "击沉或把至少一艘德国 DD 的速度降至 2-2-2 或更低。",
+        "strategic": "击沉或把多艘德国 DD 的速度降至 2-2-2 或更低。"
+      },
+      "german": {
+        "tactical": "没有德国 DD 被击沉或被降速至 2-2-2 或更低。",
+        "minor_strategic": "在满足战术胜利前提下，另击沉至少两艘英国 DD。"
+      }
+    },
+    "legacy_opening_restrictions": [],
+    "location": "英吉利海峡西部 · 普利茅斯外海",
+    "background": "德国三艘驱逐舰袭击英国近海运输后返航布雷斯特，蒙巴顿率英国第五驱逐舰队追击。标枪号在29日凌晨中雷，由拖船救回普利茅斯。"
+  },
+  "gates": [
+    "全部舰实例须绑定该时期的已核验 CAS 舰卡；开局航速必须按舰卡逐舰验证。",
+    "需要确定 CAS 环境、接触/作战能力及匹配的结算版本。",
+    "待用 CAS 损伤后的航速定义替换铁底湾 2-2-2 速度轨门槛。"
+  ]
+}

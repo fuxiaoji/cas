@@ -4,6 +4,9 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
+mod legacy;
+pub use legacy::{Deployment as LegacyDeployment, MapGeometry as LegacyMapGeometry};
+
 const CROSSWALK: &str = include_str!("../data/campaign/crosswalk.json");
 const CAPE: &str = include_str!("../data/campaign/cape-st-george.json");
 const CAPE_PERIOD: &str = include_str!("../data/campaign/period/cape-st-george-1943.json");
@@ -25,28 +28,50 @@ fn source_for(id: &str) -> Option<&'static str> {
     })
 }
 
-pub fn detail(id: &str) -> Result<Value, String> {
+fn catalogue_row(id: &str) -> Result<&'static Value, String> {
     static CATALOGUE: OnceLock<Value> = OnceLock::new();
     let catalogue =
         CATALOGUE.get_or_init(|| serde_json::from_str(CROSSWALK).expect("campaign catalogue"));
-    let row = catalogue["scenarios"]
+    catalogue["scenarios"]
         .as_array()
         .expect("campaign rows")
         .iter()
         .find(|row| {
             row["ibs_id"].as_str() == Some(id)
                 || row["cas"]["scenario_id"].as_str() == Some(id)
+                || row["ibs_id"]
+                    .as_str()
+                    .is_some_and(|ibs| legacy::alias(ibs, id))
                 || row["stage_ids"]
                     .as_array()
                     .is_some_and(|stages| stages.iter().any(|stage| stage.as_str() == Some(id)))
         })
-        .ok_or("未知战役关卡")?;
+        .ok_or_else(|| "未知战役关卡".to_owned())
+}
+
+/// Return immutable geometry and setup evidence. This does not authorize battle start:
+/// CAS class, equipment, environment and objective bindings are still required.
+pub fn legacy_deployment(id: &str) -> Result<LegacyDeployment, String> {
+    let row = catalogue_row(id)?;
+    let ibs_id = row["ibs_id"].as_str().ok_or("缺少原战役 ID")?;
+    let data = legacy::source(ibs_id).ok_or("该关不使用铁底湾回退部署")?;
+    serde_json::from_str(data).map_err(|e| format!("无法读取旧战役部署：{e}"))
+}
+
+pub fn detail(id: &str) -> Result<Value, String> {
+    let row = catalogue_row(id)?;
     let cas_id = row["cas"]["scenario_id"].as_str();
     let record = cas_id
         .and_then(source_for)
         .map(serde_json::from_str::<Value>)
         .transpose()
         .map_err(|e| format!("无法读取战役原页记录：{e}"))?;
+    let legacy = row["ibs_id"]
+        .as_str()
+        .and_then(legacy::source)
+        .map(serde_json::from_str::<Value>)
+        .transpose()
+        .map_err(|e| format!("无法读取旧战役部署：{e}"))?;
     let readiness = (cas_id == Some("cas-rs-cape-st-george")).then(|| {
         let period: Value = serde_json::from_str(CAPE_PERIOD).expect("Cape St. George period data");
         let unresolved: Vec<_> = period["conflicts"]
@@ -63,7 +88,7 @@ pub fn detail(id: &str) -> Result<Value, String> {
             "unresolvedPeriodData": unresolved
         })
     });
-    Ok(json!({"entry":row, "record":record, "readiness":readiness}))
+    Ok(json!({"entry":row, "record":record, "readiness":readiness, "legacy":legacy}))
 }
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
@@ -274,8 +299,10 @@ mod tests {
     }
 
     #[test]
-    fn all_32_stage_aliases_return_their_own_archive_and_only_11_source_records() {
+    fn all_32_stage_aliases_return_their_own_archive_and_only_one_kind_of_record() {
         let mut sources = 0;
+        let mut fallback_count = 0;
+        let mut fallback_ships = 0;
         for n in 1..=16 {
             let allies = detail(&format!("CAMP-ALLIES-{n:02}")).unwrap();
             let axis = detail(&format!("CAMP-AXIS-{n:02}")).unwrap();
@@ -285,9 +312,30 @@ mod tests {
                 sources += 1;
                 assert_eq!(allies["record"]["ibs_id"], allies["entry"]["ibs_id"]);
                 assert_eq!(allies["record"]["playable"], false);
+                assert!(allies["legacy"].is_null());
+            } else {
+                fallback_count += 1;
+                let stage_id = format!("CAMP-ALLIES-{n:02}");
+                let deployment = legacy_deployment(&stage_id).unwrap();
+                let alias = detail(&deployment.scenario_id).unwrap();
+                assert_eq!(allies, alias);
+                assert_eq!(allies["legacy"]["ibs_id"], allies["entry"]["ibs_id"]);
+                assert_eq!(deployment.schema, "cas-legacy-deployment-v1");
+                assert!(!deployment.playable);
+                assert!(deployment.ships.iter().all(|s| {
+                    s.cas_profile_id.is_none()
+                        && s.placement.x_m > 0.0
+                        && s.placement.x_m < deployment.map.width_m
+                        && s.placement.y_m > 0.0
+                        && s.placement.y_m < deployment.map.height_m
+                }));
+                fallback_ships += deployment.ships.len();
             }
         }
         assert_eq!(sources, 11);
+        assert_eq!(fallback_count, 5);
+        assert_eq!(fallback_ships, 159);
+        assert!(legacy_deployment("CAMP-ALLIES-02").is_err());
         assert!(detail("../cape-st-george").is_err());
     }
 

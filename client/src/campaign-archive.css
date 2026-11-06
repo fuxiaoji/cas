@@ -13,4 +13,14 @@
 .archive-source dl { display: grid; grid-template-columns: auto minmax(0,1fr); gap: 3px 8px; margin: 6px 0 0; }
 .archive-source dt { color: #dfc693; }
 .archive-source dd { margin: 0; }
+.archive-deployment { width: 100%; max-height: 285px; background: #0b1e2b; border: 1px solid #49616b; }
+.archive-deployment rect { fill: #122e40; stroke: #547381; }
+.archive-deployment text { fill: #bdcbd0; font-size: 12px; text-anchor: middle; }
+.archive-deployment .allies { fill: #9fdce2; }
+.archive-deployment .axis { fill: #f7b598; }
+.archive-deployment-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.archive-deployment-legend span:first-child { color: #9fdce2; }
+.archive-deployment-legend span:nth-child(2) { color: #f7b598; }
+.archive-placement-toggle { display: flex; align-items: center; gap: 7px; }
+.archive-source .archive-sides details > summary { padding: 3px 4px; min-height: 25px; display: list-item; }
 @media (max-width: 540px) { .archive-source .archive-sides { grid-template-columns: 1fr; } }

@@ -1,0 +1,599 @@
+{
+  "schema": "cas-legacy-deployment-v1",
+  "scenario_id": "cas-ibs-philippine-sea-surface",
+  "ibs_id": "IBS-S-EM-01",
+  "stage_ids": [
+    "CAMP-ALLIES-15",
+    "CAMP-AXIS-15"
+  ],
+  "title": "第二次马里亚纳海战（内南洋水雷强袭战）",
+  "date": "1944-06-21",
+  "classification": "related_alternate",
+  "playable": false,
+  "source": {
+    "baseline": "铁底湾手游 0.6.9",
+    "commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+    "scenario_yaml": "resources/derived/structured/scenarios/scenario-erma.yaml",
+    "scenario": {
+      "document": "extensions/erma/scenario/second-battle-of-the-philippine-sea-zh.pdf",
+      "pdf_pages": [
+        1,
+        2
+      ],
+      "status": "verified_source"
+    },
+    "map_yaml": "resources/derived/structured/maps/main-map.yaml",
+    "scale": {
+      "document": "resources/originals/rules/iron-bottom-sound-iv-rules-zh.pdf",
+      "section": "1.2",
+      "pdf_page": 3,
+      "printed_page": 3
+    },
+    "mobile_index": "mobile/content/campaign-scenarios.json",
+    "mobile_briefing": "mobile/content/campaign-briefings.json",
+    "runtime": [
+      "mobile/progression.py::prepare_stage",
+      "backend/src/iron_bottom_sound/engine.py::reset",
+      "backend/src/iron_bottom_sound/data.py::build_initial_state",
+      "backend/src/iron_bottom_sound/night.py::initialize"
+    ]
+  },
+  "start": {
+    "legacy_mobile_mode": "classic",
+    "legacy_seed": 65,
+    "legacy_phase": "gunnery",
+    "light_hint": null,
+    "legacy_turn_limit": 12,
+    "legacy_printed_turn_limit": 8,
+    "duration_candidate_seconds": 2160,
+    "duration_authority": "rts_conversion_proposal_not_cas",
+    "deploy_mode": "free_deployment",
+    "setup_order": [
+      "large_ships_alternating",
+      "small_ships_alternating"
+    ],
+    "setup_first_player": "highest_1d6",
+    "large_ship_types": [
+      "BB",
+      "BC",
+      "CB"
+    ],
+    "small_ship_types": [
+      "CA",
+      "CL",
+      "DD"
+    ],
+    "setup_zones": [
+      {
+        "side": "axis",
+        "from_hex": "A14",
+        "to_hex": "Q1",
+        "from_m": [
+          316.757452,
+          14264.64
+        ],
+        "to_m": [
+          7918.936292,
+          21396.96
+        ],
+        "half_plane": "northwest",
+        "include_boundary": false
+      },
+      {
+        "side": "allies",
+        "from_hex": "R27",
+        "to_hex": "HH14",
+        "from_m": [
+          8394.07247,
+          6858.0
+        ],
+        "to_m": [
+          15996.25131,
+          13990.32
+        ],
+        "half_plane": "southeast",
+        "include_boundary": false
+      }
+    ]
+  },
+  "map": {
+    "width_m": 22014.642892,
+    "height_m": 21671.28,
+    "columns": 46,
+    "rows": 39,
+    "legacy_printed_columns": 34,
+    "legacy_printed_rows": 27,
+    "terrain": "sea",
+    "land_hexes": [],
+    "coast_hexes": [],
+    "legacy_radar_blocking_hexes": [],
+    "land_polygons_m": [],
+    "coast_polygons_m": [],
+    "origin": "southwest_rectangle_corner",
+    "x_axis": "east",
+    "y_axis": "north",
+    "heading": "clockwise_from_north",
+    "legacy_layout": "flat_top_odd_q",
+    "hex_center_spacing_m": 548.64,
+    "legacy_hex_spacing_yards": 600,
+    "legacy_turn_seconds": 180,
+    "speed_authority": "rts_opening_speed_proposal_not_cas_hull_performance"
+  },
+  "ships": [
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-YAMATO",
+      "initial_hex": "J3",
+      "x_m": 4592.983049,
+      "y_m": 20025.36,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "大和",
+      "side": "axis",
+      "flagship": true,
+      "formation_id": "axis-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-MUSASHI",
+      "initial_hex": "I3",
+      "x_m": 4117.846872,
+      "y_m": 20299.68,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "武藏",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-SHINANO",
+      "initial_hex": "H2",
+      "x_m": 3642.710694,
+      "y_m": 20574.0,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "信浓",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-AZUMA",
+      "initial_hex": "G2",
+      "x_m": 3167.574517,
+      "y_m": 20848.32,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "吾妻",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-ISHIKARI",
+      "initial_hex": "F1",
+      "x_m": 2692.438339,
+      "y_m": 21122.64,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 5,
+      "speed_knots": 29.62419,
+      "name": "石狩",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-IBUKI",
+      "initial_hex": "G5",
+      "x_m": 3167.574517,
+      "y_m": 19202.4,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "伊吹",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-cruiser-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-KURAMA",
+      "initial_hex": "F4",
+      "x_m": 2692.438339,
+      "y_m": 19476.72,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "鞍马",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-cruiser-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-GOKASE",
+      "initial_hex": "E4",
+      "x_m": 2217.302162,
+      "y_m": 19751.04,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "五濑",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-cruiser-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-SHIMAKAZE",
+      "initial_hex": "D9",
+      "x_m": 1742.165984,
+      "y_m": 16733.52,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "岛风",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-destroyer-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-KAZEGUMO",
+      "initial_hex": "C9",
+      "x_m": 1267.029807,
+      "y_m": 17007.84,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "风云",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-destroyer-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-NAGANAMI",
+      "initial_hex": "B8",
+      "x_m": 791.893629,
+      "y_m": 17282.16,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "长波",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-destroyer-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-ERMA-MAKINAMI",
+      "initial_hex": "A8",
+      "x_m": 316.757452,
+      "y_m": 17556.48,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "卷波",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-destroyer-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-IOWA",
+      "initial_hex": "Y23",
+      "x_m": 11720.025712,
+      "y_m": 9326.88,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "衣阿华",
+      "side": "allies",
+      "flagship": true,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-NEW-JERSEY",
+      "initial_hex": "Z23",
+      "x_m": 12195.16189,
+      "y_m": 9052.56,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "新泽西",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-MISSOURI",
+      "initial_hex": "AA24",
+      "x_m": 12670.298068,
+      "y_m": 8778.24,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "密苏里",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-WISCONSIN",
+      "initial_hex": "BB24",
+      "x_m": 13145.434245,
+      "y_m": 8503.92,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "威斯康星",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-ALASKA",
+      "initial_hex": "CC25",
+      "x_m": 13620.570423,
+      "y_m": 8229.6,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "阿拉斯加",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-GUAM",
+      "initial_hex": "DD25",
+      "x_m": 14095.7066,
+      "y_m": 7955.28,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "关岛",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-DES-MOINES",
+      "initial_hex": "V25",
+      "x_m": 10294.61718,
+      "y_m": 7955.28,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "得梅因",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-cruiser-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-SALEM",
+      "initial_hex": "W26",
+      "x_m": 10769.753357,
+      "y_m": 7680.96,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "塞勒姆",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-cruiser-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-WORCESTER",
+      "initial_hex": "X26",
+      "x_m": 11244.889535,
+      "y_m": 7406.64,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "伍斯特",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-cruiser-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+      "initial_hex": "S26",
+      "x_m": 8869.208647,
+      "y_m": 7680.96,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "艾伦·M·萨姆纳",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-destroyer-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-INGRAHAM",
+      "initial_hex": "T26",
+      "x_m": 9344.344825,
+      "y_m": 7406.64,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "英格拉罕",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-destroyer-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-ERMA-COOPER",
+      "initial_hex": "U27",
+      "x_m": 9819.481002,
+      "y_m": 7132.32,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 6,
+      "speed_knots": 35.549028,
+      "name": "库珀",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-destroyer-line",
+      "cas_profile_id": null
+    }
+  ],
+  "formations": [
+    {
+      "id": "axis-battle-line",
+      "side": "axis",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-YAMATO",
+        "IBS-U-IJN-ERMA-MUSASHI",
+        "IBS-U-IJN-ERMA-SHINANO",
+        "IBS-U-IJN-ERMA-AZUMA",
+        "IBS-U-IJN-ERMA-ISHIKARI"
+      ],
+      "note": null,
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "axis-cruiser-line",
+      "side": "axis",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-IBUKI",
+        "IBS-U-IJN-ERMA-KURAMA",
+        "IBS-U-IJN-ERMA-GOKASE"
+      ],
+      "note": null,
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "axis-destroyer-line",
+      "side": "axis",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-SHIMAKAZE",
+        "IBS-U-IJN-ERMA-KAZEGUMO",
+        "IBS-U-IJN-ERMA-NAGANAMI",
+        "IBS-U-IJN-ERMA-MAKINAMI"
+      ],
+      "note": null,
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "allies-battle-line",
+      "side": "allies",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-USN-ERMA-IOWA",
+        "IBS-U-USN-ERMA-NEW-JERSEY",
+        "IBS-U-USN-ERMA-MISSOURI",
+        "IBS-U-USN-ERMA-WISCONSIN",
+        "IBS-U-USN-ERMA-ALASKA",
+        "IBS-U-USN-ERMA-GUAM"
+      ],
+      "note": null,
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "allies-cruiser-line",
+      "side": "allies",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-USN-ERMA-DES-MOINES",
+        "IBS-U-USN-ERMA-SALEM",
+        "IBS-U-USN-ERMA-WORCESTER"
+      ],
+      "note": null,
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "allies-destroyer-line",
+      "side": "allies",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+        "IBS-U-USN-ERMA-INGRAHAM",
+        "IBS-U-USN-ERMA-COOPER"
+      ],
+      "note": null,
+      "status": "legacy_setup_proposal"
+    }
+  ],
+  "reinforcements": [],
+  "post_default_formation_setup": null,
+  "conflicts": [],
+  "objectives": {
+    "status": "legacy_intent_requires_cas_outcome_binding",
+    "intent": [
+      "双方可在规定区域交替部署。比拼敌舰舰体损伤及对敌战列舰火控、雷达、主炮、速度的破坏。"
+    ],
+    "legacy_scoring_evidence": {
+      "kind": "erma_damage_points",
+      "evaluated_at": "end_of_turn_12",
+      "win_margin": 25,
+      "scoring": {
+        "hull_loss": {
+          "per": 3,
+          "points": 1
+        },
+        "battleship_fire_control_destroyed": 1,
+        "battleship_radar_destroyed": 1,
+        "battleship_primary_mount_destroyed": 1,
+        "battleship_speed_loss": {
+          "per": 2,
+          "points": 1
+        }
+      }
+    },
+    "legacy_opening_restrictions": [],
+    "location": "菲律宾海 · 马里亚纳群岛以西的推演区域",
+    "background": "史实中的菲律宾海海战于1944年6月19至20日爆发，以航母航空战为主。原扩展把次日写成另一场假想水面决战，并纳入图纸舰与晚服役舰。"
+  },
+  "gates": [
+    "全部舰实例须绑定该时期的已核验 CAS 舰卡；开局航速必须按舰卡逐舰验证。",
+    "需要确定 CAS 环境、接触/作战能力及匹配的结算版本。",
+    "待接自由部署、CAS 关键损伤分和门槛；架空改装仅在核得 CAS 舰卡后开放。"
+  ]
+}

@@ -22,7 +22,20 @@ interface RecordDetail {
   ships?: { id: string; name: string }[]; objectives: Record<Side, Objective>;
   special_rules?: (string | { rule: string })[]; blockers: (string | { detail: string })[] };
   readiness: null | { datedShips: number; periodProfiles: number; unresolvedPeriodData: { id: string }[] };
+  legacy?: LegacyDeployment | null;
 }
+
+type LegacyShip = {
+  ibs_ship_id: string; name: string; side: Side; initial_hex: string; x_m: number; y_m: number;
+  heading_deg: number; speed_knots: number; formation_id: string | null; cas_profile_id: string | null;
+};
+type LegacyDeployment = {
+  title: string; map: { width_m: number; height_m: number };
+  start: { light_hint: string | null; legacy_turn_limit: number | null };
+  ships: LegacyShip[]; objectives: { intent: string[] }; gates: string[];
+  post_default_formation_setup?: { ships: Pick<LegacyShip, 'ibs_ship_id' | 'initial_hex' | 'x_m' | 'y_m' | 'heading_deg' | 'speed_knots'>[] } | null;
+  conflicts: unknown[]; source: { baseline: string };
+};
 
 const matchNames: Record<Match, string> = {
   exact_historical_counterpart: '同一历史战斗', related_alternate: '相关改编',
@@ -83,6 +96,45 @@ function forceNames(force: unknown): string[] {
   ).flatMap(([, value]) => forceNames(value));
 }
 
+function LegacySource({ id, side, data }: { id: string; side: Side; data: LegacyDeployment }) {
+  const [showFormation, setShowFormation] = useState(false);
+  const positions = showFormation ? new Map(data.post_default_formation_setup?.ships.map(ship => [ship.ibs_ship_id, ship])) : undefined;
+  const placement = positions ? data.ships.map(ship => ({ ...ship, ...positions.get(ship.ibs_ship_id) })) : data.ships;
+  const width = 640;
+  const height = 340;
+  const scale = Math.min((width - 28) / data.map.width_m, (height - 28) / data.map.height_m);
+  const offsetX = (width - data.map.width_m * scale) / 2;
+  const offsetY = (height - data.map.height_m * scale) / 2;
+  return <div className="archive-source" data-legacy-stage={id}>
+    <p><strong>原剧本开局阵位</strong> · {data.source.baseline} · {data.ships.length} 艘
+      {data.start.legacy_turn_limit !== null && ` · 原作 ${data.start.legacy_turn_limit} 回合`}</p>
+    {data.post_default_formation_setup && <label className="archive-placement-toggle">
+      <input type="checkbox" checked={showFormation} onChange={event => setShowFormation(event.target.checked)} />
+      查看旧作默认整列后的阵位
+    </label>}
+    <svg className="archive-deployment" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${data.title}原剧本阵位，北向上`}>
+      <rect x={offsetX} y={offsetY} width={data.map.width_m * scale} height={data.map.height_m * scale} />
+      <text x={width - 29} y={25}>北 ↑</text>
+      {placement.map(ship => <g key={ship.ibs_ship_id} className={ship.side}
+        transform={`translate(${offsetX + ship.x_m * scale} ${height - offsetY - ship.y_m * scale}) rotate(${ship.heading_deg})`}>
+        <title>{ship.name} · {ship.initial_hex} · {ship.heading_deg}°</title>
+        <path d="M0,-6 L3,4 L0,2 L-3,4 Z" />
+      </g>)}
+    </svg>
+    <p className="archive-deployment-legend"><span>同盟</span><span>轴心</span>原有格位已换算成连续坐标。</p>
+    <div className="archive-sides">{([side, side === 'allies' ? 'axis' : 'allies'] as const).map(faction => {
+      const ships = placement.filter(ship => ship.side === faction);
+      return <section key={faction}><details><summary>{sideName[faction]}部署 · {ships.length} 艘</summary>
+        <ul>{ships.map(ship => <li key={ship.ibs_ship_id}>{ship.name} · {ship.initial_hex} · {ship.heading_deg}°
+          {ship.formation_id && ` · ${ship.formation_id}`}</li>)}</ul>
+      </details></section>;
+    })}</div>
+    <div><h4>原剧本任务</h4><ul>{data.objectives.intent.map(text => <li key={text}>{text}</li>)}</ul></div>
+    <div><h4>出航前待验证</h4><ul>{data.gates.map(text => <li key={text}>{text}</li>)}</ul>
+      {data.conflicts.length > 0 && <p>{data.conflicts.length} 处原部署和编队设置存在差异，已保留原阵位供核对。</p>}</div>
+  </div>;
+}
+
 function StageSource({ id, side }: { id: string; side: Side }) {
   const [detail, setDetail] = useState<RecordDetail>();
   const [failed, setFailed] = useState(false);
@@ -96,7 +148,8 @@ function StageSource({ id, side }: { id: string; side: Side }) {
   }, [id, attempt]);
   if (failed) return <button type="button" onClick={() => { setFailed(false); setAttempt(n => n + 1); }}>重读想定记录</button>;
   if (!detail) return <p role="status">正在载入想定记录…</p>;
-  const { record, readiness } = detail;
+  const { record, readiness, legacy } = detail;
+  if (legacy) return <LegacySource id={id} side={side} data={legacy} />;
   if (!record) return null;
   const weather = record.environment;
   return <div className="archive-source" data-source-stage={id}>
@@ -151,7 +204,7 @@ export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: 
       <button type="button" className="primary" onClick={onNight} disabled={busy}>开始夜航演习</button>
     </div>
     <div className="harbor-title"><h3>战役航图</h3>{archive && <span>双线 {archive.scenarios.length * 2} 关 · {exactCount} 份原书想定</span>}</div>
-    <p className="harbor-fine">选择战线与难度，展开关卡查看历史资料。历史出航待编制、胜利条件和想定规则验证。</p>
+    <p className="harbor-fine">选择战线与难度，展开关卡查看 CAS 原书或旧剧本部署。出航须先核对舰卡、胜利条件和想定规则。</p>
     {error && <div className="harbor-action" role="status"><span>档案未能载入。</span><button type="button" onClick={() => { setError(false); setAttempt((n) => n + 1); }}>重新载入</button></div>}
     {!archive && !error && <p className="harbor-fine" role="status">正在查阅档案…</p>}
     {archive && <>
@@ -173,6 +226,7 @@ export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: 
           const stageId = entry.stage_ids.find(id => id.startsWith(side === 'allies' ? 'CAMP-ALLIES-' : 'CAMP-AXIS-'))!;
           return <li key={entry.ibs_id} data-stage-id={stageId}>
           <details open={open === entry.ibs_id} onToggle={e => {
+            if (e.target !== e.currentTarget) return;
             const isOpen = e.currentTarget.open;
             if (isOpen) setOpen(entry.ibs_id);
             else setOpen(current => current === entry.ibs_id ? undefined : current);
@@ -188,7 +242,7 @@ export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: 
                 {entry.cas.source.printed_pages.length > 0 && '（书页 ' + entry.cas.source.printed_pages.join('、') + '）'}</p>}
               <p>{entry.note}</p>
               <small>关卡编号：{stageId}</small>
-              {entry.cas?.import && open === entry.ibs_id && <StageSource key={stageId} id={stageId} side={side} />}
+              {open === entry.ibs_id && <StageSource key={stageId} id={stageId} side={side} />}
             </div>
           </details>
         </li>;

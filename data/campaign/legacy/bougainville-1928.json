@@ -1,0 +1,401 @@
+{
+  "schema": "cas-legacy-deployment-v1",
+  "scenario_id": "cas-ibs-bougainville-1928",
+  "ibs_id": "IBS-S-12",
+  "stage_ids": [
+    "CAMP-ALLIES-12",
+    "CAMP-AXIS-12"
+  ],
+  "title": "布干维尔岛海战（第一战队出击！）",
+  "date": "1928-03-03",
+  "classification": "ibs_original_or_absent",
+  "playable": false,
+  "source": {
+    "baseline": "铁底湾手游 0.6.9",
+    "commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+    "scenario_yaml": "resources/derived/structured/scenarios/scenario-12.yaml",
+    "scenario": {
+      "document": "scenario-book-zh.pdf",
+      "pdf_page": 13,
+      "printed_page": 14,
+      "status": "verified_source"
+    },
+    "map_yaml": "resources/derived/structured/maps/main-map.yaml",
+    "scale": {
+      "document": "resources/originals/rules/iron-bottom-sound-iv-rules-zh.pdf",
+      "section": "1.2",
+      "pdf_page": 3,
+      "printed_page": 3
+    },
+    "mobile_index": "mobile/content/campaign-scenarios.json",
+    "mobile_briefing": "mobile/content/campaign-briefings.json",
+    "runtime": [
+      "mobile/progression.py::prepare_stage",
+      "backend/src/iron_bottom_sound/engine.py::reset",
+      "backend/src/iron_bottom_sound/data.py::build_initial_state",
+      "backend/src/iron_bottom_sound/night.py::initialize"
+    ]
+  },
+  "start": {
+    "legacy_mobile_mode": "classic",
+    "legacy_seed": 62,
+    "legacy_phase": "reinforcement",
+    "light_hint": null,
+    "legacy_turn_limit": 9,
+    "legacy_printed_turn_limit": null,
+    "duration_candidate_seconds": 1620,
+    "duration_authority": "rts_conversion_proposal_not_cas",
+    "deploy_mode": "scenario_positions",
+    "setup_order": null,
+    "setup_first_player": null,
+    "large_ship_types": null,
+    "small_ship_types": null,
+    "setup_zones": []
+  },
+  "map": {
+    "width_m": 22014.642892,
+    "height_m": 21671.28,
+    "columns": 46,
+    "rows": 39,
+    "legacy_printed_columns": 34,
+    "legacy_printed_rows": 27,
+    "terrain": "sea",
+    "land_hexes": [],
+    "coast_hexes": [],
+    "legacy_radar_blocking_hexes": [],
+    "land_polygons_m": [],
+    "coast_polygons_m": [],
+    "origin": "southwest_rectangle_corner",
+    "x_axis": "east",
+    "y_axis": "north",
+    "heading": "clockwise_from_north",
+    "legacy_layout": "flat_top_odd_q",
+    "hex_center_spacing_m": 548.64,
+    "legacy_hex_spacing_yards": 600,
+    "legacy_turn_seconds": 180,
+    "speed_authority": "rts_opening_speed_proposal_not_cas_hull_performance"
+  },
+  "ships": [
+    {
+      "ibs_ship_id": "IBS-U-IJN-KAKO-I",
+      "initial_hex": "P9",
+      "x_m": 7443.800115,
+      "y_m": 16733.52,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "加古(I)",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-van",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-NAGATO",
+      "initial_hex": "N8",
+      "x_m": 6493.52776,
+      "y_m": 17282.16,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "长门",
+      "side": "axis",
+      "flagship": true,
+      "formation_id": "axis-main-body",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-MUTSU",
+      "initial_hex": "M8",
+      "x_m": 6018.391582,
+      "y_m": 17556.48,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "陆奥",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-main-body",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-JINTSU-I",
+      "initial_hex": "S8",
+      "x_m": 8869.208647,
+      "y_m": 17556.48,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "神通(I)",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-screen",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-KAMIKAZE",
+      "initial_hex": "R7",
+      "x_m": 8394.07247,
+      "y_m": 17830.8,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "神风",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-screen",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-OITE",
+      "initial_hex": "Q7",
+      "x_m": 7918.936292,
+      "y_m": 18105.12,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "追风",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-screen",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-IJN-HATSUYUKI",
+      "initial_hex": "P6",
+      "x_m": 7443.800115,
+      "y_m": 18379.44,
+      "legacy_heading": 2,
+      "heading_deg": 120,
+      "legacy_speed_hex_per_turn": 4,
+      "speed_knots": 23.699352,
+      "name": "初雪",
+      "side": "axis",
+      "flagship": false,
+      "formation_id": "axis-screen",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-COLORADO",
+      "initial_hex": "Z19",
+      "x_m": 12195.16189,
+      "y_m": 11247.12,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "科罗拉多",
+      "side": "allies",
+      "flagship": true,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-WEST-VIRGINIA",
+      "initial_hex": "AA20",
+      "x_m": 12670.298068,
+      "y_m": 10972.8,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "西弗吉尼亚",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-battle-line",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-OMAHA",
+      "initial_hex": "V20",
+      "x_m": 10294.61718,
+      "y_m": 10698.48,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "奥马哈",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-screen-1",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-DAHLGREN",
+      "initial_hex": "W21",
+      "x_m": 10769.753357,
+      "y_m": 10424.16,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "达尔格伦",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-screen-1",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-PERRY",
+      "initial_hex": "X21",
+      "x_m": 11244.889535,
+      "y_m": 10149.84,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "佩里",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-screen-1",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-HULL-I",
+      "initial_hex": "AA17",
+      "x_m": 12670.298068,
+      "y_m": 12618.72,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "赫尔(I)",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-screen-2",
+      "cas_profile_id": null
+    },
+    {
+      "ibs_ship_id": "IBS-U-USN-BAINBRIDGE",
+      "initial_hex": "BB17",
+      "x_m": 13145.434245,
+      "y_m": 12344.4,
+      "legacy_heading": 5,
+      "heading_deg": 300,
+      "legacy_speed_hex_per_turn": 3,
+      "speed_knots": 17.774514,
+      "name": "班布里奇",
+      "side": "allies",
+      "flagship": false,
+      "formation_id": "allies-screen-2",
+      "cas_profile_id": null
+    }
+  ],
+  "formations": [
+    {
+      "id": "axis-main-body",
+      "side": "axis",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-IJN-NAGATO",
+        "IBS-U-IJN-MUTSU"
+      ],
+      "note": "第一战队（长门旗舰）",
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "axis-screen",
+      "side": "axis",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-IJN-JINTSU-I",
+        "IBS-U-IJN-KAMIKAZE",
+        "IBS-U-IJN-OITE",
+        "IBS-U-IJN-HATSUYUKI"
+      ],
+      "note": "警戒队",
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "axis-van",
+      "side": "axis",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-IJN-KAKO-I"
+      ],
+      "note": "前卫（加古；不足 2 舰由引擎并入相邻纵队）",
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "allies-battle-line",
+      "side": "allies",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-USN-COLORADO",
+        "IBS-U-USN-WEST-VIRGINIA"
+      ],
+      "note": "战列舰纵队",
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "allies-screen-1",
+      "side": "allies",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-USN-OMAHA",
+        "IBS-U-USN-DAHLGREN",
+        "IBS-U-USN-PERRY"
+      ],
+      "note": "第一警戒队",
+      "status": "legacy_setup_proposal"
+    },
+    {
+      "id": "allies-screen-2",
+      "side": "allies",
+      "role": "line_ahead",
+      "ship_ids": [
+        "IBS-U-USN-HULL-I",
+        "IBS-U-USN-BAINBRIDGE"
+      ],
+      "note": "第二警戒队",
+      "status": "legacy_setup_proposal"
+    }
+  ],
+  "reinforcements": [],
+  "post_default_formation_setup": null,
+  "conflicts": [],
+  "objectives": {
+    "status": "legacy_intent_requires_cas_outcome_binding",
+    "intent": [
+      "双方以造成更多损伤争胜；击沉一至两艘敌方战列舰且己方无战列舰损失可达决定性胜利。"
+    ],
+    "legacy_scoring_evidence": {
+      "kind": "vp_with_bb_decisive_clause",
+      "points_per_three_hull_lost": 1,
+      "leader_margin": 4,
+      "draw_if_margin_below": 4,
+      "evaluated_at": "end_of_turn_9"
+    },
+    "legacy_opening_restrictions": [
+      {
+        "rule_id": "IBS-S-12-R1",
+        "sides": [
+          "axis",
+          "allies"
+        ],
+        "legacy_turns": [
+          1
+        ],
+        "actions": [
+          "gunnery",
+          "torpedo"
+        ],
+        "reason": "想定特例：双方第一回合都无法炮击和发射鱼雷",
+        "status": "requires_rts_timing_decision"
+      }
+    ],
+    "location": "布干维尔岛附近 · 剧本区域",
+    "background": "原作把长门、陆奥与科罗拉多、西弗吉尼亚安排在1928年的布干维尔外海相遇，推演早期战列舰纵队的交战。"
+  },
+  "gates": [
+    "全部舰实例须绑定该时期的已核验 CAS 舰卡；开局航速必须按舰卡逐舰验证。",
+    "需要确定 CAS 环境、接触/作战能力及匹配的结算版本。",
+    "待定义 CAS 损伤分与领先门槛，以及首阶段禁火的 RTS 时间窗。"
+  ]
+}

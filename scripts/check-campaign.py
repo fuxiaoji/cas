@@ -154,6 +154,31 @@ def verify_cape_st_george():
     assert period["scenario_id"] == scenario["scenario_id"] and period["as_of"] == scenario["start"]["date_local"]
     assert period["status"] == "source_data_not_launchable"
     assert period["instances"].keys() == ships.keys()
+    # American Fleets PDF 108 (C-2) and Emperor's Fleet PDF 97 (C-1).
+    # Annex rows checked here separately from the dated Form 10 loadouts.
+    gun_annex = {
+        "us_mk30_5in38": {
+            "SpCOM": ([5500, 10900, 14600, 18200], [7, 4, 3, 2], [1, 2], [18, 14, 12, 11]),
+            "COM": ([5500, 10900, 14600, 18200], [5, 3, 2, 2], [1, 2], [22, 19, 17, 15]),
+            "HE": ([7100, 14300, 19000, 23800], [2, 1, 1, 1], [0, 1], [18, 15, 14, 12]),
+        },
+        "jp_3rd_yr_127mm50": {
+            "COM": ([6000, 12000, 16000, 20000], [5, 3, 2, 2], [1, 2], [16, 13, 11, 10]),
+            "HE": ([6000, 12000, 16000, 20000], [2, 1, 1, 1], [1, 1], [17, 14, 13, 11]),
+        },
+        "jp_3rd_yr_120mm45": {
+            "COM": ([5300, 10600, 14100, 17600], [4, 3, 2, 1], [1, 2], [14, 11, 10, 9]),
+            "HE": ([5300, 10600, 14100, 17600], [1, 1, 1, 0], [0, 1], [15, 13, 11, 10]),
+        },
+    }
+    for gun, shell_rows in gun_annex.items():
+        models = period["weapon_models"][gun]["shells"]
+        assert models.keys() == shell_rows.keys()
+        for shell, (ranges, belt, deck, dp) in shell_rows.items():
+            assert models[shell] == {
+                "range_yd": [[lo, hi] for lo, hi in zip([0] + [hi + 100 for hi in ranges[:-1]], ranges)],
+                "belt": belt, "deck": [None, None] + deck, "damage_dp": dp,
+            }, (gun, shell)
     classes = {}
     for sid, instance in period["instances"].items():
         group = next(g for g in groups.values() if sid in g["members_in_order"])
