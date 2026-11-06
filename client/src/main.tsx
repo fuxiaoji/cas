@@ -5,6 +5,7 @@ import { alertKind, ShipSchematic } from './BattlePresentation';
 import { Harbor } from './Harbor';
 import type { HarborTab } from './Harbor';
 import { CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
+import { CampaignEndingGate } from './campaign-ending/CampaignEndingScene';
 import { claimCampaignRewards, recordCampaignResult } from './campaign-progress';
 import type { CampaignLaunch } from './campaign-progress';
 import { campaignObservationLabels, campaignText } from './campaign-labels';
@@ -87,6 +88,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const [dialog, setDialog] = useState(false);
   const [setup, setSetup] = useState(defaultSetup);
   const [resultDismissed, setResultDismissed] = useState(false);
+  const [seenCampaignEndings, setSeenCampaignEndings] = useState<ReadonlySet<string>>(() => new Set());
   const [session, setSession] = useState(0);
   const [port, setPort] = useState(() => loadPort(accountPortKey));
   const [cloudMeta, setCloudMeta] = useState<OnlineMeta>();
@@ -751,6 +753,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
 
   const latest = [...o.events].reverse();
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
+  const endingKey = cloud.current?.battle_id ?? campaignId.current ?? 'session-' + session;
   const editing = !!editMode && !replay && !finished;
   const courseDone = course && (guided ? guidedTrainingDone(course, evidence, { radar: nightRadar }) : trainingCourseDone(course, evidence));
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
@@ -809,7 +812,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           <b>重演</b><input type="range" min={0} max={Math.max(1, replay.end)} value={o.tick} aria-label="重演时间" onChange={(event) => void replayAt(Number(event.target.value))} />
           <span>{clock(o.tick)}</span><button type="button" onClick={() => void exitReplay()}>返回现局</button>
         </div>}
-        {!course && !replay && finished && !resultDismissed && <div className="result-screen">
+        {!course && !replay && finished && !resultDismissed && <CampaignEndingGate key={endingKey} observation={o}
+          seen={seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}><div className="result-screen">
           <div className="result-card">
             <p>{onlineDuel ? '线上约战结束' : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
             {o.campaign && result ? <CampaignResultSummary campaign={o.campaign} result={result} /> :
@@ -825,7 +829,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
               {onlineDuel && <button type="button" onClick={returnToDuelLobby}>返回线上舰桥</button>}
               <button type="button" onClick={() => { setResultDismissed(true); setTab('log'); }}>查看战情</button></div>
           </div>
-        </div>}
+        </div></CampaignEndingGate>}
         {notice && <div className="notice" role="status">{notice}</div>}
       </section>
       <aside className="staff-panel" aria-label="指挥面板">

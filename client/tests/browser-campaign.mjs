@@ -307,6 +307,7 @@ try {
     for (let i = 0; !state.result && i < 8; i++) state = await q('step', { seconds: 900 });
     assert(state.result && ['tactical', 'decisive'].includes(state.result.grade), JSON.stringify(state.result));
     await button('推进一秒').click();
+    if (state.result.winner !== 'draw') await page.locator('dialog.campaign-ending').getByRole('button', { name: '查看战果' }).click();
     await page.locator('.campaign-debrief').waitFor();
     const stars = state.result.grade === 'decisive' ? 3 : 2;
     assert.equal(await page.locator('.campaign-debrief .campaign-stars').getAttribute('data-stars'), String(stars));
@@ -372,6 +373,7 @@ try {
     const report = await q('report');
     assert(report.events.some(event => event.kind === 'torpedo_hit'));
     await button('推进一秒').click();
+    await page.locator('dialog.campaign-ending').getByRole('button', { name: '查看战果' }).click();
     await page.locator('.campaign-debrief .campaign-stars[data-stars="2"]').waitFor();
     await button('领取战役奖励').click();
     await page.getByText('已达成的星级奖励已领取。').waitFor();

@@ -1,0 +1,264 @@
+{
+  "source_project": "铁底湾",
+  "source_mobile_version": "0.6.11",
+  "source_commit": "41a1fb93063673ac8f84388a8f326a8b1a5fc3d5",
+  "source_components": {
+    "mobile/src/campaign/ending.ts": "21b12afd90c655993a973480a7bb3ad739904a11cd78fc9fde6d0ae71cec992b",
+    "mobile/src/campaign/CampaignEndingScene.tsx": "56727b4606fa1e05f2a5832e4508f07d519044f4148fd3fb7a232b3033d76871",
+    "mobile/src/campaign/campaign-ending.css": "aae71684f59adc9cbda2a5aeeae1084f0a150d323e19b327675990b09dc8cf14"
+  },
+  "source_manifest": "mobile/content/campaign-ending-boards.json",
+  "source_manifest_sha256": "ccee08144a241d14d3053c0acf45ed1ef683bcce1bf1fb43176b3744f59433a4",
+  "source_art_reviews": [
+    "mobile/content/campaign-ending-art.md",
+    "mobile/content/campaign-ending-west-art.md",
+    "mobile/content/campaign-ending-west-daylight-art.md",
+    "mobile/content/campaign-ending-west-overcast-art.md"
+  ],
+  "scope": "CAS local developer and test builds; redistribution scope for original artwork is unverified.",
+  "cast_alias": {
+    "stage_id": "CAMP-AXIS-03",
+    "source_id": "IBS-U-IJN-UZUKI-2",
+    "cas_id": "IBS-U-IJN-UZUKI",
+    "record": "mobile/content/fleet-portrait-manifest.json alias group IBS-U-IJN-UZUKI; CAS Cape portrait ledger uses original ijn-uzuki-2.png."
+  },
+  "encoding": "Lossless WebP. Source PNG and shipped WebP decoded bytes were compared for every image.",
+  "assets": [
+    {
+      "path": "ibs-s-03-victory-plate.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-03-victory-plate.png",
+      "source_sha256": "31fe83a182da3f23fe16d0c691e54cf1093291a956d69c39f6a594511c43822a",
+      "sha256": "d484b3cb13a5a71b552d886ae99c02528aa07cfee1edab1125920f264b01095b",
+      "decoded_sha256": "8c80fb7bf0ee714ce55f8835f11a6196acf8e3a796dbaf9e497aef96a3f14d35",
+      "decoded_mode": "RGB",
+      "size": [
+        834,
+        468
+      ],
+      "scenario_id": "IBS-S-03",
+      "outcome": "victory",
+      "stage_id": null,
+      "source_cast": null
+    },
+    {
+      "path": "ibs-s-03-allies-victory.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-03-allies-victory.png",
+      "source_sha256": "a3e3efe01e5efdcdcd2cc9af5e60e686e72ec37ce4c5ab6e43159ad5b4239860",
+      "sha256": "da270a27f8d3555764d800ee5a3ee02ddd75c3b45f349a301cf70e051d7452a7",
+      "decoded_sha256": "b2111ef9f3dcbe2899629e75705234f03e997eb4d0c6e58930669117c8e99cea",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-03",
+      "outcome": "victory",
+      "stage_id": "CAMP-ALLIES-01",
+      "source_cast": [
+        "IBS-U-RN-JAVELIN",
+        "IBS-U-RN-JUPITER",
+        "IBS-U-RN-KASHMIR",
+        "IBS-U-RN-JACKAL",
+        "IBS-U-RN-JERSEY"
+      ]
+    },
+    {
+      "path": "ibs-s-03-axis-victory.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-03-axis-victory.png",
+      "source_sha256": "40487ce125d87b7b83958109c00c22481e93322163e16ff887b877c750082b2c",
+      "sha256": "6dc916f9f1bf6e324866c7aaf53a47c2cf6c7287f337df18860c8d948e0d8cb6",
+      "decoded_sha256": "ad142b825a270505716c1916233affe7a9180b61c94c752c6e8282ae49ce61f5",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-03",
+      "outcome": "victory",
+      "stage_id": "CAMP-AXIS-01",
+      "source_cast": [
+        "IBS-U-KM-KARL-GALSTER",
+        "IBS-U-KM-RICHARD-BEITZEN",
+        "IBS-U-KM-HANS-LODY"
+      ]
+    },
+    {
+      "path": "ibs-s-03-defeat-plate.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-03-defeat-plate.png",
+      "source_sha256": "b03477874924c784d2f391c3580e01887824483114be374dadd9d8b379bb3cbf",
+      "sha256": "f45dc2ccd922989b70bed851cff0471f0410bd1bd5085c5d7eb27b8933893a25",
+      "decoded_sha256": "e0a26894b5737c192a941b110c1b65250ce9e5de54b71cd6d7d02c28ae2fe268",
+      "decoded_mode": "RGB",
+      "size": [
+        834,
+        468
+      ],
+      "scenario_id": "IBS-S-03",
+      "outcome": "defeat",
+      "stage_id": null,
+      "source_cast": null
+    },
+    {
+      "path": "ibs-s-03-allies-defeat.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-03-allies-defeat.png",
+      "source_sha256": "26463b753ad7ce1154a9f792792bb133cab5ea3d10102ade26f078f2afa0b9bf",
+      "sha256": "38e14a0e4d8cd79f8b98fcf337c0b5e70adf9ab784809ed0eb077a3982f57f6d",
+      "decoded_sha256": "e739275eed01fe26eb94233facba1234bea78c896e165f646c5e94e896bd3c89",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-03",
+      "outcome": "defeat",
+      "stage_id": "CAMP-ALLIES-01",
+      "source_cast": [
+        "IBS-U-RN-JAVELIN",
+        "IBS-U-RN-JUPITER",
+        "IBS-U-RN-KASHMIR",
+        "IBS-U-RN-JACKAL",
+        "IBS-U-RN-JERSEY"
+      ]
+    },
+    {
+      "path": "ibs-s-03-axis-defeat.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-03-axis-defeat.png",
+      "source_sha256": "6742338e309c012972baff67ae725fa4e558e30f4096ca70833fd7cbaee61f73",
+      "sha256": "d95fd6078e966c205054e5bafee6b92d667c98b03b4ea5014cd5a59c3ee3b8d9",
+      "decoded_sha256": "29e22ad5d39524efdc843d7090a6a58b94226273582ffd3620d52d2ed5ac1f4d",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-03",
+      "outcome": "defeat",
+      "stage_id": "CAMP-AXIS-01",
+      "source_cast": [
+        "IBS-U-KM-KARL-GALSTER",
+        "IBS-U-KM-RICHARD-BEITZEN",
+        "IBS-U-KM-HANS-LODY"
+      ]
+    },
+    {
+      "path": "ibs-s-05-victory-plate.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-05-victory-plate.png",
+      "source_sha256": "79332ac8b33dd3e0605b20512a066fccf9c44dacdb5f85bfd7f2c767ecb9c940",
+      "sha256": "b01582aadf1243d339c83df2e0901d5401e60b7bbd45f09111c74703a7749756",
+      "decoded_sha256": "c676f468032aecb4bb815b7738ab1cd0ff9d78f67cf4cfeaf3c0ff5374302be0",
+      "decoded_mode": "RGB",
+      "size": [
+        834,
+        469
+      ],
+      "scenario_id": "IBS-S-05",
+      "outcome": "victory",
+      "stage_id": null,
+      "source_cast": null
+    },
+    {
+      "path": "ibs-s-05-allies-victory.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-05-allies-victory.png",
+      "source_sha256": "863c6befe1938ec650ef8e346adba73db53f7c0a5db0c351c42805e5e7d56c86",
+      "sha256": "e1d13ed8ac83987505a26c94b72d5c4e0899346ad9f9280eaa9f3ba974b004d6",
+      "decoded_sha256": "84160f953c33471214ea31b66e3e6723d4eea716bf483a466a05678c5042535d",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-05",
+      "outcome": "victory",
+      "stage_id": "CAMP-ALLIES-03",
+      "source_cast": [
+        "IBS-U-USN-CF-AUSBURNE",
+        "IBS-U-USN-CLAXTON",
+        "IBS-U-USN-DYSON",
+        "IBS-U-USN-CONVERSE",
+        "IBS-U-USN-SPENCE"
+      ]
+    },
+    {
+      "path": "ibs-s-05-axis-victory.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-05-axis-victory.png",
+      "source_sha256": "916d6d5fb33976a9ee54455de8186b5d4919cb4109b079bbf1efe83822f89503",
+      "sha256": "c28dd03465102c63329b0837d02fd2c83702c19bfa71c6b8adc0b527bc0d6324",
+      "decoded_sha256": "08c07bce5062c276dbe0680f457d0b068638337a2960e00916d082e59547721a",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-05",
+      "outcome": "victory",
+      "stage_id": "CAMP-AXIS-03",
+      "source_cast": [
+        "IBS-U-IJN-ONAMI",
+        "IBS-U-IJN-MAKINAMI",
+        "IBS-U-IJN-AMAGIRI",
+        "IBS-U-IJN-YUGIRI",
+        "IBS-U-IJN-UZUKI-2"
+      ]
+    },
+    {
+      "path": "ibs-s-05-defeat-plate.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-05-defeat-plate.png",
+      "source_sha256": "20f78e29ca92823353221bb3eee1b6825407526284b1d1dd64a3fdd2dc5dc778",
+      "sha256": "3a037ba8fbdcc3f472dfaaa9befc7b5498b7acfb7c3a48e3a1ef0314b23fbd76",
+      "decoded_sha256": "7e800939340c371243cba774c54082598dffc9937277b7d5f64e106e1524e0b0",
+      "decoded_mode": "RGB",
+      "size": [
+        834,
+        469
+      ],
+      "scenario_id": "IBS-S-05",
+      "outcome": "defeat",
+      "stage_id": null,
+      "source_cast": null
+    },
+    {
+      "path": "ibs-s-05-allies-defeat.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-05-allies-defeat.png",
+      "source_sha256": "3fe390f69c170d0aae90a524dcabb2aca1b8601f95bc769d556ae119d7b9cadc",
+      "sha256": "f643b926cd032c57d46755509bcdfff89f536bff87de6b99cd8509f5afa5d751",
+      "decoded_sha256": "62246aa64190aa3a15fe625d562f0a19e5479926b32d73073591b970ba03a493",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-05",
+      "outcome": "defeat",
+      "stage_id": "CAMP-ALLIES-03",
+      "source_cast": [
+        "IBS-U-USN-CF-AUSBURNE",
+        "IBS-U-USN-CLAXTON",
+        "IBS-U-USN-DYSON",
+        "IBS-U-USN-CONVERSE",
+        "IBS-U-USN-SPENCE"
+      ]
+    },
+    {
+      "path": "ibs-s-05-axis-defeat.webp",
+      "source_path": "mobile/public/story/campaign-endings/boards/ibs-s-05-axis-defeat.png",
+      "source_sha256": "d94dd19724ccfc63c9cb5a8167d6a0e013a4e92a5376d0828b4a1a8a0a287e8d",
+      "sha256": "67e766901778c0120f3dfc694166ea6c965cac2df7dff201c420cccb56796e1d",
+      "decoded_sha256": "06278ee21deb01ac6a44a39f0a204573ffdd9e913d6db95796b7c1ec63982be2",
+      "decoded_mode": "RGB",
+      "size": [
+        1672,
+        941
+      ],
+      "scenario_id": "IBS-S-05",
+      "outcome": "defeat",
+      "stage_id": "CAMP-AXIS-03",
+      "source_cast": [
+        "IBS-U-IJN-ONAMI",
+        "IBS-U-IJN-MAKINAMI",
+        "IBS-U-IJN-AMAGIRI",
+        "IBS-U-IJN-YUGIRI",
+        "IBS-U-IJN-UZUKI-2"
+      ]
+    }
+  ]
+}
