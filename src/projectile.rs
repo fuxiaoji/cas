@@ -44,8 +44,8 @@ impl World {
             to = to + P::bearing(initial_bearing + 90.) * (sign * 480.);
         }
         to = P {
-            x: to.x.clamp(0., WIDTH),
-            y: to.y.clamp(0., HEIGHT),
+            x: to.x.clamp(0., self.field.width),
+            y: to.y.clamp(0., self.field.height),
         }
         .snap();
         let mask = (1 << from.side)
@@ -89,7 +89,7 @@ impl World {
         }
         // Both results fly on the same public trajectory; an observer must
         // not learn the adjudicated hit or miss before impact.
-        let to = P { x: plotted.x.clamp(0., WIDTH), y: plotted.y.clamp(0., HEIGHT) }.snap();
+        let to = P { x: plotted.x.clamp(0., self.field.width), y: plotted.y.clamp(0., self.field.height) }.snap();
         let (duration, arc_height) = crate::realtime::flight(from.p.dist(to), max);
         let mask = (1 << from.side) | if self.knows(target.side, from.id) { 1 << target.side } else { 0 };
         let view_ids = seat_ids(mask, &mut self.shell_ids);

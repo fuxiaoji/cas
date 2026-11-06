@@ -96,13 +96,16 @@ impl World {
         if (!auto || fleet.ai.r#move)
             && (!going || self.tick.saturating_sub(fleet.last_ai_route) >= style.period)
         {
-            let target = chosen.unwrap_or(P {
-                x: if owner == 0 { WIDTH - 5000. } else { 5000. },
+            let target = chosen.unwrap_or(if self.variant == crate::campaign::live::VARIANT && owner == 0 {
+                // Published interception area, not an unobserved hull position.
+                P { x: 24_500., y: 14_800. }
+            } else { P {
+                x: if owner == 0 { self.field.width - 5000. } else { 5000. },
                 y: if owner == 0 { 5800. } else { 8000. },
-            });
+            } });
             let angle = (target - leader.p).heading();
             let range = target.dist(leader.p);
-            let prefer = if leader.p.y < HEIGHT * 0.52 { 1. } else { -1. };
+            let prefer = if leader.p.y < self.field.height * 0.52 { 1. } else { -1. };
             let look = match tactic {
                 Tactic::Search => angle,
                 Tactic::Approach => {
@@ -150,8 +153,8 @@ impl World {
                 'routes: for h in tries {
                     let p = choose(h);
                     let p = P {
-                        x: p.x.clamp(2100., WIDTH - 2100.),
-                        y: p.y.clamp(1650., HEIGHT - 1650.),
+                        x: p.x.clamp(2100., self.field.width - 2100.),
+                        y: p.y.clamp(1650., self.field.height - 1650.),
                     };
                     if p.dist(leader.p) < 400. {
                         continue;
@@ -217,7 +220,8 @@ impl World {
                 && self.tick % CYCLE >= 160
                 && self.can_torp(s)
             {
-                for t in &targets {
+                let radar: Vec<_> = self.radar_torp_contacts(s).collect();
+                for t in targets.iter().copied().chain(radar.iter()) {
                     let mut request = json!({"op":"aim","ship":id,"target":t.id});
                     if let Ok(a) = self.preview_aim(owner, &request) {
                         let max = a["range"].as_f64().unwrap_or(0.);

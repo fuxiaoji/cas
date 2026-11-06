@@ -273,7 +273,9 @@ impl World {
 
     fn engineering_critical(&mut self, victim: u32, penetrated: bool) {
         let explosion = self.d(10) == 10;
-        self.ship_mut(victim).unwrap().engineering_speed_levels += if explosion { 2 } else { 1 };
+        let def = &self.data.ships[self.ship(victim).unwrap().def];
+        let multiplier = usize::from(def.engineering_speed_multiplier.unwrap_or(1));
+        self.ship_mut(victim).unwrap().engineering_speed_levels += multiplier * if explosion { 2 } else { 1 };
         self.damage_message(victim, "轮机受损，降低最大航速".into(), "CAS-8.3");
         if explosion {
             let dp = self.data.ships[self.ship(victim).unwrap().def].dp;
@@ -374,6 +376,30 @@ impl World {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn home_fleet_jk_engineering_critical_doubles_speed_steps_only() {
+        use crate::campaign::live::Start;
+        let mut w = World::new_campaign(53, Start::new("CAMP-ALLIES-01", "story"), "coord").unwrap();
+        for (id, step_loss, speed) in [(4, 2, 18.), (1, 1, 29.)] {
+            w.rng = 1; // D10 = 2; no boiler explosion.
+            let full = w.ship(id).unwrap().hp;
+            w.engineering_critical(id, true);
+            let ship = w.ship(id).unwrap();
+            assert_eq!(ship.engineering_speed_levels, step_loss);
+            assert_eq!(w.max_speed(ship), speed);
+            assert_eq!(ship.hp, full);
+        }
+        let explosion_seed = (1..100).find(|seed| {
+            w.rng = *seed;
+            w.d(10) == 10
+        }).unwrap();
+        w.rng = explosion_seed;
+        w.engineering_critical(5, true);
+        let ship = w.ship(5).unwrap();
+        assert_eq!(ship.engineering_speed_levels, 4);
+        assert_eq!(ship.hp, 121. - (121_f64 * 0.15).floor());
+    }
 
     #[test]
     fn fletcher_printed_damage_ratio_and_age_thresholds() {

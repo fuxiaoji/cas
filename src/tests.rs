@@ -182,7 +182,12 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
     assert_eq!(scenarios.len(), 16);
     let mut stages = BTreeSet::new();
     for item in scenarios {
-        assert_eq!(item["playable"], false);
+        let cape = item["cas"]["scenario_id"] == "cas-rs-cape-st-george";
+        let channel = item["ibs_id"] == "IBS-S-03";
+        assert_eq!(item["playable"], cape || channel);
+        if cape || channel {
+            assert_eq!(item["runtime"]["historicalReady"], false);
+        }
         for id in item["stage_ids"].as_array().unwrap() {
             assert!(stages.insert(id.as_str().unwrap()));
         }

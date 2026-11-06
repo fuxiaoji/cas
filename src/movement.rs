@@ -21,12 +21,12 @@ pub(crate) struct Route {
     pub points: Vec<P>,
 }
 
-fn route_line(ship: &Ship, points: &[P], advance: f64) -> E<Vec<P>> {
+fn route_line(field: Field, ship: &Ship, points: &[P], advance: f64) -> E<Vec<P>> {
     let mut prev = ship.p;
     let mut heading = ship.h;
     let mut line = vec![prev];
     for (i, &p) in points.iter().enumerate() {
-        if !p.on_chart() {
+        if !field.contains(p) {
             return Err(format!("航点 {} 超出海图", i + 1));
         }
         let v = p - prev;
@@ -41,7 +41,7 @@ fn route_line(ship: &Ship, points: &[P], advance: f64) -> E<Vec<P>> {
                 .map(|n| prev + P::bearing(heading) * (advance * n as f64))
                 .find(|a| {
                     let angle = delta(heading, (p - *a).heading()).abs();
-                    a.on_chart()
+                    field.contains(*a)
                         && a.dist(p) >= 80.
                         && angle <= 150.
                         && prev.dist(*a) + 1e-6 >= advance_for(angle, advance)
@@ -97,7 +97,7 @@ impl World {
             .fold(f64::INFINITY, f64::min)
     }
     fn blocked(&self, p: P) -> bool {
-        if !p.on_chart() {
+        if !self.field.contains(p) {
             return true;
         }
         for poly in &self.islands {
@@ -165,7 +165,7 @@ impl World {
             .map(|s| self.data.ships[s.def].turn_advance_yards * YARD)
             .fold(0., f64::max);
         let heading = P::bearing(lead.h);
-        let raw = route_line(lead, points, advance)?;
+        let raw = route_line(self.field, lead, points, advance)?;
         let mut paths = Vec::new();
         if mode == "sync" {
             let axis = members
@@ -294,7 +294,7 @@ impl World {
             .map(|(_, t)| ((t.end - t.pos) / (route.speed * KNOT)).ceil() as u32)
             .max()
             .unwrap_or(0)
-            .min(LIMIT - self.tick);
+            .min(self.field.limit.saturating_sub(self.tick));
         // Sample continuous swept intervals. Live motion validates every second again.
         for sec in (0..maxt).step_by(4) {
             let span = 4_u32.min(maxt - sec);

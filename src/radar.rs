@@ -251,6 +251,9 @@ struct Sample {
     first_tick: u32,
     seen_tick: u32,
     position: P,
+    window_position: P,
+    window_tick: u32,
+    previous_window: Option<(u32, P)>,
 }
 
 /// Acquired by this firing ship's own lookouts, with a visual rather than
@@ -688,6 +691,9 @@ impl RadarState {
                     }
                     let key = (*ship, index, t.id);
                     if let Some(sample) = self.direct.get_mut(&key) {
+                        sample.previous_window = Some((sample.window_tick, sample.window_position));
+                        sample.window_position = t.p;
+                        sample.window_tick = tick;
                         sample.position = t.p;
                         sample.seen_tick = tick;
                     } else if roll(&mut self.rng, 100)
@@ -702,6 +708,9 @@ impl RadarState {
                                 first_tick: tick,
                                 seen_tick: tick,
                                 position: t.p,
+                                window_position: t.p,
+                                window_tick: tick,
+                                previous_window: None,
                             },
                         );
                     }
@@ -753,6 +762,25 @@ impl RadarState {
         })
     }
 
+    fn for_torpedo(&self, ship: &Ship, id: &str) -> Option<Contact> {
+        let mut contact = self.for_gun(ship, id)?;
+        let sample = self.direct.iter()
+            .filter(|((observer, _, target), s)| *observer == ship.id && *target == contact.ship &&
+                s.previous_window.is_some_and(|(prev, _)| s.window_tick.checked_sub(prev) == Some(CYCLE)))
+            .map(|(_, s)| s)
+            .min_by_key(|s| s.first_tick)?;
+        let (previous_tick, previous) = sample.previous_window?;
+        let latest_tick = self.last_detection?;
+        if latest_tick.checked_sub(previous_tick)? != CYCLE { return None; }
+        let moved = sample.window_position - previous;
+        contact.x = sample.position.x;
+        contact.y = sample.position.y;
+        contact.heading = moved.heading();
+        contact.speed = moved.len() / (f64::from(CYCLE) * crate::model::KNOT);
+        contact.first_cycle = sample.first_tick / CYCLE;
+        Some(contact)
+    }
+
     pub(crate) fn own_observation(&self, ship: u32) -> Vec<Value> {
         self.devices.get(&ship).into_iter().flatten().map(|device| {
             let set = &rules().sets[&device.key];
@@ -785,7 +813,7 @@ impl RadarState {
 
 impl World {
     pub(crate) fn radar_enabled(&self) -> bool {
-        self.version == RADAR_VERSION || (self.realtime() && self.variant == RADAR_DRILL)
+        self.version == RADAR_VERSION || (self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT))
     }
 
     pub(crate) fn radar_detect(&mut self) {
@@ -823,14 +851,14 @@ impl World {
     }
 
     fn mk4_rules_enabled(&self) -> bool {
-        self.realtime() && self.variant == RADAR_DRILL
+        self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT)
     }
 
     pub(crate) fn enable_realtime_mk4(&mut self) -> E<()> {
         if self.mk4_rules_enabled() {
             for s in &self.ships {
                 // Only the separately verified 1943 fit in this drill.
-                if s.side == 0 && self.data.ships[s.def].id == "fletcher" {
+                if s.side == 0 && (self.data.ships[s.def].id == "fletcher" || self.variant == crate::campaign::live::VARIANT) {
                     self.radar.activate_fletcher_mk4(s.id)?;
                 }
             }
@@ -916,6 +944,15 @@ impl World {
         self.radar.ids[ship.side]
             .values()
             .filter_map(move |id| self.radar_gun_contact(ship, id))
+    }
+
+    pub(crate) fn radar_torp_contact(&self, ship: &Ship, id: &str) -> Option<Contact> {
+        if self.variant != crate::campaign::live::VARIANT { return None; }
+        self.radar.for_torpedo(ship, id)
+    }
+
+    pub(crate) fn radar_torp_contacts<'a>(&'a self, ship: &'a Ship) -> impl Iterator<Item = Contact> + 'a {
+        self.radar.ids[ship.side].values().filter_map(move |id| self.radar_torp_contact(ship, id))
     }
 
     pub(crate) fn radar_navigation_reports<'a>(

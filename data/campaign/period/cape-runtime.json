@@ -1,0 +1,1961 @@
+{
+  "ships": [
+    {
+      "id": "ausburne",
+      "name": "Charles F. Ausburne",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 400,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "claxton",
+      "name": "Claxton",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 400,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "dyson",
+      "name": "Dyson",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 400,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "converse",
+      "name": "Converse",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 400,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "spence",
+      "name": "Spence",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 400,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "onami",
+      "name": "Onami",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 140,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 70,
+          "knots": 18
+        },
+        {
+          "damage": 105,
+          "knots": 9
+        },
+        {
+          "damage": 126,
+          "knots": 0
+        },
+        {
+          "damage": 140,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "makinami",
+      "name": "Makinami",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 140,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 70,
+          "knots": 18
+        },
+        {
+          "damage": 105,
+          "knots": 9
+        },
+        {
+          "damage": 126,
+          "knots": 0
+        },
+        {
+          "damage": 140,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "amagiri",
+      "name": "Amagiri",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 34,
+      "dp": 106,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 27,
+          "knots": 26
+        },
+        {
+          "damage": 53,
+          "knots": 17
+        },
+        {
+          "damage": 80,
+          "knots": 8
+        },
+        {
+          "damage": 95,
+          "knots": 0
+        },
+        {
+          "damage": 106,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1928,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null
+    },
+    {
+      "id": "yugiri",
+      "name": "Yugiri",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 34,
+      "dp": 106,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 27,
+          "knots": 26
+        },
+        {
+          "damage": 53,
+          "knots": 17
+        },
+        {
+          "damage": 80,
+          "knots": 8
+        },
+        {
+          "damage": 95,
+          "knots": 0
+        },
+        {
+          "damage": 106,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1928,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null
+    },
+    {
+      "id": "uzuki",
+      "name": "Uzuki",
+      "side": "axis",
+      "kind": "DD",
+      "size": "D",
+      "max_knots": 33,
+      "dp": 88,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 22,
+          "knots": 25
+        },
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 66,
+          "knots": 8
+        },
+        {
+          "damage": 79,
+          "knots": 0
+        },
+        {
+          "damage": 88,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 200,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1925,
+      "gun": {
+        "name": "三年式 12cm/45 COM",
+        "caliber_mm": 120,
+        "range_yd": [
+          5300,
+          10600,
+          14100,
+          17600
+        ],
+        "damage": [
+          14,
+          11,
+          10,
+          9
+        ],
+        "barrels": 2,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null
+    }
+  ],
+  "metadata": {
+    "schema_version": 1,
+    "content_version": "cas-cape-runtime-v1",
+    "scenario_id": "cas-rs-cape-st-george",
+    "period_source_version": "cas-cape-st-george-1943-hulls-v2",
+    "as_of": "1943-11-25",
+    "status": "restricted_rts_adaptation_only",
+    "source": {
+      "document": "rising_sun_5e",
+      "pdf_pages": [
+        92
+      ],
+      "printed_pages": [
+        91
+      ]
+    },
+    "instance_fits": {
+      "ausburne": {
+        "period_profile": "fletcher_1943",
+        "crew_complement": 273,
+        "gun_model": "us_mk30_5in38",
+        "hull_source": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            20
+          ],
+          "printed_pages": [
+            "A-17"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            270
+          ],
+          "printed_pages": [
+            270
+          ]
+        },
+        "gun_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            108
+          ],
+          "printed_pages": [
+            "C-2"
+          ]
+        },
+        "gun_shell_rts_selection": "SpCOM",
+        "radar_confirmed": [
+          "us_sc2",
+          "us_sg",
+          "us_mk4_fd"
+        ],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "us_mk15_tnt",
+        "torpedo_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            119
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_fit_loaded_capacity": [
+          5,
+          5
+        ],
+        "torpedo_fit_reserve_capacity": [
+          0,
+          0
+        ],
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "claxton": {
+        "period_profile": "fletcher_1943",
+        "crew_complement": 273,
+        "gun_model": "us_mk30_5in38",
+        "hull_source": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            20
+          ],
+          "printed_pages": [
+            "A-17"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            272
+          ],
+          "printed_pages": [
+            272
+          ]
+        },
+        "gun_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            108
+          ],
+          "printed_pages": [
+            "C-2"
+          ]
+        },
+        "gun_shell_rts_selection": "SpCOM",
+        "radar_confirmed": [
+          "us_sc2",
+          "us_sg",
+          "us_mk4_fd"
+        ],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "us_mk15_tnt",
+        "torpedo_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            119
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_fit_loaded_capacity": [
+          5,
+          5
+        ],
+        "torpedo_fit_reserve_capacity": [
+          0,
+          0
+        ],
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "dyson": {
+        "period_profile": "fletcher_1943",
+        "crew_complement": 273,
+        "gun_model": "us_mk30_5in38",
+        "hull_source": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            20
+          ],
+          "printed_pages": [
+            "A-17"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            276
+          ],
+          "printed_pages": [
+            276
+          ]
+        },
+        "gun_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            108
+          ],
+          "printed_pages": [
+            "C-2"
+          ]
+        },
+        "gun_shell_rts_selection": "SpCOM",
+        "radar_confirmed": [
+          "us_sc2",
+          "us_sg",
+          "us_mk4_fd"
+        ],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "us_mk15_tnt",
+        "torpedo_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            119
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_fit_loaded_capacity": [
+          5,
+          5
+        ],
+        "torpedo_fit_reserve_capacity": [
+          0,
+          0
+        ],
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "converse": {
+        "period_profile": "fletcher_1943",
+        "crew_complement": 273,
+        "gun_model": "us_mk30_5in38",
+        "hull_source": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            20
+          ],
+          "printed_pages": [
+            "A-17"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            273
+          ],
+          "printed_pages": [
+            273
+          ]
+        },
+        "gun_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            108
+          ],
+          "printed_pages": [
+            "C-2"
+          ]
+        },
+        "gun_shell_rts_selection": "SpCOM",
+        "radar_confirmed": [
+          "us_sc2",
+          "us_sg",
+          "us_mk4_fd"
+        ],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "us_mk15_tnt",
+        "torpedo_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            119
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_fit_loaded_capacity": [
+          5,
+          5
+        ],
+        "torpedo_fit_reserve_capacity": [
+          0,
+          0
+        ],
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "spence": {
+        "period_profile": "fletcher_1943",
+        "crew_complement": 273,
+        "gun_model": "us_mk30_5in38",
+        "hull_source": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            20
+          ],
+          "printed_pages": [
+            "A-17"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            284
+          ],
+          "printed_pages": [
+            284
+          ]
+        },
+        "gun_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            108
+          ],
+          "printed_pages": [
+            "C-2"
+          ]
+        },
+        "gun_shell_rts_selection": "SpCOM",
+        "radar_confirmed": [
+          "us_sc2",
+          "us_sg",
+          "us_mk4_fd"
+        ],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "us_mk15_tnt",
+        "torpedo_annex": {
+          "document": "american_fleets",
+          "pdf_pages": [
+            119
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_fit_loaded_capacity": [
+          5,
+          5
+        ],
+        "torpedo_fit_reserve_capacity": [
+          0,
+          0
+        ],
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "onami": {
+        "period_profile": "yugumo_1943_asw",
+        "crew_complement": 228,
+        "gun_model": "jp_3rd_yr_127mm50",
+        "hull_source": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            27
+          ],
+          "printed_pages": [
+            "A-24"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            93
+          ],
+          "printed_pages": [
+            93
+          ]
+        },
+        "gun_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            97
+          ],
+          "printed_pages": [
+            "C-1"
+          ]
+        },
+        "gun_shell_rts_selection": "COM",
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            105
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          4,
+          4
+        ],
+        "torpedo_fit_loaded_capacity": [
+          4,
+          4
+        ],
+        "torpedo_fit_reserve_capacity": [
+          4,
+          4
+        ],
+        "torpedo_fit_reload_seconds": 360,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "makinami": {
+        "period_profile": "yugumo_1943_asw",
+        "crew_complement": 228,
+        "gun_model": "jp_3rd_yr_127mm50",
+        "hull_source": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            27
+          ],
+          "printed_pages": [
+            "A-24"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            89
+          ],
+          "printed_pages": [
+            89
+          ]
+        },
+        "gun_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            97
+          ],
+          "printed_pages": [
+            "C-1"
+          ]
+        },
+        "gun_shell_rts_selection": "COM",
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            105
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          4,
+          4
+        ],
+        "torpedo_fit_loaded_capacity": [
+          4,
+          4
+        ],
+        "torpedo_fit_reserve_capacity": [
+          4,
+          4
+        ],
+        "torpedo_fit_reload_seconds": 360,
+        "torpedo_runtime_policy": "initial_annex_capacity_no_reload"
+      },
+      "amagiri": {
+        "period_profile": "fubuki_1936_refit",
+        "crew_complement": 221,
+        "gun_model": "jp_3rd_yr_127mm50",
+        "hull_source": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            29,
+            30
+          ],
+          "printed_pages": [
+            "A-26",
+            "A-27"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            153
+          ],
+          "printed_pages": [
+            153
+          ]
+        },
+        "gun_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            97
+          ],
+          "printed_pages": [
+            "C-1"
+          ]
+        },
+        "gun_shell_rts_selection": "COM",
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            105
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": null,
+        "torpedo_fit_loaded_capacity": [
+          3,
+          3,
+          3
+        ],
+        "torpedo_fit_reserve_capacity": null,
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "unverified_transport_weapons_unavailable"
+      },
+      "yugiri": {
+        "period_profile": "fubuki_1936_refit",
+        "crew_complement": 221,
+        "gun_model": "jp_3rd_yr_127mm50",
+        "hull_source": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            29,
+            30
+          ],
+          "printed_pages": [
+            "A-26",
+            "A-27"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            171
+          ],
+          "printed_pages": [
+            171
+          ]
+        },
+        "gun_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            97
+          ],
+          "printed_pages": [
+            "C-1"
+          ]
+        },
+        "gun_shell_rts_selection": "COM",
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [
+          "jp_type22_ss"
+        ],
+        "scenario_troops_aboard": null,
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            105
+          ],
+          "printed_pages": [
+            "F-1"
+          ]
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": null,
+        "torpedo_fit_loaded_capacity": [
+          3,
+          3,
+          3
+        ],
+        "torpedo_fit_reserve_capacity": null,
+        "torpedo_fit_reload_seconds": null,
+        "torpedo_runtime_policy": "unverified_transport_weapons_unavailable"
+      },
+      "uzuki": {
+        "period_profile": "mutsuki_1943_uzuki",
+        "crew_complement": 150,
+        "gun_model": "jp_3rd_yr_120mm45",
+        "hull_source": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            30,
+            31
+          ],
+          "printed_pages": [
+            "A-27",
+            "A-28"
+          ]
+        },
+        "dated_form10": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            183
+          ],
+          "printed_pages": [
+            183
+          ]
+        },
+        "gun_annex": {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            97
+          ],
+          "printed_pages": [
+            "C-1"
+          ]
+        },
+        "gun_shell_rts_selection": "COM",
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "scenario_troops_aboard": null,
+        "torpedo_model": null,
+        "torpedo_annex": null,
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": null,
+        "torpedo_fit_loaded_capacity": [
+          3,
+          3
+        ],
+        "torpedo_fit_reserve_capacity": [
+          2,
+          2
+        ],
+        "torpedo_fit_reload_seconds": 900,
+        "torpedo_runtime_policy": "unverified_transport_weapons_unavailable"
+      }
+    },
+    "restrictions": [
+      "Three transport torpedo launchers are unavailable because exact 0143 cargo and weapon loads are not stated. This is not a historical claim that they carried no torpedoes.",
+      "Other ships start with Annex A ready tube capacity, not a documented individual historical inventory. Only fastest shallow setting and contact action run; no reserve reload is simulated. See Annex F for alternative speed settings.",
+      "No invented ship lengths: ShipDef length is omitted and the engine's generic clearance floor applies. Crew complement and class first service year are not individual wartime manpower or commissioning dates.",
+      "Named profiles leave ammunition mix, Yugiri Type 22, and undocumented night equipment unresolved. Only individually confirmed sets are listed for activation; all candidates stay inactive.",
+      "Original column interval, screen anchor for transport offset, map origin, escape line and time limit are unstated. Any chosen values belong in the separate RTS scenario configuration."
+    ]
+  }
+}

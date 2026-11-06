@@ -14,7 +14,8 @@ const json = value => JSON.stringify(value, (_, item) =>
 const encode = new TextEncoder();
 const decode = new TextDecoder('utf-8', { fatal: true });
 
-async function verify(side, fleet, variant = '', seed = 6106, realtime = false) {
+async function verify(side, fleet, variant = '', seed = 6106, realtime = false, campaign = false) {
+  const channel = variant === 'channel-action-rts';
   const { instance } = await WebAssembly.instantiate(source, {});
   const api = instance.exports;
   function call(req) {
@@ -27,7 +28,8 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false) 
 
   const commands = [
     { op: 'info' },
-    { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant, realtime },
+    campaign ? { op: 'new_campaign', id: 'CAMP-' + side.toUpperCase() + (channel ? '-01' : '-03'), difficulty: 'story', seed } :
+      { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant, realtime },
   ];
   if (variant === 'night-training') commands.push(
     { op: 'route', fleet, mode: 'follow', speed: 15, points: [{ x: 13000, y: 6550 }, { x: 13000, y: 10400 }] },
@@ -41,11 +43,26 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false) 
     { op: 'fire', ship: 1, weapon: 'gun', target: 'C01' },
     { op: 'step', seconds: 15 },
   );
-  commands.push(
+  if (channel) {
+    const ownFleets = side === 'axis' ? [1, 2, 3] : [4, 5, 6, 7, 8];
+    for (const fleet of ownFleets) commands.push(
+      { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: side === 'axis', gun: true, torpedo: true });
+  } else if (campaign && side === 'axis') {
+    for (const [fleet, x, y, speed] of [[3, 30000, 35000, 35], [4, 33000, 3000, 33]]) commands.push(
+      { op: 'route', fleet, mode: 'follow', speed, points: [{ x, y }, { x: 400, y }] },
+      { op: 'ai', fleet, profile: 'torpedo', mode: 'auto', move: false, gun: true, torpedo: true });
+  } else if (campaign) {
+    for (const fleet of [1, 2]) commands.push(
+      { op: 'ai', fleet, profile: 'torpedo', mode: 'auto', move: true, gun: true, torpedo: true });
+  } else commands.push(
     { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true },
-    { op: 'step', seconds: 2700 },
   );
+  commands.push({ op: 'step', seconds: 2700 });
   const wasmOutput = commands.map(call);
+  if (campaign && !wasmOutput.at(-1).data?.result) {
+    commands.push({ op: 'step', seconds: 2700 });
+    wasmOutput.push(call(commands.at(-1)));
+  }
   if (!wasmOutput.at(-1).data?.result) {
     commands.push({ op: 'step', seconds: realtime ? 120 : 8 });
     wasmOutput.push(call(commands.at(-1)));
@@ -77,8 +94,23 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false) 
     assert(gun && gun.tick > 0 && gun.tick < 180);
     assert(onTheWay && onTheWay.arcHeightM > 0 && onTheWay.impactTick - onTheWay.launchTick > 8);
   }
-  assert.equal(start.ships.length, variant === 'challenge' ? 3 : 5);
+  assert.equal(start.ships.length, variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
   assert.equal(start.variant, variant);
+  if (channel) {
+    assert.equal(start.environment.visibility, 5);
+    assert(start.ships.every(ship => ship.classId === ship.characterId));
+    assert.equal(start.fleets.length, start.ships.length);
+    assert.equal(end.result.winner, side);
+    assert.equal(end.result.grade, side === 'axis' ? 'tactical' : 'decisive');
+    assert(end.tick >= 720);
+    assert(report.events.some(event => event.kind === 'sunk'));
+    if (side === 'axis') assert(report.events.some(event => event.kind === 'torpedo_hit'));
+  } else if (campaign) {
+    assert.equal(end.result.grade, 'decisive');
+    assert.equal(start.fleets.length, 2);
+    if (side === 'axis') assert.equal(report.events.filter(event => event.kind === 'withdrawal').length, 5);
+    else assert(report.events.some(event => event.kind === 'torpedo_hit'));
+  }
   assert(end.result, `${side}: exercise failed to produce a result`);
   assert.equal(json(wasmOutput.at(-1).data), json(end), `${side}: replay diverged from live result`);
   return { side, variant: variant || 'exercise', version: start.version, seed, tick: end.tick, result: end.result, visibleEvents: report.events.length,
@@ -88,7 +120,11 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false) 
 const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), await verify('allies', 1, 'challenge'),
   await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training'),
   await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
-  await verify('allies', 1, 'radar', 6106, true)];
+  await verify('allies', 1, 'radar', 6106, true),
+  await verify('allies', 1, 'cape-st-george-rts', 6106, true, true),
+  await verify('axis', 3, 'cape-st-george-rts', 6106, true, true),
+  await verify('allies', 4, 'channel-action-rts', 6106, true, true),
+  await verify('axis', 1, 'channel-action-rts', 53, true, true)];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

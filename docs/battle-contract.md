@@ -11,3 +11,9 @@ Windows、Android 和测试驱动共享 Rust JSON 接口。Worker 接收 `{id, r
 - 战情使用本席连续 `id`，音频适配可消费可选 `voiceCue`；隐藏事件不会给对方制造编号空洞。部分事件有本席已知的海图坐标，发射迹象可以无坐标。语音播放器不属于当前接口。
 
 这批是本地接口，不能直接公开到互联网。线上需要服务端持有权威状态、绑定身份与席位并单独处理重连、比赛版本和持久化。离线存档不是云钱包结算凭证。
+
+## 战役接线补充
+
+`new_campaign` 接收 `id`（通道行动 `CAMP-ALLIES-01`／`CAMP-AXIS-01`，圣乔治角 `CAMP-ALLIES-03`／`CAMP-AXIS-03`）、`difficulty`（`story`／`standard`／`challenge`）与可选本机 `seed`、`profile`。旧的 `new` 命令不变。战役在存档中冻结规则版本 `cas-campaign-v5` 和内容版本（`cas-channel-runtime-v1` 或 `cas-cape-runtime-v1`）；不匹配的阵营、想定或内容版本拒绝读档。观察的 `campaign` 只含本席任务、标签、难度和可选公开撤离线；终局的 `result.grade` 和 `result.primary` 是本席胜利等级与说明。演习结果的布尔 `primary` 保持不变。
+
+部署原生服务时，[服务器接口](../server/README.md)包装同一内核；线上战役内测目前开放圣乔治角双线，不向浏览器返回种子、重演存档或未公开命令。开发浏览器默认回环 8021；正式编译时可以用 `VITE_CAS_ACCOUNT_URL` 指定测试服务。默认内测包不配置线上服务，照常支持离线。

@@ -18,10 +18,15 @@ pub(crate) struct Timings {
 
 pub(crate) fn timings(class: &str) -> Option<Timings> {
     let (reload, train) = match class {
-        "fletcher" => (6, 18.),
+        "fletcher" | "ausburne" | "claxton" | "dyson" | "converse" | "spence" => (6, 18.),
         "cleveland" => (10, 10.),
         "kagero" => (9, 9.),
         "sendai" => (12, 7.5),
+        "onami" | "makinami" | "amagiri" | "yugiri" => (9, 9.),
+        "uzuki" => (12, 8.),
+        "IBS-U-KM-KARL-GALSTER" | "IBS-U-KM-RICHARD-BEITZEN" | "IBS-U-KM-HANS-LODY" => (9, 9.),
+        "IBS-U-RN-JAVELIN" | "IBS-U-RN-JUPITER" | "IBS-U-RN-KASHMIR" |
+        "IBS-U-RN-JACKAL" | "IBS-U-RN-JERSEY" => (8, 10.),
         _ => return None,
     };
     Some(Timings { reload, train })
@@ -80,7 +85,7 @@ pub(crate) fn flight(range_m: f64, max_m: f64) -> (u32, f64) {
 
 impl World {
     pub(crate) fn realtime(&self) -> bool {
-        self.version == VERSION
+        matches!(self.version, VERSION | crate::campaign::live::VERSION)
     }
 
     pub(crate) fn enable_realtime(&mut self) -> E<()> {
@@ -103,7 +108,7 @@ impl World {
                 })
                 .collect();
         }
-        self.version = VERSION;
+        self.version = if self.campaign.is_some() { crate::campaign::live::VERSION } else { VERSION };
         self.enable_realtime_mk4()
     }
 

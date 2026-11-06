@@ -5,6 +5,8 @@ use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
 mod legacy;
+pub(crate) mod live;
+pub(crate) mod channel;
 pub use legacy::{Deployment as LegacyDeployment, MapGeometry as LegacyMapGeometry};
 
 const CROSSWALK: &str = include_str!("../data/campaign/crosswalk.json");
@@ -88,7 +90,27 @@ pub fn detail(id: &str) -> Result<Value, String> {
             "unresolvedPeriodData": unresolved
         })
     });
-    Ok(json!({"entry":row, "record":record, "readiness":readiness, "legacy":legacy}))
+    Ok(json!({"entry":public_row(row.clone()), "record":record, "readiness":readiness, "legacy":legacy}))
+}
+
+pub fn catalogue() -> Result<Value, String> {
+    let mut catalog: Value = serde_json::from_str(CROSSWALK)
+        .map_err(|e| format!("无法读取战役档案：{e}"))?;
+    for row in catalog["scenarios"].as_array_mut().expect("campaign rows") {
+        *row = public_row(row.take());
+    }
+    Ok(catalog)
+}
+
+fn public_row(mut row: Value) -> Value {
+    if row["cas"]["scenario_id"] == "cas-rs-cape-st-george" {
+        row["playable"] = json!(true);
+        row["runtime"] = json!({"historicalReady":false,"label":live::LABEL,"contentVersion":live::CONTENT});
+    } else if row["ibs_id"] == "IBS-S-03" {
+        row["playable"] = json!(true);
+        row["runtime"] = json!({"historicalReady":false,"label":channel::LABEL,"contentVersion":channel::CONTENT,"localOnly":true});
+    }
+    row
 }
 
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
@@ -98,13 +120,13 @@ pub enum Disposition {
     Sunk,
 }
 
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct ClosedShip {
-    pub damage_dp: u16,
+    pub damage_dp: f64,
     pub disposition: Disposition,
 }
 
-#[derive(Debug, Clone, Copy, Serialize, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Serialize, Eq, PartialEq, Ord, PartialOrd)]
 #[serde(rename_all = "snake_case")]
 pub enum Grade {
     None,
@@ -209,7 +231,8 @@ pub fn assess_cape_st_george(states: &BTreeMap<String, ClosedShip>) -> Result<Ou
             .last()
             .expect("DP breakdown")
             .0;
-        if state.damage_dp > max_dp
+        let max_dp = f64::from(max_dp);
+        if !state.damage_dp.is_finite() || state.damage_dp < 0. || state.damage_dp > max_dp
             || (state.damage_dp == max_dp && state.disposition != Disposition::Sunk)
         {
             return Err(format!("舰艇损伤与状态不一致：{}", ship.id));
@@ -223,8 +246,8 @@ pub fn assess_cape_st_george(states: &BTreeMap<String, ClosedShip>) -> Result<Ou
             ship,
             group,
             *state,
-            u32::from(damage_dp) * 100,
-            u32::from(max_dp),
+            damage_dp * 100.,
+            max_dp,
         ));
     }
     let evaluate = |side: &str, goals: &Goals| {
@@ -244,11 +267,11 @@ pub fn assess_cape_st_george(states: &BTreeMap<String, ClosedShip>) -> Result<Ou
                 Condition::AllOwnShipsDamageAtMostPct { kind, pct } => facts
                     .iter()
                     .filter(|(ship, group, ..)| group.side == side && &ship.kind == kind)
-                    .all(|(_, _, _, damage, max)| *damage <= *pct * *max),
+                    .all(|(_, _, _, damage, max)| *damage <= f64::from(*pct) * *max),
                 Condition::AllOwnShipsDamageStrictlyBelowPct { pct } => facts
                     .iter()
                     .filter(|(_, group, ..)| group.side == side)
-                    .all(|(_, _, _, damage, max)| *damage < *pct * *max),
+                    .all(|(_, _, _, damage, max)| *damage < f64::from(*pct) * *max),
                 Condition::AllOwnShipsEscape => facts
                     .iter()
                     .filter(|(_, group, ..)| group.side == side)
@@ -260,7 +283,7 @@ pub fn assess_cape_st_george(states: &BTreeMap<String, ClosedShip>) -> Result<Ou
                 Condition::GroupUndamaged { group } => facts
                     .iter()
                     .filter(|(_, g, ..)| g.side == side && &g.id == group)
-                    .all(|(_, _, _, damage, _)| *damage == 0),
+                    .all(|(_, _, _, damage, _)| *damage == 0.),
             })
         };
         if satisfied(&goals.decisive) {
@@ -290,7 +313,7 @@ mod tests {
                 (
                     ship.id.clone(),
                     ClosedShip {
-                        damage_dp: 0,
+                        damage_dp: 0.,
                         disposition: Disposition::Present,
                     },
                 )
@@ -307,7 +330,7 @@ mod tests {
             let allies = detail(&format!("CAMP-ALLIES-{n:02}")).unwrap();
             let axis = detail(&format!("CAMP-AXIS-{n:02}")).unwrap();
             assert_eq!(allies, axis);
-            assert_eq!(allies["entry"]["playable"], false);
+            assert_eq!(allies["entry"]["playable"], n == 1 || n == 3);
             if !allies["record"].is_null() {
                 sources += 1;
                 assert_eq!(allies["record"]["ibs_id"], allies["entry"]["ibs_id"]);
@@ -345,12 +368,12 @@ mod tests {
         for id in ["onami", "makinami", "amagiri"] {
             states.get_mut(id).unwrap().disposition = Disposition::Sunk;
         }
-        states.get_mut("ausburne").unwrap().damage_dp = 36;
+        states.get_mut("ausburne").unwrap().damage_dp = 36.;
         assert_eq!(
             assess_cape_st_george(&states).unwrap().allies,
             Grade::Decisive
         );
-        states.get_mut("ausburne").unwrap().damage_dp = 37;
+        states.get_mut("ausburne").unwrap().damage_dp = 37.;
         assert_eq!(
             assess_cape_st_george(&states).unwrap().allies,
             Grade::Tactical
@@ -359,12 +382,12 @@ mod tests {
         for id in ["onami", "makinami", "amagiri", "yugiri", "uzuki"] {
             states.get_mut(id).unwrap().disposition = Disposition::Escaped;
         }
-        states.get_mut("onami").unwrap().damage_dp = 34;
+        states.get_mut("onami").unwrap().damage_dp = 34.;
         assert_eq!(
             assess_cape_st_george(&states).unwrap().axis,
             Grade::Decisive
         );
-        states.get_mut("onami").unwrap().damage_dp = 35;
+        states.get_mut("onami").unwrap().damage_dp = 35.;
         assert_eq!(
             assess_cape_st_george(&states).unwrap().axis,
             Grade::Tactical
@@ -387,7 +410,7 @@ mod tests {
                 axis: Grade::Tactical
             }
         );
-        states.get_mut("uzuki").unwrap().damage_dp = 1;
+        states.get_mut("uzuki").unwrap().damage_dp = 1.;
         assert_eq!(assess_cape_st_george(&states).unwrap().axis, Grade::None);
         states.remove("spence");
         assert!(assess_cape_st_george(&states).is_err());

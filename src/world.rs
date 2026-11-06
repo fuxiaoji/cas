@@ -1,6 +1,7 @@
 use crate::{model::*, movement::fallback_leader, projectile::Shell, radar::{RadarState, RADAR_DRILL, RADAR_VERSION}};
 use serde_json::{json, Value};
 use std::sync::OnceLock;
+use crate::campaign::live;
 
 pub(crate) fn u(r: &Value, k: &str) -> E<u32> {
     r.get(k)
@@ -10,6 +11,9 @@ pub(crate) fn u(r: &Value, k: &str) -> E<u32> {
 }
 static DATA: OnceLock<Result<Data, String>> = OnceLock::new();
 pub struct World {
+    pub(crate) field: Field,
+    pub(crate) campaign: Option<live::Start>,
+    pub(crate) campaign_result: Option<crate::campaign::Outcome>,
     pub data: &'static Data,
     pub ships: Vec<Ship>,
     pub fleets: Vec<Fleet>,
@@ -43,30 +47,21 @@ pub struct World {
     pub(crate) surface_phase_dp: Vec<(f64, f64)>,
 }
 impl World {
-    pub fn new(
-        seed: u32,
-        player: usize,
-        enemy: &str,
-        variant: &str,
-        profile: &str,
-        leader_slot: usize,
-    ) -> E<Self> {
-        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING) {
-            return Err("未知演习想定".into());
-        }
-        Ai::new(profile, "manual").validate()?;
-        if leader_slot >= if variant == "challenge" { 3 } else { 5 } {
-            return Err("领舰未在当前舰队内".into());
-        }
-        Ai::new(enemy, "auto").validate()?;
-        let data = DATA
+    pub(crate) fn exercise_data() -> E<&'static Data> {
+        DATA
             .get_or_init(|| {
                 serde_json::from_str(include_str!("../data/stage0.json"))
                     .map_err(|e| format!("无法加载昼战资料：{e}"))
             })
             .as_ref()
-            .map_err(Clone::clone)?;
-        let mut w = Self {
+            .map_err(Clone::clone)
+    }
+
+    pub(crate) fn blank(data: &'static Data, seed: u32, player: usize, enemy: &str, variant: &str, profile: &str, leader_slot: usize) -> Self {
+        Self {
+            field: Field::EXERCISE,
+            campaign: None,
+            campaign_result: None,
             data,
             ships: vec![],
             fleets: vec![],
@@ -98,7 +93,20 @@ impl World {
             incoming_this_cycle: vec![],
             gun_streak: vec![(0, 0, 0); 10],
             surface_phase_dp: vec![(0., 0.); 10],
-        };
+        }
+    }
+
+    pub fn new(seed: u32, player: usize, enemy: &str, variant: &str, profile: &str, leader_slot: usize) -> E<Self> {
+        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING) {
+            return Err("未知演习想定".into());
+        }
+        Ai::new(profile, "manual").validate()?;
+        if leader_slot >= if variant == "challenge" { 3 } else { 5 } {
+            return Err("领舰未在当前舰队内".into());
+        }
+        Ai::new(enemy, "auto").validate()?;
+        let data = Self::exercise_data()?;
+        let mut w = Self::blank(data, seed, player, enemy, variant, profile, leader_slot);
         for s in 0..2 {
             let (ids, x, y, h, inc, name) = if s == 0 {
                 (
@@ -140,55 +148,13 @@ impl World {
                     .position(|d| d.id.eq_ignore_ascii_case(id))
                     .ok_or_else(|| format!("缺少已核验舰型 {id}"))?;
                 let d = &data.ships[def];
-                if ![side_name(s), if s == 0 { "blue" } else { "red" }].contains(&d.side.as_str())
-                    || !d.dp.is_finite()
-                    || d.dp <= 0.
-                    || d.gun.range_yd.len() != 4
-                    || d.gun.damage.len() != 4
-                    || d.gun.barrels == 0
-                    || d.gun.mounts.iter().map(|m| m.barrels).sum::<u32>() != d.gun.barrels
-                {
-                    return Err(format!("{id} 的阵营、损伤或舰炮字段无效"));
-                }
-                let ship = (w.ships.len() + 1) as u32;
-                members.push(ship);
-                w.ships.push(Ship {
-                    id: ship,
-                    def,
-                    side: s,
-                    fleet: Some(s as u32 + 1),
-                    name: if d.kind.eq_ignore_ascii_case("cl") {
+                let name = if d.kind.eq_ignore_ascii_case("cl") {
                         d.name.clone()
                     } else {
                         format!("{} {}", d.name, i + 1)
-                    },
-                    p: P {
-                        x: x + inc * pos as f64,
-                        y,
-                    },
-                    h,
-                    speed: 0.,
-                    hp: d.dp,
-                    ammo: d.torpedo.as_ref().map_or(0, |t| t.tubes),
-                    gun_cycle: None,
-                    illumination_cycle: None,
-                    torp_cycle: None,
-                    torp_mount_used: vec![
-                        false;
-                        d.torpedo.as_ref().map_or(0, |t| t.mounts.len().max(1))
-                    ],
-                    track: None,
-                    free_speed: 0.,
-                    fires: vec![],
-                    flooding: vec![],
-                    fire_control_damage: false,
-                    gun_mount_destroyed: vec![false; d.gun.mounts.len()],
-                    gun_mount_bearings: vec![None; d.gun.mounts.len()],
-                    gun_bearing_until: 0,
-                    battery: Default::default(),
-                    engineering_speed_levels: 0,
-                    jammed_until: 0,
-                });
+                    };
+                let ship = w.spawn(def, s, s as u32 + 1, name, P {x: x + inc * pos as f64, y}, h)?;
+                members.push(ship);
                 if variant == RADAR_DRILL && id == "fletcher" {
                     // Fictional 1943 trial. Annex A A-17 gives the class fit;
                     // the dated 1943 Form 10s corroborate the fitted set types.
@@ -233,6 +199,30 @@ impl World {
         w.radar_detect();
         Ok(w)
     }
+
+    pub(crate) fn spawn(&mut self, def: usize, side: usize, fleet: u32, name: String, p: P, h: f64) -> E<u32> {
+        let d = &self.data.ships[def];
+        if ![side_name(side), if side == 0 { "blue" } else { "red" }].contains(&d.side.as_str())
+            || !d.dp.is_finite() || d.dp <= 0.
+            || d.gun.range_yd.len() != 4 || d.gun.damage.len() != 4
+            || d.gun.barrels == 0 || d.gun.mounts.iter().map(|m| m.barrels).sum::<u32>() != d.gun.barrels
+            || !self.field.contains(p)
+        {
+            return Err(format!("{} 的阵营、舰卡或出生点无效", d.id));
+        }
+        let id = (self.ships.len() + 1) as u32;
+        self.ships.push(Ship {
+            id, def, side, fleet: Some(fleet), name, p, h, speed: 0., escaped: false,
+            hp: d.dp, ammo: d.torpedo.as_ref().map_or(0, |t| t.tubes),
+            gun_cycle: None, illumination_cycle: None, torp_cycle: None,
+            torp_mount_used: vec![false; d.torpedo.as_ref().map_or(0, |t| t.mounts.len().max(1))],
+            track: None, free_speed: 0., fires: vec![], flooding: vec![], fire_control_damage: false,
+            gun_mount_destroyed: vec![false; d.gun.mounts.len()],
+            gun_mount_bearings: vec![None; d.gun.mounts.len()], gun_bearing_until: 0,
+            battery: Default::default(), engineering_speed_levels: 0, jammed_until: 0,
+        });
+        Ok(id)
+    }
     pub fn from_save(s: Saved, tick: u32) -> E<Self> {
         let version = match s.version.as_str() {
             VERSION => VERSION,
@@ -240,14 +230,20 @@ impl World {
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
             crate::realtime::VERSION => crate::realtime::VERSION,
+            live::VERSION => live::VERSION,
             _ => return Err("此存档使用另一个规则版本".into()),
         };
-        if version != crate::realtime::VERSION && (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
+        if (version == live::VERSION) != s.campaign.is_some()
+            || s.campaign.as_ref().is_some_and(|start| s.variant != start.variant()) {
+            return Err("战役存档的规则或内容版本不符".into());
+        }
+        if !matches!(version, crate::realtime::VERSION | live::VERSION) && (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
             return Err("雷达演习与存档规则版本不符".into());
         }
-        if version != crate::realtime::VERSION && (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
-        let last_tick = LIMIT + match version {
-            crate::realtime::VERSION => crate::realtime::MAX_FLIGHT,
+        if !matches!(version, crate::realtime::VERSION | live::VERSION) && (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
+        let limit = s.campaign.as_ref().map_or(LIMIT, live::Start::limit);
+        let last_tick = limit + match version {
+            crate::realtime::VERSION | live::VERSION => crate::realtime::MAX_FLIGHT,
             LEGACY_VERSION => 0,
             _ => SHELL_FLIGHT,
         };
@@ -262,18 +258,20 @@ impl World {
         {
             return Err("存档命令时序无效".into());
         }
-        let mut w = Self::new(
+        let profile = if s.profile.is_empty() { "coord" } else { &s.profile };
+        let mut w = if let Some(start) = s.campaign {
+            if start.seat()? != side(&s.side)? || start.enemy()? != s.enemy || s.leader_slot != 0 {
+                return Err("战役存档阵营或编制不符".into());
+            }
+            Self::new_campaign(s.seed, start, profile)?
+        } else { Self::new(
             s.seed,
             side(&s.side)?,
             &s.enemy,
             &s.variant,
-            if s.profile.is_empty() {
-                "coord"
-            } else {
-                &s.profile
-            },
+            profile,
             s.leader_slot,
-        )?;
+        )? };
         if version == crate::realtime::VERSION {
             w.enable_realtime()?;
         } else {
@@ -307,6 +305,7 @@ impl World {
             variant: self.variant.clone(),
             profile: self.profile.clone(),
             leader_slot: self.leader_slot,
+            campaign: self.campaign.clone(),
             tick: self.tick,
             commands: self.commands.clone(),
         }
@@ -428,6 +427,9 @@ impl World {
                 "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
                 "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
+            if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
+                data["characterId"] = json!(character);
+            }
             if self.radar_enabled() {
                 data["systems"]["radars"] = json!(self.radar.own_observation(s.id));
             }
@@ -468,11 +470,22 @@ impl World {
             .collect();
         let events = self.visible_events(owner, Some(90));
         let shells = self.shell_observation(owner);
-        let mut view = json!({"tick":self.tick,"limit":LIMIT,"width":WIDTH,"height":HEIGHT,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
-            "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result,"islands":self.islands});
+        let mut view = json!({"tick":self.tick,"limit":self.field.limit,"width":self.field.width,"height":self.field.height,"side":side_name(owner),
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
+        if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
         if self.radar_enabled() {
-            view["radarContacts"] = json!(self.radar.observation(owner, &self.ships));
+            let mut reports = self.radar.observation(owner, &self.ships);
+            if self.variant == live::VARIANT {
+                for report in &mut reports {
+                    let target = report["id"].as_str().expect("seat radar contact id");
+                    let ships: Vec<_> = self.ships.iter().filter(|s| s.side == owner && s.alive())
+                        .filter(|s| self.radar_torp_contact(s, target).is_some())
+                        .map(|s| s.id).collect();
+                    report["torpedoForShipIds"] = json!(ships);
+                }
+            }
+            view["radarContacts"] = json!(reports);
         }
         if self.has_starshells() { view["illuminations"]=json!(self.visible_illumination(owner)); }
         if self.realtime() { view["realtimeGunnery"] = json!(true); }
@@ -515,7 +528,14 @@ impl World {
         Ok(())
     }
     fn action_closed(&self) -> bool {
-        self.tick >= LIMIT || (0..2).any(|s| !self.ships.iter().any(|i| i.side == s && i.alive()))
+        self.tick >= self.field.limit || if self.variant == live::VARIANT {
+            !self.ships.iter().any(|s| s.side == 1 && s.alive())
+        } else if self.variant == crate::campaign::channel::VARIANT {
+            // The inherited scenario scores at the end of turn four, including ongoing damage.
+            false
+        } else {
+            (0..2).any(|s| !self.ships.iter().any(|i| i.side == s && i.alive()))
+        }
     }
     pub fn advance(&mut self) {
         let settle_only = self.version != LEGACY_VERSION && self.action_closed();
@@ -543,6 +563,9 @@ impl World {
         if self.realtime() { self.resolve_realtime_guns(); }
         self.resolve_damage_control();
         self.advance_shells();
+        if self.variant == live::VARIANT {
+            self.campaign_departures();
+        }
         if self.realtime() && (self.tick % CYCLE == 0 || self.action_closed() && self.shells.is_empty()) {
             self.flush_realtime_surface_damage();
         }
@@ -610,12 +633,16 @@ impl World {
             .map(|side| {
                 self.ships
                     .iter()
-                    .filter(|s| s.side == side && !s.alive())
+                    .filter(|s| s.side == side && s.hp <= 0.)
                     .count() as u32
             })
             .collect();
         let wiped = |side: usize| !self.ships.iter().any(|s| s.side == side && s.alive());
         if self.action_closed() && self.shells.is_empty() {
+            if self.campaign.is_some() {
+                self.close_campaign(lost[0], lost[1]);
+                return;
+            }
             let (a, b) = (lost[1], lost[0]);
             let winner = if a > b {
                 "allies"

@@ -34,11 +34,20 @@ impl Engine {
         let op = r.get("op").and_then(Value::as_str).ok_or("缺少操作")?;
         match op {
             "info" => Ok(json!({"version":VERSION,"realtimeVersion":realtime::VERSION,"scenario":SCENARIO,"tickSeconds":1})),
-            "campaign" => serde_json::from_str(include_str!("../data/campaign/crosswalk.json"))
-                .map_err(|e| format!("无法读取战役档案：{e}")),
+            "campaign" => campaign::catalogue(),
             "campaign_detail" => campaign::detail(
                 r["id"].as_str().ok_or("请选择战役关卡")?,
             ),
+            "new_campaign" => {
+                let id = r["id"].as_str().ok_or("请选择战役关卡")?;
+                let difficulty = r["difficulty"].as_str().ok_or("请选择战役难度")?;
+                let seed = if r.get("seed").is_some() { world::u(&r, "seed")? } else { 6106 };
+                let profile = r.get("profile").and_then(Value::as_str).unwrap_or("coord");
+                let w = World::new_campaign(seed, campaign::live::Start::new(id, difficulty), profile)?;
+                let view = w.observation(w.player);
+                self.world = Some(w);
+                Ok(view)
+            }
             "new" => {
                 let seed = match r.get("seed") {
                     None => 6106,
@@ -108,7 +117,7 @@ impl Engine {
                     }
                     "save" => Ok(json!(w.save())),
                     "report" => {
-                        Ok(json!({"result":w.result,"events":w.visible_events(player,None)}))
+                        Ok(json!({"result":w.result_for(player),"events":w.visible_events(player,None)}))
                     }
                     "preview_route" => w.preview(player, &r),
                     "preview_reform" => w.preview_reform(player, &r),

@@ -13,6 +13,21 @@ pub const SHELL_FLIGHT: u32 = 8;
 pub const SCENARIO: &str = "白昼接敌 · 5 对 5 演习";
 pub type E<T> = Result<T, String>;
 
+#[derive(Clone, Copy)]
+pub(crate) struct Field {
+    pub width: f64,
+    pub height: f64,
+    pub limit: u32,
+}
+impl Field {
+    pub const EXERCISE: Self = Self { width: WIDTH, height: HEIGHT, limit: LIMIT };
+
+    pub fn contains(self, p: P) -> bool {
+        (50. ..=self.width - 50.).contains(&p.x)
+            && (50. ..=self.height - 50.).contains(&p.y)
+    }
+}
+
 #[derive(Clone, Copy, Debug, Default, Deserialize, Serialize, PartialEq)]
 pub struct P {
     pub x: f64,
@@ -76,12 +91,6 @@ impl P {
             y: libm::cos(h),
         }
     }
-    pub fn on_chart(self) -> bool {
-        self.x.is_finite()
-            && self.y.is_finite()
-            && (50. ..=WIDTH - 50.).contains(&self.x)
-            && (50. ..=HEIGHT - 50.).contains(&self.y)
-    }
     pub fn snap(self) -> Self {
         Self {
             x: libm::round(self.x * 1e6) / 1e6,
@@ -138,6 +147,8 @@ pub struct ShipDef {
     pub dp: f64,
     #[serde(default)]
     pub damage_speed: Vec<DamageSpeed>,
+    #[serde(default)]
+    pub engineering_speed_multiplier: Option<u8>,
     pub turn_advance_yards: f64,
     pub speed_loss_knots: f64,
     pub accel_knots_per_turn: f64,
@@ -266,6 +277,7 @@ pub struct Casualty {
 
 #[derive(Clone, Debug)]
 pub struct Ship {
+    pub escaped: bool,
     pub id: u32,
     pub def: usize,
     pub side: usize,
@@ -294,7 +306,7 @@ pub struct Ship {
 }
 impl Ship {
     pub fn alive(&self) -> bool {
-        self.hp > 0.
+        self.hp > 0. && !self.escaped
     }
 }
 
@@ -464,6 +476,8 @@ pub struct Saved {
     pub profile: String,
     #[serde(default)]
     pub leader_slot: usize,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub campaign: Option<crate::campaign::live::Start>,
     pub tick: u32,
     pub commands: Vec<Entry>,
 }

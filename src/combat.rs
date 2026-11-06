@@ -266,10 +266,20 @@ impl World {
                 .pending
                 .iter()
                 .any(|p| p.ship == s.id && p.weapon == "torpedo")
-            && self.contacts[s.side].iter().any(|c| {
-                let (a, b) = self.project_launch(s, c);
-                !self.is_reaction(c) && self.torp_solution(&a, &b, None).3.is_none()
-            })
+            && (self.contacts[s.side].iter().any(|c| self.torp_candidate(s, c))
+                || self.radar_torp_contacts(s).any(|c| self.torp_candidate(s, &c)))
+    }
+    fn torp_candidate(&self, s: &Ship, c: &Contact) -> bool {
+        let (a, b) = self.project_launch(s, c);
+        !self.is_reaction(c) && self.torp_solution(&a, &b, None).3.is_none()
+    }
+    fn torpedo_contact(&self, s: &Ship, target: &str) -> E<std::borrow::Cow<'_, Contact>> {
+        if let Ok(c) = self.contact(s.side, target) { return Ok(std::borrow::Cow::Borrowed(c)); }
+        if self.campaign.is_some() && target.starts_with('R') {
+            return self.radar_torp_contact(s, target).map(std::borrow::Cow::Owned)
+                .ok_or_else(|| "本舰没有连续的直接雷达位置，无法解算鱼雷交会".into());
+        }
+        Err("目标接触已丢失".into())
     }
     fn mount(&self, s: &Ship, h: f64) -> Option<(usize, u32)> {
         let def = self.data.ships[s.def].torpedo.as_ref()?;
@@ -358,12 +368,12 @@ impl World {
             }
             return Ok(solution);
         }
-        let c = self.contact(owner, target)?;
+        let c = self.torpedo_contact(s, target)?;
         let angle = r
             .get("heading")
             .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
             .transpose()?;
-        let (future, projected) = self.project_launch(s, c);
+        let (future, projected) = self.project_launch(s, &c);
         let (h, range, friendly, error) = self.torp_solution(&future, &projected, angle);
         let arcs: Vec<_> = self.data.ships[s.def]
             .torpedo
@@ -405,12 +415,12 @@ impl World {
                 }
             }
             "torpedo" => {
-                let c = self.contact(owner, target)?;
+                let c = self.torpedo_contact(s, target)?;
                 let angle = r
                     .get("heading")
                     .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
                     .transpose()?;
-                let (future, projected) = self.project_launch(s, c);
+                let (future, projected) = self.project_launch(s, &c);
                 let (h, _, friendly, err) = self.torp_solution(&future, &projected, angle);
                 if let Some(e) = err {
                     return Err(e);
@@ -553,14 +563,14 @@ impl World {
     }
     fn validate_launch(&self, p: &Fire) -> E<Launch> {
         let s = self.ship_for(p.side, p.ship)?;
-        let c = self.contact(p.side, &p.target)?;
+        let c = self.torpedo_contact(s, &p.target)?;
         if !self.ship(c.ship).is_some_and(Ship::alive) {
             return Err("鱼雷的原目标已失效".into());
         }
         if s.jammed_until > self.tick {
             return Err("该舰正在处理转向损伤".into());
         }
-        let (h, _, _, e) = self.torp_solution(s, c, p.heading);
+        let (h, _, _, e) = self.torp_solution(s, &c, p.heading);
         if let Some(e) = e {
             return Err(e);
         }
@@ -967,7 +977,7 @@ impl World {
             torp.p = end;
             torp.traveled += step;
             torp.remaining -= step;
-            if torp.count > 0 && torp.remaining > 1e-7 && end.on_chart() {
+            if torp.count > 0 && torp.remaining > 1e-7 && self.field.contains(end) {
                 self.observe_torpedo_wake(&mut torp);
                 self.torps.push(torp);
             }

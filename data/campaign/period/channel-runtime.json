@@ -1,0 +1,1469 @@
+{
+  "ships": [
+    {
+      "id": "IBS-U-KM-KARL-GALSTER",
+      "name": "卡尔加尔斯特",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 38,
+      "dp": 153,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 38
+        },
+        {
+          "damage": 38,
+          "knots": 29
+        },
+        {
+          "damage": 77,
+          "knots": 19
+        },
+        {
+          "damage": 115,
+          "knots": 10
+        },
+        {
+          "damage": 138,
+          "knots": 0
+        },
+        {
+          "damage": 153,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1938,
+      "gun": {
+        "name": "12.7cm/45 SK C/34 HE",
+        "caliber_mm": 127,
+        "range_yd": [
+          5700,
+          11400,
+          15200,
+          19000
+        ],
+        "damage": [
+          19,
+          16,
+          14,
+          13
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          2,
+          1,
+          1,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "G7a (T-I)",
+        "speed_knots": 44,
+        "range_yd": 6500,
+        "warhead": 88,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-KM-RICHARD-BEITZEN",
+      "name": "里夏德·拜茨恩",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 38,
+      "dp": 146,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 38
+        },
+        {
+          "damage": 37,
+          "knots": 28
+        },
+        {
+          "damage": 73,
+          "knots": 19
+        },
+        {
+          "damage": 110,
+          "knots": 10
+        },
+        {
+          "damage": 131,
+          "knots": 0
+        },
+        {
+          "damage": 146,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "12.7cm/45 SK C/34 HE",
+        "caliber_mm": 127,
+        "range_yd": [
+          5700,
+          11400,
+          15200,
+          19000
+        ],
+        "damage": [
+          19,
+          16,
+          14,
+          13
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          2,
+          1,
+          1,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "G7a (T-I)",
+        "speed_knots": 44,
+        "range_yd": 6500,
+        "warhead": 88,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-KM-HANS-LODY",
+      "name": "汉斯·洛迪",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 38,
+      "dp": 146,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 38
+        },
+        {
+          "damage": 37,
+          "knots": 28
+        },
+        {
+          "damage": 73,
+          "knots": 19
+        },
+        {
+          "damage": 110,
+          "knots": 10
+        },
+        {
+          "damage": 131,
+          "knots": 0
+        },
+        {
+          "damage": 146,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "12.7cm/45 SK C/34 HE",
+        "caliber_mm": 127,
+        "range_yd": [
+          5700,
+          11400,
+          15200,
+          19000
+        ],
+        "damage": [
+          19,
+          16,
+          14,
+          13
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          2,
+          1,
+          1,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "G7a (T-I)",
+        "speed_knots": 44,
+        "range_yd": 6500,
+        "warhead": 88,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-RN-JAVELIN",
+      "name": "标枪",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 121,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 61,
+          "knots": 18
+        },
+        {
+          "damage": 91,
+          "knots": 9
+        },
+        {
+          "damage": 109,
+          "knots": 0
+        },
+        {
+          "damage": 121,
+          "knots": 0
+        }
+      ],
+      "engineering_speed_multiplier": 2,
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "4.7in/45 Mk XII HE",
+        "caliber_mm": 119.38,
+        "range_yd": [
+          5100,
+          10200,
+          13600,
+          17000
+        ],
+        "damage": [
+          18,
+          15,
+          14,
+          12
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              170
+            ],
+            "arc2": [
+              190,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "21in Mk IX",
+        "speed_knots": 41,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-RN-JUPITER",
+      "name": "朱庇特",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 121,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 61,
+          "knots": 18
+        },
+        {
+          "damage": 91,
+          "knots": 9
+        },
+        {
+          "damage": 109,
+          "knots": 0
+        },
+        {
+          "damage": 121,
+          "knots": 0
+        }
+      ],
+      "engineering_speed_multiplier": 2,
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "4.7in/45 Mk XII HE",
+        "caliber_mm": 119.38,
+        "range_yd": [
+          5100,
+          10200,
+          13600,
+          17000
+        ],
+        "damage": [
+          18,
+          15,
+          14,
+          12
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              170
+            ],
+            "arc2": [
+              190,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "21in Mk IX",
+        "speed_knots": 41,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-RN-KASHMIR",
+      "name": "克什米尔",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 121,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 61,
+          "knots": 18
+        },
+        {
+          "damage": 91,
+          "knots": 9
+        },
+        {
+          "damage": 109,
+          "knots": 0
+        },
+        {
+          "damage": 121,
+          "knots": 0
+        }
+      ],
+      "engineering_speed_multiplier": 2,
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "4.7in/45 Mk XII HE",
+        "caliber_mm": 119.38,
+        "range_yd": [
+          5100,
+          10200,
+          13600,
+          17000
+        ],
+        "damage": [
+          18,
+          15,
+          14,
+          12
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              170
+            ],
+            "arc2": [
+              190,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "21in Mk IX",
+        "speed_knots": 41,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-RN-JACKAL",
+      "name": "豺",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 121,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 61,
+          "knots": 18
+        },
+        {
+          "damage": 91,
+          "knots": 9
+        },
+        {
+          "damage": 109,
+          "knots": 0
+        },
+        {
+          "damage": 121,
+          "knots": 0
+        }
+      ],
+      "engineering_speed_multiplier": 2,
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "4.7in/45 Mk XII HE",
+        "caliber_mm": 119.38,
+        "range_yd": [
+          5100,
+          10200,
+          13600,
+          17000
+        ],
+        "damage": [
+          18,
+          15,
+          14,
+          12
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              170
+            ],
+            "arc2": [
+              190,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "21in Mk IX",
+        "speed_knots": 41,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "IBS-U-RN-JERSEY",
+      "name": "泽西",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 121,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 61,
+          "knots": 18
+        },
+        {
+          "damage": 91,
+          "knots": 9
+        },
+        {
+          "damage": 109,
+          "knots": 0
+        },
+        {
+          "damage": 121,
+          "knots": 0
+        }
+      ],
+      "engineering_speed_multiplier": 2,
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "4.7in/45 Mk XII HE",
+        "caliber_mm": 119.38,
+        "range_yd": [
+          5100,
+          10200,
+          13600,
+          17000
+        ],
+        "damage": [
+          18,
+          15,
+          14,
+          12
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              170
+            ],
+            "arc2": [
+              190,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "21in Mk IX",
+        "speed_knots": 41,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "schema_version": 1,
+    "content_version": "cas-channel-runtime-v1",
+    "scenario_id": "cas-ibs-channel-action",
+    "status": "restricted_rts_adaptation_only",
+    "as_of": "1940-11-28",
+    "source": {
+      "baseline": "铁底湾手游 0.6.9",
+      "commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+      "scenario_yaml": "resources/derived/structured/scenarios/scenario-03.yaml",
+      "scenario": {
+        "document": "scenario-book-zh.pdf",
+        "pdf_page": 3,
+        "printed_page": 4,
+        "status": "verified_source"
+      },
+      "map_yaml": "resources/derived/structured/maps/main-map.yaml",
+      "scale": {
+        "document": "resources/originals/rules/iron-bottom-sound-iv-rules-zh.pdf",
+        "section": "1.2",
+        "pdf_page": 3,
+        "printed_page": 3
+      },
+      "mobile_index": "mobile/content/campaign-scenarios.json",
+      "mobile_briefing": "mobile/content/campaign-briefings.json",
+      "runtime": [
+        "mobile/progression.py::prepare_stage",
+        "backend/src/iron_bottom_sound/engine.py::reset",
+        "backend/src/iron_bottom_sound/data.py::build_initial_state",
+        "backend/src/iron_bottom_sound/night.py::initialize"
+      ]
+    },
+    "instance_fits": {
+      "IBS-U-KM-KARL-GALSTER": {
+        "name": "Z20 Karl Galster",
+        "class": "Type 1936",
+        "period_profile": "de_1936_1940",
+        "crew_complement": 313,
+        "hull_source": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 66,
+          "table": "A-11 Type 1936 (Z17–Z22)"
+        },
+        "gun_model": "de_skc34_127mm45",
+        "gun_annex": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 120,
+          "table": "C-2 12.7cm SK C/34 HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "reconstructed from Type 1936 relation to 1934A and English primary recognition diagram; local translation mount row corrupt",
+        "gun_mount_corroboration": {
+          "document": "US Navy ONI 204, Karl Galster—DD20",
+          "date": "1942-09",
+          "url": "https://www.ibiblio.org/hyperwar/USN/ref/ONI/ONI-204/img/ONI-204-96.JPG",
+          "use": "count and position of five guns and two quad racks only; no CAS numerical stats imported"
+        },
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [
+          "de_fumo21"
+        ],
+        "torpedo_enabled": true,
+        "torpedo_model": "de_g7a_t1",
+        "torpedo_annex": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 124,
+          "table": "F-1 G7a (T-1)"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          4,
+          4
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-KM-RICHARD-BEITZEN": {
+        "name": "Z4 Richard Beitzen",
+        "class": "Type 1934",
+        "period_profile": "de_1934_34a_1940",
+        "crew_complement": 315,
+        "hull_source": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 66,
+          "table": "A-11 Type 1934 (Z1–Z16)"
+        },
+        "gun_model": "de_skc34_127mm45",
+        "gun_annex": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 120,
+          "table": "C-2 12.7cm SK C/34 HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "verified_combined_1934_and_1934A_annex_mount_row",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [
+          "de_fumo21"
+        ],
+        "torpedo_enabled": true,
+        "torpedo_model": "de_g7a_t1",
+        "torpedo_annex": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 124,
+          "table": "F-1 G7a (T-1)"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          4,
+          4
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-KM-HANS-LODY": {
+        "name": "Z10 Hans Lody",
+        "class": "Type 1934A",
+        "period_profile": "de_1934_34a_1940",
+        "crew_complement": 315,
+        "hull_source": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 66,
+          "table": "A-11 Type 1934 (Z1–Z16)"
+        },
+        "gun_model": "de_skc34_127mm45",
+        "gun_annex": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 120,
+          "table": "C-2 12.7cm SK C/34 HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "verified_combined_1934_and_1934A_annex_mount_row",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [
+          "de_fumo21"
+        ],
+        "torpedo_enabled": true,
+        "torpedo_model": "de_g7a_t1",
+        "torpedo_annex": {
+          "document": "（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+          "pdf_page": 124,
+          "table": "F-1 G7a (T-1)"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          4,
+          4
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-RN-JAVELIN": {
+        "name": "HMS Javelin",
+        "class": "J",
+        "period_profile": "gb_jk_1940",
+        "crew_complement": 183,
+        "hull_source": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 40,
+          "table": "A-36 J/K/N"
+        },
+        "gun_model": "gb_mkxii_47in45",
+        "gun_annex": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 115,
+          "table": "C-2 4.7in/45 Mk IX/Mk XII HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "conservative_original_aft_20deg_mask; exact correction dates unverified",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "torpedo_enabled": true,
+        "torpedo_model": "gb_mkix_21in",
+        "torpedo_annex": {
+          "document": "Arctic_Fleets_5th_ed._Standard.pdf",
+          "pdf_page": 90,
+          "table": "F-1 21in Mk IX/IX*"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-RN-JUPITER": {
+        "name": "HMS Jupiter",
+        "class": "J",
+        "period_profile": "gb_jk_1940",
+        "crew_complement": 183,
+        "hull_source": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 40,
+          "table": "A-36 J/K/N"
+        },
+        "gun_model": "gb_mkxii_47in45",
+        "gun_annex": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 115,
+          "table": "C-2 4.7in/45 Mk IX/Mk XII HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "conservative_original_aft_20deg_mask; exact correction dates unverified",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "torpedo_enabled": true,
+        "torpedo_model": "gb_mkix_21in",
+        "torpedo_annex": {
+          "document": "Arctic_Fleets_5th_ed._Standard.pdf",
+          "pdf_page": 90,
+          "table": "F-1 21in Mk IX/IX*"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-RN-KASHMIR": {
+        "name": "HMS Kashmir",
+        "class": "K",
+        "period_profile": "gb_jk_1940",
+        "crew_complement": 183,
+        "hull_source": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 40,
+          "table": "A-36 J/K/N"
+        },
+        "gun_model": "gb_mkxii_47in45",
+        "gun_annex": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 115,
+          "table": "C-2 4.7in/45 Mk IX/Mk XII HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "conservative_original_aft_20deg_mask; exact correction dates unverified",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "torpedo_enabled": true,
+        "torpedo_model": "gb_mkix_21in",
+        "torpedo_annex": {
+          "document": "Arctic_Fleets_5th_ed._Standard.pdf",
+          "pdf_page": 90,
+          "table": "F-1 21in Mk IX/IX*"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-RN-JACKAL": {
+        "name": "HMS Jackal",
+        "class": "J",
+        "period_profile": "gb_jk_1940",
+        "crew_complement": 183,
+        "hull_source": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 40,
+          "table": "A-36 J/K/N"
+        },
+        "gun_model": "gb_mkxii_47in45",
+        "gun_annex": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 115,
+          "table": "C-2 4.7in/45 Mk IX/Mk XII HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "conservative_original_aft_20deg_mask; exact correction dates unverified",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "torpedo_enabled": true,
+        "torpedo_model": "gb_mkix_21in",
+        "torpedo_annex": {
+          "document": "Arctic_Fleets_5th_ed._Standard.pdf",
+          "pdf_page": 90,
+          "table": "F-1 21in Mk IX/IX*"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      },
+      "IBS-U-RN-JERSEY": {
+        "name": "HMS Jersey",
+        "class": "J",
+        "period_profile": "gb_jk_1940",
+        "crew_complement": 183,
+        "hull_source": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 40,
+          "table": "A-36 J/K/N"
+        },
+        "gun_model": "gb_mkxii_47in45",
+        "gun_annex": {
+          "document": "Home_Fleet_2012_Standard.pdf",
+          "pdf_page": 115,
+          "table": "C-2 4.7in/45 Mk IX/Mk XII HE"
+        },
+        "gun_shell_rts_selection": "HE",
+        "gun_mount_layout_status": "conservative_original_aft_20deg_mask; exact correction dates unverified",
+        "gun_mount_corroboration": null,
+        "radar_confirmed": [],
+        "radar_candidates_inactive": [],
+        "torpedo_enabled": true,
+        "torpedo_model": "gb_mkix_21in",
+        "torpedo_annex": {
+          "document": "Arctic_Fleets_5th_ed._Standard.pdf",
+          "pdf_page": 90,
+          "table": "F-1 21in Mk IX/IX*"
+        },
+        "torpedo_historical_opening_loaded": null,
+        "torpedo_variant_opening_loaded": [
+          5,
+          5
+        ],
+        "torpedo_runtime_policy": "annex_ready_capacity_fast_setting_contact_action_no_reload"
+      }
+    },
+    "restrictions": [
+      "No exact CAS scenario found. Start positions, heading, duration, visibility and goals are adapted from IBS-S-03; hull and weapon adjudication uses CAS.",
+      "Known class ready tube capacities initialize the adaptation. Individual historical opening loads are unknown. No reserve reload, historical dud override, or ammunition inventory is inferred.",
+      "No sensors, individual early-war retrofits, per-hull lengths or undocumented ammunition data are inferred. German Seetakt candidates stay inactive.",
+      "See docs/campaign/channel-runtime-sources.md for the conservative early British aft mask and the separately corroborated normalization of the translated German Type 1936 mounting line."
+    ]
+  }
+}
