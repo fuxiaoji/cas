@@ -3,7 +3,7 @@ import type { CourseId, TrainingEvidence, TrainingSignal, TrainingStep } from '.
 
 export type GuideControl = 'fleet-tab' | 'ship-tab' | 'fleet-ship' | 'set-leader' | 'map' | 'follow' | 'sync'
   | 'route-commit' | 'route-cancel' | 'gun' | 'torpedo' | 'fire-cancel' | 'clock-toggle' | 'clock-step'
-  | 'contact' | 'radar' | 'radar-contact' | 'illumination' | 'battle-log' | 'ai-tab' | 'ai-mode';
+  | 'contact' | 'radar' | 'radar-contact' | 'illumination' | 'battle-log' | 'ai-tab' | 'ai-mode' | 'clock-window';
 
 type GuideCue = { controls: readonly GuideControl[]; instruction: string };
 type GuidanceOptions = { radar?: boolean };
@@ -33,7 +33,7 @@ const cueBySignal: Partial<Record<TrainingSignal, GuideCue>> = {
   contactViewed: { controls: ['contact', 'clock-toggle'], instruction: '在海图点一个可见接触，检查代号和识别情况。' },
   radarViewed: { controls: ['ship-tab'], instruction: '打开「舰况」，找到所选舰的舰载雷达。' },
   radarPowered: { controls: ['radar', 'ship-tab'], instruction: '在舰况开启可用的搜索雷达，等开机回执。' },
-  radarContactViewed: { controls: ['radar-contact', 'clock-toggle'], instruction: '推进到探测窗口，再点海图上已出现的 R 回波。' },
+  radarContactViewed: { controls: ['radar-contact', 'clock-window', 'clock-toggle'], instruction: '推进到下一探测窗口，再点海图上出现的雷达回波。' },
   lightAccepted: { controls: ['illumination', 'contact'], instruction: '选有照明弹的舰和合法接触，下达照明命令。' },
   lightApplied: { controls: ['clock-step', 'clock-toggle'], instruction: '让时间运行，等照明弹实际起亮。' },
   reportViewed: { controls: ['battle-log'], instruction: '打开「战情记录」，核对发现、发射和裁决。' },
@@ -61,13 +61,17 @@ function requirements(step: TrainingStep) {
 
 export function guidedTrainingProgress(course: CourseId, evidence: TrainingEvidence, { radar = false }: GuidanceOptions = {}) {
   const courseSteps = trainingCourses[course].steps;
-  const steps = radar && course === 'night' ? courseSteps.flatMap(step =>
-    step.id === 'campaign-night-contact' ? [radarStep, step] : [step]) : courseSteps;
+  const steps = radar && course === 'night' ? [radarStep, ...courseSteps.filter(step =>
+    ['campaign-night-contact', 'campaign-night-light', 'campaign-night-cycle'].includes(step.id))] : courseSteps;
   const index = steps.findIndex(step => requirements(step).some(signal => !evidence[signal]));
   const current = index < 0 ? undefined : steps[index];
   const next = current && requirements(current).find(signal => !evidence[signal]);
-  return { current, complete: index < 0 ? steps.length : index, total: steps.length, next,
-    cue: next ? cueBySignal[next] : undefined };
+  const cue = radar && next === 'contactViewed'
+    ? { controls: ['contact', 'clock-window'] as const, instruction: '继续推进探测窗口，点一个新出现的目视接触。' }
+    : radar && next === 'lightApplied'
+      ? { controls: ['clock-window'] as const, instruction: '推进到下一窗口，等待照明弹实际起亮。' }
+      : next ? cueBySignal[next] : undefined;
+  return { current, complete: index < 0 ? steps.length : index, total: steps.length, next, cue };
 }
 
 export function guidedTrainingDone(course: CourseId, evidence: TrainingEvidence, options?: GuidanceOptions) {

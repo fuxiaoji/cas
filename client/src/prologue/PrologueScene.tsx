@@ -3,7 +3,7 @@ import type { Observation } from '../engine';
 import { baixisPortrait as baixiPortrait, prologueArt, prologueVictory } from './art';
 import { nextPrologueStep, PROLOGUE_LAST_STEP } from './originalScript';
 import { PrologueDialogue } from './PrologueDialogue';
-import { PrologueFilm } from './PrologueFilm';
+import { PrologueChart, PrologueFilm } from './PrologueFilm';
 import { DD_PERSONALITIES } from './story';
 import type { PrologueBattleStage, PrologueProgress, StarterDDId } from './story';
 import './prologue.css';
@@ -17,6 +17,8 @@ type Props = {
   busy?: boolean;
   error?: string;
   recording?: readonly Observation[];
+  battle?: Observation;
+  radioKey?: string;
   rewards?: readonly string[];
   claimed?: boolean;
 };
@@ -50,7 +52,7 @@ function BridgeBackdrop() {
   </svg>;
 }
 
-export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit, busy = false, error, recording, rewards, claimed }: Props) {
+export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit, busy = false, error, recording, battle, radioKey, rewards, claimed }: Props) {
   const [reviewing, setReviewing] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [localError, setLocalError] = useState('');
@@ -81,15 +83,17 @@ export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit
       </nav>
     </header>
     <div className="prologue-deck">
-      <BridgeBackdrop />
+      {battle && step > 0 && step < PROLOGUE_LAST_STEP && !reviewing
+        ? <div className="prologue-film"><PrologueChart frame={battle} focus /></div>
+        : <BridgeBackdrop />}
       {(step === 0 || reviewing) && <>
-        <PrologueFilm key={reviewing ? 'review' : 'opening'} opening />
+        <PrologueFilm key={reviewing ? 'review' : 'opening'} opening radioKey={radioKey} />
         <section className="prologue-cinematic">
           <div><span>第五驱逐编队</span><h1>未明的海</h1><p>海面正在燃烧，而你的记忆停在了炮声之前。</p></div>
-          <button type="button" className="primary" onClick={() => reviewing ? setReviewing(false) : advance('cinema-0')}>{reviewing ? '返回当前剧情' : '进入舰桥'}</button>
+          <button type="button" className="primary" disabled={busy} onClick={() => reviewing ? setReviewing(false) : advance('cinema-0')}>{reviewing ? '返回当前剧情' : '进入舰桥'}</button>
         </section>
       </>}
-      {!reviewing && <PrologueDialogue progress={progress} onProgress={onProgress} />}
+      {!reviewing && <PrologueDialogue progress={progress} onProgress={onProgress} placement={battle ? 'chart' : 'scene'} />}
       {!reviewing && step === 3 && <>
         <img className="prologue-speaker-art" src={baixiPortrait} alt="白汐" />
         <section className="prologue-note prologue-binding">
@@ -98,7 +102,7 @@ export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit
         </section>
       </>}
       {!reviewing && step === 5 && <section className="prologue-roster" aria-label="选定剧情领舰">
-        <div><h1>选一位，升起领舰旗</h1><p>五位舰娘都随你出航。她们的剧情身份与本局 CAS 演习舰分开记录。</p></div>
+        <div><h1>选一位，升起领舰旗</h1><p>五位舰娘都已在同一片海上。选一艘舰带第五驱逐小队出航。</p></div>
         <div className="prologue-roster-list">
           {DD_PERSONALITIES.map((ship) => <button key={ship.id} type="button" className="prologue-character" aria-pressed={leader.id === ship.id}
             aria-label={ship.name} onClick={() => patch({ leaderId: ship.id })}>
@@ -112,7 +116,7 @@ export function PrologueScene({ progress, onProgress, onBattle, onFinish, onExit
         <button type="button" className="primary" disabled={busy} onClick={() => onBattle(exercise.stage, leader.id)}>前往海图实操</button>
       </section>}
       {!reviewing && (step === 11 || step === 22 || step === 28) && <>
-        <PrologueFilm key={step} recording={recording} />
+        {!battle && <PrologueFilm key={step} recording={recording} />}
         <section className="prologue-cinematic">
           <div><span>第五驱逐编队</span><h1>{step === 11 ? '领舰航线确认' : step === 22 ? '同步航线确认' : '鱼雷已实际发射'}</h1>
             <p>{step === 11 ? '尾舰沿领舰实际航迹机动。' : step === 22 ? '每艘舰保持自己的航迹，按同一时点转向。' : '保留本方真实战情。发射与命中分别记录。'}</p></div>

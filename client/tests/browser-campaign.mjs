@@ -363,7 +363,7 @@ try {
   }
   receipt.channel = channel;
   if (process.env.CAS_CAMPAIGN_REWARD === '1') {
-    const axis = await q('new_campaign', { id: 'CAMP-AXIS-01', difficulty: 'story', seed: 71 });
+    const axis = await q('new_campaign', { id: 'CAMP-AXIS-01', difficulty: 'story', seed: 53 });
     for (const fleet of axis.fleets) await q('ai', { fleet: fleet.id, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true });
     const end = await q('step', { seconds: 840 });
     assert.equal(end.result?.grade, 'tactical');

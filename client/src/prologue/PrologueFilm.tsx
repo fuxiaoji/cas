@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { BattleMap } from '../BattleMap';
 import { clock } from '../engine';
 import type { Observation, Request } from '../engine';
+import { useBattleVoice } from '../audio/BattleVoice';
 
 const noAction = () => undefined;
+export const PROLOGUE_HANDOVER_TICK = 204;
 type Receipt = { id: number; response: { ok: true; data: Observation } | { ok: false; error: string } };
 
 async function captureFilm(worker: Worker): Promise<Observation[]> {
@@ -18,24 +20,32 @@ async function captureFilm(worker: Worker): Promise<Observation[]> {
     worker.onerror = () => reject(new Error('开场战斗记录暂时不能播放。'));
     worker.postMessage({ id: sequence, request });
   });
-  const initial = await call({ op: 'new', seed: 6106, side: 'axis', enemy: 'gunnery', profile: 'torpedo' });
-  await call({ op: 'ai', fleet: initial.fleets[0].id, profile: 'torpedo', mode: 'auto', move: true, gun: true, torpedo: true });
-  // Two cuts of the same CAS exercise. Everything is from a single seat;
-  // neither the footage nor its commands modify the player's current battle.
-  const result = [await call({ op: 'step', seconds: 177 })];
-  for (let i = 0; i < 12; i++) result.push(await call({ op: 'step', seconds: 1 }));
-  result.push(await call({ op: 'step', seconds: 715 - result.at(-1)!.tick }));
-  for (let i = 0; i < 28; i++) result.push(await call({ op: 'step', seconds: i < 10 ? 1 : 4 }));
+  const result = [await call({ op: 'new', seed: 6106, side: 'allies', enemy: 'gunnery', profile: 'coord', variant: 'prologue', realtime: true })];
+  while (result.at(-1)!.tick < PROLOGUE_HANDOVER_TICK) {
+    result.push(await call({ op: 'step', seconds: Math.min(4, PROLOGUE_HANDOVER_TICK - result.at(-1)!.tick) }));
+  }
   return result;
 }
 
-export function PrologueFilm({ recording, opening }: { recording?: readonly Observation[]; opening?: boolean }) {
+export function PrologueChart({ frame, playing = false, focus = false }: { frame: Observation; playing?: boolean; focus?: boolean }) {
+  return <div className="prologue-film-map" aria-hidden="true">
+    <BattleMap observation={frame} fleet={frame.fleets[0]} disabled session={-1} running={playing} speed={24}
+      cameraCue={focus ? { id: '第五驱逐小队', fleet: 1, zoom: 1.85 }
+        : frame.variant === 'prologue' ? { id: '舰队决战', zoom: 1.55 } : undefined}
+      replaying editing={false} waypoints={[]} onSelect={noAction} onAddPoint={noAction}
+      onMovePoint={noAction} onFire={noAction} onHint={noAction} />
+  </div>;
+}
+
+export function PrologueFilm({ recording, opening, radioKey }: { recording?: readonly Observation[]; opening?: boolean; radioKey?: string }) {
   const [captured, setCaptured] = useState<Observation[]>([]);
   const [failed, setFailed] = useState(false);
   const [cursor, setCursor] = useState(0);
   const [playing, setPlaying] = useState(true);
   const frames = opening ? captured : recording ?? [];
   const frame = frames[Math.min(cursor, frames.length - 1)];
+  useBattleVoice({ session: '序章开场', observation: frame, live: !!opening, replaying: !opening, paused: !playing,
+    settingsKey: radioKey });
   useEffect(() => {
     if (!opening) return;
     let active = true;
@@ -52,10 +62,8 @@ export function PrologueFilm({ recording, opening }: { recording?: readonly Obse
   }, [cursor, frames.length, playing]);
   return <div className="prologue-film" aria-label={opening ? 'CAS 演习开场回放' : '本局行动回放'}>
     {frame ? <>
-      <div className="prologue-film-map" aria-hidden="true"><BattleMap observation={frame} fleet={frame.fleets[0]}
-        disabled session={-1} running={playing} speed={8} replaying editing={false} waypoints={[]} onSelect={noAction}
-        onAddPoint={noAction} onMovePoint={noAction} onFire={noAction} onHint={noAction} /></div>
-      <div className="prologue-film-strip"><span>{opening ? 'CAS 实战片段 · 虚构 5 对 5 演习 · 轴心席' : '本局实录 · 本方视角'} <time>{clock(frame.tick)}</time></span>
+      <PrologueChart frame={frame} playing={playing} focus={opening && frame.tick >= 188} />
+      <div className="prologue-film-strip"><span>{opening ? '舰队决战 · 虚构想定 · 同盟席' : '本局实录 · 本方视角'} <time>{clock(frame.tick)}</time></span>
         <button type="button" onClick={() => { if (cursor + 1 >= frames.length) { setCursor(0); setPlaying(true); } else setPlaying((active) => !active); }}>
           {cursor + 1 >= frames.length ? '重播' : playing ? '暂停回放' : '继续回放'}
         </button></div>

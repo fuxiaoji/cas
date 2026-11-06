@@ -27,10 +27,13 @@ const coach = () => page.getByRole('region', { name: '白汐实操引导' });
 const continueDialogue = () => button('继续对话').click();
 
 async function screenPosition(world, point) {
-  const box = await page.locator('.battle-map').boundingBox();
+  const chart = page.locator('.battle-map').first();
+  const box = await chart.boundingBox();
   assert(box);
-  const ratio = Math.min((box.width - 65) / world.width, (box.height - 42) / world.height);
-  return { x: box.x + (box.width - world.width * ratio) / 2 + point.x * ratio, y: box.y + (box.height + world.height * ratio) / 2 - point.y * ratio };
+  const { ratio, left, bottom } = await chart.evaluate(el => ({
+    ratio: Number(el.dataset.chartRatio), left: Number(el.dataset.chartLeft), bottom: Number(el.dataset.chartBottom),
+  }));
+  return { x: box.x + left + point.x * ratio, y: box.y + bottom - point.y * ratio };
 }
 
 async function planRoute(mode, options, speed) {
@@ -57,6 +60,10 @@ async function planRoute(mode, options, speed) {
 }
 
 async function dragWeapon(weapon, world, ship, contact) {
+  if (world.variant === 'prologue') {
+    await button('编队').click();
+    await page.locator('.roster-ship').filter({ hasText: ship.name }).click();
+  }
   const marker = page.locator(`[data-ship="${ship.id}"] .weapon.${weapon}`);
   const box = await marker.boundingBox();
   assert(box, `Missing ${weapon} badge for ${ship.name}`);
@@ -68,8 +75,8 @@ async function dragWeapon(weapon, world, ship, contact) {
 }
 
 async function aimFrom(world, weapon) {
-  for (const ship of world.ships.filter((ship) => ship[weapon])) {
-    for (const contact of world.contacts) {
+  for (const ship of world.ships.filter((ship) => ship[weapon] && (world.variant !== 'prologue' || ship.fleet === 1))) {
+    for (const contact of world.contacts.filter(contact => world.variant !== 'prologue' || contact.kind === 'bb')) {
       const aim = await q('aim', { ship: ship.id, target: contact.id, weapon });
       if (aim.valid && !aim.friendly) return { ship, contact, aim };
     }
@@ -90,11 +97,11 @@ async function waitForLegalAim(weapon) {
   throw new Error(`No legal ${weapon} solution in exercise`);
 }
 
-async function waitForWeapon(weapon, issuedTick) {
+async function waitForWeapon(weapon, issuedTick, shipId) {
   if (weapon === 'gun' && (await observed()).realtimeGunnery) {
     for (let elapsed = 1; elapsed <= 90; elapsed++) {
       const world = await step();
-      if (world.events.some(event => event.tick > issuedTick && event.kind === 'gun')) {
+      if (world.events.some(event => event.tick > issuedTick && event.kind === 'gun' && event.own_ship === shipId)) {
         assert(world.tick < issuedTick + 90, 'Gun must not wait for the next CAS tactical window');
         return world;
       }
@@ -106,13 +113,7 @@ async function waitForWeapon(weapon, issuedTick) {
   await step();
   if (await coach().getByRole('button', { name: '继续序章' }).isVisible()) return;
   const observedState = await observed();
-  assert(observedState.events.some((event) => event.tick >= issuedTick && event.kind === weapon), `No actual ${weapon} launch near t=${issuedTick}`);
-}
-
-async function advanceTo(tick) {
-  const now = (await observed()).tick;
-  if (tick > now + 1) await q('step', { seconds: tick - now - 1 });
-  return tick > now ? step() : observed();
+  assert(observedState.events.some((event) => event.tick >= issuedTick && event.kind === weapon && event.own_ship === shipId), `No actual ${weapon} launch near t=${issuedTick}`);
 }
 
 try {
@@ -124,7 +125,12 @@ try {
   await page.locator('.prologue-film-strip').waitFor({ timeout: 12_000 });
   await page.waitForFunction(() => +(document.querySelector('.projectile-layer')?.dataset.shells || 0) > 0);
   await screenshot('10-integrated-opening');
+  await page.waitForFunction(() => +(document.querySelector('.projectile-layer')?.dataset.torpedoes || 0) > 0, null, { timeout: 11_000 });
+  await page.locator('[data-camera-cue="第五驱逐小队"]').waitFor();
   await button('进入舰桥').click();
+  await page.locator('.prologue-dialogue-chart').waitFor();
+  assert.equal(await page.locator('.battle-map').count(), 1);
+  assert.equal((await observed()).variant, 'prologue');
   await continueDialogue();
   await button('先告诉我，舰队怎么样了？').click();
   const duty = '你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。';
@@ -145,14 +151,15 @@ try {
 
   await button('前往海图实操').click();
   await coach().waitFor();
-  const followPoints = [{ x: 9200, y: 6550 }, { x: 9200, y: 10400 }];
+  const followPoints = [{ x: 11600, y: 6600 }, { x: 14100, y: 6600 }];
   await planRoute('follow', [followPoints]);
   const gun = await waitForLegalAim('gun');
   await dragWeapon('gun', gun.world, gun.ship, gun.contact);
-  await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('预计首炮'));
+  await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('预计首炮'))
+    .catch(async error => { await screenshot('debug-prologue-gun'); throw error; });
   await page.mouse.up();
   await page.getByRole('status').filter({ hasText: '已下达炮击' }).waitFor();
-  await waitForWeapon('gun', gun.world.tick);
+  await waitForWeapon('gun', gun.world.tick, gun.ship.id);
   await button('继续序章').click();
   await button('返回剧情').click();
   for (let i = 0; i < 5; i++) await continueDialogue();
@@ -163,7 +170,7 @@ try {
   const at = await screenPosition(await observed(), followPoints[0]);
   await page.mouse.click(at.x, at.y);
   await button('取消草稿').click();
-  await planRoute('sync', [followPoints, [{ x: 8850, y: 6550 }, { x: 11600, y: 7950 }]]);
+  await planRoute('sync', [[{ x: 13300, y: 6760 }], followPoints]);
   await button('继续序章').click();
   await button('返回剧情').click();
   await continueDialogue(); await continueDialogue();
@@ -189,7 +196,7 @@ try {
   await screenshot('12-integrated-torpedo');
   await page.mouse.up();
   await page.getByRole('status').filter({ hasText: '已下达雷击' }).waitFor();
-  await waitForWeapon('torpedo', torpedo.world.tick);
+  await waitForWeapon('torpedo', torpedo.world.tick, torpedo.ship.id);
   await button('继续序章').click(); await button('返回剧情').click();
   for (let i = 0; i < 3; i++) await continueDialogue();
   await page.locator('.prologue-victory > img').evaluate((img) => img.decode());
@@ -211,52 +218,44 @@ try {
     await button('夜战教学').click();
     await coach().waitFor();
     const night = await observed();
-    assert.equal(night.variant, 'night-training');
+    assert.equal(night.variant, 'night-radar-training');
     assert.equal(night.contacts.length, 0);
+    await button('舰况').click();
+    await page.getByRole('button', { name: /SG.*关闭/ }).first().click();
+    await page.locator('[data-guide-next="radarContactViewed"]').waitFor();
+    const nextWindow = () => button('推进到下一探测窗口').click();
+    await nextWindow();
+    const radar = await observed();
+    const echo = radar.radarContacts.find(contact => contact.usableForShipIds.includes(1));
+    assert(echo && radar.contacts.length === 0);
+    const echoPoint = await screenPosition(radar, echo);
+    await page.mouse.click(echoPoint.x, echoPoint.y);
+    await page.locator('[data-guide-next="contactViewed"]').waitFor();
+    let contacted = radar;
+    while (!contacted.contacts.length && contacted.tick < 1080) { await nextWindow(); contacted = await observed(); }
+    assert(contacted.contacts.length > 0);
+    const eye = await screenPosition(contacted, contacted.contacts[0]);
+    await page.mouse.click(eye.x, eye.y);
+    await page.locator('[data-guide-next="lightAccepted"]').waitFor();
     await button('编队').click();
-    const sea = await screenPosition(night, { x: 9000, y: 9700 });
-    await page.mouse.click(sea.x, sea.y);
-    await planRoute('follow', [[{ x: 13000, y: 6550 }, { x: 13000, y: 10400 }]], 15);
-    await button('开始演习').click();
-    await button('暂停演习').click();
-    await step();
-    const contacted = await advanceTo(360);
-    assert.equal(contacted.tick, 360);
-    assert(contacted.contacts.some((c) => c.id === 'C05'));
     await page.locator('.roster-ship').filter({ hasText: contacted.ships.find((s) => s.id === 5).name }).click();
-    await page.getByRole('combobox', { name: '可见接触' }).selectOption('C05');
+    const target = contacted.contacts.at(-1);
+    await page.getByRole('combobox', { name: '可见接触' }).selectOption(target.id);
     const orderLight = page.getByRole('button', { name: /^下达照明弹/ });
     await orderLight.click();
     await page.getByRole('status').filter({ hasText: '照明弹已下令' }).waitFor();
-    const lit = await advanceTo(540);
-    assert(lit.events.some((e) => e.kind === 'illumination' && e.tick === 540));
+    await nextWindow();
+    const lit = await observed();
+    assert(lit.events.some((e) => e.kind === 'illumination' && e.tick === lit.tick));
     assert(lit.illuminations.some((mark) => mark.own));
     await screenshot('14-integrated-night-light');
-    const litGun = await aimFrom(lit, 'gun');
-    assert(litGun);
-    await dragWeapon('gun', lit, litGun.ship, litGun.contact);
-    await page.waitForFunction(() => document.querySelector('.gesture-tip')?.textContent.includes('预计首炮'));
-    await page.mouse.up();
-    await page.getByRole('status').filter({ hasText: '已下达炮击' }).waitFor();
-    const litShot = await waitForWeapon('gun', lit.tick);
-    assert(litShot.tick < 720, 'Night training should fire before the next tactical window');
-    const inRange = await advanceTo(770);
-    const nightTorpedo = await aimFrom(inRange, 'torpedo');
-    assert(nightTorpedo);
-    await dragWeapon('torpedo', inRange, nightTorpedo.ship, nightTorpedo.contact);
-    await page.locator('.gesture-tip').filter({ hasText: '鱼雷瞄准' }).waitFor();
-    await page.mouse.up();
-    await page.getByRole('status').filter({ hasText: '已下达雷击' }).waitFor();
-    const afterNightAttack = await advanceTo(900);
-    assert(afterNightAttack.events.some((e) => e.kind === 'torpedo' && e.tick === 900));
     await button('战情记录').click();
-    await coach().getByText('10/10', { exact: true }).waitFor();
+    await coach().getByText('4/4', { exact: true }).waitFor();
     await screenshot('15-integrated-night-complete');
     await button('完成课程').click();
     await button('复习夜战教学').waitFor();
-    checks.push({ nightRealRoute: true, contactTick: contacted.tick, ownIlluminationTick: lit.tick,
-      ownGunTick: litShot.events.find(e => e.kind === 'gun' && e.tick > lit.tick).tick,
-      ownTorpedoTick: afterNightAttack.tick, nightCheckpoints: 10 });
+    checks.push({ fixedNightTraining: true, directRadarTick: radar.tick, contactTick: contacted.tick,
+      ownIlluminationTick: lit.tick, nightCheckpoints: 4 });
   }
   assert.deepEqual(errors, []);
   await fs.writeFile(`${destination}/browser-story-receipt.json`, JSON.stringify(checks, null, 2));

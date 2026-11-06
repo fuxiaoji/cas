@@ -19,8 +19,8 @@ const tabs: Record<Tab, string> = { recruit: '征募', shop: '补给商店', mai
 const rarity: Record<string, string> = { common: '普通', elite: '精锐', rare: '稀有', ur: 'UR' };
 const medalPrice: Record<string, number> = { common: 15, elite: 45, rare: 120, ur: 300 };
 
-export function OnlineSupply({ token, meta, onMeta, onBack, initialTab }: {
-  token: string; meta?: OnlineMeta; onMeta: (meta: OnlineMeta) => void; onBack: () => void; initialTab: Tab;
+export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetEditor }: {
+  token: string; meta?: OnlineMeta; onMeta: (meta: OnlineMeta) => void; onBack: () => void; initialTab: Tab; onFleetEditor?: () => void;
 }) {
   const [tab, setTab] = useState<Tab>(initialTab);
   const [catalog, setCatalog] = useState<Catalog>();
@@ -81,6 +81,7 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab }: {
 
   return <main className="online-supply">
     <header><button onClick={onBack}>‹ 返回母港</button><div><p>联机免费内测</p><h1>征募与补给</h1></div>
+      {tab === 'fleet' && onFleetEditor && <button type="button" onClick={onFleetEditor}>个人编队</button>}
       <button onClick={() => void load()} disabled={busy}>刷新</button></header>
     {wallet && <div className="online-wallet" aria-label="联机钱包">
       <span>补给币 <b>{wallet.credits}</b></span><span>UP 券 <b>{wallet.up_tickets}</b></span>

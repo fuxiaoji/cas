@@ -7,7 +7,7 @@ export type Weapon = 'gun' | 'torpedo';
 export interface Point { x: number; y: number }
 export interface Position extends Point { heading: number; speed: number }
 export interface Ship extends Position {
-  id: number; name: string; kind: 'dd' | 'cl'; fleet: number | null;
+  id: number; name: string; kind: 'dd' | 'cl' | 'bb'; fleet: number | null;
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
   gunTarget?: string;
@@ -39,7 +39,7 @@ export interface Fleet {
   id: number; name: string; leader: number; members: number[];
   mode: Maneuver; speed: number; points: Point[]; paths: Path[]; ai: AiConfig; notice?: string;
 }
-export interface LogEvent { id?: number | string; tick: number; kind: string; text: string; rule?: string; x?: number; y?: number; voiceCue?: string }
+export interface LogEvent { id?: number | string; tick: number; kind: string; text: string; rule?: string; x?: number; y?: number; voiceCue?: string; own_ship?: number }
 export interface Result { winner: string; allies: number; axis: number; primary?: boolean | string; grade?: CampaignGrade }
 export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;

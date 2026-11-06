@@ -7,21 +7,25 @@ import type { HarborTab } from './Harbor';
 import { CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
 import { claimCampaignRewards, recordCampaignResult } from './campaign-progress';
 import type { CampaignLaunch } from './campaign-progress';
+import { campaignObservationLabels, campaignText } from './campaign-labels';
 import { GrowthPort } from './GrowthPort';
 import type { LobbySection } from './GrowthPort';
 import { Login } from './Login';
 import { useBattleVoice } from './audio/BattleVoice';
+import { useOriginalScore } from './audio/OriginalScore';
 import { ActivityCenter } from './activities/ActivityCenter';
 import { recordChallengeClear } from './activities/week';
-import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY, STARTER_DD_IDS } from './prologue';
+import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY } from './prologue';
 import type { StarterDDId } from './prologue';
-import { TrainingCoach, trainingCourseDone } from './tutorial';
+import { PROLOGUE_HANDOVER_TICK } from './prologue/PrologueFilm';
+import { guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainingCourseDone } from './tutorial';
 import type { CourseId, TrainingEvidence, TrainingSignal } from './tutorial';
 import { profileKey } from './account';
 import type { LocalProfile } from './account';
 import { battlePath, OnlineError, onlineMeta, onlineRequest } from './online';
 import type { OnlineBattle, OnlineBattleClaim, OnlineBattleSummary, OnlineMeta } from './online';
 import { OnlineSupply } from './OnlineSupply';
+import { OnlineFleetEditor } from './OnlineFleetEditor';
 import { ask, clock, closeSession, maneuverNames, profileNames, sideNames } from './engine';
 import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, Weapon } from './engine';
 import { grantPrologue, hulls, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
@@ -36,6 +40,7 @@ interface Replay { data: unknown; end: number }
 const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' | 'radar', realtime: true };
 type LightPreview = { valid: boolean; error?: string; mount?: number };
 const aimAction: Record<Weapon, string> = { gun: '炮击', torpedo: '雷击' };
+const hullNames = { dd: '驱逐舰', cl: '轻巡洋舰', bb: '战列舰' };
 const descriptions: Record<Profile, string> = {
   coord: '保持编队，在火力与机动之间取平衡。',
   gunnery: '争取射界和火力距离，集中炮击。',
@@ -94,17 +99,20 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const cloudLaunch = useRef<{ stageId: string; difficulty: string; id: string } | undefined>(undefined);
   const cloudToken = profile.online?.token;
   const [portOpen, setPortOpen] = useState(true);
-  const [section, setSection] = useState<HarborTab | 'activities'>();
+  const [section, setSection] = useState<HarborTab | 'activities' | 'fleet-editor'>();
   const [mainMenu, setMainMenu] = useState(false);
   const [portError, setPortError] = useState<string>();
   const [training, setTraining] = useState(false);
   const [storyOpen, setStoryOpen] = useState(false);
   const [story, setStory] = useState(() => loadPrologue(storyKey));
+  const storyLive = useRef(false);
+  const storyBattleKey = storyKey + ':battle';
   const [course, setCourse] = useState<CourseId>();
   const [evidence, setEvidence] = useState<TrainingEvidence>({});
   const [nightTarget, setNightTarget] = useState('');
   const [lightPreview, setLightPreview] = useState<LightPreview>();
   const courseLive = useRef<CourseId | undefined>(undefined);
+  const courseEvent = useRef(0);
   const savedExercise = useRef<unknown>(undefined);
   const challengeId = useRef<string | undefined>(undefined);
   const campaignId = useRef<string | undefined>(undefined);
@@ -120,27 +128,39 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const selected = o?.ships.find((ship) => ship.id === shipId) ?? ships.find((ship) => ship.id === fleet?.leader) ?? ships[0];
   const result = o?.result;
   const finished = Boolean(result);
+  const nightRadar = o?.variant === 'night-radar-training';
+  const guided = nightRadar || o?.variant === 'prologue';
+  const radioKey = profile.id + ':fleet-radio';
   const radio = useBattleVoice({ session, observation: o, live: !portOpen, replaying: !!replay,
-    paused: !cloudBattle && !running && !finished, settingsKey: profile.id + ':fleet-radio' });
+    paused: !cloudBattle && !running && !finished, settingsKey: radioKey });
   const contactCount = (o?.contacts.length ?? 0) + (o?.radarContacts?.length ?? 0);
+  const music = useOriginalScore({ settingsKey: profile.id + ':score',
+    scene: storyOpen ? 'prologue' : portOpen || replay ? 'off' : result ? (result.winner === o?.side ? 'victory' : 'defeat')
+      : contactCount ? 'engagement' : 'maneuver' });
 
   function record(...signals: TrainingSignal[]) {
-    if (!courseLive.current || !signals.length) return;
-    setEvidence((value) => signals.every(signal => value[signal]) ? value :
+    const active = courseLive.current;
+    if (!active || !signals.length) return;
+    setEvidence((value) => guided ? recordGuidedTrainingSignals(active, value, signals, { radar: nightRadar })
+      : signals.every(signal => value[signal]) ? value :
       { ...value, ...Object.fromEntries(signals.map(signal => [signal, true])) });
   }
 
   function hint(message: string) {
     window.clearTimeout(noticeTimer.current);
-    setNotice(message);
+    setNotice(o?.campaign ? campaignText(message) : message);
     noticeTimer.current = window.setTimeout(() => setNotice(''), 4200);
   }
   function update(observation: Observation, live = true) {
     clockTick.current = observation.tick;
-    setObservation(observation);
+    setObservation(campaignObservationLabels(observation));
     if (observation.result) setRunning(false);
-    if (courseLive.current) {
-      const kinds = new Set(observation.events.map(event => event.kind));
+    if (live && courseLive.current) {
+      const trainingIds = observation.fleets[0]?.members ?? [];
+      const newEvents = observation.events.filter(event => Number(event.id) > courseEvent.current);
+      courseEvent.current = Math.max(courseEvent.current, ...newEvents.map(event => Number(event.id)));
+      const kinds = new Set(newEvents.filter(event => observation.variant !== 'prologue'
+        || event.own_ship !== undefined && trainingIds.includes(event.own_ship)).map(event => event.kind));
       const events: TrainingSignal[] = [];
       if (kinds.has('gun')) events.push('gunFired');
       if (kinds.has('torpedo')) events.push('torpedoFired');
@@ -173,7 +193,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     timeAccumulator.current = 0;
   }
   async function persist(toast = false) {
-    if (courseLive.current || cloud.current) return;
+    if (courseLive.current || storyLive.current || cloud.current) return;
     const id = challengeId.current;
     const localCampaignId = campaignId.current;
     try {
@@ -329,7 +349,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   }, [fleet?.id, editMode, waypoints, cruise, refreshAt, replay]);
 
   useEffect(() => {
-    if (o?.variant !== 'night-training' || !selected || !nightTarget || !o.contacts.some(c => c.id === nightTarget) || replay) {
+    if (!(o?.variant === 'night-training' || nightRadar) || !selected || !nightTarget || !o.contacts.some(c => c.id === nightTarget) || replay) {
       setLightPreview(undefined); return;
     }
     let active = true;
@@ -348,6 +368,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   }
 
   function selectShip(ship: Ship) {
+    if (o?.variant === 'prologue' && ship.fleet !== 1) {
+      hint('其他编队由总指挥调度。请指挥第五驱逐小队。');
+      return;
+    }
     setShipId(ship.id);
     if (ship.fleet !== null && ship.fleet !== fleet?.id) {
       setFleetId(ship.fleet);
@@ -363,6 +387,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     if (waypoints.length >= 10) { hint('一条航线最多 10 个途经点。'); return; }
     setPreview(undefined);
     setWaypoints((list) => [...list, point]);
+    record('routePoint');
   }
   function chooseMode(mode: Maneuver) {
     if (editMode === mode) return;
@@ -418,6 +443,13 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     } catch (error) { hint(errorText(error)); }
     finally { setBusy(false); }
   }
+  async function nextNightWindow() {
+    if (!nightRadar || busy || !o || o.result || inFlight.current) return;
+    setBusy(true); setRunning(false);
+    try { update(await ask<Observation>({ op: 'step', seconds: 180 - o.tick % 180 })); }
+    catch (error) { hint(errorText(error)); }
+    finally { setBusy(false); }
+  }
   async function startReplay() {
     if (!o || busy) return;
     setRunning(false); setBusy(true); setResultDismissed(true);
@@ -447,7 +479,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         await onlineRequest<{ result: Result | null; events: LogEvent[] }>(battlePath(cloud.current.battle_id) + '/report', cloudToken) :
         await ask<{ result: Result | null; events: LogEvent[] }>({ op: 'report' });
       const title = ['CAS 海图指挥台', o.scenario, sideNames[o.side], '模拟时间 ' + clock(o.tick)];
-      const rows = report.events.map((event) => [clock(event.tick), event.text, event.rule ?? ''].filter(Boolean).join('  '));
+      const rows = report.events.map((event) => [clock(event.tick), o.campaign ? campaignText(event.text) : event.text, event.rule ?? ''].filter(Boolean).join('  '));
       const blob = new Blob(['\uFEFF' + title.concat('', rows).join('\r\n')], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a'); link.href = url; link.download = 'CAS-战情记录.txt';
@@ -463,26 +495,74 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     setRunning((value) => !value);
   }
   function openSetup() { setRunning(false); setSetup((current) => ({ ...current, variant: o?.variant === 'night' ? 'night' : o?.variant === 'radar' ? 'radar' : '' })); setDialog(true); }
+  async function openStory() {
+    if (busy || !o || storyLive.current) return;
+    setBusy(true); setRunning(false); setPortError(undefined);
+    try {
+      const previous = await ask<unknown>({ op: 'save' });
+      let observation: Observation | undefined;
+      if (story.step > 0) {
+        try {
+          const save = JSON.parse(localStorage.getItem(storyBattleKey) ?? 'null');
+          if (save?.variant === 'prologue') observation = await ask<Observation>({ op: 'load', save });
+        } catch { /* Reopen the handover when an earlier story has no compatible battle. */ }
+      }
+      if (!observation) {
+        await ask({ op: 'new', ...defaultSetup, variant: 'prologue' });
+        observation = await ask<Observation>({ op: 'step', seconds: PROLOGUE_HANDOVER_TICK });
+      }
+      savedExercise.current = previous; storyLive.current = true;
+      resetPanel(); update(observation); setStoryOpen(true);
+    } catch (error) { setPortError(errorText(error)); }
+    finally { setBusy(false); }
+  }
+  async function saveStoryBattle() {
+    localStorage.setItem(storyBattleKey, JSON.stringify(await ask({ op: 'save' })));
+  }
+  async function closeStory() {
+    if (!storyLive.current || busy) return;
+    setBusy(true); setRunning(false);
+    try {
+      await saveStoryBattle();
+      const next = await ask<Observation>({ op: 'load', save: savedExercise.current });
+      storyLive.current = false; savedExercise.current = undefined;
+      resetPanel(); update(next); setStoryOpen(false); setPortError(undefined);
+    } catch (error) { setPortError(errorText(error)); }
+    finally { setBusy(false); }
+  }
   async function startCourse(id: CourseId, side: Side = 'allies', leader?: StarterDDId) {
     if (busy || !o || courseLive.current) return;
     setBusy(true); setRunning(false); setPortError(undefined);
     try {
-      savedExercise.current = await ask<unknown>({ op: 'save' });
-      const variant = id === 'night' ? 'night-training' : '';
-      const ddSlots = [0, 2, 3, 4];
-      const leaderSlot = leader ? ddSlots[Math.max(0, STARTER_DD_IDS.indexOf(leader)) % ddSlots.length] : 0;
-      const next = await ask<Observation>({ op: 'new', ...defaultSetup, side, variant, leaderSlot });
+      let next: Observation;
+      if (leader && storyLive.current && o.variant === 'prologue') {
+        const chosen = o.ships.find(ship => ship.characterId === leader);
+        const squadron = o.fleets[0];
+        next = id === 'follow' && o.tick === PROLOGUE_HANDOVER_TICK && chosen && squadron.leader !== chosen.id
+          ? await ask<Observation>({ op: 'lead', fleet: squadron.id, ship: chosen.id }) : o;
+      } else {
+        savedExercise.current = await ask<unknown>({ op: 'save' });
+        next = await ask<Observation>({ op: 'new', ...defaultSetup, side, variant: id === 'night' ? 'night-radar-training' : '' });
+      }
       clearCloud();
-      setEvidence({}); courseLive.current = id; setCourse(id);
+      setEvidence({}); courseLive.current = id; courseEvent.current = Math.max(0, ...next.events.map(event => Number(event.id) || 0)); setCourse(id);
       resetPanel(); update(next); setPortOpen(false); setStoryOpen(false); setTraining(false); setPresetActive(false);
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
   }
   async function leaveCourse(complete: boolean) {
     const id = courseLive.current;
-    if (!id || busy || (complete && !trainingCourseDone(id, evidence))) return;
+    const done = id && (guided ? guidedTrainingDone(id, evidence, { radar: nightRadar }) : trainingCourseDone(id, evidence));
+    if (!id || busy || (complete && !done)) return;
     setRunning(false); setBusy(true);
     try {
+      if (storyLive.current) {
+        if (complete) await saveStoryBattle();
+        courseLive.current = undefined; setCourse(undefined);
+        resetPanel(); setPortOpen(true); setSection(undefined); setStoryOpen(true);
+        if (complete && id !== 'day' && id !== 'night') setStory(progress => completePrologueBattle(progress, id));
+        return;
+      }
       const saved = savedExercise.current;
       const exercise = saved ? await ask<Observation>({ op: 'load', save: saved }) : await ask<Observation>({ op: 'new', ...defaultSetup });
       courseLive.current = undefined; savedExercise.current = undefined;
@@ -576,6 +656,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     setTab(next);
     if (next === 'fleet') record('fleetViewed');
     if (next === 'log') record('reportViewed');
+    if (next === 'ship') record('radarViewed');
   }
   const tabs: { key: Tab; title: string }[] = [
     { key: 'fleet', title: '编队' }, { key: 'ship', title: '舰况' }, { key: 'ai', title: '战术 AI' }, { key: 'log', title: '战情' },
@@ -592,22 +673,25 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   };
 
   if (portOpen) {
+    if (cloudToken && section === 'fleet-editor') return <OnlineFleetEditor token={cloudToken} onBack={() => setSection('fleet')} />;
     if (cloudToken && (section === 'recruit' || section === 'fleet')) return <OnlineSupply key={section} token={cloudToken}
       meta={cloudMeta} onMeta={meta => {setCloudMeta(meta);setCloudError(undefined);}}
-      onBack={() => setSection(undefined)} initialTab={section === 'fleet' ? 'fleet' : 'recruit'} />;
-    if (storyOpen) return <PrologueScene progress={story} onProgress={setStory} busy={busy || !o}
+      onBack={() => setSection(undefined)} onFleetEditor={() => setSection('fleet-editor')}
+      initialTab={section === 'fleet' ? 'fleet' : 'recruit'} />;
+    if (storyOpen) return <PrologueScene progress={story} onProgress={setStory} busy={busy || !o} radioKey={radioKey}
+      battle={o?.variant === 'prologue' ? o : undefined}
       error={portError ?? loadError} claimed={port.prologueReward}
       rewards={['同盟演习舰队（首次领取初始舰队时）', '补给币 2,000', '常驻券与 UP 券各 10 张（首次领取初始舰队时）']}
       onBattle={(stage, leader) => void startCourse(stage, 'allies', leader)}
-      onFinish={() => { setPort(grantPrologue); setStoryOpen(false); }}
-      onExit={() => { setPortError(undefined); setStoryOpen(false); }} />;
+      onFinish={async () => { setPort(grantPrologue); await closeStory(); }}
+      onExit={() => void closeStory()} />;
     if (section === 'activities') return <ActivityCenter state={port} change={setPort} onClose={() => setSection(undefined)}
       online={cloudToken ? {token:cloudToken,onMeta:meta => {setCloudMeta(meta);setCloudError(undefined);}} : undefined} />;
-    if (section) return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onLaunch={(options) => void launchFromHarbor(options)} onCampaign={(options) => void launchCampaign(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} online={!!cloudToken} />;
+    if (section && section !== 'fleet-editor') return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onLaunch={(options) => void launchFromHarbor(options)} onCampaign={(options) => void launchCampaign(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} online={!!cloudToken} />;
     return <>
       <GrowthPort state={port} onNavigate={navigateLobby} onHome={() => void openMainMenu()}
         online={cloudToken ? {meta:cloudMeta,error:cloudError} : undefined}
-        onReplayPrologue={() => { setStoryOpen(true); setPortError(undefined); }}
+        onReplayPrologue={() => void openStory()}
         onWatch={id => setPort(s => Object.hasOwn(hulls,id) && (s.owned[id as Hull] ?? 0) > 0 ? { ...s, watch: id as Hull } : s)} />
       {mainMenu && <div className="dialog-backdrop" onClick={e=>{if(e.target===e.currentTarget)setMainMenu(false);}}>
         <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="主菜单">
@@ -638,6 +722,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const latest = [...o.events].reverse();
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
   const editing = !!editMode && !replay && !finished;
+  const courseDone = course && (guided ? guidedTrainingDone(course, evidence, { radar: nightRadar }) : trainingCourseDone(course, evidence));
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
   return <main className={'command-shell' + (o.environment?.light === 'night' ? ' night-exercise' : '')}>
     <header className="masthead">
@@ -664,12 +749,21 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       <section className="chart-column">
         <BattleMap
           observation={o} fleet={fleet} selected={selected?.id} disabled={busy || !!replay || finished}
+          cameraCue={o.variant === 'prologue' ? { id: '第五驱逐小队', fleet: 1, zoom: 1.22 } : undefined}
           session={session} running={cloudBattle ? !finished : running} speed={cloudBattle ? 4 : speed} replaying={!!replay}
           requestAim={inspectBattle}
           editing={editing} waypoints={waypoints} preview={preview} reformPreview={reformPreview} onSelect={selectShip} onAddPoint={addPoint}
           onMovePoint={movePoint} onFire={fire} onCancelFire={() => { learn('cancel'); record('fireCancelled'); }} onHint={hint}
+          onTorpedoAim={(adjusted) => record(adjusted ? 'torpedoAdjusted' : 'torpedoAimed')}
           onInspectMap={course ? () => record('mapViewed') : undefined}
-          onInspectContact={course === 'night' ? (id) => { setNightTarget(id); record('contactViewed'); } : undefined}
+          onInspectContact={course === 'night' ? (id) => {
+            if (id.startsWith('R')) {
+              if (o.radarContacts?.find(contact => contact.id === id)?.usableForShipIds.includes(selected?.id ?? -1)) {
+                record('radarContactViewed');
+                hint('已检查本舰直接取得的雷达回波。');
+              } else hint('这处位置来自友舰共享。请选择本舰直接取得的雷达回波。');
+            } else { setNightTarget(id); record('contactViewed'); }
+          } : undefined}
         />
         <div className="signal-strip">
           <span className="side-tag">{sideNames[o.side]}</span>
@@ -703,18 +797,20 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       </section>
       <aside className="staff-panel" aria-label="指挥面板">
         <nav className="staff-tabs" aria-label="面板">{tabs.map(({ key, title }) =>
-          <button key={key} type="button" aria-pressed={tab === key} onClick={() => showTab(key)}>{title}</button>
+          <button key={key} type="button" aria-pressed={tab === key} data-guide-control={key === 'log' ? 'battle-log' : key + '-tab'} onClick={() => showTab(key)}>{title}</button>
         )}</nav>
         <div className="staff-scroll">
           {o.campaign && <CampaignMissionBrief campaign={o.campaign} />}
-          {course && <TrainingCoach course={course} evidence={evidence}
+          {course && <TrainingCoach course={course} evidence={evidence} guided={guided} radar={nightRadar}
             onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
-          {course && finished && !trainingCourseDone(course, evidence) && <p className="inline-warning">演习已结束。退出后可重新开始本课。</p>}
+          {nightRadar && course === 'night' && <button type="button" className="training-window" data-guide-control="clock-window"
+            disabled={busy || finished} onClick={() => void nextNightWindow()}>推进到下一探测窗口</button>}
+          {course && finished && !courseDone && <p className="inline-warning">演习已结束。退出后可重新开始本课。</p>}
           {!!selected?.gunTarget && !replay && !finished && <section className="night-tools" aria-label="本舰待发炮击">
             <h3>待发炮击 <small>{selected.name} → {selected.gunTarget}</small></h3>
             <button type="button" disabled={busy} onClick={() => void command({ op: 'gun_cancel', ship: selected.id }, () => hint('已撤销尚未发射的炮座。'))}>取消待发炮击</button>
           </section>}
-          {o.variant === 'night-training' && !replay && <section className="night-tools" aria-label="照明">
+          {(o.variant === 'night-training' || nightRadar) && !replay && <section className="night-tools" aria-label="照明" data-guide-control="illumination">
             <h3>照明弹 <small>{selected?.name}</small></h3>
             <label>可见接触 <select value={o.contacts.some(c => c.id === nightTarget) ? nightTarget : ''}
               onChange={event => { setLightPreview(undefined); setNightTarget(event.target.value); if (event.target.value) record('contactViewed'); }}>
@@ -747,8 +843,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
                 {preview?.error && <p className="inline-warning">{preview.error}</p>}
                 <div className="route-tools">
                   <button type="button" disabled={!waypoints.length} onClick={() => { setPreview(undefined); setWaypoints((list) => list.slice(0, -1)); }}>撤销一点</button>
-                  <button type="button" onClick={() => { if (waypoints.length && editMode === 'follow') record('draftCancelled'); resetDraft(); }}>取消草稿</button>
-                  <button type="button" className="primary" disabled={!preview?.valid || !waypoints.length}
+                  <button type="button" data-guide-control="route-cancel" onClick={() => { if (waypoints.length && editMode === 'follow') record('draftCancelled'); resetDraft(); }}>取消草稿</button>
+                  <button type="button" className="primary" data-guide-control="route-commit" disabled={!preview?.valid || !waypoints.length}
                     onClick={() => void command({ op: 'route', fleet: fleet.id, mode: editMode, points: waypoints, speed: cruise }, () => {
                       if (editMode === 'sync' || (editMode === 'follow' && waypoints.length >= 2)) {
                         learn(editMode); record(editMode === 'follow' ? 'followAccepted' : 'syncAccepted');
@@ -773,7 +869,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             <section className="roster">
               <div className="section-heading"><h3>编队舰艇</h3><span>舰体状态</span></div>
               {ships.map((ship) => <button key={ship.id} type="button" className="roster-ship" aria-pressed={selected?.id === ship.id} onClick={() => selectShip(ship)}>
-                <span className="hull-type">{ship.kind.toUpperCase()}</span>
+                <span className="hull-type">{hullNames[ship.kind]}</span>
                 <span className="ship-title">{ship.name}{ship.id === fleet.leader && <small>领舰</small>}</span>
                 <span className="hull-state" title={ship.hp + ' / ' + ship.maxHp}><i style={{ width: Math.min(100, Math.max(0, 100 * ship.hp / ship.maxHp)) + '%' }} /></span>
               </button>)}
@@ -781,7 +877,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
                 <span>{selected.hp > 0 ? selected.speed.toFixed(0) + ' 节' : '已失能'} · {selected.ammo} 枚雷</span>
                 <button type="button" onClick={() => setTab('ship')}>舰体示意</button>
                 {selected.hp > 0 && selected.id !== fleet.leader && !replay && !finished && <>
-                  <button type="button" onClick={() => void command({ op: 'lead', fleet: fleet.id, ship: selected.id }, () => {
+                  <button type="button" data-guide-control="set-leader" onClick={() => void command({ op: 'lead', fleet: fleet.id, ship: selected.id }, () => {
                     learn('lead'); record('lead'); hint('已更换领舰。若领舰不在队首，可先重整或选回队首舰。');
                   })}>设为领舰</button>
                   <button type="button" onClick={() => void command({ op: 'detach', fleet: fleet.id, ship: selected.id }, () => hint('该舰已脱离编队。'))}>脱队</button>
@@ -794,7 +890,9 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             {!!selected.systems?.radars?.length && <section className="night-tools" aria-label="舰上雷达">
               <h3>舰上雷达</h3>{selected.systems.radars.map(set => <button key={set.id} type="button"
                 aria-pressed={set.powered} disabled={set.disabled || finished || !!replay}
-                onClick={() => void command({ op: 'radar_set', ship: selected.id, radar: set.id, powered: !set.powered })}>{set.name} · {set.disabled ? '失能' : set.powered ? '开启' : '关闭'}</button>)}
+                data-guide-control={!set.powered && !set.disabled ? 'radar' : undefined}
+                onClick={() => void command({ op: 'radar_set', ship: selected.id, radar: set.id, powered: !set.powered },
+                  () => { if (!set.powered && (set.id === 'us_sg' || set.id === 'us_sc2')) record('radarPowered'); })}>{set.name} · {set.disabled ? '失能' : set.powered ? '开启' : '关闭'}</button>)}
             </section>}</> :
             <p className="empty-state">本席没有可查看的舰艇。</p>)}
           {tab === 'ai' && fleet && <section className="ai-panel">
@@ -860,6 +958,9 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         <label>演习编号 <input type="number" min={0} max={4294967295} value={setup.seed} onChange={(event) => setSetup({ ...setup, seed: Math.max(0, Math.min(4294967295, Math.trunc(Number(event.target.value)))) })} /></label>
         {radio.available && <label>电台音量 <input type="range" min={0} max={1} step={0.05} value={radio.volume}
           onChange={event => radio.setVolume(Number(event.target.value))} /></label>}
+        <label><input type="checkbox" checked={music.enabled} onChange={event => music.setEnabled(event.target.checked)} /> 战斗配乐</label>
+        <label>配乐音量 <input type="range" min={0} max={1} step={0.05} value={music.volume}
+          onChange={event => music.setVolume(Number(event.target.value))} /></label>
         <p className="field-note">开始新演习会替换当前本机进度。</p>
         <div className="actions"><button type="button" onClick={() => setDialog(false)} disabled={busy}>返回</button>
           <button type="button" className="primary" onClick={() => void newExercise()} disabled={busy}>开始新演习</button></div>

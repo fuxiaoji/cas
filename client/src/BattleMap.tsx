@@ -7,11 +7,13 @@ import { alertKind, BattleAlerts, BattleProjectiles, mountStatus } from './Battl
 type MapProps = {
   observation: Observation; fleet?: Fleet; selected?: number; disabled: boolean;
   session: number; running: boolean; speed: number; replaying: boolean;
+  cameraCue?: { id: string; fleet?: number; zoom: number };
   editing: boolean; waypoints: Point[]; preview?: RoutePreview; reformPreview?: RoutePreview;
   onSelect: (ship: Ship) => void; onAddPoint: (point: Point) => void;
   onMovePoint: (index: number, point: Point) => void;
   onFire: (ship: number, weapon: Weapon, target: string, heading?: number) => void;
   onCancelFire?: () => void;
+  onTorpedoAim?: (adjusted: boolean) => void;
   onInspectMap?: () => void;
   onInspectContact?: (id: string) => void;
   onHint: (message: string) => void;
@@ -53,7 +55,8 @@ function TurretBarrel({ at, bearing: next, rest, active, mount, state }: {
 }
 
 function symbol(context: CanvasRenderingContext2D, at: Point, heading: number, kind: string, color: string, filled: boolean) {
-  const cruiser = kind.toLowerCase() === 'cl';
+  const battleship = kind === 'bb';
+  const cruiser = kind === 'cl';
   context.save();
   context.translate(at.x, at.y);
   context.rotate(radians(heading));
@@ -61,7 +64,8 @@ function symbol(context: CanvasRenderingContext2D, at: Point, heading: number, k
   context.lineWidth = 1.35;
   context.fillStyle = filled ? '#183b47' : '#322b32';
   context.beginPath();
-  const length = cruiser ? 14 : 10, beam = cruiser ? 4.6 : 3.65;
+  const length = battleship ? 24 : cruiser ? 14 : 10;
+  const beam = battleship ? 7.5 : cruiser ? 4.6 : 3.65;
   context.moveTo(0, -length);
   context.lineTo(beam, -length * 0.38);
   context.lineTo(beam, length * 0.63);
@@ -99,6 +103,7 @@ export function BattleMap(props: MapProps) {
   const [rangesVisible, setRangesVisible] = useState(true);
   const [gesture, setGesture] = useState<Gesture>();
   const [mapPointer, setMapPointer] = useState<Point>();
+  const appliedCamera = useRef('');
   const gestureRef = useRef<Gesture | undefined>(undefined);
   const surface = useRef<SurfaceDrag | undefined>(undefined);
   const hold = useRef<number | undefined>(undefined);
@@ -125,6 +130,21 @@ export function BattleMap(props: MapProps) {
     if (lane !== -1) labelLanes[lane].push(at);
     return { contact, at, lane };
   });
+  useLayoutEffect(() => {
+    const cue = props.cameraCue;
+    if (!cue || size.w <= 1 || size.h <= 1) return;
+    const key = [session, cue.id, size.w, size.h].join('/');
+    if (appliedCamera.current === key) return;
+    const squadron: Point[] = cue.fleet === undefined ? [...o.ships, ...o.contacts]
+      : o.ships.filter(ship => ship.fleet === cue.fleet);
+    if (!squadron.length) return;
+    appliedCamera.current = key;
+    const ratio = Math.min((size.w - 65) / o.width, (size.h - 42) / o.height) * cue.zoom;
+    const avg = (field: keyof Point) => squadron.reduce((sum, ship) => sum + ship[field], 0) / squadron.length;
+    setZoom(cue.zoom);
+    setPan({ x: (o.width / 2 - avg('x')) * ratio - (cue.fleet === undefined ? 0 : size.w * 0.09),
+      y: (avg('y') - o.height / 2) * ratio + (cue.fleet === undefined ? 0 : size.h * 0.16) });
+  }, [props.cameraCue?.id, session, size.w, size.h]);
 
   function update(next: Gesture | undefined) {
     gestureRef.current = next;
@@ -285,7 +305,7 @@ export function BattleMap(props: MapProps) {
       ctx.beginPath(); ctx.arc(p.x, p.y, target?.id === contact.id ? 21 : 14, 0, TAU);
       ctx.strokeStyle = target?.id === contact.id ? (gesture?.aim?.valid === false ? COLORS.enemy : COLORS.gold) : '#efae875c';
       ctx.setLineDash([3, 3]); ctx.stroke(); ctx.setLineDash([]);
-      if (contact.kind && /^(dd|cl)$/i.test(contact.kind)) symbol(ctx, p, contact.heading, contact.kind, COLORS.enemy, false);
+      if (contact.kind && /^(dd|cl|bb)$/.test(contact.kind)) symbol(ctx, p, contact.heading, contact.kind, COLORS.enemy, false);
       else {
         ctx.beginPath(); ctx.moveTo(p.x, p.y - 8); ctx.lineTo(p.x + 7, p.y); ctx.lineTo(p.x, p.y + 8); ctx.lineTo(p.x - 7, p.y); ctx.closePath();
         ctx.fillStyle = contact.kind === 'radar' ? '#254a5a' : '#502e31'; ctx.fill();
@@ -345,7 +365,7 @@ export function BattleMap(props: MapProps) {
       if (contact.kind === 'radar') {
         const report = o.radarContacts?.find(item => item.id === contact.id);
         const usable = weapon === 'gun' ? report?.usableForShipIds : report?.torpedoForShipIds;
-        if (shooter === undefined || !usable?.includes(shooter)) continue;
+        if (shooter !== undefined && !usable?.includes(shooter)) continue;
       }
       const gap = distance(screen(contact), point);
       if (gap < best) { best = gap; closest = contact; }
@@ -358,6 +378,10 @@ export function BattleMap(props: MapProps) {
       const current = gestureRef.current;
       if (!current || current.contact?.id !== id || nonce !== aimSequence.current) return;
       update({ ...current, loading: false, aim, aimTick: o.tick, heading: heading === undefined ? aim.heading : current.heading, baseHeading: current.baseHeading ?? aim.heading });
+      if (weapon === 'torpedo' && aim.valid && (heading === undefined
+        || Math.abs(wrap(heading - (current.baseHeading ?? heading) + 180) - 180) > .15)) {
+        props.onTorpedoAim?.(heading !== undefined);
+      }
     }, (error: Error) => {
       const current = gestureRef.current;
       if (!current || current.contact?.id !== id || nonce !== aimSequence.current) return;
@@ -452,7 +476,10 @@ export function BattleMap(props: MapProps) {
         else if (distance(p, active.start) > 10) props.onHint('没有下令。请拖到一个可见敌舰。');
       } else if (active.anchor && active.contact && active.aim && active.heading !== undefined) {
         const adjusted = active.baseHeading !== undefined && Math.abs(active.heading - active.baseHeading) > .15;
-        if (!o.contacts.some((contact) => contact.id === active.contact!.id)) props.onHint('未发射：接触已经丢失。');
+        const id = active.contact.id;
+        const held = o.contacts.some(contact => contact.id === id)
+          || o.radarContacts?.some(contact => contact.id === id && contact.torpedoForShipIds?.includes(active.ship));
+        if (!held) props.onHint('未发射：接触已经丢失。');
         else if (!inArcs(active.heading, active.aim.arcs)) props.onHint('未发射：鱼雷航向超出发射扇区。');
         else if (!adjusted && !active.aim.valid) props.onHint(active.aim.error ?? '推荐射向当前不可用。');
         else props.onFire(active.ship, active.weapon, active.contact.id, adjusted ? active.heading : undefined);
@@ -479,7 +506,9 @@ export function BattleMap(props: MapProps) {
     Math.min(...gesture.aim.mounts.map(({ readyTick }) => readyTick)) : undefined;
   return <div
     className={'battle-map' + (editing ? ' map-editing' : '')}
-    ref={viewport} aria-label="战术海图"
+    ref={viewport} aria-label="战术海图" data-guide-control="map"
+    data-chart-ratio={mapRatio} data-chart-left={left} data-chart-bottom={bottom}
+    data-camera-cue={props.cameraCue?.id}
     onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={cancelAll}
     onLostPointerCapture={(event) => { if (gestureRef.current?.pointer === event.pointerId || surface.current?.pointer === event.pointerId) cancelAll(); }}
     onPointerLeave={() => setMapPointer(undefined)}
@@ -488,7 +517,8 @@ export function BattleMap(props: MapProps) {
     <canvas ref={canvas} aria-hidden="true" />
     <BattleProjectiles key={session} observation={o} map={{ left, bottom, ratio: mapRatio, width: size.w, height: size.h }} running={running} speed={speed} />
     {contacts.map(({ contact, at, lane }) => <div key={contact.id} data-contact={contact.id}
-      className={'contact-label' + (target?.id === contact.id ? ' targeted' : '')} style={pointStyle(at)}>
+      data-guide-control={contact.kind === 'radar' ? 'radar-contact' : 'contact'}
+      className={'contact-label' + (contact.kind === 'radar' ? ' radar-contact' : '') + (target?.id === contact.id ? ' targeted' : '')} style={pointStyle(at)}>
       <span style={{ top: lane < 0 ? 23 : 17 + 11 * lane }} hidden={lane < 0 && target?.id !== contact.id}>
         {target?.id === contact.id && contact.name ? contact.name + ' · ' + contact.id : contact.id}
       </span>
@@ -496,15 +526,16 @@ export function BattleMap(props: MapProps) {
     {o.ships.filter((ship) => ship.hp > 0).map((ship) => {
       const point = screen(ship);
       const focused = ship.id === selected;
-      const canGun = ship.gun && !disabled;
-      const canTorpedo = ship.torpedo && !disabled;
+      const armed = !disabled && (o.variant !== 'prologue' || ship.fleet === 1 && focused);
+      const canGun = ship.gun && armed;
+      const canTorpedo = ship.torpedo && armed;
       const title = ship.name;
       return <div key={ship.id} className={'map-ship' + (focused ? ' focused' : '')}
         data-ship={ship.id} style={pointStyle(point)}>
         {(focused || gesture?.ship === ship.id || (o.realtimeGunnery ? !!ship.gunTarget : ship.systems?.guns.some((mount) => mount.bearing != null))) && ship.systems?.guns.map((mount, index, mounts) => {
           if (mount.destroyed) return null;
           const fraction = (index + .5) / mounts.length;
-          const offset = (0.5 - fraction) * (ship.kind === 'cl' ? 24 : 18);
+          const offset = (0.5 - fraction) * (ship.kind === 'bb' ? 40 : ship.kind === 'cl' ? 24 : 18);
           const rest = wrap(ship.heading + (fraction > .5 ? 180 : 0));
           const previewBearing = !o.realtimeGunnery && gesture?.ship === ship.id && gesture.weapon === 'gun' && gesture.aim?.valid && target ? bearing(point, screen(target)) : undefined;
           const relative = previewBearing === undefined ? 0 : wrap(previewBearing - ship.heading);
@@ -518,9 +549,9 @@ export function BattleMap(props: MapProps) {
           onPointerDown={(event) => start(event, ship, canGun === canTorpedo ? undefined : canGun ? 'gun' : 'torpedo')}
           onClick={() => !disabled && props.onSelect(ship)} />
         {(canGun || canTorpedo) && <div className="weapon-badges">
-          {canGun && <button type="button" className="weapon gun" aria-label={title + ' 炮击'} title={title + '：拖至敌舰炮击'}
+          {canGun && <button type="button" className="weapon gun" data-guide-control="gun" aria-label={title + ' 炮击'} title={title + '：拖至敌舰炮击'}
             onPointerDown={(event) => start(event, ship, 'gun')}>炮</button>}
-          {canTorpedo && <button type="button" className="weapon torpedo" aria-label={title + ' 雷击'} title={title + '：拖至敌舰瞄准鱼雷'}
+          {canTorpedo && <button type="button" className="weapon torpedo" data-guide-control="torpedo" aria-label={title + ' 雷击'} title={title + '：拖至敌舰瞄准鱼雷'}
             onPointerDown={(event) => start(event, ship, 'torpedo')}>雷</button>}
         </div>}
         <span className="map-ship-name">{ship.id === fleet?.leader ? '⚑ ' : ''}{title}</span>
