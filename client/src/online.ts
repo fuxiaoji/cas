@@ -1,5 +1,5 @@
 import type { LocalProfile } from './account';
-import type { Observation, Result } from './engine';
+import type { Observation, Result, Side } from './engine';
 
 function serviceUrl() {
   const raw = import.meta.env.VITE_CAS_ACCOUNT_URL || (import.meta.env.DEV ? 'http://127.0.0.1:8021' : '');
@@ -59,3 +59,13 @@ export interface OnlineBattle extends OnlineBattleSummary { view: Observation }
 export type OnlineBattleClaim = { grade: string; stars: number; claimed: boolean; meta: OnlineMeta;
   rewards: { id: string; title: string; credits?: number; tickets?: number; medals?: number }[] };
 export const battlePath = (id: string) => '/battles/' + encodeURIComponent(id);
+
+export interface OnlineDuelSummary {
+  match_id: string; seat: Side; revision: number; status: 'active' | 'complete'; tick: number; result: Result | null;
+  end_reason: 'battle' | 'surrender' | null;
+}
+export interface OnlineDuel extends OnlineDuelSummary { view: Observation }
+export const duelPath = (id: string) => '/pvp/matches/' + encodeURIComponent(id);
+export function onlineBattlePath(battle: OnlineBattle | OnlineDuel) {
+  return 'match_id' in battle ? duelPath(battle.match_id) : battlePath(battle.battle_id);
+}

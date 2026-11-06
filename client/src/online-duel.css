@@ -1,0 +1,25 @@
+.duel-lobby {
+  box-sizing: border-box;
+  min-height: 100dvh;
+  padding: clamp(1rem, 4vw, 3rem) max(1rem, calc((100vw - 58rem) / 2));
+  color: #e9e0c6;
+  background: radial-gradient(ellipse at 75% 0, #1d3b49 0, #0d222f 42%, #091823 85%);
+}
+.duel-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.duel-heading h1, .duel-lobby h2 { margin: 0; font-family: Georgia, 'Noto Serif SC', serif; }
+.duel-heading p, .duel-lobby p { margin: .5rem 0; color: #a6bfca; }
+.duel-lobby button, .duel-lobby input { min-height: 2.6rem; }
+.duel-mode { display: flex; gap: .7rem 1.2rem; flex-wrap: wrap; padding: .8rem 1rem; border-block: 1px solid #53717d; }
+.duel-mode span { color: #a6bfca; }
+.duel-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin-top: 1rem; }
+.duel-columns section { min-width: 0; padding: 1rem; border: 1px solid #426270; background: #112c3b; }
+.duel-columns h2 { margin-bottom: .7rem; font-size: 1.15rem; }
+.duel-invite, .duel-columns form { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin-top: .6rem; }
+.duel-invite output { font-size: 1.15rem; letter-spacing: .13em; color: #ffe6a4; user-select: all; overflow-wrap: anywhere; }
+.duel-columns input { width: 9rem; }
+.duel-history { grid-column: 1 / -1; }
+.duel-match { display: flex; width: 100%; justify-content: space-between; gap: .6rem; margin-bottom: .4rem; text-align: left; }
+@media (max-width: 580px) {
+  .duel-heading { flex-wrap: wrap; }
+  .duel-columns { grid-template-columns: 1fr; }
+}
