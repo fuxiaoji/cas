@@ -1,11 +1,22 @@
 use crate::{
     model::{Casualty, Ship, CYCLE},
-    world::World,
+    world::{roll, World},
 };
 use serde_json::Value;
 
 const INTERMEDIATE: u32 = 1_800;
 const FIRST_CONTROL: u32 = 3 * CYCLE;
+
+#[derive(Clone, Copy, Default)]
+pub(crate) struct SurfacePhase {
+    pub(crate) total: f64,
+    pub(crate) penetrated: f64,
+    die: Option<u32>,
+    resolved_slots: i32,
+    penetrating_slots: i32,
+    secondary_dp: f64,
+    massive: bool,
+}
 
 fn ratio_row(ratio: f64) -> usize {
     (ratio.min(1.) * 10. + 1e-9).floor() as usize
@@ -31,6 +42,10 @@ fn severity_column(size: &str, year: u32, percentage: f64) -> usize {
 
 fn roll_index(v: &Value, row: usize, die: u32) -> i32 {
     v[row][(die - 1) as usize].as_i64().unwrap_or(0) as i32
+}
+
+fn critical_count(table: &Value, ratio: f64, die: u32) -> i32 {
+    roll_index(table, ratio_row(ratio), die) + (((ratio - 1.).max(0.) / 0.2) + 1e-9).floor() as i32
 }
 
 fn reduction_dice(v: &Value, die: u32, level: usize) -> i32 {
@@ -77,6 +92,72 @@ fn adjust_casualties(casualties: &mut Vec<Casualty>, delta: f64) {
 }
 
 impl World {
+    pub(crate) fn progressive_criticals(&self) -> bool {
+        matches!(
+            self.version,
+            crate::realtime::VERSION | crate::campaign::live::VERSION
+        )
+    }
+
+    pub(crate) fn progress_surface_criticals(&mut self, victim: u32) {
+        let index = (victim - 1) as usize;
+        let mut phase = self.surface_damage[index];
+        let Some(ship) = self.ship(victim).filter(|ship| ship.alive()) else {
+            return;
+        };
+        let def = &self.data.ships[ship.def];
+        let minimum = self.data.rules["critical_damage_min_ratio"]
+            .as_f64()
+            .unwrap_or(0.01);
+        if phase.massive || phase.total < def.dp * minimum {
+            return;
+        }
+        // Damage caused by a critical from this batch is a consequence,
+        // not more input for its own gunfire check.
+        let ratio = phase.total / (ship.hp + phase.secondary_dp);
+        if ratio >= 3. {
+            let max_remaining = def.dp * 0.10;
+            let ship = self.ship_mut(victim).unwrap();
+            ship.hp = ship.hp.min(max_remaining);
+            ship.gun_mount_destroyed.fill(true);
+            ship.torp_mount_used.fill(true);
+            self.surface_damage[index].massive = true;
+            self.damage_message(victim, "船体遭受重大损伤，武器失效".into(), "CAS-8.1.10");
+            return;
+        }
+        let column = if matches!(def.size.as_str(), "A" | "B") {
+            "major_surface"
+        } else {
+            "minor_surface"
+        };
+        let hp_before = ship.hp;
+        let die = *phase
+            .die
+            .get_or_insert_with(|| roll(&mut self.surface_critical_rng, 6));
+        let count = critical_count(&self.data.rules["critical_damage_ratio_d6"], ratio, die);
+        let added = (count - phase.resolved_slots).max(0);
+        if added > 0 {
+            // Allocate current penetration evidence only to newly earned slots.
+            // An event already reported cannot change after a later penetration.
+            let penetrating_slots =
+                (f64::from(count) * phase.penetrated / phase.total).round() as i32;
+            let new_penetrations = (penetrating_slots - phase.penetrating_slots).clamp(0, added);
+            // Progressive damage never spends the main gunnery dice stream.
+            std::mem::swap(&mut self.rng, &mut self.surface_critical_rng);
+            for i in 0..added {
+                if !self.ship(victim).is_some_and(Ship::alive) {
+                    break;
+                }
+                self.apply_critical(victim, column, false, i < new_penetrations);
+            }
+            std::mem::swap(&mut self.rng, &mut self.surface_critical_rng);
+            phase.resolved_slots += added;
+            phase.penetrating_slots += new_penetrations;
+            phase.secondary_dp += (hp_before - self.ship(victim).unwrap().hp).max(0.);
+        }
+        self.surface_damage[index] = phase;
+    }
+
     pub(crate) fn flooding_speed_limit(&self, ship: &Ship) -> f64 {
         let def = &self.data.ships[ship.def];
         let flooding = ship.flooding.iter().map(|c| c.amount).sum::<f64>() * 100. / def.dp;
@@ -131,42 +212,39 @@ impl World {
             "minor_surface"
         };
         let die = self.d(6);
-        let count = roll_index(
-            &self.data.rules["critical_damage_ratio_d6"],
-            ratio_row(ratio),
-            die,
-        ) + (((ratio - 1.).max(0.) / 0.2) + 1e-9).floor() as i32;
+        let count = critical_count(&self.data.rules["critical_damage_ratio_d6"], ratio, die);
         let penetrations = (count as f64 * penetrating_fraction.clamp(0., 1.)).round() as i32;
         for i in 0..count {
             if !self.ship(victim).is_some_and(|s| s.alive()) {
                 break;
             }
-            let die = self.d(20) as usize;
-            let Some(kind) = self.data.rules["critical_hit_d20"][column][die - 1]
-                .as_str()
-                .map(str::to_owned)
-            else {
-                continue;
-            };
-            let penetrated = i < penetrations;
-            let name = kind.trim_end_matches('*');
-            if name == "main_battery" {
-                // A director hit explicitly does not require penetration (§8.3).
-                self.main_battery_critical(victim, penetrated || !kind.ends_with('*'));
-                continue;
-            }
-            if kind.ends_with('*') && !penetrated {
-                continue;
-            } // Becomes light AA: out of this scenario.
-            match name {
-                "fire" => self.add_casualty(victim, false, false, penetrated, 0, false),
-                "flooding" => self.add_casualty(victim, true, torpedo, penetrated, 0, false),
-                "engineering" => self.engineering_critical(victim, penetrated),
-                "sensor_comms" => self.radar_sensor_critical(victim),
-                // Systems below are identified by the source table but have no effect
-                // in this subset. No placeholder penalty is imposed on other systems.
-                _ => (),
-            }
+            self.apply_critical(victim, column, torpedo, i < penetrations);
+        }
+    }
+
+    fn apply_critical(&mut self, victim: u32, column: &str, torpedo: bool, penetrated: bool) {
+        let die = self.d(20) as usize;
+        let Some(kind) = self.data.rules["critical_hit_d20"][column][die - 1]
+            .as_str()
+            .map(str::to_owned)
+        else {
+            return;
+        };
+        let name = kind.trim_end_matches('*');
+        if name == "main_battery" {
+            // A director hit explicitly does not require penetration (§8.3).
+            self.main_battery_critical(victim, penetrated || !kind.ends_with('*'));
+            return;
+        }
+        if kind.ends_with('*') && !penetrated {
+            return; // Becomes light AA, outside the current scenario scope.
+        }
+        match name {
+            "fire" => self.add_casualty(victim, false, false, penetrated, 0, false),
+            "flooding" => self.add_casualty(victim, true, torpedo, penetrated, 0, false),
+            "engineering" => self.engineering_critical(victim, penetrated),
+            "sensor_comms" => self.radar_sensor_critical(victim),
+            _ => (), // No placeholder penalty for unmodeled systems.
         }
     }
 
@@ -275,7 +353,8 @@ impl World {
         let explosion = self.d(10) == 10;
         let def = &self.data.ships[self.ship(victim).unwrap().def];
         let multiplier = usize::from(def.engineering_speed_multiplier.unwrap_or(1));
-        self.ship_mut(victim).unwrap().engineering_speed_levels += multiplier * if explosion { 2 } else { 1 };
+        self.ship_mut(victim).unwrap().engineering_speed_levels +=
+            multiplier * if explosion { 2 } else { 1 };
         self.damage_message(victim, "轮机受损，降低最大航速".into(), "CAS-8.3");
         if explosion {
             let dp = self.data.ships[self.ship(victim).unwrap().def].dp;
@@ -376,11 +455,141 @@ impl World {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::{
+        combat::Impact,
+        model::{Ai, P},
+        realtime,
+    };
+
+    fn realtime_fixture() -> World {
+        let mut world = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        world.enable_realtime().unwrap();
+        for fleet in &mut world.fleets {
+            fleet.ai = Ai::new("coord", "manual");
+        }
+        world
+    }
+
+    #[test]
+    fn split_gun_impacts_keep_one_cas_count_die_and_earn_only_new_slots() {
+        let seed = (1..10_000)
+            .find(|&seed| {
+                let mut rng = seed;
+                roll(&mut rng, 6) == 5 && roll(&mut rng, 20) >= 19 && roll(&mut rng, 20) >= 19
+            })
+            .unwrap();
+        let mut world = realtime_fixture();
+        world.surface_critical_rng = seed;
+        let main_rng = world.rng;
+        let mut hit = |tick, damage| {
+            world.tick = tick;
+            world.apply_impacts(vec![Impact::gun(world.ship(1).unwrap(), damage, 1, true)]);
+            let phase = world.surface_damage[0];
+            assert_eq!(world.rng, main_rng);
+            (phase.die, phase.resolved_slots, world.surface_critical_rng)
+        };
+        assert_eq!(hit(3, 1.), (None, 0, seed)); // Below 1% of 144 original DP.
+        assert_eq!(hit(11, 9.).0, Some(5)); // 10 / 134, D6=5 yields no criticals.
+        let (_, slots, rng) = hit(47, 12.); // 22 / 122, row 0.10, yields one.
+        assert_eq!(slots, 1);
+        assert_eq!(hit(51, 1.), (Some(5), 1, rng)); // Same row, no further dice.
+        assert_eq!(hit(70, 9.).1, 2); // 32 / 112, row 0.20, yields one more.
+        let spent = world.surface_critical_rng;
+        world.flush_realtime_surface_damage();
+        assert_eq!(world.surface_damage[0].die, None);
+        assert_eq!(world.surface_critical_rng, spent);
+    }
+
+    #[test]
+    fn live_shell_impact_disables_a_turret_before_its_next_salvo() {
+        let seed = (1..10_000)
+            .find(|&seed| {
+                let mut rng = seed;
+                roll(&mut rng, 6) == 5
+                && roll(&mut rng, 20) <= 3 // Main battery.
+                && roll(&mut rng, 10) > 2 // Mount rather than director.
+                && roll(&mut rng, 10) < 10 // No magazine explosion.
+                && roll(&mut rng, 5) == 1 // Forward mount, bearing on the target.
+            })
+            .unwrap();
+        for (version, penetrated, disables) in [
+            (realtime::VERSION, true, true),
+            (realtime::VERSION, false, false),
+            (realtime::CADENCE_VERSION, true, false),
+        ] {
+            let mut world = realtime_fixture();
+            world.init_realtime(version).unwrap();
+            world.surface_critical_rng = seed;
+            let own_position = world.ship(1).unwrap().p;
+            world.ship_mut(6).unwrap().p = own_position + P::bearing(90.) * 6_000.;
+            world.detect(true);
+            let target = world.contacts[0]
+                .iter()
+                .find(|c| c.ship == 6)
+                .unwrap()
+                .id
+                .clone();
+            let track = world.contacts[1]
+                .iter()
+                .find(|c| c.ship == 1)
+                .unwrap()
+                .clone();
+            let attacker = world.ship(6).unwrap().clone();
+            let victim = world.ship(1).unwrap().clone();
+            world.launch_realtime_shell(
+                &attacker,
+                &victim,
+                &track,
+                1,
+                Some(Impact::gun(&victim, 22., 1, penetrated)),
+            );
+            let impact_tick = world.shell_observation(1)[0]["impactTick"]
+                .as_u64()
+                .unwrap() as u32;
+            assert!(impact_tick + 8 < CYCLE);
+
+            while world.tick + 1 < impact_tick {
+                world.advance();
+            }
+            world.order_realtime_gun(0, 1, &target, true).unwrap();
+            world.advance();
+            let first = world
+                .shell_observation(0)
+                .into_iter()
+                .find(|s| s["own"] == true)
+                .unwrap();
+            assert_eq!(first["launchTick"], impact_tick);
+            assert_eq!(first["barrels"], 2);
+            assert_eq!(world.ship(1).unwrap().gun_mount_destroyed[0], disables);
+            let damaged = world
+                .events
+                .iter()
+                .find(|event| event.text.contains("主炮座 1 失效"));
+            assert_eq!(
+                damaged.map(|event| event.tick),
+                disables.then_some(impact_tick)
+            );
+
+            world.order_realtime_gun(0, 1, &target, true).unwrap();
+            for _ in 0..4 {
+                world.advance();
+            }
+            let own_shells: Vec<_> = world
+                .shell_observation(0)
+                .into_iter()
+                .filter(|s| s["own"] == true)
+                .collect();
+            assert_eq!(own_shells.len(), 2); // The volley already in flight survived the casualty.
+            assert_eq!(own_shells[0]["id"], first["id"]);
+            assert_eq!(own_shells[1]["barrels"], if disables { 1 } else { 2 });
+        }
+    }
 
     #[test]
     fn home_fleet_jk_engineering_critical_doubles_speed_steps_only() {
         use crate::campaign::live::Start;
-        let mut w = World::new_campaign(53, Start::new("CAMP-ALLIES-01", "story"), "coord").unwrap();
+        let mut w =
+            World::new_campaign(53, Start::new("CAMP-ALLIES-01", "story"), "coord").unwrap();
         for (id, step_loss, speed) in [(4, 2, 18.), (1, 1, 29.)] {
             w.rng = 1; // D10 = 2; no boiler explosion.
             let full = w.ship(id).unwrap().hp;
@@ -390,10 +599,12 @@ mod tests {
             assert_eq!(w.max_speed(ship), speed);
             assert_eq!(ship.hp, full);
         }
-        let explosion_seed = (1..100).find(|seed| {
-            w.rng = *seed;
-            w.d(10) == 10
-        }).unwrap();
+        let explosion_seed = (1..100)
+            .find(|seed| {
+                w.rng = *seed;
+                w.d(10) == 10
+            })
+            .unwrap();
         w.rng = explosion_seed;
         w.engineering_critical(5, true);
         let ship = w.ship(5).unwrap();

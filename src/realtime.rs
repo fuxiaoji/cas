@@ -6,7 +6,8 @@ use crate::{
 };
 use serde_json::{json, Value};
 
-pub(crate) const VERSION: &str = "cas-realtime-v6";
+pub(crate) const VERSION: &str = "cas-realtime-v7";
+pub(crate) const CADENCE_VERSION: &str = "cas-realtime-v6";
 pub(crate) const LEGACY_VERSION: &str = "cas-realtime-v4";
 pub(crate) const MAX_FLIGHT: u32 = 120;
 const ORDER_TIMEOUT: u32 = 90;
@@ -18,7 +19,7 @@ pub(crate) struct Timings {
 }
 
 fn timings(version: &str, class: &str) -> Option<Timings> {
-    if matches!(version, VERSION | crate::campaign::live::VERSION) {
+    if !matches!(version, LEGACY_VERSION | crate::campaign::live::LEGACY_VERSION) {
         // Reference cadences, independent of the CAS hit and damage tables.
         // See docs/rules/realtime-gunnery-sources.md for fit and source limits.
         match class {
@@ -476,13 +477,8 @@ impl World {
 }
 
 pub(crate) fn is_realtime_version(version: &str) -> bool {
-    matches!(
-        version,
-        VERSION
-            | LEGACY_VERSION
-            | crate::campaign::live::VERSION
-            | crate::campaign::live::LEGACY_VERSION
-    )
+    matches!(version, VERSION | CADENCE_VERSION | LEGACY_VERSION)
+        || crate::campaign::live::is_campaign_version(version)
 }
 
 #[cfg(test)]
@@ -585,7 +581,7 @@ mod tests {
             let shells = w.shells.len();
             w.tick = CYCLE + MAX_FLIGHT;
             w.advance_shells();
-            (shells, w.surface_phase_dp[5].0)
+            (shells, w.surface_damage[5].total)
         };
         let (legacy_rounds, legacy_damage) = run(LEGACY_VERSION);
         let (faster_rounds, faster_damage) = run(VERSION);
@@ -633,7 +629,7 @@ mod tests {
 
     #[test]
     fn first_launch_and_midflight_replay_have_same_shell_and_turret_state() {
-        for version in [LEGACY_VERSION, VERSION] {
+        for version in [LEGACY_VERSION, CADENCE_VERSION, VERSION] {
             assert_launch_and_midflight_replay(version);
         }
     }

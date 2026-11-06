@@ -11,8 +11,13 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
-pub(crate) const VERSION: &str = "cas-campaign-v6";
+pub(crate) const VERSION: &str = "cas-campaign-v7";
+pub(crate) const CADENCE_VERSION: &str = "cas-campaign-v6";
 pub(crate) const LEGACY_VERSION: &str = "cas-campaign-v5";
+
+pub(crate) fn is_campaign_version(version: &str) -> bool {
+    matches!(version, VERSION | CADENCE_VERSION | LEGACY_VERSION)
+}
 pub(crate) const CONTENT: &str = "cas-cape-runtime-v1";
 pub(crate) const VARIANT: &str = "cape-st-george-rts";
 pub(crate) const LABEL: &str = "圣乔治角 · RTS 改编";
@@ -335,7 +340,7 @@ impl World {
             });
         }
         w.gun_streak.resize(w.ships.len(), (0, 0, 0));
-        w.surface_phase_dp.resize(w.ships.len(), (0., 0.));
+        w.surface_damage.resize(w.ships.len(), Default::default());
         w.enable_realtime()?;
         for seat in 0..2 {
             w.add(
@@ -575,7 +580,10 @@ mod tests {
     #[test]
     fn named_cape_sortie_hits_with_torpedoes_and_replays_without_exposing_other_seat() {
         let mut e = Engine::default();
-        let start = opening(&mut e, "CAMP-ALLIES-03");
+        let start = request(
+            &mut e,
+            json!({"op":"new_campaign","id":"CAMP-ALLIES-03","difficulty":"story","seed":6111}),
+        );
         assert_eq!(start["ships"].as_array().unwrap().len(), 5);
         assert_eq!(start["ships"][0]["classId"], "ausburne");
         assert_eq!(start["ships"][0]["characterId"], "IBS-U-USN-CF-AUSBURNE");

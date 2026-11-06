@@ -66,6 +66,13 @@ pub(crate) struct Impact {
     penetrated: bool,
     flood_hits: u32,
 }
+
+impl Impact {
+    pub(crate) fn gun(target: &Ship, amount: f64, owner: usize, penetrated: bool) -> Self {
+        Self { victim: target.id, amount, owner, torpedo: false, at: target.p, penetrated, flood_hits: 0 }
+    }
+}
+
 #[derive(Clone)]
 struct Launch {
     ship: u32,
@@ -699,7 +706,7 @@ impl World {
                         damage *= 0.1;
                     }
                 }
-                Some(Impact { victim: t.id, amount: damage, owner: s.side, torpedo: false, at: t.p, penetrated, flood_hits: 0 })
+                Some(Impact::gun(&t, damage, s.side, penetrated))
             } else { None };
             self.launch_realtime_shell(&s, &t, &volley.contact, volley.barrels, impact);
         }
@@ -775,15 +782,7 @@ impl World {
                 damage = libm::round(damage * 0.1);
             }
         }
-        let impact = Impact {
-            victim: t.id,
-            amount: damage,
-            owner: s.side,
-            torpedo: false,
-            at: t.p,
-            penetrated,
-            flood_hits: 0,
-        };
+        let impact = Impact::gun(&t, damage, s.side, penetrated);
         if self.version == LEGACY_VERSION || shot.radar_only {
             Some(impact)
         } else {
@@ -986,6 +985,8 @@ impl World {
     }
     pub(crate) fn apply_impacts(&mut self, v: Vec<Impact>) {
         let mut phase = vec![(0., 0., 0_u32, false); self.ships.len()];
+        let progressive = self.progressive_criticals();
+        let mut surface_victims = Vec::new();
         for i in v {
             let Some(s) = self.ship(i.victim) else {
                 continue;
@@ -1029,9 +1030,10 @@ impl World {
                 self.sank(i.victim);
             }
             if self.realtime() && !i.torpedo {
-                let a = &mut self.surface_phase_dp[(i.victim - 1) as usize];
-                a.0 += i.amount;
-                if i.penetrated { a.1 += i.amount; }
+                let a = &mut self.surface_damage[(i.victim - 1) as usize];
+                a.total += i.amount;
+                if i.penetrated { a.penetrated += i.amount; }
+                if progressive { surface_victims.push(i.victim); }
                 continue;
             }
             let a = &mut phase[(i.victim - 1) as usize];
@@ -1051,12 +1053,20 @@ impl World {
                 }
             }
         }
+        // All hits in this batch dealt structural damage before any new
+        // gunfire criticals can alter either side's ability to shoot.
+        surface_victims.sort_unstable();
+        surface_victims.dedup();
+        for victim in surface_victims {
+            self.progress_surface_criticals(victim);
+        }
     }
     pub(crate) fn flush_realtime_surface_damage(&mut self) {
-        for j in 0..self.surface_phase_dp.len() {
-            let (total, pen) = std::mem::take(&mut self.surface_phase_dp[j]);
-            if total > 0. {
-                self.critical_phase_fraction(j as u32 + 1, total, false, pen / total);
+        let progressive = self.progressive_criticals();
+        for j in 0..self.surface_damage.len() {
+            let phase = std::mem::take(&mut self.surface_damage[j]);
+            if !progressive && phase.total > 0. {
+                self.critical_phase_fraction(j as u32 + 1, phase.total, false, phase.penetrated / phase.total);
             }
         }
     }

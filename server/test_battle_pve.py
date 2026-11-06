@@ -157,7 +157,7 @@ class AuthorityTest(unittest.TestCase):
         self.good(self.post("/starter-gifts/claim", request_id="unlock-starter-night", course="night"))
         self.good(self.post("/shop/purchase", request_id="unlock-torpedo", kind="ai", item_id="rc_torpedo_wings",
                             currency="credits"))
-        self.seed = 6106
+        self.seed = 6111
         path = "/battles/" + self.start("real-decisive", difficulty="standard")["battle_id"]
         for i in range(2):
             self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, "torpedo"))

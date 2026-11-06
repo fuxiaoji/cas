@@ -111,3 +111,15 @@
 |---|---|
 | [Windows x64 ZIP](release/CAS-Stage0-win-x64-20261106-201315-311.zip) | `0ec37df612b5b68947b68f0f3d24a9e5a1b4fadd5e1d66ffde0fb672410824cb` |
 | [Android APK](release/CAS-Android-0.1.0-preview-20261106-201338-728.apk) | `4f252a386ddc1fc88e447410c8262f21d9160ec6240119822991336d6141d93c` |
+
+
+## 2026-11-06｜水面炮击临界损伤即时化
+
+- 演习与战役 v7 的实际弹着累计 180 秒内对本舰的炮击 DP，保留 CAS 五版 §8.1.2 的 D6 数量表和 D20 类型表，只在伤害增加临界名额时当场裁决。实测穿甲弹着时立即停用一座主炮，下一次齐射从两门降到一门，同秒已发的炮弹继续飞行。未穿甲对照保留炮位，旧版等窗口关闭。[原页、时序与两份舰炮战损报告](docs/rules/realtime-gunnery-sources.md#v7-临界损伤的即时裁决)
+- 49 项内核和 11 项服务测试通过。13 场原生与 WASM 观察、战报与重演一致。用旧包生成 v4、v5、v6 共六份存档，v7 的重演、读档和续战一致。浏览器验收实时拖拽、两条战役线的真实战果与奖励、序章及夜战教学。[跨端重演](artifacts/gunnery-historical-audit/critical-v7-native-wasm.json) · [旧档](artifacts/gunnery-historical-audit/critical-v7-legacy.json) · [手势](artifacts/gunnery-historical-audit/critical-v7-browser-realtime.json) · [战役](artifacts/gunnery-historical-audit/critical-v7-browser-campaign.json) · [序章与教学](artifacts/gunnery-historical-audit/critical-v7-browser-story.json)
+- Windows 离线试玩通过开局、保存、重演和大厅测试。Android 已构建、验签并逐字节核对两个包的 36 个共用文件，本次 APK 尚无安装运行验收。[Windows 凭证](artifacts/gunnery-historical-audit/critical-v7-windows.json) · [安装包哈希](artifacts/gunnery-historical-audit/critical-v7-packages.json)
+
+| v7 试玩包 | SHA-256 |
+|---|---|
+| [Windows x64 ZIP](E:/CAS-build-v7/CAS-Windows-v7.zip) | `729ba8a50f4f8bb6630e632ed8eda511f3db9f4e0fe0b12d39d6ea0fe3756eca` |
+| [Android APK](F:/CAS-wasm-v7/CAS-Android-v7-preview.apk) | `c000c63ea293321f771e299d8f74a760c736e60e665c9d5e13382a27b584364f` |

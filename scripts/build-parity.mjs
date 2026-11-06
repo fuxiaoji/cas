@@ -121,10 +121,10 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training'),
   await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
   await verify('allies', 1, 'radar', 6106, true),
-  await verify('allies', 1, 'cape-st-george-rts', 6106, true, true),
+  await verify('allies', 1, 'cape-st-george-rts', 6111, true, true),
   await verify('axis', 3, 'cape-st-george-rts', 6106, true, true),
   await verify('allies', 4, 'channel-action-rts', 6106, true, true),
-  await verify('axis', 1, 'channel-action-rts', 53, true, true)];
+  await verify('axis', 1, 'channel-action-rts', 71, true, true)];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

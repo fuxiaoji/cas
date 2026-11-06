@@ -44,7 +44,8 @@ pub struct World {
     pub fired_this_cycle: Vec<u32>,
     pub incoming_this_cycle: Vec<u32>,
     pub gun_streak: Vec<(u32, u32, u32)>,
-    pub(crate) surface_phase_dp: Vec<(f64, f64)>,
+    pub(crate) surface_damage: Vec<crate::damage::SurfacePhase>,
+    pub(crate) surface_critical_rng: u64,
 }
 impl World {
     pub(crate) fn exercise_data() -> E<&'static Data> {
@@ -92,7 +93,8 @@ impl World {
             fired_this_cycle: vec![],
             incoming_this_cycle: vec![],
             gun_streak: vec![(0, 0, 0); 10],
-            surface_phase_dp: vec![(0., 0.); 10],
+            surface_damage: vec![Default::default(); 10],
+            surface_critical_rng: (seed as u64) ^ 0x6271_09f5_29a3_084d,
         }
     }
 
@@ -230,13 +232,15 @@ impl World {
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
             crate::realtime::VERSION => crate::realtime::VERSION,
+            crate::realtime::CADENCE_VERSION => crate::realtime::CADENCE_VERSION,
             crate::realtime::LEGACY_VERSION => crate::realtime::LEGACY_VERSION,
             live::VERSION => live::VERSION,
+            live::CADENCE_VERSION => live::CADENCE_VERSION,
             live::LEGACY_VERSION => live::LEGACY_VERSION,
             _ => return Err("此存档使用另一个规则版本".into()),
         };
         let realtime = crate::realtime::is_realtime_version(version);
-        if matches!(version, live::VERSION | live::LEGACY_VERSION) != s.campaign.is_some()
+        if live::is_campaign_version(version) != s.campaign.is_some()
             || s.campaign.as_ref().is_some_and(|start| s.variant != start.variant()) {
             return Err("战役存档的规则或内容版本不符".into());
         }
@@ -547,7 +551,11 @@ impl World {
         self.tick += 1;
         if settle_only {
             self.advance_shells();
-            if self.realtime() && self.shells.is_empty() { self.flush_realtime_surface_damage(); }
+            if self.realtime()
+                && (self.shells.is_empty() || self.progressive_criticals() && self.tick % CYCLE == 0)
+            {
+                self.flush_realtime_surface_damage();
+            }
             self.check_outcome();
             return;
         }

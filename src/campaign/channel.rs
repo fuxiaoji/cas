@@ -130,7 +130,7 @@ pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile:
         });
     }
     w.gun_streak.resize(w.ships.len(), (0, 0, 0));
-    w.surface_phase_dp.resize(w.ships.len(), (0., 0.));
+    w.surface_damage.resize(w.ships.len(), Default::default());
     w.enable_realtime()?;
     for owner in 0..2 {
         let objectives = view(w.campaign.as_ref().unwrap(), owner);
