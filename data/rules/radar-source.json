@@ -53,7 +53,7 @@
     },
     "us_mk4_fd": {
       "name": "Mk4 (FD)", "generation": 1, "ioc": "1941", "surface_range_nmi": [15, 14, 8, 4.6, 2.5], "surface_role": "fire_control_and_sector_search", "clutter_profile": null, "fire_control_modifier_with_visual": 2, "blindfire_capable": false,
-      "source": {"document": "american", "pdf_pages": [123], "printed_pages": ["J-1"], "table": "Annex J1 - Naval Radars", "edition_note": "Local 2012 Standard specific Mk4 row; no corresponding Mk4 entry in the local Fifth Edition Arctic Fleets subset. Confirm import precedence before enabling."}
+      "source": {"document": "american", "pdf_pages": [123], "printed_pages": ["J-1"], "table": "Annex J1 - Naval Radars", "edition_note": "Local 2012 Standard Mk4 SS/FC row used for cued v4 fire control in the verified 1943 Fletcher drill fit. The Fifth Edition main table agrees on Gen 1 +2; the local Fifth Edition Arctic Fleets subset has no replacement Mk4 range row. Does not enable independent Mk4 search."}
     },
     "jp_type22_ss": {
       "name": "Mk2 Mod 2 (Type 22), original SS mode", "generation": 1, "surface_range_nmi": [13, 7, 4, 2, 1], "surface_role": "surface_search", "clutter_profile": "ship_ss_nav",

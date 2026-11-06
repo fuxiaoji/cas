@@ -8,6 +8,7 @@ pub(crate) const VERSION: &str = "cas-illumination-v3";
 pub(crate) struct Illumination {
     marks: Vec<Mark>,
     used: Vec<(u32, usize, u32)>,
+    preparing: Vec<(u32, usize)>,
 }
 struct Mark {
     center: P,
@@ -28,7 +29,7 @@ pub(crate) struct LightShot {
 }
 
 impl World {
-    pub(crate) fn has_starshells(&self) -> bool { self.version == VERSION }
+    pub(crate) fn has_starshells(&self) -> bool { self.version == VERSION || (self.realtime() && self.variant == TRAINING) }
 
     fn light_shot(&self, ship: &Ship, contact: &Contact) -> E<LightShot> {
         if !self.has_starshells() { return Err("此想定没有照明弹指令".into()); }
@@ -41,7 +42,7 @@ impl World {
         if distance < f64::from(profile.min_range_yd) { return Err(format!("照明弹最小射程 {} 码", profile.min_range_yd)); }
         let band = gun.range_yd.iter().take(3).position(|limit| distance <= *limit).ok_or("接触超出照明弹远程射程")?;
         let angle = norm((contact.p()-ship.p).heading()-ship.h);
-        let (mount, m) = gun.mounts.iter().enumerate().find(|(i,m)| !ship.gun_mount_destroyed[*i] &&
+        let (mount, m) = gun.mounts.iter().enumerate().find(|(i,m)| !ship.gun_mount_destroyed[*i] && self.turret_loaded(ship,*i) &&
             (circle(angle,m.arc)||m.arc2.is_some_and(|arc| circle(angle,arc))))
             .ok_or("照明方向没有可用炮座")?;
         Ok(LightShot{mount,barrels:m.barrels,band,profile,contact:contact.clone()})
@@ -74,6 +75,31 @@ impl World {
         self.illumination.used.contains(&(ship,mount,self.tick/CYCLE))
     }
 
+    pub(crate) fn mount_preparing_illumination(&self, ship: u32, mount: usize) -> bool {
+        self.illumination.preparing.contains(&(ship, mount))
+    }
+
+    pub(crate) fn prepare_illumination_mounts(&mut self) {
+        self.clear_turret_training();
+        self.illumination.preparing.clear();
+        if !self.has_starshells() { return; }
+        // The slowest current mount can sweep 180° in 24 seconds. Start
+        // turning in advance without spending illumination or gun dice.
+        let work: Vec<_> = self.pending.iter()
+            .filter(|o| o.weapon == "illumination" && o.expires.saturating_sub(self.tick) <= 26)
+            .filter_map(|o| {
+                let s = self.ship_for(o.side, o.ship).ok()?;
+                let c = self.contact(o.side, &o.target).ok()?;
+                let plan = self.light_shot(s, c).ok()?;
+                Some((s.id, plan.mount, (c.p() - s.p).heading()))
+            })
+            .collect();
+        for (id, mount, heading) in work {
+            self.illumination.preparing.push((id, mount));
+            self.train_illumination_mount(id, mount, heading);
+        }
+    }
+
     pub(crate) fn resolve_illumination(&mut self,planned:bool){
         if !self.has_starshells(){return;}
         self.illumination.marks.retain(|m| m.expires > self.tick);
@@ -92,6 +118,11 @@ impl World {
                 self.add(1<<order.side,"rejected",format!("照明弹未发射：{}",plan.err().unwrap()),Some("CAS-5.4.4.5"),None); continue;
             };
             let s=s.unwrap();
+            let bearing=(plan.contact.p()-s.p).heading();
+            if !self.illumination_aligned(&s,plan.mount,bearing) {
+                self.add(1<<s.side,"rejected","照明弹未发射：炮座尚未转入射向".into(),Some("RTS-GUN-04"),None);
+                continue;
+            }
             let Some(t)=self.ship(plan.contact.ship).filter(|v|v.alive()).cloned() else {continue};
             let mut threatened:Vec<_>=self.pending.iter().filter(|v|v.weapon=="gun"&&v.expires<=self.tick)
                 .filter_map(|v|self.contact(v.side,&v.target).ok().map(|v|v.ship)).collect();
@@ -101,7 +132,7 @@ impl World {
             let (chance,_)=self.gun_values(&s,&t,plan.band,plan.barrels,false,&threatened,plan.profile.hit_modifier,true);
             let hit=self.d(100) as f64<=chance;
             self.illumination.used.push((s.id,plan.mount,self.tick/CYCLE));
-            let bearing=(plan.contact.p()-s.p).heading();
+            self.reserve_illumination_mount(s.id,plan.mount);
             let cycle=self.tick/CYCLE;
             // Same primary battery creates the visible night flash.
             self.ship_mut(s.id).unwrap().illumination_cycle=Some(cycle);

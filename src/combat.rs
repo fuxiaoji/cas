@@ -232,10 +232,14 @@ impl World {
         self.tick >= CYCLE && c.first_cycle == self.tick / CYCLE
     }
     pub fn gun_candidate(&self, s: &Ship, c: &Contact) -> bool {
-        self.gun_band(s, c).is_some()
-            && (!self.is_reaction(c) || s.gun_cycle != Some(self.tick / CYCLE))
+        if self.realtime() {
+            self.realtime_gun_candidate(s, c)
+        } else {
+            self.gun_band(s, c).is_some()
+                && (!self.is_reaction(c) || s.gun_cycle != Some(self.tick / CYCLE))
+        }
     }
-    fn gun_contact(&self, s: &Ship, target: &str) -> E<(std::borrow::Cow<'_, Contact>, bool)> {
+    pub(crate) fn gun_contact(&self, s: &Ship, target: &str) -> E<(std::borrow::Cow<'_, Contact>, bool)> {
         match self.contact(s.side, target) {
             Ok(visual) => return Ok((std::borrow::Cow::Borrowed(visual), false)),
             Err(e) if !self.radar_enabled() => return Err(e),
@@ -247,6 +251,7 @@ impl World {
     }
     pub fn can_gun(&self, s: &Ship) -> bool {
         s.alive()
+            && s.battery.order.is_none()
             && !self
                 .pending
                 .iter()
@@ -328,6 +333,9 @@ impl World {
         let s = self.ship_for(owner, id)?;
         let target = r["target"].as_str().ok_or("请选择一个敌方接触")?;
         if r["weapon"] == "gun" {
+            if self.realtime() {
+                return self.realtime_aim(s, target);
+            }
             let (c, radar_only) = self.gun_contact(s, target)?;
             let d = &self.data.ships[s.def];
             let barrels = self.gun_band(s, &c).map_or(0, |(_, k)| k);
@@ -375,6 +383,9 @@ impl World {
         let s = self.ship_for(owner, id)?;
         let target = r["target"].as_str().ok_or("请把火力拖向一个接触")?;
         let weapon = r["weapon"].as_str().ok_or("武器不可用")?;
+        if weapon == "gun" && self.realtime() {
+            return self.order_realtime_gun(owner, id, target, manual);
+        }
         if self
             .pending
             .iter()
@@ -590,7 +601,11 @@ impl World {
         };
         if self.environment().light == crate::night::Light::Night {
             modifiers += (!prelight).then(||self.illumination_modifier(s,t)).flatten().unwrap_or_else(||crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None));
-        } else if s.p.dist(t.p) / YARD <= gun.range_yd[0] / 2. {
+        } else if if self.realtime() {
+            self.realtime_point_blank(s, t)
+        } else {
+            s.p.dist(t.p) / YARD <= gun.range_yd[0] / 2.
+        } {
             modifiers += 4;
         }
         if s.fire_control_damage {
@@ -605,7 +620,7 @@ impl World {
         let cycle = self.tick / CYCLE;
         let old = self.gun_streak[(s.id - 1) as usize];
         let streak = if old.0 == t.id && old.1 + 1 >= cycle {
-            old.2 + 1
+            old.2 + u32::from(!self.realtime() || old.1 != cycle)
         } else {
             1
         };
@@ -616,6 +631,68 @@ impl World {
             modifiers += 1
         }
         ((base + modifiers as f64 * if b <= 1 { 4. } else { 2. }).clamp(0., 90.),streak)
+    }
+
+    fn realtime_point_blank(&self, s: &Ship, target: &Ship) -> bool {
+        let env = self.environment();
+        let gun = &self.data.ships[s.def].gun;
+        let cutoff = (gun.range_yd[0] / 200.).floor() * 100.;
+        env.visibility >= 30 && s.p.dist(target.p) / YARD <= cutoff
+    }
+
+    pub(crate) fn fire_realtime_volleys(&mut self, volleys: Vec<crate::realtime::Volley>) {
+        // The collection phase has already checked every ordered gun against
+        // the same second's observations. No shell damage is applied here.
+        let threatened: Vec<_> = volleys.iter().map(|volley| volley.contact.ship).collect();
+        for volley in volleys {
+            let Some(s) = self.ship(volley.ship).filter(|s| s.alive()).cloned() else { continue };
+            let Some(t) = self.ship(volley.contact.ship).filter(|t| t.alive()).cloned() else { continue };
+            let gun = &self.data.ships[s.def].gun;
+            let td = &self.data.ships[t.def];
+            let b = volley.band;
+            let aid = self.mk4_gun_aid(&s, &volley.contact, volley.radar_only);
+            let modifier = aid.as_ref().map_or(0, |aid| {
+                let env = self.environment();
+                let visibility = if aid.ignore_low_visibility_modifier && env.light == crate::night::Light::Night
+                    && self.illumination_modifier(&s, &t).is_none() {
+                    crate::night::night_gun_modifier(env, crate::night::Lighting::None)
+                } else { 0 };
+                aid.fire_control_modifier + aid.land_clutter_modifier - visibility
+            });
+            let (chance, streak) = self.gun_values(&s, &t, b, volley.battery_barrels, volley.radar_only, &threatened, modifier, false);
+            let (roll, deck_roll) = self.realtime_fire_dice(s.id, b >= 2 && chance > 0.);
+            let cycle = self.tick / CYCLE;
+            self.gun_streak[(s.id - 1) as usize] = (t.id, cycle, streak);
+            self.ship_mut(s.id).unwrap().gun_cycle = Some(cycle);
+            if !self.fired_this_cycle.contains(&s.id) { self.fired_this_cycle.push(s.id); }
+            if !self.incoming_this_cycle.contains(&t.id) { self.incoming_this_cycle.push(t.id); }
+            let range = ["近", "中", "远", "极远"][b];
+            let sight = if aid.is_some() { "火控雷达 Mk4 · " }
+                else if volley.radar_only { "水面搜索雷达 · " } else { "" };
+            self.add(1 << s.side, "gun", format!("{} · {}{}射程，{} 门主炮实际发射",
+                s.name, sight, range, volley.barrels),
+                Some("RTS-GUN-04"), Some(s.p));
+            let impact = if roll as f64 <= chance {
+                let multiplier = gun_multiplier(&self.data.rules, volley.battery_barrels, b);
+                let part = f64::from(volley.barrels) / f64::from(volley.battery_barrels) * f64::from(volley.reload) / f64::from(CYCLE);
+                let mut damage = gun.damage[b] * multiplier * part * if self.realtime_point_blank(&s, &t) { 2. } else { 1. };
+                let deck = deck_roll.is_some_and(|die| b >= 2 && die > if b == 2 { 40 } else { 30 });
+                let armor = if deck { td.armor_deck } else { td.armor_belt };
+                let pen = if deck { &gun.pen_deck } else { &gun.pen_belt };
+                let mut penetrated = true;
+                if let Some(p) = pen.get(b).copied().flatten() {
+                    if p <= armor && armor > 0. {
+                        damage *= 0.5;
+                        penetrated = false;
+                    }
+                    if gun.armor_piercing && armor <= 2. && p >= armor + 10. {
+                        damage *= 0.1;
+                    }
+                }
+                Some(Impact { victim: t.id, amount: damage, owner: s.side, torpedo: false, at: t.p, penetrated, flood_hits: 0 })
+            } else { None };
+            self.launch_realtime_shell(&s, &t, &volley.contact, volley.barrels, impact);
+        }
     }
     fn fire_gun(&mut self, shot: Shot, planned_targets: &[u32]) -> Option<Impact> {
         let s = self.ship(shot.ship)?.clone();
@@ -720,6 +797,7 @@ impl World {
             born: self.tick,
             origin: s.p,
             view_ids: crate::world::seat_ids(1 << l.side, &mut self.torp_ids),
+            first_visible: None,
             launch_sighted: false,
             impact_sighted: false,
             contact_fuze: d.contact_fuze,
@@ -909,7 +987,7 @@ impl World {
             let side = s.side;
             let hp = (s.hp - i.amount.max(0.)).max(0.);
             self.ship_mut(i.victim).unwrap().hp = hp;
-            let rule = if i.torpedo { "CAS-8.1.2" } else { "CAS-6.1.3" };
+            let rule = if i.torpedo { "CAS-8.1.2" } else if self.realtime() { "RTS-GUN-04" } else { "CAS-6.1.3" };
             self.add(
                 1 << side,
                 "damage",
@@ -940,6 +1018,12 @@ impl World {
             if hp <= 0. {
                 self.sank(i.victim);
             }
+            if self.realtime() && !i.torpedo {
+                let a = &mut self.surface_phase_dp[(i.victim - 1) as usize];
+                a.0 += i.amount;
+                if i.penetrated { a.1 += i.amount; }
+                continue;
+            }
             let a = &mut phase[(i.victim - 1) as usize];
             a.0 += i.amount;
             if i.penetrated {
@@ -955,6 +1039,14 @@ impl World {
                 if hits > 0 && self.ship(id).is_some_and(Ship::alive) {
                     self.torpedo_automatic_flooding(id, hits, true);
                 }
+            }
+        }
+    }
+    pub(crate) fn flush_realtime_surface_damage(&mut self) {
+        for j in 0..self.surface_phase_dp.len() {
+            let (total, pen) = std::mem::take(&mut self.surface_phase_dp[j]);
+            if total > 0. {
+                self.critical_phase_fraction(j as u32 + 1, total, false, pen / total);
             }
         }
     }

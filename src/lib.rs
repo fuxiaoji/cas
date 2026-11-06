@@ -8,6 +8,7 @@ mod movement;
 mod night;
 mod projectile;
 mod radar;
+mod realtime;
 mod sighting;
 mod world;
 use model::*;
@@ -32,7 +33,7 @@ impl Engine {
     fn execute(&mut self, r: Value) -> E<Value> {
         let op = r.get("op").and_then(Value::as_str).ok_or("缺少操作")?;
         match op {
-            "info" => Ok(json!({"version":VERSION,"scenario":SCENARIO,"tickSeconds":1})),
+            "info" => Ok(json!({"version":VERSION,"realtimeVersion":realtime::VERSION,"scenario":SCENARIO,"tickSeconds":1})),
             "campaign" => serde_json::from_str(include_str!("../data/campaign/crosswalk.json"))
                 .map_err(|e| format!("无法读取战役档案：{e}")),
             "campaign_detail" => campaign::detail(
@@ -55,7 +56,12 @@ impl Engine {
                     .map(|v| v.as_u64().filter(|v| *v < 5).ok_or("领舰位置无效"))
                     .transpose()?
                     .unwrap_or(0) as usize;
-                let w = World::new(seed, side, enemy, variant, profile, leader_slot)?;
+                let mut w = World::new(seed, side, enemy, variant, profile, leader_slot)?;
+                if let Some(opt) = r.get("realtime") {
+                    if opt.as_bool().ok_or("实时炮击选项无效")? {
+                        w.enable_realtime()?;
+                    }
+                }
                 let v = w.observation(side);
                 self.world = Some(w);
                 Ok(v)
@@ -123,7 +129,7 @@ impl Engine {
                         };
                         Ok(json!({"orders":orders,"text":text}))
                     }
-                    "route" | "fire" | "lead" | "detach" | "reform" | "ai" | "radar_set" | "illuminate" => {
+                    "route" | "fire" | "gun_cancel" | "lead" | "detach" | "reform" | "ai" | "radar_set" | "illuminate" => {
                         w.external(r)?;
                         Ok(w.observation(player))
                     }

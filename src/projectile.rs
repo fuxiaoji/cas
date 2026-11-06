@@ -1,6 +1,6 @@
 //! An RTS shell volley has an explicit life from muzzle to impact. CAS still
-//! determines hit and damage at the legal firing window. Eight simulated seconds
-//! are a presentation/ordering policy, not a claim about a historical gun's TOF.
+//! determines hit and damage. Older saves retain their eight-second flight;
+//! real-time batteries use a range-based trajectory.
 use crate::{
     combat::Impact,
     model::*,
@@ -19,6 +19,7 @@ pub(crate) struct Shell {
     barrels: u32,
     reaction: bool,
     impact: Option<Impact>,
+    arc_height_m: Option<f64>,
 }
 
 impl World {
@@ -64,19 +65,55 @@ impl World {
             barrels,
             reaction,
             impact,
+            arc_height_m: None,
+        });
+    }
+
+    pub(crate) fn launch_realtime_shell(
+        &mut self,
+        from: &Ship,
+        target: &Ship,
+        contact: &Contact,
+        barrels: u32,
+        impact: Option<Impact>,
+    ) {
+        let max = self.data.ships[from.def].gun.range_yd[3] * YARD;
+        let velocity = P::bearing(contact.heading) * (contact.speed * KNOT);
+        let known = contact.p();
+        let mut plotted = known;
+        // Iterate the intercept using only this seat's plot. Radar echoes have
+        // position only, so they contribute no heading or speed here.
+        for _ in 0..3 {
+            let (duration, _) = crate::realtime::flight(from.p.dist(plotted), max);
+            plotted = known + velocity * f64::from(duration);
+        }
+        // Both results fly on the same public trajectory; an observer must
+        // not learn the adjudicated hit or miss before impact.
+        let to = P { x: plotted.x.clamp(0., WIDTH), y: plotted.y.clamp(0., HEIGHT) }.snap();
+        let (duration, arc_height) = crate::realtime::flight(from.p.dist(to), max);
+        let mask = (1 << from.side) | if self.knows(target.side, from.id) { 1 << target.side } else { 0 };
+        let view_ids = seat_ids(mask, &mut self.shell_ids);
+        self.shells.push(Shell {
+            view_ids, from: from.p, to, launch_tick: self.tick, impact_tick: self.tick + duration,
+            owner: from.side, barrels, reaction: false, impact, arc_height_m: Some(arc_height),
         });
     }
 
     pub(crate) fn shell_observation(&self, owner: usize) -> Vec<Value> {
         self.shells.iter().filter_map(|shell|{
             let id=shell.view_ids[owner]?;
-            let progress=(self.tick.saturating_sub(shell.launch_tick) as f64/SHELL_FLIGHT as f64).clamp(0.,1.);
+            let duration = shell.impact_tick - shell.launch_tick;
+            let progress=(self.tick.saturating_sub(shell.launch_tick) as f64/duration as f64).clamp(0.,1.);
             let xy=(shell.from+(shell.to-shell.from)*progress).snap();
-            Some(json!({
+            let mut view = json!({
                 "id":id,"x":xy.x,"y":xy.y,"heading":(shell.to-shell.from).heading(),
                 "progress":progress,"from":shell.from,"to":shell.to,"launchTick":shell.launch_tick,
                 "impactTick":shell.impact_tick,"own":shell.owner==owner,"barrels":shell.barrels,
-            }))
+            });
+            if let Some(height) = shell.arc_height_m {
+                view["arcHeightM"] = json!(libm::round(height * 1000.) / 1000.);
+            }
+            Some(view)
         }).collect()
     }
 

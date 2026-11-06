@@ -288,6 +288,7 @@ pub struct Ship {
     pub gun_mount_destroyed: Vec<bool>,
     pub gun_mount_bearings: Vec<Option<f64>>,
     pub gun_bearing_until: u32,
+    pub(crate) battery: crate::realtime::Battery,
     pub engineering_speed_levels: usize,
     pub jammed_until: u32,
 }
@@ -400,6 +401,7 @@ pub struct Torpedo {
     pub born: u32,
     pub origin: P,
     pub view_ids: [Option<u32>; 2],
+    pub(crate) first_visible: Option<P>,
     pub launch_sighted: bool,
     pub impact_sighted: bool,
     pub contact_fuze: bool,

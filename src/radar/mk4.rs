@@ -1,5 +1,6 @@
-//! Staged Mk4 (FD) cued fire-control evaluation. No world, dice, or sighting
-//! side effects; this cannot discover a target or activate any weapon.
+//! Mk4 (FD) cued fire-control evaluation. No world, dice, or sighting side
+//! effects; the live v4 caller supplies its independently held optical cue.
+//! This cannot discover a target or activate any weapon.
 //!
 //! Source: Fifth Edition §§2.2.2, 5.2.3, 5.2.5, 6.1.1–3 and American
 //! Fleets 2012 Annex J1 PDF 123 (J-1). Device-specific limits are data-driven.
@@ -9,7 +10,11 @@ use crate::model::{delta, P};
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub(crate) enum Cue {
     Visual,
+    // Source-evaluated, but the live path lacks a separate flash contact.
+    #[allow(dead_code)]
     MuzzleFlash,
+    // Retained as a negative case; callers handle ordinary search-only fire.
+    #[allow(dead_code)]
     SurfaceSearchOnly,
 }
 

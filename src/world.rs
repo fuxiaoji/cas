@@ -40,6 +40,7 @@ pub struct World {
     pub fired_this_cycle: Vec<u32>,
     pub incoming_this_cycle: Vec<u32>,
     pub gun_streak: Vec<(u32, u32, u32)>,
+    pub(crate) surface_phase_dp: Vec<(f64, f64)>,
 }
 impl World {
     pub fn new(
@@ -96,6 +97,7 @@ impl World {
             fired_this_cycle: vec![],
             incoming_this_cycle: vec![],
             gun_streak: vec![(0, 0, 0); 10],
+            surface_phase_dp: vec![(0., 0.); 10],
         };
         for s in 0..2 {
             let (ids, x, y, h, inc, name) = if s == 0 {
@@ -183,6 +185,7 @@ impl World {
                     gun_mount_destroyed: vec![false; d.gun.mounts.len()],
                     gun_mount_bearings: vec![None; d.gun.mounts.len()],
                     gun_bearing_until: 0,
+                    battery: Default::default(),
                     engineering_speed_levels: 0,
                     jammed_until: 0,
                 });
@@ -236,13 +239,18 @@ impl World {
             LEGACY_VERSION => LEGACY_VERSION,
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
+            crate::realtime::VERSION => crate::realtime::VERSION,
             _ => return Err("此存档使用另一个规则版本".into()),
         };
-        if (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
+        if version != crate::realtime::VERSION && (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
             return Err("雷达演习与存档规则版本不符".into());
         }
-        if (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
-        let last_tick = LIMIT + if version != LEGACY_VERSION { SHELL_FLIGHT } else { 0 };
+        if version != crate::realtime::VERSION && (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
+        let last_tick = LIMIT + match version {
+            crate::realtime::VERSION => crate::realtime::MAX_FLIGHT,
+            LEGACY_VERSION => 0,
+            _ => SHELL_FLIGHT,
+        };
         if version == LEGACY_VERSION && s.variant == "night" {
             return Err("此版本没有夜间演习".into());
         }
@@ -266,7 +274,11 @@ impl World {
             },
             s.leader_slot,
         )?;
-        w.version = version;
+        if version == crate::realtime::VERSION {
+            w.enable_realtime()?;
+        } else {
+            w.version = version;
+        }
         let mut commands = s.commands.into_iter().peekable();
         loop {
             while commands
@@ -404,7 +416,9 @@ impl World {
             let d=&self.data.ships[s.def];
             let guns:Vec<_>=d.gun.mounts.iter().enumerate().map(|(index,m)|{
                 let bearing=if self.tick<s.gun_bearing_until && !s.gun_mount_destroyed[index] {s.gun_mount_bearings[index]}else{None};
-                json!({"index":index,"barrels":m.barrels,"destroyed":s.gun_mount_destroyed[index],"arc":m.arc,"arc2":m.arc2,"bearing":bearing})
+                let mut view = json!({"index":index,"barrels":m.barrels,"destroyed":s.gun_mount_destroyed[index],"arc":m.arc,"arc2":m.arc2,"bearing":bearing});
+                if self.realtime() { self.realtime_mount_view(s,index,&mut view); }
+                view
             }).collect();
             let tubes:Vec<_>=d.torpedo.iter().flat_map(|t|t.mounts.iter().enumerate()).map(|(index,m)|json!({"index":index,"tubes":m.tubes,"spent":s.torp_mount_used[index]})).collect();
             let mut data = json!({"gunRange":d.gun.range_yd.last().copied().unwrap_or(0.)*YARD,
@@ -416,6 +430,11 @@ impl World {
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
             if self.radar_enabled() {
                 data["systems"]["radars"] = json!(self.radar.own_observation(s.id));
+            }
+            if self.realtime() {
+                if let Some(order) = &s.battery.order {
+                    data["gunTarget"] = json!(order.target);
+                }
             }
             data
         }).collect();
@@ -438,6 +457,11 @@ impl World {
                         v["from"] = json!(t.origin);
                         v["count"] = json!(t.count);
                     }
+                    if self.realtime() {
+                        if let Some(start) = if own { Some(t.origin) } else { t.first_visible } {
+                            v["trail"] = json!([start,t.p]);
+                        }
+                    }
                     v
                 })
             })
@@ -451,6 +475,7 @@ impl World {
             view["radarContacts"] = json!(self.radar.observation(owner, &self.ships));
         }
         if self.has_starshells() { view["illuminations"]=json!(self.visible_illumination(owner)); }
+        if self.realtime() { view["realtimeGunnery"] = json!(true); }
         view
     }
     pub fn external(&mut self, r: Value) -> E<()> {
@@ -464,6 +489,7 @@ impl World {
             Some("detach") => self.detach(s, &r)?,
             Some("reform") => self.reform(s, &r)?,
             Some("fire") => self.queue_fire(s, &r, true)?,
+            Some("gun_cancel") => self.cancel_realtime_gun(s, &r)?,
             Some("illuminate") => self.queue_illumination(s,&r)?,
             Some("radar_set") => self.radar_power(s, &r)?,
             Some("ai") => {
@@ -496,6 +522,7 @@ impl World {
         self.tick += 1;
         if settle_only {
             self.advance_shells();
+            if self.realtime() && self.shells.is_empty() { self.flush_realtime_surface_damage(); }
             self.check_outcome();
             return;
         }
@@ -504,6 +531,7 @@ impl World {
         self.move_torpedoes(&before);
         self.update_tracks();
         self.radar_prune();
+        if self.realtime() { self.prepare_illumination_mounts(); }
         if self.tick % CYCLE == 0 {
             self.resolve_fire(true);
             self.fired_this_cycle.clear();
@@ -512,13 +540,17 @@ impl World {
             self.radar_detect();
         }
         self.resolve_fire(false);
+        if self.realtime() { self.resolve_realtime_guns(); }
         self.resolve_damage_control();
         self.advance_shells();
+        if self.realtime() && (self.tick % CYCLE == 0 || self.action_closed() && self.shells.is_empty()) {
+            self.flush_realtime_surface_damage();
+        }
         self.radar_prune();
         self.check_outcome();
         if self.result.is_none()
             && (self.version == LEGACY_VERSION || !self.action_closed())
-            && (self.tick == 1 || self.tick % 20 == 0)
+            && (self.tick == 1 || self.tick % 20 == 0 || self.realtime() && self.tick % 4 == 0)
         {
             self.drive_ai();
         }

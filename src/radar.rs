@@ -1,7 +1,8 @@
 //! Fifth Edition surface radar (§5.1.1, §5.2.1–6). Radar samples are kept
 //! separately from optical contacts so a radar echo cannot reveal target truth.
 use crate::{
-    model::{delta, Contact, Data, Ship, CYCLE, E, P},
+    model::{delta, Contact, Data, Ship, CYCLE, E, P, YARD},
+    night::{self, Environment},
     world::{roll, World},
 };
 use serde::Deserialize;
@@ -9,11 +10,10 @@ use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
 const NMI: f64 = 1852.;
-// The Mk4 source evaluator is staged until the historic fire-control mode is wired.
-#[allow(dead_code)]
 pub(crate) mod mk4;
 pub(crate) const RADAR_VERSION: &str = "cas-radar-v3";
 pub(crate) const RADAR_DRILL: &str = "radar";
+const MK4: &str = "us_mk4_fd";
 
 #[derive(Deserialize)]
 struct Rules {
@@ -253,6 +253,14 @@ struct Sample {
     position: P,
 }
 
+/// Acquired by this firing ship's own lookouts, with a visual rather than
+/// muzzle-flash range. A seat's shared plot alone does not establish this.
+#[derive(Clone, Copy)]
+struct OwnVisual {
+    original_base_yd: u32,
+    acquisition_range_yd: u32,
+}
+
 #[derive(Clone)]
 struct Device {
     key: String,
@@ -271,6 +279,9 @@ type TrackKey = (u32, usize, u32); // detector hull, installed device, target hu
 pub(crate) struct RadarState {
     rng: u64,
     last_detection: Option<u32>,
+    mk4_optics_rng: u64,
+    mk4_visual_window: Option<u32>,
+    mk4_visual: BTreeMap<(u32, u32), OwnVisual>,
     devices: BTreeMap<u32, Vec<Device>>,
     full_sensor_inventory: BTreeMap<u32, Vec<OtherSensor>>,
     direct: BTreeMap<TrackKey, Sample>,
@@ -286,6 +297,9 @@ impl RadarState {
         Self {
             rng: u64::from(seed) ^ 0x9bc98e18e65ab026,
             last_detection: None,
+            mk4_optics_rng: u64::from(seed) ^ 0xe128313b02f740af,
+            mk4_visual_window: None,
+            mk4_visual: BTreeMap::new(),
             devices: BTreeMap::new(),
             full_sensor_inventory: BTreeMap::new(),
             direct: BTreeMap::new(),
@@ -306,6 +320,10 @@ impl RadarState {
         {
             return Err("此雷达缺少已核验且已启用的搜索参数".into());
         }
+        self.equip_device(ship, key)
+    }
+
+    fn equip_device(&mut self, ship: u32, key: &str) -> E<()> {
         let devices = self.devices.entry(ship).or_default();
         if devices.iter().any(|d| d.key == key) {
             return Err("雷达配置重复".into());
@@ -339,6 +357,33 @@ impl RadarState {
         self.equip(ship, "us_sc2")?;
         self.confirm_sensor_inventory(ship, &["Mk4 (FD)", "Early QC sonar"]);
         Ok(())
+    }
+
+    fn activate_fletcher_mk4(&mut self, ship: u32) -> E<()> {
+        if self
+            .devices
+            .get(&ship)
+            .is_some_and(|d| d.iter().any(|d| d.key == MK4))
+        {
+            return Ok(());
+        }
+        self.equip_device(ship, MK4)?;
+        // Keep the same real four-sensor inventory. Mk4 was already a
+        // damage slot in v3, but only in v4 is it also an operable device.
+        self.confirm_sensor_inventory(ship, &["Early QC sonar"]);
+        Ok(())
+    }
+
+    fn has_mk4(&self, ship: u32) -> bool {
+        self.devices
+            .get(&ship)
+            .is_some_and(|d| d.iter().any(|d| d.key == MK4))
+    }
+
+    fn mk4_working(&self, ship: u32) -> bool {
+        self.devices
+            .get(&ship)
+            .is_some_and(|d| d.iter().any(|d| d.key == MK4 && d.powered && !d.disabled))
     }
 
     /// Register a terrain or precipitation polygon against an original table row.
@@ -440,6 +485,150 @@ impl RadarState {
         .is_some_and(|r| observer.p.dist(target.p) <= r)
     }
 
+    fn optical_geometry(
+        env: Environment,
+        data: &Data,
+        observer: &Ship,
+        contact: &Contact,
+        target: &Ship,
+    ) -> (f64, u32) {
+        let distance_yd = observer.p.dist(contact.p()) / YARD;
+        let base = night::surface_base_range_yd(
+            env,
+            &data.ships[observer.def].size,
+            &data.ships[target.def].size,
+            contact.speed,
+            false,
+            false,
+        );
+        (distance_yd, base)
+    }
+
+    fn own_visual_now(
+        &self,
+        env: Environment,
+        data: &Data,
+        observer: &Ship,
+        contact: &Contact,
+        target: &Ship,
+    ) -> bool {
+        let (distance_yd, base) = Self::optical_geometry(env, data, observer, contact, target);
+        distance_yd < f64::from(night::automatic_visual_yd())
+            || self
+                .mk4_visual
+                .get(&(observer.id, target.id))
+                .is_some_and(|sample| {
+                    base >= sample.original_base_yd
+                        && distance_yd <= f64::from(sample.acquisition_range_yd)
+                })
+    }
+
+    fn refresh_mk4_optics(
+        &mut self,
+        tick: u32,
+        env: Environment,
+        data: &Data,
+        ships: &[Ship],
+        contacts: &[Vec<Contact>; 2],
+        islands: &[Vec<P>],
+    ) {
+        if !tick.is_multiple_of(CYCLE) || self.mk4_visual_window == Some(tick) {
+            return;
+        }
+        self.mk4_visual_window = Some(tick);
+        let previous = std::mem::take(&mut self.mk4_visual);
+        for observer in ships.iter().filter(|s| s.alive()) {
+            if !self.has_mk4(observer.id) {
+                continue;
+            }
+            // §5.4.1: one roll per observed formation for this observer, not
+            // a new roll per ship or gun salvo. This stream doesn't change
+            // existing seat-level optical contacts or their RNG sequence.
+            let mut dice = BTreeMap::new();
+            for contact in &contacts[observer.side] {
+                let Some(target) = ships
+                    .get((contact.ship - 1) as usize)
+                    .filter(|s| s.alive() && s.side != observer.side)
+                else {
+                    continue;
+                };
+                if islands
+                    .iter()
+                    .any(|p| ray_blocked(observer.p, contact.p(), p))
+                {
+                    continue;
+                }
+                let key = (observer.id, target.id);
+                let (distance_yd, base) =
+                    Self::optical_geometry(env, data, observer, contact, target);
+                if let Some(sample) = previous.get(&key).copied().filter(|sample| {
+                    base >= sample.original_base_yd
+                        && distance_yd <= f64::from(sample.acquisition_range_yd)
+                }) {
+                    self.mk4_visual.insert(key, sample);
+                    continue;
+                }
+                let automatic = night::automatic_visual_yd();
+                if distance_yd < f64::from(automatic) || distance_yd > f64::from(base) {
+                    continue;
+                }
+                let cue = self
+                    .newest_direct(observer.side, observer.id, target.id)
+                    .is_some()
+                    || contact.first_cycle < tick / CYCLE;
+                let fired = observer.gun_cycle == Some(tick / CYCLE)
+                    || observer.illumination_cycle == Some(tick / CYCLE);
+                let formation = (
+                    target.fleet,
+                    if target.fleet.is_none() { target.id } else { 0 },
+                );
+                let die = *dice
+                    .entry(formation)
+                    .or_insert_with(|| roll(&mut self.mk4_optics_rng, 100));
+                let limit = night::surface_detection_range_yd(
+                    base,
+                    die as i32 + night::visual_d100_modifier(env, cue, false, fired),
+                );
+                if distance_yd <= f64::from(limit) {
+                    self.mk4_visual.insert(
+                        key,
+                        OwnVisual {
+                            original_base_yd: base,
+                            acquisition_range_yd: limit,
+                        },
+                    );
+                }
+            }
+        }
+    }
+
+    fn prune_mk4_optics(
+        &mut self,
+        env: Environment,
+        data: &Data,
+        ships: &[Ship],
+        contacts: &[Vec<Contact>; 2],
+        islands: &[Vec<P>],
+    ) {
+        self.mk4_visual.retain(|&(from, to), sample| {
+            let Some(observer) = ships.get((from - 1) as usize).filter(|s| s.alive()) else {
+                return false;
+            };
+            let Some(target) = ships.get((to - 1) as usize).filter(|s| s.alive()) else {
+                return false;
+            };
+            let Some(contact) = contacts[observer.side].iter().find(|c| c.ship == to) else {
+                return false;
+            };
+            let (distance_yd, base) = Self::optical_geometry(env, data, observer, contact, target);
+            base >= sample.original_base_yd
+                && distance_yd <= f64::from(sample.acquisition_range_yd)
+                && !islands
+                    .iter()
+                    .any(|p| ray_blocked(observer.p, contact.p(), p))
+        });
+    }
+
     fn prune(&mut self, tick: u32, data: &Data, ships: &[Ship], islands: &[Vec<P>], sea_state: u8) {
         let site = Site {
             islands,
@@ -489,11 +678,9 @@ impl RadarState {
             let Some(o) = ships.get((*ship - 1) as usize).filter(|s| s.alive()) else {
                 continue;
             };
-            for (index, d) in devices
-                .iter()
-                .enumerate()
-                .filter(|(_, d)| d.powered && !d.disabled)
-            {
+            for (index, d) in devices.iter().enumerate().filter(|(_, d)| {
+                d.powered && !d.disabled && rules().sets[&d.key].clutter_profile.is_some()
+            }) {
                 let set = &rules().sets[&d.key];
                 for t in ships.iter().filter(|t| t.side != o.side && t.alive()) {
                     if !Self::in_range(&site, set, data, o, t) {
@@ -598,7 +785,7 @@ impl RadarState {
 
 impl World {
     pub(crate) fn radar_enabled(&self) -> bool {
-        self.version == RADAR_VERSION
+        self.version == RADAR_VERSION || (self.realtime() && self.variant == RADAR_DRILL)
     }
 
     pub(crate) fn radar_detect(&mut self) {
@@ -611,6 +798,7 @@ impl World {
                 self.environment().sea_state,
             );
         }
+        self.refresh_realtime_mk4_optics();
     }
 
     pub(crate) fn radar_prune(&mut self) {
@@ -623,6 +811,85 @@ impl World {
                 self.environment().sea_state,
             );
         }
+        if self.mk4_rules_enabled() {
+            self.radar.prune_mk4_optics(
+                self.environment(),
+                self.data,
+                &self.ships,
+                &self.contacts,
+                &self.islands,
+            );
+        }
+    }
+
+    fn mk4_rules_enabled(&self) -> bool {
+        self.realtime() && self.variant == RADAR_DRILL
+    }
+
+    pub(crate) fn enable_realtime_mk4(&mut self) -> E<()> {
+        if self.mk4_rules_enabled() {
+            for s in &self.ships {
+                // Only the separately verified 1943 fit in this drill.
+                if s.side == 0 && self.data.ships[s.def].id == "fletcher" {
+                    self.radar.activate_fletcher_mk4(s.id)?;
+                }
+            }
+            self.refresh_realtime_mk4_optics();
+        }
+        Ok(())
+    }
+
+    fn refresh_realtime_mk4_optics(&mut self) {
+        if self.mk4_rules_enabled() {
+            self.radar.refresh_mk4_optics(
+                self.tick,
+                self.environment(),
+                self.data,
+                &self.ships,
+                &self.contacts,
+                &self.islands,
+            );
+        }
+    }
+
+    pub(crate) fn mk4_gun_aid(
+        &self,
+        shooter: &Ship,
+        contact: &Contact,
+        search_only: bool,
+    ) -> Option<mk4::Aid> {
+        if !self.mk4_rules_enabled()
+            || search_only
+            || shooter.fire_control_damage
+            || !self.radar.mk4_working(shooter.id)
+            || !shooter.alive()
+        {
+            return None;
+        }
+        // A same-seat contact ID and the actual independently held local
+        // visual plot are both required. Never discover a hull through aim.
+        let optical = self.contacts[shooter.side]
+            .iter()
+            .find(|c| c.id == contact.id && c.ship == contact.ship)?;
+        let target = self
+            .ship(optical.ship)
+            .filter(|t| t.alive() && t.side != shooter.side)?;
+        if !self
+            .radar
+            .own_visual_now(self.environment(), self.data, shooter, optical, target)
+        {
+            return None;
+        }
+        mk4::evaluate(mk4::CuedShot {
+            observer: shooter.p,
+            observer_heading: shooter.h,
+            observer_size: &self.data.ships[shooter.def].size,
+            target: optical.p(),
+            target_size: &self.data.ships[target.def].size,
+            cue: mk4::Cue::Visual,
+            director_usable: true,
+            land: &self.islands,
+        })
     }
 
     pub(crate) fn radar_power(&mut self, owner: usize, request: &Value) -> E<()> {
@@ -918,6 +1185,154 @@ mod tests {
     }
 
     #[test]
+    fn realtime_mk4_needs_its_own_held_optical_track_and_forward_director() {
+        let mut world = sparse();
+        let p = world.ship(1).unwrap().p;
+        let place = |world: &mut World, yards: f64| {
+            let q = p + P::bearing(90.) * (yards * YARD);
+            world.ship_mut(6).unwrap().p = q;
+            world.contacts[0] = vec![Contact {
+                id: "C01".into(),
+                x: q.x,
+                y: q.y,
+                heading: 270.,
+                speed: 25.,
+                kind: Some("dd".into()),
+                name: None,
+                ship: 6,
+                first_cycle: 0,
+                acquisition_base_yd: 10_000,
+                acquisition_range_yd: 10_000,
+            }];
+        };
+        let aid = |world: &World, radar_only| {
+            world.mk4_gun_aid(world.ship(1).unwrap(), &world.contacts[0][0], radar_only)
+        };
+        place(&mut world, 800.);
+        assert!(world
+            .radar
+            .own_observation(1)
+            .iter()
+            .all(|d| d["id"] != MK4));
+        assert_eq!(aid(&world, false), None);
+
+        world.tick = 1;
+        world.enable_realtime().unwrap();
+        world.enable_realtime_mk4().unwrap();
+        assert!(world
+            .radar
+            .own_observation(1)
+            .iter()
+            .any(|d| d["id"] == MK4));
+        assert!(!world.radar.has_mk4(2));
+        assert!(!world.radar.has_mk4(6));
+        // A same-seat optics report is not independent visual confirmation.
+        assert_eq!(aid(&world, false), None);
+        world.radar.mk4_optics_rng = (1..)
+            .find(|&seed| roll(&mut seed.clone(), 100) == 1)
+            .unwrap();
+        world.tick = CYCLE;
+        world.radar_detect();
+        assert_eq!(aid(&world, false).unwrap().fire_control_modifier, 2);
+        assert_eq!(aid(&world, true), None);
+        assert!(world
+            .radar
+            .direct
+            .keys()
+            .all(|&(ship, device, _)| world.radar.devices[&ship][device].key != MK4));
+
+        let fire = || json!({"op":"fire","ship":1,"weapon":"gun","target":"C01"});
+        world.rng = (1..)
+            .find(|&seed| roll(&mut seed.clone(), 100) == 60)
+            .unwrap();
+        let intact_hp = world.ship(6).unwrap().hp;
+        world.external(fire()).unwrap();
+        world.resolve_realtime_guns();
+        assert!(world.visible_events(0, None).iter().any(|e| {
+            e["kind"] == "gun"
+                && e["text"]
+                    .as_str()
+                    .unwrap_or_default()
+                    .contains("火控雷达 Mk4")
+        }));
+        assert!(world.visible_events(1, None).iter().all(|e| {
+            !e["text"]
+                .as_str()
+                .unwrap_or_default()
+                .contains("火控雷达 Mk4")
+        }));
+
+        let optical_rng = world.radar.mk4_optics_rng;
+        world.radar_detect();
+        assert_eq!(world.radar.mk4_optics_rng, optical_rng);
+        world.ship_mut(1).unwrap().h = 270.;
+        assert_eq!(aid(&world, false), None);
+        world.ship_mut(1).unwrap().h = 90.;
+        world.ship_mut(1).unwrap().fire_control_damage = true;
+        assert_eq!(aid(&world, false), None);
+        world.ship_mut(1).unwrap().fire_control_damage = false;
+        world
+            .radar_power(0, &json!({"ship":1,"radar":MK4,"powered":false}))
+            .unwrap();
+        assert_eq!(aid(&world, false), None);
+        world.tick += 6;
+        world.advance_shells();
+        let hit_hp = world.ship(6).unwrap().hp;
+        assert!(
+            hit_hp < intact_hp,
+            "D100 60 hits with Mk4; 20% night penalty waived"
+        );
+        world.external(fire()).unwrap();
+        world.resolve_realtime_guns();
+        let own_guns: Vec<_> = world
+            .visible_events(0, None)
+            .into_iter()
+            .filter(|e| e["kind"] == "gun")
+            .collect();
+        assert_eq!(own_guns.len(), 2);
+        assert!(!own_guns.last().unwrap()["text"]
+            .as_str()
+            .unwrap_or_default()
+            .contains("火控雷达 Mk4"));
+        world.tick += 6;
+        world.advance_shells();
+        assert_eq!(
+            world.ship(6).unwrap().hp,
+            hit_hp,
+            "same D100 60 misses without Mk4"
+        );
+        world
+            .radar_power(0, &json!({"ship":1,"radar":MK4,"powered":true}))
+            .unwrap();
+        assert!(aid(&world, false).is_some());
+
+        place(&mut world, 10_500.);
+        world.ship_mut(6).unwrap().gun_cycle = Some(world.tick / CYCLE);
+        world.radar_prune();
+        assert_eq!(aid(&world, false), None);
+        place(&mut world, 800.);
+        assert_eq!(
+            aid(&world, false),
+            None,
+            "lost visual does not silently reacquire"
+        );
+        place(&mut world, 299.);
+        assert!(aid(&world, false).is_some());
+        world.islands = vec![box_at(p.x + 80., p.y, 5.)];
+        assert_eq!(
+            aid(&world, false),
+            None,
+            "near range does not see through land"
+        );
+        world.islands.clear();
+        world.radar.disable(1, MK4);
+        assert!(world
+            .radar_power(0, &json!({"ship":1,"radar":MK4,"powered":true}))
+            .is_err());
+        assert_eq!(aid(&world, false), None);
+    }
+
+    #[test]
     fn recorded_power_and_contact_history_replay_identically_without_upgrading_legacy() {
         let mut e = Engine::default();
         let ask = |e: &mut Engine, r| {
@@ -950,5 +1365,23 @@ mod tests {
         assert_eq!(old["version"], VERSION);
         assert!(old.get("radarContacts").is_none());
         assert!(old["ships"][0]["systems"].get("radars").is_none());
+
+        let live = ask(
+            &mut e,
+            json!({"op":"new","variant":"radar","realtime":true}),
+        );
+        assert_eq!(live["version"], crate::realtime::VERSION);
+        assert_eq!(live["ships"][0]["systems"]["radars"][2]["id"], MK4);
+        ask(
+            &mut e,
+            json!({"op":"radar_set","ship":1,"radar":MK4,"powered":false}),
+        );
+        let stepped = ask(&mut e, json!({"op":"step","seconds":540}));
+        let saved = ask(&mut e, json!({"op":"save"}));
+        assert_eq!(stepped, ask(&mut e, json!({"op":"replay","save":saved})));
+        assert_eq!(
+            stepped["ships"][0]["systems"]["radars"][2]["powered"],
+            false
+        );
     }
 }

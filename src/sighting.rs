@@ -218,11 +218,13 @@ impl World {
             .unwrap_or(0);
         if chance == 0 {
             torpedo.view_ids[owner] = None;
+            torpedo.first_visible = None;
         } else if self.tick % CYCLE == 0
             && torpedo.view_ids[owner].is_none()
             && roll(&mut self.optics_rng, 100) <= chance
         {
             torpedo.view_ids[owner] = seat_ids(1 << owner, &mut self.torp_ids)[owner];
+            torpedo.first_visible = Some(torpedo.p);
             self.add(
                 1 << owner,
                 "torpedo_detected",

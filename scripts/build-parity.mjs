@@ -14,7 +14,7 @@ const json = value => JSON.stringify(value, (_, item) =>
 const encode = new TextEncoder();
 const decode = new TextDecoder('utf-8', { fatal: true });
 
-async function verify(side, fleet, variant = '', seed = 6106) {
+async function verify(side, fleet, variant = '', seed = 6106, realtime = false) {
   const { instance } = await WebAssembly.instantiate(source, {});
   const api = instance.exports;
   function call(req) {
@@ -27,7 +27,7 @@ async function verify(side, fleet, variant = '', seed = 6106) {
 
   const commands = [
     { op: 'info' },
-    { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant },
+    { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant, realtime },
   ];
   if (variant === 'night-training') commands.push(
     { op: 'route', fleet, mode: 'follow', speed: 15, points: [{ x: 13000, y: 6550 }, { x: 13000, y: 10400 }] },
@@ -36,13 +36,18 @@ async function verify(side, fleet, variant = '', seed = 6106) {
     { op: 'illuminate', ship: 5, target: 'C05' },
     { op: 'step', seconds: 180 },
   );
+  if (realtime && !variant) commands.push(
+    { op: 'aim', ship: 1, weapon: 'gun', target: 'C01' },
+    { op: 'fire', ship: 1, weapon: 'gun', target: 'C01' },
+    { op: 'step', seconds: 15 },
+  );
   commands.push(
     { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true },
     { op: 'step', seconds: 2700 },
   );
   const wasmOutput = commands.map(call);
   if (!wasmOutput.at(-1).data?.result) {
-    commands.push({ op: 'step', seconds: 8 });
+    commands.push({ op: 'step', seconds: realtime ? 120 : 8 });
     wasmOutput.push(call(commands.at(-1)));
   }
   const end = wasmOutput.at(-1).data;
@@ -62,17 +67,28 @@ async function verify(side, fleet, variant = '', seed = 6106) {
   const start = wasmOutput[1].data;
   const report = wasmOutput.at(-3).data;
   if (variant === 'night-training') assert(report.events.some(e => e.kind === 'illumination' && e.tick === 540));
-  if (variant === 'radar' && side === 'allies') assert(report.events.some(e => e.kind === 'gun' && e.text.includes('水面搜索雷达')));
+  if (variant === 'radar' && side === 'allies') {
+    assert(report.events.some(e => e.kind === 'gun' && e.text.includes('水面搜索雷达')));
+    if (realtime) assert(report.events.some(e => e.kind === 'gun' && e.text.includes('火控雷达 Mk4')));
+  }
+  if (realtime && !variant) {
+    const gun = report.events.find(event => event.kind === 'gun');
+    const onTheWay = wasmOutput[4].data.shells.find(shell => shell.own);
+    assert(gun && gun.tick > 0 && gun.tick < 180);
+    assert(onTheWay && onTheWay.arcHeightM > 0 && onTheWay.impactTick - onTheWay.launchTick > 8);
+  }
   assert.equal(start.ships.length, variant === 'challenge' ? 3 : 5);
   assert.equal(start.variant, variant);
   assert(end.result, `${side}: exercise failed to produce a result`);
   assert.equal(json(wasmOutput.at(-1).data), json(end), `${side}: replay diverged from live result`);
-  return { side, variant: variant || 'exercise', seed, tick: end.tick, result: end.result, visibleEvents: report.events.length,
+  return { side, variant: variant || 'exercise', version: start.version, seed, tick: end.tick, result: end.result, visibleEvents: report.events.length,
     canonicalSha256: createHash('sha256').update(json(wasmOutput)).digest('hex') };
 }
 
 const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), await verify('allies', 1, 'challenge'),
-  await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training')];
+  await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training'),
+  await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
+  await verify('allies', 1, 'radar', 6106, true)];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {
