@@ -1,0 +1,21 @@
+{
+  "source_project": "铁底湾",
+  "source_mobile_version": "0.6.11",
+  "source_commit": "41a1fb93063673ac8f84388a8f326a8b1a5fc3d5",
+  "source_component": "mobile/src/activities/ActivityCenter.tsx",
+  "source_component_sha256": "6970a9c640f8b93dd176fa750e6ccd190ffe3c51753d9c1e3778a5435066af72",
+  "source_manifest": "mobile/content/fleet-portrait-manifest.json",
+  "scope": "CAS local developer and test builds. The portrait previews a locked reward and does not certify a CAS combat card. Redistribution scope is unverified.",
+  "assets": [
+    {
+      "path": "north-carolina.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R03",
+      "character_name": "北卡罗来纳",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r03.png",
+      "source_sha256": "0e2284b3e11ed4cd18e31c07538b8a0c1e5d11f6ac6e9df421ff339509479453",
+      "sha256": "aaf2cb052355eef744fc8e2238fc88bfdf72192ddf103b540aafeb1b08d58500",
+      "decoded_sha256": "f2864ea8a66b8817f3c83af8e017874a6ba863a581b5d2e8def98af564069d26",
+      "encoding": "1024 × 1536 lossless WebP, decoded RGBA bytes verified against the source PNG"
+    }
+  ]
+}

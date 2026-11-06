@@ -4,9 +4,10 @@ import type { PortState } from '../port';
 const DAY_MS=86400000, BEIJING_OFFSET=8*3600000;
 const beijingDay=(now:number)=>Math.floor((now+BEIJING_OFFSET)/DAY_MS);
 type Reward={id:string;credits?:number;standard_tickets?:number;up_tickets?:number;ship_ids?:string[]};
+export const CHECK_IN_SHIP_ID='IBS-U-USN-UNNAMED-T01-R03';
 const SCHEDULE:Omit<Reward,'id'>[]=[
  {credits:500,standard_tickets:2}, {up_tickets:2}, {credits:800,standard_tickets:3}, {up_tickets:3},
- {credits:1200,standard_tickets:5}, {up_tickets:5}, {ship_ids:['IBS-U-USN-UNNAMED-T01-R03']},
+ {credits:1200,standard_tickets:5}, {up_tickets:5}, {ship_ids:[CHECK_IN_SHIP_ID]},
 ];
 export const CHECK_IN_REWARDS=SCHEDULE.map((reward,index)=>({...reward,id:`rookie-check-in-v1:${index+1}`}));
 

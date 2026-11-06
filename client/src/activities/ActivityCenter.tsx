@@ -2,7 +2,8 @@ import {useCallback,useEffect,useRef,useState} from 'react';
 import {onlineRequest} from '../online';
 import type {OnlineMeta} from '../online';
 import type {PortState} from '../port';
-import {CHECK_IN_REWARDS,checkInRewardLabels,checkInStatus,claimRookieCheckIn} from './check-in';
+import {CHECK_IN_REWARDS,CHECK_IN_SHIP_ID,checkInRewardLabels,checkInStatus,claimRookieCheckIn} from './check-in';
+import northCarolina from './assets/north-carolina.webp';
 import './activity.css';
 
 type Reward=(typeof CHECK_IN_REWARDS)[number]&{medals?:number};
@@ -139,8 +140,10 @@ function CheckInView({onClose,online,status,rewards=CHECK_IN_REWARDS,message,err
      </ol>
     </section>
     <aside className="activity-flagship" aria-label={`第七天奖励：战列舰${shipName}`}>
+     {rewards.some(reward=>reward.ship_ids?.includes(CHECK_IN_SHIP_ID))&&
+      <img src={northCarolina} alt={shipName+'立绘'} data-character={CHECK_IN_SHIP_ID} decoding="async"/>}
      <div className="activity-flagship-caption">
-      <span>{done?'七日航程完成':'第 7 天入列'} <i aria-hidden="true">◆</i> 战列舰</span>
+      <span>{done?'七日航程完成':'第 7 天奖励'} <i aria-hidden="true">◆</i> 战列舰</span>
       <h3>{shipName}</h3>
       <small>{done?'第七天奖励已结算':dayReward?'今日可领取':'舰卡核验完成后开放领取'}</small>
      </div>
