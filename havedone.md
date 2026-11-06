@@ -112,6 +112,10 @@
 | [Windows x64 ZIP](release/CAS-Stage0-win-x64-20261106-201315-311.zip) | `0ec37df612b5b68947b68f0f3d24a9e5a1b4fadd5e1d66ffde0fb672410824cb` |
 | [Android APK](release/CAS-Android-0.1.0-preview-20261106-201338-728.apk) | `4f252a386ddc1fc88e447410c8262f21d9160ec6240119822991336d6141d93c` |
 
+## 工作区缓存清理
+
+将 27 个目录和 244 个散文件移入回收站，共 3,627,680,026 字节。范围包括编译中间文件、临时调试及核页文件、空录屏和 14 个旧 Windows 解包目录。每个旧解包目录均先核对 ZIP 的登记 SHA-256，再逐文件核对内容。复查 16 个 ZIP、13 个 APK 和各自的校验文件仍在，当前运行和最新版的 Windows 解包目录均保留。原始资料、素材、验收凭证和现用运行依赖保留，清理未报告失败。
+
 
 ## 2026-11-06｜水面炮击临界损伤即时化
 
@@ -123,6 +127,7 @@
 |---|---|
 | [Windows x64 ZIP](E:/CAS-build-v7/CAS-Windows-v7.zip) | `729ba8a50f4f8bb6630e632ed8eda511f3db9f4e0fe0b12d39d6ea0fe3756eca` |
 | [Android APK](F:/CAS-wasm-v7/CAS-Android-v7-preview.apk) | `c000c63ea293321f771e299d8f74a760c736e60e665c9d5e13382a27b584364f` |
+
 
 ## 2026-11-06｜连续航线、舰队序章与中文战役地图
 
