@@ -14,7 +14,7 @@ const SQUADRON: [&str; 5] = [
     "IBS-U-USN-LAMSON",
 ];
 
-fn data() -> E<&'static Data> {
+pub(crate) fn data() -> E<&'static Data> {
     static DATA: OnceLock<Result<Data, String>> = OnceLock::new();
     DATA.get_or_init(|| {
         let manifest: Value = serde_json::from_str(include_str!(

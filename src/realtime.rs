@@ -21,6 +21,8 @@ pub(crate) struct Timings {
 }
 
 fn timings(version: &str, class: &str) -> Option<Timings> {
+    #[cfg(not(target_arch = "wasm32"))]
+    let class = if version == VERSION { crate::ranked_fleets::source_class(class).unwrap_or(class) } else { class };
     if !matches!(version, LEGACY_VERSION | crate::campaign::live::LEGACY_VERSION) {
         // Reference cadences, independent of the CAS hit and damage tables.
         // See docs/rules/realtime-gunnery-sources.md for fit and source limits.

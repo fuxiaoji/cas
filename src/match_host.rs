@@ -22,6 +22,16 @@ impl Engine {
 
     fn execute_match(&mut self, op: &str, request: &Value) -> E<Value> {
         match op {
+            "match_pool" => crate::ranked_fleets::catalogue(),
+            "match_new_ranked" => {
+                let config = serde_json::from_value(json!({"budget":request["budget"],
+                    "points_version":request["points_version"], "fleets":request["fleets"]}))
+                    .map_err(|_| "个人舰队对局编制无效")?;
+                let world = World::new_ranked_duel(u(request, "seed")?, config)?;
+                let status = match_status(&world);
+                self.world = Some(world);
+                Ok(status)
+            }
             "match_new" => {
                 let mut world = World::new(u(request, "seed")?, 0, "coord", "", "coord", 0)?;
                 world.init_realtime(DUEL_VERSION)?;

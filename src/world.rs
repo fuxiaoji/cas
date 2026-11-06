@@ -15,6 +15,7 @@ pub struct World {
     pub(crate) campaign: Option<live::Start>,
     pub(crate) campaign_result: Option<crate::campaign::Outcome>,
     pub(crate) host_duel: bool,
+    pub(crate) ranked_duel: Option<RankedFleetMatch>,
     pub data: &'static Data,
     pub ships: Vec<Ship>,
     pub fleets: Vec<Fleet>,
@@ -65,6 +66,7 @@ impl World {
             campaign: None,
             campaign_result: None,
             host_duel: false,
+            ranked_duel: None,
             data,
             ships: vec![],
             fleets: vec![],
@@ -225,8 +227,12 @@ impl World {
 
     pub(crate) fn spawn(&mut self, def: usize, side: usize, fleet: u32, name: String, p: P, h: f64) -> E<u32> {
         let d = &self.data.ships[def];
-        if ![side_name(side), if side == 0 { "blue" } else { "red" }].contains(&d.side.as_str())
-            || !d.dp.is_finite() || d.dp <= 0.
+        if (!self.host_duel || self.ranked_duel.is_none())
+            && ![side_name(side), if side == 0 { "blue" } else { "red" }].contains(&d.side.as_str())
+        {
+            return Err(format!("{} 的阵营与开局席位不符", d.id));
+        }
+        if !d.dp.is_finite() || d.dp <= 0.
             || d.gun.range_yd.len() != 4 || d.gun.damage.len() != 4
             || d.gun.barrels == 0 || d.gun.mounts.iter().map(|m| m.barrels).sum::<u32>() != d.gun.barrels
             || !self.field.contains(p)
@@ -266,15 +272,16 @@ impl World {
             _ => return Err("此存档使用另一个规则版本".into()),
         };
         let realtime = crate::realtime::is_realtime_version(version);
-        if s.duel
+        let ranked = s.ranked.is_some();
+        if (ranked && !s.duel) || (s.duel
             && (cfg!(target_arch = "wasm32")
-                || version != crate::realtime::CURVE_VERSION
+                || if ranked { version != crate::realtime::VERSION || s.variant != "personal-duel" }
+                    else { version != crate::realtime::CURVE_VERSION || !s.variant.is_empty() }
                 || s.side != "allies"
                 || s.enemy != "coord"
                 || s.profile != "coord"
                 || s.leader_slot != 0
-                || !s.variant.is_empty()
-                || s.campaign.is_some())
+                || s.campaign.is_some()))
         {
             return Err("双席对局存档与权威想定不符".into());
         }
@@ -317,7 +324,12 @@ impl World {
             return Err("存档命令时序无效".into());
         }
         let profile = if s.profile.is_empty() { "coord" } else { &s.profile };
-        let mut w = if let Some(start) = s.campaign {
+        let mut w = if let Some(ranked) = s.ranked {
+            #[cfg(not(target_arch = "wasm32"))]
+            { Self::new_ranked_duel(s.seed, ranked)? }
+            #[cfg(target_arch = "wasm32")]
+            { let _ = ranked; return Err("双席对局由权威主机恢复".into()); }
+        } else if let Some(start) = s.campaign {
             if start.seat()? != side(&s.side)? || start.enemy()? != s.enemy || s.leader_slot != 0 {
                 return Err("战役存档阵营或编制不符".into());
             }
@@ -330,12 +342,12 @@ impl World {
             profile,
             s.leader_slot,
         )? };
-        if realtime && w.campaign.is_none() {
+        if !ranked && realtime && w.campaign.is_none() {
             w.init_realtime(version)?;
         } else {
             w.version = version;
         }
-        if s.duel {
+        if s.duel && !ranked {
             w.set_duel_seats();
         }
         let mut commands = s.commands.into_iter().peekable();
@@ -372,6 +384,7 @@ impl World {
             tick: self.tick,
             commands: self.commands.clone(),
             duel: self.host_duel,
+            ranked: self.ranked_duel.clone(),
         }
     }
     pub fn ship(&self, id: u32) -> Option<&Ship> {
@@ -504,7 +517,7 @@ impl World {
                 "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
                 "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
-            if self.variant == crate::prologue::VARIANT && d.id.starts_with("IBS-U-") {
+            if (self.variant == crate::prologue::VARIANT || self.ranked_duel.is_some()) && d.id.starts_with("IBS-U-") {
                 data["characterId"] = json!(d.id);
             } else if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
                 data["characterId"] = json!(character);
@@ -573,6 +586,9 @@ impl World {
         if self.has_starshells() { view["illuminations"]=json!(self.visible_illumination(owner)); }
         if self.realtime() { view["realtimeGunnery"] = json!(true); }
         if self.torpedo_depths() { view["torpedoDepths"] = json!(true); }
+        if let Some(ranked) = &self.ranked_duel {
+            view["scenario"] = json!(if ranked.budget == 3000 { "三千分护航战" } else { "万分战列舰战" });
+        }
         view
     }
     pub fn external(&mut self, r: Value) -> E<()> {
@@ -619,6 +635,9 @@ impl World {
                 ai.validate()?;
                 if self.host_duel && ai.mode == "auto" {
                     return Err("线上约战的 AI 只提供建议".into());
+                }
+                if self.ranked_duel.is_some() && self.fleet(id).is_some_and(|fleet| fleet.ai.profile != ai.profile) {
+                    return Err("本局的 AI 风格已随舰队预设冻结".into());
                 }
                 self.fleet_mut(id).unwrap().ai = ai;
                 self.add(

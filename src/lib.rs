@@ -5,6 +5,8 @@ mod damage;
 mod illumination;
 #[cfg(not(target_arch = "wasm32"))]
 mod match_host;
+#[cfg(not(target_arch = "wasm32"))]
+mod ranked_fleets;
 mod model;
 mod movement;
 mod night;

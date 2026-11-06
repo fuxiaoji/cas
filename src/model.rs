@@ -499,4 +499,29 @@ pub struct Saved {
     pub commands: Vec<Entry>,
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub duel: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ranked: Option<RankedFleetMatch>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct RankedFleetMatch {
+    pub budget: u32,
+    pub points_version: String,
+    pub fleets: RankedFleets,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct RankedFleets {
+    pub allies: RankedFleet,
+    pub axis: RankedFleet,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct RankedFleet {
+    pub ship_ids: Vec<String>,
+    pub leader_id: String,
+    pub ai_profile: String,
 }
