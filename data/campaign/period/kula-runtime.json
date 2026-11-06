@@ -1,0 +1,1426 @@
+{
+  "id": "cas-rs-kula-gulf",
+  "content_version": "cas-kula-runtime-v1",
+  "as_of": "1943-07-06",
+  "profiles": {
+    "fletcher": {
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "turn_size": "A",
+      "in_service_year": 1942,
+      "configuration_year": 1942,
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 400,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "annex_special_damage_modifier_pct": 0,
+      "gun": {
+        "name": "Mk30 5英寸/38",
+        "caliber_mm": 127,
+        "shell": "SpCOM",
+        "armor_piercing": false,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ]
+          }
+        ],
+        "source": {
+          "document": "us",
+          "pdf_page": 108,
+          "printed_page": "C-2"
+        }
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "warhead_kg": 374,
+        "depth": "shallow",
+        "contact_fuze": true,
+        "tubes": 10,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null,
+        "source": {
+          "document": "us",
+          "pdf_page": 119,
+          "printed_page": "F-1"
+        },
+        "speed_options": [
+          {
+            "speed_knots": 45,
+            "range_yd": 6000
+          },
+          {
+            "speed_knots": 34,
+            "range_yd": 10000
+          },
+          {
+            "speed_knots": 27,
+            "range_yd": 15000
+          }
+        ]
+      }
+    },
+    "brooklyn_1": {
+      "side": "allies",
+      "kind": "CL",
+      "size": "B",
+      "in_service_year": 1937,
+      "max_knots": 32,
+      "dp": 388,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 97,
+          "knots": 24
+        },
+        {
+          "damage": 194,
+          "knots": 16
+        },
+        {
+          "damage": 291,
+          "knots": 8
+        },
+        {
+          "damage": 349,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "gun": {
+        "name": "Mk16 6英寸/47",
+        "caliber_mm": 152.4,
+        "shell": "APC",
+        "armor_piercing": true,
+        "range_yd": [
+          6200,
+          13000,
+          20800,
+          26000
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "pen_belt": [
+          15,
+          9,
+          7,
+          5
+        ],
+        "pen_deck": [
+          0,
+          0,
+          2,
+          4
+        ],
+        "barrels": 15,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "source": {
+          "document": "us",
+          "pdf_page": 108,
+          "printed_page": "C-2"
+        }
+      },
+      "torpedo": null,
+      "armor_belt": 13,
+      "armor_deck": 5
+    },
+    "brooklyn_2": {
+      "side": "allies",
+      "kind": "CL",
+      "size": "B",
+      "in_service_year": 1939,
+      "max_knots": 32,
+      "dp": 396,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 99,
+          "knots": 24
+        },
+        {
+          "damage": 198,
+          "knots": 16
+        },
+        {
+          "damage": 297,
+          "knots": 8
+        },
+        {
+          "damage": 356,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "gun": {
+        "name": "Mk16 6英寸/47",
+        "caliber_mm": 152.4,
+        "shell": "APC",
+        "armor_piercing": true,
+        "range_yd": [
+          6200,
+          13000,
+          20800,
+          26000
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "pen_belt": [
+          15,
+          9,
+          7,
+          5
+        ],
+        "pen_deck": [
+          0,
+          0,
+          2,
+          4
+        ],
+        "barrels": 15,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "source": {
+          "document": "us",
+          "pdf_page": 108,
+          "printed_page": "C-2"
+        }
+      },
+      "torpedo": null,
+      "armor_belt": 13,
+      "armor_deck": 5
+    },
+    "akizuki": {
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "in_service_year": 1942,
+      "max_knots": 33,
+      "dp": 167,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 42,
+          "knots": 25
+        },
+        {
+          "damage": 84,
+          "knots": 16
+        },
+        {
+          "damage": 125,
+          "knots": 8
+        },
+        {
+          "damage": 150,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "gun": {
+        "name": "九八式 10cm/65 HE",
+        "caliber_mm": 100,
+        "range_yd": [
+          6600,
+          13200,
+          17600,
+          22000
+        ],
+        "damage": [
+          17,
+          14,
+          12,
+          11
+        ],
+        "pen_belt": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "pen_deck": [
+          null,
+          null,
+          0,
+          1
+        ],
+        "armor_piercing": false,
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ]
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 4,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          }
+        ]
+      },
+      "armor_belt": 0,
+      "armor_deck": 0
+    },
+    "kagero": {
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "turn_size": "C",
+      "in_service_year": 1939,
+      "configuration_year": 1942,
+      "max_knots": 35,
+      "dp": 138,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 69,
+          "knots": 18
+        },
+        {
+          "damage": 104,
+          "knots": 9
+        },
+        {
+          "damage": 124,
+          "knots": 0
+        },
+        {
+          "damage": 138,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "annex_special_damage_modifier_pct": 0,
+      "gun": {
+        "name": "三年式 12.7厘米/50",
+        "caliber_mm": 127,
+        "shell": "COM",
+        "armor_piercing": false,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ]
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ]
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ]
+          }
+        ],
+        "source": {
+          "document": "jp",
+          "pdf_page": 97,
+          "printed_page": "C-1"
+        }
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "warhead_kg": 490,
+        "depth": "shallow",
+        "contact_fuze": true,
+        "tubes": 8,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          }
+        ],
+        "reload_seconds": 360,
+        "source": {
+          "document": "jp",
+          "pdf_page": 105,
+          "printed_page": "F-1"
+        },
+        "speed_options": [
+          {
+            "speed_knots": 49,
+            "range_yd": 22000
+          },
+          {
+            "speed_knots": 41,
+            "range_yd": 35000
+          },
+          {
+            "speed_knots": 37,
+            "range_yd": 43800
+          }
+        ]
+      }
+    },
+    "shiratsuyu": {
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "in_service_year": 1936,
+      "max_knots": 34,
+      "dp": 122,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 31,
+          "knots": 26
+        },
+        {
+          "damage": 61,
+          "knots": 17
+        },
+        {
+          "damage": 92,
+          "knots": 8
+        },
+        {
+          "damage": 110,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "gun": {
+        "name": "三年式 12.7厘米/50",
+        "caliber_mm": 127,
+        "shell": "COM",
+        "armor_piercing": false,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "barrels": 4,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "source": {
+          "document": "jp",
+          "pdf_page": 97,
+          "printed_page": "C-1"
+        }
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          }
+        ]
+      },
+      "armor_belt": 0,
+      "armor_deck": 0
+    },
+    "fubuki_1936": {
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "in_service_year": 1928,
+      "max_knots": 34,
+      "dp": 106,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 27,
+          "knots": 26
+        },
+        {
+          "damage": 53,
+          "knots": 17
+        },
+        {
+          "damage": 80,
+          "knots": 8
+        },
+        {
+          "damage": 95,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "gun": {
+        "name": "三年式 12.7厘米/50",
+        "caliber_mm": 127,
+        "shell": "COM",
+        "armor_piercing": false,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ]
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ]
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ]
+          }
+        ],
+        "source": {
+          "document": "jp",
+          "pdf_page": 97,
+          "printed_page": "C-1"
+        }
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 9,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "tubes": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "tubes": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          }
+        ]
+      },
+      "armor_belt": 0,
+      "armor_deck": 0
+    },
+    "mutsuki": {
+      "side": "axis",
+      "kind": "DD",
+      "size": "D",
+      "in_service_year": 1925,
+      "max_knots": 33,
+      "dp": 88,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 22,
+          "knots": 25
+        },
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 66,
+          "knots": 8
+        },
+        {
+          "damage": 79,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 200,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "gun": {
+        "name": "三年式 12cm/45 COM",
+        "caliber_mm": 120,
+        "gs": 4,
+        "range_yd": [
+          5300,
+          10600,
+          14100,
+          17600
+        ],
+        "damage": [
+          14,
+          11,
+          10,
+          9
+        ],
+        "pen_belt": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false,
+        "barrels": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ]
+      },
+      "torpedo": {
+        "name": "八年式二号",
+        "speed_knots": 38,
+        "range_yd": 10900,
+        "warhead": 87,
+        "tubes": 6,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          },
+          {
+            "tubes": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          }
+        ]
+      },
+      "armor_belt": 0,
+      "armor_deck": 0
+    },
+    "mutsuki_mikazuki": {
+      "side": "axis",
+      "kind": "DD",
+      "size": "D",
+      "in_service_year": 1925,
+      "max_knots": 33,
+      "dp": 88,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 22,
+          "knots": 25
+        },
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 66,
+          "knots": 8
+        },
+        {
+          "damage": 79,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 200,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "gun": {
+        "name": "三年式 12cm/45 COM",
+        "caliber_mm": 120,
+        "gs": 4,
+        "range_yd": [
+          5300,
+          10600,
+          14100,
+          17600
+        ],
+        "damage": [
+          14,
+          11,
+          10,
+          9
+        ],
+        "pen_belt": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false,
+        "barrels": 2,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          }
+        ]
+      },
+      "torpedo": {
+        "name": "八年式二号",
+        "speed_knots": 38,
+        "range_yd": 10900,
+        "warhead": 87,
+        "tubes": 3,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 3,
+            "arc": [
+              210,
+              330
+            ],
+            "arc2": [
+              30,
+              150
+            ]
+          }
+        ]
+      },
+      "armor_belt": 0,
+      "armor_deck": 0
+    }
+  },
+  "instances": [
+    {
+      "id": "kula-nicholas",
+      "name": "尼古拉斯",
+      "name_en": "Nicholas",
+      "profile": "fletcher",
+      "form10_pdf_page": 281,
+      "radar": [
+        "us_sg",
+        "us_sc2",
+        "us_mk4_fd"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-obannon",
+      "name": "奥班农",
+      "name_en": "O’Bannon",
+      "profile": "fletcher",
+      "form10_pdf_page": 282,
+      "radar": [
+        "us_sg",
+        "us_sc2",
+        "us_mk4_fd"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-honolulu",
+      "name": "火奴鲁鲁",
+      "name_en": "Honolulu",
+      "profile": "brooklyn_1",
+      "form10_pdf_page": 267,
+      "radar": [
+        "us_sg"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-helena",
+      "name": "海伦娜",
+      "name_en": "Helena",
+      "profile": "brooklyn_2",
+      "form10_pdf_page": 263,
+      "radar": [
+        "us_sg"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-st-louis",
+      "name": "圣路易斯",
+      "name_en": "St. Louis",
+      "profile": "brooklyn_2",
+      "form10_pdf_page": 264,
+      "radar": [
+        "us_sg"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-radford",
+      "name": "雷德福德",
+      "name_en": "Radford",
+      "profile": "fletcher",
+      "form10_pdf_page": 283,
+      "radar": [
+        "us_sg",
+        "us_sc2",
+        "us_mk4_fd"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-jenkins",
+      "name": "詹金斯",
+      "name_en": "Jenkins",
+      "profile": "fletcher",
+      "form10_pdf_page": 279,
+      "radar": [
+        "us_sg",
+        "us_sc2",
+        "us_mk4_fd"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-niizuki",
+      "name": "新月",
+      "name_en": "Niizuki",
+      "profile": "akizuki",
+      "form10_pdf_page": 83,
+      "radar": [
+        "jp_type22_ss"
+      ],
+      "supply": false
+    },
+    {
+      "id": "kula-suzukaze",
+      "name": "凉风",
+      "name_en": "Suzukaze",
+      "profile": "shiratsuyu",
+      "form10_pdf_page": 137,
+      "radar": [],
+      "supply": false
+    },
+    {
+      "id": "kula-tanikaze",
+      "name": "谷风",
+      "name_en": "Tanikaze",
+      "profile": "kagero",
+      "form10_pdf_page": 110,
+      "radar": [],
+      "supply": false
+    },
+    {
+      "id": "kula-amagiri",
+      "name": "天雾",
+      "name_en": "Amagiri",
+      "profile": "fubuki_1936",
+      "form10_pdf_page": 154,
+      "radar": [],
+      "supply": true
+    },
+    {
+      "id": "kula-hatsuyuki",
+      "name": "初雪",
+      "name_en": "Hatsuyuki",
+      "profile": "fubuki_1936",
+      "form10_pdf_page": 158,
+      "radar": [],
+      "supply": true
+    },
+    {
+      "id": "kula-nagatsuki",
+      "name": "长月",
+      "name_en": "Nagatsuki",
+      "profile": "mutsuki",
+      "form10_pdf_page": 181,
+      "radar": [],
+      "supply": true
+    },
+    {
+      "id": "kula-satsuki",
+      "name": "皋月",
+      "name_en": "Satsuki",
+      "profile": "mutsuki",
+      "form10_pdf_page": 182,
+      "radar": [],
+      "supply": true
+    },
+    {
+      "id": "kula-mochizuki",
+      "name": "望月",
+      "name_en": "Mochizuki",
+      "profile": "mutsuki",
+      "form10_pdf_page": 180,
+      "radar": [],
+      "supply": true
+    },
+    {
+      "id": "kula-mikazuki",
+      "name": "三日月",
+      "name_en": "Mikazuki",
+      "profile": "mutsuki_mikazuki",
+      "form10_pdf_page": 178,
+      "radar": [],
+      "supply": true
+    },
+    {
+      "id": "kula-hamakaze",
+      "name": "浜风",
+      "name_en": "Hamakaze",
+      "profile": "kagero",
+      "form10_pdf_page": 101,
+      "radar": [],
+      "supply": true
+    }
+  ],
+  "evidence": {
+    "scenario_pdf": [
+      85,
+      86
+    ],
+    "american_fleets": [
+      19,
+      20,
+      108,
+      119,
+      123
+    ],
+    "emperors_fleet": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      97,
+      105,
+      110
+    ],
+    "japanese_transport_reference_pdf": 93,
+    "policy": "Main batteries and Annex F ready fits. No unconfirmed transport loads or reserve ammunition activated."
+  }
+}

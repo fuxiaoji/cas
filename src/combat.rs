@@ -1131,6 +1131,8 @@ impl World {
             let name = s.name.clone();
             let side = s.side;
             let hp = (s.hp - i.amount.max(0.)).max(0.);
+            let effective = s.hp - hp;
+            if let Some(kula) = &mut self.kula { kula.credit(i.owner, side, effective); }
             self.ship_mut(i.victim).unwrap().hp = hp;
             let rule = if i.torpedo { "CAS-8.1.2" } else if self.realtime() { "RTS-GUN-04" } else { "CAS-6.1.3" };
             self.add(

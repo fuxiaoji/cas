@@ -1,7 +1,7 @@
 use crate::{model::*, movement::fallback_leader, projectile::Shell, radar::{RadarState, RADAR_DRILL, RADAR_VERSION}};
 use serde_json::{json, Value};
 use std::sync::OnceLock;
-use crate::campaign::live;
+use crate::campaign::{kula, live};
 
 pub(crate) fn u(r: &Value, k: &str) -> E<u32> {
     r.get(k)
@@ -16,6 +16,7 @@ pub struct World {
     pub(crate) campaign_result: Option<crate::campaign::Outcome>,
     pub(crate) host_duel: bool,
     pub(crate) ranked_duel: Option<RankedFleetMatch>,
+    pub(crate) kula: Option<kula::Battle>,
     pub data: &'static Data,
     pub ships: Vec<Ship>,
     pub fleets: Vec<Fleet>,
@@ -67,6 +68,7 @@ impl World {
             campaign_result: None,
             host_duel: false,
             ranked_duel: None,
+            kula: None,
             data,
             ships: vec![],
             fleets: vec![],
@@ -295,6 +297,9 @@ impl World {
             && !matches!(version, crate::realtime::VERSION | crate::realtime::CURVE_VERSION)
         {
             return Err("该教学存档的规则版本不符".into());
+        }
+        if s.variant == kula::VARIANT && version != kula::VERSION {
+            return Err("库拉湾存档的规则版本不符".into());
         }
         if live::is_campaign_version(version) != s.campaign.is_some()
             || s.campaign.as_ref().is_some_and(|start| s.variant != start.variant()) {
@@ -567,12 +572,12 @@ impl World {
         let events = self.visible_events(owner, Some(90));
         let shells = self.shell_observation(owner);
         let mut view = json!({"tick":self.tick,"limit":self.field.limit,"width":self.field.width,"height":self.field.height,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
             "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
         if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
         if self.radar_enabled() {
             let mut reports = self.radar.observation(owner, &self.ships);
-            if self.variant == live::VARIANT {
+            if matches!(self.variant.as_str(), live::VARIANT | kula::VARIANT) {
                 for report in &mut reports {
                     let target = report["id"].as_str().expect("seat radar contact id");
                     let ships: Vec<_> = self.ships.iter().filter(|s| s.side == owner && s.alive())
@@ -660,7 +665,7 @@ impl World {
     fn action_closed(&self) -> bool {
         self.tick >= self.field.limit || if self.variant == live::VARIANT {
             !self.ships.iter().any(|s| s.side == 1 && s.alive())
-        } else if self.variant == crate::campaign::channel::VARIANT {
+        } else if matches!(self.variant.as_str(), crate::campaign::channel::VARIANT | kula::VARIANT) {
             // The inherited scenario scores at the end of turn four, including ongoing damage.
             false
         } else {
@@ -699,6 +704,8 @@ impl World {
         self.advance_shells();
         if self.variant == live::VARIANT {
             self.campaign_departures();
+        } else if self.variant == kula::VARIANT {
+            kula::tick(self);
         }
         if self.realtime() && (self.tick % CYCLE == 0 || self.action_closed() && self.shells.is_empty()) {
             self.flush_realtime_surface_damage();

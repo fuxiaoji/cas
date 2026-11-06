@@ -184,8 +184,9 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
     for item in scenarios {
         let cape = item["cas"]["scenario_id"] == "cas-rs-cape-st-george";
         let channel = item["ibs_id"] == "IBS-S-03";
-        assert_eq!(item["playable"], cape || channel);
-        if cape || channel {
+        let kula = item["ibs_id"] == "IBS-S-02";
+        assert_eq!(item["playable"], cape || channel || kula);
+        if cape || channel || kula {
             assert_eq!(item["runtime"]["historicalReady"], false);
         }
         for id in item["stage_ids"].as_array().unwrap() {

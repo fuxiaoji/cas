@@ -7,6 +7,9 @@ export interface CampaignLaunch { stageId: string; difficulty: CampaignDifficult
 export interface CampaignMission extends CampaignLaunch {
   missionLabel: string;
   objectives: string;
+  supplyZone?: { x: number; y: number; radius: number; label: string };
+  supplySeconds?: number;
+  supplyComplete?: boolean;
 }
 export interface CampaignOutcome { grade?: CampaignGrade; primary?: string | boolean }
 export type CampaignStars = 0 | 1 | 2 | 3;
@@ -70,6 +73,8 @@ const rewardsByStage: Record<string, readonly CampaignReward[]> = {
   'CAMP-AXIS-01': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
   'CAMP-ALLIES-03': capeRewards,
   'CAMP-AXIS-03': capeRewards,
+  'CAMP-ALLIES-04': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
+  'CAMP-AXIS-04': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
 };
 type CampaignReward = { stars: Exclude<CampaignStars, 0>; title: string; credits: number; tickets: number; marks: number };
 export function campaignRewards(stageId: string): readonly CampaignReward[] { return rewardsByStage[stageId] ?? []; }

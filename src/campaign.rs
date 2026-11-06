@@ -7,6 +7,7 @@ use std::{collections::BTreeMap, sync::OnceLock};
 mod legacy;
 pub(crate) mod live;
 pub(crate) mod channel;
+pub(crate) mod kula;
 pub mod horaniu;
 pub use legacy::{Deployment as LegacyDeployment, MapGeometry as LegacyMapGeometry};
 
@@ -107,6 +108,9 @@ fn public_row(mut row: Value) -> Value {
     if row["cas"]["scenario_id"] == "cas-rs-cape-st-george" {
         row["playable"] = json!(true);
         row["runtime"] = json!({"historicalReady":false,"label":live::LABEL,"contentVersion":live::CONTENT});
+    } else if row["cas"]["scenario_id"] == "cas-rs-kula-gulf" {
+        row["playable"] = json!(true);
+        row["runtime"] = json!({"historicalReady":false,"label":kula::LABEL,"contentVersion":kula::CONTENT,"localOnly":true});
     } else if row["ibs_id"] == "IBS-S-03" {
         row["playable"] = json!(true);
         row["runtime"] = json!({"historicalReady":false,"label":channel::LABEL,"contentVersion":channel::CONTENT,"localOnly":true});
@@ -331,7 +335,7 @@ mod tests {
             let allies = detail(&format!("CAMP-ALLIES-{n:02}")).unwrap();
             let axis = detail(&format!("CAMP-AXIS-{n:02}")).unwrap();
             assert_eq!(allies, axis);
-            assert_eq!(allies["entry"]["playable"], n == 1 || n == 3);
+            assert_eq!(allies["entry"]["playable"], matches!(n, 1 | 3 | 4));
             if !allies["record"].is_null() {
                 sources += 1;
                 assert_eq!(allies["record"]["ibs_id"], allies["entry"]["ibs_id"]);

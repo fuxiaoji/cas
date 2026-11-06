@@ -386,6 +386,34 @@ try {
     receipt.channelReward = { stageId: end.campaign.stageId, tick: end.tick, grade: end.result.grade, balance,
       torpedoHit: true, duplicateDeniedAtOtherDifficulty: true };
   }
+  receipt.kula = [];
+  for (const side of ['allies', 'axis']) {
+    await toArchive();
+    const row = await selectStage(side, 'standard', '04');
+    await row.locator('.archive-source').waitFor();
+    await row.getByRole('button', { name: '出航作战', exact: true }).click();
+    await page.locator('.battle-map').waitFor();
+    const start = await q('observe');
+    const mission = page.getByRole('region', { name: '战役任务' });
+    assert.equal(start.variant, 'kula-gulf-rts');
+    assert.equal(start.ships.length, side === 'allies' ? 7 : 10);
+    assert.equal(start.islands.length, 1);
+    assert.equal(start.campaign.supplyZone.radius, 1852);
+    assert.match(await mission.innerText(), /库拉湾/);
+    if (side === 'axis') {
+      assert.match(await mission.innerText(), /00:00 \/ 30:00/);
+      await q('step', { seconds: 1799 });
+      await button('推进一秒').click();
+      await mission.getByText('维拉卸载已完成', { exact: true }).waitFor();
+      await page.screenshot({ path: out + '/07-kula-vila.png' });
+      await replayAndReturn(await q('observe'));
+    } else {
+      assert.equal(start.campaign.supplySeconds, undefined);
+      assert.doesNotMatch(await mission.innerText(), /连续计时/);
+    }
+    receipt.kula.push({ side, stage: start.campaign.stageId, ownShips: start.ships.length, supplyStatePrivate: side === 'allies',
+      completed: (await q('observe')).campaign.supplyComplete });
+  }
   assert.deepEqual(errors, []);
   await fs.writeFile(out + '/browser-receipt.json', JSON.stringify(receipt, null, 2));
   console.log(JSON.stringify(receipt, null, 2));

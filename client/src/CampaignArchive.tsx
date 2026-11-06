@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ask } from './engine';
+import { ask, clock } from './engine';
 import type { Side } from './engine';
 import { CampaignMap, campaignMapStageIds } from './campaign-map';
 import type { CampaignMapSelection } from './campaign-map';
@@ -71,6 +71,7 @@ export function CampaignResultSummary({ campaign, result }: { campaign: Campaign
 export function CampaignMissionBrief({ campaign }: { campaign: CampaignMission }) {
   return <section className="campaign-mission-brief" aria-label="战役任务">
     <strong>{campaign.missionLabel}</strong><span>{campaignDifficulties[campaign.difficulty]}难度</span><p>{campaign.objectives}</p>
+    {campaign.supplySeconds !== undefined && <p>{campaign.supplyComplete ? '维拉卸载已完成' : `维拉卸载连续计时 ${clock(campaign.supplySeconds)} / 30:00`}</p>}
   </section>;
 }
 
@@ -326,6 +327,7 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
                 <p>本关按历史编制借舰，不消耗个人舰库。</p>
                 {!online && <CampaignRewardActions stageId={stageId} progress={progress} busy={busy} onClaim={() => onClaim(stageId)} />}
                 {stageId === 'CAMP-AXIS-01' && <p>原首通舰高波待核准 CAS 舰卡后开放，补给可照常领取。</p>}
+                {stageId.endsWith('-04') && <p>原首通舰{side === 'allies' ? '海伦娜' : '新月'}待个人舰库接入，补给可照常领取。</p>}
                 {campaignRewards(stageId).length > 0 && <details className="campaign-reward-ledger"><summary>查看星级奖励</summary>
                   <ol>{campaignRewards(stageId).map(reward => <li key={reward.stars}><span>{reward.stars} 星 · {reward.title}</span>
                     <strong>{campaignRewardText(reward)}</strong><small>{(progress?.[stageId]?.claimed ?? 0) >= reward.stars ? '已领取' : '每条战线各领一次'}</small></li>)}</ol>

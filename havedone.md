@@ -135,3 +135,8 @@
 |---|---|
 | [Windows x64 ZIP](C:/Users/fwj/AppData/Local/CAS-builds/20261106-v8/CAS-Windows-v8.zip) | `c199122df5373d194782847ff6758e8a9d6578c2da99739c08326af4dac5cefe` |
 | [Android APK](C:/Users/fwj/AppData/Local/CAS-builds/20261106-v8/CAS-Android-v8-preview.apk) | `31f9225d21d4cf537c8e5d0c7d250ae11b02824cba729f6d2c04fcc76e193162` |
+
+## 2026-11-06｜库拉湾双线可出航
+
+- 库拉湾本地双线接入五版原页 17 艘具名舰、纸面部署海岸、10% 夜间能见、7 艘运输舰和维拉卸载计时。3 艘须同一段连续满 30 分钟。炮雷命中伤害和轻巡沉没触发两席各自判分，前台保留卸载进度的轴心座席限制。准备及剩余原书差额见[来源记录](docs/campaign/kula-runtime-sources.md)。
+- 54 项内核测试通过，17 个原生／WASM 完整场景逐项与同席重演一致。同盟种子 6106 决定胜，轴心种子 2 实雷命中并取得战术胜，且两边可同时达标。浏览器通过两席出航、轴心 30 分钟卸载、保存重演、既有双线档案和领奖防重。新关先在本地运行。

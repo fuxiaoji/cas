@@ -1,5 +1,5 @@
 //! First playable, explicitly restricted adaptation of Rising Sun p. 91.
-use super::channel;
+use super::{channel, kula};
 use super::{ClosedShip, Disposition, Grade};
 use crate::{
     model::*,
@@ -55,9 +55,12 @@ impl Start {
     pub(crate) fn is_channel(&self) -> bool {
         matches!(self.stage_id.as_str(), "CAMP-ALLIES-01" | "CAMP-AXIS-01")
     }
+    pub(crate) fn is_kula(&self) -> bool { kula::is_stage(&self.stage_id) }
     pub(crate) fn variant(&self) -> &'static str {
         if self.is_channel() {
             channel::VARIANT
+        } else if self.is_kula() {
+            kula::VARIANT
         } else {
             VARIANT
         }
@@ -65,6 +68,8 @@ impl Start {
     pub(crate) fn limit(&self) -> u32 {
         if self.is_channel() {
             channel::LIMIT
+        } else if self.is_kula() {
+            kula::FIELD.limit
         } else {
             FIELD.limit
         }
@@ -72,14 +77,16 @@ impl Start {
     fn expected_content(&self) -> &'static str {
         if self.is_channel() {
             channel::CONTENT
+        } else if self.is_kula() {
+            kula::CONTENT
         } else {
             CONTENT
         }
     }
     pub(crate) fn seat(&self) -> E<usize> {
         match self.stage_id.as_str() {
-            "CAMP-ALLIES-03" | "CAMP-ALLIES-01" => Ok(0),
-            "CAMP-AXIS-03" | "CAMP-AXIS-01" => Ok(1),
+            "CAMP-ALLIES-03" | "CAMP-ALLIES-01" | "CAMP-ALLIES-04" => Ok(0),
+            "CAMP-AXIS-03" | "CAMP-AXIS-01" | "CAMP-AXIS-04" => Ok(1),
             _ => Err("此战役尚未通过出航核验".into()),
         }
     }
@@ -237,6 +244,9 @@ impl World {
         if start.is_channel() {
             return channel::open(seed, start, player, enemy, profile);
         }
+        if start.is_kula() {
+            return kula::open(seed, start, player, enemy, profile);
+        }
         let runtime = runtime()?;
         let mut w = Self::blank(&runtime.data, seed, player, enemy, VARIANT, profile, 0);
         w.field = FIELD;
@@ -363,6 +373,8 @@ impl World {
         let start = self.campaign.as_ref()?;
         let mut view = if start.is_channel() {
             channel::view(start, owner)
+        } else if start.is_kula() {
+            kula::view(self, start, owner)
         } else {
             let stage = if owner == 0 {
                 "CAMP-ALLIES-03"
@@ -442,6 +454,10 @@ impl World {
         if self.variant == channel::VARIANT {
             let outcome = channel::assess(self, allied_sunk);
             self.finish_campaign(outcome, allied_sunk, axis_sunk, "RTS-CHANNEL-01");
+            return;
+        }
+        if self.variant == kula::VARIANT {
+            self.finish_campaign(kula::outcome(self), allied_sunk, axis_sunk, "CAS-RS-P84");
             return;
         }
         let states = self

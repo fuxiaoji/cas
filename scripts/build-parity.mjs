@@ -16,6 +16,7 @@ const decode = new TextDecoder('utf-8', { fatal: true });
 
 async function verify(side, fleet, variant = '', seed = 6106, realtime = false, campaign = false) {
   const channel = variant === 'channel-action-rts';
+  const kula = variant === 'kula-gulf-rts';
   const { instance } = await WebAssembly.instantiate(source, {});
   const api = instance.exports;
   function call(req) {
@@ -28,7 +29,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
 
   const commands = [
     { op: 'info' },
-    campaign ? { op: 'new_campaign', id: 'CAMP-' + side.toUpperCase() + (channel ? '-01' : '-03'), difficulty: 'story', seed } :
+    campaign ? { op: 'new_campaign', id: 'CAMP-' + side.toUpperCase() + (channel ? '-01' : kula ? '-04' : '-03'), difficulty: kula ? side === 'allies' ? 'standard' : 'challenge' : 'story', seed, ...(kula ? { profile: side === 'allies' ? 'gunnery' : 'torpedo' } : {}) } :
       { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant, realtime },
   ];
   if (variant === 'night-training') commands.push(
@@ -57,6 +58,9 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
       { op: 'illuminate', ship: 5, target: 'C03' },
       { op: 'step', seconds: 180 },
     );
+  } else if (kula) {
+    for (const fleet of side === 'allies' ? [1] : [2, 3, 4]) commands.push(
+      { op: 'ai', fleet, profile: fleet === 2 ? 'torpedo' : 'gunnery', mode: 'auto', move: side === 'allies', gun: true, torpedo: true });
   } else if (channel) {
     const ownFleets = side === 'axis' ? [1, 2, 3] : [4, 5, 6, 7, 8];
     for (const fleet of ownFleets) commands.push(
@@ -75,6 +79,10 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
   const wasmOutput = commands.map(call);
   if (campaign && !wasmOutput.at(-1).data?.result) {
     commands.push({ op: 'step', seconds: 2700 });
+    wasmOutput.push(call(commands.at(-1)));
+  }
+  if (kula && !wasmOutput.at(-1).data?.result) {
+    commands.push({ op: 'step', seconds: 1800 });
     wasmOutput.push(call(commands.at(-1)));
   }
   if (!wasmOutput.at(-1).data?.result) {
@@ -108,7 +116,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     assert(gun && gun.tick > 0 && gun.tick < 180);
     assert(onTheWay && onTheWay.arcHeightM > 0 && onTheWay.impactTick - onTheWay.launchTick > 8);
   }
-  assert.equal(start.ships.length, variant === 'prologue' ? 9 : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
+  assert.equal(start.ships.length, variant === 'prologue' ? 9 : kula ? (side === 'allies' ? 7 : 10) : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
   assert.equal(start.variant, variant);
   if (variant === 'prologue') {
     const handover = wasmOutput[2].data;
@@ -123,7 +131,14 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     assert(radar.radarContacts.some(contact => contact.usableForShipIds.includes(1)));
     assert(wasmOutput[6].data.illuminations.some(mark => mark.own));
   }
-  if (channel) {
+  if (kula) {
+    assert.equal(start.environment.visibility, 10);
+    assert.equal(end.result.grade, side === 'allies' ? 'decisive' : 'tactical');
+    if (side === 'axis') {
+      assert(end.campaign.supplyComplete);
+      assert(report.events.some(event => event.kind === 'torpedo_hit'));
+    } else assert.equal(end.campaign.supplySeconds, undefined);
+  } else if (channel) {
     assert.equal(start.environment.visibility, 5);
     assert(start.ships.every(ship => ship.classId === ship.characterId));
     assert.equal(start.fleets.length, start.ships.length);
@@ -153,7 +168,9 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 4, 'channel-action-rts', 6107, true, true),
   await verify('axis', 1, 'channel-action-rts', 53, true, true),
   await verify('allies', 1, 'prologue', 6106, true),
-  await verify('allies', 1, 'night-radar-training', 6106, true)];
+  await verify('allies', 1, 'night-radar-training', 6106, true),
+  await verify('allies', 1, 'kula-gulf-rts', 6106, true, true),
+  await verify('axis', 2, 'kula-gulf-rts', 2, true, true)];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

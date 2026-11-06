@@ -8,6 +8,8 @@ impl World {
     pub(crate) fn environment(&self) -> Environment {
         if self.variant == crate::campaign::channel::VARIANT {
             crate::campaign::channel::ENVIRONMENT
+        } else if self.variant == crate::campaign::kula::VARIANT {
+            crate::campaign::kula::ENVIRONMENT
         } else if self.campaign.is_some() {
             crate::campaign::live::environment()
         } else if self.variant == "night" || self.radar_enabled() || self.has_starshells() {

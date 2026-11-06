@@ -229,6 +229,16 @@ export function BattleMap(props: MapProps) {
       ctx.strokeStyle = y % 5000 === 0 ? '#8aadb54a' : '#7398a624'; ctx.stroke();
       if (y % 5000 === 0) ctx.fillText(String(y / 1000) + 'N', Math.max(5, left + 5), py - 4);
     }
+    const supply = o.campaign?.supplyZone;
+    if (supply) {
+      const at = screen(supply);
+      ctx.save(); ctx.beginPath(); ctx.arc(at.x, at.y, supply.radius * mapRatio, 0, TAU);
+      ctx.fillStyle = '#e5b96622'; ctx.fill(); ctx.setLineDash([5, 4]);
+      ctx.strokeStyle = '#e5b966'; ctx.lineWidth = 1.4; ctx.stroke();
+      ctx.fillStyle = '#f3cf8b'; ctx.font = '12px sans-serif';
+      ctx.fillText(supply.label, at.x + supply.radius * mapRatio + 6, at.y - 4);
+      ctx.restore();
+    }
     if (o.campaign?.withdrawalX !== undefined) {
       const x = screen({ x: o.campaign.withdrawalX, y: 0 }).x;
       ctx.beginPath(); ctx.moveTo(x, north); ctx.lineTo(x, bottom);
@@ -564,7 +574,7 @@ export function BattleMap(props: MapProps) {
     <div className="map-compass"><Compass /></div>
     <BattleAlerts events={o.events} tick={o.tick} session={session} enabled={!replaying} />
     <div className="map-note">
-      <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : o.realtimeGunnery ? '实时炮击演习' : '昼间水面演习'}</strong>
+      <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : o.campaign ? o.scenario.split(' · ', 1)[0] : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : o.realtimeGunnery ? '实时炮击演习' : '昼间水面演习'}</strong>
       <span>{editing ? '拖动编号航点可修正航线' : o.campaign ? '历史阵位 · RTS 改编' : o.variant === 'radar' ? '虚构夜间演习 · 雷达回波 R' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
     </div>
     {gesture && <div className={'gesture-tip' + (gesture.aim?.friendly || gesture.aim?.valid === false || (gesture.weapon === 'torpedo' && aimInArc === false) ? ' warning' : '')}

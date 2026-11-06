@@ -813,7 +813,7 @@ impl RadarState {
 
 impl World {
     pub(crate) fn radar_enabled(&self) -> bool {
-        self.version == RADAR_VERSION || (self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT | crate::illumination::RADAR_TRAINING))
+        self.version == RADAR_VERSION || (self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT | crate::campaign::kula::VARIANT | crate::illumination::RADAR_TRAINING))
     }
 
     pub(crate) fn radar_detect(&mut self) {
@@ -851,14 +851,16 @@ impl World {
     }
 
     fn mk4_rules_enabled(&self) -> bool {
-        self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT)
+        self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT | crate::campaign::kula::VARIANT)
     }
 
     pub(crate) fn enable_realtime_mk4(&mut self) -> E<()> {
         if self.mk4_rules_enabled() {
             for s in &self.ships {
                 // Only the separately verified 1943 fit in this drill.
-                if s.side == 0 && (self.data.ships[s.def].id == "fletcher" || self.variant == crate::campaign::live::VARIANT) {
+                if s.side == 0 && (self.data.ships[s.def].id == "fletcher"
+                    || self.variant == crate::campaign::live::VARIANT
+                    || self.variant == crate::campaign::kula::VARIANT && crate::campaign::kula::uses_mk4(&self.data.ships[s.def].id)) {
                     self.radar.activate_fletcher_mk4(s.id)?;
                 }
             }
@@ -947,7 +949,7 @@ impl World {
     }
 
     pub(crate) fn radar_torp_contact(&self, ship: &Ship, id: &str) -> Option<Contact> {
-        if self.variant != crate::campaign::live::VARIANT { return None; }
+        if !matches!(self.variant.as_str(), crate::campaign::live::VARIANT | crate::campaign::kula::VARIANT) { return None; }
         self.radar.for_torpedo(ship, id)
     }
 
