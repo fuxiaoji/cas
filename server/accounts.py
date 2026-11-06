@@ -624,6 +624,7 @@ def create_app(db_path: str | Path | None = None, catalog_path: str | Path = CAT
     service = AccountService(db_path or os.environ.get("CAS_ACCOUNT_DB", DEFAULT_DB), catalog_path)
     from .account_progression import AccountProgression, mount as mount_progression
     from .battle_pve import CampaignService, NativeCore, mount
+    from .fleets import FleetService, mount as mount_fleets
     configured_sim = sim_path or os.environ.get("CAS_SIM_PATH")
     pve = CampaignService(service, NativeCore(Path(configured_sim)), clock_ms=clock_ms,
                           seed_source=seed_source) if configured_sim else None
@@ -649,6 +650,7 @@ def create_app(db_path: str | Path | None = None, catalog_path: str | Path = CAT
 
     app.state.require_account = account
     mount_progression(app, AccountProgression(service, check_in_clock_ms), account)
+    mount_fleets(app, FleetService(service), account)
     if pve:
         mount(app, pve, account)
 
@@ -657,7 +659,8 @@ def create_app(db_path: str | Path | None = None, catalog_path: str | Path = CAT
         return {"ready": True, "version": "0.1.0", "real_payments": False, "ranked_pvp": False,
                 "pvp_available": False, "pve_available": pve is not None, "asset_source": "server",
                 "service": "cas-free-economy", "economy_version": service.catalog["version"],
-                "starter_gifts_verify_practice": False}
+                "starter_gifts_verify_practice": False, "fleet_presets_available": True,
+                "fleet_point_table_available": False}
 
     @app.post("/auth/register")
     def register(data: Credentials):

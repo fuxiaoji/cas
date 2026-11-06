@@ -25,6 +25,8 @@ python -m uvicorn server.accounts:app --host 127.0.0.1 --port 8021
 | GET / POST | `/missions/weekly-pve` / `/missions/weekly-pve/claim` | 查询或领取原手游「每周实战补给」。圣乔治角在服务端完成主目标时计一场，使用北京时间周界限；客户端不能自报胜场。和离线挑战的「每周三次复战、每次两券」分别结算。 |
 | GET / POST | `/missions/check-in` / `/missions/check-in/claim` | 查询七日签到或以 `{request_id}` 领取下一档；使用服务器北京时间日期。 |
 | GET | `/progression` | 查询本人收藏舰数、已解锁 AI、权威战役档位及主目标胜场、赠礼和签到。 |
+| GET | `/fleets`、`/fleets/{id}` | 查询本账号的编队草案、当前预设及出战门控。 |
+| POST | `/fleets` | `{request_id,fleet}` 创建或更新本账号的草案，成功保存后设为当前预设。 |
 
 除健康、目录、注册、登录外，必须发送 `Authorization: Bearer <token>`。用户名为 3–40 位英文字母、数字、点、短横线或下划线，忽略大小写；密码 10–128 字符。密码和会话在数据库里分别保存带随机盐的 PBKDF2-HMAC-SHA256 摘要与 SHA-256 摘要。令牌有效期 30 天。允许本地开发浏览器、CAS Windows WebView 和 Android 应用资源来源；可用 `CAS_ACCOUNT_ORIGINS` 添加明确来源。浏览器跨域许可不能代替账号鉴权。
 
@@ -82,11 +84,24 @@ python -m uvicorn server.accounts:app --host 127.0.0.1 --port 8021
 
 `/progression` 只汇总已有可信进度：固定新手赠礼仍标 `practice_verified:false`，战役胜场和分档来自真实 CAS 终局。此接口没有写入途径，不虚构账号经验或等级，也不把收藏当作出战资格。
 
+### 个人编队与排位结构
+
+沿用铁底湾账号服务的 `fleet` 对象和编队身份。0.6.11 源码 `6601bddde1b4f0817ebbb6864ee80137647e1d88` 的 `mobile/progression.py` 与 `mobile/src/fleet/ranked.ts` 提供编制依据。CAS 服务验证舰船稳定 ID、当前账号实际库存、同阵营、具体舰不重复、已拥有 AI，以及领舰属于该预设。省略领舰时使用名单第一艘。可保存 32 个草案，修改时复用预设 ID。相同请求编号与内容会重放原答复，编号复用为不同内容会返回 409。
+
+| 档位 | 结构检查 |
+|---:|---|
+| 3000 | 3 至 6 艘，至少 2 艘驱逐舰，轻巡与重巡合计最多 2 艘。 |
+| 10000 | 3 至 8 艘，1 至 2 艘战列舰，至少 2 艘驱逐舰或轻重巡护航，最多 4 艘驱逐舰。 |
+
+输入 `fleet` 含 `id`、`name`、`side`、`budget`、`ship_ids`、`ai_profile`，可选 `leader_id`。`cost_version` 可省略或传 `null`。保存响应为 `{fleet,validation,active_fleet_id,meta}`。查询单份返回 `{fleet,validation}`，列表的 `fleets` 包含这些条目。结构检查通过后，`validation.structure_valid` 为真，`cost` 和 `point_table_version` 仍为 `null`，并以 `unavailable_ship_ids` 列出尚无个人出战配置的船。
+
+云目录目前仅供收藏与草案编辑。演习的通用舰型和战役借舰由各自想定加载。CAS 个人出战配置和点表尚待建立，因此 `combat_ready`、`ranked_ready` 和列表的 `ranked_available` 均为 `false`。旧作舰价没有参与任何预算判断。
+
 ### 验证
 
 ```powershell
 python -m pip install -r server/requirements-test.txt
-python -m unittest -v server.test_accounts server.test_battle_pve server.test_account_progression
+python -m unittest -v server.test_accounts server.test_battle_pve server.test_account_progression server.test_fleets
 python -m server.smoke_http --sim .\target\release\cas-sim.exe
 python -m server.import_catalog 'F:/Codex/worktrees/android-mobile/铁底湾'
 ```
