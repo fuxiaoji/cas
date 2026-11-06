@@ -361,18 +361,27 @@ impl World {
 
     pub(crate) fn campaign_view(&self, owner: usize) -> Option<Value> {
         let start = self.campaign.as_ref()?;
-        if start.is_channel() {
-            return Some(channel::view(start, owner));
-        }
-        let stage = if owner == 0 {
-            "CAMP-ALLIES-03"
+        let mut view = if start.is_channel() {
+            channel::view(start, owner)
         } else {
-            "CAMP-AXIS-03"
-        };
-        Some(
+            let stage = if owner == 0 {
+                "CAMP-ALLIES-03"
+            } else {
+                "CAMP-AXIS-03"
+            };
             json!({"stageId":stage,"difficulty":start.difficulty,"missionLabel":LABEL,
-            "objectives":objectives(owner),"withdrawalX":WEST_EXIT}),
-        )
+                "objectives":objectives(owner),"withdrawalX":WEST_EXIT})
+        };
+        if self.result.is_some() {
+            // The tactical projection contains only ships still on the chart. The
+            // debrief also needs this seat's sunk and withdrawn participants.
+            let roster: Vec<_> = self.ships.iter().filter(|ship| ship.side == owner).map(|ship| {
+                let class = &self.data.ships[ship.def].id;
+                json!({"name":ship.name,"classId":class,"characterId":character_id(class)})
+            }).collect();
+            view["roster"] = json!(roster);
+        }
+        Some(view)
     }
     pub(crate) fn result_for(&self, owner: usize) -> Value {
         let mut value = json!(self.result);
@@ -629,7 +638,8 @@ mod tests {
     #[test]
     fn both_axis_columns_must_cross_the_line_to_earn_decisive_victory() {
         let mut e = Engine::default();
-        opening(&mut e, "CAMP-AXIS-03");
+        let start = opening(&mut e, "CAMP-AXIS-03");
+        assert!(start["campaign"].get("roster").is_none());
         for (fleet, x, y, speed) in [(3, 30_000, 35_000, 35), (4, 33_000, 3_000, 33)] {
             request(
                 &mut e,
@@ -646,6 +656,12 @@ mod tests {
         let end = request(&mut e, json!({"op":"step","seconds":2700}));
         assert_eq!(end["result"]["grade"], "decisive");
         assert_eq!(end["result"]["allies"], 0);
+        assert!(end["ships"].as_array().unwrap().is_empty());
+        let roster = end["campaign"]["roster"].as_array().unwrap();
+        assert_eq!(roster.len(), 5);
+        assert!(roster.iter().all(|ship| ship["characterId"]
+            .as_str().is_some_and(|id| id.starts_with("IBS-U-IJN-"))));
+        assert!(roster.iter().any(|ship| ship["characterId"] == "IBS-U-IJN-UZUKI"));
         let report = request(&mut e, json!({"op":"report"}));
         let withdrawals: Vec<_> = report["events"]
             .as_array()
