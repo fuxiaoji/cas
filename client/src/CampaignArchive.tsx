@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ask } from './engine';
 import type { Side } from './engine';
+import { CampaignMap, campaignMapStageIds } from './campaign-map';
+import type { CampaignMapSelection } from './campaign-map';
+import { campaignForceGroup, campaignLegacyFormation, campaignScenarioTitle, campaignShipName, campaignText } from './campaign-labels';
 import { campaignBest, campaignDifficulties, campaignRewards, campaignRewardText, campaignStars, pendingCampaignRewards } from './campaign-progress';
 import type { CampaignDifficulty, CampaignLaunch, CampaignMission, CampaignOutcome, CampaignProgress, CampaignStars } from './campaign-progress';
 import './campaign-archive.css';
@@ -9,7 +12,7 @@ type Match = 'exact_historical_counterpart' | 'related_alternate' | 'unverified'
 type Reference = { document: string; pdf_pages: number[]; printed_pages: number[] };
 type Entry = {
   ibs_id: string; ibs_title: string; ibs_date: string; ibs_kind: string; stage_ids: string[];
-  classification: Match; cas: null | { title: string; source: Reference; verification: string; import: string | null };
+  classification: Match; cas: null | { scenario_id: string; title: string; source: Reference; verification: string; import: string | null };
   playable: boolean; note: string; runtime?: { historicalReady: boolean; label: string; localOnly?: boolean };
 };
 interface Archive { schema_version: number; content_version: string; scenarios: Entry[] }
@@ -34,7 +37,7 @@ type LegacyShip = {
 type LegacyDeployment = {
   title: string; map: { width_m: number; height_m: number };
   start: { light_hint: string | null; legacy_turn_limit: number | null };
-  ships: LegacyShip[]; objectives: { intent: string[] }; gates: string[];
+  ships: LegacyShip[]; formations: { id: string; note?: string | null }[]; objectives: { intent: string[] }; gates: string[];
   post_default_formation_setup?: { ships: Pick<LegacyShip, 'ibs_ship_id' | 'initial_hex' | 'x_m' | 'y_m' | 'heading_deg' | 'speed_knots'>[] } | null;
   conflicts: unknown[]; source: { baseline: string };
 };
@@ -43,7 +46,7 @@ const matchNames: Record<Match, string> = {
   exact_historical_counterpart: '同一历史战斗', related_alternate: '相关改编',
   unverified: '尚待核对', ibs_original_or_absent: '旧作想定或未找到',
 };
-const sources: Record<string, string> = { rising_sun_5e: 'Rising Sun（第五版）', steel_typhoon_5e: 'Steel Typhoon（第五版）' };
+const sources: Record<string, string> = { rising_sun_5e: '《旭日》（第五版）', steel_typhoon_5e: '《钢铁台风》（第五版）' };
 const sides = ['allies', 'axis'] as const;
 const sideName = { allies: '同盟', axis: '轴心' };
 const difficultyNotes: Record<CampaignDifficulty, string> = {
@@ -85,7 +88,7 @@ export function CampaignRewardActions({ stageId, progress, onClaim, busy }: {
 }
 
 function goalText(goal: Goal) {
-  if (typeof goal === 'string') return goal;
+  if (typeof goal === 'string') return campaignText(goal);
   if (!goal) return '原页未明确该档，待复核。';
   if (!('all_of' in goal)) {
     if (goal.type === 'damage_point_ratio' && goal.ratio !== undefined) return `损伤点比达到 ${goal.ratio}:1`;
@@ -119,23 +122,43 @@ function goalText(goal: Goal) {
   }).join('；');
 }
 
-function forceNames(force: unknown): string[] {
-  if (typeof force === 'string') return [force];
-  if (Array.isArray(force)) return force.flatMap(forceNames);
+function forceNames(force: unknown, side: Side): string[] {
+  if (typeof force === 'string') return [campaignShipName(force, side)];
+  if (Array.isArray(force)) return force.flatMap(item => forceNames(item, side));
   if (typeof force !== 'object' || force === null) return [];
   const row = force as Record<string, unknown>;
   const name = row.name ?? row.ship;
-  if (typeof name === 'string') return [name];
-  if (typeof row.class === 'string' && typeof row.count === 'number') return [`${row.class} × ${row.count}`];
+  if (typeof name === 'string') return [campaignShipName(name, side)];
+  if (typeof row.class === 'string' && typeof row.count === 'number') return [`${campaignShipName(row.class, side)} × ${row.count}`];
   return Object.entries(row).filter(([key, value]) =>
     Array.isArray(value) || (typeof value === 'object' && value !== null && key !== 'deployment'),
-  ).flatMap(([, value]) => forceNames(value));
+  ).flatMap(([, value]) => forceNames(value, side));
+}
+
+function forceRows(force: unknown, side: Side, label?: string): { label?: string; ships: string[] }[] {
+  if (Array.isArray(force) && force.some(item => item && typeof item.unit === 'string')) {
+    return force.flatMap(item => forceRows(item, side, label));
+  }
+  if (force && typeof force === 'object' && !Array.isArray(force)) {
+    const row = force as Record<string, unknown>;
+    if (typeof row.unit === 'string') label = campaignText(row.unit);
+    const subgroups = Object.entries(row).flatMap(([key, value]) => {
+      const subgroup = campaignForceGroup(key);
+      if (!subgroup) return [];
+      const subgroupLabel = label && key !== 'column' ? `${label} · ${subgroup}` : label ?? subgroup;
+      return forceRows(value, side, subgroupLabel);
+    });
+    if (subgroups.length) return subgroups;
+  }
+  const ships = forceNames(force, side);
+  return ships.length ? [{ label, ships }] : [];
 }
 
 function LegacySource({ id, side, data, playable }: { id: string; side: Side; data: LegacyDeployment; playable: boolean }) {
   const [showFormation, setShowFormation] = useState(false);
   const positions = showFormation ? new Map(data.post_default_formation_setup?.ships.map(ship => [ship.ibs_ship_id, ship])) : undefined;
   const placement = positions ? data.ships.map(ship => ({ ...ship, ...positions.get(ship.ibs_ship_id) })) : data.ships;
+  const formations = new Map(data.formations.map(formation => [formation.id, campaignLegacyFormation(formation.id, formation.note)]));
   const width = 640;
   const height = 340;
   const scale = Math.min((width - 28) / data.map.width_m, (height - 28) / data.map.height_m);
@@ -162,13 +185,13 @@ function LegacySource({ id, side, data, playable }: { id: string; side: Side; da
       const ships = placement.filter(ship => ship.side === faction);
       return <section key={faction}><details><summary>{sideName[faction]}部署 · {ships.length} 艘</summary>
         <ul>{ships.map(ship => <li key={ship.ibs_ship_id}>{ship.name} · {ship.initial_hex} · {ship.heading_deg}°
-          {ship.formation_id && ` · ${ship.formation_id}`}</li>)}</ul>
+          {ship.formation_id && ` · ${formations.get(ship.formation_id) ?? '原编队'}`}</li>)}</ul>
       </details></section>;
     })}</div>
-    <div><h4>原剧本任务</h4><ul>{data.objectives.intent.map(text => <li key={text}>{text}</li>)}</ul></div>
+    <div><h4>原剧本任务</h4><ul>{data.objectives.intent.map(text => <li key={text}>{campaignText(text)}</li>)}</ul></div>
     <div><h4>{playable ? '原始档案的核验记录' : '出航前待验证'}</h4>
       {playable ? <p>当前可出航的是以这份部署为底稿、用 CAS 舰卡裁决的 RTS 版本。</p>
-        : <ul>{data.gates.map(text => <li key={text}>{text}</li>)}</ul>}
+        : <ul>{data.gates.map(text => <li key={text}>{campaignText(text)}</li>)}</ul>}
       {data.conflicts.length > 0 && <p>{data.conflicts.length} 处原部署和编队设置存在差异，已保留原阵位供核对。</p>}</div>
   </div>;
 }
@@ -199,22 +222,22 @@ function StageSource({ id, side, playable, historicalReady }: { id: string; side
     <div className="archive-sides">
       {([side, side === 'allies' ? 'axis' : 'allies'] as const).map((faction) => {
         const fleets = record.groups?.filter(group => group.side === faction);
-        const ships = forceNames(record.forces?.[faction]);
+        const forces = forceRows(record.forces?.[faction], faction);
         const goals = record.objectives[faction];
         return <section key={faction}><h4>{sideName[faction]}编制与目标</h4>
-          {fleets?.map(group => <p key={group.id}>{group.unit} · {group.course_deg}° / {group.speed_knots} 节<br />{
-            group.members_in_order.map(id => record.ships?.find(ship => ship.id === id)?.name ?? id).join('、')
+          {fleets?.map(group => <p key={group.id}>{campaignText(group.unit)} · {group.course_deg}° / {group.speed_knots} 节<br />{
+            group.members_in_order.map(id => campaignShipName(record.ships?.find(ship => ship.id === id)?.name ?? id, faction)).join('、')
           }</p>)}
-          {ships.length > 0 && <p>{ships.join('、')}</p>}
-          <dl><dt>命令</dt><dd>{goals.orders}</dd><dt>决定胜利</dt><dd>{goalText(goals.decisive)}</dd><dt>战术胜利</dt><dd>{goalText(goals.tactical)}</dd></dl>
+          {forces.map(({ label, ships }, i) => <p key={i}>{label && <><strong>{label}</strong><br /></>}{ships.join('、')}</p>)}
+          <dl><dt>命令</dt><dd>{campaignText(goals.orders)}</dd><dt>决定胜利</dt><dd>{goalText(goals.decisive)}</dd><dt>战术胜利</dt><dd>{goalText(goals.tactical)}</dd></dl>
         </section>;
       })}
     </div>
     {record.special_rules?.length ? <div><h4>想定特例</h4><ul>{record.special_rules.map((rule, i) =>
-      <li key={i}>{typeof rule === 'string' ? rule : rule.rule}</li>)}</ul></div> : null}
+      <li key={i}>{campaignText(typeof rule === 'string' ? rule : rule.rule)}</li>)}</ul></div> : null}
     {!historicalReady && <div><h4>{playable ? '原书版本仍待核验' : '尚待验证'}</h4>
       {readiness && <p>已录入 {readiness.periodProfiles} 类时期配置，关联 {readiness.datedShips} 艘舰；仍有 {readiness.unresolvedPeriodData.length} 项原表或装载问题待核对。</p>}
-      <ul>{record.blockers.map((blocker, i) => <li key={i}>{typeof blocker === 'string' ? blocker : blocker.detail}</li>)}</ul>
+      <ul>{record.blockers.map((blocker, i) => <li key={i}>{campaignText(typeof blocker === 'string' ? blocker : blocker.detail)}</li>)}</ul>
     </div>}
   </div>;
 }
@@ -230,6 +253,7 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
   const [side, setSide] = useState<Side>('allies');
   const [difficulty, setDifficulty] = useState<CampaignDifficulty>('story');
   const [open, setOpen] = useState<string>();
+  const [mapSelection, setMapSelection] = useState<CampaignMapSelection>({ region: 'overview' });
   useEffect(() => {
     let active = true;
     void ask<Archive>({ op: 'campaign' }).then((value) => {
@@ -240,12 +264,24 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
   const exactCount = archive?.scenarios.filter((entry) => entry.classification === 'exact_historical_counterpart').length ?? 0;
   const stagePrefix = side === 'allies' ? 'CAMP-ALLIES-' : 'CAMP-AXIS-';
   const canLaunch = (entry: Entry) => entry.playable && !(online && entry.runtime?.localOnly);
-  const playableCount = archive?.scenarios.filter(entry => canLaunch(entry) && entry.stage_ids.some(id => id.startsWith(stagePrefix))).length ?? 0;
-  const visible = archive?.scenarios.filter((entry) => filter === 'all' || entry.classification === filter) ?? [];
+  const matchingEntries = archive?.scenarios.filter(entry => filter === 'all' || entry.classification === filter) ?? [];
+  const mapStageIds = new Set(campaignMapStageIds(matchingEntries, side, mapSelection));
+  const visible = matchingEntries.flatMap(entry => {
+    const stageId = entry.stage_ids.find(id => id.startsWith(stagePrefix) && mapStageIds.has(id));
+    return stageId ? [{ entry, stageId }] : [];
+  });
+  const playableCount = visible.filter(({ entry }) => canLaunch(entry)).length;
+  const activeScenario = visible.some(({ entry }) => entry.ibs_id === open) ? open : undefined;
+
+  function chooseMap(selection: CampaignMapSelection) {
+    setMapSelection(selection);
+    const nextIds = new Set(campaignMapStageIds(matchingEntries, side, selection));
+    if (!visible.some(({ entry, stageId }) => entry.ibs_id === open && nextIds.has(stageId))) setOpen(undefined);
+  }
 
   return <section className="harbor-section campaign-archive" aria-label="CAS 战役档案">
     <div className="harbor-title"><h3>战役航图</h3>{archive && <span>双线 {archive.scenarios.length * 2} 关 · {exactCount} 份原书想定</span>}</div>
-    <p className="harbor-fine">选择战线和难度，再展开关卡。可出航的关卡提供历史编制借舰；其他关卡可查阅档案。</p>
+    <p className="harbor-fine">选择战线和难度，点航图上的海域查看对应关卡。可出航的关卡提供历史编制借舰；其他关卡可查阅档案。</p>
     {error && <div className="harbor-action" role="status"><span>档案未能载入。</span><button type="button" onClick={() => { setError(false); setAttempt((n) => n + 1); }}>重新载入</button></div>}
     {!archive && !error && <p className="harbor-fine" role="status">正在查阅档案…</p>}
     {archive && <>
@@ -256,16 +292,16 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
         <label>难度 <select value={difficulty} onChange={event => setDifficulty(event.target.value as typeof difficulty)}>
           {Object.entries(campaignDifficulties).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
         </select></label>
-        <label>档案范围 <select value={filter} onChange={(event) => setFilter(event.target.value as typeof filter)}>
+        <label>档案范围 <select value={filter} onChange={event => { setFilter(event.target.value as typeof filter); setOpen(undefined); }}>
           <option value="all">全部</option>
           {Object.entries(matchNames).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
         </select></label>
       </div>
+      <CampaignMap entries={matchingEntries} side={side} selection={mapSelection} onSelectionChange={chooseMap} activeScenarioId={activeScenario} />
       <div className="archive-difficulty"><span>{campaignDifficulties[difficulty]}：{difficultyNotes[difficulty]}各档舰卡与规则一致。</span><span>{sideName[side]}战线 · {playableCount} 关可出航</span></div>
+      {!visible.length && <p className="harbor-fine" role="status">该海域没有符合筛选的关卡。</p>}
       <ul className="archive-list">
-        {visible.map((entry) => {
-          const stageId = entry.stage_ids.find(id => id.startsWith(stagePrefix));
-          if (!stageId) return null;
+        {visible.map(({ entry, stageId }) => {
           const best = campaignBest(progress, stageId, difficulty);
           const pending = pendingCampaignRewards(progress, stageId).length > 0;
           return <li key={entry.ibs_id} data-stage-id={stageId} data-playable={canLaunch(entry)}>
@@ -295,10 +331,10 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
                     <strong>{campaignRewardText(reward)}</strong><small>{(progress?.[stageId]?.claimed ?? 0) >= reward.stars ? '已领取' : '每条战线各领一次'}</small></li>)}</ol>
                 </details>}
               </div>}
-              {entry.cas && <p><strong>{entry.cas.title}</strong><br />{sources[entry.cas.source.document] ?? entry.cas.source.document}
+              {entry.cas && <p><strong data-source-title={entry.cas.title}>{campaignScenarioTitle(entry.cas.scenario_id, entry.ibs_title)}</strong><br />{sources[entry.cas.source.document] ?? entry.cas.source.document}
                 {entry.cas.source.pdf_pages.length > 0 && ' · PDF 第 ' + entry.cas.source.pdf_pages.join('、') + ' 页'}
                 {entry.cas.source.printed_pages.length > 0 && '（书页 ' + entry.cas.source.printed_pages.join('、') + '）'}</p>}
-              <p>{entry.note}</p>
+              <p>{campaignText(entry.note)}</p>
               <small>关卡编号：{stageId}</small>
               {open === entry.ibs_id && <StageSource key={stageId} id={stageId} side={side} playable={entry.playable} historicalReady={entry.runtime?.historicalReady} />}
             </div>

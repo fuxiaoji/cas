@@ -177,7 +177,7 @@ assert.equal(await page.getByText('未开放',{exact:true}).count(),16-openAdapt
 await page.getByLabel('档案范围').selectOption('exact_historical_counterpart');
 assert.equal(await page.locator('.archive-list > li').count(),11);
 await page.locator('.archive-list summary').filter({hasText:'圣乔治角海战'}).click();
-assert.match(await page.locator('.archive-list details[open] .archive-detail').innerText(),/Rising Sun.*PDF/s);
+assert.match(await page.locator('.archive-list details[open] .archive-detail').innerText(),/《旭日》.*PDF/s);
 await page.locator('.archive-list details[open] .archive-source').waitFor();
 await page.screenshot({path:root+'/06-campaign-archive.png'});
 const sourceCount=await page.locator('.archive-list > li > details > summary').count();

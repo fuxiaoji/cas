@@ -1,0 +1,46 @@
+{
+  "source_project": "铁底湾",
+  "source_mobile_version": "0.6.11",
+  "source_commit": "41a1fb93063673ac8f84388a8f326a8b1a5fc3d5",
+  "scope": "Use in CAS local developer and test builds. Original mobile art and code distribution beyond this scope is unverified.",
+  "entries": [
+    {
+      "path": "chart-data.json",
+      "source_path": "mobile/src/campaign/chart-data.json",
+      "sha256": "087af9aca4cdc1ac83ac988c43bea41e5246fd2d5639ff1e7f031953fe96ce6c",
+      "reuse": "Verbatim projected coastlines, bounds and labels in the CAS chart.",
+      "underlying_data": "Natural Earth 1:10m Land v5.1.2, declared public domain in source metadata."
+    },
+    {
+      "path": "ChartFace.tsx",
+      "source_path": "mobile/src/campaign/ChartFace.tsx",
+      "source_sha256": "4e7d230fd7ff22d57212e03e22c98d442ea9c6d2c5b5c09090ae305d6ba11cb5",
+      "reuse": "Original map face and projection function, importing the CAS geography adapter."
+    },
+    {
+      "path": "campaign-map.css",
+      "source_path": "mobile/src/campaign/war-atlas.css",
+      "source_sha256": "14c2332ef95caac2a1d144543a073d8c197498ecac7db09841422857573606f8",
+      "reuse": "Map pane only, scoped to CAS and adapted for the shorter archive."
+    },
+    {
+      "path": "CampaignMap.tsx",
+      "source_path": "mobile/src/campaign/CampaignScreen.tsx",
+      "source_sha256": "5686086e0ee6e9182fbf22723452e3ea6e204c5fa7f18f714514b99207ad07c5",
+      "reuse": "Theater navigation and map pins. CAS supplies all stage IDs and launch eligibility."
+    },
+    {
+      "path": "geography.ts",
+      "source_path": "mobile/content/campaign-briefings.json",
+      "source_sha256": "5c6838e3d9e2d4e0232809d6d8c6246fda90abb5de2c0955db119a0b1ac6a096",
+      "reuse": "Nine map locations and the place key for each of the 16 original scenario IDs. The night exercise is a separate CAS entry point."
+    },
+    {
+      "path": "../assets/harbor/harbor-night.png",
+      "source_path": "mobile/public/harbor-night.png",
+      "source_record": "mobile/ASSETS.md",
+      "sha256": "dc8da8a003bcd02476fe6160b13df0c1787375470e22108def661bd9d367e6a6",
+      "reuse": "Reuse of the existing CAS harbor asset. The source image is generated art, with the same local scope as the CAS harbor asset ledger."
+    }
+  ]
+}
