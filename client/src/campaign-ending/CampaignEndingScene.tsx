@@ -76,8 +76,13 @@ function CampaignEndingScene({ frame, onContinue }: { frame: EndingFrame; onCont
 }
 
 export function CampaignEndingGate({ observation, seen, onContinue, children }: {
-  observation: Observation; seen: boolean; onContinue: () => void; children: ReactNode;
+  observation: Observation; seen: boolean; onContinue: () => void;
+  children: (onReplay?: () => void) => ReactNode;
 }) {
+  const [replaying, setReplaying] = useState(false);
   const frame = useMemo(() => campaignEndingFor(observation), [observation]);
-  return frame && !seen ? <CampaignEndingScene frame={frame} onContinue={onContinue} /> : <>{children}</>;
+  if (frame && (replaying || !seen)) {
+    return <CampaignEndingScene frame={frame} onContinue={replaying ? () => setReplaying(false) : onContinue} />;
+  }
+  return <>{children(frame ? () => setReplaying(true) : undefined)}</>;
 }

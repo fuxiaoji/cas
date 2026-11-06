@@ -113,6 +113,7 @@ try {
     if (outcome === 'draw') {
       await page.locator('.campaign-debrief').waitFor();
       assert.equal(await page.locator('dialog.campaign-ending[open]').count(), 0);
+      assert.equal(await button('回看结局').count(), 0);
       evidence.push({ stageId, difficulty, outcome, winner: state.result.winner, tick: state.tick, skippedVictoryAndDefeat: true });
       continue;
     }
@@ -152,6 +153,11 @@ try {
     await page.locator('.campaign-debrief').waitFor();
     assert.equal(await page.locator('dialog.campaign-ending[open]').count(), 0);
     if (!evidence.length) {
+      await button('回看结局').click();
+      await dialog.waitFor();
+      assert.equal(await dialog.getAttribute('data-stage-id'), stageId);
+      await button('查看战果', dialog).click();
+      await page.locator('.campaign-debrief').waitFor();
       await button('母港').click();
       await button('打开主菜单').click();
       await button('继续演习').click();
@@ -171,7 +177,7 @@ try {
   await replay.waitFor({ state: 'hidden' });
   assert.equal(await page.locator('dialog.campaign-ending[open]').count(), 0);
   assert.deepEqual(errors, []);
-  const receipt = { evidence, replayDoesNotReopenCG: true, sameSessionDoesNotReopenCG: true };
+  const receipt = { evidence, replayDoesNotReopenCG: true, sameSessionDoesNotReopenCG: true, manualEndingReview: true };
   await fs.writeFile(out + '/browser-receipt.json', JSON.stringify(receipt, null, 2));
   console.log(JSON.stringify(receipt, null, 2));
 } finally {

@@ -813,7 +813,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           <span>{clock(o.tick)}</span><button type="button" onClick={() => void exitReplay()}>返回现局</button>
         </div>}
         {!course && !replay && finished && !resultDismissed && <CampaignEndingGate key={endingKey} observation={o}
-          seen={seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}><div className="result-screen">
+          seen={seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}>{reopen => <div className="result-screen">
           <div className="result-card">
             <p>{onlineDuel ? '线上约战结束' : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
             {o.campaign && result ? <CampaignResultSummary campaign={o.campaign} result={result} /> :
@@ -825,11 +825,12 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             {o.campaign && !cloudBattle && campaignId.current && <CampaignRewardActions stageId={o.campaign.stageId} progress={port.campaignProgress} busy={busy}
               onClaim={() => { const id = o.campaign!.stageId; setPort(state => claimCampaignRewards(state, id)); }} />}
             <div className="actions">{!cloudBattle && <button type="button" className="primary" onClick={() => void startReplay()}>重演战局</button>}
+              {reopen && <button type="button" onClick={reopen}>回看结局</button>}
               {o.campaign && <button type="button" onClick={openPort}>返回母港</button>}
               {onlineDuel && <button type="button" onClick={returnToDuelLobby}>返回线上舰桥</button>}
               <button type="button" onClick={() => { setResultDismissed(true); setTab('log'); }}>查看战情</button></div>
           </div>
-        </div></CampaignEndingGate>}
+        </div>}</CampaignEndingGate>}
         {notice && <div className="notice" role="status">{notice}</div>}
       </section>
       <aside className="staff-panel" aria-label="指挥面板">
