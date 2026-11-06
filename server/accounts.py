@@ -620,19 +620,28 @@ class AccountService:
 
 def create_app(db_path: str | Path | None = None, catalog_path: str | Path = CATALOG_FILE, *,
                sim_path: str | Path | None = None, clock_ms=None, seed_source=None,
-               check_in_clock_ms=None, enable_duels: bool | None = None) -> FastAPI:
+               check_in_clock_ms=None, enable_duels: bool | None = None,
+               ranked_points_path: str | Path | None = None) -> FastAPI:
     service = AccountService(db_path or os.environ.get("CAS_ACCOUNT_DB", DEFAULT_DB), catalog_path)
     from .account_progression import AccountProgression, mount as mount_progression
     from .battle_pve import CampaignService, NativeCore, mount
     from .duels import DuelService, mount as mount_duels
     from .fleets import FleetService, mount as mount_fleets
+    from .rankings import PointTable
     configured_sim = sim_path or os.environ.get("CAS_SIM_PATH")
     core = NativeCore(Path(configured_sim)) if configured_sim else None
     pve = CampaignService(service, core, clock_ms=clock_ms, seed_source=seed_source) if core else None
     want_duels = os.environ.get("CAS_ENABLE_DUELS") == "1" if enable_duels is None else enable_duels
     if want_duels and core is None:
         raise ValueError("CAS_ENABLE_DUELS requires CAS_SIM_PATH")
-    duels = DuelService(service, core, clock_ms=clock_ms, seed_source=seed_source) if want_duels else None
+    if ranked_points_path is None and os.environ.get("CAS_ENABLE_RANKED") == "1":
+        ranked_points_path = os.environ.get("CAS_RANKED_POINTS")
+        if not ranked_points_path:
+            raise ValueError("CAS_ENABLE_RANKED requires CAS_RANKED_POINTS")
+    if ranked_points_path and not want_duels:
+        raise ValueError("CAS ranked matches require the native duel service")
+    points = PointTable(ranked_points_path, service.catalog, PROLOGUE_SHIPS) if ranked_points_path else None
+    duels = DuelService(service, core, clock_ms=clock_ms, seed_source=seed_source, points=points) if want_duels else None
 
     @asynccontextmanager
     async def lifespan(_app):
@@ -657,7 +666,7 @@ def create_app(db_path: str | Path | None = None, catalog_path: str | Path = CAT
 
     app.state.require_account = account
     mount_progression(app, AccountProgression(service, check_in_clock_ms), account)
-    mount_fleets(app, FleetService(service), account)
+    mount_fleets(app, FleetService(service, points=points), account)
     if pve:
         mount(app, pve, account)
     if duels:
@@ -665,11 +674,12 @@ def create_app(db_path: str | Path | None = None, catalog_path: str | Path = CAT
 
     @app.get("/health")
     def health():
-        return {"ready": True, "version": "0.1.0", "real_payments": False, "ranked_pvp": False,
+        return {"ready": True, "version": "0.1.0", "real_payments": False, "ranked_pvp": points is not None,
                 "pvp_available": duels is not None, "pve_available": pve is not None, "asset_source": "server",
                 "service": "cas-free-economy", "economy_version": service.catalog["version"],
                 "starter_gifts_verify_practice": False, "fleet_presets_available": True,
-                "fleet_point_table_available": False}
+                "fleet_point_table_available": points is not None,
+                "ranked_budgets": list(points.budgets) if points else []}
 
     @app.post("/auth/register")
     def register(data: Credentials):

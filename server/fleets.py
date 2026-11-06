@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Annotated, Literal, TYPE_CHECKING
 import unicodedata
 
-from fastapi import Depends, FastAPI, Path
+from fastapi import Depends, FastAPI, HTTPException, Path
 from pydantic import Field
 
 from .contracts import Mutation, StrictModel, deny
@@ -64,11 +64,25 @@ def ranked_composition_errors(budget: int, roles: list[str]) -> list[str]:
 
 
 class FleetService:
-    def __init__(self, accounts: AccountService):
+    def __init__(self, accounts: AccountService, *, points=None):
         self.accounts = accounts
+        self.points = points
         self.ships = {ship["id"]: ship for ship in accounts.catalog["ships"]}
 
-    def _entry(self, fleet):
+    def _entry(self, fleet, state):
+        if self.points and fleet["budget"] in self.points.budgets:
+            missing = [ship_id for ship_id in fleet["ship_ids"] if ship_id not in self.points.hulls]
+            cost = None if missing else sum(self.points.hulls[ship_id].points for ship_id in fleet["ship_ids"])
+            blockers = []
+            try:
+                self.points.checked(state, fleet["budget"], fleet["id"])
+            except HTTPException as error:
+                blockers.append(str(error.detail))
+            return {"fleet": fleet, "validation": {
+                "structure_valid": True, "combat_ready": not blockers, "ranked_ready": not blockers,
+                "unavailable_ship_ids": missing, "cost": cost, "point_table_version": self.points.version,
+                "blocking_reasons": blockers,
+            }}
         unavailable = [ship_id for ship_id in fleet["ship_ids"]
                        if self.ships.get(ship_id, {}).get("combat_ready") is not True]
         blockers = ["cas_personal_battle_unavailable", "cas_point_table_unavailable"]
@@ -82,15 +96,16 @@ class FleetService:
 
     def list(self, account_id):
         state = self.accounts.meta(account_id)
-        return {"fleets": [self._entry(fleet) for fleet in state["fleets"]],
-                "active_fleet_id": state["active_fleet_id"], "point_table_version": None, "ranked_available": False}
+        return {"fleets": [self._entry(fleet, state) for fleet in state["fleets"]],
+                "active_fleet_id": state["active_fleet_id"], "point_table_version": self.points.version if self.points else None,
+                "ranked_available": self.points is not None}
 
     def get(self, account_id, fleet_id):
         state = self.accounts.meta(account_id)
         fleet = next((fleet for fleet in state["fleets"] if fleet["id"] == fleet_id), None)
         if fleet is None:
             deny("本账号没有此编队预设。", 404)
-        return self._entry(fleet)
+        return self._entry(fleet, state)
 
     def save(self, account_id, data):
         def save(_conn, state):
@@ -130,7 +145,7 @@ class FleetService:
                 deny("已达到32份预设上限，可以修改已有预设。", 409)
             state["fleets"] = others + [fleet]
             state["active_fleet_id"] = fleet_id
-            return {**self._entry(fleet), "active_fleet_id": fleet_id}
+            return {**self._entry(fleet, state), "active_fleet_id": fleet_id}
 
         return self.accounts.mutate(account_id, data.request_id, "fleet-save", data.model_dump(), save)
 

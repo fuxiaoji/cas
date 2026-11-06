@@ -26,7 +26,7 @@ MAX_ACTIVE = 4
 MAX_ORDERS = 1000
 PIPE_DEADLINE = 4
 VIEW_KEYS = set("""tick limit width height side scenario variant settling realtimeGunnery environment
-campaign ships fleets contacts radarContacts illuminations torpedoes shells events result islands version""".split())
+campaign ships fleets contacts radarContacts illuminations torpedoes shells events result islands version torpedoDepths""".split())
 STARS = {"none": 0, "tactical": 2, "decisive": 3}
 REWARDS = (
     ("CLEAR", "首通补给", {"credits": 400, "tickets": 1}),
@@ -71,6 +71,9 @@ class WeaponTarget(StrictModel):
     weapon: Literal["gun", "torpedo"]
     target: ContactId
     heading: Heading | None = None
+    depth: Literal["shallow", "deep"] | None = None
+    mount: int | None = Field(default=None, ge=0, le=64)
+    count: int | None = Field(default=None, ge=1, le=6)
 
 
 class Fire(WeaponTarget):
