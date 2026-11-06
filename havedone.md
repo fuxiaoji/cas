@@ -123,3 +123,15 @@
 |---|---|
 | [Windows x64 ZIP](E:/CAS-build-v7/CAS-Windows-v7.zip) | `729ba8a50f4f8bb6630e632ed8eda511f3db9f4e0fe0b12d39d6ea0fe3756eca` |
 | [Android APK](F:/CAS-wasm-v7/CAS-Android-v7-preview.apk) | `c000c63ea293321f771e299d8f74a760c736e60e665c9d5e13382a27b584364f` |
+
+## 2026-11-06｜连续航线、舰队序章与中文战役地图
+
+- 标准舵 v8 用圆弧连接航段。两种机动均通过实际圆弧及一致预览测试，过短的近掉头航路会被拒绝。浅航直航雷接入 A 级舷向表、A/B 舷侧减伤和 F/G 目标排除。炮座来源与暂定量见[规则台账](docs/rules/continuous-navigation.md)。
+- 序章中 15 艘舰和实际炮雷同屏。双方战列舰开火，护航舰的十枚鱼雷在交接前离管。玩家随后接管五艘具名驱逐舰，旧剧情分支和同图对白保留。浏览器以真实手势验证两种机动、撤回草稿、拖炮、调角放雷及一次性领奖。固定夜战实测第 180 秒出现本舰回波、第 720 秒目视、第 900 秒照明实际起亮。[序章与教学凭证](artifacts/v8-acceptance/story-and-night.json)
+- 铁底湾 0.6.11 的六张战役地图接入中文档案，双线 32 个关位均通过浏览器检查。圣乔治角和通道行动四个关位通过出航、战果、重演和评级奖励验证。其余 28 个为档案。联机舰库可保存个人舰队草案，3000／10000 分编制由服务验证。CAS 点价、个人舰队出战、排位及第七日签到仍未开放。[战役地图](artifacts/v8-acceptance/chinese-campaign-map.json) · [编队](artifacts/v8-acceptance/fleet-editor.json)
+- 52 项 Rust、14 项服务测试和 15 场原生与 WASM 对局对照通过，九份旧档的观察、战报与续战一致。电台和原创配乐均通过浏览器播放验证。Windows 包已实跑启动、保存与重演。Android 构建、验签及 58 个共用文件一致性通过，本轮未装机运行。[原生与 WASM](artifacts/v8-acceptance/native-wasm.json) · [旧档](artifacts/v8-acceptance/legacy.json) · [Windows](artifacts/v8-acceptance/windows.json) · [包内文件](artifacts/v8-acceptance/packages.json)
+
+| v8 本地试玩包 | SHA-256 |
+|---|---|
+| [Windows x64 ZIP](C:/Users/fwj/AppData/Local/CAS-builds/20261106-v8/CAS-Windows-v8.zip) | `c199122df5373d194782847ff6758e8a9d6578c2da99739c08326af4dac5cefe` |
+| [Android APK](C:/Users/fwj/AppData/Local/CAS-builds/20261106-v8/CAS-Android-v8-preview.apk) | `31f9225d21d4cf537c8e5d0c7d250ae11b02824cba729f6d2c04fcc76e193162` |
