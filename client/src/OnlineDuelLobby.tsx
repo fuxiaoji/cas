@@ -19,20 +19,22 @@ export function OnlineDuelLobby({ token, onBack, onBattle }: {
   const [copied, setCopied] = useState('');
   const pending = useRef(new Map<string, string>());
   const poll = useRef(0);
+  const polling = useRef(false);
   const acting = useRef(false);
 
   async function refresh() {
     const sequence = ++poll.current;
+    polling.current = true;
     try {
       const next = await onlineRequest<DuelStatus>('/pvp/status', token);
       if (sequence === poll.current) { setStatus(next); setError(''); }
     } catch (error) {
       if (sequence === poll.current) setError(message(error));
-    }
+    } finally { if (sequence === poll.current) polling.current = false; }
   }
   useEffect(() => {
     void refresh();
-    const timer = window.setInterval(() => { if (!acting.current && !document.hidden) void refresh(); }, 3500);
+    const timer = window.setInterval(() => { if (!acting.current && !polling.current && !document.hidden) void refresh(); }, 3500);
     return () => { ++poll.current; window.clearInterval(timer); };
   }, [token]);
 
@@ -51,14 +53,14 @@ export function OnlineDuelLobby({ token, onBack, onBattle }: {
     } catch (error) {
       if (error instanceof OnlineError && error.status && error.status < 500) pending.current.delete(path);
       setError(message(error));
-    } finally { acting.current = false; setBusy(false); }
+    } finally { acting.current = false; polling.current = false; setBusy(false); }
   }
   async function copy(value: string) {
     try { await navigator.clipboard.writeText(value); setCopied('已复制约战口令'); }
     catch { setCopied('可长按或选中口令手动复制'); }
   }
 
-  const joinCode = code.trim().toUpperCase();
+  const joinCode = code.trim();
   return <main className="duel-lobby" aria-labelledby="duel-lobby-title">
     <header className="duel-heading">
       <button type="button" disabled={busy} onClick={onBack}>‹ 返回母港</button>
@@ -80,7 +82,7 @@ export function OnlineDuelLobby({ token, onBack, onBattle }: {
         </div>)}
         {copied && <p role="status">{copied}</p>}
         <form onSubmit={event => { event.preventDefault(); if (joinCode) void act<OnlineDuel>('/pvp/invites/' + encodeURIComponent(joinCode) + '/join', onBattle); }}>
-          <label>好友口令 <input autoComplete="off" autoCapitalize="characters" value={code} maxLength={24} onChange={event => setCode(event.target.value)} /></label>
+          <label>好友口令 <input autoComplete="off" autoCapitalize="off" spellCheck={false} value={code} maxLength={32} onChange={event => setCode(event.target.value)} /></label>
           <button type="submit" disabled={busy || !joinCode}>加入约战</button>
         </form>
       </section>
