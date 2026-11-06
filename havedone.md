@@ -90,11 +90,13 @@
 
 - 新增 `cas-campaign-v5`。[圣乔治角](docs/campaign/cape-runtime-sources.md)按原页放入十艘具名舰和四个纵队，实际雷达炮击、鱼雷命中和撤离均可复盘；同盟种子 6106 击沉目标获得决定性胜利，轴心同种子换两条航路使五舰越线并获得决定性胜利。直航雷可用本舰连续两窗直接雷达观察解算，单点、共享点与关机后的失效样本不通过；无效发射不扣雷。三艘运输舰未核定载荷和雷装，当前禁雷。
 - [通道行动](docs/campaign/channel-runtime-sources.md)找不到同一 CAS 想定，保留旧作八舰阵位、航向、开局速度、四回合和任务，使用同期 CAS 舰体、武器和损伤。测试同盟达成战略胜利，轴心三舰全部存活且未降至目标航速、取得战术胜利并有实雷命中。J/K 轮机共舱特例据五版 §8.3（PDF 107）和《Home Fleet》A-36 生效；实测普通轮机临界由一档变两档、锅炉爆炸由两档变四档，直接伤害不加倍。原剧本的逐舰备雷、雷达等未补值。两关开放同盟与轴心共四个关位，其余 14 场／28 个关位仍只显示档案。
-- [浏览器战役验收](artifacts/client/campaign-final-v5/browser-receipt.json)走过两关双线、三档选项和存读档重演，逐舰解码 18 张原手游立绘并核验 SHA-256。圣乔治角同盟实战三星奖励到账 600 补给币、4 常驻券、10 勋章；重启和换难度均不能重复领。三档目前对应不同敌方 AI，尚无完整的难度平衡验收。
-- [独立账号服务](server/README.md)迁入双池、双券、保底、邮件、免费商店和七日签到（第七日北卡罗来纳仍待核准舰卡）。圣乔治角双线使用原生 CAS 服务权威推进、只发本席观察，并用真实战果计战役及周任务。11 项服务测试通过。[联机浏览器凭证](artifacts/client/online-check-in/browser-receipt.json)包含签到、重登防重、邮件、征募、兑换和回到同一权威战役。当前只为本机回环内测；个人舰队线上作战、排位、支付和公网部署均未开放。
+- [浏览器战役验收](artifacts/client/campaign-final-v5/browser-receipt.json)走过两关双线、三档选项和存读档重演，逐舰解码 18 张原手游立绘并核验 SHA-256。圣乔治角同盟实战三星奖励到账 600 补给币、4 常驻券、10 勋章，通道行动轴心实战两星奖励到账 600 补给币、2 常驻券；换难度不能重复领，圣乔治角另外验证重启及账号隔离。三档目前对应不同敌方 AI，尚无完整的难度平衡验收。
+- [独立账号服务](server/README.md)迁入双池、双券、保底、邮件、免费商店和七日签到（第七日北卡罗来纳仍待核准舰卡）。圣乔治角双线使用原生 CAS 服务权威推进、只发本席观察，并用真实战果计战役及周任务。11 项服务测试通过。[联机浏览器凭证](artifacts/client/online-v5-final/browser-receipt.json)包含签到、重登防重、邮件、征募、兑换和回到同一权威战役。当前只为本机回环内测；个人舰队线上作战、排位、支付和公网部署均未开放。
 - Rust 44 项测试通过；[原生与 WASM](artifacts/native-wasm-campaign-v5-final-20261106.json)13 场完整对局和同席重演逐项一致。[Windows](artifacts/windows-campaign-v5-final-20261106.json)与 [Android 飞行模式模拟器](artifacts/android-campaign-v5-final-20261106.json)实装验证离线登录、母港、两关开局及重演，Android 另验证触屏取消与切后台取消。两包 [36 个共用文件](artifacts/packaged-shared-web-v5-final-20261106.json)逐字节一致，均未包含规则 PDF。Android 实体机未验。[序章与夜战教学](artifacts/client/story-campaign-build/browser-story-receipt.json)及[实时主炮、弹道、可见雷迹](artifacts/client/campaign-v5-realtime/browser-receipt.json)也通过回归；序章开场仍是标明的 5 对 5 演示。
 
 | 当前离线试玩包 | SHA-256 |
 |---|---|
 | [Windows x64 ZIP](release/CAS-Stage0-win-x64-20261106-185902-769.zip) | `05ae4a9538b127ffc54fa8d5f2ba47a9b0f75800534aa816827d6246e2c13359` |
 | [Android APK](release/CAS-Android-0.1.0-preview-20261106-185924-381.apk) | `0fbae65cb9cc1adaae3b267f25b44d60204523d10a303c6d0f8c81c3b61df93d` |
+
+霍腊纽已复核五版《Rising Sun》PDF 89（印刷 88），整理[八艘具名驱逐舰](data/campaign/period/horaniu-1943.json)和[两类驳船与小艇裁决表](data/rules/small-craft-source.json)。独立终局函数已验驱逐舰 50% 损伤门槛、运输艇 6／7 艘及两边可同时战术胜利；代码共 46 项 Rust 测试通过。坐标冲突、三类护航艇的时期或型号以及登陆区仍留待处理。该函数没有接到实战，安装包和大厅不将霍腊纽标为可玩。

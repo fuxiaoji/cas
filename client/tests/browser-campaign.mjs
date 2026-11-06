@@ -219,6 +219,28 @@ try {
     channel.push({ side, stage: state.campaign.stageId, namedPortraits: await inspectNamedPortraits(state, '01') });
   }
   receipt.channel = channel;
+  if (process.env.CAS_CAMPAIGN_REWARD === '1') {
+    const axis = await q('observe');
+    for (const fleet of axis.fleets) await q('ai', { fleet: fleet.id, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true });
+    const end = await q('step', { seconds: 840 });
+    assert.equal(end.result?.grade, 'tactical');
+    assert.equal(end.result?.winner, 'axis');
+    assert.equal(end.result?.allies, 0);
+    const report = await q('report');
+    assert(report.events.some(event => event.kind === 'torpedo_hit'));
+    await button('推进一秒').click();
+    await page.locator('.campaign-debrief .campaign-stars[data-stars="2"]').waitFor();
+    await button('领取战役奖励').click();
+    await page.getByText('已达成的星级奖励已领取。').waitFor();
+    await toArchive();
+    const cleared = await selectStage('axis', 'standard', '01');
+    assert.equal(await cleared.getByRole('button', { name: '领取战役奖励' }).count(), 0);
+    const balance = await page.locator('.harbor-wallet').innerText();
+    assert.match(balance, /补给币 600/);
+    assert.match(balance, /常驻券 2/);
+    receipt.channelReward = { stageId: end.campaign.stageId, tick: end.tick, grade: end.result.grade, balance,
+      torpedoHit: true, duplicateDeniedAtOtherDifficulty: true };
+  }
   assert.deepEqual(errors, []);
   await fs.writeFile(out + '/browser-receipt.json', JSON.stringify(receipt, null, 2));
   console.log(JSON.stringify(receipt, null, 2));
