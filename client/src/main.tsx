@@ -850,7 +850,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option><option value="radar">1943 夜间雷达演习</option>
         </select></label>
         <label className="realtime-option"><input type="checkbox" checked={setup.realtime} onChange={event => setSetup({ ...setup, realtime: event.target.checked })} /> 实时主炮</label>
-        <p className="field-note">实时主炮按炮座装填和转向发射。关闭时使用旧版计划火力窗口。</p>
+        <p className="field-note">装填和转向决定开火时点。CAS 火力表决定命中和伤害，伤害按战术回合分摊。已有资料的炮座采用参考射速，其余沿用暂定节奏。关闭实时主炮后使用旧版计划火力窗口。</p>
         <label>所属方 <select value={setup.side} onChange={(event) => setSetup({ ...setup, side: event.target.value as Side })}>
           <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
         </select></label>

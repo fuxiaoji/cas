@@ -11,7 +11,8 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
-pub(crate) const VERSION: &str = "cas-campaign-v5";
+pub(crate) const VERSION: &str = "cas-campaign-v6";
+pub(crate) const LEGACY_VERSION: &str = "cas-campaign-v5";
 pub(crate) const CONTENT: &str = "cas-cape-runtime-v1";
 pub(crate) const VARIANT: &str = "cape-st-george-rts";
 pub(crate) const LABEL: &str = "圣乔治角 · RTS 改编";

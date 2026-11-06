@@ -230,22 +230,27 @@ impl World {
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
             crate::realtime::VERSION => crate::realtime::VERSION,
+            crate::realtime::LEGACY_VERSION => crate::realtime::LEGACY_VERSION,
             live::VERSION => live::VERSION,
+            live::LEGACY_VERSION => live::LEGACY_VERSION,
             _ => return Err("此存档使用另一个规则版本".into()),
         };
-        if (version == live::VERSION) != s.campaign.is_some()
+        let realtime = crate::realtime::is_realtime_version(version);
+        if matches!(version, live::VERSION | live::LEGACY_VERSION) != s.campaign.is_some()
             || s.campaign.as_ref().is_some_and(|start| s.variant != start.variant()) {
             return Err("战役存档的规则或内容版本不符".into());
         }
-        if !matches!(version, crate::realtime::VERSION | live::VERSION) && (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
+        if !realtime && (version == RADAR_VERSION) != (s.variant == RADAR_DRILL) {
             return Err("雷达演习与存档规则版本不符".into());
         }
-        if !matches!(version, crate::realtime::VERSION | live::VERSION) && (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
+        if !realtime && (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
         let limit = s.campaign.as_ref().map_or(LIMIT, live::Start::limit);
-        let last_tick = limit + match version {
-            crate::realtime::VERSION | live::VERSION => crate::realtime::MAX_FLIGHT,
-            LEGACY_VERSION => 0,
-            _ => SHELL_FLIGHT,
+        let last_tick = limit + if realtime {
+            crate::realtime::MAX_FLIGHT
+        } else if version == LEGACY_VERSION {
+            0
+        } else {
+            SHELL_FLIGHT
         };
         if version == LEGACY_VERSION && s.variant == "night" {
             return Err("此版本没有夜间演习".into());
@@ -272,8 +277,8 @@ impl World {
             profile,
             s.leader_slot,
         )? };
-        if version == crate::realtime::VERSION {
-            w.enable_realtime()?;
+        if realtime && w.campaign.is_none() {
+            w.init_realtime(version)?;
         } else {
             w.version = version;
         }

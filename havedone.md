@@ -100,3 +100,14 @@
 | [Android APK](release/CAS-Android-0.1.0-preview-20261106-185924-381.apk) | `0fbae65cb9cc1adaae3b267f25b44d60204523d10a303c6d0f8c81c3b61df93d` |
 
 霍腊纽已复核五版《Rising Sun》PDF 89（印刷 88），整理[八艘具名驱逐舰](data/campaign/period/horaniu-1943.json)和[两类驳船与小艇裁决表](data/rules/small-craft-source.json)。独立终局函数已验驱逐舰 50% 损伤门槛、运输艇 6／7 艘及两边可同时战术胜利；代码共 46 项 Rust 测试通过。坐标冲突、三类护航艇的时期或型号以及登陆区仍留待处理。该函数没有接到实战，安装包和大厅不将霍腊纽标为可玩。
+
+## 2026-11-06｜实时主炮装填复核
+
+- 按五版 PDF 17、57–58 复核计划、反应、火力组与 D100。新局 v6 的弗莱彻 Mk30 装填以 4 秒为参考，阳炎、天雾和夕雾以 12 秒及每秒 6° 横转为参考。其他暂定项与史料适用范围登记在[实时主炮台账](docs/rules/realtime-gunnery-sources.md#v6-装填与横转史料复核)。
+- 同条件下一窗实际发射 30 批和 45 批，两者累计伤害一致。47 项内核测试、11 项服务测试、13 场原生与 WASM 重演通过。新版重读旧安装包产生的三份演习与战役存档，观察、战报和续战一致。[对局重演](artifacts/native-wasm-gunnery-v6-20261106.json) · [旧档对照](artifacts/gunnery-historical-audit/legacy-replay.json)
+- 实时手势与夜战教学通过浏览器回归。Windows 与 Android 飞行模式模拟器验收 v6 开局、保存和重演，两端 360 秒状态哈希一致。Android 尚未测试实体机。[Windows 验收](artifacts/windows-gunnery-v6-final-20261106.json) · [Android 验收](artifacts/android-gunnery-v6-final-20261106.json)
+
+| v6 离线试玩包 | SHA-256 |
+|---|---|
+| [Windows x64 ZIP](release/CAS-Stage0-win-x64-20261106-201315-311.zip) | `0ec37df612b5b68947b68f0f3d24a9e5a1b4fadd5e1d66ffde0fb672410824cb` |
+| [Android APK](release/CAS-Android-0.1.0-preview-20261106-201338-728.apk) | `4f252a386ddc1fc88e447410c8262f21d9160ec6240119822991336d6141d93c` |

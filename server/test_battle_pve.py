@@ -25,12 +25,13 @@ class AuthorityTest(unittest.TestCase):
         self.addCleanup(self.stack.close)
         self.db = Path(self.stack.enter_context(TemporaryDirectory())) / "cas.sqlite3"
         self.ms = beijing_week()["start"] + 86_400_000
+        self.seed = 6107
         self.app = self.new_app()
         self.client = self.stack.enter_context(TestClient(self.app))
         self.headers = self.register("allied-tester")
 
     def new_app(self):
-        return create_app(self.db, sim_path=NATIVE, clock_ms=lambda: self.ms, seed_source=lambda: 6107)
+        return create_app(self.db, sim_path=NATIVE, clock_ms=lambda: self.ms, seed_source=lambda: self.seed)
 
     def good(self, response):
         self.assertEqual(response.status_code, 200, response.text)
@@ -133,6 +134,9 @@ class AuthorityTest(unittest.TestCase):
                 self.assertEqual(conn.execute("PRAGMA user_version").fetchone()[0], 2)
 
     def test_real_victories_pay_fixed_rewards_once_and_weekly_clears(self):
+        # The two fixtures reach different victory grades in both supported
+        # native campaign versions. The server still pays from actual results.
+        self.seed = 6108
         path = "/battles/" + self.start("real-tactical")["battle_id"]
         for i in range(2):
             self.good(self.ai(path, f"tactical-ai-{i}", i, i + 1, "coord"))
@@ -153,6 +157,7 @@ class AuthorityTest(unittest.TestCase):
         self.good(self.post("/starter-gifts/claim", request_id="unlock-starter-night", course="night"))
         self.good(self.post("/shop/purchase", request_id="unlock-torpedo", kind="ai", item_id="rc_torpedo_wings",
                             currency="credits"))
+        self.seed = 6106
         path = "/battles/" + self.start("real-decisive", difficulty="standard")["battle_id"]
         for i in range(2):
             self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, "torpedo"))

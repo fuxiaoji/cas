@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from .accounts import AccountService
 
 
-RULE_VERSION = "cas-campaign-v5"
+RULE_VERSIONS = ("cas-campaign-v5", "cas-campaign-v6")
 SIM_TICK_MS = 250  # 4×; the client never supplies elapsed time.
 MAX_TICKS = 120
 MAX_ACTIVE = 4
@@ -189,7 +189,7 @@ def player_response(response):
 
 def projected_view(raw, stage, difficulty):
     seat = "allies" if stage == "CAMP-ALLIES-03" else "axis"
-    if (raw.get("version") != RULE_VERSION or raw.get("side") != seat or not isinstance(raw.get("tick"), int)
+    if (raw.get("version") not in RULE_VERSIONS or raw.get("side") != seat or not isinstance(raw.get("tick"), int)
             or raw.get("campaign", {}).get("stageId") != stage or raw["campaign"].get("difficulty") != difficulty):
         deny("原生战斗未返回指定席位的观察。", 503)
     return {k: v for k, v in raw.items() if k in VIEW_KEYS}

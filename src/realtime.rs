@@ -6,7 +6,8 @@ use crate::{
 };
 use serde_json::{json, Value};
 
-pub(crate) const VERSION: &str = "cas-realtime-v4";
+pub(crate) const VERSION: &str = "cas-realtime-v6";
+pub(crate) const LEGACY_VERSION: &str = "cas-realtime-v4";
 pub(crate) const MAX_FLIGHT: u32 = 120;
 const ORDER_TIMEOUT: u32 = 90;
 
@@ -16,7 +17,26 @@ pub(crate) struct Timings {
     pub(crate) train: f64,
 }
 
-pub(crate) fn timings(class: &str) -> Option<Timings> {
+fn timings(version: &str, class: &str) -> Option<Timings> {
+    if matches!(version, VERSION | crate::campaign::live::VERSION) {
+        // Reference cadences, independent of the CAS hit and damage tables.
+        // See docs/rules/realtime-gunnery-sources.md for fit and source limits.
+        match class {
+            "fletcher" | "ausburne" | "claxton" | "dyson" | "converse" | "spence" => {
+                return Some(Timings {
+                    reload: 4,
+                    train: 18.,
+                });
+            }
+            "kagero" | "amagiri" | "yugiri" => {
+                return Some(Timings {
+                    reload: 12,
+                    train: 6.,
+                });
+            }
+            _ => (),
+        }
+    }
     let (reload, train) = match class {
         "fletcher" | "ausburne" | "claxton" | "dyson" | "converse" | "spence" => (6, 18.),
         "cleveland" => (10, 10.),
@@ -25,8 +45,8 @@ pub(crate) fn timings(class: &str) -> Option<Timings> {
         "onami" | "makinami" | "amagiri" | "yugiri" => (9, 9.),
         "uzuki" => (12, 8.),
         "IBS-U-KM-KARL-GALSTER" | "IBS-U-KM-RICHARD-BEITZEN" | "IBS-U-KM-HANS-LODY" => (9, 9.),
-        "IBS-U-RN-JAVELIN" | "IBS-U-RN-JUPITER" | "IBS-U-RN-KASHMIR" |
-        "IBS-U-RN-JACKAL" | "IBS-U-RN-JERSEY" => (8, 10.),
+        "IBS-U-RN-JAVELIN" | "IBS-U-RN-JUPITER" | "IBS-U-RN-KASHMIR" | "IBS-U-RN-JACKAL"
+        | "IBS-U-RN-JERSEY" => (8, 10.),
         _ => return None,
     };
     Some(Timings { reload, train })
@@ -85,13 +105,23 @@ pub(crate) fn flight(range_m: f64, max_m: f64) -> (u32, f64) {
 
 impl World {
     pub(crate) fn realtime(&self) -> bool {
-        matches!(self.version, VERSION | crate::campaign::live::VERSION)
+        is_realtime_version(self.version)
     }
 
     pub(crate) fn enable_realtime(&mut self) -> E<()> {
+        let version = if self.campaign.is_some() {
+            crate::campaign::live::VERSION
+        } else {
+            VERSION
+        };
+        self.init_realtime(version)
+    }
+
+    pub(crate) fn init_realtime(&mut self, version: &'static str) -> E<()> {
         for s in &mut self.ships {
             let def = &self.data.ships[s.def];
-            timings(&def.id).ok_or_else(|| format!("{} 的实时炮座配置尚未核准", def.name))?;
+            timings(version, &def.id)
+                .ok_or_else(|| format!("{} 的实时炮座配置尚未核准", def.name))?;
             s.battery.turrets = def
                 .gun
                 .mounts
@@ -108,7 +138,7 @@ impl World {
                 })
                 .collect();
         }
-        self.version = if self.campaign.is_some() { crate::campaign::live::VERSION } else { VERSION };
+        self.version = version;
         self.enable_realtime_mk4()
     }
 
@@ -133,9 +163,12 @@ impl World {
             return;
         }
         let tick = self.tick;
-        let reload = timings(&self.data.ships[self.ship(id).unwrap().def].id)
-            .unwrap()
-            .reload;
+        let reload = timings(
+            self.version,
+            &self.data.ships[self.ship(id).unwrap().def].id,
+        )
+        .unwrap()
+        .reload;
         let s = self.ship_mut(id).unwrap();
         s.battery.turrets[index].ready = tick + reload;
     }
@@ -151,7 +184,9 @@ impl World {
 
     pub(crate) fn train_illumination_mount(&mut self, id: u32, index: usize, bearing: f64) {
         let s = self.ship(id).unwrap();
-        let train = timings(&self.data.ships[s.def].id).unwrap().train;
+        let train = timings(self.version, &self.data.ships[s.def].id)
+            .unwrap()
+            .train;
         let goal = norm(bearing - s.h);
         let turret = &mut self.ship_mut(id).unwrap().battery.turrets[index];
         let change = delta(turret.relative, goal);
@@ -218,7 +253,7 @@ impl World {
     pub(crate) fn realtime_aim(&self, ship: &Ship, target: &str) -> E<Value> {
         let (contact, radar_only) = self.gun_contact(ship, target)?;
         let def = &self.data.ships[ship.def];
-        let timing = timings(&def.id).ok_or("本舰实时炮座未核准")?;
+        let timing = timings(self.version, &def.id).ok_or("本舰实时炮座未核准")?;
         let mut solution = json!({
             "heading":(contact.p()-ship.p).heading(),"range":def.gun.range_yd[3]*YARD,
             "arcs":[],"friendly":false,"valid":false,"barrels":0,"mounts":[],
@@ -336,7 +371,7 @@ impl World {
             let owner = s.side;
             let name = s.name.clone();
             let gun = &self.data.ships[s.def].gun;
-            let timing = timings(&self.data.ships[s.def].id).unwrap();
+            let timing = timings(self.version, &self.data.ships[s.def].id).unwrap();
             let contact = self
                 .gun_contact(s, &order.target)
                 .ok()
@@ -440,6 +475,16 @@ impl World {
     }
 }
 
+pub(crate) fn is_realtime_version(version: &str) -> bool {
+    matches!(
+        version,
+        VERSION
+            | LEGACY_VERSION
+            | crate::campaign::live::VERSION
+            | crate::campaign::live::LEGACY_VERSION
+    )
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -503,20 +548,49 @@ mod tests {
         }
         let first_south_fire = w.tick;
         assert_eq!(w.ship(1).unwrap().battery.turrets[2].relative, 90.);
-        assert_eq!(w.ship(1).unwrap().battery.turrets[2].ready, w.tick + 6);
+        assert_eq!(w.ship(1).unwrap().battery.turrets[2].ready, w.tick + 4);
         w.order_realtime_gun(0, 1, &south, true).unwrap();
-        for _ in 0..5 {
+        for _ in 0..3 {
             w.advance();
         }
         assert_eq!(
             w.ship(1).unwrap().battery.turrets[2].ready,
-            first_south_fire + 6
+            first_south_fire + 4
         );
         w.advance();
         assert_eq!(
             w.ship(1).unwrap().battery.turrets[2].ready,
-            first_south_fire + 12
+            first_south_fire + 8
         );
+    }
+
+    #[test]
+    fn faster_reload_emits_more_shells_without_multiplying_cas_damage() {
+        let run = |version| {
+            let mut w = fixture();
+            w.init_realtime(version).unwrap();
+            let target = target_at(&mut w, 0., 4_000.);
+            let ship = w.ship_mut(1).unwrap();
+            ship.battery.hit_roll = Some(1);
+            for turret in &mut ship.battery.turrets {
+                turret.relative = 270.;
+            }
+            for tick in 1..CYCLE {
+                w.tick = tick;
+                if w.ship(1).unwrap().battery.order.is_none() {
+                    w.order_realtime_gun(0, 1, &target, false).unwrap();
+                }
+                w.resolve_realtime_guns();
+            }
+            let shells = w.shells.len();
+            w.tick = CYCLE + MAX_FLIGHT;
+            w.advance_shells();
+            (shells, w.surface_phase_dp[5].0)
+        };
+        let (legacy_rounds, legacy_damage) = run(LEGACY_VERSION);
+        let (faster_rounds, faster_damage) = run(VERSION);
+        assert_eq!((legacy_rounds, faster_rounds), (30, 45));
+        assert!(legacy_damage > 0. && (faster_damage - legacy_damage).abs() < 1e-8);
     }
 
     #[test]
@@ -559,8 +633,14 @@ mod tests {
 
     #[test]
     fn first_launch_and_midflight_replay_have_same_shell_and_turret_state() {
+        for version in [LEGACY_VERSION, VERSION] {
+            assert_launch_and_midflight_replay(version);
+        }
+    }
+
+    fn assert_launch_and_midflight_replay(version: &'static str) {
         let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
-        w.enable_realtime().unwrap();
+        w.init_realtime(version).unwrap();
         let c = w.contacts[0]
             .iter()
             .find(|c| c.ship == 6)
@@ -573,7 +653,7 @@ mod tests {
             w.advance();
         }
         let observed = w.observation(0);
-        assert_eq!(observed["version"], VERSION);
+        assert_eq!(observed["version"], version);
         let shell = &observed["shells"][0];
         assert_eq!(shell["launchTick"], w.tick);
         assert_eq!(shell["progress"], 0.);
