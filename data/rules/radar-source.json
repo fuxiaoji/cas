@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-5e-surface-radar-source-v1",
+  "status": "source_transcribed_not_active",
+  "units": {"range": "nautical_mile", "bearing": "degree", "chance": "percentage_point"},
+  "sources": {
+    "main": {"file": "Command_at_Sea_5th_edition.pdf", "sha256": "caf6390ab8a0237c9c721b88998ef7eccb9aa961e7a7da4820fb6d7a3593e9d0"},
+    "arctic": {"file": "Arctic_Fleets_5th_ed._Standard.pdf", "sha256": "fcd9420bb9d48fb05f06909a8eb673f50e2e39e1e57a311f3be14df4e4f2b111"},
+    "american": {"file": "American_Fleets_2012_Standard.pdf", "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b"},
+    "emperor": {"file": "The_Emperor_s_Fleet.pdf", "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53"},
+    "scenario": {"file": "Rising_Sun_5th_ed_Std_1_Oct_25.pdf", "sha256": "7340f4b5b089a7441109faab5baf0e93f42819a9ba2cc1ad88c1e9f3a00d3118"},
+    "old_forms": {"file": "旧版太平洋 船表Rising_Sun_Form_10s.pdf", "sha256": "9c54d934670f1065097de33f7092d15cebf73dcdf6143f693d43e1e95a599fb4"}
+  },
+  "acquisition": {
+    "source": {"document": "main", "pdf_pages": [17, 38, 39], "printed_pages": ["2-5", "5-1", "5-2"], "sections": ["2.3.4", "5.1.1", "5.2.1", "5.2.2", "5.2.3", "5.2.5"]},
+    "chance_by_generation_pct": {"1": 60, "2": 75},
+    "tactical_turn_seconds": 180,
+    "position_share_after_detection_windows": 1,
+    "target_columns": ["large", "medium", "small", "very_small", "stealthy"],
+    "surface_class_column": {"A": "large", "B": "medium", "C": "small", "D": "small", "E": "very_small", "F": "very_small"},
+    "retention_lost_when": ["detector_disabled", "detector_off", "outside_effective_range", "outside_radar_horizon", "terrain_blocks_line_of_sight"],
+    "fire_control_search": {"sector_deg": 90, "chance_pct": 60, "cumulative_failure_pct_per_intermediate_turn": 10, "cued_tracking_roll_required": false},
+    "scope_limit": "Surface classes A–F only; submarine, mast, periscope and stealth classification need their specific rules. Annex J1's G heading and the main table's generic coastal submarine classification are not interchangeable."
+  },
+  "surface_los": {
+    "source": {"document": "main", "pdf_pages": [40], "printed_pages": ["5-3"], "table": "Radar Line of Sight Table"},
+    "target_columns": ["large", "medium", "small", "very_small"],
+    "observer_rows_nmi": {
+      "large": [26, 25, 23, 20],
+      "medium": [24, 23, 21, 18],
+      "small": [22, 21, 19, 16],
+      "very_small": [19, 18, 16, 13]
+    }
+  },
+  "clutter": {
+    "source": {"document": "main", "pdf_pages": [39, 40, 41], "printed_pages": ["5-2", "5-3", "5-4"], "sections": ["5.2.5.1", "5.2.6.1", "5.2.6.2", "5.2.6.3", "5.2.6.4"], "tables": ["Radar Clutter Value Table", "Clutter Resistance", "Clutter Effects on Range"]},
+    "profiles": ["ship_ss_nav", "ship_as_hf_las"],
+    "resistance_by_generation": {"1": 2, "2": 5},
+    "rain_land_half_sector_deg": 5,
+    "sea_state": {"1": [0, 0], "2": [1, 3], "3": [2, 5], "4": [4, 7], "5": [6, 9], "6": [8, 12], "7": [12, 15], "8": [15, 18], "9": [18, 21]},
+    "precipitation": {"drizzle_or_light_fog": [0, 0], "light_rain_or_moderate_fog": [2, 2], "moderate_rain_or_heavy_fog": [5, 5], "heavy_rain": [8, 8], "torrential_rain": [11, 11]},
+    "land": {"flat_land_or_beach": [3, 6], "flat_land_brush_or_light_woods": [6, 9], "heavy_woods_or_jungle": [9, 12], "hills_or_towns": [12, 15], "mountains_or_cities": [14, 17]},
+    "printed_range_factors": [[1, 1, 0.85], [2, 2, 0.70], [3, 3, 0.60], [4, 4, 0.50], [5, 5, 0.40], [6, 6, 0.35], [7, 7, 0.30], [8, 8, 0.25], [9, 10, 0.20], [11, 12, 0.15], [13, 14, 0.10], [15, 16, 0.05], [17, 18, 0.03], [19, 20, 0.01]]
+  },
+  "sets": {
+    "us_sg": {
+      "name": "SG, SG-1, SG-2", "generation": 1, "ioc": "1942", "surface_range_nmi": [22, 22, 15, 9, 4.7], "surface_role": "surface_search", "clutter_profile": "ship_ss_nav",
+      "source": {"document": "arctic", "pdf_pages": [100], "printed_pages": ["J-2"], "table": "Annex J1 - Naval Radars"}
+    },
+    "us_sc2": {
+      "name": "SC-2 (shared SC-2/3/4/5 row)", "generation": 2, "ioc": "1943", "surface_range_nmi": [12, 12, 10, 6, 3], "surface_role": "secondary_surface_search", "clutter_profile": "ship_as_hf_las",
+      "source": {"document": "arctic", "pdf_pages": [100], "printed_pages": ["J-2"], "table": "Annex J1 - Naval Radars"}
+    },
+    "us_mk4_fd": {
+      "name": "Mk4 (FD)", "generation": 1, "ioc": "1941", "surface_range_nmi": [15, 14, 8, 4.6, 2.5], "surface_role": "fire_control_and_sector_search", "clutter_profile": null, "fire_control_modifier_with_visual": 2, "blindfire_capable": false,
+      "source": {"document": "american", "pdf_pages": [123], "printed_pages": ["J-1"], "table": "Annex J1 - Naval Radars", "edition_note": "Local 2012 Standard specific Mk4 row; no corresponding Mk4 entry in the local Fifth Edition Arctic Fleets subset. Confirm import precedence before enabling."}
+    },
+    "jp_type22_ss": {
+      "name": "Mk2 Mod 2 (Type 22), original SS mode", "generation": 1, "surface_range_nmi": [13, 7, 4, 2, 1], "surface_role": "surface_search", "clutter_profile": "ship_ss_nav",
+      "source": {"document": "emperor", "pdf_pages": [110], "printed_pages": ["J-1"], "table": "Annex J1 - Naval Radars"},
+      "excluded_variant": "Late 1944 FC-S upgrade with +1 FC modifier is not available in November 1943."
+    }
+  },
+  "surface_gunnery": {
+    "source": {"document": "main", "pdf_pages": [20, 57, 58, 61], "printed_pages": ["2-8", "6-1", "6-2", "6-5"], "sections": ["6.1.1", "6.1.2", "6.1.3"], "table": "Gunfire Hit Chance Modifiers Table"},
+    "modifier_radar_and_visual_by_generation": {"1": 2, "2": 3},
+    "modifier_non_blindfire_gfc_at_muzzle_flash": -3,
+    "modifier_optical_blind_fire_at_muzzle_flash": -6,
+    "modifier_surface_search_data_only": -2,
+    "modifier_land_clutter_gfc": -2,
+    "gfc_land_clutter_half_sector_deg": 5,
+    "gfc_lost_with_director": true,
+    "gfc_ignores_low_visibility_modifier": true
+  },
+  "cape_st_george": {
+    "source": {"document": "scenario", "pdf_pages": [92], "printed_pages": ["91"]},
+    "date": "1943-11-25",
+    "scenario_fit_override": false,
+    "ships": {
+      "ausburne": {"sets": ["us_sg", "us_sc2", "us_mk4_fd"], "annex_a_document": "american", "annex_a_pdf_page": 20, "old_form_pdf_page": 270},
+      "claxton": {"sets": ["us_sg", "us_sc2", "us_mk4_fd"], "annex_a_document": "american", "annex_a_pdf_page": 20, "old_form_pdf_page": 272},
+      "converse": {"sets": ["us_sg", "us_sc2", "us_mk4_fd"], "annex_a_document": "american", "annex_a_pdf_page": 20, "old_form_pdf_page": 273},
+      "dyson": {"sets": ["us_sg", "us_sc2", "us_mk4_fd"], "annex_a_document": "american", "annex_a_pdf_page": 20, "old_form_pdf_page": 276},
+      "spence": {"sets": ["us_sg", "us_sc2", "us_mk4_fd"], "annex_a_document": "american", "annex_a_pdf_page": 20, "old_form_pdf_page": 284},
+      "onami": {"sets": [], "annex_a_document": "emperor", "annex_a_pdf_page": 27, "old_form_pdf_page": 93},
+      "makinami": {"sets": [], "annex_a_document": "emperor", "annex_a_pdf_page": 27, "old_form_pdf_page": 89},
+      "amagiri": {"sets": [], "annex_a_document": "emperor", "annex_a_pdf_page": 29, "old_form_pdf_page": 153, "first_radar_refit": "Jan–Feb 1944"},
+      "yugiri": {"sets": ["jp_type22_ss"], "annex_a_document": "emperor", "annex_a_pdf_page": 29, "old_form_pdf_page": 171, "fit_status": "explicit_annex_a_refit_conflicts_with_old_form", "first_radar_refit": "Aug–Nov 1943; no day specified", "note": "The Annex A refit says Type 22 added; the Aug–Nov 43 modification in old Form 10 explicitly says None in the radar field. Applying the explicit Annex A refit as completed by the scenario is a versioned adjudication decision, not a known installation date. Pending that decision, do not auto-activate."},
+      "uzuki": {"sets": [], "annex_a_document": "emperor", "annex_a_pdf_page": 31, "old_form_pdf_page": 183, "first_radar_refit": "Sep 1944, Type 13"}
+    }
+  },
+  "fixtures": {
+    "acquisition": [
+      {"set": "us_sg", "observer_class": "C", "target_class": "C", "sea_state": 1, "distance_nmi": 15, "roll": 60, "expected_effective_range_nmi": 15, "expected_acquired": true},
+      {"set": "us_sg", "observer_class": "C", "target_class": "C", "sea_state": 1, "distance_nmi": 15.001, "roll": 1, "expected_effective_range_nmi": 15, "expected_acquired": false},
+      {"set": "us_sc2", "observer_class": "C", "target_class": "C", "sea_state": 1, "distance_nmi": 10, "roll": 75, "expected_effective_range_nmi": 10, "expected_acquired": true},
+      {"set": "us_sc2", "observer_class": "C", "target_class": "C", "sea_state": 1, "distance_nmi": 10, "roll": 76, "expected_effective_range_nmi": 10, "expected_acquired": false},
+      {"set": "jp_type22_ss", "observer_class": "C", "target_class": "C", "sea_state": 1, "distance_nmi": 4, "roll": 61, "expected_effective_range_nmi": 4, "expected_acquired": false},
+      {"set": "us_sg", "observer_class": "E", "target_class": "A", "sea_state": 1, "distance_nmi": 20, "roll": 1, "expected_effective_range_nmi": 19, "expected_acquired": false},
+      {"set": "us_sg", "observer_class": "C", "target_class": "C", "sea_state": 4, "rain": "moderate_rain_or_heavy_fog", "land": "flat_land_brush_or_light_woods", "distance_nmi": 7.5, "roll": 60, "expected_effective_range_nmi": 7.5, "expected_acquired": true},
+      {"set": "us_sg", "observer_class": "C", "target_class": "C", "sea_state": 1, "land_blocks": true, "distance_nmi": 2, "roll": 1, "expected_effective_range_nmi": 0, "expected_acquired": false}
+    ],
+    "printed_clutter_examples": [
+      {"label": "SC, not SC-2", "generation": 1, "nominal_nmi": 4, "eligible_clutter": [7, 5], "expected_effective_range_nmi": 1.6},
+      {"label": "SGb, not SG", "generation": 2, "nominal_nmi": 15, "eligible_clutter": [4, 5, 6], "expected_effective_range_nmi": 12.75, "display_nmi_as_printed": 12.8}
+    ],
+    "muzzle_flash_examples": [
+      {"label": "Craven optics, no GFC", "gs": 4, "band": "long", "base_pct": 15, "other_modifiers": [-2, 1, -1], "muzzle_flash_modifier": -6, "expected_raw_hit_pct": -1, "legal": false},
+      {"label": "Cruisers with radar GFC", "gs": 4, "band": "long", "base_pct": 15, "other_modifiers": [1, -2, 4, -1], "muzzle_flash_modifier": -3, "expected_raw_hit_pct": 13, "legal": true}
+    ]
+  }
+}
