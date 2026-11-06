@@ -1,0 +1,11 @@
+/CAS带翻译/
+/CAS带翻译.zip
+/target/
+/tmp/
+/release/
+/artifacts/
+/client/node_modules/
+/client/dist/
+/client/public/cas_core.wasm
+/desktop/bin/
+/desktop/obj/
