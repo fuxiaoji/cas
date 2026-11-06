@@ -248,8 +248,21 @@ internal static class Program
             }
             const campaign = await request({ op: 'campaign' });
             const rows = campaign.scenarios;
-            if (rows?.length !== 16 || rows.some(row => row.playable !== false) ||
+            if (rows?.length !== 16 || rows.filter(row => row.playable && row.runtime?.historicalReady === false).length !== 2 ||
               rows.filter(row => row.cas?.import).length !== 11) throw Error('The offline historical catalogue did not load.');
+            const cape = await request({ op: 'new_campaign', id: 'CAMP-AXIS-03', difficulty: 'story', seed: 6106 });
+            const capeSave = await request({ op: 'save' });
+            if (cape.ships.length !== 5 || cape.fleets.length !== 2 || cape.campaign.stageId !== 'CAMP-AXIS-03' ||
+                cape.environment.visibility !== 10 || JSON.stringify(cape) !== JSON.stringify(await request({ op: 'replay', save: capeSave }))) {
+              throw Error('The packaged Cape St. George scenario did not open or replay.');
+            }
+            const channel = await request({ op: 'new_campaign', id: 'CAMP-AXIS-01', difficulty: 'story', seed: 53 });
+            const channelSave = await request({ op: 'save' });
+            if (channel.ships.length !== 3 || channel.fleets.length !== 3 || channel.environment.visibility !== 5 ||
+                channel.ships.some(ship => ship.classId !== ship.characterId) ||
+                JSON.stringify(channel) !== JSON.stringify(await request({ op: 'replay', save: channelSave }))) {
+              throw Error('The packaged Channel Action did not open or replay.');
+            }
             const legacy = await request({ op: 'campaign_detail', id: 'CAMP-AXIS-16' });
             if (legacy.record || legacy.legacy?.ships?.length !== 91 ||
                 legacy.legacy?.post_default_formation_setup?.ships?.length !== 91 || legacy.legacy?.playable !== false) {
@@ -284,7 +297,8 @@ internal static class Program
             send({ ok: true, version: start.version, baselineVersion: info.version, scenario: info.scenario, tickBefore: start.tick, tickAfter: after.tick,
               ownShips: count, savedTick: moved.tick, replayTick: replay.tick, saveReplayMatch: true, stateSha256,
               battleMapRendered: true, harborNavigation: true, nightExerciseStarted: true, historicalCatalogueRows: rows.length,
-              historicalStageIds: 32, historicalSourceRecords: 11, legacyMidnightShips: 91, legacyMidnightFormationSwitch: true,
+              historicalStageIds: 32, historicalSourceRecords: 11, playableAdaptations: 2, capeReplay: true, channelReplay: true,
+              legacyMidnightShips: 91, legacyMidnightFormationSwitch: true,
               offlineLocalAccountRoundtrip: true,
               shipPortrait: portrait.closest('[data-character]').dataset.character,
               viewport: [innerWidth, innerHeight] });

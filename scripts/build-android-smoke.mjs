@@ -131,6 +131,12 @@ const sessionProbe = `(async () => {
     const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
     const night = await ask({ op: 'new', seed: 6106, variant: 'night', realtime: true });
     const campaign = await ask({ op: 'campaign' });
+    const cape = await ask({ op: 'new_campaign', id: 'CAMP-AXIS-03', difficulty: 'story', seed: 6106 });
+    const capeSave = await ask({ op: 'save' });
+    const capeReplay = await ask({ op: 'replay', save: capeSave });
+    const channel = await ask({ op: 'new_campaign', id: 'CAMP-AXIS-01', difficulty: 'story', seed: 53 });
+    const channelSave = await ask({ op: 'save' });
+    const channelReplay = await ask({ op: 'replay', save: channelSave });
     const legacyStages = [];
     for (const n of ['01', '07', '12', '15', '16']) {
       const detail = await ask({ op: 'campaign_detail', id: 'CAMP-AXIS-' + n });
@@ -144,7 +150,11 @@ const sessionProbe = `(async () => {
       ownShips: start.ships.length, tickBefore: start.tick, tickAfter: end.tick, stateSha256,
       nightExerciseStarted: night.variant === 'night' && night.ships?.length === 5 && night.version === info.realtimeVersion,
       historicalCatalogueRows: campaign.scenarios?.length, historicalSourceRecords: campaign.scenarios?.filter(row => row.cas?.import).length,
-      allHistoryLocked: campaign.scenarios?.every(row => row.playable === false), legacyStages,
+      playableAdaptations: campaign.scenarios?.filter(row => row.playable && row.runtime?.historicalReady === false).length,
+      capeReplay: cape.ships.length === 5 && cape.fleets.length === 2 && cape.environment.visibility === 10 &&
+        JSON.stringify(cape) === JSON.stringify(capeReplay), legacyStages,
+      channelReplay: channel.ships.length === 3 && channel.fleets.length === 3 && channel.environment.visibility === 5 &&
+        channel.ships.every(ship => ship.classId === ship.characterId) && JSON.stringify(channel) === JSON.stringify(channelReplay),
       sameReplay: JSON.stringify(end) === JSON.stringify(replay), sameRestore: JSON.stringify(end) === JSON.stringify(restore) };
   } finally { worker.terminate(); }
 })()`;
@@ -238,7 +248,9 @@ try {
   assert.equal(probe.nightExerciseStarted, true);
   assert.equal(probe.historicalCatalogueRows, 16);
   assert.equal(probe.historicalSourceRecords, 11);
-  assert.equal(probe.allHistoryLocked, true);
+  assert.equal(probe.playableAdaptations, 2);
+  assert.equal(probe.capeReplay, true);
+  assert.equal(probe.channelReplay, true);
   assert.deepEqual(probe.legacyStages, [8, 22, 14, 24, 91]);
   assert(probe.sameReplay && probe.sameRestore, 'Offline replay and saved battle must agree');
   assert(probe.viewport[0] > probe.viewport[1], 'Battle WebView must be landscape');

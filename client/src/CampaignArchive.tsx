@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ask } from './engine';
 import type { Side } from './engine';
+import { campaignBest, campaignDifficulties, campaignRewards, campaignRewardText, campaignStars, pendingCampaignRewards } from './campaign-progress';
+import type { CampaignDifficulty, CampaignLaunch, CampaignMission, CampaignOutcome, CampaignProgress, CampaignStars } from './campaign-progress';
 import './campaign-archive.css';
 
 type Match = 'exact_historical_counterpart' | 'related_alternate' | 'unverified' | 'ibs_original_or_absent';
@@ -8,7 +10,7 @@ type Reference = { document: string; pdf_pages: number[]; printed_pages: number[
 type Entry = {
   ibs_id: string; ibs_title: string; ibs_date: string; ibs_kind: string; stage_ids: string[];
   classification: Match; cas: null | { title: string; source: Reference; verification: string; import: string | null };
-  playable: boolean; note: string;
+  playable: boolean; note: string; runtime?: { historicalReady: boolean; label: string; localOnly?: boolean };
 };
 interface Archive { schema_version: number; content_version: string; scenarios: Entry[] }
 type Condition = { type: string; count?: number; kind?: string; pct?: number; damage_pct?: number; damage_pct_gte?: number;
@@ -44,9 +46,43 @@ const matchNames: Record<Match, string> = {
 const sources: Record<string, string> = { rising_sun_5e: 'Rising Sun（第五版）', steel_typhoon_5e: 'Steel Typhoon（第五版）' };
 const sides = ['allies', 'axis'] as const;
 const sideName = { allies: '同盟', axis: '轴心' };
-// Keep the original CampaignScreen side/node selection and its three difficulty IDs.
-const difficulties = { story: '故事', standard: '标准', challenge: '挑战' };
-const difficultyNotes = { story: '完整提示，熟悉战场。', standard: '常规提示，按公开目标争取星级。', challenge: '更强的战术与公开附加目标。' };
+const difficultyNotes: Record<CampaignDifficulty, string> = {
+  story: '敌方使用协同战术。', standard: '敌方以炮战为主。', challenge: '敌方优先寻找鱼雷攻击位置。',
+};
+
+export function CampaignStarRating({ stars }: { stars: CampaignStars }) {
+  return <span className="campaign-stars" role="img" aria-label={`${stars} / 3 星`} data-stars={stars}>
+    {[1, 2, 3].map((number) => <span key={number} aria-hidden="true" data-earned={number <= stars}>{number <= stars ? '★' : '☆'}</span>)}
+  </span>;
+}
+
+export function CampaignResultSummary({ campaign, result }: { campaign: CampaignMission; result: CampaignOutcome }) {
+  const stars = campaignStars(result);
+  const grade = result.grade === 'decisive' ? '决定胜利' : result.grade === 'tactical' ? '战术胜利' : '未达成任务';
+  return <div className="campaign-debrief" data-stage-id={campaign.stageId} data-difficulty={campaign.difficulty}>
+    <div><span>{campaignDifficulties[campaign.difficulty]}难度</span><strong>{typeof result.primary === 'string' && result.primary ? result.primary : grade}</strong></div>
+    <CampaignStarRating stars={stars} />
+  </div>;
+}
+
+export function CampaignMissionBrief({ campaign }: { campaign: CampaignMission }) {
+  return <section className="campaign-mission-brief" aria-label="战役任务">
+    <strong>{campaign.missionLabel}</strong><span>{campaignDifficulties[campaign.difficulty]}难度</span><p>{campaign.objectives}</p>
+  </section>;
+}
+
+export function CampaignRewardActions({ stageId, progress, onClaim, busy }: {
+  stageId: string; progress?: CampaignProgress; onClaim: () => void; busy?: boolean;
+}) {
+  const pending = pendingCampaignRewards(progress, stageId);
+  const claimed = progress?.[stageId]?.claimed ?? 0;
+  if (!pending.length) return claimed > 0 ? <p className="campaign-reward-claimed" role="status">已达成的星级奖励已领取。</p> : null;
+  return <div className="campaign-reward-actions">
+    <ul aria-label="可领取的战役奖励">{pending.map(reward =>
+      <li key={reward.stars}><span>{reward.title}</span><strong>{campaignRewardText(reward)}</strong></li>)}</ul>
+    <button type="button" className="primary" disabled={busy} onClick={onClaim}>领取战役奖励</button>
+  </div>;
+}
 
 function goalText(goal: Goal) {
   if (typeof goal === 'string') return goal;
@@ -96,7 +132,7 @@ function forceNames(force: unknown): string[] {
   ).flatMap(([, value]) => forceNames(value));
 }
 
-function LegacySource({ id, side, data }: { id: string; side: Side; data: LegacyDeployment }) {
+function LegacySource({ id, side, data, playable }: { id: string; side: Side; data: LegacyDeployment; playable: boolean }) {
   const [showFormation, setShowFormation] = useState(false);
   const positions = showFormation ? new Map(data.post_default_formation_setup?.ships.map(ship => [ship.ibs_ship_id, ship])) : undefined;
   const placement = positions ? data.ships.map(ship => ({ ...ship, ...positions.get(ship.ibs_ship_id) })) : data.ships;
@@ -130,12 +166,14 @@ function LegacySource({ id, side, data }: { id: string; side: Side; data: Legacy
       </details></section>;
     })}</div>
     <div><h4>原剧本任务</h4><ul>{data.objectives.intent.map(text => <li key={text}>{text}</li>)}</ul></div>
-    <div><h4>出航前待验证</h4><ul>{data.gates.map(text => <li key={text}>{text}</li>)}</ul>
+    <div><h4>{playable ? '原始档案的核验记录' : '出航前待验证'}</h4>
+      {playable ? <p>当前可出航的是以这份部署为底稿、用 CAS 舰卡裁决的 RTS 版本。</p>
+        : <ul>{data.gates.map(text => <li key={text}>{text}</li>)}</ul>}
       {data.conflicts.length > 0 && <p>{data.conflicts.length} 处原部署和编队设置存在差异，已保留原阵位供核对。</p>}</div>
   </div>;
 }
 
-function StageSource({ id, side }: { id: string; side: Side }) {
+function StageSource({ id, side, playable, historicalReady }: { id: string; side: Side; playable: boolean; historicalReady?: boolean }) {
   const [detail, setDetail] = useState<RecordDetail>();
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -149,10 +187,11 @@ function StageSource({ id, side }: { id: string; side: Side }) {
   if (failed) return <button type="button" onClick={() => { setFailed(false); setAttempt(n => n + 1); }}>重读想定记录</button>;
   if (!detail) return <p role="status">正在载入想定记录…</p>;
   const { record, readiness, legacy } = detail;
-  if (legacy) return <LegacySource id={id} side={side} data={legacy} />;
+  if (legacy) return <LegacySource id={id} side={side} data={legacy} playable={playable} />;
   if (!record) return null;
   const weather = record.environment;
   return <div className="archive-source" data-source-stage={id}>
+    {playable && !historicalReady && <p className="archive-variant-note">下列为 CAS 原页记录。出航后的任务栏会列出 RTS 改编采用的判定。</p>}
     <p><strong>CAS 开局</strong> · {record.start.date_local} {record.start.time_local} · {record.start.location}
       {weather?.light === 'night' && ' · 夜间'}
       {weather?.visibility_pct !== undefined && ` · 能见度 ${weather.visibility_pct}%`}
@@ -173,20 +212,23 @@ function StageSource({ id, side }: { id: string; side: Side }) {
     </div>
     {record.special_rules?.length ? <div><h4>想定特例</h4><ul>{record.special_rules.map((rule, i) =>
       <li key={i}>{typeof rule === 'string' ? rule : rule.rule}</li>)}</ul></div> : null}
-    <div><h4>尚待验证</h4>
+    {!historicalReady && <div><h4>{playable ? '原书版本仍待核验' : '尚待验证'}</h4>
       {readiness && <p>已录入 {readiness.periodProfiles} 类时期配置，关联 {readiness.datedShips} 艘舰；仍有 {readiness.unresolvedPeriodData.length} 项原表或装载问题待核对。</p>}
       <ul>{record.blockers.map((blocker, i) => <li key={i}>{typeof blocker === 'string' ? blocker : blocker.detail}</li>)}</ul>
-    </div>
+    </div>}
   </div>;
 }
 
-export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: boolean }) {
+export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, online = false }: {
+  onNight: () => void; onCampaign?: (launch: CampaignLaunch) => void; progress?: CampaignProgress;
+  onClaim: (stageId: string) => void; busy: boolean; online?: boolean;
+}) {
   const [archive, setArchive] = useState<Archive>();
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [filter, setFilter] = useState<'all' | Match>('all');
   const [side, setSide] = useState<Side>('allies');
-  const [difficulty, setDifficulty] = useState<keyof typeof difficulties>('story');
+  const [difficulty, setDifficulty] = useState<CampaignDifficulty>('story');
   const [open, setOpen] = useState<string>();
   useEffect(() => {
     let active = true;
@@ -196,15 +238,14 @@ export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: 
     return () => { active = false; };
   }, [attempt]);
   const exactCount = archive?.scenarios.filter((entry) => entry.classification === 'exact_historical_counterpart').length ?? 0;
+  const stagePrefix = side === 'allies' ? 'CAMP-ALLIES-' : 'CAMP-AXIS-';
+  const canLaunch = (entry: Entry) => entry.playable && !(online && entry.runtime?.localOnly);
+  const playableCount = archive?.scenarios.filter(entry => canLaunch(entry) && entry.stage_ids.some(id => id.startsWith(stagePrefix))).length ?? 0;
   const visible = archive?.scenarios.filter((entry) => filter === 'all' || entry.classification === filter) ?? [];
 
   return <section className="harbor-section campaign-archive" aria-label="CAS 战役档案">
-    <div className="night-card">
-      <div><span>独立练习 · 虚构夜战</span><h3>夜航接敌</h3><p>5 对 5 目视搜索演习。靠近敌舰才能建立接触。</p></div>
-      <button type="button" className="primary" onClick={onNight} disabled={busy}>开始夜航演习</button>
-    </div>
     <div className="harbor-title"><h3>战役航图</h3>{archive && <span>双线 {archive.scenarios.length * 2} 关 · {exactCount} 份原书想定</span>}</div>
-    <p className="harbor-fine">选择战线与难度，展开关卡查看 CAS 原书或旧剧本部署。出航须先核对舰卡、胜利条件和想定规则。</p>
+    <p className="harbor-fine">选择战线和难度，再展开关卡。可出航的关卡提供历史编制借舰；其他关卡可查阅档案。</p>
     {error && <div className="harbor-action" role="status"><span>档案未能载入。</span><button type="button" onClick={() => { setError(false); setAttempt((n) => n + 1); }}>重新载入</button></div>}
     {!archive && !error && <p className="harbor-fine" role="status">正在查阅档案…</p>}
     {archive && <>
@@ -213,18 +254,21 @@ export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: 
           {sides.map(value => <button key={value} type="button" aria-pressed={side === value} onClick={() => setSide(value)}>{sideName[value]}战线</button>)}
         </div>
         <label>难度 <select value={difficulty} onChange={event => setDifficulty(event.target.value as typeof difficulty)}>
-          {Object.entries(difficulties).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+          {Object.entries(campaignDifficulties).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
         </select></label>
         <label>档案范围 <select value={filter} onChange={(event) => setFilter(event.target.value as typeof filter)}>
           <option value="all">全部</option>
           {Object.entries(matchNames).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
         </select></label>
       </div>
-      <p className="archive-difficulty">{difficulties[difficulty]}：{difficultyNotes[difficulty]}</p>
+      <div className="archive-difficulty"><span>{campaignDifficulties[difficulty]}：{difficultyNotes[difficulty]}各档舰卡与规则一致。</span><span>{sideName[side]}战线 · {playableCount} 关可出航</span></div>
       <ul className="archive-list">
         {visible.map((entry) => {
-          const stageId = entry.stage_ids.find(id => id.startsWith(side === 'allies' ? 'CAMP-ALLIES-' : 'CAMP-AXIS-'))!;
-          return <li key={entry.ibs_id} data-stage-id={stageId}>
+          const stageId = entry.stage_ids.find(id => id.startsWith(stagePrefix));
+          if (!stageId) return null;
+          const best = campaignBest(progress, stageId, difficulty);
+          const pending = pendingCampaignRewards(progress, stageId).length > 0;
+          return <li key={entry.ibs_id} data-stage-id={stageId} data-playable={canLaunch(entry)}>
           <details open={open === entry.ibs_id} onToggle={e => {
             if (e.target !== e.currentTarget) return;
             const isOpen = e.currentTarget.open;
@@ -234,20 +278,38 @@ export function CampaignArchive({ onNight, busy }: { onNight: () => void; busy: 
             <summary>
               <span className="archive-name"><time>{stageId.slice(-2)} · {entry.ibs_date || '日期待定'}</time><strong>{entry.ibs_title}</strong></span>
               <span className={'archive-tag ' + entry.classification}>{matchNames[entry.classification]}</span>
-              <span className="archive-lock">{entry.playable ? '已验证关卡' : '未开放'}</span>
+              <span className="archive-lock">{canLaunch(entry) ? pending ? '奖励待领' : '可出航' : entry.runtime?.localOnly ? '仅离线开放' : '未开放'}</span>
             </summary>
             <div className="archive-detail">
+              {entry.playable && <div className="archive-sortie-brief">
+                <div className="archive-sortie-row"><div><strong>{entry.runtime?.label ?? entry.ibs_title}</strong>
+                  <span>{sideName[side]}战线 · {campaignDifficulties[difficulty]}难度</span>
+                  <span>{best === undefined ? '尚无战果' : <>最高评级 <CampaignStarRating stars={best} /></>}</span></div>
+                  <button type="button" className="primary" disabled={busy || !onCampaign || !canLaunch(entry)} onClick={() => onCampaign?.({ stageId, difficulty })}>出航作战</button>
+                </div>
+                <p>本关按历史编制借舰，不消耗个人舰库。</p>
+                {!online && <CampaignRewardActions stageId={stageId} progress={progress} busy={busy} onClaim={() => onClaim(stageId)} />}
+                {stageId === 'CAMP-AXIS-01' && <p>原首通舰高波待核准 CAS 舰卡后开放，补给可照常领取。</p>}
+                {campaignRewards(stageId).length > 0 && <details className="campaign-reward-ledger"><summary>查看星级奖励</summary>
+                  <ol>{campaignRewards(stageId).map(reward => <li key={reward.stars}><span>{reward.stars} 星 · {reward.title}</span>
+                    <strong>{campaignRewardText(reward)}</strong><small>{(progress?.[stageId]?.claimed ?? 0) >= reward.stars ? '已领取' : '每条战线各领一次'}</small></li>)}</ol>
+                </details>}
+              </div>}
               {entry.cas && <p><strong>{entry.cas.title}</strong><br />{sources[entry.cas.source.document] ?? entry.cas.source.document}
                 {entry.cas.source.pdf_pages.length > 0 && ' · PDF 第 ' + entry.cas.source.pdf_pages.join('、') + ' 页'}
                 {entry.cas.source.printed_pages.length > 0 && '（书页 ' + entry.cas.source.printed_pages.join('、') + '）'}</p>}
               <p>{entry.note}</p>
               <small>关卡编号：{stageId}</small>
-              {open === entry.ibs_id && <StageSource key={stageId} id={stageId} side={side} />}
+              {open === entry.ibs_id && <StageSource key={stageId} id={stageId} side={side} playable={entry.playable} historicalReady={entry.runtime?.historicalReady} />}
             </div>
           </details>
         </li>;
         })}
       </ul>
     </>}
+    <div className="night-card archive-practice">
+      <div><span>独立练习 · 虚构夜战</span><h3>夜航接敌</h3><p>5 对 5 目视搜索演习。靠近敌舰才能建立接触。</p></div>
+      <button type="button" className="primary" onClick={onNight} disabled={busy}>开始夜航演习</button>
+    </div>
   </section>;
 }

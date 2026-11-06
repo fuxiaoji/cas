@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { CampaignArchive } from './CampaignArchive';
+import { claimCampaignRewards } from './campaign-progress';
+import type { CampaignLaunch } from './campaign-progress';
 import { RecruitArrival } from './RecruitArrival';
 import { buyWeeklyTicket, CHALLENGE_WEEKLY_LIMIT, CHALLENGE_WEEKLY_TICKETS, claimRepeat, claimWeeklySupply, WEEKLY_TICKET_PRICE, weeklyStatus } from './activities/week';
 import { profileNames, sideNames } from './engine';
@@ -11,7 +13,8 @@ import './harbor.css';
 export type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge' | 'archive';
 type Props = { state: PortState; change: (reducer: (current: PortState) => PortState) => void;
   onReturn: () => void; onLaunch: (options: PortLaunch) => void; onCourse: (id: 'day' | 'night', side?: Side) => void;
-  busy: boolean; error?: string; initialTab?: HarborTab };
+  onCampaign?: (launch: CampaignLaunch) => void;
+  busy: boolean; error?: string; initialTab?: HarborTab; online?: boolean };
 const tabs: { id: HarborTab; name: string }[] = [
   { id: 'training', name: '舰桥学堂' }, { id: 'fleet', name: '舰库与编队' },
   { id: 'recruit', name: '本机征募' }, { id: 'challenge', name: '越级挑战' },
@@ -37,7 +40,7 @@ function HarborArt() {
   </svg>;
 }
 
-export function Harbor({ state, change, onReturn, onLaunch, onCourse, busy, error, initialTab = 'training' }: Props) {
+export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse, busy, error, online, initialTab = 'training' }: Props) {
   const [tab, setTab] = useState<HarborTab>(initialTab);
   const [starterSide, setStarterSide] = useState<Side>(state.preset.side);
   const [pool, setPool] = useState<'standard' | 'up'>('standard');
@@ -172,7 +175,9 @@ export function Harbor({ state, change, onReturn, onLaunch, onCourse, busy, erro
           <div className="harbor-action"><button type="button" disabled={!week.pending.length || week.claimed >= CHALLENGE_WEEKLY_LIMIT}
             onClick={() => change(s => claimRepeat(s))}>领取复战奖励</button></div>
         </section>}
-        {tab === 'archive' && <CampaignArchive busy={busy} onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night' })} />}
+        {tab === 'archive' && <CampaignArchive busy={busy} progress={online ? undefined : state.campaignProgress} onCampaign={onCampaign} online={online}
+          onClaim={(stageId) => change(current => claimCampaignRewards(current, stageId))}
+          onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night' })} />}
       </section>
     </div>
     {arrival && arrivalReceipt && <RecruitArrival key={arrival.id} receipt={arrivalReceipt} replay={arrival.replay} onClose={() => setArrival(undefined)} />}

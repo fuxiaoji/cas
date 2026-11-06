@@ -1,3 +1,5 @@
+import type { CampaignGrade, CampaignMission } from './campaign-progress';
+
 export type Side = 'allies' | 'axis';
 export type Profile = 'coord' | 'gunnery' | 'torpedo';
 export type Maneuver = 'follow' | 'sync';
@@ -27,7 +29,8 @@ export interface Shell extends Point {
 }
 export interface Torpedo extends Point { id: number; heading: number; own: boolean; from?: Point; count?: number; trail?: Point[] }
 export interface Contact extends Position { id: string; kind?: string; name?: string }
-export interface RadarContact extends Point { id: string; lastSeenTick: number; direct: boolean; usableForShipIds: number[]; shared?: (Point & { lastSeenTick: number }) | null }
+export interface RadarContact extends Point { id: string; lastSeenTick: number; direct: boolean; usableForShipIds: number[];
+  torpedoForShipIds?: number[]; shared?: (Point & { lastSeenTick: number }) | null }
 export interface Path { ship: number; points: Point[] }
 export interface AiConfig {
   profile: Profile; mode: 'manual' | 'suggest' | 'auto'; move: boolean; gun: boolean; torpedo: boolean;
@@ -37,10 +40,12 @@ export interface Fleet {
   mode: Maneuver; speed: number; points: Point[]; paths: Path[]; ai: AiConfig; notice?: string;
 }
 export interface LogEvent { id?: number | string; tick: number; kind: string; text: string; rule?: string; x?: number; y?: number; voiceCue?: string }
-export interface Result { winner: string; allies: number; axis: number; primary?: boolean }
+export interface Result { winner: string; allies: number; axis: number; primary?: boolean | string; grade?: CampaignGrade }
 export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;
   variant?: string; settling?: boolean; realtimeGunnery?: boolean;
+  environment?: { light: 'night' | 'day' | 'twilight'; visibility: number; sea_state: number; precipitation: boolean };
+  campaign?: CampaignMission & { withdrawalX?: number };
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
   radarContacts?: RadarContact[];
   illuminations?: (Point & { radius: number; expires: number; own: boolean })[];

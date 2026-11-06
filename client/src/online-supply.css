@@ -1,0 +1,14 @@
+.online-supply{height:100%;overflow:auto;overscroll-behavior:contain;padding:clamp(14px,3vw,38px);background:radial-gradient(ellipse at top right,#153d4d,#0b2130 46%,#071722);color:#e2e7e2}
+.online-supply header,.online-supply nav,.online-wallet,.online-pools{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.online-supply header{justify-content:space-between;border-bottom:1px solid #486670;padding-bottom:.75rem}
+.online-supply header h1,.online-supply h2,.online-supply h3{margin:.25em 0;color:#f2dbab}
+.online-supply header p,.online-supply section p{color:#b2c8cc}
+.online-supply nav,.online-wallet{margin:.8rem 0}
+.online-supply nav button[aria-pressed=true],.online-pools button[aria-pressed=true]{border-color:#e3bc78;background:#264d5c;color:#f9d99d}
+.online-wallet span{padding:.32rem .66rem;background:#163849;color:#a8c0c7;border:1px solid #45616d}.online-wallet b{color:#f2dbab}
+.online-supply section{padding:.8rem 0;border-top:1px solid #405c66}
+.online-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.6rem}
+.online-list article{padding:.75rem;background:#102d3e;border:1px solid #3d5d69}
+.online-supply input{padding:.45rem;background:#0b1e2a;color:#e2e7e2;border:1px solid #627e83}
+.online-receipts{padding:.75rem 2rem;background:#224352;color:#f2dbab}
+.online-battle-list{display:grid;gap:.4rem;max-height:34dvh;overflow-y:auto;margin:.75rem 0}

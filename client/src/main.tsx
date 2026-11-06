@@ -4,6 +4,9 @@ import { BattleMap } from './BattleMap';
 import { alertKind, ShipSchematic } from './BattlePresentation';
 import { Harbor } from './Harbor';
 import type { HarborTab } from './Harbor';
+import { CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
+import { claimCampaignRewards, recordCampaignResult } from './campaign-progress';
+import type { CampaignLaunch } from './campaign-progress';
 import { GrowthPort } from './GrowthPort';
 import type { LobbySection } from './GrowthPort';
 import { Login } from './Login';
@@ -16,6 +19,9 @@ import { TrainingCoach, trainingCourseDone } from './tutorial';
 import type { CourseId, TrainingEvidence, TrainingSignal } from './tutorial';
 import { profileKey } from './account';
 import type { LocalProfile } from './account';
+import { battlePath, OnlineError, onlineMeta, onlineRequest } from './online';
+import type { OnlineBattle, OnlineBattleClaim, OnlineBattleSummary, OnlineMeta } from './online';
+import { OnlineSupply } from './OnlineSupply';
 import { ask, clock, closeSession, maneuverNames, profileNames, sideNames } from './engine';
 import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, Weapon } from './engine';
 import { grantPrologue, hulls, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
@@ -77,6 +83,16 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const [resultDismissed, setResultDismissed] = useState(false);
   const [session, setSession] = useState(0);
   const [port, setPort] = useState(() => loadPort(accountPortKey));
+  const [cloudMeta, setCloudMeta] = useState<OnlineMeta>();
+  const [cloudError, setCloudError] = useState<string>();
+  const [cloudBattle, setCloudBattle] = useState<OnlineBattle>();
+  const [onlineList, setOnlineList] = useState<OnlineBattleSummary[]>();
+  const [cloudClaimed, setCloudClaimed] = useState(false);
+  const cloud = useRef<OnlineBattle | undefined>(undefined);
+  const cloudSending = useRef(false);
+  const cloudPending = useRef(new Map<string, { request_id: string; revision: number }>());
+  const cloudLaunch = useRef<{ stageId: string; difficulty: string; id: string } | undefined>(undefined);
+  const cloudToken = profile.online?.token;
   const [portOpen, setPortOpen] = useState(true);
   const [section, setSection] = useState<HarborTab | 'activities'>();
   const [mainMenu, setMainMenu] = useState(false);
@@ -91,6 +107,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const courseLive = useRef<CourseId | undefined>(undefined);
   const savedExercise = useRef<unknown>(undefined);
   const challengeId = useRef<string | undefined>(undefined);
+  const campaignId = useRef<string | undefined>(undefined);
   const [presetActive, setPresetActive] = useState(false);
   const inFlight = useRef(false);
   const initialized = useRef(false);
@@ -104,7 +121,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const result = o?.result;
   const finished = Boolean(result);
   const radio = useBattleVoice({ session, observation: o, live: !portOpen, replaying: !!replay,
-    paused: !running && !finished, settingsKey: profile.id + ':fleet-radio' });
+    paused: !cloudBattle && !running && !finished, settingsKey: profile.id + ':fleet-radio' });
   const contactCount = (o?.contacts.length ?? 0) + (o?.radarContacts?.length ?? 0);
 
   function record(...signals: TrainingSignal[]) {
@@ -136,6 +153,11 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       const now = Date.now();
       setPort((state) => recordChallengeClear(state, id, now));
     }
+    if (live && !courseLive.current && campaignId.current && observation.campaign && observation.result?.grade) {
+      const campaign = observation.campaign;
+      const outcome = observation.result;
+      setPort(state => recordCampaignResult(state, campaign, outcome));
+    }
   }
   function learn(id: Lesson) {
     if (!replay && (!o?.variant || courseLive.current === 'day')) setPort((state) => recordLesson(state, id));
@@ -151,12 +173,15 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     timeAccumulator.current = 0;
   }
   async function persist(toast = false) {
-    if (courseLive.current) return;
+    if (courseLive.current || cloud.current) return;
     const id = challengeId.current;
+    const localCampaignId = campaignId.current;
     try {
       const data = await ask<Record<string, unknown>>({ op: 'save' });
-      localStorage.setItem(accountSaveKey, JSON.stringify(id && data.variant === 'challenge' ? { ...data, localChallengeId: id } : data));
-      lastSave.current = clockTick.current;
+      localStorage.setItem(accountSaveKey, JSON.stringify(id && data.variant === 'challenge'
+        ? { ...data, localChallengeId: id }
+        : localCampaignId && data.campaign ? { ...data, localCampaignId } : data));
+      lastSave.current = typeof data.tick === 'number' ? data.tick : clockTick.current;
       if (toast) hint('演习已保存，下次打开可继续。');
     } catch (error) { if (toast) hint('保存失败：' + errorText(error)); }
   }
@@ -169,10 +194,13 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         try {
           const saved = localStorage.getItem(accountSaveKey);
           if (saved) {
-            const { localChallengeId, ...save } = JSON.parse(saved);
+            const { localChallengeId, localCampaignId, ...save } = JSON.parse(saved);
             const observation = await ask<Observation>({ op: 'load', save });
             if (observation.variant === 'challenge' && typeof localChallengeId === 'string' && /^[0-9a-f-]{36}$/i.test(localChallengeId)) {
               challengeId.current = localChallengeId;
+            }
+            if (observation.campaign && typeof localCampaignId === 'string' && /^[0-9a-f-]{36}$/i.test(localCampaignId)) {
+              campaignId.current = localCampaignId;
             }
             lastSave.current = observation.tick; update(observation); return;
           }
@@ -189,6 +217,63 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     try { writePort(port, accountPortKey); }
     catch { hint('本机无法保存母港进度。'); }
   }, [port]);
+  useEffect(() => {
+    if (!cloudToken) return;
+    let live = true;
+    void onlineMeta(cloudToken).then(value => { if (live) setCloudMeta(value); },
+      err => { if (live) setCloudError(errorText(err)); });
+    return () => { live = false; };
+  }, [cloudToken]);
+  function syncBattle(next: OnlineBattle, open = false) {
+    const old = cloud.current;
+    if (!open && (!old || old.battle_id !== next.battle_id || old.revision > next.revision || old.view.tick > next.view.tick)) return;
+    cloud.current = next; setCloudBattle(next);
+    update(next.view, false);
+  }
+  function clearCloud() {
+    cloud.current = undefined; setCloudBattle(undefined); setCloudClaimed(false); cloudPending.current.clear();
+  }
+  async function inspectBattle<T>(request: Request): Promise<T> {
+    const active = cloud.current;
+    if (!active || !cloudToken) return ask<T>(request);
+    return onlineRequest<T>(battlePath(active.battle_id) + '/inspect', cloudToken, { command: request });
+  }
+  async function sendBattle(request: Request) {
+    const active = cloud.current;
+    if (!active || !cloudToken) return update(await ask<Observation>(request));
+    if (cloudSending.current) throw new Error('上一条联机命令正在确认。');
+    cloudSending.current = true;
+    const key = active.battle_id + ':' + JSON.stringify(request);
+    const attempt = cloudPending.current.get(key) ?? { request_id: crypto.randomUUID(), revision: active.revision };
+    cloudPending.current.set(key, attempt);
+    try {
+      const next = await onlineRequest<OnlineBattle>(battlePath(active.battle_id) + '/commands', cloudToken,
+        { ...attempt, command: request });
+      cloudPending.current.delete(key); syncBattle(next);
+    } catch (e) {
+      if (e instanceof OnlineError && e.status && e.status < 500) cloudPending.current.delete(key);
+      if (e instanceof OnlineError && e.status === 409) {
+        const next = await onlineRequest<OnlineBattle>(battlePath(active.battle_id), cloudToken).catch(() => undefined);
+        if (next) syncBattle(next);
+      }
+      throw e;
+    } finally { cloudSending.current = false; }
+  }
+  useEffect(() => {
+    if (!cloudToken || !cloudBattle || portOpen || cloudBattle.status === 'complete') return;
+    let cancelled = false; let fetching = false; let showedError = false;
+    const id = cloudBattle.battle_id;
+    const interval = window.setInterval(() => {
+      if (fetching || cloudSending.current || document.hidden) return;
+      fetching = true;
+      void onlineRequest<OnlineBattle>(battlePath(id), cloudToken).then(next => {
+        if (!cancelled) { syncBattle(next); if (showedError) hint('已恢复联机战局。'); showedError = false; }
+      }, error => {
+        if (!cancelled && !showedError) { hint(errorText(error)); showedError = true; }
+      }).finally(() => { fetching = false; });
+    }, 450);
+    return () => { cancelled = true; window.clearInterval(interval); };
+  }, [cloudToken, cloudBattle?.battle_id, cloudBattle?.status, portOpen]);
   useEffect(() => {
     try { savePrologue(story, storyKey); }
     catch { setPortError('本机无法保存序章进度。'); }
@@ -233,7 +318,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     if (!fleet || !editMode || !waypoints.length || replay) { setPreview(undefined); return; }
     let active = true;
     const timer = window.setTimeout(() => {
-      void ask<RoutePreview>({ op: 'preview_route', fleet: fleet.id, mode: editMode, points: waypoints, speed: cruise })
+      void inspectBattle<RoutePreview>({ op: 'preview_route', fleet: fleet.id, mode: editMode, points: waypoints, speed: cruise })
         .then((value) => { if (active) {
           setPreview(value);
           if (value.valid && (editMode === 'sync' || waypoints.length >= 2)) record(editMode === 'follow' ? 'followPreview' : 'syncPreview');
@@ -256,7 +341,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   async function command(request: Request, after?: () => void) {
     if (replay || finished) return;
     try {
-      update(await ask<Observation>(request));
+      await sendBattle(request);
       after?.();
       void persist();
     } catch (error) { hint(errorText(error)); }
@@ -289,7 +374,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   async function checkReform() {
     if (!fleet) return;
     resetDraft();
-    try { setReformPreview(await ask<RoutePreview>({ op: 'preview_reform', fleet: fleet.id })); }
+    try { setReformPreview(await inspectBattle<RoutePreview>({ op: 'preview_reform', fleet: fleet.id })); }
     catch (error) { hint(errorText(error)); }
   }
   function changeAi(config: AiConfig) {
@@ -299,13 +384,13 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   }
   async function askAi() {
     if (!fleet) return;
-    try { setSuggestion(await ask<Suggestion>({ op: 'suggest', fleet: fleet.id })); }
+    try { setSuggestion(await inspectBattle<Suggestion>({ op: 'suggest', fleet: fleet.id })); }
     catch (error) { hint(errorText(error)); }
   }
   async function acceptAi() {
     if (!suggestion || replay) return;
     try {
-      for (const order of suggestion.orders) update(await ask<Observation>(order));
+      for (const order of suggestion.orders) await sendBattle(order);
       hint('已采纳战术建议。'); setSuggestion(undefined); void persist();
     } catch (error) { hint('建议未能全部执行：' + errorText(error)); setSuggestion(undefined); }
   }
@@ -314,6 +399,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     try {
       const next = await ask<Observation>({ op: 'new', ...setup });
       challengeId.current = undefined;
+      campaignId.current = undefined;
       await persist();
       resetPanel(); update(next); setDialog(false); setTraining(false); setPresetActive(false);
     } catch (error) { hint(errorText(error)); }
@@ -357,7 +443,9 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   async function exportLog() {
     if (!o) return;
     try {
-      const report = replay ? { result: o.result, events: o.events } : await ask<{ result: Result | null; events: LogEvent[] }>({ op: 'report' });
+      const report = replay ? { result: o.result, events: o.events } : cloud.current && cloudToken ?
+        await onlineRequest<{ result: Result | null; events: LogEvent[] }>(battlePath(cloud.current.battle_id) + '/report', cloudToken) :
+        await ask<{ result: Result | null; events: LogEvent[] }>({ op: 'report' });
       const title = ['CAS 海图指挥台', o.scenario, sideNames[o.side], '模拟时间 ' + clock(o.tick)];
       const rows = report.events.map((event) => [clock(event.tick), event.text, event.rule ?? ''].filter(Boolean).join('  '));
       const blob = new Blob(['\uFEFF' + title.concat('', rows).join('\r\n')], { type: 'text/plain;charset=utf-8' });
@@ -384,6 +472,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       const ddSlots = [0, 2, 3, 4];
       const leaderSlot = leader ? ddSlots[Math.max(0, STARTER_DD_IDS.indexOf(leader)) % ddSlots.length] : 0;
       const next = await ask<Observation>({ op: 'new', ...defaultSetup, side, variant, leaderSlot });
+      clearCloud();
       setEvidence({}); courseLive.current = id; setCourse(id);
       resetPanel(); update(next); setPortOpen(false); setStoryOpen(false); setTraining(false); setPresetActive(false);
     } catch (error) { setPortError(errorText(error)); }
@@ -414,11 +503,66 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     try {
       const { training: isTraining, ...options } = launch;
       const next = await ask<Observation>({ op: 'new', ...defaultSetup, ...options });
+      clearCloud();
       challengeId.current = options.variant === 'challenge' ? crypto.randomUUID() : undefined;
+      campaignId.current = undefined;
       await persist();
       resetPanel(); update(next); setPortOpen(false); setTraining(!!isTraining); setPresetActive(!isTraining && launch.variant !== 'night');
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
+  }
+  async function launchCampaign({stageId, difficulty}: CampaignLaunch) {
+    if (busy) return;
+    setBusy(true); setPortError(undefined); setRunning(false);
+    try {
+      if (cloudToken) {
+        const previous = cloudLaunch.current;
+        const id = previous?.stageId === stageId && previous.difficulty === difficulty ? previous.id : crypto.randomUUID();
+        cloudLaunch.current = { stageId, difficulty, id };
+        let next: OnlineBattle;
+        try {
+          next = await onlineRequest<OnlineBattle>('/battles', cloudToken, { request_id: id, stage_id: stageId, difficulty });
+        } catch (e) {
+          if (e instanceof OnlineError && e.status && e.status < 500) cloudLaunch.current = undefined;
+          throw e;
+        }
+        cloudLaunch.current = undefined; setCloudClaimed(false); cloudPending.current.clear();
+        resetPanel(); syncBattle(next, true); setPortOpen(false); setTraining(false); setPresetActive(false);
+        return;
+      }
+      const next = await ask<Observation>({ op: 'new_campaign', id: stageId, difficulty, seed: defaultSetup.seed, profile: port.preset.profile });
+      challengeId.current = undefined;
+      campaignId.current = crypto.randomUUID();
+      await persist();
+      resetPanel(); update(next); setPortOpen(false); setTraining(false); setPresetActive(false);
+    } catch (error) { setPortError(errorText(error)); }
+    finally { setBusy(false); }
+  }
+  async function resumeCloud(id: string) {
+    if (!cloudToken || busy) return;
+    setBusy(true); setCloudError(undefined);
+    try {
+      const next = await onlineRequest<OnlineBattle>(battlePath(id), cloudToken);
+      resetPanel(); setCloudClaimed(false); syncBattle(next, true); setTraining(false); setPresetActive(false);
+      setPortOpen(false); setMainMenu(false);
+    } catch (e) { setCloudError(errorText(e)); } finally { setBusy(false); }
+  }
+  async function openMainMenu() {
+    setMainMenu(true);
+    if (!cloudToken) return;
+    try { setOnlineList(await onlineRequest<OnlineBattleSummary[]>('/battles', cloudToken)); }
+    catch (e) { setCloudError(errorText(e)); }
+  }
+  async function claimCloud() {
+    const active = cloud.current;
+    if (!active || !cloudToken || busy) return;
+    setBusy(true);
+    try {
+      const claim = await onlineRequest<OnlineBattleClaim>(battlePath(active.battle_id) + '/claim', cloudToken,
+        { request_id: 'stage-claim-' + active.battle_id });
+      setCloudMeta(claim.meta); setCloudClaimed(true);
+      hint(claim.claimed ? '联机战役奖励已入账。' : '本局没有新的星级奖励。');
+    } catch (e) { hint(errorText(e)); } finally { setBusy(false); }
   }
   function navigateLobby(value: LobbySection) {
     const sections = { academy: 'training', campaign: 'archive', challenge: 'challenge', fleet: 'fleet', economy: 'recruit', activities: 'activities' } as const;
@@ -448,25 +592,37 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   };
 
   if (portOpen) {
+    if (cloudToken && (section === 'recruit' || section === 'fleet')) return <OnlineSupply key={section} token={cloudToken}
+      meta={cloudMeta} onMeta={meta => {setCloudMeta(meta);setCloudError(undefined);}}
+      onBack={() => setSection(undefined)} initialTab={section === 'fleet' ? 'fleet' : 'recruit'} />;
     if (storyOpen) return <PrologueScene progress={story} onProgress={setStory} busy={busy || !o}
       error={portError ?? loadError} claimed={port.prologueReward}
       rewards={['同盟演习舰队（首次领取初始舰队时）', '补给币 2,000', '常驻券与 UP 券各 10 张（首次领取初始舰队时）']}
       onBattle={(stage, leader) => void startCourse(stage, 'allies', leader)}
       onFinish={() => { setPort(grantPrologue); setStoryOpen(false); }}
       onExit={() => { setPortError(undefined); setStoryOpen(false); }} />;
-    if (section === 'activities') return <ActivityCenter state={port} change={setPort} onClose={() => setSection(undefined)} />;
-    if (section) return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onLaunch={(options) => void launchFromHarbor(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} />;
+    if (section === 'activities') return <ActivityCenter state={port} change={setPort} onClose={() => setSection(undefined)}
+      online={cloudToken ? {token:cloudToken,onMeta:meta => {setCloudMeta(meta);setCloudError(undefined);}} : undefined} />;
+    if (section) return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onLaunch={(options) => void launchFromHarbor(options)} onCampaign={(options) => void launchCampaign(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} online={!!cloudToken} />;
     return <>
-      <GrowthPort state={port} onNavigate={navigateLobby} onHome={() => setMainMenu(true)}
+      <GrowthPort state={port} onNavigate={navigateLobby} onHome={() => void openMainMenu()}
+        online={cloudToken ? {meta:cloudMeta,error:cloudError} : undefined}
         onReplayPrologue={() => { setStoryOpen(true); setPortError(undefined); }}
         onWatch={id => setPort(s => Object.hasOwn(hulls,id) && (s.owned[id as Hull] ?? 0) > 0 ? { ...s, watch: id as Hull } : s)} />
       {mainMenu && <div className="dialog-backdrop" onClick={e=>{if(e.target===e.currentTarget)setMainMenu(false);}}>
         <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="主菜单">
           <h2>主菜单</h2><p className="field-note">当前指挥官：{profile.name}</p>
           {loadError && <p role="alert">无法打开海图：{loadError}</p>}
+          {cloudError && <p role="status">{cloudError}</p>}
+          {cloudToken && !!onlineList?.length && <div className="online-battle-list" aria-label="我的联机战役">
+            {onlineList.slice(0, 8).map(battle => <button type="button" key={battle.battle_id} disabled={busy}
+              onClick={() => void resumeCloud(battle.battle_id)}>
+              {battle.status === 'active' ? '继续战役' : '查看战果'} · {battle.stage_id.includes('ALLIES') ? '同盟' : '轴心'} · {clock(battle.tick)}
+            </button>)}
+          </div>}
           <div className="actions">
             <button type="button" onClick={()=>setMainMenu(false)}>返回母港</button>
-            <button type="button" className="primary" disabled={!o || busy} onClick={()=>{setMainMenu(false);setPortOpen(false);}}>继续演习</button>
+            {!cloudBattle && <button type="button" className="primary" disabled={!o || busy} onClick={()=>{setMainMenu(false);setPortOpen(false);}}>继续演习</button>}
             <button type="button" onClick={onLogout}>退出登录</button>
           </div>
         </section>
@@ -483,24 +639,24 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
   const editing = !!editMode && !replay && !finished;
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
-  return <main className={'command-shell' + (['night','night-training','radar'].includes(o.variant ?? '') ? ' night-exercise' : '')}>
+  return <main className={'command-shell' + (o.environment?.light === 'night' ? ' night-exercise' : '')}>
     <header className="masthead">
       <div className="brand"><Mark /><div><span>CAS 战术演习</span><h1>海图指挥台</h1></div></div>
       <div className="exercise-label"><span className="live-dot" data-active={running} />
-        {replay ? '战局重演' : finished ? '演习结束' : o.settling ? '末批炮弹飞行中' : running ? '演习进行中' : '演习暂停'}
+        {replay ? '战局重演' : finished ? '战局结束' : o.settling ? '末批炮弹飞行中' : cloudBattle ? '联机战役进行中' : running ? '演习进行中' : '演习暂停'}
         {o.realtimeGunnery && <small className="realtime-badge">实时主炮</small>}</div>
       <div className="clock-deck">
         <span className="time"><strong>{clock(o.tick)}</strong><small> / {clock(replay?.end ?? o.limit)}</small></span>
-        <button className="clock-play" type="button" aria-label={running ? '暂停演习' : '开始演习'} onClick={toggleClock} disabled={busy || (finished && !replay)}>
+        {cloudBattle ? <span className="field-note">联机时钟 · 4×</span> : <><button className="clock-play" type="button" aria-label={running ? '暂停演习' : '开始演习'} onClick={toggleClock} disabled={busy || (finished && !replay)}>
           <span aria-hidden="true">{running ? 'Ⅱ' : '▶'}</span>{running ? '暂停' : '开始'}
         </button>
         <button className="clock-step" type="button" aria-label="推进一秒" title="推进一模拟秒" onClick={() => void oneStep()} disabled={busy || finished}>▹▏</button>
         <div className="speeds" aria-label="演习倍速">{options.map((value) =>
           <button key={value} type="button" aria-pressed={speed === value} onClick={() => setSpeed(value)}>{value}×</button>
-        )}</div>
+        )}</div></>}
       </div>
       <div className="header-actions">
-        {!course && <button type="button" className="new-exercise" onClick={openSetup} aria-label="演习设置">演习设置</button>}
+        {!course && !cloudBattle && <button type="button" className="new-exercise" onClick={openSetup} aria-label="演习设置">演习设置</button>}
         <button type="button" className="harbor-link" disabled={busy} onClick={openPort}>{course ? '退出课程' : '母港'}</button>
       </div>
     </header>
@@ -508,7 +664,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       <section className="chart-column">
         <BattleMap
           observation={o} fleet={fleet} selected={selected?.id} disabled={busy || !!replay || finished}
-          session={session} running={running} speed={speed} replaying={!!replay}
+          session={session} running={cloudBattle ? !finished : running} speed={cloudBattle ? 4 : speed} replaying={!!replay}
+          requestAim={inspectBattle}
           editing={editing} waypoints={waypoints} preview={preview} reformPreview={reformPreview} onSelect={selectShip} onAddPoint={addPoint}
           onMovePoint={movePoint} onFire={fire} onCancelFire={() => { learn('cancel'); record('fireCancelled'); }} onHint={hint}
           onInspectMap={course ? () => record('mapViewed') : undefined}
@@ -529,10 +686,16 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         </div>}
         {!course && !replay && finished && !resultDismissed && <div className="result-screen">
           <div className="result-card">
-            <p>{o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
-            <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>
+            <p>{o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
+            {o.campaign && result ? <CampaignResultSummary campaign={o.campaign} result={result} /> :
+              <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>}
             <div className="score"><span>同盟 {result?.allies}</span><span>轴心 {result?.axis}</span></div>
-            <div className="actions"><button type="button" className="primary" onClick={() => void startReplay()}>重演战局</button>
+            {cloudBattle && result?.grade && result.grade !== 'none' && <button type="button" className="primary" disabled={busy || cloudClaimed}
+              onClick={() => void claimCloud()}>{cloudClaimed ? '本局已结算' : '领取联机战役奖励'}</button>}
+            {o.campaign && !cloudBattle && campaignId.current && <CampaignRewardActions stageId={o.campaign.stageId} progress={port.campaignProgress} busy={busy}
+              onClaim={() => { const id = o.campaign!.stageId; setPort(state => claimCampaignRewards(state, id)); }} />}
+            <div className="actions">{!cloudBattle && <button type="button" className="primary" onClick={() => void startReplay()}>重演战局</button>}
+              {o.campaign && <button type="button" onClick={openPort}>返回母港</button>}
               <button type="button" onClick={() => { setResultDismissed(true); setTab('log'); }}>查看战情</button></div>
           </div>
         </div>}
@@ -543,6 +706,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           <button key={key} type="button" aria-pressed={tab === key} onClick={() => showTab(key)}>{title}</button>
         )}</nav>
         <div className="staff-scroll">
+          {o.campaign && <CampaignMissionBrief campaign={o.campaign} />}
           {course && <TrainingCoach course={course} evidence={evidence}
             onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
           {course && finished && !trainingCourseDone(course, evidence) && <p className="inline-warning">演习已结束。退出后可重新开始本课。</p>}
@@ -661,7 +825,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             <div className="group-heading"><h2>战情记录</h2><span>本席可见</span></div>
             <div className="log-actions">
               <button type="button" onClick={() => void exportLog()}>导出</button>
-              {!replay && <button type="button" disabled={o.tick === 0 || busy} onClick={() => void startReplay()}>重演</button>}
+              {!replay && !cloudBattle && <button type="button" disabled={o.tick === 0 || busy} onClick={() => void startReplay()}>重演</button>}
             </div>
             {radio.available && <label className="radio-toggle"><input type="checkbox" checked={radio.enabled}
               onChange={event => radio.setEnabled(event.target.checked)} /> 舰队电台语音</label>}
@@ -674,8 +838,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           </section>}
         </div>
         <footer className="staff-footer">
-          <span>{replay ? '复盘模式' : '离线演习'}</span>
-          {!course && <button type="button" className="text-button" disabled={!!replay || busy} onClick={() => void persist(true)}>保存进度</button>}
+          <span>{replay ? '复盘模式' : cloudBattle ? '联机进度已由服务器保存' : '离线演习'}</span>
+          {!course && !cloudBattle && <button type="button" className="text-button" disabled={!!replay || busy} onClick={() => void persist(true)}>保存进度</button>}
         </footer>
       </aside>
     </div>
@@ -706,7 +870,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
 
 function Entry() {
   const [profile,setProfile]=useState<LocalProfile>();
-  return profile ? <App key={profile.id} profile={profile} onLogout={()=>{closeSession();setProfile(undefined);}} /> : <Login onLogin={setProfile} />;
+  return profile ? <App key={profile.id} profile={profile} onLogout={()=>{
+    if (profile.online) void onlineRequest('/auth/logout', profile.online.token, {}).catch(() => {});
+    closeSession();setProfile(undefined);
+  }} /> : <Login onLogin={setProfile} />;
 }
 
 createRoot(document.getElementById('root')!).render(<Entry />);

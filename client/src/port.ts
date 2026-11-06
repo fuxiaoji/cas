@@ -1,4 +1,6 @@
 import type { Profile, Side } from './engine';
+import { normalizeCampaignProgress } from './campaign-progress';
+import type { CampaignProgress } from './campaign-progress';
 
 export const PORT_KEY = 'cas.harbor.progress.v1';
 const MAX_HISTORY = 20;
@@ -33,6 +35,7 @@ export interface PortState {
   profiles: Profile[]; preset: FleetPreset; upSide: Side; sequence: number; history: Draw[];
   credits: number; watch?: Hull; courses: string[]; attendance: number[];
   prologueReward?: boolean;
+  campaignProgress?: CampaignProgress;
   challengeReceipts: Record<string, { time: number; first: boolean; claimed: boolean }>;
   weeklySupply?: string; weeklyTicket?: string;
 }
@@ -54,7 +57,7 @@ export function loadPort(key = PORT_KEY): PortState {
     const owned = Object.fromEntries((Object.keys(hulls) as Hull[]).filter(id => nonnegative(s.owned[id])).map(id => [id, Math.min(hulls[id].max, s.owned[id] ?? 0)]));
     const challengeReceipts = Object.fromEntries(Object.entries(s.challengeReceipts ?? {}).filter(([id, row]) =>
       /^[0-9a-f-]{36}$/i.test(id) && row && nonnegative(row.time) && typeof row.first === 'boolean' && typeof row.claimed === 'boolean'));
-    return { ...s, owned, challengeReceipts, credits: nonnegative(s.credits) ? s.credits : 0,
+    return { ...s, owned, challengeReceipts, campaignProgress: normalizeCampaignProgress(s.campaignProgress), credits: nonnegative(s.credits) ? s.credits : 0,
       courses: Array.isArray(s.courses) ? [...new Set(s.courses.filter(v => typeof v === 'string'))] : [],
       attendance: Array.isArray(s.attendance) ? [...new Set(s.attendance.filter(nonnegative))].sort((a,b)=>a-b).slice(0,7) : [],
       watch: s.watch && Object.hasOwn(hulls, s.watch) ? s.watch : undefined,

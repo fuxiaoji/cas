@@ -3,7 +3,7 @@ const LAST_NAME = 'cas.accounts.last-name.v1';
 const legacy = ['cas.harbor.progress.v1', 'cas.exercise.autosave.v1'];
 const rounds = 310_000;
 
-export type LocalProfile = { id: string; name: string };
+export type LocalProfile = { id: string; name: string; online?: { token: string } };
 type Record = LocalProfile & { username: string; salt: string; verifier: string };
 
 export const profileKey = (profile: LocalProfile, key: string) => `cas.profile.${profile.id}.${key}`;

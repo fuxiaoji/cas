@@ -15,6 +15,7 @@ type MapProps = {
   onInspectMap?: () => void;
   onInspectContact?: (id: string) => void;
   onHint: (message: string) => void;
+  requestAim?: typeof ask;
 };
 
 interface Gesture {
@@ -116,7 +117,7 @@ export function BattleMap(props: MapProps) {
   const torpedoRange = rangedShip?.torpedoRange ?? 0;
   const tracks = [...o.contacts, ...(o.radarContacts ?? []).map((report) => ({ ...report, heading: 0, speed: 0, kind: 'radar', name: undefined }))];
   const target = tracks.find((contact) => contact.id === gesture?.contact?.id);
-  const night = ['night', 'night-training', 'radar'].includes(o.variant ?? '');
+  const night = o.environment?.light === 'night';
   const labelLanes: Point[][] = [[], [], [], [], []];
   const contacts = tracks.map((contact) => {
     const at = screen(contact);
@@ -205,6 +206,13 @@ export function BattleMap(props: MapProps) {
       ctx.beginPath(); ctx.moveTo(left, py + .5); ctx.lineTo(left + o.width * mapRatio, py + .5);
       ctx.strokeStyle = y % 5000 === 0 ? '#8aadb54a' : '#7398a624'; ctx.stroke();
       if (y % 5000 === 0) ctx.fillText(String(y / 1000) + 'N', Math.max(5, left + 5), py - 4);
+    }
+    if (o.campaign?.withdrawalX !== undefined) {
+      const x = screen({ x: o.campaign.withdrawalX, y: 0 }).x;
+      ctx.beginPath(); ctx.moveTo(x, north); ctx.lineTo(x, bottom);
+      ctx.setLineDash([7, 5]); ctx.strokeStyle = '#e5b966'; ctx.lineWidth = 1.4; ctx.stroke();
+      ctx.setLineDash([]); ctx.fillStyle = '#f3cf8b'; ctx.font = '12px sans-serif';
+      ctx.fillText('撤离线', x + 6, Math.max(north + 30, 30));
     }
     ctx.restore();
     for (const island of o.islands) {
@@ -331,10 +339,14 @@ export function BattleMap(props: MapProps) {
     const box = cancelWell.current?.getBoundingClientRect();
     return !!box && event.clientX >= box.left && event.clientX <= box.right && event.clientY >= box.top && event.clientY <= box.bottom;
   };
-  function nearestContact(point: Point, touch: boolean, gunFrom?: number) {
+  function nearestContact(point: Point, touch: boolean, shooter?: number, weapon: Weapon = 'gun') {
     let closest: Contact | undefined; let best = touch ? 28 : 22;
     for (const contact of tracks) {
-      if (contact.kind === 'radar' && (gunFrom === undefined || !o.radarContacts?.find(report => report.id === contact.id)?.usableForShipIds.includes(gunFrom))) continue;
+      if (contact.kind === 'radar') {
+        const report = o.radarContacts?.find(item => item.id === contact.id);
+        const usable = weapon === 'gun' ? report?.usableForShipIds : report?.torpedoForShipIds;
+        if (shooter === undefined || !usable?.includes(shooter)) continue;
+      }
       const gap = distance(screen(contact), point);
       if (gap < best) { best = gap; closest = contact; }
     }
@@ -342,7 +354,7 @@ export function BattleMap(props: MapProps) {
   }
   function aimAt(ship: number, id: string, weapon: Weapon, heading?: number) {
     const nonce = ++aimSequence.current;
-    void ask<Aim>({ op: 'aim', ship, target: id, weapon, ...(heading !== undefined ? { heading } : {}) }).then((aim) => {
+    void (props.requestAim ?? ask)<Aim>({ op: 'aim', ship, target: id, weapon, ...(heading !== undefined ? { heading } : {}) }).then((aim) => {
       const current = gestureRef.current;
       if (!current || current.contact?.id !== id || nonce !== aimSequence.current) return;
       update({ ...current, loading: false, aim, aimTick: o.tick, heading: heading === undefined ? aim.heading : current.heading, baseHeading: current.baseHeading ?? aim.heading });
@@ -407,7 +419,7 @@ export function BattleMap(props: MapProps) {
         update({ ...active, cursor: p, heading, cancelled });
         return;
       }
-      const hit = cancelled ? undefined : nearestContact(p, event.pointerType === 'touch');
+      const hit = cancelled ? undefined : nearestContact(p, event.pointerType === 'touch', active.ship, 'torpedo');
       if (hit?.id !== active.contact?.id) {
         window.clearTimeout(hold.current);
         if (hit) hold.current = window.setTimeout(() => {
@@ -518,7 +530,7 @@ export function BattleMap(props: MapProps) {
     <BattleAlerts events={o.events} tick={o.tick} session={session} enabled={!replaying} />
     <div className="map-note">
       <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : o.realtimeGunnery ? '实时炮击演习' : '昼间水面演习'}</strong>
-      <span>{editing ? '拖动编号航点可修正航线' : o.variant === 'radar' ? '虚构夜间演习 · 雷达回波 R' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
+      <span>{editing ? '拖动编号航点可修正航线' : o.campaign ? '历史阵位 · RTS 改编' : o.variant === 'radar' ? '虚构夜间演习 · 雷达回波 R' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
     </div>
     {gesture && <div className={'gesture-tip' + (gesture.aim?.friendly || gesture.aim?.valid === false || (gesture.weapon === 'torpedo' && aimInArc === false) ? ' warning' : '')}
       data-first-fire-tick={firstFireTick}>
