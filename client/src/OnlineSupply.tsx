@@ -1,18 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { OnlineError, onlineMeta, onlineRequest } from './online';
 import type { OnlineMeta } from './online';
+import { OnlineRecruitDesk } from './online-recruit/OnlineRecruitDesk';
+import { OnlineRecruitArrival } from './online-recruit/OnlineRecruitArrival';
+import type { RecruitPool, RecruitReceipt, RecruitShip } from './online-recruit/types';
 import './online-supply.css';
 
-type Ship = { id: string; name: string; rarity: string; type: string; recruitable: boolean; credits_price: number; combat_ready: boolean };
 type Catalog = {
-  ships: Ship[];
-  recruit_pools: { id: string; name: string; featured_ship_id?: string; ur_ship_ids: string[]; exchange_price: number }[];
+  ships: RecruitShip[];
+  recruit_pools: RecruitPool[];
   ship_bundles: { id: string; name: string; credits: number; ship_ids: string[] }[];
   ai_profiles: { id: string; name: string; cost?: number }[];
 };
 type Mail = { id: string; title: string; body: string; sender: string; claimed_at: string | null;
   attachments: { up_tickets: number; standard_tickets: number } };
-type Receipt = { id: string; ship_id: string; rarity: string; duplicate: boolean };
 type Weekly = { count: number; target: number; claimed: boolean; eligible: boolean };
 type Tab = 'recruit' | 'shop' | 'mail' | 'fleet';
 const tabs: Record<Tab, string> = { recruit: '征募', shop: '补给商店', mail: '邮箱', fleet: '舰船收藏' };
@@ -30,14 +31,13 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
   const [weekly, setWeekly] = useState<Weekly>();
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
-  const [receipts, setReceipts] = useState<Receipt[]>([]);
+  const [receipts, setReceipts] = useState<RecruitReceipt[]>([]);
+  const [arrival, setArrival] = useState<{ receipts: RecruitReceipt[]; replay: boolean }>();
   const [busy, setBusy] = useState(false);
   const locked = useRef(false);
   const pending = useRef(new Map<string, string>());
   const pool = catalog?.recruit_pools.find(p => p.id === poolId);
   const wallet = meta?.wallet;
-  const progress = meta?.pools?.[poolId];
-  const available = (poolId === 'standard-v2' ? wallet?.standard_tickets ?? 0 : wallet?.up_tickets ?? 0) + (wallet?.tickets ?? 0);
   const names = new Map(catalog?.ships.map(s => [s.id, s.name]));
   const name = (id: string) => names.get(id) ?? id;
   const owns = (id: string) => meta?.owned_ships.includes(id) ?? false;
@@ -66,10 +66,11 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
     pending.current.set(key, id);
     locked.current = true; setBusy(true); setNotice(''); setError('');
     try {
-      const answer = await onlineRequest<{ receipts?: Receipt[]; meta?: OnlineMeta }>(path, token, { ...params, request_id: id });
+      const answer = await onlineRequest<{ receipts?: RecruitReceipt[]; meta?: OnlineMeta }>(path, token, { ...params, request_id: id });
       pending.current.delete(key);
       if (answer.meta) onMeta(answer.meta);
       setReceipts(answer.receipts ?? []); setNotice(message);
+      if (path === '/recruit' && answer.receipts?.length) setArrival({ receipts: answer.receipts, replay: false });
       try { await refresh(); } catch { setError('操作已确认，列表刷新失败。可手动刷新。'); }
     } catch (e) {
       if (e instanceof OnlineError && e.status && e.status < 500) pending.current.delete(key);
@@ -94,18 +95,13 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
     {notice && <p role="status">{notice}</p>}
     {receipts.length > 0 && <ul aria-label="征募结果" className="online-receipts">{receipts.map(r =>
       <li key={r.id}>{rarity[r.rarity]} · {name(r.ship_id)}{r.duplicate ? ' · 重复转为勋章' : ' · 入列'}</li>)}</ul>}
-    {tab === 'recruit' && pool && <section>
-      <div className="online-pools">{catalog!.recruit_pools.map(item => <button key={item.id} aria-pressed={item.id === poolId}
-        onClick={() => { setPool(item.id); setReceipts([]); }}>{item.name || (item.id === 'standard-v2' ? '常驻征募' : 'UP 征募')}</button>)}</div>
-      <p>{pool.featured_ship_id ? '本期 UP · ' + name(pool.featured_ship_id) : '常驻征募'} · 可用 {available} 张</p>
-      <p>精锐保底 {progress?.since_elite ?? 0}/10 · 稀有 {progress?.since_rare ?? 0}/40 · UR {progress?.since_ur ?? 0}/80{progress?.featured_guaranteed && ' · 下一艘 UR 必为本期 UP'}</p>
-      <div className="online-pools">{[1, 10].map(count => <button className="primary" key={count} disabled={busy || available < count}
-        onClick={() => void act('/recruit', { pool_id: poolId, count }, '征募已入账。')}>征募 {count} 次</button>)}</div>
-      <h2>本池进度兑换 · {progress?.exchange_points ?? 0}/{pool.exchange_price}</h2>
-      <div className="online-pools">{Array.from(new Set([...(pool.featured_ship_id ? [pool.featured_ship_id] : []), ...pool.ur_ship_ids]))
-        .map(id => <button key={id} disabled={busy || owns(id) || (progress?.exchange_points ?? 0) < pool.exchange_price}
-          onClick={() => buy('pool_ship', id, 'exchange_points', { pool_id: poolId })}>{owns(id) ? '已拥有 ' : '兑换 '}{name(id)}</button>)}</div>
-    </section>}
+    {tab === 'recruit' && pool && catalog && <OnlineRecruitDesk ships={catalog.ships} pools={catalog.recruit_pools} pool={pool}
+      meta={meta} busy={busy || !!arrival} onPool={id => { setPool(id); setReceipts([]); }} onMail={() => setTab('mail')}
+      onShop={() => setTab('shop')} onDraw={(id, count) => void act('/recruit', { pool_id: id, count }, '征募已入账。')}
+      onExchange={id => buy('pool_ship', id, 'exchange_points', { pool_id: poolId })}
+      onReview={items => setArrival({ receipts: items, replay: true })} />}
+    {arrival && catalog && <OnlineRecruitArrival receipts={arrival.receipts} ships={catalog.ships}
+      replay={arrival.replay} onClose={() => setArrival(undefined)} />}
     {tab === 'mail' && <section><h2>联机邮箱</h2>{mail.length ? <div className="online-list">{mail.map(letter => <article key={letter.id}>
       <h3>{letter.title}</h3><p>{letter.sender} · {letter.body}</p><p>UP 券 {letter.attachments.up_tickets} · 常驻券 {letter.attachments.standard_tickets}</p>
       <button disabled={busy || !!letter.claimed_at} onClick={() => void act('/mail/' + encodeURIComponent(letter.id) + '/claim', {}, '邮件附件已领取。')}>

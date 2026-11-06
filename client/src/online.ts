@@ -1,4 +1,5 @@
 import type { LocalProfile } from './account';
+import type { RecruitProgress } from './online-recruit/types';
 import type { Observation, Result, Side } from './engine';
 
 function serviceUrl() {
@@ -44,7 +45,8 @@ export async function authenticateOnline(username: string, password: string, reg
 export interface OnlineMeta {
   wallet: { credits: number; up_tickets: number; standard_tickets: number; tickets: number; medals: number };
   owned_ships: string[]; claims: string[]; ai_profiles: string[];
-  pools?: Record<string, { exchange_points: number; since_elite: number; since_rare: number; since_ur: number; featured_guaranteed: boolean }>;
+  pools?: Record<string, RecruitProgress>;
+  draw?: RecruitProgress;
 }
 
 export async function onlineMeta(token: string) {

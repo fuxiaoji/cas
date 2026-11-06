@@ -1,0 +1,253 @@
+{
+  "source_project": "铁底湾",
+  "source_mobile_version": "0.6.11",
+  "source_commit": "41a1fb93063673ac8f84388a8f326a8b1a5fc3d5",
+  "source_manifest": "mobile/content/fleet-portrait-manifest.json",
+  "source_manifest_sha256": "83593c33e6a3248be85dcd9803c81091c918e6ea114d573b2d2c0432ae0cf01f",
+  "scope": "CAS local development and tests; redistribution scope unverified. These are character portraits, not CAS combat cards.",
+  "encoding": "Source alpha portraits reduced to at most 700×1050 and encoded to WebP quality 92.",
+  "assets": [
+    {
+      "path": "ibs-u-usn-fletcher.webp",
+      "character_id": "IBS-U-USN-FLETCHER",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-fletcher.png",
+      "source_sha256": "43910f725219330a044f6bce08bd77719118c246c8f868404b13e3113403428c",
+      "sha256": "311b7425129c011d017b2e17022c75a47eec38e2354503cb280934c6bc63de63",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-perkins.webp",
+      "character_id": "IBS-U-USN-PERKINS",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-perkins.png",
+      "source_sha256": "0aac9090d1a978d43deecfb64bd4895cebaf8fb3157d52aed8480b2cf3e36995",
+      "sha256": "428bf84a7a4e5d7e486c2cb03c9745eae9b40328175613424e5f98e7a699f372",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-maury.webp",
+      "character_id": "IBS-U-USN-MAURY",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-maury.png",
+      "source_sha256": "1483be26bdfe99ea5cbe7a6301227545ecdd44dc0d72e34d2812e24c2c70eb6a",
+      "sha256": "0d7b5c3cfee894b445edefb251f64c1c33b1030a379b7f6ee5ebb00d09e77ce0",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-drayton.webp",
+      "character_id": "IBS-U-USN-DRAYTON",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-drayton.png",
+      "source_sha256": "36fd5944852d2e46953c2a5d8efc36060d4eea74f3ccb3b1aff3298d0619bff2",
+      "sha256": "ab1e780684df46298ec3628b94ceb6a0fdaf42ba876cdc946f4f425f39dd29eb",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-honolulu.webp",
+      "character_id": "IBS-U-USN-HONOLULU",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-honolulu.png",
+      "source_sha256": "634fa2f12d91bb3e9c4bf1ee07ff28477d135892dc4907575cc09e0d7590acc2",
+      "sha256": "52bf124f170676fa7344f615a3a3376fb450178ad898b4637bfd0972085985ec",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-lamson.webp",
+      "character_id": "IBS-U-USN-LAMSON",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-lamson.png",
+      "source_sha256": "d950e209e0a16d6a20cd89d4649d5b1b4edf31b92bf152cb947d9a36e4f5abb1",
+      "sha256": "48c05bca1a2bb9e5763b4b049ce38db312f64224288c276f1ab5ec58689729cd",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-minneapolis.webp",
+      "character_id": "IBS-U-USN-MINNEAPOLIS",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-minneapolis.png",
+      "source_sha256": "2a0e888b02073fc47cbbaab160f66253f1434013ca01b70ac31ac502f18e9edb",
+      "sha256": "b2e189fe687ea84f741f4f1afd5fb6d6146843e2a93f65f821907f7d000867fd",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-san-francisco.webp",
+      "character_id": "IBS-U-USN-SAN-FRANCISCO",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-san-francisco.png",
+      "source_sha256": "928b0e96c5d0ac39275317fca6acd9fa2a248c5dc0ae4bd425e07e8f561f3b0d",
+      "sha256": "30230eeb75710df09653834dfc67c88d65661e353a18aa8906e38806b3179630",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-takanami.webp",
+      "character_id": "IBS-U-IJN-TAKANAMI",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-takanami.png",
+      "source_sha256": "2d8e8b1057cab12b0d33c5c787bac3c0fab9748507455ea2cea88bcf7d2b929f",
+      "sha256": "b50b74814059ea748f2f500e6693630cdcaba8e43c7ab44497381ab61a5473a4",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-oyashio.webp",
+      "character_id": "IBS-U-IJN-OYASHIO",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-oyashio.png",
+      "source_sha256": "c1c9087ce17b9d7510dee6a5981f30eb3cad05a04a7788d807e25f49424b611d",
+      "sha256": "28cac639b51864f819f89f91b9fd5db53aa298152b12140d73ac97e219c3c49c",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-kuroshio.webp",
+      "character_id": "IBS-U-IJN-KUROSHIO",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kuroshio.png",
+      "source_sha256": "5369d3cb57fa6980c4452d6dc5830d60fc22d60aeb1dab3ca13ef863769b04b6",
+      "sha256": "4a96c30a441555fa224fccfbfbecd304ffd507136a8348e0f997959b2d60b7ed",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-kagero.webp",
+      "character_id": "IBS-U-IJN-KAGERO",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kagero.png",
+      "source_sha256": "22bf931585c659b9073ac2a75023f4783d1fd7bd3667b86043d22b27dd3e6f0d",
+      "sha256": "b71ad0f056a8f5a75b6fe95fc05167d26f4b149fd83c511b100bcd0a74bfdd72",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-makinami.webp",
+      "character_id": "IBS-U-IJN-MAKINAMI",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-makinami.png",
+      "source_sha256": "b633a526ff00d3f1ae0c09857cb7384b7ebb8bd289e73aa56842e0f982806c25",
+      "sha256": "7a3a6da8bcd3bc2b7c124d8c8084b687523900affe171e08ad4f73c96f034551",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-naganami.webp",
+      "character_id": "IBS-U-IJN-NAGANAMI",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-naganami.png",
+      "source_sha256": "17b40c06bf08c4a3779d6affae56f744e706bfb93978f6c3ae83dc6c7221e447",
+      "sha256": "eec27ac214ae33e52dd900efc6a697323d6a6e2280726d9003b4e459450eb9cb",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-aoba.webp",
+      "character_id": "IBS-U-IJN-AOBA",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-aoba.png",
+      "source_sha256": "69ac660084f702a8ea36adb3bb6df0b2a1e0f0839843ac9ae20900d1d6789d5f",
+      "sha256": "cd0a47b5808d2be1f4bcb77f036ccdded9211d5cef4ecd74352d7438f3034686",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-kinugasa.webp",
+      "character_id": "IBS-U-IJN-KINUGASA",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kinugasa.png",
+      "source_sha256": "5c571929c47505449c86ed25a11b940b5e762836557ea8fb3f7dab3b476ecf05",
+      "sha256": "d63dc050d33a48a83c48731ae5fe4efcdba98abb4bf475772c59c30b49dd8332",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-erma-missouri.webp",
+      "character_id": "IBS-U-USN-ERMA-MISSOURI",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-erma-missouri.png",
+      "source_sha256": "521d6d6b005a97956311cc548ae032aaa73bb471c35c2521819121f6b220b7ef",
+      "sha256": "7ac20e767c8f3f84819ea08b44fc8d8c2876e90c404e1dc60aceceda435272d5",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-erma-iowa.webp",
+      "character_id": "IBS-U-USN-ERMA-IOWA",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-erma-iowa.png",
+      "source_sha256": "dc53c5b09db9c2263f86f9433d4914992cd293701a5b1c33cb07c996c0ac2da0",
+      "sha256": "c96187eeb93796e1b16664325ae0c39a55e565261feb7478283cc52b262ede2d",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-erma-des-moines.webp",
+      "character_id": "IBS-U-USN-ERMA-DES-MOINES",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-erma-des-moines.png",
+      "source_sha256": "804b78f54d8d04b9b4ae533c353f6c58732a52dc8e0516f08b1da8488b252c35",
+      "sha256": "36c3f6fade9c45864662bb0a523de9376dfd08b6a853eb2cea59317c737a1f74",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-erma-worcester.webp",
+      "character_id": "IBS-U-USN-ERMA-WORCESTER",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-erma-worcester.png",
+      "source_sha256": "c5bacbf9b27b317f7e2e19054166333c1f463d054201db2744f1e0217f8351f6",
+      "sha256": "dc81d62453c235283a12f724a5200b72a277debfd6c8f2e19c761778f857c8d8",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-gearing.webp",
+      "character_id": "IBS-U-USN-GEARING",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-gearing.png",
+      "source_sha256": "6a60efe02aaa9afd60089c087d6a243b1aa4dd89c9505bbb8289b1009dbebea0",
+      "sha256": "acec4644ed054c8eca33fa4c475adf6fa31d7fc6647658c179cf6603ed98784c",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-midway.webp",
+      "character_id": "IBS-U-USN-MIDWAY",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-midway.png",
+      "source_sha256": "0c082c3298d8b2b0b7b809cd3458cc8eebd2226538816b44ac5ac6293c82b992",
+      "sha256": "4defd83c8ab024312f6f620da727df626ee0f3acae11034370bd0739ee66d910",
+      "size": [
+        700,
+        1050
+      ]
+    }
+  ]
+}

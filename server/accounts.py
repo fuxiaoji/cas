@@ -430,6 +430,7 @@ class AccountService:
             draw = state["draw"]
             receipts = []
             index = max((r["index"] for r in draw["history"]), default=0)
+            batch = index + 1
             now = int(time.time() * 1000)
             for _ in range(data.count):
                 if draw["since_rare"] >= 39:
@@ -450,7 +451,7 @@ class AccountService:
                 draw["since_rare"] = 0 if rarity == "rare" else draw["since_rare"] + 1
                 draw["exchange_points"] += 1
                 index += 1
-                receipt = {"id": "draw:" + str(index), "ship_id": ship["id"], "rarity": rarity, "duplicate": duplicate, "time": now, "index": index}
+                receipt = {"id": "draw:" + str(index), "ship_id": ship["id"], "rarity": rarity, "duplicate": duplicate, "time": now, "index": index, "batch": batch}
                 receipts.append(receipt)
                 draw["history"].append(receipt)
             state["transactions"].append({"id": data.request_id, "title": f"常驻征募{data.count}次", "time": now})
@@ -485,6 +486,7 @@ class AccountService:
             draw = state.setdefault("pools", {}).setdefault(pool["id"], {"since_elite": 0, "since_rare": 0, "since_ur": 0, "exchange_points": 0, "up_guaranteed": False, "history": []})
             receipts, now = [], int(time.time() * 1000)
             index = max((r["index"] for r in draw["history"]), default=0)
+            batch = index + 1
             for _ in range(data.count):
                 if draw["since_ur"] >= pool["pity"]["ur"] - 1:
                     rarity = "ur"
@@ -514,7 +516,7 @@ class AccountService:
                 draw["since_ur"] = 0 if rarity == "ur" else draw["since_ur"] + 1
                 draw["exchange_points"] += 1
                 index += 1
-                receipt = {"id": f"pool:{pool['id']}:{index}", "pool_id": pool["id"], "ship_id": ship["id"], "rarity": rarity, "duplicate": duplicate, "time": now, "index": index}
+                receipt = {"id": f"pool:{pool['id']}:{index}", "pool_id": pool["id"], "ship_id": ship["id"], "rarity": rarity, "duplicate": duplicate, "time": now, "index": index, "batch": batch}
                 receipts.append(receipt)
                 draw["history"].append(receipt)
             state["transactions"].append({"id": data.request_id, "title": pool["name"] + f"征募{data.count}次", "time": now})
