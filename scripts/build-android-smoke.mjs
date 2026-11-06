@@ -50,7 +50,8 @@ async function continueExercise(view) {
   await view.evaluate(`${button('打开主菜单')}.click()`);
   await waitFor('continue exercise is enabled', () => view.evaluate(`Boolean(${button('继续演习')} && !${button('继续演习')}.disabled)`));
   await view.evaluate(`${button('继续演习')}.click()`);
-  await waitFor('the actual tactical chart', () => view.evaluate("Boolean(document.querySelector('canvas') && document.querySelector('[data-ship]'))"));
+  await waitFor('the actual realtime tactical chart', () => view.evaluate(
+    "Boolean(document.querySelector('canvas') && document.querySelector('[data-ship]') && document.querySelector('.realtime-badge'))"));
 }
 
 async function connect() {
@@ -119,7 +120,7 @@ const sessionProbe = `(async () => {
   }
   try {
     const info = await ask({ op: 'info' });
-    const start = await ask({ op: 'new', seed: 6106, side: 'allies', enemy: 'coord' });
+    const start = await ask({ op: 'new', seed: 6106, side: 'allies', enemy: 'coord', realtime: true });
     await ask({ op: 'step', seconds: 1 });
     await ask({ op: 'ai', fleet: start.fleets[0].id, profile: 'coord', mode: 'auto', move: true, gun: true, torpedo: true });
     const end = await ask({ op: 'step', seconds: 359 });
@@ -128,13 +129,22 @@ const sessionProbe = `(async () => {
     const restore = await ask({ op: 'load', save });
     const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(end)));
     const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
-    const night = await ask({ op: 'new', seed: 6106, variant: 'night' });
+    const night = await ask({ op: 'new', seed: 6106, variant: 'night', realtime: true });
     const campaign = await ask({ op: 'campaign' });
-    return { origin: location.href, viewport: [innerWidth, innerHeight], version: info.version,
+    const legacyStages = [];
+    for (const n of ['01', '07', '12', '15', '16']) {
+      const detail = await ask({ op: 'campaign_detail', id: 'CAMP-AXIS-' + n });
+      if (detail.record || detail.legacy?.playable !== false ||
+          detail.legacy.ships?.some(ship => ship.cas_profile_id !== null)) throw Error('Unsafe fallback stage: ' + n);
+      legacyStages.push(detail.legacy.ships.length);
+    }
+    return { origin: location.href, viewport: [innerWidth, innerHeight], version: start.version,
+      baselineVersion: info.version, realtimeVersion: info.realtimeVersion, savedVersion: save.version,
+      realtimeGunnery: start.realtimeGunnery && start.ships.every(ship => ship.systems.guns.every(mount => Number.isInteger(mount.readyTick))),
       ownShips: start.ships.length, tickBefore: start.tick, tickAfter: end.tick, stateSha256,
-      nightExerciseStarted: night.variant === 'night' && night.ships?.length === 5,
+      nightExerciseStarted: night.variant === 'night' && night.ships?.length === 5 && night.version === info.realtimeVersion,
       historicalCatalogueRows: campaign.scenarios?.length, historicalSourceRecords: campaign.scenarios?.filter(row => row.cas?.import).length,
-      allHistoryLocked: campaign.scenarios?.every(row => row.playable === false),
+      allHistoryLocked: campaign.scenarios?.every(row => row.playable === false), legacyStages,
       sameReplay: JSON.stringify(end) === JSON.stringify(replay), sameRestore: JSON.stringify(end) === JSON.stringify(restore) };
   } finally { worker.terminate(); }
 })()`;
@@ -165,6 +175,21 @@ try {
         'The original Kula Gulf damage ratio must render in the packaged archive');
     }
   }
+  const legacyStages = ['01', '07', '12', '15', '16'];
+  for (const node of legacyStages) {
+    const stage = 'CAMP-AXIS-' + node;
+    await first.evaluate(`document.querySelector('[data-stage-id="${stage}"] summary').click()`);
+    await waitFor('legacy deployment for ' + stage, () => first.evaluate(`Boolean(document.querySelector('[data-legacy-stage="${stage}"]'))`));
+  }
+  const readMidnightChart = () => first.evaluate(`Array.from(document.querySelectorAll(
+    '[data-legacy-stage="CAMP-AXIS-16"] svg.archive-deployment g'), mark => mark.getAttribute('transform'))`);
+  const originalPlacement = await readMidnightChart();
+  assert.equal(originalPlacement.length, 91);
+  await first.evaluate(`document.querySelector('[data-legacy-stage="CAMP-AXIS-16"] .archive-placement-toggle input').click()`);
+  await waitFor('the old midnight fleet default formation chart', async () => {
+    const positions = await readMidnightChart();
+    return positions.length === 91 && positions.some((mark, i) => mark !== originalPlacement[i]);
+  });
   await first.evaluate(`${button('返回母港')}.click()`);
   await continueExercise(first);
   const commandCount = () => first.evaluate(`JSON.parse(localStorage.getItem(${JSON.stringify(saveKey)}))?.commands?.length ?? 0`);
@@ -203,7 +228,10 @@ try {
   await continueExercise(first);
   const probe = await first.evaluate(sessionProbe);
   assert.equal(probe.origin, origin);
-  assert.equal(probe.version, 'cas-battle-v2');
+  assert(probe.realtimeVersion);
+  assert.equal(probe.version, probe.realtimeVersion);
+  assert.equal(probe.savedVersion, probe.realtimeVersion);
+  assert.equal(probe.realtimeGunnery, true);
   assert.equal(probe.ownShips, 5);
   assert.equal(probe.tickBefore, 0);
   assert.equal(probe.tickAfter, 360);
@@ -211,11 +239,13 @@ try {
   assert.equal(probe.historicalCatalogueRows, 16);
   assert.equal(probe.historicalSourceRecords, 11);
   assert.equal(probe.allHistoryLocked, true);
+  assert.deepEqual(probe.legacyStages, [8, 22, 14, 24, 91]);
   assert(probe.sameReplay && probe.sameRestore, 'Offline replay and saved battle must agree');
   assert(probe.viewport[0] > probe.viewport[1], 'Battle WebView must be landscape');
   await first.evaluate("localStorage.setItem('cas.android-smoke', 'native-webview-origin-persists')");
   detail = { ...probe, touchCancelNoCommand: true, backgroundCancelsGesture: true, shipPortrait,
     harborNavigation: true, historicalStageIds: 32, historicalSourceRecordsRendered: sourceStages.length,
+    legacyStagesRendered: legacyStages.length, legacyMidnightFormationSwitch: true,
     kulaGulfDamageRatioRendered: true, offlineLocalAccountRegistered: true };
 } finally { first.close(); }
 

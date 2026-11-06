@@ -185,6 +185,14 @@ internal static class Program
             button('轴心战线').click();
             await waitFor('16 Axis stages and their Cape record', () => document.querySelectorAll('[data-stage-id^="CAMP-AXIS-"]').length === 16 &&
               document.querySelector('[data-source-stage="CAMP-AXIS-03"]'));
+            document.querySelector('[data-stage-id="CAMP-AXIS-16"] summary').click();
+            const midnight = await waitFor('the offline legacy midnight fleet deployment', () => document.querySelector('[data-legacy-stage="CAMP-AXIS-16"]'));
+            const placement = () => [...midnight.querySelectorAll('svg.archive-deployment g')].map(mark => mark.getAttribute('transform'));
+            const originalPlacement = placement();
+            if (originalPlacement.length !== 91) throw Error('The old midnight fleet chart did not render 91 positions.');
+            midnight.querySelector('.archive-placement-toggle input').click();
+            await waitFor('the old midnight fleet default formation chart', () =>
+              placement().length === 91 && placement().some((mark, i) => mark !== originalPlacement[i]));
             button('返回母港').click();
             (await waitFor('main harbor controls', () => button('打开主菜单'))).click();
             (await waitFor('continue exercise', () => {
@@ -204,19 +212,24 @@ internal static class Program
               worker.postMessage({ id: current, request: payload });
             });
             const info = await request({ op: 'info' });
-            if (info.version !== 'cas-battle-v2' || info.tickSeconds !== 1) {
+            if (!info.realtimeVersion || info.tickSeconds !== 1) {
               throw Error('Unexpected engine identity: ' + JSON.stringify(info));
             }
-            const start = await request({ op: 'new', seed: 6106, side: 'allies', enemy: 'coord' });
+            const start = await request({ op: 'new', seed: 6106, side: 'allies', enemy: 'coord', realtime: true });
             const after = await request({ op: 'step', seconds: 1 });
             const count = start.ships?.length;
             if (start.tick !== 0 || after.tick !== 1 || count !== 5) {
               throw Error('The battle state did not advance: ' + JSON.stringify({ tickBefore: start.tick, tickAfter: after.tick, count }));
             }
+            if (!start.realtimeGunnery || start.version !== info.realtimeVersion ||
+                !start.ships.every(ship => ship.systems.guns.every(mount => Number.isInteger(mount.readyTick)))) {
+              throw Error('The active realtime guns and their reload clocks were not exposed.');
+            }
             await request({ op: 'ai', fleet: start.fleets[0].id, profile: 'coord', mode: 'auto', move: true, gun: true, torpedo: true });
             const moved = await request({ op: 'step', seconds: 359 });
             if (moved.tick !== 360) throw Error('The save checkpoint was not reached.');
             const save = await request({ op: 'save' });
+            if (save.version !== info.realtimeVersion) throw Error('The save did not preserve the active rules version.');
             const key = 'cas.native-smoke';
             localStorage.setItem(key, JSON.stringify(save));
             const stored = JSON.parse(localStorage.getItem(key));
@@ -229,16 +242,24 @@ internal static class Program
             if (past.tick !== 1 || !same(replay) || !same(still) || !same(restored)) {
               throw Error('The offline save, load and replay did not agree.');
             }
-            const night = await request({ op: 'new', seed: 6106, variant: 'night' });
-            if (night.variant !== 'night' || night.ships?.length !== 5) throw Error('The offline night exercise did not start.');
+            const night = await request({ op: 'new', seed: 6106, variant: 'night', realtime: true });
+            if (night.variant !== 'night' || night.ships?.length !== 5 || night.version !== info.realtimeVersion) {
+              throw Error('The offline night exercise did not start.');
+            }
             const campaign = await request({ op: 'campaign' });
             const rows = campaign.scenarios;
             if (rows?.length !== 16 || rows.some(row => row.playable !== false) ||
               rows.filter(row => row.cas?.import).length !== 11) throw Error('The offline historical catalogue did not load.');
+            const legacy = await request({ op: 'campaign_detail', id: 'CAMP-AXIS-16' });
+            if (legacy.record || legacy.legacy?.ships?.length !== 91 ||
+                legacy.legacy?.post_default_formation_setup?.ships?.length !== 91 || legacy.legacy?.playable !== false) {
+              throw Error('The old deployment and resolved opening were not preserved as separate source data.');
+            }
             const ready = () => document.querySelector('canvas') && document.querySelectorAll('[data-ship]').length === 5;
             const deadline = Date.now() + 8000;
             while (!ready() && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 75));
             if (!ready()) throw Error('The packaged battle map did not render five friendly ships.');
+            if (!document.querySelector('.realtime-badge')) throw Error('The playable exercise did not open in realtime gunnery mode.');
             const shipTab = [...document.querySelectorAll('.staff-tabs button')].find(button => button.textContent.trim() === '舰况');
             if (!shipTab) throw Error('The packaged ship status tab was missing.');
             shipTab.click();
@@ -260,10 +281,11 @@ internal static class Program
             }
             const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(moved)));
             const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
-            send({ ok: true, version: info.version, scenario: info.scenario, tickBefore: start.tick, tickAfter: after.tick,
+            send({ ok: true, version: start.version, baselineVersion: info.version, scenario: info.scenario, tickBefore: start.tick, tickAfter: after.tick,
               ownShips: count, savedTick: moved.tick, replayTick: replay.tick, saveReplayMatch: true, stateSha256,
               battleMapRendered: true, harborNavigation: true, nightExerciseStarted: true, historicalCatalogueRows: rows.length,
-              historicalStageIds: 32, historicalSourceRecords: 11, offlineLocalAccountRoundtrip: true,
+              historicalStageIds: 32, historicalSourceRecords: 11, legacyMidnightShips: 91, legacyMidnightFormationSwitch: true,
+              offlineLocalAccountRoundtrip: true,
               shipPortrait: portrait.closest('[data-character]').dataset.character,
               viewport: [innerWidth, innerHeight] });
           } catch (e) {

@@ -58,3 +58,30 @@
 | [Android 调试 APK](release/CAS-Android-0.1.0-preview-20261106-160408-960.apk) | `20e22656654b022cf357bec24220aa99059d82bc25ed56d4286a60cf8935b68c` |
 
 包体验收：[Windows](artifacts/windows-smoke-campaign-all11-20261106.json)、[Android](artifacts/android-smoke-campaign-all11-20261106.json)。[规则覆盖](docs/rules/coverage.md)和[手游迁移记录](docs/mobile-migration.md)列出尚未启用的完整舰表、机制、原手游经济和在线服务。
+
+## 2026-11-06｜主炮原页与圣乔治角炮表复核
+
+- 核对五版 §2.2.2、§2.3.4、§6.1、玩家表和四型舰卡，记下原书的火力窗口、炮座射界及弹种表。§6.1.5 是轻防空对海；主炮装填、横转和飞行秒数单列为 [RTS-GUN-04 改编](docs/rules/realtime-gunnery-sources.md)，不写入历史舰卡。
+- 圣乔治角时期包升级至 `cas-cape-st-george-1943-hulls-v2`。逐列复核七个 Annex C 炮弹数据行，更正美舰 Mk30 高爆弹近／中档伤害为 18／15 DP。[战役资料检查](scripts/check-campaign.py)和首发舰表数据检查通过。此次只验证资料；历史关出击仍受运输雷装、撤离与夜战裁决差额约束。
+
+## 2026-11-06｜Mk4 接入 1943 实时雷达演习
+
+- `cas-realtime-v4` 雷达演习仅给已核实装的弗莱彻启用 Mk4。炮击须有本舰目视、可用前向指挥仪和合法雷达视线；本舰射击时才应用 +2 和低能见度豁免。炮口闪光、共享报告、纯搜索回波、尾向及关机／损伤均不误用这项加成。见[原页、接线与差额](docs/rules/radar-source.md)。
+- Rust 38 项通过（雷达专项 7 项）：相同 D100=60 实际开火，开启 Mk4 命中扣伤、关闭落空，标签只出现在开火方战报；开关及 v3 旧局可重演。原生种子 6106 的 v4 雷达演习双方均有受损，双席完成并逐项重演一致，同盟战报 85 次标注 Mk4，轴心 0 次；两席结果均为轴心 2 比 1。资料脚本通过 6 份原件哈希、10 艘历史配置和 12 条算例。上述不含历史关或安装包验收。
+
+## 2026-11-06｜逐秒主炮、旧部署和手游表现
+
+- 新局默认 `cas-realtime-v4`。玩家可随时下令或取消尚未发射的炮座，撤销 AI 的待发炮击会接管炮击任务。炮座有实际转向和装填时钟，已知舰艇可挡住射线。炮弹按距离和有效弹速飞行，到达后处理命中；鱼雷尾迹显示本席确认的航段。[实时手势验收](artifacts/client/final-v4/browser-realtime/browser-receipt.json)中预计和实际首发均为第 247 秒，弹着为第 284 秒，可见鱼雷尾迹超过 1.2 公里。
+- 全 16 个原想定／32 个双线关位均有可查看的档案：11 份 CAS 原书记录，5 份旧手游相对阵位和任务，共 159 个开局舰船部署；午夜关另存原版默认整列后的 91 舰。两侧开局与铁底湾 0.6.9 固定快照回放对照通过。[旧部署记录](docs/campaign/legacy-deployment.md)。历史与回退想定依然 **0 个通过出航验收**，未复用旧作武器数据或给未核舰套舰卡。
+- 复用原手游征募到港演出，用实际征募凭据展示、跳过及回看，实测不会重复扣券；通过[离线与挑战回归](artifacts/client/final-v4/browser-offline/browser-receipt.json)。[序章与夜战回归](artifacts/client/final-v4/browser-story/browser-story-receipt.json)完成原剧情分支、三段真实手势、一次性奖励及夜战 10 步，照明 540 秒、炮击 543 秒、鱼雷 900 秒。
+- [本地舰队电台](artifacts/client/radio/browser-receipt.json)按阵营播本席真实事件，验过后台暂停、回放不重播、音量和关闭。普通生产包含 0 段旧录音；显式本地试玩构建含 16 段与旧文件哈希相同的通用电台录音。指挥官专属录音和 BGM 未迁入。
+- Rust 39 项测试通过；[原生与 WebAssembly](artifacts/parity-v4-final-20261106.json)九场对局及同席重演逐项一致，包含实时昼战、照明和 Mk4。旧版炮战和存档继续按各自版本运行。[规则覆盖](docs/rules/coverage.md)和[手游迁移](docs/mobile-migration.md)维护未完成项。
+- [Windows WebView2](artifacts/windows-smoke-v4-legacy-radio-20261106-174104.json)与[Android 飞行模式模拟器](artifacts/android-smoke-v4-legacy-radio-20261106-174126.json)实装通过离线登录、母港、战役档案、实时演习、保存与重演。Android 逐项打开 11 份原页与 5 份回退档案，并验证横屏触控和后台取消。两端 360 秒状态一致，[35 个共用包内文件](artifacts/packaged-shared-web-v4-legacy-radio-20261106-174126.json)逐字节相同。Android 实体机未验。
+
+| v4 离线试玩包（含本地电台） | SHA-256 |
+|---|---|
+| [Windows x64 ZIP](release/CAS-Stage0-win-x64-20261106-174104-420.zip) | `aa30095c1af72a5655407eb1f6ace4f02b964d3a55490bd4273071cc023843dc` |
+| [Android APK](release/CAS-Android-0.1.0-preview-20261106-174126-905.apk) | `40911056ea8041882e21629c593dfcbc8a3ffd30d756dd1b877a75c3513582ee` |
+
+## 2026-11-06｜弗莱彻战败 CG
+以用户确认的项目原始弗莱彻立绘为参考，内置 imagegen 单独绘制十张 1536×1024 PNG。逐张目检角色、动作、表情与构图；验证十份文件内容互异且 PNG 与 ZIP 可读。[素材包](artifacts/fletcher-defeat-cg-20261106.zip) · [提示词和分镜](artifacts/fletcher-defeat-cg-20261106/prompts.md)。独立美术候选素材，未接入发行包。
