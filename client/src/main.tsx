@@ -753,7 +753,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
 
   const latest = [...o.events].reverse();
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
-  const endingKey = cloud.current?.battle_id ?? campaignId.current ?? 'session-' + session;
+  const endingKey = cloud.current ? onlineBattlePath(cloud.current) : (campaignId.current ?? 'session-' + session);
   const editing = !!editMode && !replay && !finished;
   const courseDone = course && (guided ? guidedTrainingDone(course, evidence, { radar: nightRadar }) : trainingCourseDone(course, evidence));
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
