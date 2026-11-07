@@ -194,3 +194,13 @@
 - **萨沃岛（10）**：分支 `entry-savo` 合入主仓。《旭日》PDF 52–54（印 51–53，扫描页逐页目视）；同盟 32 艘舰体+19 艘运输（哨舰/南北队/东屏护/X-Ray/Yoke 屏护/Transdiv 12/运输队）与轴心 8 艘+3 备选（鸟海旗舰，纵队顺序 Aoba→Kako→Kinugasa→Furutaka 与列举顺序差异两处照录）；环境整句（夜 10% 能见、满云 2000 米云底、萨沃 3 海里雷暴带闪电、0611/0633 天光）；「未进战位+被探测后 D6/3 回合禁射」特例登记；美 8in/55、日 20cm/50 No.2、英 8in/50 MkVIII 主炮行及 Type 93 M1 Mod 1/2 等逐行核定；月光相位与照明规则原页未给，10 条冲突 13 项待裁决（[源笔记](docs/campaign/savo-island-source-notes.md)）。`scripts/check-savo-island.py` 主仓实跑通过（40 具名实例、23 辅助舰体、20 profiles、13 炮雷型号）。
 - **排位服务端验收**（`d7d453a`，`server/test_ranked.py` 12 项全过）：点表准入门（免费 FLETCHER/PERKINS/MAURY 三舰 1875 分合法、五舰 3050 分超限拒绝、错阵营/未拥有/风格未解锁/风格不支持各拒）；队列重试幂等（同编号同回执、改参 409）；匹配后投降结算 ±12；**真实互射到自然终局**（双方航线接近、逐窗对射、战报含双方炮击事件）；**平局结算**（时限 0:0 draw、双方 delta 0、draws+1）；作废不入账；服务重启后同局恢复；结算幂等（settlements 单行、重放同回执）。全套服务端 28 项通过，Rust 59 项不受数据合入影响。
 - 剧本录入按指示在此暂停：科隆班加拉岛（08）工作区 `E:/CAS-entry-kolombangara`（分支 `entry-kolombangara`）已建好待后续启动；03/04 的补核、11 奥古斯塔皇后湾等继续按台账排队。
+
+## 2026-11-07｜操作点击音效与指挥官录音最小子集
+
+参考仓清点（`F:/Codex/worktrees/android-mobile/铁底湾` 提交 `41a1fb9`，只读）：`mobile/public/audio` 共 828 个 m4a、37,278,066 字节。33 个语音包 = 31 个碧蓝角色包（780 文件、26,875,107 字节）+ `wows-jp`／`wows-us` 两个阵营包；另 6 首 BGM（9,770,710 字节）。原作用 `SoundDirector.uiCue` 在运行时用 WebAudio 正弦振荡器合成点击音，**没有**点按／确认／选舰／错误的音频文件，故本批不复制任何录音来冒充。
+
+- 操作点击音效：按原参数实现 `client/src/audio/click/ClickCues.ts`（tap 1250Hz、confirm 720→1080Hz、select 900Hz、error 220→170Hz，音量 `uiVolume×0.11`，静音/后台不播）。接线沿用原作分流：普通控件 tap、主行动 confirm、选舰 select、失败与拒绝 error；开关与音量存于 `{账号}:ui-cues`（默认开、0.35）。台账：[click/ledger.json](client/src/audio/click/ledger.json)。
+- 指挥官录音：只迁 `al-enterprise`（碧蓝 · 企业）六个本席真实战报 cue，每个取 `-0` 变体，共 130,741 字节，逐文件 SHA-256 与源路径见 [commander/ledger.json](client/src/audio/commander/ledger.json)。其余 31 个碧蓝包（26,744,366 字节）与两个阵营包各 21 个剩余变体登记为「存在但未迁，待授权核验」；碧蓝联动无公开发布许可记录。
+- 接线：`BattleVoice` 新增语音包选择，选定的指挥官包只走自身文件、不回退阵营电台；无台账文件不接播放。构建沿用 `VITE_CAS_LOCAL_VOICE=1`：正式构建解析到空实现，本地试玩构建打包六段录音。
+- 验证（Edge 无头，dev 5187，Playwright 取参考仓模块）：`client/tests/browser-radio.mjs` 通过——四类点击音、关闭后静音、音量 0.25 跨两次刷新持久化、选舰 select、主行动 confirm；指挥官 `battle_start` 按本席事件触发且只加载一次、配乐让音（0.54×gain×0.29）并在录音结束后回升。正式构建 dist 无任何 m4a、JS 无 `al-enterprise`／`wows-us` 引用；`VITE_CAS_LOCAL_VOICE=1` 构建产出 6 段指挥官录音与阵营电台，并在 `vite preview` 下实际播放。凭证：[browser-receipt.json](artifacts/client/radio/browser-receipt.json)、[local-build-receipt.json](artifacts/client/radio/local-build-receipt.json)、[语音包设置](artifacts/client/radio/settings-voice-pack.png)、[指挥官开战](artifacts/client/radio/commander-battle-start.png)、[本地构建实播](artifacts/client/radio/local-build-commander.png)。
+- 回归：`browser-original-score.mjs`（五段配乐、让音、暂停恢复、无重播）、`browser-visuals.mjs`、`browser-offline.mjs` 均通过；`npx tsc --noEmit` 无错误。未迁移的 31 个角色包、碧蓝授权、指挥官包与剧情角色的正式绑定仍待核。
