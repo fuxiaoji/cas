@@ -145,3 +145,11 @@
 
 - 库拉湾本地双线接入五版原页 17 艘具名舰、纸面部署海岸、10% 夜间能见、7 艘运输舰和维拉卸载计时。3 艘须同一段连续满 30 分钟。炮雷命中伤害和轻巡沉没触发两席各自判分，前台保留卸载进度的轴心座席限制。准备及剩余原书差额见[来源记录](docs/campaign/kula-runtime-sources.md)。
 - 54 项内核测试通过，17 个原生／WASM 完整场景逐项与同席重演一致。同盟种子 6106 决定胜，轴心种子 2 实雷命中并取得战术胜，且两边可同时达标。浏览器通过两席出航、轴心 30 分钟卸载、保存重演、既有双线档案和领奖防重。新关先在本地运行。
+
+## 2026-11-07｜排位前端接线与双档验收（ranked-ui-v1 工作区）
+
+- 线上舰桥新增排位赛页签：展示当前赛季（S0001 起止与 42 天时长）、点表版本、3000／10000 两档段位卡（白银起步、战绩与 rank 名；10000 分档按 `available_budgets` 显示未开放并禁选）、历史赛季战绩（`historical_ratings`）与排位战况（含胜负与积分变化）。入队按 `available_budgets` 限制档位，出战预设下拉只列服务端 `ranked_ready` 的预设并显示实际点价；排队显示到期时间并可取消，取消后不再匹配。
+- 云端编队页接服务端 `validation`：预设列表与保存回执显示点价、`ranked_ready`、`blocking_reasons`；点表可用时提供「前往排位入队」直达排位页签，未接入时保持「排位未开放」。战局侧：排位战局隐藏 AI 风格与指挥权限选择（显示冻结说明），战术建议保留且须本人确认；战果卡展示档位、赛季、点表、本席舰队与点价，`rated` 时显示积分变化与段位；`status=complete` 且 `rated=false`／引擎 `result=null`（服务故障作废）时停止全部操作并显示「本局作废、积分不变」。
+- 协议以实际合入代码对齐：`GET /pvp/ranked/status` 返回 `season/ratings/historical_ratings/queue/matches/available_budgets/point_table_version`；排位 summary 带 `mode='ranked'`、`budget`、`season_id`、`own_fleet`、`fleet_cost`、`rated`、`rating`。与 roadmap 文字的两处差异：点表版本实际为 `cas-points-surface-v1`（文件名才是 cas-competitive-points-v1.json）；`end_reason` 作废时当前代码固定为 `server_fault` 而非 null，前端按 `rated=false` 或 `result=null` 兜底。
+- 验收（全部真跑）：服务端 16 项单测含 2 项原生双席测试通过（`CAS_TEST_DUEL_SIM_PATH` 指向本次构建的 cas-sim）；`tsc` 通过；新增 `client/tests/browser-online-ranked.mjs` 两席全新账号序章领舰、1875 分预设、实际匹配、双席各自战局、一席投降、两席排位战果（+12 白银／−12 青铜）、取消入队不再匹配、操作端 CLI 作废后两席停止操作且积分不变，凭证与截图在 artifacts/client/online-ranked/。回归 browser-online-duel.mjs、browser-online-fleet.mjs、browser-online.mjs 全部通过。
+- 剩余边界：10000 分档等点表开放后需另行验收；`end_reason=null` 的作废形态当前服务端代码不会产生，前端已兼容但无实测；排位战果的重演入口沿用既有战报，未单独录结局图。
