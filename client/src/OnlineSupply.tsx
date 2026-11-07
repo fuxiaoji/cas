@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { OnlineError, onlineMeta, onlineRequest } from './online';
 import type { OnlineMeta } from './online';
 import { ShipBundleShelf } from './ShipBundleShelf';
+import { ShipPortraitViewer } from './ShipPortraitViewer';
+import { shipPortraitById } from './shipPortraits';
 import { OnlineRecruitDesk } from './online-recruit/OnlineRecruitDesk';
 import { OnlineRecruitArrival } from './online-recruit/OnlineRecruitArrival';
+import { shipTypeNames } from './online-recruit/types';
 import type { RecruitPool, RecruitReceipt, RecruitShip } from './online-recruit/types';
 import './online-supply.css';
 
@@ -35,6 +38,7 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
   const [receipts, setReceipts] = useState<RecruitReceipt[]>([]);
   const [arrival, setArrival] = useState<{ receipts: RecruitReceipt[]; replay: boolean }>();
   const [busy, setBusy] = useState(false);
+  const [portrait, setPortrait] = useState<RecruitShip>();
   const locked = useRef(false);
   const pending = useRef(new Map<string, string>());
   const pool = catalog?.recruit_pools.find(p => p.id === poolId);
@@ -42,6 +46,9 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
   const names = new Map(catalog?.ships.map(s => [s.id, s.name]));
   const name = (id: string) => names.get(id) ?? id;
   const owns = (id: string) => meta?.owned_ships.includes(id) ?? false;
+  // Only ledger-registered portrait assets get a viewer entry; ships without
+  // an asset show no button at all.
+  const portraitOf = (ship: RecruitShip) => shipPortraitById(ship.id);
   const visible = (catalog?.ships ?? []).filter(ship => (tab === 'fleet' ? owns(ship.id) : ship.recruitable) &&
     (ship.name + ' ' + ship.type + ' ' + ship.id).toLowerCase().includes(filter.trim().toLowerCase()));
 
@@ -124,7 +131,9 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       <h2>{tab === 'fleet' ? '联机收藏 · ' + (meta?.owned_ships.length ?? 0) : '舰船兑换'}</h2>
       <label>筛选舰船 <input type="search" value={filter} onChange={e => setFilter(e.target.value)} placeholder="舰名或舰种" /></label>
       <div className="online-list">{visible.map(ship => <article key={ship.id}><h3>{ship.name}</h3>
-        <p>{ship.type} · {rarity[ship.rarity]}{!ship.combat_ready && ' · 收藏，尚未绑定出战舰卡'}</p>
+        <p>{shipTypeNames[ship.type] ?? ship.type} · {rarity[ship.rarity]}{!ship.combat_ready && ' · 收藏，尚未绑定出战舰卡'}</p>
+        {tab === 'fleet' && portraitOf(ship) &&
+          <button type="button" className="online-portrait-link" onClick={() => setPortrait(ship)}>查看全身立绘</button>}
         {tab === 'shop' && <div className="online-pools">
           {ship.rarity === 'common' && <button disabled={busy || owns(ship.id) || (wallet?.credits ?? 0) < ship.credits_price}
             onClick={() => buy('ship', ship.id)}>{ship.credits_price} 补给币</button>}
@@ -133,5 +142,6 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       </article>)}</div>
       {!visible.length && <p>没有符合条件的舰船。</p>}
     </section>}
+    {portrait && <ShipPortraitViewer ship={portrait} onClose={() => setPortrait(undefined)}/>}
   </main>;
 }
