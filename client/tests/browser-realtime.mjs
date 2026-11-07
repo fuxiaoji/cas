@@ -105,7 +105,13 @@ try {
   let at = middle;
   if (at.tick < shell.impactTick) at = await advance(shell.impactTick - at.tick);
   assert(!at.shells.some((round) => round.id === shell.id));
-  assert.equal(at.ships.find((s) => s.id === ship.id).gunTarget, undefined);
+  // cas-realtime-v10: the drag sustains fire on the same hull — the order
+  // stays and the next volley leaves as soon as the reload completes.
+  assert.equal(at.ships.find((s) => s.id === ship.id).gunTarget, lead.id);
+  const reloadEnd = Math.max(...at.ships.find((s) => s.id === ship.id).systems.guns.map((mount) => mount.readyTick));
+  let second = at;
+  while (second.tick < reloadEnd + 20 && !second.shells.some((round) => round.own)) second = await advance();
+  assert(second.shells.some((round) => round.own), 'the sustained order must fire the next volley');
 
   await button('演习设置').click();
   await page.getByLabel('所属方').selectOption('axis');

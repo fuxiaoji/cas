@@ -8,6 +8,7 @@ export type TorpedoSettings = { depth?: 'shallow' | 'deep'; count?: number };
 export interface Point { x: number; y: number }
 export interface Position extends Point { heading: number; speed: number }
 export interface Ship extends Position {
+  sightRange?: number; radarRange?: number;
   id: number; name: string; kind: 'dd' | 'cl' | 'bb'; fleet: number | null;
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
@@ -60,6 +61,7 @@ export interface Aim {
   friendly: boolean; valid: boolean; error?: string; barrels?: number;
   mounts?: { index: number; turnSeconds: number; readyTick: number }[];
   torpedoCount?: number; torpedoMount?: number; depth?: TorpedoSettings['depth'];
+  chance?: number;
 }
 export interface Suggestion { orders: Request[]; text: string }
 export type Request = { op: string; [key: string]: unknown };

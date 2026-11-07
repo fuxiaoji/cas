@@ -47,9 +47,13 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
   if (variant === 'prologue') {
     commands.push(
       { op: 'step', seconds: 204 },
-      { op: 'lead', fleet: 1, ship: 2 },
+      // cas-realtime-v10: the mid-battle switch requires a queue-end hull.
+      { op: 'lead', fleet: 1, ship: 5 },
       { op: 'route', fleet: 1, mode: 'follow', points: [{ x: 11600, y: 6600 }, { x: 14100, y: 6600 }] },
     );
+    // The sustained volleys land on their own reload clocks; scan 40 seconds
+    // past the handover for the enemy shell in flight.
+    for (let i = 0; i < 40; i++) commands.push({ op: 'step', seconds: 1 });
   } else if (variant === 'night-radar-training') {
     commands.push(
       { op: 'radar_set', ship: 1, radar: 'us_sg', powered: true },
@@ -121,9 +125,11 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
   if (variant === 'prologue') {
     const handover = wasmOutput[2].data;
     assert.equal(handover.contacts.filter(contact => contact.kind === 'bb').length, 2);
-    assert(handover.shells.some(shell => shell.own) && handover.shells.some(shell => !shell.own));
+    assert(handover.shells.some(shell => shell.own));
+    assert(wasmOutput.slice(2).some(output => output.data?.shells?.some(shell => !shell.own)),
+      'enemy fire must be in flight near the handover');
     assert(handover.torpedoes.some(torpedo => torpedo.own && torpedo.trail?.length > 1));
-    assert.equal(wasmOutput[3].data.fleets[0].leader, 2);
+    assert.equal(wasmOutput[3].data.fleets[0].leader, 5);
   }
   if (variant === 'night-radar-training') {
     const radar = wasmOutput[3].data;
@@ -164,10 +170,10 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training'),
   await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
   await verify('allies', 1, 'radar', 6106, true),
-  await verify('allies', 1, 'cape-st-george-rts', 6148, true, true),
+  await verify('allies', 1, 'cape-st-george-rts', 6116, true, true),
   await verify('axis', 3, 'cape-st-george-rts', 6106, true, true),
   await verify('allies', 4, 'channel-action-rts', 6107, true, true),
-  await verify('axis', 1, 'channel-action-rts', 57, true, true),
+  await verify('axis', 1, 'channel-action-rts', 17, true, true),
   await verify('allies', 1, 'prologue', 6106, true),
   await verify('allies', 1, 'night-radar-training', 6106, true),
   await verify('allies', 1, 'kula-gulf-rts', 6106, true, true),

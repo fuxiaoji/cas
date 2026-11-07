@@ -84,6 +84,10 @@ pub(crate) struct Order {
     mounts: Vec<usize>,
     deadline: u32,
     manual: bool,
+    /// Volleys already fired from this order. cas-realtime-v10 keeps the
+    /// order alive after the first salvo and this counter marks the sustained
+    /// phase (drop notices become ceasefire instead of rejection).
+    salvo: u32,
 }
 
 #[derive(Clone, Debug, Default)]
@@ -309,6 +313,12 @@ impl World {
         solution["valid"] = json!(ship.battery.order.is_none());
         solution["barrels"] = json!(barrels);
         solution["mounts"] = json!(mounts);
+        // cas-realtime-v10: the per-volley hit threshold, so the drag gesture
+        // can show the chance against every hull it passes over.
+        if let Some(contact) = self.gun_contact(ship, target).ok().map(|(c, radar)| (c.into_owned(), radar)) {
+            let chance = self.volley_chance(ship, &contact.0, contact.1);
+            solution["chance"] = json!(chance);
+        }
         solution["error"] = if ship.battery.order.is_some() {
             json!("本舰已有待发炮击，可先取消")
         } else {
@@ -324,10 +334,26 @@ impl World {
         target: &str,
         manual: bool,
     ) -> E<()> {
-        let s = self.ship_for(owner, ship)?;
-        if s.battery.order.is_some() {
-            return Err("本舰已有待发炮击，可先取消".into());
+        let v10 = self.v10_family();
+        let existing_target = self.ship(ship).and_then(|s| s.battery.order.as_ref().map(|o| o.target.clone()));
+        if let Some(existing) = existing_target {
+            if v10 && existing == target {
+                // Already sustaining fire on this exact hull; nothing to change.
+                return Ok(());
+            }
+            // cas-realtime-v10: a fresh manual drag onto a different hull
+            // supersedes the sustained order without a separate cancel. AI and
+            // scripted re-orders never break a running sustain — oscillating
+            // target picks would otherwise keep the mounts training forever.
+            if !v10 || !manual {
+                return Err("本舰已有待发炮击，可先取消".into());
+            }
+            let old_name = self.ship(ship).unwrap().name.clone();
+            self.ship_mut(ship).unwrap().battery.order = None;
+            self.add(1 << owner, "fire_held", format!("{old_name} · 停火，转火新目标"),
+                Some("RTS-GUN-04"), None);
         }
+        let s = self.ship_for(owner, ship)?;
         let (c, _) = self.gun_contact(s, target)?;
         if self.gun_obstructed(s, &c) {
             return Err("近、中射程内有已知舰艇遮挡射线".into());
@@ -340,6 +366,7 @@ impl World {
             mounts,
             deadline,
             manual,
+            salvo: 0,
         });
         if manual {
             if let Some(f) = fleet.and_then(|i| self.fleet_mut(i)) {
@@ -413,9 +440,13 @@ impl World {
                 .unwrap_or(0);
             let barrel_counts: Vec<_> = gun.mounts.iter().map(|m| m.barrels).collect();
             let destroyed = s.gun_mount_destroyed.clone();
+            let sustained = self.v10_family() && order.salvo > 0;
+            let sustaining = self.v10_family();
             let fail = if !s.alive() || order.mounts.iter().all(|i| destroyed[*i]) {
-                Some("待发炮座已失能")
-            } else if contact.is_none() {
+                Some(if sustained { "炮座失能" } else { "待发炮座已失能" })
+            } else if contact.as_ref().is_none_or(|(c, _)| {
+                self.v10_family() && !self.ship(c.ship).is_some_and(Ship::alive)
+            }) {
                 Some("目标接触丢失")
             } else if tick > order.deadline {
                 Some(if obstructed {
@@ -430,10 +461,11 @@ impl World {
             if let Some(reason) = fail {
                 b.order = None;
                 if order.manual {
+                    let (kind, label) = if sustained { ("fire_held", "停火") } else { ("rejected", "未开火") };
                     self.add(
                         1 << owner,
-                        "rejected",
-                        format!("{name} · 未开火：{reason}"),
+                        kind,
+                        format!("{name} · {label}：{reason}"),
                         Some("RTS-GUN-04"),
                         None,
                     );
@@ -456,7 +488,11 @@ impl World {
                         if !turret.training && turret.ready <= tick {
                             barrels += barrel_counts[i];
                             turret.ready = tick + timing.reload;
-                            continue;
+                            if !sustaining {
+                                continue;
+                            }
+                            // cas-realtime-v10: the mount rejoins the order and
+                            // fires again the moment its reload completes.
                         }
                     }
                 }
@@ -475,8 +511,14 @@ impl World {
                     reload: timing.reload,
                 });
             }
+            if std::env::var("CAS_SUSTAIN_PROBE").is_ok() && (id == 6 || id == 7) && tick % 20 == 0 {
+                eprintln!("SUSTAIN tick={} ship={} order={} salvo={} remaining={}",
+                    tick, id, order.target, order.salvo, remaining.len());
+            }
             b.order = (!remaining.is_empty()).then(|| Order {
                 mounts: remaining,
+                salvo: order.salvo + u32::from(barrels > 0),
+                deadline: if sustaining && barrels > 0 { tick + ORDER_TIMEOUT } else { order.deadline },
                 ..order
             });
         }

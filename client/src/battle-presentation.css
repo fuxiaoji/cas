@@ -24,6 +24,8 @@
 .range-legend span { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .range-legend i { width: 13px; border-top: 1px dashed #91d3e6; }
 .range-legend .torpedo-ring { width: 15px; border-top: 2px dashed #dcb676; }
+.range-legend .sight-ring { width: 15px; border-top: 2px dotted #9fe0b0; }
+.range-legend .radar-ring { width: 15px; border-top: 2px dashed #b7a5e8; }
 .schematic-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 12px; }
 .schematic-head h2 { font: 700 21px/1.15 var(--serif); color: #ecd8aa; }
 .schematic-head > div > span { color: var(--muted); font-size: 10px; }

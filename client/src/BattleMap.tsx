@@ -122,6 +122,8 @@ export function BattleMap(props: MapProps) {
   const rangedShip = o.ships.find((ship) => ship.id === selected && ship.hp > 0);
   const gunRange = rangedShip?.gunRange ?? 0;
   const torpedoRange = rangedShip?.torpedoRange ?? 0;
+  const sightRange = rangedShip?.sightRange ?? 0;
+  const radarRange = rangedShip?.radarRange ?? 0;
   const tracks = [...o.contacts, ...(o.radarContacts ?? []).map((report) => ({ ...report, heading: 0, speed: 0, kind: 'radar', name: undefined }))];
   const target = tracks.find((contact) => contact.id === gesture?.contact?.id);
   const night = o.environment?.light === 'night';
@@ -256,7 +258,10 @@ export function BattleMap(props: MapProps) {
       const at = screen(rangedShip);
       ctx.save();
       ctx.beginPath(); ctx.rect(left, north, o.width * mapRatio, o.height * mapRatio); ctx.clip();
-      for (const [range, color, pattern] of [[gunRange, '#80cde2a8', [4, 4]], [torpedoRange, '#dfb872bc', [10, 4]]] as const) {
+      for (const [range, color, pattern] of [
+        [gunRange, '#80cde2a8', [4, 4]], [torpedoRange, '#dfb872bc', [10, 4]],
+        [sightRange, '#9fe0b0a0', [2, 3]], [radarRange, '#b7a5e8a8', [12, 3, 2, 3]],
+      ] as const) {
         if (range <= 0) continue;
         ctx.beginPath(); ctx.arc(at.x, at.y, range * mapRatio, 0, TAU);
         ctx.setLineDash([...pattern]); ctx.strokeStyle = color; ctx.lineWidth = 1.1; ctx.stroke();
@@ -583,8 +588,8 @@ export function BattleMap(props: MapProps) {
         gesture.loading ? '正在计算推荐射向' : gesture.aim && gesture.heading !== undefined ? '鱼雷瞄准 ' + String(Math.round(gesture.heading) % 360).padStart(3, '0') + '°' :
         target ? '在接触上短暂停留' : '鱼雷 · 拖向敌舰'}</strong>
       <span>{gesture.cancelled ? '松手取消，不消耗弹药' :
-        gesture.weapon === 'gun' && target ? (gesture.aim?.error || (firstFireTick !== undefined ? `${gesture.aim?.mounts?.length} 座炮可用 · 预计首炮 ${clock(firstFireTick)} · 松手下令` :
-          gesture.aim?.barrels ? `${gesture.aim.barrels} 门炮可用 · 松手下令` : '正在校核射界')) :
+        gesture.weapon === 'gun' && target ? (gesture.aim?.error || (firstFireTick !== undefined ? `${gesture.aim?.mounts?.length} 座炮可用 · 预计首炮 ${clock(firstFireTick)}${gesture.aim?.chance !== undefined ? ' · 命中率 ' + Math.round(gesture.aim.chance) + '%' : ''} · 松手下令` :
+          gesture.aim?.barrels ? `${gesture.aim.barrels} 门炮可用${gesture.aim?.chance !== undefined ? ' · 命中率 ' + Math.round(gesture.aim.chance) + '%' : ''} · 松手下令` : '正在校核射界')) :
         gesture.aim?.friendly ? '注意：已知友舰可能进入雷迹' :
         aimInArc === false ? (gesture.aim?.error ?? '射向超出扇区') : gesture.aim ? (gesture.aim.error ?? (gesture.aim.torpedoCount
           ? `${gesture.aim.depth === 'deep' ? '深航' : '浅航'} ${gesture.aim.torpedoCount} 枚 · 拖动微调，松手下令` : '拖动微调，松手下令')) :
@@ -599,7 +604,7 @@ export function BattleMap(props: MapProps) {
       <button type="button" onClick={() => setZoom((value) => Math.max(.75, value / 1.25))} aria-label="缩小海图">−</button>
       <button type="button" onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }} aria-label="恢复海图范围">◎</button>
       <button type="button" className="range-toggle" onClick={() => setRangesVisible((value) => !value)}
-        aria-pressed={rangesVisible} aria-label="显示所选舰射程">射程</button>
+        aria-pressed={rangesVisible} aria-label="显示所选舰射程、目视与雷达圈">射程/雷达</button>
     </div>
     <div className="map-legend">
       <span><i />己方</span><span><i />敌方接触</span><span><i />计划航线</span>
@@ -608,6 +613,8 @@ export function BattleMap(props: MapProps) {
     {rangesVisible && !editing && !reformPreview && !gesture && (gunRange > 0 || torpedoRange > 0) && <div className="range-legend" aria-label="所选舰最大射程">
       {gunRange > 0 && <span><i className="gun-ring" />舰炮 {(gunRange / 1000).toFixed(1)} km</span>}
       {torpedoRange > 0 && <span><i className="torpedo-ring" />鱼雷 {(torpedoRange / 1000).toFixed(1)} km</span>}
+      {sightRange > 0 && <span><i className="sight-ring" />目视 {(sightRange / 1000).toFixed(1)} km</span>}
+      {radarRange > 0 && <span><i className="radar-ring" />雷达 {(radarRange / 1000).toFixed(1)} km</span>}
     </div>}
   </div>;
 }

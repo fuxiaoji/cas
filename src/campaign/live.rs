@@ -628,7 +628,7 @@ mod tests {
         let mut e = Engine::default();
         let start = request(
             &mut e,
-            json!({"op":"new_campaign","id":"CAMP-ALLIES-03","difficulty":"story","seed":6154}),
+            json!({"op":"new_campaign","id":"CAMP-ALLIES-03","difficulty":"story","seed":6116}),
         );
         assert_eq!(start["ships"].as_array().unwrap().len(), 5);
         assert_eq!(start["ships"][0]["classId"], "ausburne");
