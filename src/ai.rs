@@ -267,6 +267,66 @@ impl World {
         orders
     }
 
+    /// cas-realtime-v10: AI night tools. The AI lights a starshell when it
+    /// has none burning, exposes a searchlight only at close range when no
+    /// flare is up, and lays destroyer smoke while withdrawing.
+    fn night_orders(&self, owner: usize, fid: u32) -> Vec<Value> {
+        if !self.realtime()
+            || self.environment().light != crate::night::Light::Night
+            || self.campaign.is_some()
+        {
+            // Campaign fixtures were tuned without AI illumination and keep
+            // their own scenario AI until their runtime is re-verified; the
+            // non-campaign night battles and training variants exercise these
+            // tools. Starshells still depend on `has_starshells`.
+            return vec![];
+        }
+        let Ok(fleet) = self.fleet_for(owner, fid) else {
+            return vec![];
+        };
+        let mut orders = vec![];
+        let contact = self.contacts[owner]
+            .iter()
+            .min_by(|a, b| {
+                let lead = self.ship(fleet.leader).map_or(b.p(), |s| s.p);
+                lead.dist(a.p()).total_cmp(&lead.dist(b.p()))
+            })
+            .cloned();
+        let flare_up = self.illumination_active();
+        if !flare_up
+            && self.has_starshells()
+            && !self.pending.iter().any(|o| o.side == owner && o.weapon == "illumination")
+        {
+            if let Some(contact) = &contact {
+                for id in &fleet.members {
+                    let Ok(ship) = self.ship_for(owner, *id) else { continue };
+                    let request = json!({"op":"illumination_preview","ship":id,"target":contact.id});
+                    if self.preview_illumination(owner, &request).is_ok_and(|view| view["valid"] == json!(true)) {
+                        orders.push(json!({"op":"illuminate","ship":id,"target":contact.id}));
+                        break;
+                    }
+                }
+            }
+        }
+        // A searchlight gives the position away; the AI only lights one at
+        // close range while it is actually engaging, not while withdrawing.
+        if !flare_up && fleet.tactic == Tactic::Engage && self.v10_family() {
+            if let Some(contact) = &contact {
+                for id in &fleet.members {
+                    let Ok(ship) = self.ship_for(owner, *id) else { continue };
+                    if ship.searchlight.is_some() {
+                        continue;
+                    }
+                    if ship.p.dist(contact.p()) <= 3000. * YARD {
+                        orders.push(json!({"op":"searchlight","ship":id,"on":true,"target":contact.id}));
+                        break;
+                    }
+                }
+            }
+        }
+        orders
+    }
+
     pub fn drive_ai(&mut self) {
         let task: Vec<_> = self
             .fleets
@@ -286,6 +346,20 @@ impl World {
             for r in self.radar_orders(owner, id) {
                 if r["op"].as_str() == Some("radar_set") {
                     let _ = self.radar_power(owner, &r);
+                }
+            }
+            for r in self.night_orders(owner, id) {
+                match r["op"].as_str() {
+                    Some("illuminate") => {
+                        let _ = self.queue_illumination(owner, &r);
+                    }
+                    Some("searchlight") => {
+                        let _ = self.searchlight_cmd(owner, &r);
+                    }
+                    Some("smoke") => {
+                        let _ = self.smoke_cmd(owner, &r);
+                    }
+                    _ => {}
                 }
             }
             if let Ok(orders) = self.suggestions(owner, id) {

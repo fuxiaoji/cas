@@ -921,7 +921,7 @@ pub(crate) fn roll(state: &mut u64, sides: u32) -> u32 {
 impl World {
     /// cas-realtime-v10: searchlight order (5.4.4.1). Night only; the light
     /// tracks one known contact. Turning it on rolls the illumination die.
-    fn searchlight_cmd(&mut self, owner: usize, r: &Value) -> E<()> {
+    pub(crate) fn searchlight_cmd(&mut self, owner: usize, r: &Value) -> E<()> {
         if !self.v10_family() {
             return Err("本局规则版本未开放探照灯".into());
         }
@@ -969,7 +969,7 @@ impl World {
     /// cas-realtime-v10: smoke order (5.4.5). Destroyer generators only; the
     /// screen burns for four calm-weather windows, one puff per minute of
     /// trailing. Wind drift is not modelled (no wind in the environment).
-    fn smoke_cmd(&mut self, owner: usize, r: &Value) -> E<()> {
+    pub(crate) fn smoke_cmd(&mut self, owner: usize, r: &Value) -> E<()> {
         if !self.v10_family() {
             return Err("本局规则版本未开放烟幕".into());
         }

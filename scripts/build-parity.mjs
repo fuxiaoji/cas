@@ -234,7 +234,7 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
   await verify('allies', 1, 'radar', 6106, true),
   await verify('allies', 1, 'cape-st-george-rts', 6116, true, true),
-  await verify('axis', 3, 'cape-st-george-rts', 6106, true, true),
+  await verify('axis', 3, 'cape-st-george-rts', 6111, true, true),
   await verify('allies', 4, 'channel-action-rts', 6109, true, true),
   await verify('axis', 1, 'channel-action-rts', 17, true, true),
   await verify('allies', 1, 'prologue', 6106, true),

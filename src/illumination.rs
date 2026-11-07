@@ -51,10 +51,32 @@ impl World {
         Ok(LightShot{mount,barrels:m.barrels,band,profile,contact:contact.clone()})
     }
 
+    /// cas-realtime-v10 (CAS 5.4.4.5): a starshell may be cued by radar as
+    /// well as by a visual contact. Older versions keep the visual-only rule.
+    fn illumination_contact(&self, owner: usize, ship: &Ship, target: &str) -> E<Contact> {
+        if let Ok(contact) = self.contact(owner, target) {
+            return Ok(contact.clone());
+        }
+        if !self.v10_family() {
+            return Err("目标接触已丢失".into());
+        }
+        let mut candidates = std::iter::once(ship).chain(
+            self.ships
+                .iter()
+                .filter(|s| s.side == owner && s.alive() && s.id != ship.id),
+        );
+        for observer in &mut candidates {
+            if let Some(contact) = self.radar_gun_contact(observer, target) {
+                return Ok(contact);
+            }
+        }
+        Err("目标接触已丢失".into())
+    }
+
     pub(crate) fn preview_illumination(&self, owner:usize, r:&Value) -> E<Value> {
         let s=self.ship_for(owner,u(r,"ship")?)?;
-        let c=self.contact(owner,r["target"].as_str().ok_or("请选择已发现的水面接触")?)?;
-        match self.light_shot(s,c) {
+        let c=self.illumination_contact(owner,s,r["target"].as_str().ok_or("请选择已发现的水面接触")?)?;
+        match self.light_shot(s,&c) {
             Ok(plan) => Ok(json!({"valid":!self.pending.iter().any(|o|o.ship==s.id&&o.weapon=="illumination"),
                 "minRange":f64::from(plan.profile.min_range_yd)*YARD,"maxRange":self.data.ships[s.def].gun.range_yd[2]*YARD,
                 "mount":plan.mount,"heading":(c.p()-s.p).heading()})),
@@ -66,12 +88,17 @@ impl World {
         let ship=u(r,"ship")?;
         let target=r["target"].as_str().ok_or("请选择已发现的水面接触")?;
         let s=self.ship_for(owner,ship)?;
-        self.light_shot(s,self.contact(owner,target)?)?;
+        let contact=self.illumination_contact(owner,s,target)?;
+        self.light_shot(s,&contact)?;
         if self.pending.iter().any(|o|o.ship==ship&&o.weapon=="illumination") {return Err("该舰已有照明弹指令".into());}
         let name=s.name.clone();
         self.pending.push(Fire{side:owner,ship,target:target.into(),weapon:"illumination".into(),heading:None,expires:(self.tick/CYCLE+1)*CYCLE,torpedo:TorpedoOrder::default()});
         self.add(1<<owner,"illumination_ordered",format!("{name} · 照明弹已下令"),Some("CAS-5.4.4.5"),None);
         Ok(())
+    }
+
+    pub(crate) fn illumination_active(&self) -> bool {
+        self.illumination.marks.iter().any(|mark| mark.expires > self.tick)
     }
 
     pub(crate) fn mount_lighting(&self,ship:u32,mount:usize)->bool {
@@ -92,8 +119,8 @@ impl World {
             .filter(|o| o.weapon == "illumination" && o.expires.saturating_sub(self.tick) <= 26)
             .filter_map(|o| {
                 let s = self.ship_for(o.side, o.ship).ok()?;
-                let c = self.contact(o.side, &o.target).ok()?;
-                let plan = self.light_shot(s, c).ok()?;
+                let c = self.illumination_contact(o.side, s, &o.target).ok()?;
+                let plan = self.light_shot(s, &c).ok()?;
                 Some((s.id, plan.mount, (c.p() - s.p).heading()))
             })
             .collect();
@@ -121,7 +148,10 @@ impl World {
         ready.sort_by_key(|p|p.ship);
         for order in ready {
             let s=self.ship_for(order.side,order.ship).cloned();
-            let plan=s.as_ref().map_err(Clone::clone).and_then(|s| self.contact(order.side,&order.target).and_then(|c|self.light_shot(s,c)));
+            let plan=s.as_ref().map_err(Clone::clone).and_then(|s| {
+                let c=self.illumination_contact(order.side,s,&order.target)?;
+                self.light_shot(s,&c)
+            });
             let Ok(plan)=plan else {
                 self.add(1<<order.side,"rejected",format!("照明弹未发射：{}",plan.err().unwrap()),Some("CAS-5.4.4.5"),None); continue;
             };

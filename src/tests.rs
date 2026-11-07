@@ -175,6 +175,99 @@ fn night_keeps_hidden_contacts_out_and_replays_real_exchange() {
 }
 
 #[test]
+fn ai_exposes_a_searchlight_in_a_close_night_battle() {
+    let mut e = Engine::default();
+    ask(
+        &mut e,
+        json!({"op":"new","seed":6106,"side":"allies","enemy":"torpedo","variant":"night","profile":"gunnery","realtime":true}),
+    );
+    ask(
+        &mut e,
+        json!({"op":"ai","fleet":1,"profile":"torpedo","mode":"auto","move":true,"gun":true,"torpedo":true}),
+    );
+    let mut end = ask(&mut e, json!({"op":"step","seconds":2700}));
+    if end["settling"] == true {
+        end = ask(&mut e, json!({"op":"step","seconds":8}));
+    }
+    let report = ask(&mut e, json!({"op":"report"}));
+    let events = report["events"].as_array().unwrap();
+    assert!(
+        events.iter().any(|event| event["kind"] == "searchlight"),
+        "AI must expose a searchlight in a close night battle"
+    );
+}
+
+#[test]
+fn ai_lights_a_starshell_when_the_scenario_has_them() {
+    let mut e = Engine::default();
+    ask(
+        &mut e,
+        json!({"op":"new","seed":6106,"side":"allies","enemy":"gunnery","variant":"night-training","realtime":true}),
+    );
+    ask(
+        &mut e,
+        json!({"op":"ai","fleet":1,"profile":"coord","mode":"auto","move":true,"gun":true,"torpedo":true}),
+    );
+    let mut lit = false;
+    for _ in 0..45 {
+        let view = ask(&mut e, json!({"op":"step","seconds":60}));
+        if view["events"].as_array().unwrap().iter().any(|event| event["kind"] == "illumination") {
+            lit = true;
+            break;
+        }
+        if !view["result"].is_null() {
+            break;
+        }
+    }
+    assert!(lit, "AI must light a starshell where the scenario enables them");
+}
+
+#[test]
+fn starshell_can_be_cued_by_a_radar_only_contact() {
+    let mut e = Engine::default();
+    let new = ask(
+        &mut e,
+        json!({"op":"new","seed":6106,"side":"allies","enemy":"gunnery","variant":"night-radar-training","realtime":true}),
+    );
+    assert_eq!(new["contacts"], json!([]));
+    ask(&mut e, json!({"op":"radar_set","ship":1,"radar":"us_sg","powered":true}));
+    ask(&mut e, json!({"op":"step","seconds":180}));
+    let mut mark = None;
+    let mut waited = 0;
+    while mark.is_none() && waited < 2700 {
+        let view = ask(&mut e, json!({"op":"observe"}));
+        assert_eq!(view["contacts"], json!([]), "the radar track must stay radar-only");
+        for report in view["radarContacts"].as_array().cloned().unwrap_or_default() {
+            let id = report["id"].as_str().unwrap().to_owned();
+            let preview = ask(&mut e, json!({"op":"illumination_preview","ship":5,"target":id}));
+            if preview["valid"] == true {
+                mark = Some(id);
+                break;
+            }
+        }
+        if mark.is_none() {
+            ask(&mut e, json!({"op":"step","seconds":10}));
+            waited += 10;
+        }
+    }
+    let mark = mark.expect("a radar-only contact must eventually fit the starshell band");
+    ask(&mut e, json!({"op":"illuminate","ship":5,"target":mark}));
+    let mut lit = false;
+    for _ in 0..180 {
+        let view = ask(&mut e, json!({"op":"step","seconds":1}));
+        if view["events"].as_array().unwrap().iter().any(|event| event["kind"] == "illumination") {
+            lit = true;
+            break;
+        }
+    }
+    if !lit {
+        let report = ask(&mut e, json!({"op":"report"}));
+        eprintln!("EVENTS {}", serde_json::to_string_pretty(&report["events"]).unwrap());
+    }
+    assert!(lit, "the radar-cued starshell must ignite");
+}
+
+#[test]
 fn searchlight_illuminates_fire_and_backlights_the_lit_ship() {
     let mut w = World::new(6106, 0, "torpedo", "night", "coord", 0).unwrap();
     w.enable_realtime().unwrap();
