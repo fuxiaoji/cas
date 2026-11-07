@@ -37,7 +37,7 @@ import type { Hull, Lesson, PortLaunch } from './port';
 import './style.css';
 
 const SAVE_KEY = 'cas.exercise.autosave.v1';
-const options = [1, 2, 4, 8] as const;
+const options = [1, 2, 4, 8, 20] as const;
 type Speed = typeof options[number];
 type Tab = 'fleet' | 'ship' | 'ai' | 'log';
 interface Replay { data: unknown; end: number }
@@ -76,9 +76,10 @@ function FleetSpeed({ fleet, busy, apply }: {
     const next = Number(value);
     if (Number.isFinite(next) && next >= 0 && next !== fleet.speed) apply(next);
   };
-  return <label className="fleet-speed">编队航速 <input type="number" min={0} max={40} step={1} value={value}
-    disabled={busy} onChange={(event) => setValue(event.target.value)} onBlur={commit}
-    onKeyDown={(event) => { if (event.key === 'Enter') event.currentTarget.blur(); }} /> 节</label>;
+  return <label className="fleet-speed">编队航速 <input type="range" min={0} max={40} step={1} value={value}
+    aria-label="编队航速" disabled={busy} onChange={(event) => setValue(event.target.value)}
+    onPointerUp={commit} onKeyUp={(event) => { if (event.key.startsWith('Arrow') || event.key === 'Home' || event.key === 'End') commit(); }}
+    onBlur={commit} /> <b>{value} 节</b></label>;
 }
 
 function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => void }) {
@@ -474,7 +475,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   async function newExercise() {
     setBusy(true); setRunning(false);
     try {
-      const next = await ask<Observation>({ op: 'new', ...setup });
+      const fixed = setup.variant === 'empress'
+        ? { ...setup, seed: 6100, enemy: 'coord' as Profile, realtime: true }
+        : setup;
+      const next = await ask<Observation>({ op: 'new', ...fixed });
       challengeId.current = undefined;
       campaignId.current = undefined;
       await persist();
@@ -824,7 +828,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         )}</div></>}
       </div>
       <div className="header-actions">
-        {!course && !cloudBattle && <button type="button" className="new-exercise" onClick={openSetup} aria-label="演习设置">演习设置</button>}
+        {!course && !cloudBattle && !o?.campaign && <button type="button" className="new-exercise" onClick={openSetup} aria-label="演习设置">演习设置</button>}
         <button type="button" className="harbor-link" disabled={busy} onClick={onlineDuel ? returnToDuelLobby : openPort}>{course ? '退出课程' : onlineDuel ? '线上舰桥' : '母港'}</button>
       </div>
     </header>
@@ -959,9 +963,16 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             </div>
             <FleetSpeed fleet={fleet} busy={busy || finished || !!replay}
               apply={(speed) => void command({ op: 'speed', fleet: fleet.id, speed }, () => hint(`编队航速 ${speed} 节。`))} />
+            {fleet.notice && <section className="fleet-recovery" aria-label="编队受阻">
+              <p className="inline-warning">{fleet.notice}</p>
+              <div className="route-tools">
+                <button type="button" disabled={busy || finished || !!replay} onClick={() => void checkReform()}>重整队伍</button>
+                <button type="button" disabled={busy || finished || !!replay}
+                  onClick={() => void command({ op: 'resume', fleet: fleet.id }, () => hint('各舰向外展开，脱离后重新下达航路。'))}>脱离接触</button>
+              </div>
+            </section>}
             <section className="maneuver-section">
               <div className="section-heading"><h3>编队航线</h3><span>{maneuverNames[fleet.mode]} · {fleet.speed} 节</span></div>
-              {fleet.notice && <p className="inline-warning">{fleet.notice}</p>}
               <div className="maneuver-choice">
                 <button type="button" aria-pressed={editMode === 'follow'} disabled={finished || !!replay} onClick={() => chooseMode('follow')}>领舰移动</button>
                 <button type="button" aria-pressed={editMode === 'sync'} disabled={finished || !!replay} onClick={() => chooseMode('sync')}>同步移动</button>
@@ -1091,15 +1102,17 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         <label>演习时段 <select value={setup.variant} onChange={(event) => setSetup({ ...setup, variant: event.target.value as typeof setup.variant })}>
           <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option><option value="radar">1943 夜间雷达演习</option><option value="empress">奥古斯塔皇后湾 · 22 舰夜战</option>
         </select></label>
-        <label className="realtime-option"><input type="checkbox" checked={setup.realtime} onChange={event => setSetup({ ...setup, realtime: event.target.checked })} /> 实时主炮</label>
-        <p className="field-note">装填和转向决定开火时点。CAS 火力表决定命中和伤害，伤害按战术回合分摊。已有资料的炮座采用参考射速，其余沿用暂定节奏。关闭实时主炮后使用旧版计划火力窗口。</p>
+        {setup.variant !== 'empress' && <label className="realtime-option"><input type="checkbox" checked={setup.realtime} onChange={event => setSetup({ ...setup, realtime: event.target.checked })} /> 实时主炮</label>}
+        <p className="field-note">{setup.variant === 'empress'
+          ? '历史想定按原页固定编制、阵位、环境与 AI；只选择本席阵营。'
+          : '装填和转向决定开火时点。CAS 火力表决定命中和伤害，伤害按战术回合分摊。已有资料的炮座采用参考射速，其余沿用暂定节奏。关闭实时主炮后使用旧版计划火力窗口。'}</p>
         <label>所属方 <select value={setup.side} onChange={(event) => setSetup({ ...setup, side: event.target.value as Side })}>
           <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
         </select></label>
-        <label>对手 AI <select value={setup.enemy} onChange={(event) => setSetup({ ...setup, enemy: event.target.value as Profile })}>
+        {setup.variant !== 'empress' && <label>对手 AI <select value={setup.enemy} onChange={(event) => setSetup({ ...setup, enemy: event.target.value as Profile })}>
           {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
-        </select></label>
-        <label>演习编号 <input type="number" min={0} max={4294967295} value={setup.seed} onChange={(event) => setSetup({ ...setup, seed: Math.max(0, Math.min(4294967295, Math.trunc(Number(event.target.value)))) })} /></label>
+        </select></label>}
+        {setup.variant !== 'empress' && <label>演习编号 <input type="number" min={0} max={4294967295} value={setup.seed} onChange={(event) => setSetup({ ...setup, seed: Math.max(0, Math.min(4294967295, Math.trunc(Number(event.target.value)))) })} /></label>}
         {radio.available && <label>电台音量 <input type="range" min={0} max={1} step={0.05} value={radio.volume}
           onChange={event => radio.setVolume(Number(event.target.value))} /></label>}
         <label>操作音量 <input type="range" min={0} max={1} step={0.05} value={uiSound.volume}

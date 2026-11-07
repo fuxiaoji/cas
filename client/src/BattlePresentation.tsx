@@ -259,14 +259,36 @@ export function ShipSchematic({ ship, ships, select, tick = 0, torpedo }: {
         <div className="hull-meter"><span>舰体耐久</span><b>{hp} / {ship.maxHp} DP</b></div>
         <div className="hull-meter-track"><i style={{ width: damagePercent + '%' }} /></div>
         {systems && <div className="schematic-plate">
-          <svg viewBox="0 0 260 74" aria-label="舰体侧向示意图" role="img">
-            <path d="M9 49l15-8h31l21-5h23v-7h28v-9h20v10h19v8h31l21 3 33-7-13 14-15 7H29z" fill="#15343c" stroke="#9daba0" strokeWidth="1.25"/>
-            <path d="M25 48h208M96 62h63m-33-42V12m-8 6h18m22 19v-14m-6 7h12M47 62H22m200 0h22" fill="none" stroke="#587782"/>
-            <path d="M220 11h18m-4-3 5 3-5 3" fill="none" stroke="#e8c589"/>
-            <path d="M40 53h181" stroke={systems.floods > 0 ? '#79cce5' : '#476878'} strokeDasharray="3 2" strokeWidth={systems.floods > 0 ? 2 : 1}/>
-            {systems.fires > 0 && <path d="M124 44c-5-6 6-5 5-13 4 4 1 6 5 9 2-4 6 4 2 6-4 3-9 2-12-2z" fill="#f09969"/>}
+          <svg viewBox="0 0 180 220" aria-label="舰体俯视示意图" role="img">
+            <g transform={`rotate(${ship.heading} 90 108)`}>
+              <path d="M90 8 L104 40 L108 100 L104 178 L94 208 L86 208 L76 178 L72 100 L76 40 Z" fill="#15343c" stroke="#9daba0" strokeWidth="1.3"/>
+              <path d="M90 22v176M78 108h24M84 58h12M84 156h12" fill="none" stroke="#587782" strokeWidth="1"/>
+              {systems.fires > 0 && <circle cx="90" cy="92" r="5" fill="#f09969" opacity=".85"/>}
+              {systems.floods > 0 && <circle cx="90" cy="124" r="5" fill="#79cce5" opacity=".85"/>}
+              {systems.guns.map((gun, slot) => {
+                const slots: [number, number][] = systems.guns.length >= 5
+                  ? [[90, 48], [90, 76], [90, 108], [90, 148], [90, 174]]
+                  : systems.guns.length === 4 ? [[90, 52], [90, 80], [90, 144], [90, 172]]
+                  : systems.guns.length === 3 ? [[90, 56], [90, 108], [90, 160]]
+                  : systems.guns.length === 2 ? [[90, 68], [90, 150]] : [[90, 108]];
+                const [cx, cy] = slots[slot] ?? [90, 108];
+                const rel = gun.bearing != null ? (gun.bearing - ship.heading) * Math.PI / 180 : null;
+                return <g key={gun.index} transform={`translate(${cx} ${cy})`}>
+                  <circle r="7" fill="#244b57" stroke={gun.destroyed ? '#c96a5a' : '#d8c58c'} strokeWidth="1.2"/>
+                  {rel !== null && !gun.destroyed && <line x1="0" y1="0" x2={Math.sin(rel) * 20} y2={-Math.cos(rel) * 20} stroke="#e8c589" strokeWidth="2"/>}
+                  {gun.destroyed && <path d="M-4 -4l8 8m0-8l-8 8" stroke="#c96a5a" strokeWidth="1.5"/>}
+                </g>;
+              })}
+              {systems.tubes.map((tube, slot) => {
+                const y = 116 + slot * 13;
+                return <rect key={tube.index} x={tube.spent ? 61 : 60} y={y} width="8" height="9" rx="1"
+                  fill={tube.spent ? '#3a4a4f' : '#7d8f6a'} stroke="#9daba0" strokeWidth=".8"/>;
+              })}
+            </g>
+            <path d="M160 24l0-13m-4 4 4-4 4 4" fill="none" stroke="#e8c589"/>
+            <text x="160" y="36" fill="#adbfbc" fontSize="9" textAnchor="middle">北</text>
           </svg>
-          <div className="schematic-caption"><span>舰体示意</span><span>舰首 →</span></div>
+          <div className="schematic-caption"><span>舰体俯视 · 北向上</span><span>航向 {Math.round(ship.heading) % 360}° · 位置 {Math.round(ship.x)}, {Math.round(ship.y)}</span></div>
         </div>}
       </div>
     </div>

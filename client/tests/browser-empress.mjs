@@ -25,8 +25,6 @@ try {
   await resumeExercise(page);
   await btn('演习设置').click();
   await page.getByLabel('演习时段').selectOption('empress');
-  await page.getByLabel('对手 AI').selectOption('coord');
-  await page.getByLabel('演习编号').fill('6100');
   await btn('开始新演习').click();
   await page.getByRole('dialog').waitFor({ state: 'hidden' });
   const start = await q('observe');

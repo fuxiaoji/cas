@@ -147,7 +147,7 @@ impl Engine {
                         };
                         Ok(json!({"orders":orders,"text":text}))
                     }
-                    "route" | "fire" | "gun_cancel" | "lead" | "detach" | "reform" | "ai" | "radar_set" | "illuminate" | "searchlight" | "smoke" => {
+                    "route" | "fire" | "gun_cancel" | "lead" | "detach" | "reform" | "ai" | "radar_set" | "illuminate" | "searchlight" | "smoke" | "speed" | "resume" => {
                         w.external(r)?;
                         Ok(w.observation(player))
                     }

@@ -301,3 +301,11 @@ h1, h2, h3, p { margin: 0; }
 .setup-dialog .realtime-option { display: flex; align-items: center; gap: .5em; }
 .setup-dialog .realtime-option input { width: auto; min-height: 0; }
 .radio-toggle { display: flex; align-items: center; gap: .35rem; margin: .45rem 0; color: var(--muted); font-size: .8rem; }
+
+/* Fleet speed slider and blocked-formation recovery */
+.fleet-speed { display: flex; align-items: center; gap: 8px; margin: 8px 0 10px; color: var(--muted); font-size: 11px; }
+.fleet-speed input[type=range] { flex: 1; min-width: 80px; accent-color: #d8c58c; }
+.fleet-speed b { min-width: 46px; text-align: right; color: #ecd8aa; font-size: 12px; }
+.fleet-recovery { border: 1px solid #8a6d3b; background: #2a1f14; padding: 8px 9px; margin: 8px 0; }
+.fleet-recovery .inline-warning { margin: 0 0 7px; }
+.fleet-recovery .route-tools { display: flex; gap: 7px; flex-wrap: wrap; }

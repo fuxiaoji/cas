@@ -708,6 +708,7 @@ impl World {
             Some("radar_set") => self.radar_power(s, &r)?,
             Some("searchlight") => self.searchlight_cmd(s, &r)?,
             Some("speed") => self.fleet_speed(s, &r)?,
+            Some("resume") => self.resume_fleet(s, &r)?,
             Some("smoke") => self.smoke_cmd(s, &r)?,
             Some("ai") => {
                 let id = u(&r, "fleet")?;

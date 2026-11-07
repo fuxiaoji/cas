@@ -600,6 +600,56 @@ impl World {
             Some("正在重整，完成转向并排成纵队后可用领舰移动。".into());
         Ok(())
     }
+    /// Clear a navigation hold or a lost-leader wait by fanning the fleet
+    /// out on short individual tracks. Used by the "脱离接触" recovery action;
+    /// the player re-forms once the ships are clear.
+    pub fn resume_fleet(&mut self, owner: usize, r: &Value) -> E<()> {
+        let id = u(r, "fleet")?;
+        let (side, speed, members) = {
+            let fleet = self.fleet_for(owner, id)?;
+            (fleet.side, fleet.speed, fleet.members.clone())
+        };
+        let count = members.iter().filter(|id| self.ship(**id).is_some_and(Ship::alive)).count();
+        let mut plans = Vec::new();
+        let mut index = 0;
+        for ship_id in members {
+            let Some(ship) = self.ship(ship_id) else { continue };
+            if !ship.alive() {
+                continue;
+            }
+            let spread = if count <= 1 {
+                0.
+            } else {
+                (index as f64 / (count - 1) as f64 - 0.5) * 90.
+            };
+            index += 1;
+            let heading = norm(ship.h + spread);
+            let destination = ship.p + P::bearing(heading) * (1_500. * YARD);
+            let length = ship.p.dist(destination);
+            plans.push((ship_id, destination, length));
+        }
+        if plans.is_empty() {
+            return Err("没有可展开的己方舰艇".into());
+        }
+        for (ship_id, destination, length) in plans {
+            let ship = self.ship_mut(ship_id).unwrap();
+            ship.track = Some(Track::new(vec![ship.p, destination], 0., length));
+            ship.speed = speed;
+        }
+        let fleet = self.fleet_mut(id).unwrap();
+        fleet.notice = None;
+        fleet.points.clear();
+        fleet.actual = speed;
+        self.add(
+            1 << side,
+            "resume",
+            format!("{fleet_name} · 各舰向外展开，脱离后重新下达航路", fleet_name = self.fleet(id).unwrap().name),
+            Some("RTS-NAV-04"),
+            None,
+        );
+        Ok(())
+    }
+
     pub fn detach(&mut self, owner: usize, r: &Value) -> E<()> {
         let id = u(r, "fleet")?;
         let ship = u(r, "ship")?;

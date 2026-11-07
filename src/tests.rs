@@ -266,6 +266,28 @@ fn empress_augusta_bay_runs_the_full_night_surface_kit() {
 }
 
 #[test]
+fn a_blocked_fleet_can_fan_out_and_clear_its_notice() {
+    let mut e = Engine::default();
+    ask(&mut e, json!({"op":"new","seed":6106,"side":"allies","enemy":"coord"}));
+    let before = ask(&mut e, json!({"op":"observe"}));
+    let fleet = before["fleets"][0]["id"].clone();
+    ask(&mut e, json!({"op":"resume","fleet":fleet}));
+    let after = ask(&mut e, json!({"op":"observe"}));
+    assert_eq!(after["fleets"][0]["notice"], json!(null));
+    assert!(after["ships"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|ship| ship["speed"].as_f64().unwrap_or(0.) > 0.));
+    let moved = ask(&mut e, json!({"op":"step","seconds":10}));
+    assert!(moved["ships"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|ship| ship["speed"].as_f64().unwrap_or(0.) > 0.));
+}
+
+#[test]
 fn ship_view_shows_target_chance_and_the_fleet_speed_can_change() {
     let mut w = World::new(6106, 0, "coord", "night", "coord", 0).unwrap();
     w.enable_realtime().unwrap();
