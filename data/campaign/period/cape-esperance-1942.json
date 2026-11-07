@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-cape-esperance-1942-hulls-v1",
+  "id": "cape_esperance_1942_10_11",
+  "scenario_id": "cas-rs-cape-esperance",
+  "ibs_id": "IBS-S-01",
+  "as_of": "1942-10-11",
+  "status": "source_only_not_runtime_ready",
+  "policy": "Scenario exceptions, then Fifth Edition rules, then annex class and dated refit entries. Legacy dated Form 10 is corroboration, with differences retained explicitly. Nulls and unresolved alternatives are not executable; printed conflicts are retained verbatim and marked.",
+  "scenario_source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [65],
+    "printed_pages": [64],
+    "note": "PDF 65 (printed 64) contains the complete 'Battle of Cape Esperance' scenario text. Adjacent pages checked: PDF 64 (printed 63) starts 'Missed Opportunity', PDF 66 (printed 65) starts 'Guadalcanal Air Battle'. The scenario page carries no chart; setup is relative placements on open ocean."
+  },
+  "registered_record": {
+    "file": "data/campaign/cape-esperance.json",
+    "verification": "The registered page numbers (PDF 65, printed 64) match the actual PDF. The registered start time, environment, rosters, deployment, three start options, victory conditions and special rules were re-verified against the page; additions and corrections in this package are listed in conflicts and pending_items."
+  },
+  "mount_sector_source": {"document": "cas_5e_main", "pdf_pages": [13, 14], "printed_pages": ["2-1", "2-2"]},
+  "maneuver_source": {"document": "cas_5e_main", "pdf_pages": [23], "printed_pages": ["3-2"]},
+  "maneuver_classes": {
+    "A": {"normal_advance_yd": 400, "normal_loss_knots": 2, "hard_advance_yd": 300, "hard_loss_knots": 3},
+    "B": {"normal_advance_yd": 300, "normal_loss_knots": 2, "hard_advance_yd": 200, "hard_loss_knots": 3},
+    "C": {"normal_advance_yd": 300, "normal_loss_knots": 1, "hard_advance_yd": 200, "hard_loss_knots": 2},
+    "D": {"normal_advance_yd": 200, "normal_loss_knots": 1, "hard_advance_yd": 100, "hard_loss_knots": 2}
+  },
+  "night_optics_sources": {
+    "visual_detection": {
+      "document": "cas_5e_main", "pdf_pages": [47], "printed_pages": ["5-10"],
+      "sections": ["5.4 Visual Detection", "5.4.1 Making Visual Detections"],
+      "convention": "Clear Night visibility is modified by the moon phase; the scenario provides 10% visibility directly. Gun flashes raise visibility by tables per the Visibility Modifiers Table (printed 5-14, PDF 51)."
+    },
+    "visibility_modifiers": {
+      "document": "cas_5e_main", "pdf_pages": [51], "printed_pages": ["5-14"],
+      "section": "Visibility Modifiers",
+      "scenario_relevant_rows": [
+        "20mm - 74mm gun flashes increase visibility at night by two tables/rows, up to 70% visibility.",
+        "75mm and larger gunfire flashes or rocket-propelled weapons increase visibility at night by three tables/rows, up to 70% visibility.",
+        "A cued visual search (knowing where to look): -20% (detection roll modifier; the 2345 reaction-fire rule explicitly allows a cued visual search).",
+        "Ships firing in 20% or 10% visibility (unmodified) reduces their visual detection chances by -20%."
+      ]
+    },
+    "squalls": {
+      "document": "cas_5e_main", "pdf_pages": [49], "printed_pages": ["5-12"], "section": "5.4.3 Squalls",
+      "squall_circle_diameter_kyd": 6,
+      "counts": {"normal_squalls": "3D6 circles", "light_squalls": "2D6 circles", "heavy_squalls": "4D6 circles"},
+      "movement": "circles move at wind speed and direction"
+    },
+    "nighttime_illumination": {
+      "document": "cas_5e_main", "pdf_pages": [49], "printed_pages": ["5-12"], "section": "5.4.4 Nighttime Illumination",
+      "convention": "Searchlight max illumination range halved at 10% (night precip) to 5% visibility, 25% at 2%; starshell and flare ranges halved at 10-5% and completely ineffective at 2%.",
+      "shipboard_searchlights": {"section": "5.4.4.1", "data_annex": "I2 (not verified in this pass)"},
+      "scenario_illumination_events": "none printed on the scenario page"
+    }
+  },
+  "start": {
+    "local_date": "1942-10-11",
+    "local_time": "23:24",
+    "location_text": "Northwest of Savo Island",
+    "map_type": "open_ocean",
+    "chart_on_scenario_page": false,
+    "environment": {
+      "light": "night",
+      "visibility_pct": 10,
+      "moon_pct": 1,
+      "moon_text": "1% moon (sliver)",
+      "civil_twilight_begins_local": "05:39",
+      "dawn_local": "06:00",
+      "squalls_text": "Heavy rain squalls 5 to 50 nmi northwest of Savo Island",
+      "sea_state": 3,
+      "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64], "section": "Environment"}
+    },
+    "us_formation": {
+      "commander": "RADM Norman Scott, Task Force 64",
+      "course_deg_true": 45,
+      "speed_knots": 15,
+      "column_order": ["farenholt", "duncan", "laffey", "san_francisco", "boise", "salt_lake_city", "helena", "buchanan", "mccalla"],
+      "column_text": "Steaming in column on course 045 deg, speed 15 knots. Farenholt, Duncan, and Laffey are in the lead, then cruisers San Francisco, Boise, Salt Lake City, Helena. The destroyers Buchanan and McCalla are in the rear.",
+      "spacing": "not printed",
+      "scheduled_course_reversal": {
+        "time_local": "23:30",
+        "text": "As previously planned, Scott ordered the column to reverse course at 2330. The Japanese formation was closing at right angles at 30 knots, still immersed in a squall.",
+        "note": "printed in the Setup narrative; applies to the 23:24 start, not reprinted as a table row"
+      },
+      "radar_note": "Helena's SG radar had greater range than that on the flagship, and poor communications procedures prevented Helena's information from reaching Admiral Scott."
+    },
+    "japan_formation": {
+      "commander": "RADM Aritomo Goto, Bombardment Group",
+      "course_deg_true": 135,
+      "speed_knots": 30,
+      "column_order": ["aoba", "furutaka", "kinugasa"],
+      "column_text": "The three Japanese cruisers are in column, Aoba in front, followed by Furutaka and Kinugasa.",
+      "leading_ship_from_helena": {"ship": "aoba", "bearing_deg_true": 315, "range_nmi": 13.5},
+      "screen": {
+        "fubuki": "off Aoba's port beam",
+        "hatsuyuki": "off Aoba's starboard beam",
+        "ranges": "not printed",
+        "note": "the beam references are relative to Aoba, not to the column ends"
+      },
+      "floatplane_state": "All cruisers carry half of their rated floatplane capacity."
+    },
+    "start_options": [
+      {
+        "id": "standard",
+        "time_local": "23:24",
+        "text": "Historical positions as printed in Setup; the page gives no special fire phase for this start.",
+        "japanese_detection": "not stated for 23:24; the Special Rules keep the Japanese unaware until gun flashes are spotted at close range"
+      },
+      {
+        "id": "helena_radio_contact",
+        "time_local": "23:39",
+        "enemy_from_helena": {"bearing_deg_true": 285, "range_text": "six miles", "unit_note": "printed as 'six miles'; the page does not specify nautical miles (see conflicts helena-radio-range-unit)"},
+        "text": "After ten minutes, Helena's captain radioed Scott that the Japanese force was now six miles away, bearing 285 deg. If the players wish, they may use that position as the starting point for the battle.",
+        "japanese_detection": "At this time (use 2339) the Japanese had not detected the American force."
+      },
+      {
+        "id": "helena_visual_contact",
+        "time_local": "23:45",
+        "enemy_from_helena": {"bearing_deg_true": 300, "range_yd": 5000},
+        "text": "At 2345 Helena radioed that she had Japanese ships in sight bearing 300 deg at 5000 yards, and opened fire after another set of crossed signals.",
+        "fire_rule": "Helena is allowed to fire in the Planned Fire Phase of turn 2345, and the rest of the American force in the reaction fire phase, if they successfully detect the Japanese (cued visual search or radar).",
+        "japanese_detection": "The Japanese had still not detected the Americans."
+      }
+    ],
+    "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64], "section": "Setup"}
+  },
+  "named_ships": [
+    {"id": "san_francisco", "name": "San Francisco", "side": "allies", "kind": "CA", "unit": "Task Force 64 (flag, RADM Norman Scott)", "ship_class_printed": "New Orleans class CA", "profile": "new_orleans_1942", "profile_ref": "tassafaronga-1942.json#profiles.new_orleans_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [245], "printed_pages": [245]}, "form10_date": "Mar 42", "position": "US column, 4th (first cruiser)", "radar_confirmed": ["SC-1", "2 Mk3 (FC)", "2 Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 245 sensors; american_fleets A-13 San Francisco remark 'Mar 42: SC-1, 2 Mk3, 2 Mk4 added'"},
+    {"id": "salt_lake_city", "name": "Salt Lake City", "side": "allies", "kind": "CA", "unit": "Task Force 64", "ship_class_printed": "Pensacola class CA", "profile": "pensacola_1942", "profile_ref": "tassafaronga-1942.json#profiles.pensacola_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [254], "printed_pages": [254]}, "form10_date": "Dec 1941", "position": "US column, 5th", "radar_confirmed": [], "radar_candidates": ["SC (CXBD) fitted during the 1 Nov 42 - 11 Mar 43 overhaul per american_fleets A-14 Salt Lake City remark; Form 10 253 (Nov 42-Mar 43 Modification) lists SC (CXBD)"], "radar_note": "No search radar confirmed for the battle: the Dec 1941 Form 10 prints sensors 'None.', and A-14 dates Salt Lake City's SC fit to the post-battle overhaul. Mk3/Mk4 for Salt Lake City are dated 26 Mar 43."},
+    {"id": "boise", "name": "Boise", "side": "allies", "kind": "CL", "unit": "Task Force 64", "ship_class_printed": "Brooklyn 1st group CL", "profile": "brooklyn_first_group_1942", "profile_ref": "tassafaronga-1942.json#profiles.brooklyn_first_group_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [265], "printed_pages": [265]}, "form10_date": "Jan-Jun 42", "position": "US column, 6th", "radar_confirmed": ["SC (CXBD)", "SG", "2 Mk3 (FC)", "2 Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 265 sensors (Jan-Jun 42 Modification); american_fleets A-16 class remark 'Feb 42: Boise, Honolulu fitted with Mk3 radars by this date; Boise, Honolulu, Philadelphia also fitted with SC radars by this date'"},
+    {"id": "helena", "name": "Helena", "side": "allies", "kind": "CL", "unit": "Task Force 64", "ship_class_printed": "Brooklyn 2nd group CL", "profile": "brooklyn_second_group_1942", "profile_ref": "kula-runtime.json#profiles.brooklyn_2", "form10": {"document": "rising_sun_form10", "pdf_pages": [263], "printed_pages": [263]}, "form10_date": "Dec 41-Jul 42", "position": "US column, 7th (last of the cruisers)", "radar_confirmed": ["SC (CXBD)", "SG", "2 Mk3 (FC)", "2 Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 263 sensors; american_fleets A-16 class remark 'Feb 42: Fitted with SG, SK and one Mk1(FA) radars by this date; Mid-42: Both were fitted with SC and SG search radar and Mk3 for 6 in guns and Mk4 for 5 in guns'; the scenario Setup itself states Helena's SG outranged the flagship's radar"},
+    {"id": "farenholt", "name": "Farenholt", "side": "allies", "kind": "DD", "unit": "Desron 12", "ship_class_printed": "Bristol class DD", "profile": "bristol_1942", "profile_ref": "tassafaronga-1942.json#profiles.bristol_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [296], "printed_pages": [296]}, "form10_date": "Apr 1942", "position": "US column, 1st (lead)", "radar_confirmed": ["SC (CXBD)", "Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 296 sensors"},
+    {"id": "duncan", "name": "Duncan", "side": "allies", "kind": "DD", "unit": "Desron 12", "ship_class_printed": "Bristol class DD", "profile": "bristol_1942", "profile_ref": "tassafaronga-1942.json#profiles.bristol_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [295], "printed_pages": [295]}, "form10_date": "Apr 1942", "position": "US column, 2nd", "radar_confirmed": ["SC (CXBD)", "Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 295 sensors"},
+    {"id": "laffey", "name": "Laffey", "side": "allies", "kind": "DD", "unit": "Desron 12", "ship_class_printed": "Bristol class DD", "profile": "bristol_1942", "profile_ref": "tassafaronga-1942.json#profiles.bristol_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [297], "printed_pages": [297]}, "form10_date": "Mar 1942", "position": "US column, 3rd", "radar_confirmed": ["SC (CXBD)", "Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 297 sensors"},
+    {"id": "buchanan", "name": "Buchanan", "side": "allies", "kind": "DD", "unit": "Desron 12", "ship_class_printed": "Bristol class DD", "profile": "bristol_1942", "profile_ref": "tassafaronga-1942.json#profiles.bristol_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [293], "printed_pages": [293]}, "form10_date": "Mar 1942", "position": "US column, 8th (rear)", "radar_confirmed": ["SC (CXBD)", "Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 293 sensors; the Nov-Dec 42 form (page 292) lists the same SC (CXBD) + Mk4 (FD) fit, bracketing the battle date"},
+    {"id": "mccalla", "name": "McCalla", "side": "allies", "kind": "DD", "unit": "Desron 12", "ship_class_printed": "Bristol class DD", "profile": "bristol_1942", "profile_ref": "tassafaronga-1942.json#profiles.bristol_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [299], "printed_pages": [299]}, "form10_date": "May 1942", "position": "US column, 9th (last)", "radar_confirmed": ["SC (CXBD)", "Mk4 (FD)"], "radar_confirmed_source": "rising_sun_form10 299 sensors"},
+    {"id": "aoba", "name": "Aoba", "side": "axis", "kind": "CA", "unit": "Crudiv 6 (flag, RADM Aritomo Goto)", "ship_class_printed": "Aoba class CA", "profile": "aoba_1938", "form10": {"document": "rising_sun_form10", "pdf_pages": [46], "printed_pages": [46]}, "form10_date": "Dec 1941", "position": "Japanese column, 1st (leading ship)", "scenario_floatplanes": "half of rated capacity (printed); rated 2 per the annex, 1 aboard", "radar_confirmed": [], "annex_remarks_at_scenario": "Oct 42 (month only): E7K2 Alf floatplanes replaced by E13A1 Jake; 12 Oct 42: heavily damaged in Battle of Cape Esperance"},
+    {"id": "furutaka", "name": "Furutaka", "side": "axis", "kind": "CA", "unit": "Crudiv 6", "ship_class_printed": "Furutaka class CA", "profile": "furutaka_1937", "form10": {"document": "rising_sun_form10", "pdf_pages": [53], "printed_pages": [53]}, "form10_date": "Dec 1941", "position": "Japanese column, 2nd", "scenario_floatplanes": "half of rated capacity (printed); rated 1 per the annex (2 boxes on the Dec 1941 form), see pending items", "radar_confirmed": [], "annex_remarks_at_scenario": "12 Oct 42: Furutaka sunk during the Battle of Cape Esperance"},
+    {"id": "kinugasa", "name": "Kinugasa", "side": "axis", "kind": "CA", "unit": "Crudiv 6", "ship_class_printed": "Aoba class CA", "profile": "aoba_1938", "form10": {"document": "rising_sun_form10", "pdf_pages": [47], "printed_pages": [47]}, "form10_date": "Dec 1941", "position": "Japanese column, 3rd (last)", "scenario_floatplanes": "half of rated capacity (printed); rated 2 per the annex, 1 aboard", "radar_confirmed": [], "annex_remarks_at_scenario": "no modifications before 14 Nov 42: Sunk at Naval Battle of Guadalcanal"},
+    {"id": "fubuki", "name": "Fubuki", "side": "axis", "kind": "DD", "unit": "Desdiv 11(-)", "ship_class_printed": "Fubuki class DD", "profile": "fubuki_1936_refit", "profile_ref": "cape-st-george-1943.json#profiles.fubuki_1936_refit", "form10": {"document": "rising_sun_form10", "pdf_pages": [156], "printed_pages": [156]}, "form10_date": "Apr-May 42", "position": "off Aoba's port beam", "radar_confirmed": [], "dc_fit_on_form": "2 DC rails w/6 DC each plus (2)2 Type 94 Y-guns w/6 DC each, DC patterns 3, 5, 7, 9 (Apr-May 42 modification)"},
+    {"id": "hatsuyuki", "name": "Hatsuyuki", "side": "axis", "kind": "DD", "unit": "Desdiv 11(-)", "ship_class_printed": "Fubuki class DD", "profile": "fubuki_1936_refit", "profile_ref": "cape-st-george-1943.json#profiles.fubuki_1936_refit", "form10": {"document": "rising_sun_form10", "pdf_pages": [159], "printed_pages": [159]}, "form10_date": "Dec 1941", "position": "off Aoba's starboard beam", "radar_confirmed": [], "dc_fit_on_form": "6 DC racks w/1 DC each plus (2)1 Type 94 Y-gun w/6 DC, DC patterns 3, 5, 7 (Dec 1941 form; whether Hatsuyuki received the rail refit before 11 Oct 42 is not printed, see pending items)"}
+  ],
+  "aircraft": {
+    "us": {
+      "scenario_text": "One SOC-3 is airborne. Four were available; two were launched by San Francisco and Boise. One of the two launched developed engine trouble and aborted to a land base. One of the two remaining aboard ship was lost in a launch mishap, and the other was jettisoned. All other planes are ashore.",
+      "airborne_count": 1,
+      "model": "SOC-3",
+      "carriers_of_launched_aircraft": ["san_francisco", "boise"],
+      "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64], "section": "US Forces"}
+    },
+    "axis": {
+      "scenario_text": "All cruisers carry half of their rated floatplane capacity.",
+      "rated_capacity_per_annex": {"aoba": 2, "furutaka": 1},
+      "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64], "section": "Japanese Forces"}
+    }
+  },
+  "transport_states": {
+    "printed_transport_loads": "none; the Tactical Situation calls the Japanese force 'a Japanese reinforcement convoy and bombardment unit' and the Historical Outcome says the reinforcement group landed its cargo, but no named transports, cargo states or offload rules are printed",
+    "printed_transport_or_withdrawal_objectives": "none; the Japanese objective is the Henderson Field bombardment (see orders)",
+    "floatplane_state": "Japanese cruisers at half rated floatplane capacity (printed)",
+    "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64]}
+  },
+  "orders": {
+    "japan": "Shell Henderson Field for 90 minutes (30 Tactical Turns) to neutralize the aircraft based there.",
+    "us": "Intercept the enemy cruiser force.",
+    "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64]}
+  },
+  "victory_conditions_as_printed": {
+    "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64]},
+    "japan": {
+      "decisive": "The Japanese inflict a 3:1 damage ratio on the Allied naval forces.",
+      "tactical": "The Japanese inflict a 1:1 damage ratio on the Allied naval forces.",
+      "wording_note": "the Japanese conditions print 'damage ratio' while the US conditions print 'damage point ratio'"
+    },
+    "us": {
+      "decisive": "The Allies inflict a 3:1 damage point ratio on the Japanese.",
+      "tactical": "The Allies inflict a 1.5:1 damage ratio on the Japanese."
+    },
+    "independence_note": "the page gives each side its own conditions and no rule makes one side's achievement cancel the other's; both sides can satisfy their conditions in the same battle and the results are kept separately"
+  },
+  "special_rules_as_printed": {
+    "source": {"document": "rising_sun_5e", "pdf_pages": [65], "printed_pages": [64], "section": "Special Rules"},
+    "surprise_fire": "The Japanese were unaware of the presence of the American force until their gun flashes were spotted at close range. The Americans get one free Tactical Turn of fire before the Japanese can return fire.",
+    "cease_fire_d10": "Each side must roll D10 once every Tactical Turn. If the D10 roll is 1, the ships of that side must cease fire for one Tactical Turn. The pause only occurs once for each side during the battle. Cease rolling after it occurs.",
+    "helena_2345_fire_rule": "At the 2345 start, Helena may fire in the Planned Fire Phase of turn 2345; the rest of the American force fires in the reaction fire phase only if they successfully detect the Japanese (cued visual search or radar).",
+    "bombardment_duration": "Japanese orders: shell Henderson Field for 90 minutes (30 Tactical Turns); the page equates 90 minutes with 30 Tactical Turns but prints no per-turn duration"
+  },
+  "annex_citations": {
+    "new_orleans_class_a13": {
+      "document": "american_fleets",
+      "pdf_pages": [16],
+      "printed_pages": ["A-13"],
+      "quoted_remarks": {
+        "class_remark": "Also known as Astoria class. New Orleans, Astoria, Minneapolis, Tuscaloosa, San Francisco, Quincy, Vincennes. First three units had Mk9 or Mk14 8in/55 guns.",
+        "class_fit": "2F/A(3)3 Mk12, 15 8in/55",
+        "san_francisco": "Mar 42: SC-1, 2 Mk3, 2 Mk4 added, 16 1.1 in, 12 20mm total, Lt AA 4.3, fitted with 2 Mk3 DC rail with 6 Mk7 or 8 Mk6/9 DC. / Dec 42 - Feb 43: At Mare Island, Damage repaired, SC-3, SG, radars added, DC rails removed.",
+        "damage_breakdown": "Dam Pts 0/99/199/298/357/397, Surf Speed 32/24/16/8/0"
+      },
+      "consumers": ["profiles.new_orleans_1942", "named_ships.san_francisco", "conflicts.san-francisco-gun-mark"]
+    },
+    "pensacola_class_a14": {
+      "document": "american_fleets",
+      "pdf_pages": [17],
+      "printed_pages": ["A-14"],
+      "quoted_remarks": {
+        "class_fit": "F/A(2)2 Mk14 8in/55 + F/A(3)2 Mk14 8in/55; P/S(1)4 Mk11 5in/25; 1936: Torpedo tubes removed ... Gunnery Standard IV",
+        "pensacola_ship": "1940: Pensacola fitted with CXAM search radar. / 1942: Pensacola fitted with Mk3 radar for 8 in guns and Mk4 radar for 5 in guns.",
+        "salt_lake_city_ship": "11 Oct 42: Salt Lake City damaged by shellfire in Battle of Cape Esperance. Repaired and overhauled 1 Nov 42 - 11 Mar 43 at Pearl Harbor. Lt AA fit increased to (4)4 1.1 in, (1)8 20mm, Lt AA 3.3. Fitted with SC radar. / 26 Mar 43: Salt Lake City heavily damaged at Battle of Komandorski Islands, repaired a Mare Island Mar - May 43: Fitted with SG search radar, Mk3 radar for 8 in guns and Mk4 radar for 5 in guns.",
+        "damage_breakdown": "Dam Pts 0/93/186/279/335/372, Surf Speed 32/24/16/8/0"
+      },
+      "consumers": ["profiles.pensacola_1942", "named_ships.salt_lake_city"]
+    },
+    "brooklyn_a16": {
+      "document": "american_fleets",
+      "pdf_pages": [19],
+      "printed_pages": ["A-16"],
+      "quoted_remarks": {
+        "second_group": "St. Louis, Helena. Search and fire control radars updated as new types became available. / Feb 42: Fitted with SG, SK and one Mk1(FA) radars by this date. / Mid-42: Both were fitted with SC and SG search radar and Mk3 for 6 in guns and Mk4 for 5 in guns.",
+        "first_group": "Feb 42: Philadelphia fitted with Mk3 radar. Feb 42: Boise, Honolulu fitted with Mk3 radars by this date; Boise, Honolulu, Philadelphia also fitted with SC radars by this date.",
+        "damage_breakdowns": "Brooklyn second group Dam Pts 0/99/198/297/356/396; Brooklyn first group Dam Pts 0/97/194/291/349/388, both 32/24/16/8/0"
+      },
+      "consumers": ["profiles.brooklyn_second_group_1942", "profiles.brooklyn_first_group_1942", "named_ships.boise", "named_ships.helena"]
+    }
+  },
+  "hull_numbers": {
+    "registered": false,
+    "note": "Neither the scenario page, the annex class entries nor the Form 10 headers print pennant numbers for these named ships. Hull numbers stay unregistered rather than filled from memory."
+  },
+  "profiles": {
+    "new_orleans_1942": {
+      "profile_ref": "tassafaronga-1942.json#profiles.new_orleans_1942",
+      "applies_to": ["san_francisco"],
+      "main_gun_note": "The A-13 class fit is '2F/A(3)3 Mk12, 15 8in/55' with the remark that only the first three units carried Mk9 or Mk14; San Francisco is a later unit, so the Annex C-2 Mk12/15 row would apply by class reading. San Francisco's own Mar 42 Form 10 (page 245) prints 'Fwd (3)/Fwd (3)/Aft (3) Mk9/14 8 in/55'. See conflicts san-francisco-gun-mark.",
+      "form10_corroboration": {"document": "rising_sun_form10", "pdf_pages": [245], "printed_pages": [245], "form10_date": "Mar 42", "damage_speed_rows_dp_knots": [[0, 32], [99, 24], [199, 16], [298, 8], [357, 0], [397, "Sunk"]], "radar_rows": ["1 SC-1 (AS, 1st Gen)", "2 Mk3 (FC)", "2 Mk4 (FD)"]}
+    },
+    "pensacola_1942": {
+      "profile_ref": "tassafaronga-1942.json#profiles.pensacola_1942",
+      "applies_to": ["salt_lake_city"],
+      "main_gun_note": "The Salt Lake City Dec 1941 Form 10 (page 254) prints 'Fwd (3)/Fwd (2)/Aft (3)/Aft (2) Mk14 8 in/55' (10 guns), matching the A-14 class fit 'F/A(2)2 + F/A(3)2 Mk14 8in/55' and the Annex C-3 Mk9/10/11/13/14 row.",
+      "form10_corroboration": {"document": "rising_sun_form10", "pdf_pages": [254], "printed_pages": [254], "form10_date": "Dec 1941", "damage_speed_rows_dp_knots": [[0, 32], [93, 24], [186, 16], [279, 8], [335, 0], [372, "Sunk"]], "radar_rows": ["None."]},
+      "postbattle_form": {"document": "rising_sun_form10", "pdf_pages": [253], "printed_pages": [253], "form10_date": "Nov 42-Mar 43", "radar_rows": ["1 SC (CXBD)"], "note": "post-battle corroboration of the A-14 overhaul remark"}
+    },
+    "brooklyn_first_group_1942": {
+      "profile_ref": "tassafaronga-1942.json#profiles.brooklyn_first_group_1942",
+      "applies_to": ["boise"],
+      "form10_corroboration": {"document": "rising_sun_form10", "pdf_pages": [265], "printed_pages": [265], "form10_date": "Jan-Jun 42", "damage_speed_rows_dp_knots": [[0, 32], [97, 24], [194, 16], [291, 8], [349, 0], [388, "Sunk"]], "radar_rows": ["1 SC (CXBD)", "1 SG", "2 Mk3 (FC)", "2 Mk4 (FD)"], "main_battery_printed": "Fwd (3)/Fwd (3)/Port & Stbd (3)/Aft (3)/Aft (3) Mk16 6 in/47", "secondary_printed": "Port (1)/Stbd (1) 4 x Mk11 5 in/25 with Mk4 directors"},
+      "earlier_form": {"document": "rising_sun_form10", "pdf_pages": [266], "printed_pages": [266], "form10_date": "Dec 1941", "radar_rows": ["None."]}
+    },
+    "brooklyn_second_group_1942": {
+      "profile_ref": "kula-runtime.json#profiles.brooklyn_2",
+      "source": {"document": "american_fleets", "pdf_pages": [19], "printed_pages": ["A-16"], "block": "Brooklyn second group (St. Louis, Helena)"},
+      "applies_to": ["helena"],
+      "form10_corroboration": {"document": "rising_sun_form10", "pdf_pages": [263], "printed_pages": [263], "form10_date": "Dec 41-Jul 42", "damage_speed_rows_dp_knots": [[0, 32], [99, 24], [198, 16], [297, 8], [356, 0], [396, "Sunk"]], "radar_rows": ["1 SC (CXBD)", "1 SG", "2 Mk3 (FC)", "2 Mk4 (FD)"], "main_battery_printed": "Fwd (3)/Fwd (3)/Port & Stbd (3)/Aft (3)/Aft (3) Mk16 6 in/47", "secondary_printed": "Port (2)/Stbd (2) Mk29 5 in/38 with Mk4 directors", "aa_printed": "Area AA (2)4 Mk29 5 in/38; Light AA 16 40mm, 12 20mm"}
+    },
+    "bristol_1942": {
+      "profile_ref": "tassafaronga-1942.json#profiles.bristol_1942",
+      "applies_to": ["farenholt", "duncan", "laffey", "buchanan", "mccalla"],
+      "form10_corroboration": {
+        "farenholt": {"pdf_pages": [296], "form10_date": "Apr 1942"},
+        "duncan": {"pdf_pages": [295], "form10_date": "Apr 1942"},
+        "laffey": {"pdf_pages": [297], "form10_date": "Mar 1942"},
+        "buchanan": {"pdf_pages": [293], "form10_date": "Mar 1942", "postbattle_form_pdf_pages": [292], "postbattle_form10_date": "Nov-Dec 42"},
+        "mccalla": {"pdf_pages": [299], "form10_date": "May 1942"},
+        "common_printed": {"displacement_std_tons": 1630, "size": "C/Small", "crew": 208, "armor": 0, "rudder_advance_yd": [300, 200], "speed_loss": [1, 2], "accel_decel": [12, 6, 15], "radar_rows": ["1 SC (CXBD)", "1 Mk4 (FD)"], "sonar": "1 Early QC Series"}
+      },
+      "torpedo_reserve_note": "the Bristol profile's reserve_per_mount [0,0] mirrors the Fletcher decision recorded in tassafaronga-1942.json and is not independently resolved here"
+    },
+    "aoba_1938": {
+      "class": "Aoba (1938 refit configuration)", "side": "axis", "kind": "CA",
+      "source": {"document": "emperors_fleet", "pdf_pages": [17, 18], "printed_pages": ["A-14", "A-15"], "note": "A-14 carries the entry and Aoba-class Damage & Speed Breakdown; the Furutaka (1937) breakdown heads A-15. Configuration as of 1938 refit applies to Aoba and Kinugasa."},
+      "class_in_service_year": 1938,
+      "annex_in_service_text": "In Svc: 1938 (1927)",
+      "crew": 625,
+      "std_displacement_tons": 9000,
+      "size": "B",
+      "signature": "Medium/Noisy",
+      "armor_rating": "6/4",
+      "gunnery_standard": 4,
+      "turn_class": "B",
+      "turn_class_source": "rising_sun_form10 46: Standard Rudder 300 yds (2), Hard Rudder 200 yds (3)",
+      "accel_decel_knots_per_turn": [10, 5, 12],
+      "damage_speed_rows_dp_knots": [[0, 33], [79, 25], [157, 16], [236, 8], [283, 0], [314, "Sunk"]],
+      "damage_speed_rows_note": "A-14 also prints a 'Slow (Aoba)' row 28/21/14/7/0 tied to the Aug-Nov 43 damaged-engine repair ('Damaged engines reduced speed to 28 kts'); it does not apply on 1942-10-11 but is retained as printed.",
+      "main_gun": "jp_20cm50_3rd_yr_type_no2",
+      "main_battery_printed": "2F/A(2)3 3rd Yr Type No. 2 20cm/50",
+      "gun_mounts": [["F", 2], ["F", 2], ["A", 2]],
+      "gun_mounts_note": "the Dec 1941 Form 10 expands the fit as Fwd (2)/Fwd (2)/Aft (2) with one Fwd and one Aft Main Battery Director",
+      "secondary_gun": {"text": "P/S(1)4 10th Yr Type 12cm/45", "annex_row_registered": false, "note": "C-1 10th Yr Type 12cm/45 row seen (PDF 97) but not registered; secondary battery is outside the verified combat scope of this pass"},
+      "torpedo_mounts": {"model": "jp_type93_m1_mod1_2", "arc": "P", "arc_starboard": "S", "loaded_tubes_per_mount": [4, 4], "reserve_per_mount": [4, 4], "reload_seconds": 900, "printed_text": "P/S(4)2 610mm TT w/4 Type 93 torp (4 reserve torp/mount for reload in 15 minutes)", "form10_expansion": "Port (4) 610mm TT w/4 Type 93 torp [Reload 4]; Stbd (4) 610mm TT w/4 Type 93 torp [Reload 4]"},
+      "catapult": {"text": "1 Aft Catapult, 2 E7K2 AlF", "form10_text": "Midship catapult, 2 E7K1 Alf (Dec 1941)"},
+      "light_aa_printed": "Aoba AA: (2)4 Type 95 25mm, (1)2, (2)2 Type 93 13.2mm (1.3); Dec 1941 Form 10: 8 25mm, 6 13.2mm (1.3)",
+      "special_damage_modifier_pct": -15,
+      "special_damage_modifier_source": "A-14 remark: 'Laid down before 1925, special damage modifier of -15%. Refitted 1937 - 38, Configuration as of 1938 refit.'",
+      "form10_differences": [
+        "Form 10 crew 657-680 vs annex 625",
+        "Form 10 signature Medium/Loud vs annex Medium/Noisy",
+        "Form 10 In Service 1927 vs annex 'In Svc: 1938 (1927)'",
+        "Form 10 catapult 'Midship' with 2 E7K1 vs annex '1 Aft Catapult, 2 E7K2 AlF'"
+      ]
+    },
+    "furutaka_1937": {
+      "class": "Furutaka (1937 refit configuration)", "side": "axis", "kind": "CA",
+      "source": {"document": "emperors_fleet", "pdf_pages": [17, 18], "printed_pages": ["A-14", "A-15"], "note": "entry on A-14; its Damage & Speed Breakdown (0/77/154/230/276/307, 33/25/16/8/0) heads A-15 as the continuation of the A-14 right column."},
+      "class_in_service_year": 1937,
+      "annex_in_service_text": "In Svc: 1937 (1926)",
+      "crew": 639,
+      "std_displacement_tons": 8700,
+      "size": "B",
+      "signature": "Medium/Noisy",
+      "armor_rating": "6/4",
+      "gunnery_standard": 4,
+      "turn_class": "B",
+      "turn_class_source": "rising_sun_form10 53: Standard Rudder 300 yds (2), Hard Rudder 200 yds (3)",
+      "accel_decel_knots_per_turn": [10, 5, 12],
+      "damage_speed_rows_dp_knots": [[0, 33], [77, 25], [154, 16], [230, 8], [276, 0], [307, "Sunk"]],
+      "main_gun": "jp_20cm50_3rd_yr_type_no2",
+      "main_battery_printed": "2F/A(2)3 3rd Yr Type No. 2 20cm/50",
+      "gun_mounts": [["F", 2], ["F", 2], ["A", 2]],
+      "secondary_gun": {"text": "P/S(1)4 10th Yr Type 12cm/45", "annex_row_registered": false},
+      "torpedo_mounts": {"model": "jp_type93_m1_mod1_2", "arc": "P", "arc_starboard": "S", "loaded_tubes_per_mount": [4, 4], "reserve_per_mount": [4, 4], "reload_seconds": 360, "printed_text": "P/S(4)2 610mm TT w/8 Type 93 torp (4 reserve torp/mount for quick reload in 6 minutes)", "form10_expansion": "Port (4) 610mm TT w/4 Type 93 torp; Stbd (4) 610mm TT w/4 Type 93 torp (no reload boxes on the Dec 1941 form; see conflicts furutaka-torpedo-reserve)"},
+      "catapult": {"text": "(Aft) Midships Catapult, 1 E7K", "form10_text": "Midship catapult, 2 E7K1 Alf (Dec 1941)"},
+      "light_aa_printed": "Furutaka AA (annex): (2)4 Type 96 25mm, (2)2 Type 93 13.2mm (1.2); Dec 1941 Form 10: 4 13.2mm only (0.2)",
+      "special_damage_modifier_pct": -15,
+      "special_damage_modifier_source": "A-14 remark: 'Furutaka (1937), Kako (1936-37). Refitted. Laid down before 1925, special damage modifier of -15%.'",
+      "form10_differences": [
+        "Form 10 signature Medium/Loud vs annex Medium/Noisy",
+        "Form 10 shows no 25mm Light AA (4 x 13.2mm only) vs annex (2)4 Type 96 25mm + (2)2 13.2mm",
+        "Form 10 shows no torpedo reload boxes vs annex '4 reserve torp/mount for quick reload in 6 minutes'",
+        "Form 10 catapult lists 2 E7K1 boxes vs annex 1 E7K"
+      ]
+    },
+    "fubuki_1936_refit": {
+      "profile_ref": "cape-st-george-1943.json#profiles.fubuki_1936_refit",
+      "applies_to": ["fubuki", "hatsuyuki"],
+      "form10_corroboration": {
+        "fubuki": {"pdf_pages": [156], "form10_date": "Apr-May 42", "damage_speed_rows_dp_knots": [[0, 34], [35, 26], [70, 17], [104, 8], [125, 0], [139, "Sunk"]], "radar_rows": ["None."]},
+        "hatsuyuki": {"pdf_pages": [159], "form10_date": "Dec 1941", "damage_speed_rows_dp_knots": [[0, 34], [35, 26], [70, 17], [104, 8], [125, 0], [139, "Sunk"]], "radar_rows": ["None."]}
+      },
+      "dp_conflict_cross_ref": "both dated forms print 139 DP while the Annex A-27 1936-refit row is 106 DP; see cape-st-george-1943.json#conflicts fubuki-damage, retained with the annex row controlling",
+      "gun_rows_note": "the forms' 12.7cm/50 HE short-range damage prints 18 vs the C-1 row's 17; the cape-st-george-1943.json convention (Annex C-1 rows control, do not splice shells) is reused",
+      "torpedo_reserve_cross_ref": "cape-st-george-1943.json#conflicts fubuki-torpedo-reserve (unresolved)"
+    }
+  },
+  "weapon_models": {
+    "jp_20cm50_3rd_yr_type_no2": {
+      "source": {"document": "emperors_fleet", "pdf_pages": [98], "printed_pages": ["C-2"]},
+      "mount_text": "3rd Yr Type No. 2 20cm/50 (Japan)",
+      "range_yd": [[0, 7000], [7100, 16000], [16100, 25600], [25700, 32000]],
+      "shells": {
+        "APC": {"belt": [34, 23, 16, 12], "deck": [null, null, 5, 10], "damage_dp": [26, 20, 17, 15]},
+        "HE": {"belt": [3, 2, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [28, 23, 21, 18]}
+      },
+      "verification_note": "row values re-read against the C-2 table and matched identically on the Aoba/Kinugasa Dec 1941 Form 10s (pages 46/47). No COM row is printed for the No. 2 gun; the No. 1 gun row does print COM but is a different mount."
+    },
+    "jp_3rd_yr_127mm50": {
+      "source": {"document": "emperors_fleet", "pdf_pages": [97], "printed_pages": ["C-1"]},
+      "cross_ref": "cape-st-george-1943.json#weapon_models.jp_3rd_yr_127mm50 (row re-read identical against C-1 in this pass)",
+      "carried_by": ["fubuki", "hatsuyuki"]
+    },
+    "jp_type93_m1_mod1_2": {
+      "source": {"document": "emperors_fleet", "pdf_pages": [105], "printed_pages": ["F-1"]},
+      "cross_ref": "cape-st-george-1943.json#weapon_models.jp_type93_m1_mod1_2",
+      "form10_print": "Type 93 Model 1 Mod 1/2 Long Lance, 95 DP: 22.0 kyds/49 kts, 35.0 kyds/41 kts, 43.8 kyds/37 kts (Fubuki/Hatsuyuki and cruiser forms)",
+      "carried_by": ["aoba", "furutaka", "kinugasa", "fubuki", "hatsuyuki"]
+    },
+    "us_8in55_mk9_10_11_13_14": {
+      "cross_ref": "tassafaronga-1942.json#weapon_models.us_8in55_mk9_10_11_13_14",
+      "carried_by": ["salt_lake_city"],
+      "note": "also the row implied by San Francisco's Form 10 gun mark (see conflicts san-francisco-gun-mark)"
+    },
+    "us_8in55_mk12_15": {
+      "cross_ref": "tassafaronga-1942.json#weapon_models.us_8in55_mk12_15",
+      "carried_by": ["san_francisco"],
+      "note": "class-fit reading for the later New Orleans units per A-13; contested by the dated Form 10, see conflicts san-francisco-gun-mark"
+    },
+    "us_6in47_mk16": {
+      "cross_ref": "tassafaronga-1942.json#weapon_models.us_6in47_mk16",
+      "carried_by": ["boise", "helena"],
+      "form10_difference": "the Boise (265) and Helena (263) forms print higher short-range APC values (pen 20, dam 22 at 0-6.2 kyds) than the registered Annex C-2 Mk16 row (pen 15, dam 18 at 0-6200 yds); the annex row controls per the established convention (see conflicts us-form10-gun-values)"
+    },
+    "us_mk30_5in38": {
+      "cross_ref": "cape-st-george-1943.json#weapon_models.us_mk30_5in38",
+      "carried_by": ["farenholt", "duncan", "laffey", "buchanan", "mccalla"]
+    },
+    "us_mk15_tnt": {
+      "cross_ref": "tassafaronga-1942.json#weapon_models.us_mk15_tnt",
+      "carried_by": ["farenholt", "duncan", "laffey", "buchanan", "mccalla"],
+      "note": "Bristol-class forms print 'Port & Stbd (5) Mk15 533mm TT w/5 Mk15 torp'; reserve treatment follows the registered profile"
+    }
+  },
+  "objective_reading_for_rts_fixture": {
+    "japan": {
+      "decisive": {"damage_ratio_min": 3.0, "metric": "damage points inflicted on Allied naval forces divided by damage points received", "metric_reading": "registered as a reading; the page prints 'damage ratio' without a formula (see pending items)"},
+      "tactical": {"damage_ratio_min": 1.0},
+      "bombardment_task": "shell Henderson Field for 90 minutes (30 Tactical Turns); the page does not tie the victory ratios to completing the bombardment"
+    },
+    "us": {
+      "decisive": {"damage_ratio_min": 3.0, "metric": "damage point ratio on the Japanese"},
+      "tactical": {"damage_ratio_min": 1.5}
+    },
+    "testability": "both sides' ratios are separately testable; zero-damage denominators and simultaneous achievement need the same engine conventions registered for kula (see pending items)",
+    "start_option_adoption": "the runtime must expose all three printed start options (23:24 / 23:39 / 23:45) or register an explicit adaptation choice; none is selected here"
+  },
+  "conflicts": [
+    {
+      "id": "san-francisco-gun-mark",
+      "status": "unresolved",
+      "detail": "A-13 class fit '2F/A(3)3 Mk12, 15 8in/55' plus the remark 'First three units had Mk9 or Mk14 8in/55 guns' (New Orleans, Astoria, Minneapolis) implies Mk12/15 for San Francisco (Annex C-2 row). San Francisco's own Mar 42 Form 10 (page 245) prints 'Fwd (3)/Fwd (3)/Aft (3) Mk9/14 8 in/55', and its APC row (33/25, 22/19, 15/5/16) tracks the C-3 Mk9/14 ranges and pens with +1/+1/+1 damage over the C-3 values. Both readings are registered; the row selection stays with the runtime consumer and shells must not be spliced."
+    },
+    {
+      "id": "helena-radio-range-unit",
+      "status": "recorded_as_printed",
+      "detail": "The 2339 option prints 'six miles away, bearing 285'. The page does not state nautical vs statute miles; the 23:24 deployment and the chart-less setup otherwise use nautical miles (13.5 nmi). The registered record data/campaign/cape-esperance.json reads it as 6 nmi. Kept as printed with the unit ambiguity noted."
+    },
+    {
+      "id": "furutaka-torpedo-reserve",
+      "status": "unresolved",
+      "detail": "Annex A-14 Furutaka (1937) prints '(4 reserve torp/mount for quick reload in 6 minutes)'; the Dec 1941 Form 10 (page 53) shows the two quad mounts with 4 torpedoes each and no reload boxes. Whether Furutaka carried reloads on 1942-10-11 is not resolved by these sources; the annex value is registered in the profile with the form difference retained."
+    },
+    {
+      "id": "furutaka-light-aa-25mm",
+      "status": "unresolved",
+      "detail": "Annex A-14 Furutaka (1937) Light AA prints '(2)4 Type 96 25mm, (2)2 Type 93 13.2mm (1.2)'; the Dec 1941 Form 10 prints '4 13.2mm' only (0.2). The 25mm fit date is not printed in either source beyond the 1937 block placement; both prints are retained."
+    },
+    {
+      "id": "aoba-floatplane-type-and-count",
+      "status": "unresolved",
+      "detail": "A-14 remark 'Oct 42: E7K2 Alf floatplanes replaced by E13A1 Jake' is dated by month only, against the 11 Oct 42 battle; the Dec 1941 Form 10 lists 2 E7K1. Aircraft type and the exact half-capacity rounding for Furutaka (annex rated 1; form 2 boxes) are not resolved; the scenario state stays 'half of rated capacity' as printed."
+    },
+    {
+      "id": "ijn-cruiser-signature-and-crew",
+      "status": "recorded_as_printed",
+      "detail": "Aoba/Kinugasa Dec 1941 Form 10s print crew 657-680 and signature Medium/Loud; the annex prints crew 625 and Medium/Noisy. Furutaka's form prints Medium/Loud against the annex Medium/Noisy. The annex values are registered in the profiles; the form differences are retained and not adjudicated."
+    },
+    {
+      "id": "fubuki-dp-139-vs-106",
+      "status": "recorded_as_printed",
+      "detail": "Fubuki (Apr-May 42) and Hatsuyuki (Dec 1941) Form 10s print 139 DP with speed rows 0/35/70/104/125/139; the Annex A-27 1936-refit row is 106 DP with 0/27/53/80/95/106. Cross-references the fubuki-damage conflict in cape-st-george-1943.json; the annex row remains the registered profile."
+    },
+    {
+      "id": "us-form10-gun-values",
+      "status": "recorded_as_printed",
+      "detail": "The Boise (265) and Helena (263) forms print 6in/47 APC short-range values (pen 20, dam 22) higher than the registered Annex C-2 Mk16 row (pen 15, dam 18), and the Bristol/Cruiser US forms similarly run +1/+2 over the annex damage at short range. Per the fletcher-gun-table convention in cape-st-george-1943.json, the matched Annex C rows control and form values are retained as corroboration, not spliced."
+    },
+    {
+      "id": "old-record-additions",
+      "status": "resolved_by_verification",
+      "detail": "The registered record data/campaign/cape-esperance.json omits the 2330 scheduled US course reversal, the SOC-3 availability narrative (4 available, 2 launched by San Francisco and Boise, 1 aborted, 1 lost in a launch mishap, 1 jettisoned), the squall-immersion note at contact, and the Japanese-vs-US 'damage ratio'/'damage point ratio' wording difference. All are added here as printed. The registered start/deployment/environment/victory data itself re-verified without discrepancy."
+    }
+  ],
+  "pending_items": [
+    "resolve the San Francisco main battery row for 1942-10-11 (A-13 class fit Mk12/15 vs the ship's Mar 42 Form 10 Mk9/14)",
+    "resolve Furutaka's torpedo reloads and 25mm Light AA on 1942-10-11 (annex 1937 block vs Dec 1941 Form 10)",
+    "resolve the Aoba-class floatplane type on 1942-10-11 (E7K2 vs the month-only Oct 42 E13A1 remark) and the half-capacity rounding for Furutaka",
+    "map the printed 'Heavy rain squalls 5 to 50 nmi northwest of Savo Island' onto the 5.4.3 squall-circle convention (circle count and placement are not printed; 4D6 heavy-squall reading is a candidate, not a decision)",
+    "register searchlight/starshell fits per ship from Annex I2 and the ship annexes before any illumination consumer runs; none is verified in this pass",
+    "define the damage-ratio metric, zero-damage denominator and simultaneous two-sided achievement for the victory conditions (same engine conventions as kula)",
+    "decide which start option(s) the runtime exposes and register the 23:30 course-reversal handling for the 23:24 start as either a scripted event or an adaptation",
+    "no column station distances are printed for either formation (US spacing; Fubuki/Hatsuyuki beam ranges); the runtime needs registered distances or an explicit adaptation note",
+    "Desron 12 radar timing rests on the Mar-May 42 forms and the Nov-Dec 42 Buchanan form; no independent source fixes each hull's fit on 11 Oct 42 beyond these bracketing forms",
+    "the 90-minute bombardment equals 30 Tactical Turns on the page; the wall-clock seconds per Tactical Turn stays an engine adaptation outside this record"
+  ],
+  "named_ship_count": 14,
+  "counts": {"allies": 9, "axis": 5, "note": "the page prints 9 US ships (4 cruisers + 5 Desron 12 destroyers) and 5 Japanese ships (3 cruisers + 2 destroyers), plus 1 airborne SOC-3; the old IBS scenario's eight additional Japanese reinforcement destroyers are not part of the CAS page (see source-crosswalk.md)"}
+}
