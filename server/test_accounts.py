@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import closing, ExitStack
 import hashlib
+import json
 from pathlib import Path
 import sqlite3
 from tempfile import TemporaryDirectory
@@ -11,6 +12,7 @@ from fastapi import HTTPException
 from fastapi.testclient import TestClient
 
 from server.accounts import APPLICATION_ID, PROLOGUE_SHIPS, beijing_week, create_app
+from server.contracts import encode
 
 
 class FreeEconomyTest(unittest.TestCase):
@@ -163,6 +165,62 @@ class FreeEconomyTest(unittest.TestCase):
         self.assertEqual((weekly["meta"]["wallet"]["credits"], weekly["meta"]["wallet"]["standard_tickets"]), (300, 5))
         self.assertEqual(self.post("/shop/purchase", "weekly-ticket-repeat", kind="weekly_ticket").status_code, 400)
         self.assertEqual(self.meta()["wallet"]["paid_crystals"], 0)
+
+    def test_ship_bundle_purchase_credits_medals_and_replay(self):
+        bundle_id = "allied-cruiser-detachment"
+        bundle_ships = ["IBS-U-USN-HONOLULU", "IBS-U-USN-MINNEAPOLIS", "IBS-U-USN-SAN-FRANCISCO"]
+        self.assertEqual(self.post("/shop/purchase", "bundle-unknown-item", kind="ship_bundle",
+                                   item_id="missing-bundle").status_code, 404)
+        self.assertEqual(self.post("/shop/purchase", "bundle-medal-currency", kind="ship_bundle",
+                                   item_id=bundle_id, currency="medals").status_code, 400)
+        self.assertEqual(self.post("/shop/purchase", "bundle-with-pool", kind="ship_bundle",
+                                   item_id=bundle_id, pool_id="standard-v2").status_code, 400)
+        broke = self.post("/shop/purchase", "bundle-without-credits", kind="ship_bundle", item_id=bundle_id)
+        self.assertEqual(broke.status_code, 400)
+        self.assertIn("补给币不足，还差1800", broke.json()["detail"])
+        # The three tutorial gifts fund 2400 credits and grant Honolulu, so the
+        # cruiser detachment arrives with one duplicate converted into medals.
+        for index, course in enumerate(("bridge", "night", "torpedo")):
+            gift = self.assert_success(self.post("/starter-gifts/claim", f"bundle-gift-{index}", course=course))
+        self.assertEqual(gift["meta"]["wallet"]["credits"], 2400)
+        bought = self.assert_success(self.post("/shop/purchase", "bundle-first-buy", kind="ship_bundle",
+                                               item_id=bundle_id))
+        self.assertTrue(bought["purchased"])
+        self.assertEqual([receipt["ship_id"] for receipt in bought["receipts"]], bundle_ships)
+        self.assertEqual([receipt["duplicate"] for receipt in bought["receipts"]], [True, False, False])
+        self.assertEqual([receipt["id"] for receipt in bought["receipts"]],
+                         ["shop:ship-bundle:" + bundle_id + ":" + str(n) for n in (1, 2, 3)])
+        wallet = bought["meta"]["wallet"]
+        self.assertEqual((wallet["credits"], wallet["medals"]), (600, 5))  # Honolulu is elite: 5 medals.
+        self.assertIn("shop:ship-bundle:" + bundle_id, bought["meta"]["claims"])
+        self.assertEqual([ship for ship in bought["meta"]["owned_ships"] if ship in bundle_ships], bundle_ships)
+        ledger = self.client.get("/me/ledger", headers=self.headers).json()
+        grant = next(entry for entry in ledger if entry["request_id"] == "bundle-first-buy")
+        self.assertEqual(sorted(grant["change"]["added_ships"]), sorted(bundle_ships[1:]))
+        replay = self.assert_success(self.post("/shop/purchase", "bundle-first-buy", kind="ship_bundle",
+                                               item_id=bundle_id))
+        self.assertEqual(replay, bought)  # Same request id returns the first receipt unchanged.
+        sold_out = self.post("/shop/purchase", "bundle-second-buy", kind="ship_bundle", item_id=bundle_id)
+        self.assertEqual(sold_out.status_code, 409)
+        self.assertIn("已购买", sold_out.json()["detail"])
+        # A request id already used for another operation must not bypass the claim.
+        self.assertEqual(self.post("/shop/purchase", "bundle-first-buy", kind="ship_bundle",
+                                   item_id="axis-destroyer-screen").status_code, 409)
+
+    def test_ship_bundle_refuses_a_fully_owned_lineup(self):
+        bundle_id = "axis-destroyer-screen"
+        ships = ["IBS-U-IJN-TAKANAMI", "IBS-U-IJN-OYASHIO", "IBS-U-IJN-MAKINAMI"]
+        with closing(self.service.connect()) as conn:
+            state = json.loads(conn.execute("SELECT state FROM assets WHERE account_id=?",
+                                            (self.account["account_id"],)).fetchone()["state"])
+            state["owned_ships"] = ships
+            conn.execute("UPDATE assets SET state=? WHERE account_id=?",
+                         (encode(state), self.account["account_id"]))
+        # The all-owned guard fires before any wallet check, even with no credits.
+        refused = self.post("/shop/purchase", "bundle-all-owned", kind="ship_bundle", item_id=bundle_id)
+        self.assertEqual(refused.status_code, 409)
+        self.assertIn("均已拥有", refused.json()["detail"])
+        self.assertEqual(self.meta()["owned_ships"], ships)
 
     def test_trusted_weekly_clear_hook_and_client_rejection(self):
         endpoint = "/missions/weekly-pve/claim"

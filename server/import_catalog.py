@@ -57,7 +57,8 @@ def project(repo):
             "files": {INPUTS[0]: base_sha, INPUTS[1]: campaign_sha},
         },
         "ships": ships, "recruit_pools": pools,
-        "ship_bundles": [{k: b[k] for k in ("id", "name", "credits", "ship_ids")} for b in base["ship_bundles"]],
+        "ship_bundles": [{k: b[k] for k in ("id", "name", "description", "credits", "ship_ids") if k in b}
+                         for b in base["ship_bundles"]],
         "ai_profiles": [{k: a[k] for k in ("id", "name", "description", "unlock", "cost") if k in a}
                         for a in base["ai_profiles"]],
         "stages": [], "combat_catalog_available": False,
