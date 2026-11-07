@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "content_version": "cas-tassafaronga-1942-hulls-v1",
+  "id": "tassafaronga_1942_11_30",
+  "scenario_id": "cas-rs-tassafaronga",
+  "as_of": "1942-11-30",
+  "status": "source_only_not_runtime_ready",
+  "policy": "Scenario exceptions, then Fifth Edition rules, then annex class and dated refit entries. Legacy dated Form 10 is corroboration, with differences retained explicitly. Nulls and unresolved alternatives are not executable; printed conflicts are retained verbatim and marked.",
+  "scenario_source": {
+    "document": "rising_sun_5e",
+    "pdf_pages": [75, 76],
+    "printed_pages": [74, 75],
+    "note": "PDF 75 (printed 74) = scenario text; PDF 76 (printed 75) = deployment chart. Adjacent pages checked: PDF 74 ends First Guadalcanal, PDF 77 starts Komandorski Islands."
+  },
+  "mount_sector_source": {"document": "cas_5e_main", "pdf_pages": [13, 14], "printed_pages": ["2-1", "2-2"]},
+  "maneuver_source": {"document": "cas_5e_main", "pdf_pages": [23], "printed_pages": ["3-2"]},
+  "maneuver_classes": {
+    "A": {"normal_advance_yd": 400, "normal_loss_knots": 2, "hard_advance_yd": 300, "hard_loss_knots": 3},
+    "B": {"normal_advance_yd": 300, "normal_loss_knots": 2, "hard_advance_yd": 200, "hard_loss_knots": 3},
+    "C": {"normal_advance_yd": 300, "normal_loss_knots": 1, "hard_advance_yd": 200, "hard_loss_knots": 2},
+    "D": {"normal_advance_yd": 200, "normal_loss_knots": 1, "hard_advance_yd": 100, "hard_loss_knots": 2}
+  },
+  "accel_decel_rates": {
+    "source": {"document": "cas_5e_main", "pdf_pages": [23], "printed_pages": ["3-2"]},
+    "B": {"accel_0_75_knots": 10, "accel_76_100_knots": 5, "decel_knots": 12},
+    "C": {"accel_0_75_knots": 12, "accel_76_100_knots": 6, "decel_knots": 15},
+    "D": {"accel_0_75_knots": 12, "accel_76_100_knots": 6, "decel_knots": 15}
+  },
+  "start": {
+    "local_date": "1942-11-30",
+    "local_time": "23:08",
+    "ambient_light_pct": null,
+    "light_text": "Night, 100% overcast, visibility is 10%.",
+    "wind_from_deg_true": 90,
+    "wind_knots": [3, 6],
+    "sea_state": 0,
+    "tactical_situation": {
+      "japanese_unaware_of_approach": true,
+      "japanese_off_coast_nmi": 2,
+      "japanese_slowing_to_knots": 12,
+      "us_floatplanes": "stuck at Tulagi Harbor, unable to take off because of the calm conditions",
+      "minneapolis_sg_contact": {"time": "23:06", "description": "a small wart on Cape Esperance", "printed_typo": "wart", "bearing_deg_true": 284, "range_nmi": 13}
+    },
+    "us_formation": {
+      "commander": "RADM Carleton H. Wright, Task Force 67.2",
+      "course_deg_true": 320,
+      "speed_knots": 20,
+      "van_destroyers": {"ships": ["fletcher", "perkins", "maury", "drayton"], "spacing_yd": 500, "lead_from_minneapolis": {"bearing_deg_from_bow": 30, "side": "port", "range_yd": 4000}},
+      "cruiser_column": {"ships": ["minneapolis", "new_orleans", "pensacola", "honolulu", "northampton"], "spacing_yd": 1000},
+      "trailing_destroyers": {"ships": ["lamson", "lardner"], "from_northampton": {"position": "port quarter", "range_yd": 2000}},
+      "column_order_source": "chart label listing (PDF 76 / printed 75); per-ship seat marks are not printed individually"
+    },
+    "japan_formation": {
+      "commander": "RADM Raizo Tanaka, Reinforcement Unit",
+      "course_deg_true": 140,
+      "speed_knots": 12,
+      "column_label_order_on_chart": ["suzukaze", "kawakaze", "kagero", "kuroshio", "oyashio", "makinami", "naganami"],
+      "van_direction_interpretation": "Naganami end treated as the van: Takanami (picket) is off Naganami's port bow toward the drop points; per-ship seats along the column are not printed (see conflicts ijn-column-seat-order)",
+      "takanami_from_naganami": {"bearing_deg_from_bow": 30, "side": "port", "range_yd": 4000},
+      "naganami_from_minneapolis": {"bearing_deg_true": 283, "range_nmi": 11.9}
+    },
+    "chart": {
+      "document": "rising_sun_5e",
+      "pdf_pages": [76],
+      "printed_pages": [75],
+      "resupply_point_dots": 3,
+      "resupply_points_coast": "Guadalcanal northwest coast between Cape Esperance and Tassafaronga Point",
+      "scale_text": "0-5 NM scale bar",
+      "positions_digitalized": false
+    }
+  },
+  "named_ships": [
+    {"id": "minneapolis", "name": "Minneapolis", "side": "allies", "kind": "CA", "unit": "TG 67.2.2 (flag, RADM Wright's flagship per TF 67.2)", "profile": "new_orleans_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [241], "printed_pages": [241]}, "form10_date": "Jul-42", "position": "cruiser column, 1st", "torpedo_reload_state": "none_cruiser"},
+    {"id": "new_orleans", "name": "New Orleans", "side": "allies", "kind": "CA", "unit": "TG 67.2.2", "profile": "new_orleans_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [243], "printed_pages": [243]}, "form10_date": "Jan-42", "position": "cruiser column, 2nd", "radar_confirmed": ["SC", "2 Mk3", "2 Mk4"], "radar_confirmed_source": "american_fleets A-13 ship remark Jan-42"},
+    {"id": "pensacola", "name": "Pensacola", "side": "allies", "kind": "CA", "unit": "TG 67.2.2", "profile": "pensacola_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [252], "printed_pages": [252]}, "form10_date": "1942", "position": "cruiser column, 3rd", "radar_confirmed": ["CXAM (1940)", "Mk3 (1942)", "Mk4 (1942)"], "radar_confirmed_source": "american_fleets A-14 ship remarks"},
+    {"id": "northampton", "name": "Northampton", "side": "allies", "kind": "CA", "unit": "TG 67.2.3", "profile": "northampton_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [250], "printed_pages": [250]}, "form10_date": "Jul-42", "position": "cruiser column, 5th (last; trailing DDs off her port quarter)", "radar_confirmed": ["SC (1942 class remark)", "SG (1942 class remark)", "Mk3 (1942 class remark)", "Mk4 (1942 class remark)"], "radar_confirmed_source": "american_fleets A-14 class remark, exact 1942 month not printed"},
+    {"id": "honolulu", "name": "Honolulu", "side": "allies", "kind": "CL", "unit": "TG 67.2.3", "profile": "brooklyn_first_group_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [267], "printed_pages": [267]}, "form10_date": "Sep-Oct 42", "position": "cruiser column, 4th", "radar_confirmed": ["SC (Feb 42)", "Mk3 (Feb 42)"], "radar_candidates": ["SG (Late '42 class remark)"]},
+    {"id": "fletcher", "name": "Fletcher", "side": "allies", "kind": "DD", "unit": "TG 67.2.4", "profile": "fletcher_1942_tassafaronga", "profile_ref": "cape-st-george-1943.json#fletcher_1943", "form10": {"document": "rising_sun_form10", "pdf_pages": [277], "printed_pages": [277]}, "form10_date": "Oct-42", "position": "van destroyer column, 1st (lead)", "radar_confirmed": ["SC-2", "SG", "Mk4"], "radar_confirmed_source": "american_fleets A-17 class sensors + rising_sun_form10 277"},
+    {"id": "perkins", "name": "Perkins", "side": "allies", "kind": "DD", "unit": "TG 67.2.4", "profile": "mahan_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [332], "printed_pages": [332]}, "form10_date": "Jan-Feb 42", "position": "van destroyer column, 2nd (chart label listing)", "radar_confirmed": ["search radar (1942 class remark, type not printed)"]},
+    {"id": "maury", "name": "Maury", "side": "allies", "kind": "DD", "unit": "TG 67.2.4", "profile": "gridley_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [320], "printed_pages": [320]}, "form10_date": "Dec-41", "position": "van destroyer column, 3rd (chart label listing)", "radar_confirmed": []},
+    {"id": "drayton", "name": "Drayton", "side": "allies", "kind": "DD", "unit": "TG 67.2.4", "profile": "mahan_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [330], "printed_pages": [330]}, "form10_date": "Mar-May 42", "position": "van destroyer column, 4th (chart label listing)", "radar_confirmed": ["search radar (1942 class remark, type not printed)"]},
+    {"id": "lamson", "name": "Lamson", "side": "allies", "kind": "DD", "unit": "TG 67.2.4", "profile": "mahan_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [331], "printed_pages": [331]}, "form10_date": "Dec-41", "position": "trailing destroyer, 1st", "radar_confirmed": ["search radar (1942 class remark, type not printed)"]},
+    {"id": "lardner", "name": "Lardner", "side": "allies", "kind": "DD", "unit": "TG 67.2.4", "profile": "bristol_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [298], "printed_pages": [298]}, "form10_date": "Mar-42", "position": "trailing destroyer, 2nd", "radar_confirmed": ["SC (Nov 42 class remark, printed as 'Assume')", "Mk4 (Nov 42 class remark, printed as 'Assume')"]},
+    {"id": "naganami", "name": "Naganami", "side": "axis", "kind": "DD", "unit": "Desron 2 flagship (RADM Raizo Tanaka), Screening Unit", "profile": "yugumo_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [92], "printed_pages": [92]}, "form10_date": "Jun-42", "position": "Japanese column van end (interpreted, see conflicts)", "scenario_torpedo_reserve": "full (8: 4 per mount)", "scenario_carries_drum_strings": false},
+    {"id": "makinami", "name": "Makinami", "side": "axis", "kind": "DD", "unit": "Desron 2, Screening Unit", "profile": "yugumo_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [90], "printed_pages": [90]}, "form10_date": "Aug-42", "position": "Japanese column, 2nd from van (chart label listing)", "scenario_torpedo_reserve": "none (carries supply drums)", "scenario_carries_drum_strings": true},
+    {"id": "takanami", "name": "Takanami", "side": "axis", "kind": "DD", "unit": "Desron 2, Screening Unit (picket)", "profile": "yugumo_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [94], "printed_pages": [94]}, "form10_date": "Aug-42", "position": "detached 4000 yd off Naganami's port bow (30 deg), keeping watch for US warships", "scenario_torpedo_reserve": "full (8: 4 per mount)", "scenario_carries_drum_strings": false},
+    {"id": "oyashio", "name": "Oyashio", "side": "axis", "kind": "DD", "unit": "Desron 2, Transport Unit 1", "profile": "kagero_1942_base", "form10": {"document": "rising_sun_form10", "pdf_pages": [109], "printed_pages": [109]}, "form10_date": "Dec-41", "position": "Japanese column, 3rd from van (chart label listing)", "scenario_torpedo_reserve": "none (carries supply drums)", "scenario_carries_drum_strings": true},
+    {"id": "kuroshio", "name": "Kuroshio", "side": "axis", "kind": "DD", "unit": "Desron 2, Transport Unit 1", "profile": "kagero_1942_base", "form10": {"document": "rising_sun_form10", "pdf_pages": [106], "printed_pages": [106]}, "form10_date": "Dec-41", "position": "Japanese column, 4th from van (chart label listing)", "scenario_torpedo_reserve": "none (carries supply drums)", "scenario_carries_drum_strings": true},
+    {"id": "kagero", "name": "Kagero", "side": "axis", "kind": "DD", "unit": "Desron 2, Transport Unit 1", "profile": "kagero_1942_asw_refit", "form10": {"document": "rising_sun_form10", "pdf_pages": [105], "printed_pages": [105]}, "form10_date": "Apr-May 42", "position": "Japanese column, 5th from van (chart label listing)", "scenario_torpedo_reserve": "none (carries supply drums)", "scenario_carries_drum_strings": true, "dc_variant_source": "american_fleets A-25 remark: ASW refit Kagero Apr-May 42 precedes the scenario; Oyashio Jan-Mar 43 and Kuroshio Feb-Apr 43 do not"},
+    {"id": "kawakaze", "name": "Kawakaze", "side": "axis", "kind": "DD", "unit": "Desron 2, Transport Unit 2", "profile": "shiratsuyu_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [128], "printed_pages": [128]}, "form10_date": "Dec-41", "position": "Japanese column, 6th from van (chart label listing)", "scenario_torpedo_reserve": "none (carries supply drums)", "scenario_carries_drum_strings": true},
+    {"id": "suzukaze", "name": "Suzukaze", "side": "axis", "kind": "DD", "unit": "Desron 2, Transport Unit 2", "profile": "shiratsuyu_1942", "form10": {"document": "rising_sun_form10", "pdf_pages": [138], "printed_pages": [138]}, "form10_date": "Dec-41", "position": "Japanese column, 7th from van (rear end of chart label listing)", "scenario_torpedo_reserve": "none (carries supply drums)", "scenario_carries_drum_strings": true}
+  ],
+  "hull_numbers": {
+    "registered": false,
+    "note": "Neither the scenario pages nor the verified class annexes print individual hull numbers for these named ships (annexes list DD/CA ranges only, e.g. Bristol DD 453-464, 483-497; Form 10 headers print ship name and class, not pennant number). Hull numbers stay unregistered rather than filled from memory."
+  },
+  "profiles": {
+    "new_orleans_1942": {
+      "class": "New Orleans", "side": "allies", "kind": "CA",
+      "source": {"document": "american_fleets", "pdf_pages": [16], "printed_pages": ["A-13"]},
+      "class_in_service_year": 1934, "crew": 1042, "std_displacement_tons": 10050,
+      "size": "B", "signature": "Medium/Noisy", "armor_rating": "14/6", "gunnery_standard": 4,
+      "turn_class": "B",
+      "accel_decel_knots_per_turn": [10, 5, 12],
+      "damage_speed_rows_dp_knots": [[0, 32], [99, 24], [199, 16], [298, 8], [357, 0], [397, null]],
+      "main_gun": "us_8in55_mk9_10_11_13_14",
+      "main_gun_selection_note": "A-13 class fit prints '2F/A(3)3 Mk12, 15 8in/55' (the C-2 Mk12/15 row) with the remark 'First three units had Mk9 or Mk14 8in/55 guns' (New Orleans, Astoria, Minneapolis). Both scenario ships are first-three units, so the Annex C-3 Mk9/10/11/13/14 row is selected; the C-2 Mk12/15 row is also registered for the last four units.",
+      "gun_mounts": [["F", 3], ["F", 3], ["F", 3], ["A", 3], ["A", 3], ["A", 3]],
+      "secondary_gun": {"text": "P/S(1)8 Mk17 5in/25", "model": null, "annex_row_registered": false, "note": "5in/25 Mk10-27 COM/HC rows exist on American Fleets C-2 but were not needed for the 8in verification scope; not registered here."},
+      "torpedo_mounts": null,
+      "radar_remarks": {
+        "new_orleans_ship": "Jan 42: ... SC, 2 Mk3, 2 Mk4 radar added",
+        "minneapolis_ship": "Nov 42: damaged at Battle of Tassafaronga; Nov 42 - Sep 43 repairs added 2 Mk3, 2 SG, SK (post-battle); scenario text itself confirms an SG contact at 23:06"
+      }
+    },
+    "northampton_1942": {
+      "class": "Northampton", "side": "allies", "kind": "CA",
+      "source": {"document": "american_fleets", "pdf_pages": [17], "printed_pages": ["A-14"]},
+      "class_in_service_year": 1929, "crew": 621, "std_displacement_tons": 9050,
+      "size": "B", "signature": "Medium/Noisy", "armor_rating": "7/3", "gunnery_standard": 3,
+      "turn_class": "B",
+      "accel_decel_knots_per_turn": [10, 5, 12],
+      "damage_speed_rows_dp_knots": [[0, 32], [93, 24], [185, 16], [278, 8], [333, 0], [370, null]],
+      "main_gun": "us_8in55_mk9_10_11_13_14",
+      "gun_mounts": [["F", 3], ["F", 3], ["F", 3], ["A", 3], ["A", 3], ["A", 3]],
+      "secondary_gun": {"text": "P/S(1)4 Mk11 5in/25", "model": null, "annex_row_registered": false},
+      "torpedo_mounts": null,
+      "torpedo_history": "P/S(3)2 533mm TT in class fit; 1936 remark: torpedo tubes removed",
+      "in_service_year_note": "A-14 prints 'In Svc: 1929'; retained as printed (see conflicts northampton-in-service-1929)"
+    },
+    "pensacola_1942": {
+      "class": "Pensacola", "side": "allies", "kind": "CA",
+      "source": {"document": "american_fleets", "pdf_pages": [17], "printed_pages": ["A-14"]},
+      "class_in_service_year": 1929, "crew": 653, "std_displacement_tons": 9100,
+      "size": "B", "signature": "Medium/Noisy", "armor_rating": "5/3", "gunnery_standard": 3,
+      "turn_class": "B",
+      "accel_decel_knots_per_turn": [10, 5, 12],
+      "damage_speed_rows_dp_knots": [[0, 32], [93, 24], [186, 16], [279, 8], [335, 0], [372, null]],
+      "main_gun": "us_8in55_mk9_10_11_13_14",
+      "gun_mounts": [["F", 2], ["A", 2], ["F", 3], ["A", 3]],
+      "secondary_gun": {"text": "P/S(1)4 Mk11 5in/25", "model": null, "annex_row_registered": false},
+      "torpedo_mounts": {"model": null, "text": "P/S(3)2 533mm TT w/3 Mk12 torpedoes", "note": "Mk12 torpedo row not registered; US torpedo consumer rows exist in the Cape package and Annex F"}
+    },
+    "brooklyn_first_group_1942": {
+      "class": "Brooklyn first group", "side": "allies", "kind": "CL",
+      "source": {"document": "american_fleets", "pdf_pages": [19], "printed_pages": ["A-16"]},
+      "class_in_service_year": 1937, "crew": 1200, "std_displacement_tons": 9700,
+      "size": "B", "signature": "Medium/Noisy", "armor_rating": "13/5", "gunnery_standard": 4,
+      "turn_class": "B",
+      "accel_decel_knots_per_turn": [10, 5, 12],
+      "damage_speed_rows_dp_knots": [[0, 32], [97, 24], [194, 16], [291, 8], [349, 0], [388, null]],
+      "main_gun": "us_6in47_mk16",
+      "gun_mounts": [["F", 3], ["F", 3], ["P&S", 3], ["A", 3], ["A", 3]],
+      "secondary_gun": {"text": "P/S(1)8 Mk11 5in/25; P/S(1)2 Mk20 3in/50", "model": null, "annex_row_registered": false},
+      "torpedo_mounts": null,
+      "light_aa_1942": "(4)2 Mk1 1.1 in (0.6); planned fit limited by 1.1 in shortage, Lt AA 1.8",
+      "radar_remarks": {"feb_42": "Boise and Honolulu fitted with Mk3 radars by this date; Boise, Honolulu, Philadelphia also fitted with SC radars by this date", "late_42": "All were fitted with SC and SG search radar and Mk3 for 6 in guns and Mk4 for 5 in guns (no exact date; SG availability on 30 Nov 42 unresolved)"}
+    },
+    "fletcher_1942_tassafaronga": {
+      "class": "Fletcher", "side": "allies", "kind": "DD",
+      "source": {"document": "american_fleets", "pdf_pages": [20], "printed_pages": ["A-17"]},
+      "profile_ref": "cape-st-george-1943.json#fletcher_1943",
+      "class_in_service_year": 1942, "crew": 273, "std_displacement_tons": 2200,
+      "size": "C", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "A",
+      "turn_class_note": "'Due to single rudder, turns as Size A warship' (A-17 remark); rulebook 3-2 row A",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 37], [36, 28], [72, 18], [108, 9], [130, 0], [144, null]],
+      "main_gun": "us_mk30_5in38",
+      "gun_mounts": [["F", 1], ["F", 1], ["P&S", 1], ["A", 1], ["A", 1]],
+      "torpedo_mounts": {"model": "us_mk15_tnt", "arc": "P&S", "loaded_tubes_per_mount": [5, 5], "reserve_per_mount": [0, 0], "reload_seconds": null, "class_text": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes", "reserve_note": "cape-st-george-1943.json v2 registered reserve_per_mount [0,0]; the A-17 text 'w/5 Mk15 torpedoes' is retained above as printed"}
+    },
+    "bristol_1942": {
+      "class": "Bristol", "side": "allies", "kind": "DD",
+      "source": {"document": "american_fleets", "pdf_pages": [20], "printed_pages": ["A-17"]},
+      "class_in_service_year": 1941, "crew": 208, "std_displacement_tons": 1630,
+      "size": "C", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "C",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 37], [30, 28], [59, 18], [89, 9], [106, 0], [118, null]],
+      "main_gun": "us_mk30_5in38",
+      "gun_mounts": [["F", 4], ["A", 4]],
+      "torpedo_mounts": {"model": "us_mk15_tnt", "arc": "P&S", "loaded_tubes_per_mount": [5, 5], "reserve_per_mount": [0, 0], "reload_seconds": null, "class_text": "P&S(5)2 Mk14 533mm TT w/5 Mk15 torpedoes", "reserve_note": "reserve treatment mirrors the Fletcher decision recorded in cape-st-george-1943.json; not independently resolved"},
+      "nov42_remark": "Nov 42: Light AA (2)2 40mm, (1)7 20mm, Lt AA 2.8. Assume SC, Mk4 radars fitted."
+    },
+    "mahan_1942": {
+      "class": "Mahan", "side": "allies", "kind": "DD",
+      "source": {"document": "american_fleets", "pdf_pages": [22], "printed_pages": ["A-19"]},
+      "class_in_service_year": 1936, "crew": 172, "std_displacement_tons": 1500,
+      "size": "D", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "D",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 36], [28, 27], [56, 18], [84, 9], [101, 0], [112, null]],
+      "main_gun": "us_mk30_5in38",
+      "main_gun_selection_note": "A-19 class fit prints '2F/P&S/2A(1)5 Mk21 5in/38'; Mk21 is inside the Annex C-2 5in/38 row 'Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38', so the us_mk30_5in38 shell rows apply.",
+      "gun_mounts": [["F", 1], ["F", 1], ["P&S", 1], ["A", 1], ["A", 1]],
+      "torpedo_mounts": {"model": "us_mk15_tnt", "arc": "P&S", "loaded_tubes_per_mount": [4, 4, 4], "reserve_per_mount": null, "reload_seconds": null, "class_text": "P/S(4)2 Mk13 533mm TT w/4 Mk15 torpedoes; P&S(4)1 Mk12 533mm TT w/4 Mk15 torpedoes", "reserve_note": "printed text 'w/4 Mk15 torpedoes' per mount row; per-mount split across the two mount rows is not printed, left null"},
+      "late42_remark": "Late 42: Center 5 inch gun replaced by 2 single 20mm. Area AA 1.1, Lt AA 1.8. (no exact date; see conflicts mahan-late42-center-gun)"
+    },
+    "gridley_1942": {
+      "class": "Gridley", "side": "allies", "kind": "DD",
+      "source": {"document": "american_fleets", "pdf_pages": [21], "printed_pages": ["A-18"]},
+      "class_in_service_year": 1937, "crew": 158, "std_displacement_tons": 1590,
+      "size": "C", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "C",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 38], [29, 28], [58, 19], [87, 10], [104, 0], [116, null]],
+      "main_gun": "us_mk30_5in38",
+      "main_gun_selection_note": "A-18 class fit prints 'F/A(1)4 Mk21, Mk24 5in/38'; Mk21/Mk24 are inside the Annex C-2 5in/38 row, so the us_mk30_5in38 shell rows apply. The mount-sector reading of 'F/A(1)4' is not interpreted here (see conflicts gridley-mount-text).",
+      "gun_mounts": null,
+      "torpedo_mounts": {"model": "us_mk15_tnt", "arc": "P&S", "loaded_tubes_per_mount": [4, 4, 4, 4], "reserve_per_mount": null, "reload_seconds": null, "class_text": "P&S(4)4 Mk12 533mm TT w/4 Mk15 torpedoes", "reserve_note": "printed text 'w/4 Mk15 torpedoes'; per-mount split not printed, left null"},
+      "late41_remark": "Late 41: 4 Mk6 K-gun w/6 Mk6/9 DC added, (1)6 20mm replaced .50 cal, Lt AA 1.5."
+    },
+    "yugumo_1942": {
+      "class": "Yugumo", "side": "axis", "kind": "DD",
+      "source": {"document": "emperors_fleet", "pdf_pages": [27], "printed_pages": ["A-24"]},
+      "class_in_service_year": 1941, "crew": 228, "std_displacement_tons": 2110,
+      "size": "C", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "C",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 35], [35, 26], [70, 18], [105, 9], [126, 0], [140, null]],
+      "main_gun": "jp_3rd_yr_127mm50",
+      "gun_mounts": [["F", 2], ["A", 2], ["A", 2]],
+      "torpedo_mounts": {"model": "jp_type93_m1_mod1_2", "arc": "P&S", "loaded_tubes_per_mount": [4, 4], "reserve_per_mount": [4, 4], "reload_seconds": 360, "class_text": "P&S(4)2 610mm TT w/8 Type 93 torps (4 reserve torp/mount for quick reload in 6 minutes)"},
+      "dc_fit_1942": {"text": "6 DC racks w/1 DC, 18 DC carried; (2)1 Type 94 Y-gun w/6 DC", "asw_refit_ships": {"yugumo": "May-Jun 43", "makinami": "Apr-Sep 43", "naganami": "Mar-Apr 43", "applies_at_scenario": false}},
+      "sensors": "Type 93 (passive), Type 93 Model 3 (active)"
+    },
+    "kagero_1942_base": {
+      "class": "Kagero", "side": "axis", "kind": "DD",
+      "source": {"document": "emperors_fleet", "pdf_pages": [28], "printed_pages": ["A-25"]},
+      "class_in_service_year": 1939, "crew": 240, "std_displacement_tons": 2065,
+      "size": "C", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "C",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 35], [35, 26], [69, 18], [104, 9], [124, 0], [138, null]],
+      "main_gun": "jp_3rd_yr_127mm50",
+      "gun_mounts": [["F", 2], ["A", 2], ["A", 2]],
+      "torpedo_mounts": {"model": "jp_type93_m1_mod1_2", "arc": "P&S", "loaded_tubes_per_mount": [4, 4], "reserve_per_mount": [4, 4], "reload_seconds": 360, "class_text": "P&S(4)2 610mm TT w/8 Type 93 torps (4 reserve torp/mount for quick reload in 6 minutes)"},
+      "dc_fit_1942": {"text": "6 DC racks w/1 DC, 18 DC carried; (2)1 Type 94 Y-gun w/6 DC", "applies_at_scenario": true, "note": "pre-ASW-refit fit; Oyashio ASW refit Jan-Mar 43 and Kuroshio Feb-Apr 43 are after the scenario"},
+      "sensors": "Type 93 (passive), Type 93 Model 1 (active)"
+    },
+    "kagero_1942_asw_refit": {
+      "class": "Kagero", "side": "axis", "kind": "DD",
+      "source": {"document": "emperors_fleet", "pdf_pages": [28], "printed_pages": ["A-25"]},
+      "profile_ref": "#kagero_1942_base",
+      "dc_fit_1942": {"text": "ASW refit: DC fit altered to 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, total of 36 DC carried", "applies_at_scenario": true, "refit_window": "Kagero, Maikaze, Isokaze, Shiranuhu, Urakaze, Hamakaze, Nowaki, Arashi, Hagikaze, Tanikaze, Akigumo Apr - May 42"},
+      "note": "Only named difference from the base profile at scenario date; Kagero (the ship) received the ASW refit Apr-May 42 per the A-25 remark."
+    },
+    "shiratsuyu_1942": {
+      "class": "Shiratsuyu", "side": "axis", "kind": "DD",
+      "source": {"document": "emperors_fleet", "pdf_pages": [28, 29], "printed_pages": ["A-25", "A-26"]},
+      "class_in_service_year": 1936, "crew": 180, "std_displacement_tons": 1712,
+      "size": "C", "signature": "Small/Noisy", "armor_rating": 0, "gunnery_standard": 4,
+      "turn_class": "C",
+      "accel_decel_knots_per_turn": [12, 6, 15],
+      "damage_speed_rows_dp_knots": [[0, 34], [31, 26], [61, 17], [92, 8], [110, 0], [122, null]],
+      "main_gun": "jp_3rd_yr_127mm50",
+      "gun_mounts": [["F", 2], ["A", 2]],
+      "gun_mounts_note": "Class fit prints F/A(2)2 and P&S(1)1 3rd Yr Type 12.7cm/50; remark '1935-37: Single P&S gun removed, replaced with (3)2 Type 96 25mm' removes the beam single gun, leaving the two twin mounts.",
+      "torpedo_mounts": {"model": "jp_type93_m1_mod1_2", "arc": "P&S", "loaded_tubes_per_mount": [4, 4], "reserve_per_mount": [4, 4], "reload_seconds": 360, "class_text": "P&S(4)2 610mm TT w/8 Type 93 torp (4 reserve torp/mount for quick reload in 6 minutes)"},
+      "dc_fit_1942": {"text": "6 DC racks w/1 DC, 12 DC carried", "applies_at_scenario": true, "note": "Suzukaze DC refit Jan-Jun 43 and Kawakaze refit after the 9 Feb 43 collision are after the scenario"},
+      "sensors": "Type 93 (passive), Type 93 Model 1 (active)"
+    }
+  },
+  "weapon_models": {
+    "us_8in55_mk9_10_11_13_14": {
+      "source": {"document": "american_fleets", "pdf_pages": [109], "printed_pages": ["C-3"]},
+      "mount_text": "Mk9, 10, 11, 13, 14 8in/55 (USA)",
+      "range_yd": [[0, 7000], [7100, 16000], [16100, 25500], [25600, 31900]],
+      "shells": {
+        "APC": {"belt": [33, 22, 15, 12], "deck": [null, null, 5, 10], "damage_dp": [23, 18, 15, 13]},
+        "SpCOM": {"belt": [15, 10, 7, 5], "deck": [null, null, 2, 4], "damage_dp": [24, 19, 17, 15]},
+        "Com": {"belt": [10, 7, 5, 4], "deck": [null, null, 2, 4], "damage_dp": [23, 18, 16, 14]},
+        "HC": {"belt": [3, 2, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [26, 22, 19, 17]}
+      }
+    },
+    "us_8in55_mk12_15": {
+      "source": {"document": "american_fleets", "pdf_pages": [108], "printed_pages": ["C-2"]},
+      "mount_text": "Mk12, 15 8in/55 (USA)",
+      "registered_for": "the last four New Orleans class units per the A-13 remark; not carried by any Tassafaronga ship",
+      "range_yd": [[0, 6600], [6700, 15000], [15100, 24000], [24100, 30000]],
+      "shells": {
+        "APC": {"belt": [30, 20, 14, 11], "deck": [null, null, 5, 9], "damage_dp": [24, 19, 16, 14]},
+        "SpCOM": {"belt": [13, 9, 6, 5], "deck": [null, null, 2, 4], "damage_dp": [24, 19, 17, 15]}
+      }
+    },
+    "us_6in47_mk16": {
+      "source": {"document": "american_fleets", "pdf_pages": [108], "printed_pages": ["C-2"]},
+      "mount_text": "Mk16 6in/47 (USA)",
+      "range_yd": {"APC": [[0, 6200], [6300, 13000], [13100, 20800], [20900, 26000]], "HC": [[0, 5800], [5900, 12000], [12100, 19200], [19300, 24000]]},
+      "shells": {
+        "APC": {"belt": [15, 9, 7, 5], "deck": [null, null, 2, 4], "damage_dp": [18, 14, 12, 11]},
+        "HC": {"belt": [1, 1, 1, 0], "deck": [null, null, 0, 1], "damage_dp": [24, 20, 18, 16]}
+      }
+    },
+    "us_mk30_5in38": {
+      "source": {"document": "american_fleets", "pdf_pages": [108], "printed_pages": ["C-2"]},
+      "mount_text": "Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38 (USA)",
+      "cross_ref": "cape-st-george-1943.json#weapon_models.us_mk30_5in38 (values verified identical against Annex C-2 in this pass)",
+      "shells": {
+        "SpCOM": {"range_yd": [[0, 5500], [5600, 10900], [11000, 14600], [14700, 18200]], "belt": [7, 4, 3, 2], "deck": [null, null, 1, 2], "damage_dp": [18, 14, 12, 11]},
+        "COM": {"range_yd": [[0, 5500], [5600, 10900], [11000, 14600], [14700, 18200]], "belt": [5, 3, 2, 2], "deck": [null, null, 1, 2], "damage_dp": [22, 19, 17, 15]},
+        "HE": {"range_yd": [[0, 7100], [7200, 14300], [14400, 19000], [19100, 23800]], "belt": [2, 1, 1, 1], "deck": [null, null, 0, 1], "damage_dp": [18, 15, 14, 12]}
+      }
+    },
+    "jp_3rd_yr_127mm50": {
+      "source": {"document": "emperors_fleet", "pdf_pages": [97], "printed_pages": ["C-1"]},
+      "mount_text": "3rd Yr Type 12.7cm/50 (Japan)",
+      "cross_ref": "cape-st-george-1943.json#weapon_models.jp_3rd_yr_127mm50 (values verified identical against Emperor's Fleet Annex C-1 in this pass)",
+      "shells": {
+        "COM": {"range_yd": [[0, 6000], [6100, 12000], [12100, 16000], [16100, 20000]], "belt": [5, 3, 2, 2], "deck": [null, null, 1, 2], "damage_dp": [16, 13, 11, 10]},
+        "HE": {"range_yd": [[0, 6000], [6100, 12000], [12100, 16000], [16100, 20000]], "belt": [2, 1, 1, 1], "deck": [null, null, 1, 1], "damage_dp": [17, 14, 13, 11]}
+      }
+    },
+    "us_mk15_tnt": {
+      "source": {"document": "american_fleets", "pdf_pages": [119], "printed_pages": ["F-1"]},
+      "torpedo": {
+        "damage_dp": 87,
+        "range_speed_pairs_yd_knots": [[6000, 45]],
+        "diameter_mm": 533,
+        "warhead_kg": 374,
+        "warhead_text": "TNT warhead",
+        "in_service": 1935
+      },
+      "torpex_variant": {"damage_dp": 99, "range_speed_pairs_yd_knots": [[10000, 34], [15000, 27]], "in_service": 1943, "note": "Torpex IOC 1943 per Annex F-1; not in service on 1942-11-30, so only the TNT row above applies to this scenario"},
+      "cross_ref_conflict": "cape-st-george-1943.json#weapon_models.us_mk15_tnt registers 87 DP with all three pairs; see conflicts mk15-tnt-speed-range-pairs"
+    },
+    "jp_type93_m1_mod1_2": {
+      "source": {"document": "emperors_fleet", "pdf_pages": [105], "printed_pages": ["F-1"]},
+      "torpedo": {
+        "damage_dp": 95,
+        "range_speed_pairs_yd_knots": [[22000, 49], [35000, 41], [43800, 37]],
+        "diameter_mm": 610,
+        "warhead_kg": 490,
+        "propulsion": "steam",
+        "mount_text": "Type 93 Model 1 Mod 1/2"
+      },
+      "cross_ref": "cape-st-george-1943.json#weapon_models.jp_type93_m1_mod1_2 (values verified identical against Emperor's Fleet Annex F-1 in this pass)"
+    }
+  },
+  "resupply_rules": {
+    "source": {"document": "rising_sun_5e", "pdf_pages": [75], "printed_pages": [74], "section": "Special Rules"},
+    "points_per_string_dropped_within_radius": 20,
+    "resupply_radius_nmi": 1.5,
+    "resupply_point_count": 3,
+    "resupply_point_count_source": {"document": "rising_sun_5e", "pdf_pages": [76], "printed_pages": [75], "section": "chart, three 'Resupply Point' dots on the Guadalcanal northwest coast"},
+    "simultaneous_capacity_text": "Each Resupply Point can only handle recovering three destroyer loads at one time.",
+    "simultaneous_capacity_destroyer_loads": 3,
+    "strings_per_ship": 5,
+    "strings_per_ship_text": "Each ship can carry five drum strings, but only one may be offloaded per turn.",
+    "offload_rate": "one drum string every Tactical Turn",
+    "turns_to_fully_offload": 5,
+    "unloading_max_speed_knots": 2,
+    "unloading_speed_text": "During the unloading evolution, a destroyer's maximum speed is 2 knots - bare steerageway.",
+    "undelivered_strings": "Any drum strings that are not successfully offloaded will have their points deducted from the Japanese player's point total at the end of the scenario.",
+    "damage_points": "The Japanese player also receives one point for every damage point inflicted on a US ship.",
+    "loaded_destroyers": ["makinami", "oyashio", "kuroshio", "kagero", "kawakaze", "suzukaze"],
+    "torpedo_reload_exception": "Due to the weight of the drum strings, all Japanese destroyers with supplies cannot carry their torpedo reloads. Thus, only Naganami and Takanami have their full torpedo complement.",
+    "string_totals_derived": {
+      "loaded_ships": 6,
+      "strings_total": 30,
+      "max_supply_points": 600,
+      "note": "derived arithmetic (6 loaded ships x 5 strings x 20 points), not a printed total; the page prints the per-ship and per-string rules only"
+    },
+    "string_duration": "no per-string offload duration in minutes is printed; the rule is expressed in Tactical Turns only (see pending items)"
+  },
+  "orders": {
+    "us": "Block Japanese resupply efforts.",
+    "japan": "The Reinforcement Unit is to offload supply drum strings at designated points off the coast of Guadalcanal. After unloading supplies, clear land-based aircraft range by dawn."
+  },
+  "victory_conditions_as_printed": {
+    "source": {"document": "rising_sun_5e", "pdf_pages": [75], "printed_pages": [74]},
+    "japanese_scoring": "The Japanese player earns points for delivering supplies, as well as sinking or damaging US ships. However, any undelivered supply points will be deducted from the total at the end of the scenario.",
+    "japanese_tiers": [
+      {"label_as_printed": "Decisive", "text": "500 or more total points."},
+      {"label_as_printed": "Decisive", "text": "250 or more total points.", "print_conflict": "second tier also printed as 'Decisive'"}
+    ],
+    "us_decisive": "Prevent the Japanese from delivering more than 120 supply points and with only one US heavy cruiser has being crippled (50% or more damage).",
+    "us_tactical": "Prevent the Japanese from delivering more than 240 supply points and with only one US heavy cruiser being sunk).",
+    "printed_typos": ["us decisive 'has being crippled'", "us tactical trailing ')'"]
+  },
+  "objective_reading_for_rts_fixture": {
+    "japan": {
+      "decisive_total_points_min": 500,
+      "tactical_total_points_min": 250,
+      "points_inputs": {"supply_points_per_string": 20, "damage_point_per_dp": 1, "undelivered_string_deduction": 20},
+      "tier_label_adoption": "the page prints both tiers as 'Decisive'; the RTS grading adopts 500 as Decisive and 250 as Tactical (see conflicts ijn-victory-tier-labels)"
+    },
+    "us": {
+      "decisive": {"japanese_delivered_points_max": 120, "us_heavy_cruiser_crippled_max": 1, "crippled_definition": "50% or more damage", "condition_scope": "heavy cruisers only (Minneapolis, New Orleans, Pensacola, Northampton); Honolulu is a CL per the printed list"},
+      "tactical": {"japanese_delivered_points_max": 240, "us_heavy_cruiser_sunk_max": 1}
+    },
+    "testability": "both the 500 and 250 Japanese thresholds and both the 120/240 US delivery thresholds are separately testable; the 500/250 conflict is resolved only at the RTS grading layer and the printed record above is retained verbatim",
+    "user_visible_grading_note": "player-facing tier names must state that the adopted grading is a RTS decision because the source prints two 'Decisive' tiers"
+  },
+  "conflicts": [
+    {
+      "id": "ijn-victory-tier-labels",
+      "status": "resolved_by_rts_grading_decision",
+      "detail": "Rising Sun PDF 75 (printed 74) prints 'Decisive: 500 or more total points.' followed by a second 'Decisive: 250 or more total points.' Both labels are retained verbatim in victory_conditions_as_printed. The RTS grading adopts 500/Decisive and 250/Tactical; player-visible content must mark this as an adopted grading, and both thresholds stay unit-testable."
+    },
+    {
+      "id": "us-victory-wording",
+      "status": "recorded_as_printed",
+      "detail": "US Decisive reads '...only one US heavy cruiser has being crippled (50% or more damage)' and Tactical ends with a stray ')'. Printed typos are retained; the reading registered is: at most one US CA at 50%+ damage (decisive), at most one US CA sunk (tactical)."
+    },
+    {
+      "id": "mk15-tnt-speed-range-pairs",
+      "status": "unresolved",
+      "detail": "American Fleets F-1 prints Mk15 TNT as one pair (87 DP, 45 kts / 6000 yd) and Torpex (99 DP) as 34/10000 and 27/15000 from 1943. cape-st-george-1943.json v2 registered us_mk15_tnt as 87 DP with all three pairs, citing the dated Form 10s. Whether the two low-speed pairs are available to TNT loads on 1942-11-30 is not resolved by either source here; the scenario-date row registered above is the F-1 TNT single pair."
+    },
+    {
+      "id": "mahan-late42-center-gun",
+      "status": "unresolved",
+      "detail": "A-19 remark 'Late 42: Center 5 inch gun replaced by 2 single 20mm' carries no exact date. The dated Form 10s for Drayton (Mar-May 42), Perkins (Jan-Feb 42) and Lamson (Dec-41) predate it. Gun fit on 1942-11-30 (5 x 5in/38 vs 4 x 5in/38 + 20mm) is not resolved; both printed alternatives are retained."
+    },
+    {
+      "id": "gridley-mount-text",
+      "status": "unresolved",
+      "detail": "A-18 prints the Gridley main battery as 'F/A(1)4 Mk21, Mk24 5in/38'. The mount-sector expansion of this notation is not printed and was not interpreted; gun_mounts is left null for the Gridley profile."
+    },
+    {
+      "id": "ijn-column-seat-order",
+      "status": "unresolved",
+      "detail": "The scenario text gives only 'seven destroyers in a tight column' with Takanami off Naganami's port bow (30 deg, 4000 yd) and Naganami bearing 283 deg at 11.9 nmi from Minneapolis. The chart lists the seven hulls (Suzukaze, Kawakaze, Kagero, Kuroshio, Oyashio, Makinami, Naganami) without per-ship seat marks. The Naganami-end-as-van reading registered in start.japan_formation is an interpretation from the picket position, not a printed order."
+    },
+    {
+      "id": "us-column-seat-order",
+      "status": "unresolved",
+      "detail": "US orders name the van ('four US destroyers', lead 30 deg off Minneapolis's port bow at 4000 yd) and the trailing pair (off Northampton's port quarter, 2000 yd) without naming ships. The orders registered in start.us_formation follow the chart label listing (Fletcher, Perkins, Maury, Drayton; Minneapolis ... Northampton; Lamson, Lardner). Per-ship seats are not individually printed."
+    },
+    {
+      "id": "honolulu-sg-timing",
+      "status": "unresolved",
+      "detail": "A-16 'Late 42: All were fitted with SC and SG search radar...' has no exact date; SC and Mk3 for Honolulu are confirmed by the Feb 42 remark. SG on Honolulu on 1942-11-30 is a candidate only."
+    },
+    {
+      "id": "mahan-search-radar-type",
+      "status": "unresolved",
+      "detail": "A-19 '1942: Search radar fitted' does not name the type. Form 10 headers for Drayton/Perkins/Lamson were used only to confirm page mapping in this pass; the radar type stays unregistered beyond 'search radar (type not printed)'."
+    },
+    {
+      "id": "minneapolis-prebattle-radar",
+      "status": "unresolved",
+      "detail": "Scenario text confirms an SG contact on Minneapolis at 23:06. A-13 lists '2 Mk3, 2 SG, SK' only for the Nov 42 - Sep 43 repair period (post-battle). SC/Mk3 fit before the battle is not printed; only the SG is registered."
+    },
+    {
+      "id": "northampton-in-service-1929",
+      "status": "recorded_as_printed",
+      "detail": "A-14 prints 'In Svc: 1929' for the Northampton class (US commissioned service 1930-31 in secondary references). The annex value is registered as printed and is not adjudicated here."
+    },
+    {
+      "id": "us-shell-loadout-selection",
+      "status": "unresolved",
+      "detail": "The Annex C rows above list every shell the scenario guns can fire (8in/55: APC, SpCOM, Com, HC; 6in/47: APC, HC; 5in/38 and 12.7cm/50 rows per the Cape package). Which shells each ship actually loads on 1942-11-30 is not printed in the verified sources; loadout selection stays with the runtime consumer."
+    },
+    {
+      "id": "resupply-point-geometry",
+      "status": "unresolved",
+      "detail": "Three 'Resupply Point' dots are printed on the chart (PDF 76 / printed 75) between Cape Esperance and Tassafaronga Point, but no coordinates are printed. Digitalization of the chart is a separate task; the 1.5 nmi radius rule cannot be exercised until the points are georeferenced."
+    },
+    {
+      "id": "string-offload-duration",
+      "status": "unresolved",
+      "detail": "The offload tempo is printed only as 'one drum string every Tactical Turn' / 'five turns to completely offload'; no wall-clock duration per string is printed. Runtime seconds-per-turn is an RTS adaptation and must not be back-filled into this record."
+    },
+    {
+      "id": "form10-index-page-errors",
+      "status": "recorded_as_printed",
+      "detail": "Form 10 index pages list Maury Dec-41 at 320 and 321, Kuroshio Dec-41 at 106 and 107, Oyashio Dec-41 at 109 and 110. Visual checks show printed page 321 = Bagley, 107 = Maikaze, 110 = Tanikaze; the working pages are Maury 320, Kuroshio 106, Oyashio 109. Kawakaze 127 and Suzukaze 137 are the 1943 configurations; the Dec-41 pages 128 and 138 are the ones applicable to this scenario."
+    },
+    {
+      "id": "kagero-class-dc-variants",
+      "status": "resolved_by_annex_remark",
+      "detail": "A-25 ASW-refit remark dates: Kagero Apr-May 42 (before the scenario), Oyashio Jan-Mar 43 and Kuroshio Feb-Apr 43 (after). Kagero therefore carries the refit DC fit (2 rails w/6 DC + (2)2 Y-guns, 36 DC) and Oyashio/Kuroshio the base fit (6 racks w/1 DC, 18 DC + (2)1 Y-gun w/6 DC); both variants are registered."
+    },
+    {
+      "id": "drum-string-hulls",
+      "status": "resolved_by_scenario_text",
+      "detail": "Loaded destroyers: Makinami ('(Makinami carries supply drums)'), Transport Unit 1 (Oyashio, Kuroshio, Kagero) and Transport Unit 2 (Kawakaze, Suzukaze) - six hulls. Naganami and Takanami keep full torpedo reloads. The 'six barge/transport units' formulation in the roadmap note does not correspond to named units on the page; the only printed transport units are the two Desron 2 transport units of three and two destroyers."
+    }
+  ],
+  "pending_items": [
+    "georeference the three Resupply Points from the PDF 76 chart before the radius rule can run",
+    "decide IJN column van direction and per-ship seats (or accept the chart-label-order reading as an RTS adaptation, marked as such)",
+    "decide US van seat order (or accept the chart-label-order reading as an RTS adaptation, marked as such)",
+    "resolve Mk15 TNT speed/range pairs available on 1942-11-30 (F-1 single pair vs Form 10 three-pair corroboration)",
+    "resolve Mahan-class 5in/38 count on 1942-11-30 (Late 42 center-gun remark has no exact date)",
+    "resolve Gridley 'F/A(1)4' mount text into sectors or keep gun_mounts null",
+    "pick per-ship shell loadouts for the US cruisers/destroyers and IJN destroyers (APC/SpCOM/Com/HC etc.)",
+    "decide per-mount torpedo reserve split for Mahan (w/4 across two mount rows) and Gridley (w/4 across four mounts)",
+    "confirm whether the two low-speed Type 93 settings and the 6-minute reload interact with the drum-load reserve exception at runtime",
+    "no wall-clock offload duration is printed; the RTS turn-to-seconds mapping stays an engine adaptation outside this record"
+  ],
+  "named_ship_count": 19,
+  "counts": {"allies": 11, "axis": 8, "note": "the page prints 11 US ships (5 cruisers + 6 destroyers) and 8 Japanese destroyers; there are no named barge or small-craft units on the scenario pages"}
+}
