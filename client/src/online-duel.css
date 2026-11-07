@@ -19,7 +19,22 @@
 .duel-columns input { width: 9rem; }
 .duel-history { grid-column: 1 / -1; }
 .duel-match { display: flex; width: 100%; justify-content: space-between; gap: .6rem; margin-bottom: .4rem; text-align: left; }
+.duel-tabs { display: flex; gap: .5rem; margin-top: .8rem; }
+.duel-tabs button { min-width: 8rem; }
+.duel-tabs button[aria-pressed="true"] { border-color: #ffe6a4; color: #ffe6a4; }
+.duel-season { display: flex; gap: .4rem 1.2rem; flex-wrap: wrap; align-items: baseline; margin-top: .8rem; padding: .55rem .8rem; border: 1px solid #53717d; background: #112c3b; }
+.duel-season span { color: #a6bfca; }
+.duel-budgets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+.duel-budgets button { display: grid; gap: .15rem; padding: .5rem .6rem; text-align: left; }
+.duel-budgets button[aria-pressed="true"] { border-color: #ffe6a4; color: #ffe6a4; }
+.duel-budgets button:disabled { opacity: .62; }
+.duel-budgets small, .duel-history-row { color: #a6bfca; }
+.duel-history h3 { margin: .8rem 0 .3rem; font-size: 1rem; color: #e9e0c6; }
+.duel-history-row { margin: .15rem 0; }
+.duel-lobby label { display: inline-flex; align-items: center; gap: .45rem; margin-top: .6rem; }
+.duel-lobby label select { min-width: 12rem; }
 @media (max-width: 580px) {
   .duel-heading { flex-wrap: wrap; }
   .duel-columns { grid-template-columns: 1fr; }
+  .duel-budgets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

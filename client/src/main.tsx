@@ -23,7 +23,7 @@ import { guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainin
 import type { CourseId, TrainingEvidence, TrainingSignal } from './tutorial';
 import { profileKey } from './account';
 import type { LocalProfile } from './account';
-import { battlePath, OnlineError, onlineBattlePath, onlineMeta, onlineRequest } from './online';
+import { battlePath, OnlineError, onlineBattlePath, onlineMeta, onlineRequest, rankedBudgetTitle, rankedVoided } from './online';
 import type { OnlineBattle, OnlineBattleClaim, OnlineBattleSummary, OnlineDuel, OnlineMeta } from './online';
 import { OnlineSupply } from './OnlineSupply';
 import { OnlineFleetEditor } from './OnlineFleetEditor';
@@ -104,6 +104,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const cloudToken = profile.online?.token;
   const [portOpen, setPortOpen] = useState(true);
   const [section, setSection] = useState<HarborTab | 'activities' | 'fleet-editor' | 'duel'>();
+  const [duelTab, setDuelTab] = useState<'casual' | 'ranked'>('casual');
   const [mainMenu, setMainMenu] = useState(false);
   const [portError, setPortError] = useState<string>();
   const [training, setTraining] = useState(false);
@@ -131,9 +132,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const fleet = o?.fleets.find((value) => value.id === fleetId) ?? o?.fleets[0];
   const ships = fleet && o ? fleet.members.map((id) => o.ships.find((ship) => ship.id === id)).filter((ship): ship is Ship => !!ship) : [];
   const selected = o?.ships.find((ship) => ship.id === shipId) ?? ships.find((ship) => ship.id === fleet?.leader) ?? ships[0];
-  const result = o?.result;
-  const finished = Boolean(result);
   const onlineDuel = cloudBattle && 'match_id' in cloudBattle ? cloudBattle : undefined;
+  const duelVoided = onlineDuel ? rankedVoided(onlineDuel) : false;
+  const result = o?.result;
+  const finished = Boolean(result) || duelVoided;
   const nightRadar = o?.variant === 'night-radar-training';
   const guided = nightRadar || o?.variant === 'prologue';
   const radioKey = profile.id + ':fleet-radio';
@@ -703,8 +705,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   };
 
   if (portOpen) {
-    if (cloudToken && section === 'duel') return <OnlineDuelLobby token={cloudToken} onBack={() => setSection(undefined)} onBattle={openDuel} />;
-    if (cloudToken && section === 'fleet-editor') return <OnlineFleetEditor token={cloudToken} onBack={() => setSection('fleet')} />;
+    if (cloudToken && section === 'duel') return <OnlineDuelLobby token={cloudToken} initialTab={duelTab}
+      onBack={() => setSection(undefined)} onBattle={openDuel} />;
+    if (cloudToken && section === 'fleet-editor') return <OnlineFleetEditor token={cloudToken}
+      onBack={() => setSection('fleet')} onRanked={() => { setDuelTab('ranked'); setSection('duel'); }} />;
     if (cloudToken && (section === 'recruit' || section === 'fleet')) return <OnlineSupply key={section} token={cloudToken}
       meta={cloudMeta} onMeta={meta => {setCloudMeta(meta);setCloudError(undefined);}}
       onBack={() => setSection(undefined)} onFleetEditor={() => setSection('fleet-editor')}
@@ -761,7 +765,9 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     <header className="masthead">
       <div className="brand"><Mark /><div><span>CAS 战术演习</span><h1>海图指挥台</h1></div></div>
       <div className="exercise-label"><span className="live-dot" data-active={running} />
-        {replay ? '战局重演' : finished ? '战局结束' : o.settling ? '末批炮弹飞行中' : onlineDuel ? '线上约战进行中' : cloudBattle ? '联机战役进行中' : running ? '演习进行中' : '演习暂停'}
+        {replay ? '战局重演' : finished ? '战局结束' : o.settling ? '末批炮弹飞行中' :
+          onlineDuel ? (onlineDuel.mode === 'ranked' ? '排位战进行中 · ' + (onlineDuel.budget ?? 0) + ' 分' : '线上约战进行中') :
+          cloudBattle ? '联机战役进行中' : running ? '演习进行中' : '演习暂停'}
         {o.realtimeGunnery && <small className="realtime-badge">实时主炮</small>}</div>
       <div className="clock-deck">
         <span className="time"><strong>{clock(o.tick)}</strong><small> / {clock(replay?.end ?? o.limit)}</small></span>
@@ -812,14 +818,33 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           <b>重演</b><input type="range" min={0} max={Math.max(1, replay.end)} value={o.tick} aria-label="重演时间" onChange={(event) => void replayAt(Number(event.target.value))} />
           <span>{clock(o.tick)}</span><button type="button" onClick={() => void exitReplay()}>返回现局</button>
         </div>}
-        {!course && !replay && finished && !resultDismissed && <CampaignEndingGate key={endingKey} observation={o}
+        {!course && !replay && finished && !resultDismissed && (duelVoided ? <div className="result-screen">
+          <div className="result-card" role="alert">
+            <p>排位战局已结束</p>
+            <h2>本局作废、积分不变</h2>
+            <p>服务故障导致本局未能完成评分，双方积分保持不变。本局不可再下达命令。</p>
+            {onlineDuel?.own_fleet && <p>本席舰队 {onlineDuel.own_fleet.name} · 点价 {onlineDuel.fleet_cost ?? '—'} 分 ·
+              {' '}{rankedBudgetTitle(onlineDuel.budget ?? 0)} · 赛季 {onlineDuel.season_id}</p>}
+            <div className="actions">
+              <button type="button" className="primary" onClick={returnToDuelLobby}>返回线上舰桥</button>
+              <button type="button" onClick={() => { setResultDismissed(true); setTab('log'); }}>查看战情</button>
+            </div>
+          </div>
+        </div> : <CampaignEndingGate key={endingKey} observation={o}
           seen={seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}>{reopen => <div className="result-screen">
           <div className="result-card">
-            <p>{onlineDuel ? '线上约战结束' : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
+            <p>{onlineDuel ? (onlineDuel.mode === 'ranked' ? '排位战果' : '线上约战结束') : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
             {o.campaign && result ? <CampaignResultSummary campaign={o.campaign} result={result} /> :
               <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>}
             <div className="score"><span>同盟 {result?.allies}</span><span>轴心 {result?.axis}</span></div>
             {onlineDuel?.end_reason === 'surrender' && <p>一方投降</p>}
+            {onlineDuel?.mode === 'ranked' && <div className="ranked-report" aria-label="排位战果">
+              <p>{rankedBudgetTitle(onlineDuel.budget ?? 0)} · 赛季 {onlineDuel.season_id} · 点表 {onlineDuel.point_table_version ?? '—'}</p>
+              <p>本席舰队 {onlineDuel.own_fleet?.name ?? '—'} · 点价 {onlineDuel.fleet_cost ?? '—'} 分</p>
+              {onlineDuel.rated === true && onlineDuel.rating ? <p>积分 {onlineDuel.rating.before} → {onlineDuel.rating.after}
+                （{onlineDuel.rating.delta >= 0 ? '+' + onlineDuel.rating.delta : onlineDuel.rating.delta} · {onlineDuel.rating.rank}）</p> :
+                <p>本局作废、积分不变</p>}
+            </div>}
             {cloudBattle && result?.grade && result.grade !== 'none' && <button type="button" className="primary" disabled={busy || cloudClaimed}
               onClick={() => void claimCloud()}>{cloudClaimed ? '本局已结算' : '领取联机战役奖励'}</button>}
             {o.campaign && !cloudBattle && campaignId.current && <CampaignRewardActions stageId={o.campaign.stageId} progress={port.campaignProgress} busy={busy}
@@ -830,7 +855,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
               {onlineDuel && <button type="button" onClick={returnToDuelLobby}>返回线上舰桥</button>}
               <button type="button" onClick={() => { setResultDismissed(true); setTab('log'); }}>查看战情</button></div>
           </div>
-        </div>}</CampaignEndingGate>}
+        </div>}</CampaignEndingGate>)}
         {notice && <div className="notice" role="status">{notice}</div>}
       </section>
       <aside className="staff-panel" aria-label="指挥面板">
@@ -939,23 +964,28 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             <p className="empty-state">本席没有可查看的舰艇。</p>)}
           {tab === 'ai' && fleet && <section className="ai-panel">
             <div className="group-heading"><h2>战术指挥官</h2><span>{fleet.name}</span></div>
-            <label>AI 风格 <select value={fleet.ai.profile} disabled={!!replay || finished} onChange={(event) => changeAi({ ...fleet.ai, profile: event.target.value as Profile })}>
-              {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) => <option key={id} value={id} disabled={presetActive && !port.profiles.includes(id)}>{name}</option>)}
-            </select></label>
-            <p className="field-note">{descriptions[fleet.ai.profile]}</p>
-            <label>指挥权限 <select value={fleet.ai.mode} disabled={!!replay || finished} onChange={(event) => {
-              const mode = event.target.value as AiConfig['mode'];
-              changeAi(mode === 'auto' && !fleet.ai.move && !fleet.ai.gun && !fleet.ai.torpedo ? { ...fleet.ai, mode, move: true, gun: true, torpedo: true } : { ...fleet.ai, mode });
-            }}>
-              <option value="manual">手动</option><option value="suggest">仅建议</option>{!onlineDuel && <option value="auto">选择托管项</option>}
-            </select></label>
-            {fleet.ai.mode === 'auto' && <fieldset><legend>允许 AI 执行</legend>
-              {([{ key: 'move', title: '编队机动' }, { key: 'gun', title: '炮击' }, { key: 'torpedo', title: '雷击' }] as const).map(({ key, title }) =>
-                <label key={key}><input type="checkbox" checked={fleet.ai[key]} disabled={!!replay || finished}
-                  onChange={(event) => changeAi({ ...fleet.ai, [key]: event.target.checked })} /> {title}</label>
-              )}
-              <p className="field-note">手动下令会接管该项；勾选可交还 AI。</p>
-            </fieldset>}
+            {onlineDuel?.mode === 'ranked' ? <>
+              <p className="field-note" role="status">排位战局：指挥风格已冻结为「{profileNames[fleet.ai.profile] ?? fleet.ai.profile}」，本局不可更换。</p>
+              <p className="field-note">指挥权限固定为手动，战术建议仅供参考，需本人确认下令。</p>
+            </> : <>
+              <label>AI 风格 <select value={fleet.ai.profile} disabled={!!replay || finished} onChange={(event) => changeAi({ ...fleet.ai, profile: event.target.value as Profile })}>
+                {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) => <option key={id} value={id} disabled={presetActive && !port.profiles.includes(id)}>{name}</option>)}
+              </select></label>
+              <p className="field-note">{descriptions[fleet.ai.profile]}</p>
+              <label>指挥权限 <select value={fleet.ai.mode} disabled={!!replay || finished} onChange={(event) => {
+                const mode = event.target.value as AiConfig['mode'];
+                changeAi(mode === 'auto' && !fleet.ai.move && !fleet.ai.gun && !fleet.ai.torpedo ? { ...fleet.ai, mode, move: true, gun: true, torpedo: true } : { ...fleet.ai, mode });
+              }}>
+                <option value="manual">手动</option><option value="suggest">仅建议</option>{!onlineDuel && <option value="auto">选择托管项</option>}
+              </select></label>
+              {fleet.ai.mode === 'auto' && <fieldset><legend>允许 AI 执行</legend>
+                {([{ key: 'move', title: '编队机动' }, { key: 'gun', title: '炮击' }, { key: 'torpedo', title: '雷击' }] as const).map(({ key, title }) =>
+                  <label key={key}><input type="checkbox" checked={fleet.ai[key]} disabled={!!replay || finished}
+                    onChange={(event) => changeAi({ ...fleet.ai, [key]: event.target.checked })} /> {title}</label>
+                )}
+                <p className="field-note">手动下令会接管该项；勾选可交还 AI。</p>
+              </fieldset>}
+            </>}
             <button type="button" disabled={finished || !!replay} onClick={() => void askAi()}>查看战术建议</button>
             {suggestion && <div className="suggestion"><p>{suggestion.text}</p>
               {suggestion.orders.length > 0 && <button type="button" onClick={() => void acceptAi()}>采纳建议</button>}

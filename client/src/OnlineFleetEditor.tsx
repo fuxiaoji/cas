@@ -11,12 +11,14 @@ type Ship = { id: string; name: string; side: Side; type: string; combat_ready: 
 type Catalog = { ships: Ship[]; ai_profiles: { id: string; name: string }[] };
 type Draft = { id: string; name: string; side: Side; budget: Budget; ship_ids: string[];
   ai_profile: string; leader_id: string | null; cost_version: null };
-type Entry = { fleet: Draft; validation: { structure_valid: boolean; unavailable_ship_ids: string[] } };
-type FleetBook = { fleets: Entry[]; active_fleet_id: string | null };
+type Validation = { structure_valid: boolean; combat_ready: boolean; ranked_ready: boolean;
+  unavailable_ship_ids: string[]; cost: number | null; point_table_version: string | null; blocking_reasons: string[] };
+type Entry = { fleet: Draft; validation: Validation };
+type FleetBook = { fleets: Entry[]; active_fleet_id: string | null; point_table_version: string | null; ranked_available: boolean };
 type Data = { catalog: Catalog; meta: OnlineMeta; book: FleetBook };
 type Editor = { draft: Draft; dirty: boolean };
 type Tab = 'roster' | 'presets';
-type Props = { token: string; onBack?: () => void };
+type Props = { token: string; onBack?: () => void; onRanked?: () => void };
 
 const sideNames = { allies: '同盟', axis: '轴心' };
 const roleNames: Record<string, string> = { DD: '驱逐舰', CL: '轻巡洋舰', CA: '重巡洋舰', BB: '战列舰' };
@@ -26,12 +28,23 @@ const rules = {
 };
 const ruleFor = (budget: Budget) => budget === 3000 || budget === 10000 ? rules[budget] : undefined;
 const errorMessage = (error: unknown) => error instanceof Error ? error.message : '读取舰队失败，请重试。';
+const validationText = (entry: Entry | undefined) => {
+  if (!entry) return '';
+  const { validation, fleet } = entry;
+  if (validation.ranked_ready && validation.cost != null)
+    return `排位核验通过：点价 ${validation.cost} 分（${fleet.budget} 分档上限），可入队。`;
+  if (!validation.blocking_reasons.length) return '';
+  const price = validation.cost != null ? `点价 ${validation.cost} 分，` : '';
+  if (validation.blocking_reasons.includes('cas_point_table_unavailable') && fleet.budget === 10000)
+    return '10000 分档尚未开放排位，可先保存个人草案。';
+  return `${price}暂不可入队：${validation.blocking_reasons.join('；')}。`;
+};
 const newDraft = (profiles: string[]): Draft => ({
   id: 'fleet-' + crypto.randomUUID(), name: '我的同盟舰队', side: 'allies', budget: 2000,
   ship_ids: [], ai_profile: profiles[0] ?? '', leader_id: null, cost_version: null,
 });
 
-function FleetEditor({ token, onBack }: Props) {
+function FleetEditor({ token, onBack, onRanked }: Props) {
   const [data, setData] = useState<Data>();
   const [editor, setEditor] = useState<Editor>();
   const [tab, setTab] = useState<Tab>('roster');
@@ -128,7 +141,7 @@ function FleetEditor({ token, onBack }: Props) {
       pending.current = undefined;
       const entry = { fleet: answer.fleet, validation: answer.validation };
       setData(current => current && ({ ...current, meta: answer.meta, book: {
-        active_fleet_id: answer.active_fleet_id,
+        ...current.book, active_fleet_id: answer.active_fleet_id,
         fleets: [...current.book.fleets.filter(item => item.fleet.id !== entry.fleet.id), entry],
       } }));
       setEditor({ draft: entry.fleet, dirty: false });
@@ -175,12 +188,15 @@ function FleetEditor({ token, onBack }: Props) {
             <div className="online-fleet__preset-tools"><h2>云端预设</h2><button type="button" onClick={startDraft} disabled={busy}>新建预设</button></div>
             {data.book.fleets.length ? <ul className="online-fleet__rows">{data.book.fleets.map(entry => {
               const fleet = entry.fleet;
+              const validation = entry.validation;
               return <li key={fleet.id}><button type="button" aria-pressed={fleet.id === draft.id} disabled={busy}
                 aria-label={'载入 ' + fleet.name} onClick={() => loadPreset(entry)}>
                 <svg className="online-fleet__preset-icon" viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx="12" cy="4" r="2" /><path d="M12 6v14M8 9h8M3 14a9 6 0 0 0 18 0m-18 0 3 1m15-1-3 1" />
                 </svg>
-                <span><strong>{fleet.name}</strong><small>{sideNames[fleet.side]} {fleet.budget} 分 · {fleet.ship_ids.length} 艘</small></span>
+                <span><strong>{fleet.name}</strong>
+                  <small>{sideNames[fleet.side]} {fleet.budget} 分 · {fleet.ship_ids.length} 艘 ·
+                    {' '}{validation.ranked_ready && validation.cost != null ? `点价 ${validation.cost} 分 · 可入队` : '暂不可入队'}</small></span>
                 <small>{data.book.active_fleet_id === fleet.id ? '当前预设' : '载入'}</small>
               </button></li>;
             })}</ul> : <p className="online-fleet__empty">保存第一支编队后，可在这里载入。</p>}
@@ -225,11 +241,15 @@ function FleetEditor({ token, onBack }: Props) {
 
     <footer className="online-fleet__footer">
       <div className="online-fleet__feedback">
-        <p>{saved?.validation.structure_valid ? '编制校验通过，已保存为云端草案。' : '保存时校验舰种和数量。'} CAS 点表待核验。{shipsPending > 0 && ` ${shipsPending} 艘舰的个人出战配置待核验。`}</p>
+        <p>{saved?.validation.structure_valid ? '编制校验通过，已保存为云端草案。' : '保存时校验舰种和数量。'}
+          {saved && validationText(saved)}{!saved && data?.book.ranked_available && ' 排位点表已接入，保存 3000／10000 分档后由服务端核价。'}
+          {shipsPending > 0 && ` ${shipsPending} 艘舰的个人出战配置待核验。`}</p>
         {error ? <p role="alert" className="online-fleet__error">{error}</p> : notice && <p role="status">{notice}</p>}
       </div>
       <div className="online-fleet__actions">
-        <button type="button" disabled>排位未开放</button>
+        {data?.book.ranked_available ?
+          <button type="button" onClick={() => onRanked?.()}>前往排位入队</button> :
+          <button type="button" disabled>排位未开放</button>}
         <button className="primary" type="submit" form={formId}
           disabled={busy || !draft?.ship_ids.length || !draft.name.trim() || !draft.ai_profile}>{saving ? '正在保存' : '保存为当前预设'}</button>
       </div>

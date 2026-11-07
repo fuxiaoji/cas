@@ -153,4 +153,13 @@
 - 合入 F:/CAS-client-next 线上征募差异，**代码已合**（`d4666d9`）：`OnlineSupply` 接入 0.6.11 征募台组件（主题图、保底计、十连、到港三段演出、跳过、上次到港回看、UR 兑换、旧池与旧通用券），服务端征募回执补 `batch` 批次字段。工作区缺少样式文件导致客户端整体无法启动——按原版 `recruit-desk.css`／`arrival.css` 移植补写 `client/src/online-recruit/online-recruit.css`（含横屏短屏与 reduced-motion 适配）并提交（`600a7e2`）。
 - **游戏内实测**：新增 `client/tests/browser-online-recruit.mjs` 专项验收主题图、概率页（各档保底表）、十连到港、逐舰揭示、跳过、上次到港回看、换池、重复请求幂等（同编号重放同回执、改参 409、钱包不变）、刷新重登恢复、指定兑换（进度 91→11）、740×360 短屏到港、重登余额对账，全部通过（[凭证](artifacts/client/online-recruit/browser-receipt.json)）。`browser-online.mjs` 补到港演出关闭步骤后通过（[凭证](artifacts/client/online/browser-receipt.json)）。
 - **主仓全套复验**（验收 agent，隔离 target，HEAD `b99c29a`）：Rust 59 项、原生与 WASM 17 场对照逐项一致、服务端 16 项（含模拟器路径实跑）、战役资料检查（16 想定/32 关位/11 登记/210 舰身份）、`tsc` 0 错误，7/7 通过（[台账](artifacts/cas-acceptance-20261107.json)、[对照](artifacts/cas-integration-native-wasm-20261107.json)）。
-- 并行推进中：排位前端在 `E:/CAS-ranked-ui` 工作区开发（两档展示、赛季段位、点价校验、排队/取消/作废态与浏览器验收）；塔萨法隆格在 `E:/CAS-rules-next` 按五版《旭日》PDF 75–76 核页录入。两处产出审查通过后再合入主仓。
+- 并行推进：塔萨法隆格在 `E:/CAS-rules-next` 按五版《旭日》PDF 75–76 核页录入，审查通过后再合入主仓。排位前端已完成并合入（见下节）。
+
+## 2026-11-07｜排位前端接线与双档验收（ranked-ui-v1 工作区）
+
+- 线上舰桥新增排位赛页签：展示当前赛季（S0001 起止与 42 天时长）、点表版本、3000／10000 两档段位卡（白银起步、战绩与 rank 名；10000 分档按 `available_budgets` 显示未开放并禁选）、历史赛季战绩（`historical_ratings`）与排位战况（含胜负与积分变化）。入队按 `available_budgets` 限制档位，出战预设下拉只列服务端 `ranked_ready` 的预设并显示实际点价；排队显示到期时间并可取消，取消后不再匹配。
+- 云端编队页接服务端 `validation`：预设列表与保存回执显示点价、`ranked_ready`、`blocking_reasons`；点表可用时提供「前往排位入队」直达排位页签，未接入时保持「排位未开放」。战局侧：排位战局隐藏 AI 风格与指挥权限选择（显示冻结说明），战术建议保留且须本人确认；战果卡展示档位、赛季、点表、本席舰队与点价，`rated` 时显示积分变化与段位；`status=complete` 且 `rated=false`／引擎 `result=null`（服务故障作废）时停止全部操作并显示「本局作废、积分不变」。
+- 协议以实际合入代码对齐：`GET /pvp/ranked/status` 返回 `season/ratings/historical_ratings/queue/matches/available_budgets/point_table_version`；排位 summary 带 `mode='ranked'`、`budget`、`season_id`、`own_fleet`、`fleet_cost`、`rated`、`rating`。与 roadmap 文字的两处差异：点表版本实际为 `cas-points-surface-v1`（文件名才是 cas-competitive-points-v1.json）；`end_reason` 作废时当前代码固定为 `server_fault` 而非 null，前端按 `rated=false` 或 `result=null` 兜底。
+- 验收（全部真跑）：服务端 16 项单测含 2 项原生双席测试通过（`CAS_TEST_DUEL_SIM_PATH` 指向本次构建的 cas-sim）；`tsc` 通过；新增 `client/tests/browser-online-ranked.mjs` 两席全新账号序章领舰、1875 分预设、实际匹配、双席各自战局、一席投降、两席排位战果（+12 白银／−12 青铜）、取消入队不再匹配、操作端 CLI 作废后两席停止操作且积分不变，凭证与截图在 artifacts/client/online-ranked/。回归 browser-online-duel.mjs、browser-online-fleet.mjs、browser-online.mjs 全部通过。
+- 剩余边界：10000 分档等点表开放后需另行验收；`end_reason=null` 的作废形态当前服务端代码不会产生，前端已兼容但无实测；排位战果的重演入口沿用既有战报，未单独录结局图。
+>>>>>>> ranked-ui-v1
