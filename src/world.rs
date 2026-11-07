@@ -334,7 +334,10 @@ impl World {
             return Err("雷达演习与存档规则版本不符".into());
         }
         if !realtime && (version == crate::illumination::VERSION) != (s.variant == crate::illumination::TRAINING) {return Err("存档的照明规则版本与想定不符".into());}
-        let limit = s.campaign.as_ref().map_or(LIMIT, live::Start::limit);
+        let limit = s.campaign.as_ref().map_or(
+            if s.variant == crate::empress::VARIANT { crate::empress::LIMIT } else { LIMIT },
+            live::Start::limit,
+        );
         let last_tick = limit + if realtime {
             crate::realtime::MAX_FLIGHT
         } else if version == LEGACY_VERSION {

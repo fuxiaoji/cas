@@ -106,6 +106,7 @@ export function BattleMap(props: MapProps) {
   const [gesture, setGesture] = useState<Gesture>();
   const [mapPointer, setMapPointer] = useState<Point>();
   const appliedCamera = useRef('');
+  const appliedInitial = useRef('');
   const gestureRef = useRef<Gesture | undefined>(undefined);
   const surface = useRef<SurfaceDrag | undefined>(undefined);
   const hold = useRef<number | undefined>(undefined);
@@ -163,6 +164,22 @@ export function BattleMap(props: MapProps) {
     update(undefined);
   }
   function cancelAll() { clearGesture(); surface.current = undefined; }
+
+  useLayoutEffect(() => {
+    // The Empress Augusta Bay chart keeps the printed 18-19 nmi opening
+    // range; frame the own column at the closest supported zoom so the
+    // formation is readable without hiding the historical distance.
+    if (o.variant !== 'empress' || props.cameraCue || !o.ships.length || size.w <= 1) return;
+    const key = session + ':' + o.side;
+    if (appliedInitial.current === key) return;
+    appliedInitial.current = key;
+    const z = 4;
+    const ratio = Math.min((size.w - 65) / o.width, (size.h - 42) / o.height) * z;
+    const lead = o.ships.find(ship => ship.id === fleet?.leader) ?? o.ships[0];
+    setZoom(z);
+    setPan({ x: (o.width / 2 - lead.x) * ratio - size.w * 0.08,
+      y: (lead.y - o.height / 2) * ratio + size.h * 0.12 });
+  }, [session, o.variant, o.side, o.ships.length, size.w, size.h, fleet?.leader, props.cameraCue?.id]);
 
   useLayoutEffect(() => {
     const element = viewport.current!;

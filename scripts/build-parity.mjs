@@ -144,6 +144,10 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     commands.push({ op: 'step', seconds: 1800 });
     wasmOutput.push(call(commands.at(-1)));
   }
+  if (variant === 'empress' && !wasmOutput.at(-1).data?.result) {
+    commands.push({ op: 'step', seconds: 1800 });
+    wasmOutput.push(call(commands.at(-1)));
+  }
   if (!wasmOutput.at(-1).data?.result) {
     commands.push({ op: 'step', seconds: realtime ? 120 : 8 });
     wasmOutput.push(call(commands.at(-1)));

@@ -18,7 +18,19 @@ pub(crate) const VARIANT: &str = "empress";
 pub(crate) const LABEL: &str = "奥古斯塔皇后湾 · 22 舰夜战";
 pub(crate) const CONTENT: &str = "cas-empress-runtime-v1";
 pub(crate) const LIMIT: u32 = 4200;
-const CAPE: P = P { x: 9_000., y: 2_000. };
+/// The printed setup needs 18-19 nautical miles of opening range; the old
+/// 24,000-yard exercise field could not hold it, so the real distances stay
+/// and the field grows instead.
+pub(crate) const FIELD: Field = Field { width: 80_000., height: 55_000., limit: LIMIT };
+const NMI_M: f64 = 1852.;
+/// In-column interval is not printed by the scenario; 500 yd is the single
+/// documented default used by the CAS campaign runtimes.
+const COLUMN_YD: f64 = 500.;
+const CAPE: P = P { x: 72_000., y: 12_000. };
+
+fn offset(from: P, bearing: f64, distance_m: f64) -> P {
+    from + P::bearing(bearing) * distance_m
+}
 
 struct Column {
     fleet: u32,
@@ -33,26 +45,38 @@ struct Column {
 }
 
 fn columns() -> Vec<Column> {
+    // Rising Sun PDF 90: the lead US ship is 19 nmi at 292 degrees from Cape
+    // Torokina; Montpelier is 5,000 yd off its starboard bow; Denver's port
+    // quarter is 3,000 yd from Spence; Myoko bears 295 degrees at 18 nmi from
+    // Montpelier, with the Japanese port/starboard columns 10,000/5,500 yd out.
+    let ausburne = offset(CAPE, 292., 19. * NMI_M);
+    let montpelier = offset(ausburne, 30., -5_000. * YARD);
+    let denver = offset(montpelier, 345., -3. * COLUMN_YD * YARD);
+    let spence = offset(denver, 210., 3_000. * YARD);
+    let myoko = offset(montpelier, 295., 18. * NMI_M);
+    let sendai = offset(myoko, 50., 10_000. * YARD);
+    let agano = offset(myoko, 230., 5_500. * YARD);
+    let spacing = COLUMN_YD * YARD;
     vec![
         Column { fleet: 1, side: 0, name: "第45驱逐分队", ships: &[
             ("fletcher", "奥兹本"), ("fletcher", "戴森"), ("fletcher", "斯坦利"), ("fletcher", "克拉克斯顿")],
-            x: 9_000., y: 4_500., heading: 345., speed: 20., spacing: 350. },
+            x: ausburne.x, y: ausburne.y, heading: 345., speed: 20., spacing },
         Column { fleet: 2, side: 0, name: "第12巡洋分队", ships: &[
             ("cleveland_empress", "蒙彼利埃"), ("cleveland_empress", "克利夫兰"),
             ("cleveland_empress", "哥伦比亚"), ("cleveland_empress", "丹佛")],
-            x: 8_000., y: 3_500., heading: 345., speed: 20., spacing: 400. },
+            x: montpelier.x, y: montpelier.y, heading: 345., speed: 20., spacing },
         Column { fleet: 3, side: 0, name: "第46驱逐分队", ships: &[
             ("fletcher", "斯彭斯"), ("fletcher", "撒切尔"), ("fletcher", "康弗斯"), ("fletcher", "富特")],
-            x: 7_000., y: 4_000., heading: 345., speed: 20., spacing: 350. },
+            x: spence.x, y: spence.y, heading: 345., speed: 20., spacing },
         Column { fleet: 4, side: 1, name: "第五战队", ships: &[
             ("myoko", "妙高"), ("myoko", "羽黑")],
-            x: 15_000., y: 9_500., heading: 140., speed: 30., spacing: 500. },
+            x: myoko.x, y: myoko.y, heading: 140., speed: 30., spacing },
         Column { fleet: 5, side: 1, name: "第三水雷战队", ships: &[
             ("sendai", "川内"), ("shiratsuyu", "时雨"), ("shiratsuyu", "五月雨"), ("shiratsuyu", "白露")],
-            x: 18_000., y: 8_000., heading: 140., speed: 30., spacing: 350. },
+            x: sendai.x, y: sendai.y, heading: 140., speed: 30., spacing },
         Column { fleet: 6, side: 1, name: "第十水雷战队", ships: &[
             ("agano", "阿贺野"), ("yugumo", "长波"), ("kagero", "初风"), ("akizuki", "若月")],
-            x: 14_000., y: 11_000., heading: 140., speed: 30., spacing: 350. },
+            x: agano.x, y: agano.y, heading: 140., speed: 30., spacing },
     ]
 }
 
@@ -62,6 +86,7 @@ fn heading_step(heading: f64, distance: f64) -> (f64, f64) {
 }
 
 pub(crate) fn fill(w: &mut World) -> E<()> {
+    w.field = FIELD;
     let player = w.player;
     for column in columns() {
         let mut members = Vec::new();
@@ -116,6 +141,16 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
         w.radar.equip(id, "us_sg")?;
         w.radar.equip(id, "us_sc2")?;
     }
+    // Cape Torokina: a small headland at the printed bearing reference. The
+    // scenario is open ocean; the polygon is the cape tip, not a new island.
+    w.islands.push(vec![
+        P { x: 70_500., y: 0. },
+        P { x: 75_000., y: 0. },
+        P { x: 74_000., y: 7_500. },
+        P { x: 72_500., y: 11_200. },
+        P { x: 71_000., y: 9_500. },
+        P { x: 69_500., y: 5_000. },
+    ]);
     w.enable_realtime()?;
     // A course for every column so the battle closes without player input.
     for column in columns() {
@@ -171,7 +206,6 @@ pub(crate) fn axis_cruisers_inside(w: &World) -> bool {
 pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile: &str) -> E<World> {
     let data = World::exercise_data()?;
     let mut w = World::blank(data, seed, player, enemy, VARIANT, profile, 0);
-    w.field = Field { width: 24_000., height: 14_000., limit: LIMIT };
     w.campaign = Some(start);
     fill(&mut w)?;
     Ok(w)

@@ -237,7 +237,7 @@ fn empress_augusta_bay_runs_the_full_night_surface_kit() {
     let mut e = Engine::default();
     let start = ask(
         &mut e,
-        json!({"op":"new","seed":6107,"side":"allies","enemy":"coord","variant":"empress"}),
+        json!({"op":"new","seed":6100,"side":"allies","enemy":"coord","variant":"empress"}),
     );
     assert_eq!(start["ships"].as_array().unwrap().len(), 12, "the allied seat sees its twelve hulls");
     assert_eq!(start["fleets"].as_array().unwrap().len(), 3);
