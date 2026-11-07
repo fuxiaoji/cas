@@ -145,3 +145,12 @@
 
 - 库拉湾本地双线接入五版原页 17 艘具名舰、纸面部署海岸、10% 夜间能见、7 艘运输舰和维拉卸载计时。3 艘须同一段连续满 30 分钟。炮雷命中伤害和轻巡沉没触发两席各自判分，前台保留卸载进度的轴心座席限制。准备及剩余原书差额见[来源记录](docs/campaign/kula-runtime-sources.md)。
 - 54 项内核测试通过，17 个原生／WASM 完整场景逐项与同席重演一致。同盟种子 6106 决定胜，轴心种子 2 实雷命中并取得战术胜，且两边可同时达标。浏览器通过两席出航、轴心 30 分钟卸载、保存重演、既有双线档案和领奖防重。新关先在本地运行。
+
+## 2026-11-07｜接手恢复：排位服务、线上征募与征募台样式
+
+- 按接手说明从 `d3f907a` 恢复主线。修复 `client/src/main.tsx` 双席结局键类型错误：`cloud.current` 改按 `onlineBattlePath` 生成稳定 key，`tsc` 通过；01/03 双线结局（[凭证](artifacts/client/campaign-endings/)）、本机抽卡（[凭证](artifacts/client/port/browser-receipt.json)）、序章夜战与固定约战四项浏览器回归全部通过。
+- 合入 F:/CAS-audio-work 排位服务差异，**代码已合**（`94833f4`）：新增 `server/rankings.py`（点表准入、42 天赛季、K24 Elo、按账号×档位独立梯）、`duels.py` 排位队列/结算/作废 CLI、`fleets.py` 点表校验、`battle_pve.py` 补 v9 `torpedoDepths` 视图键与雷深/分量齐射命令字段。16 项服务测试（含原生内核双席 2 项）通过；**本机实测**排位服务启动探针验证冻结点表与内核 `match_pool` 导出一致，`/pvp/ranked/status` 返回 S0001 赛季与 3000/10000 两档 1000 起分；合并后固定约战回归重跑通过。尚未有玩家入口，**未对外开放**。
+- 合入 F:/CAS-client-next 线上征募差异，**代码已合**（`d4666d9`）：`OnlineSupply` 接入 0.6.11 征募台组件（主题图、保底计、十连、到港三段演出、跳过、上次到港回看、UR 兑换、旧池与旧通用券），服务端征募回执补 `batch` 批次字段。工作区缺少样式文件导致客户端整体无法启动——按原版 `recruit-desk.css`／`arrival.css` 移植补写 `client/src/online-recruit/online-recruit.css`（含横屏短屏与 reduced-motion 适配）并提交（`600a7e2`）。
+- **游戏内实测**：新增 `client/tests/browser-online-recruit.mjs` 专项验收主题图、概率页（各档保底表）、十连到港、逐舰揭示、跳过、上次到港回看、换池、重复请求幂等（同编号重放同回执、改参 409、钱包不变）、刷新重登恢复、指定兑换（进度 91→11）、740×360 短屏到港、重登余额对账，全部通过（[凭证](artifacts/client/online-recruit/browser-receipt.json)）。`browser-online.mjs` 补到港演出关闭步骤后通过（[凭证](artifacts/client/online/browser-receipt.json)）。
+- **主仓全套复验**（验收 agent，隔离 target，HEAD `b99c29a`）：Rust 59 项、原生与 WASM 17 场对照逐项一致、服务端 16 项（含模拟器路径实跑）、战役资料检查（16 想定/32 关位/11 登记/210 舰身份）、`tsc` 0 错误，7/7 通过（[台账](artifacts/cas-acceptance-20261107.json)、[对照](artifacts/cas-integration-native-wasm-20261107.json)）。
+- 并行推进中：排位前端在 `E:/CAS-ranked-ui` 工作区开发（两档展示、赛季段位、点价校验、排队/取消/作废态与浏览器验收）；塔萨法隆格在 `E:/CAS-rules-next` 按五版《旭日》PDF 75–76 核页录入。两处产出审查通过后再合入主仓。
