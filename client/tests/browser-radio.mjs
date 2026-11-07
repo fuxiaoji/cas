@@ -107,6 +107,7 @@ try {
   assert.equal((await lastCue()).kind, 'error', 'rejected or failed actions play the error cue');
   await button('演习设置').click();
   await page.getByLabel('操作音量').fill('0.25');
+  await page.getByLabel('语音包').selectOption('al-enterprise');
   await button('开始新演习').click();
   await page.getByRole('dialog').waitFor({ state: 'hidden' });
   assert.equal((await lastCue()).kind, 'confirm', 'primary actions play the confirm cue');
@@ -118,7 +119,9 @@ try {
   await resumeExercise(page);
   const firstReload = await page.evaluate(() => Object.fromEntries(Object.entries(localStorage)));
   const uiKey = Object.keys(firstReload).find((key) => key.endsWith(':ui-cues'));
+  const radioKeyStored = Object.keys(firstReload).find((key) => key.endsWith(':fleet-radio'));
   assert.deepEqual(JSON.parse(firstReload[uiKey]), { enabled: true, volume: .25 }, 'click-cue volume persists');
+  assert.equal(JSON.parse(firstReload[radioKeyStored]).pack, 'al-enterprise', 'voice pack choice persists');
   await button('战情记录').click();
   await page.getByRole('checkbox', { name: '操作点击音效' }).uncheck();
   await page.waitForFunction(() => Object.entries(localStorage)
@@ -148,17 +151,45 @@ try {
   assert.equal(restored.kind, 'tap', 're-enabling restores ordinary tap cues');
   assert.ok(Math.abs(restored.level - .25 * .11) < 1e-9, `restored volume drives the gain: ${restored.level}`);
 
+  // --- Personal commander pack on a fresh seat battle ---
+  await button('演习设置').click();
+  await page.getByLabel('语音包').waitFor();
+  assert.equal(await page.getByLabel('语音包').inputValue(), 'al-enterprise');
+  await page.screenshot({ path: out + '/settings-voice-pack.png' });
+  await button('开始新演习').click();
+  await page.getByRole('dialog').waitFor({ state: 'hidden' });
+  await button('开始演习').click();
+  await waitAudio(false);
+  const commander = await state();
+  assert.equal(commander.cue, 'battle_start');
+  assert.match(commander.src, /al-enterprise-battle_start-0/);
+  await page.screenshot({ path: out + '/commander-battle-start.png' });
+  await page.waitForFunction(() => document.querySelector('audio[data-channel=cas-original-score]').volume < .2,
+    undefined, { timeout: 5000 });
+  const ducked = await page.locator('audio[data-channel=cas-original-score]').evaluate((media) => media.volume);
+  // End the clip early so the score's return to its own level is observable fast.
+  await page.locator('audio[data-channel=fleet-radio]').evaluate((media) => {
+    media.currentTime = Math.max(0, media.duration - .15);
+  });
+  await page.waitForFunction(() => {
+    const media = document.querySelector('audio[data-channel=cas-original-score]');
+    const gain = { prologue: .77, maneuver: .63, engagement: .92, victory: .8, defeat: .76 }[media?.dataset.track];
+    return !!gain && Math.abs(media.volume - .54 * gain) < .01;
+  }, undefined, { timeout: 20000 });
+  assert.equal((await loads()).filter((item) => item.id === commander.id).length, 1, 'commander battle_start loaded once');
+
   assert.deepEqual(errors, []);
   const report = { realSeatEvent: started.id, sameCueLoadedOnce: true, nativeBackgroundPaused: true,
     foregroundRespectedManualPause: true, resumedSameClip: true, silentReplay: true, safeReturnToLive: true,
     distinctPacks: ['wows-us', 'wows-jp'], volume: axis.volume, muteStopsPlaying: true,
     clickCues: { tap: true, select: true, error: true, confirm: true, switchSilences: true, persistsAcrossReload: true },
-    clickCueVolumeDrivesGain: true };
+    commanderPack: 'al-enterprise', commanderCue: commander.cue, commanderLoadedOnce: true,
+    scoreDuckedUnderCommander: true, scoreDuckedVolume: Number(ducked.toFixed(3)), scoreReturnedAfterVoice: true };
   await fs.writeFile(out + '/browser-receipt.json', JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
 } finally { await browser.close(); }
 
-// --- A formal build must not carry the private faction radio ---
+// --- Formal build must not carry the private radio or commander audio ---
 if (!process.env.CAS_SKIP_FORMAL_BUILD) {
   const clientRoot = fileURLToPath(new URL('../', import.meta.url));
   const dist = clientRoot + 'dist/';
@@ -173,16 +204,87 @@ if (!process.env.CAS_SKIP_FORMAL_BUILD) {
     for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
       const path = dir + entry.name;
       if (entry.isDirectory()) await walk(path + '/');
-      else if (/\.m4a$/i.test(entry.name)) offenders.push(path);
+      else if (/\.m4a$/i.test(entry.name) || entry.name.includes('al-enterprise')) offenders.push(path);
     }
   };
   await walk(dist);
-  assert.equal(offenders.length, 0, 'formal build must not carry radio audio: ' + offenders);
+  assert.equal(offenders.length, 0, 'formal build must not carry radio or commander audio: ' + offenders);
   for (const entry of await fs.readdir(dist + 'assets/', { withFileTypes: true })) {
     if (entry.name.endsWith('.js')) {
       const text = await fs.readFile(dist + 'assets/' + entry.name, 'utf8');
+      assert.ok(!text.includes('al-enterprise'), entry.name + ' references the commander pack');
       assert.ok(!text.includes('wows-us'), entry.name + ' references the faction radio files');
     }
   }
   console.log(JSON.stringify({ formalBuildClean: true, dist: dist }, null, 2));
+}
+
+// --- Explicit local playtest build (VITE_CAS_LOCAL_VOICE=1) must ship the audio ---
+if (!process.env.CAS_SKIP_LOCAL_BUILD) {
+  const clientRoot = fileURLToPath(new URL('../', import.meta.url));
+  const dist = clientRoot + 'dist/';
+  const build = (env) => new Promise((resolve, reject) => {
+    const child = spawn('npm', ['run', 'build'], { cwd: clientRoot, env, shell: process.platform === 'win32', stdio: 'ignore' });
+    child.on('exit', (code) => code === 0 ? resolve(undefined) : reject(new Error('build exited with ' + code)));
+  });
+  const list = async (dir) => {
+    const names = [];
+    for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) names.push(...await list(dir + entry.name + '/'));
+      else names.push(dir + entry.name);
+    }
+    return names;
+  };
+  await fs.rm(dist, { recursive: true, force: true });
+  await build({ ...process.env, VITE_CAS_LOCAL_VOICE: '1' });
+  const files = await list(dist);
+  const commanderFiles = files.filter((path) => /al-enterprise-.*\.m4a$/i.test(path));
+  assert.equal(commanderFiles.length, 6, 'local build carries the six commander clips: ' + commanderFiles.length);
+  assert.equal(files.filter((path) => /wows-us-battle_start-0[^/]*\.m4a$/i.test(path)).length, 1,
+    'local build still carries the faction radio');
+
+  const port = 5191;
+  const viteBin = clientRoot + 'node_modules/vite/bin/vite.js';
+  const preview = spawn(process.execPath, [viteBin, 'preview', '--port', String(port), '--strictPort'],
+    { cwd: clientRoot, stdio: 'ignore' });
+  const localBrowser = await chromium.launch({ executablePath: process.env.CAS_BROWSER_PATH, headless: true });
+  try {
+    let live = false;
+    for (let attempt = 0; attempt < 40 && !live; attempt++) {
+      try { live = (await fetch(`http://127.0.0.1:${port}/`)).ok; }
+      catch { await new Promise((done) => setTimeout(done, 250)); }
+    }
+    assert.ok(live, 'preview server did not start');
+    const page = await localBrowser.newPage({ viewport: { width: 1360, height: 768 } });
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.stack));
+    const button = (name) => page.getByRole('button', { name, exact: true });
+    await page.goto(`http://127.0.0.1:${port}/`);
+    await signInLocal(page, 'cas-local-build-qa', true);
+    await resumeExercise(page);
+    await button('演习设置').click();
+    await page.getByLabel('语音包').waitFor();
+    await page.getByLabel('语音包').selectOption('al-enterprise');
+    await button('开始新演习').click();
+    await page.getByRole('dialog').waitFor({ state: 'hidden' });
+    await button('开始演习').click();
+    await page.waitForFunction(() => {
+      const media = document.querySelector('audio[data-channel=fleet-radio]');
+      return media && !media.paused && media.currentTime > .08;
+    }, undefined, { timeout: 15000 });
+    const packed = await page.locator('audio[data-channel=fleet-radio]').evaluate((media) => ({
+      src: media.currentSrc, cue: media.dataset.voiceCue }));
+    assert.equal(packed.cue, 'battle_start');
+    assert.match(packed.src, /al-enterprise-battle_start-0/);
+    await page.screenshot({ path: out + '/local-build-commander.png' });
+    assert.deepEqual(errors, []);
+    await fs.writeFile(out + '/local-build-receipt.json', JSON.stringify({
+      build: 'VITE_CAS_LOCAL_VOICE=1', commanderFiles: commanderFiles.length,
+      factionRadioPacked: true, playedCue: packed.cue, playedSource: packed.src,
+      emitted: files.filter((path) => /\.m4a$/i.test(path)).length }, null, 2));
+    console.log(JSON.stringify({ localBuildUsable: true, commanderFiles: commanderFiles.length }, null, 2));
+  } finally {
+    preview.kill();
+    await localBrowser.close();
+  }
 }

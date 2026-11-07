@@ -15,6 +15,7 @@ import { Login } from './Login';
 import { useBattleVoice } from './audio/BattleVoice';
 import { useOriginalScore } from './audio/OriginalScore';
 import { playClickCue, useClickCues } from './audio/click/ClickCues';
+import { commanderPacks } from 'virtual:cas-commander-clips';
 import { ActivityCenter } from './activities/ActivityCenter';
 import { recordChallengeClear } from './activities/week';
 import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY } from './prologue';
@@ -1062,6 +1063,11 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           onChange={event => radio.setVolume(Number(event.target.value))} /></label>}
         <label>操作音量 <input type="range" min={0} max={1} step={0.05} value={uiSound.volume}
           onChange={event => uiSound.setVolume(Number(event.target.value))} /></label>
+        {radio.available && commanderPacks.length > 0 && <label>语音包 <select value={radio.pack}
+          onChange={event => radio.setPack(event.target.value)}>
+          <option value="auto">原版 · 随阵营（轴心日语 / 同盟英语）</option>
+          {commanderPacks.map(pack => <option key={pack.id} value={pack.id}>{pack.title}</option>)}
+        </select></label>}
         <label><input type="checkbox" checked={music.enabled} onChange={event => music.setEnabled(event.target.checked)} /> 战斗配乐</label>
         <label>配乐音量 <input type="range" min={0} max={1} step={0.05} value={music.volume}
           onChange={event => music.setVolume(Number(event.target.value))} /></label>
