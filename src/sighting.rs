@@ -10,10 +10,10 @@ impl World {
             crate::campaign::channel::ENVIRONMENT
         } else if self.variant == crate::campaign::kula::VARIANT {
             crate::campaign::kula::ENVIRONMENT
-        } else if self.campaign.is_some() {
-            crate::campaign::live::environment()
         } else if self.variant == crate::empress::VARIANT {
             Environment { light: night::Light::Night, visibility: 10, sea_state: 1, precipitation: true }
+        } else if self.campaign.is_some() {
+            crate::campaign::live::environment()
         } else if self.variant == "night" || self.radar_enabled() || self.has_starshells() {
             Environment::NIGHT
         } else {

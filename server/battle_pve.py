@@ -34,7 +34,7 @@ REWARDS = (
     ("STAR3", "战术星章", {"tickets": 2, "medals": 10}),
 )
 AI_UNLOCK = {"gunnery": "fleet", "torpedo": "rc_torpedo_wings"}
-Stage = Literal["CAMP-ALLIES-03", "CAMP-AXIS-03"]
+Stage = Literal["CAMP-ALLIES-03", "CAMP-AXIS-03", "CAMP-ALLIES-11", "CAMP-AXIS-11"]
 Difficulty = Literal["story", "standard", "challenge"]
 UnitId = Annotated[int, Field(gt=0, le=10000)]
 ContactId = Annotated[str, Field(min_length=1, max_length=24, pattern=r"^[A-Za-z0-9_.:-]+$")]
@@ -191,7 +191,7 @@ def player_response(response):
 
 
 def projected_view(raw, stage, difficulty):
-    seat = "allies" if stage == "CAMP-ALLIES-03" else "axis"
+    seat = "allies" if "-ALLIES-" in stage else "axis"
     if (raw.get("version") not in RULE_VERSIONS or raw.get("side") != seat or not isinstance(raw.get("tick"), int)
             or raw.get("campaign", {}).get("stageId") != stage or raw["campaign"].get("difficulty") != difficulty):
         deny("原生战斗未返回指定席位的观察。", 503)

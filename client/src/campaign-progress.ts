@@ -75,6 +75,8 @@ const rewardsByStage: Record<string, readonly CampaignReward[]> = {
   'CAMP-AXIS-03': capeRewards,
   'CAMP-ALLIES-04': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
   'CAMP-AXIS-04': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
+  'CAMP-ALLIES-11': capeRewards,
+  'CAMP-AXIS-11': capeRewards,
 };
 type CampaignReward = { stars: Exclude<CampaignStars, 0>; title: string; credits: number; tickets: number; marks: number };
 export function campaignRewards(stageId: string): readonly CampaignReward[] { return rewardsByStage[stageId] ?? []; }

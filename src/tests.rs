@@ -198,6 +198,41 @@ fn ai_exposes_a_searchlight_in_a_close_night_battle() {
 }
 
 #[test]
+fn empress_campaign_bindings_open_both_seats() {
+    let mut allies = Engine::default();
+    let start = ask(
+        &mut allies,
+        json!({"op":"new_campaign","id":"CAMP-ALLIES-11","difficulty":"story","seed":6106}),
+    );
+    assert_eq!(start["campaign"]["stageId"], json!("CAMP-ALLIES-11"));
+    assert_eq!(start["ships"].as_array().unwrap().len(), 12);
+    assert_eq!(start["fleets"].as_array().unwrap().len(), 3);
+    assert_eq!(start["environment"]["light"], json!("night"));
+    let mut axis = Engine::default();
+    let other = ask(
+        &mut axis,
+        json!({"op":"new_campaign","id":"CAMP-AXIS-11","difficulty":"story","seed":6106}),
+    );
+    assert_eq!(other["campaign"]["stageId"], json!("CAMP-AXIS-11"));
+    assert_eq!(other["ships"].as_array().unwrap().len(), 10);
+    assert_eq!(other["fleets"].as_array().unwrap().len(), 3);
+    for fleet in [1, 2, 3] {
+        ask(
+            &mut allies,
+            json!({"op":"ai","fleet":fleet,"profile":"coord","mode":"auto","move":true,"gun":true,"torpedo":true}),
+        );
+    }
+    let mut end = ask(&mut allies, json!({"op":"step","seconds":2700}));
+    if end["result"].is_null() {
+        end = ask(&mut allies, json!({"op":"step","seconds":1500}));
+    }
+    assert!(!end["result"].is_null(), "the campaign must reach a result");
+    assert!(end["result"]["grade"].is_string(), "the Cape Torokina grading must resolve");
+    let save = ask(&mut allies, json!({"op":"save"}));
+    assert_eq!(ask(&mut allies, json!({"op":"replay","save":save})), end);
+}
+
+#[test]
 fn empress_augusta_bay_runs_the_full_night_surface_kit() {
     let mut e = Engine::default();
     let start = ask(
@@ -511,8 +546,9 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
         let cape = item["cas"]["scenario_id"] == "cas-rs-cape-st-george";
         let channel = item["ibs_id"] == "IBS-S-03";
         let kula = item["ibs_id"] == "IBS-S-02";
-        assert_eq!(item["playable"], cape || channel || kula);
-        if cape || channel || kula {
+        let empress = item["cas"]["scenario_id"] == "cas-rs-empress-augusta-bay";
+        assert_eq!(item["playable"], cape || channel || kula || empress);
+        if cape || channel || kula || empress {
             assert_eq!(item["runtime"]["historicalReady"], false);
         }
         for id in item["stage_ids"].as_array().unwrap() {

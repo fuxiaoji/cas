@@ -63,6 +63,16 @@ class AuthorityTest(unittest.TestCase):
                          command={"op": "ai", "fleet": fleet, "mode": "auto", "profile": profile,
                                   "move": True, "gun": True, "torpedo": True})
 
+    def test_empress_stage_starts_and_completes_with_native_events(self):
+        path = "/battles/" + self.start("empress", stage="CAMP-ALLIES-11")["battle_id"]
+        for i in range(3):
+            self.good(self.ai(path, f"empress-ai-{i}", i, i + 1, "coord"))
+        end = self.finish(path)
+        assert end["result"] is not None
+        report = self.good(self.get(path + "/report"))
+        assert report["events"]
+        assert any(event["kind"] in ("gun", "torpedo", "secondary") for event in report["events"])
+
     def test_scope_clock_retries_and_restart(self):
         stranger = self.register("other-tester")
         self.assertTrue(self.good(self.client.get("/health"))["pve_available"])

@@ -114,6 +114,9 @@ fn public_row(mut row: Value) -> Value {
     } else if row["ibs_id"] == "IBS-S-03" {
         row["playable"] = json!(true);
         row["runtime"] = json!({"historicalReady":false,"label":channel::LABEL,"contentVersion":channel::CONTENT,"localOnly":true});
+    } else if row["cas"]["scenario_id"] == "cas-rs-empress-augusta-bay" {
+        row["playable"] = json!(true);
+        row["runtime"] = json!({"historicalReady":false,"label":crate::empress::LABEL,"contentVersion":crate::empress::CONTENT,"localOnly":true});
     }
     row
 }
@@ -335,7 +338,7 @@ mod tests {
             let allies = detail(&format!("CAMP-ALLIES-{n:02}")).unwrap();
             let axis = detail(&format!("CAMP-AXIS-{n:02}")).unwrap();
             assert_eq!(allies, axis);
-            assert_eq!(allies["entry"]["playable"], matches!(n, 1 | 3 | 4));
+            assert_eq!(allies["entry"]["playable"], matches!(n, 1 | 3 | 4 | 11));
             if !allies["record"].is_null() {
                 sources += 1;
                 assert_eq!(allies["record"]["ibs_id"], allies["entry"]["ibs_id"]);

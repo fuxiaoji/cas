@@ -6,7 +6,9 @@
 //! secondary batteries, torpedo reloads, bridge/rudder/weapon criticals and
 //! the Cape Torokina bearing.
 use crate::{
-    model::{Ai, Fleet, P, Tactic, YARD},
+    campaign::{Grade, Outcome},
+    campaign::live::Start,
+    model::{Ai, Field, Fleet, P, Tactic, YARD},
     world::World,
     E,
 };
@@ -14,6 +16,8 @@ use serde_json::json;
 
 pub(crate) const VARIANT: &str = "empress";
 pub(crate) const LABEL: &str = "奥古斯塔皇后湾 · 22 舰夜战";
+pub(crate) const CONTENT: &str = "cas-empress-runtime-v1";
+pub(crate) const LIMIT: u32 = 4200;
 const CAPE: P = P { x: 9_000., y: 2_000. };
 
 struct Column {
@@ -148,3 +152,65 @@ pub(crate) fn axis_cruisers_inside(w: &World) -> bool {
     })
 }
 
+
+/// Campaign entry: the same roster as the exercise, with the campaign seat,
+/// stage and 4,200-second limit (0227-0337).
+pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile: &str) -> E<World> {
+    let data = World::exercise_data()?;
+    let mut w = World::blank(data, seed, player, enemy, VARIANT, profile, 0);
+    w.field = Field { width: 24_000., height: 14_000., limit: LIMIT };
+    w.campaign = Some(start);
+    fill(&mut w)?;
+    Ok(w)
+}
+
+pub(crate) fn view(start: &Start, owner: usize) -> serde_json::Value {
+    let (stage, objectives) = if owner == 0 {
+        (
+            "CAMP-ALLIES-11",
+            "击沉三艘日舰并把日方重巡压在海角外侧，达成决定性胜利；三艘日舰损伤过半且重巡仍在外侧，达成战术胜利。",
+        )
+    } else {
+        (
+            "CAMP-AXIS-11",
+            "重创三艘美巡并让本方重巡切入美巡与托罗基纳角之间，达成决定性胜利；对美方造成的损伤超过本方所受损伤，达成战术胜利。",
+        )
+    };
+    json!({"stageId":stage, "difficulty":start.difficulty, "missionLabel":LABEL,
+        "objectives":objectives, "withdrawalX":null})
+}
+
+/// CAS Rising Sun 90: the historical victory conditions on both sides.
+pub(crate) fn outcome(w: &World) -> Outcome {
+    let dp = |ship: &crate::model::Ship| w.data.ships[ship.def].dp;
+    let damage = |ship: &crate::model::Ship| (dp(ship) - ship.hp).max(0.);
+    let sunk = |side: usize| w.ships.iter().filter(|s| s.side == side && s.hp <= 0.).count() as u32;
+    let half = |side: usize, kind: Option<&str>| {
+        w.ships
+            .iter()
+            .filter(|s| s.side == side && s.hp <= dp(s) * 0.5)
+            .filter(|s| kind.is_none_or(|k| w.data.ships[s.def].kind == k))
+            .count() as u32
+    };
+    let inside = axis_cruisers_inside(w);
+    let axis_sunk = sunk(1);
+    let axis_half = half(1, None);
+    let us_cruisers_half = half(0, Some("CL"));
+    let allies = if axis_sunk >= 3 && !inside {
+        Grade::Decisive
+    } else if axis_half >= 3 && !inside {
+        Grade::Tactical
+    } else {
+        Grade::None
+    };
+    let axis_damage: f64 = w.ships.iter().filter(|s| s.side == 1).map(&damage).sum();
+    let allied_damage: f64 = w.ships.iter().filter(|s| s.side == 0).map(&damage).sum();
+    let axis = if us_cruisers_half >= 3 && inside {
+        Grade::Decisive
+    } else if axis_damage > allied_damage {
+        Grade::Tactical
+    } else {
+        Grade::None
+    };
+    Outcome { allies, axis }
+}

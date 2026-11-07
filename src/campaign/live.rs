@@ -58,11 +58,16 @@ impl Start {
         matches!(self.stage_id.as_str(), "CAMP-ALLIES-01" | "CAMP-AXIS-01")
     }
     pub(crate) fn is_kula(&self) -> bool { kula::is_stage(&self.stage_id) }
+    pub(crate) fn is_empress(&self) -> bool {
+        matches!(self.stage_id.as_str(), "CAMP-ALLIES-11" | "CAMP-AXIS-11")
+    }
     pub(crate) fn variant(&self) -> &'static str {
         if self.is_channel() {
             channel::VARIANT
         } else if self.is_kula() {
             kula::VARIANT
+        } else if self.is_empress() {
+            crate::empress::VARIANT
         } else {
             VARIANT
         }
@@ -72,6 +77,8 @@ impl Start {
             channel::LIMIT
         } else if self.is_kula() {
             kula::FIELD.limit
+        } else if self.is_empress() {
+            crate::empress::LIMIT
         } else {
             FIELD.limit
         }
@@ -81,14 +88,16 @@ impl Start {
             channel::CONTENT
         } else if self.is_kula() {
             kula::CONTENT
+        } else if self.is_empress() {
+            crate::empress::CONTENT
         } else {
             CONTENT
         }
     }
     pub(crate) fn seat(&self) -> E<usize> {
         match self.stage_id.as_str() {
-            "CAMP-ALLIES-03" | "CAMP-ALLIES-01" | "CAMP-ALLIES-04" => Ok(0),
-            "CAMP-AXIS-03" | "CAMP-AXIS-01" | "CAMP-AXIS-04" => Ok(1),
+            "CAMP-ALLIES-03" | "CAMP-ALLIES-01" | "CAMP-ALLIES-04" | "CAMP-ALLIES-11" => Ok(0),
+            "CAMP-AXIS-03" | "CAMP-AXIS-01" | "CAMP-AXIS-04" | "CAMP-AXIS-11" => Ok(1),
             _ => Err("此战役尚未通过出航核验".into()),
         }
     }
@@ -249,6 +258,9 @@ impl World {
         if start.is_kula() {
             return kula::open(seed, start, player, enemy, profile);
         }
+        if start.is_empress() {
+            return crate::empress::open(seed, start, player, enemy, profile);
+        }
         let runtime = runtime()?;
         let mut w = Self::blank(&runtime.data, seed, player, enemy, VARIANT, profile, 0);
         w.field = FIELD;
@@ -377,6 +389,8 @@ impl World {
             channel::view(start, owner)
         } else if start.is_kula() {
             kula::view(self, start, owner)
+        } else if start.is_empress() {
+            crate::empress::view(start, owner)
         } else {
             let stage = if owner == 0 {
                 "CAMP-ALLIES-03"
@@ -460,6 +474,10 @@ impl World {
         }
         if self.variant == kula::VARIANT {
             self.finish_campaign(kula::outcome(self), allied_sunk, axis_sunk, "CAS-RS-P84");
+            return;
+        }
+        if self.variant == crate::empress::VARIANT {
+            self.finish_campaign(crate::empress::outcome(self), allied_sunk, axis_sunk, "CAS-RS-EMP-01");
             return;
         }
         let states = self
