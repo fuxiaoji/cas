@@ -63,11 +63,43 @@ export type OnlineBattleClaim = { grade: string; stars: number; claimed: boolean
 export const battlePath = (id: string) => '/battles/' + encodeURIComponent(id);
 
 export interface OnlineDuelSummary {
-  match_id: string; seat: Side; revision: number; status: 'active' | 'complete'; tick: number; result: Result | null;
-  end_reason: 'battle' | 'surrender' | null;
+  match_id: string; seat: Side; mode: 'ranked' | 'fixed-5v5-unranked'; revision: number;
+  status: 'active' | 'complete'; tick: number; result: Result | null;
+  end_reason: 'battle' | 'surrender' | 'server_fault' | null;
+  budget?: number; season_id?: string; point_table_version?: string | null;
+  own_fleet?: OnlineRankedFleet; fleet_cost?: number | null;
+  rated?: boolean | null; rating?: OnlineRatingChange | null;
 }
+export interface OnlineRankedFleet {
+  id: string; name: string; side: Side; budget: number; ship_ids: string[];
+  ai_profile: string; leader_id: string | null; cost_version: string | null;
+}
+export interface OnlineRatingChange { before: number; after: number; delta: number; rank: string }
 export interface OnlineDuel extends OnlineDuelSummary { view: Observation }
 export const duelPath = (id: string) => '/pvp/matches/' + encodeURIComponent(id);
 export function onlineBattlePath(battle: OnlineBattle | OnlineDuel) {
   return 'match_id' in battle ? duelPath(battle.match_id) : battlePath(battle.battle_id);
 }
+/** 排位服务故障作废：完成但无引擎结果，或服务端标记未评分。 */
+export function rankedVoided(match: OnlineDuelSummary) {
+  return match.mode === 'ranked' && match.status === 'complete' &&
+    (match.rated === false || match.result == null);
+}
+
+export interface OnlineSeason { id: string; start: number; end: number; duration_days: number }
+export interface OnlineLadder {
+  budget: number; season_id: string; rating: number; games: number;
+  wins: number; losses: number; draws: number; rank: string; ended?: boolean;
+}
+export interface OnlineRankedQueueEntry {
+  budget: number; fleet_id: string; season_id: string; queued_at: number; expires_at: number;
+}
+export interface OnlineRankedStatus {
+  season: OnlineSeason; ratings: OnlineLadder[]; historical_ratings: OnlineLadder[];
+  queue: OnlineRankedQueueEntry | null; matches: OnlineDuelSummary[];
+  available_budgets: number[]; point_table_version: string | null;
+}
+export type RankedQueueReply = { status: 'queued'; budget: number; season_id: string; expires_at: number } |
+  { status: 'matched'; match: OnlineDuel };
+export const rankedBudgetTitle = (budget: number) => budget === 3000 ? '3000 分护航战' :
+  budget === 10000 ? '10000 分战列舰交战' : budget + ' 分编制';
