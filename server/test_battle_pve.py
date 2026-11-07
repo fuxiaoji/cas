@@ -157,13 +157,13 @@ class AuthorityTest(unittest.TestCase):
         self.good(self.post("/starter-gifts/claim", request_id="unlock-starter-night", course="night"))
         self.good(self.post("/shop/purchase", request_id="unlock-torpedo", kind="ai", item_id="rc_torpedo_wings",
                             currency="credits"))
-        # cas-realtime-v10 brings both sides into contact earlier; the old
-        # torpedo/torpedo fixture now ends tactical for the allies. This seed
-        # and split still produce a real decisive victory under v10.
+        # cas-realtime-v10 brings both sides into contact earlier and the
+        # closed 8.3 critical results moved the seed; 6117 still produces a
+        # real decisive victory in both standard and challenge.
         self.seed = 6117
         path = "/battles/" + self.start("real-decisive", difficulty="standard")["battle_id"]
-        for i, profile in enumerate(("coord", "torpedo")):
-            self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, profile))
+        for i in range(2):
+            self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, "torpedo"))
         self.assertEqual(self.finish(path)["result"]["grade"], "decisive")
         before = self.good(self.get("/me"))["meta"]["wallet"]
         decisive = self.good(self.post(path + "/claim", request_id="claim-decisive-one"))
@@ -178,8 +178,8 @@ class AuthorityTest(unittest.TestCase):
         self.assertEqual(self.post(weekly_path, request_id="before-third-win").status_code, 403)
 
         path = "/battles/" + self.start("repeat-decisive", difficulty="challenge")["battle_id"]
-        for i, profile in enumerate(("coord", "torpedo")):
-            self.good(self.ai(path, f"repeat-ai-{i}", i, i + 1, profile))
+        for i in range(2):
+            self.good(self.ai(path, f"repeat-ai-{i}", i, i + 1, "torpedo"))
         self.assertEqual(self.finish(path)["result"]["grade"], "decisive")
         self.assertFalse(self.good(self.post(path + "/claim", request_id="claim-third-stage"))["claimed"])
         mission = self.good(self.get("/missions/weekly-pve"))

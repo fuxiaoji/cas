@@ -321,6 +321,14 @@ pub struct Ship {
     pub searchlight_since: u32,
     /// cas-realtime-v10: the ship is trailing a smoke screen (5.4.5).
     pub smoking: bool,
+    /// cas-realtime-v10 (CAS 8.3, Form 10): a jammed rudder circles the ship
+    /// at its current speed. +1 = starboard, -1 = port; None = steerable.
+    pub rudder_jam: Option<f64>,
+    /// A bridge critical circles the ship (or holds course on the "maintains
+    /// current movement" result). Same sign convention as `rudder_jam`.
+    pub bridge_circle: Option<f64>,
+    /// Torpedo mounts lost to a weapon critical (CAS 8.3).
+    pub torp_mount_destroyed: Vec<bool>,
 }
 impl Ship {
     pub fn alive(&self) -> bool {

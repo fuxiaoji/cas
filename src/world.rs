@@ -257,6 +257,8 @@ impl World {
             gun_mount_bearings: vec![None; d.gun.mounts.len()], gun_bearing_until: 0,
             battery: Default::default(), engineering_speed_levels: 0, jammed_until: 0,
             searchlight: None, searchlight_die: 0, searchlight_since: 0, smoking: false,
+            rudder_jam: None, bridge_circle: None,
+            torp_mount_destroyed: vec![false; d.torpedo.iter().map(|t| t.mounts.len()).sum()],
         });
         Ok(id)
     }
@@ -546,6 +548,14 @@ impl World {
             }
             if s.smoking {
                 data["smoking"] = json!(true);
+            }
+            if let Some(direction) = s.rudder_jam {
+                data["rudderJam"] = json!(if direction < 0. { "port" } else { "starboard" });
+            }
+            if let Some(direction) = s.bridge_circle {
+                if direction != 0. {
+                    data["bridgeCircle"] = json!(if direction < 0. { "port" } else { "starboard" });
+                }
             }
             if self.radar_enabled() {
                 data["systems"]["radars"] = json!(self.radar.own_observation(s.id));

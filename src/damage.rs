@@ -245,8 +245,100 @@ impl World {
             "flooding" => self.add_casualty(victim, true, torpedo, penetrated, 0, false),
             "engineering" => self.engineering_critical(victim, penetrated),
             "sensor_comms" => self.radar_sensor_critical(victim),
-            _ => (), // No placeholder penalty for unmodeled systems.
+            // cas-realtime-v10 (CAS 8.3 / Form 10): the results below used to
+            // fall through as silent no-ops. Older versions keep that frozen
+            // behaviour, including the dice-stream shape.
+            _ if !self.v10_family() => (),
+            "bridge" => self.bridge_critical(victim),
+            "rudder" => self.rudder_critical(victim),
+            "weapon" | "other_weapon" | "secondary_battery" => {
+                self.weapon_critical(victim, torpedo || name == "weapon")
+            }
+            // Light AA has no surface combat consumer yet; record the result
+            // instead of pretending the mount existed.
+            "light_aa" => self.damage_message(
+                victim,
+                "轻型防空炮位受损（本版未建模对海射击）".into(),
+                "CAS-8.3",
+            ),
+            _ => (),
         }
+    }
+
+    /// CAS 8.3 / Form 10 bridge results: circle to port, circle to starboard,
+    /// or hold the current movement. The ship leaves its ordered track when
+    /// it circles.
+    fn bridge_critical(&mut self, victim: u32) {
+        let roll = self.d(6);
+        let direction = if roll <= 2 { -1. } else if roll <= 4 { 1. } else { 0. };
+        let Some(s) = self.ship_mut(victim).filter(|s| s.alive()) else { return; };
+        if direction == 0. {
+            self.damage_message(victim, "舰桥受损：保持当前航向".into(), "CAS-8.3");
+            return;
+        }
+        s.bridge_circle = Some(direction);
+        s.track = None;
+        self.damage_message(
+            victim,
+            format!("舰桥受损：以当前航速向{}回旋", if direction < 0. { "左" } else { "右" }),
+            "CAS-8.3",
+        );
+    }
+
+    /// CAS 8.3: a jammed rudder turns the ship slowly to port or starboard at
+    /// its current speed; it can no longer steer.
+    fn rudder_critical(&mut self, victim: u32) {
+        let direction = if self.d(6) <= 3 { -1. } else { 1. };
+        let Some(s) = self.ship_mut(victim).filter(|s| s.alive()) else { return; };
+        s.rudder_jam = Some(direction);
+        s.bridge_circle = None;
+        s.track = None;
+        s.jammed_until = u32::MAX;
+        self.damage_message(
+            victim,
+            format!("舵机卡死：以当前航速缓慢向{}回转，无法按令转向", if direction < 0. { "左" } else { "右" }),
+            "CAS-8.3",
+        );
+    }
+
+    /// CAS 8.3: a weapon critical loses one mount. Underwater hits take a
+    /// torpedo mount; surface "other weapon" hits prefer torpedo tubes and
+    /// otherwise knock out a main gun mount.
+    fn weapon_critical(&mut self, victim: u32, torpedo_column: bool) {
+        let Some(tube) = self.ship(victim).and_then(|s| {
+            let has_tubes = !s.torp_mount_destroyed.is_empty();
+            (torpedo_column || has_tubes).then(|| {
+                s.torp_mount_destroyed
+                    .iter()
+                    .enumerate()
+                    .filter(|(i, destroyed)| !**destroyed && s.torp_mount_remaining[*i] > 0)
+                    .map(|(i, _)| i)
+                    .min()
+            }).flatten()
+        }) else {
+            self.weapon_mount_critical(victim);
+            return;
+        };
+        let Some(s) = self.ship_mut(victim) else { return; };
+        s.torp_mount_destroyed[tube] = true;
+        s.torp_mount_remaining[tube] = 0;
+        self.damage_message(victim, format!("鱼雷发射管 {} 被毁", tube + 1), "CAS-8.3");
+    }
+
+    fn weapon_mount_critical(&mut self, victim: u32) {
+        let Some(index) = self.ship(victim).and_then(|s| {
+            s.gun_mount_destroyed
+                .iter()
+                .enumerate()
+                .filter(|(_, destroyed)| !**destroyed)
+                .map(|(i, _)| i)
+                .min()
+        }) else {
+            return;
+        };
+        let Some(s) = self.ship_mut(victim) else { return; };
+        s.gun_mount_destroyed[index] = true;
+        self.damage_message(victim, format!("炮座 {} 被毁", index + 1), "CAS-8.3");
     }
 
     pub(crate) fn torpedo_automatic_flooding(&mut self, victim: u32, hits: u32, penetrated: bool) {
@@ -469,6 +561,61 @@ mod tests {
             fleet.ai = Ai::new("coord", "manual");
         }
         world
+    }
+
+    #[test]
+    fn v10_rudder_and_bridge_criticals_circle_the_ship() {
+        let mut world = realtime_fixture();
+        world.ship_mut(1).unwrap().speed = 20.;
+        world.rudder_critical(1);
+        let ship = world.ship(1).unwrap();
+        assert!(ship.rudder_jam.is_some(), "rudder must jam");
+        assert!(ship.track.is_none(), "a jammed rudder leaves the ordered track");
+        assert_eq!(ship.jammed_until, u32::MAX, "torpedo orders must wait for the rudder");
+        let before = (world.ship(1).unwrap().p, world.ship(1).unwrap().h);
+        for _ in 0..5 {
+            world.advance();
+        }
+        let after = world.ship(1).unwrap();
+        assert!((after.h - before.1).abs() > 1e-6, "the jammed ship must circle");
+        assert!(after.p.dist(before.0) > 1e-6, "the jammed ship must keep moving");
+        let mut world = realtime_fixture();
+        let mut circled = None;
+        for id in 1..=5 {
+            world.bridge_critical(id);
+            if world.ship(id).unwrap().bridge_circle.is_some_and(|d| d != 0.) {
+                circled = Some(id);
+                break;
+            }
+        }
+        let id = circled.expect("a bridge critical must eventually circle");
+        assert!(world.ship(id).unwrap().track.is_none());
+    }
+
+    #[test]
+    fn v10_weapon_criticals_lose_a_real_mount() {
+        let mut world = realtime_fixture();
+        world.weapon_critical(1, true);
+        let ship = world.ship(1).unwrap();
+        assert!(
+            ship.torp_mount_destroyed.iter().any(|d| *d),
+            "an underwater weapon hit must destroy a torpedo mount"
+        );
+        assert_eq!(
+            ship.torp_mount_destroyed
+                .iter()
+                .zip(&ship.torp_mount_remaining)
+                .filter(|(destroyed, _)| **destroyed)
+                .map(|(_, remaining)| *remaining)
+                .sum::<u32>(),
+            0
+        );
+        let mut world = realtime_fixture();
+        world.weapon_critical(2, false);
+        assert!(
+            world.ship(2).unwrap().gun_mount_destroyed.iter().any(|d| *d),
+            "a surface weapon hit must destroy a gun mount when no torpedo tube is available"
+        );
     }
 
     #[test]

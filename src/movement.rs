@@ -736,6 +736,27 @@ impl World {
                     Some("有舰因损伤掉速，已限制共同航速。可降速重下航路或将受损舰脱队。".into());
             }
         }
+        // cas-realtime-v10 (CAS 8.3): a jammed rudder or a bridge circle
+        // overrides the ordered track. The ship is no longer in the fleet's
+        // active list because the critical cleared its track; it turns at a
+        // slow rate and runs on at its current speed.
+        for (i, s) in self.ships.iter().enumerate() {
+            if !s.alive() {
+                continue;
+            }
+            let direction = match (s.rudder_jam, s.bridge_circle) {
+                (Some(d), _) => d,
+                (None, Some(d)) => d,
+                _ => continue,
+            };
+            if direction == 0. {
+                continue;
+            }
+            let rate = if self.data.ships[s.def].size == "C" { 4. } else { 2. };
+            let h = norm(s.h + direction * rate);
+            let p = s.p + P::bearing(h) * (s.speed * KNOT);
+            proposal[i] = (p, h, s.speed, None);
+        }
         let mut halt: Vec<u32> = Vec::new();
         for (i, s) in self.ships.iter().enumerate().filter(|(_, s)| s.alive()) {
             if s.p.dist(proposal[i].0) < 1e-8 {
@@ -788,10 +809,12 @@ impl World {
                 s.speed = 0.;
                 continue;
             }
+            s.p = p;
+            s.h = h;
             if let Some(at) = at {
-                s.p = p;
-                s.h = h;
-                s.track.as_mut().unwrap().pos = at;
+                if let Some(track) = s.track.as_mut() {
+                    track.pos = at;
+                }
             }
             s.speed = k;
         }
