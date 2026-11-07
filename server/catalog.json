@@ -1887,7 +1887,8 @@
       "rarity": "rare",
       "recruitable": false,
       "credits_price": null,
-      "combat_ready": false
+      "combat_ready": true,
+      "combat_source": "src/ranked_fleets.rs PROFILES（序章时期包 cas-prologue-runtime-v1#north-carolina，美国舰表 PDF 8、109）；点表 cas-points-surface-v1 已登记同名 ID"
     },
     {
       "id": "IBS-U-USN-UNNAMED-T01-R06",
@@ -2167,6 +2168,7 @@
     {
       "id": "allied-cruiser-detachment",
       "name": "同盟巡洋支援包",
+      "description": "一艘轻巡洋舰与两艘重巡洋舰，给同盟驱逐编队补上远程火力。",
       "credits": 1800,
       "ship_ids": [
         "IBS-U-USN-HONOLULU",
@@ -2177,6 +2179,7 @@
     {
       "id": "axis-destroyer-screen",
       "name": "轴心驱逐警戒包",
+      "description": "三艘驱逐舰组成雷击警戒线，可直接编入轴心低预算舰队。",
       "credits": 1000,
       "ship_ids": [
         "IBS-U-IJN-TAKANAMI",
@@ -2187,6 +2190,7 @@
     {
       "id": "axis-cruiser-escort",
       "name": "轴心巡洋护航包",
+      "description": "两艘重巡洋舰加一艘驱逐舰，适合给轴心舰队搭配炮击与雷击分工。",
       "credits": 1600,
       "ship_ids": [
         "IBS-U-IJN-AOBA",

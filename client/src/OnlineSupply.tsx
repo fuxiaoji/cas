@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { OnlineError, onlineMeta, onlineRequest } from './online';
 import type { OnlineMeta } from './online';
+import { ShipBundleShelf } from './ShipBundleShelf';
+import { ShipPortraitViewer } from './ShipPortraitViewer';
+import { shipPortraitById } from './shipPortraits';
 import { OnlineRecruitDesk } from './online-recruit/OnlineRecruitDesk';
 import { OnlineRecruitArrival } from './online-recruit/OnlineRecruitArrival';
+import { shipTypeNames } from './online-recruit/types';
 import type { RecruitPool, RecruitReceipt, RecruitShip } from './online-recruit/types';
 import './online-supply.css';
 
 type Catalog = {
   ships: RecruitShip[];
   recruit_pools: RecruitPool[];
-  ship_bundles: { id: string; name: string; credits: number; ship_ids: string[] }[];
+  ship_bundles: { id: string; name: string; description?: string; credits: number; ship_ids: string[] }[];
   ai_profiles: { id: string; name: string; cost?: number }[];
 };
 type Mail = { id: string; title: string; body: string; sender: string; claimed_at: string | null;
@@ -34,6 +38,7 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
   const [receipts, setReceipts] = useState<RecruitReceipt[]>([]);
   const [arrival, setArrival] = useState<{ receipts: RecruitReceipt[]; replay: boolean }>();
   const [busy, setBusy] = useState(false);
+  const [portrait, setPortrait] = useState<RecruitShip>();
   const locked = useRef(false);
   const pending = useRef(new Map<string, string>());
   const pool = catalog?.recruit_pools.find(p => p.id === poolId);
@@ -41,6 +46,9 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
   const names = new Map(catalog?.ships.map(s => [s.id, s.name]));
   const name = (id: string) => names.get(id) ?? id;
   const owns = (id: string) => meta?.owned_ships.includes(id) ?? false;
+  // Only ledger-registered portrait assets get a viewer entry; ships without
+  // an asset show no button at all.
+  const portraitOf = (ship: RecruitShip) => shipPortraitById(ship.id);
   const visible = (catalog?.ships ?? []).filter(ship => (tab === 'fleet' ? owns(ship.id) : ship.recruitable) &&
     (ship.name + ' ' + ship.type + ' ' + ship.id).toLowerCase().includes(filter.trim().toLowerCase()));
 
@@ -78,7 +86,8 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
     } finally { locked.current = false; setBusy(false); }
   }
   const buy = (kind: string, item_id: string, currency = 'credits', extra = {}) =>
-    void act('/shop/purchase', { kind, item_id, currency, ...extra }, '兑换已入账。');
+    void act('/shop/purchase', { kind, item_id, currency, ...extra },
+      kind === 'ship_bundle' ? '礼包已入账，重复舰船转为勋章。' : '兑换已入账。');
 
   return <main className="online-supply">
     <header><button onClick={onBack}>‹ 返回母港</button><div><p>联机免费内测</p><h1>征募与补给</h1></div>
@@ -107,15 +116,14 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       <button disabled={busy || !!letter.claimed_at} onClick={() => void act('/mail/' + encodeURIComponent(letter.id) + '/claim', {}, '邮件附件已领取。')}>
         {letter.claimed_at ? '已领取' : '领取附件'}</button>
     </article>)}</div> : <p>没有邮件。</p>}</section>}
+    {tab === 'shop' && catalog && meta && <ShipBundleShelf bundles={catalog.ship_bundles} ships={catalog.ships}
+      meta={meta} busy={busy} onBuy={id => buy('ship_bundle', id)}/>}
     {tab === 'shop' && <section><h2>免费兑换</h2><div className="online-list">
       <article><h3>每周补给券</h3><button disabled={busy || !wallet || wallet.credits < 500}
         onClick={() => buy('weekly_ticket', '')}>500 补给币兑常驻券</button></article>
       <article><h3>每周实战补给</h3><p>{weekly ? `权威战役达成 ${weekly.count} / ${weekly.target}` : '等待战绩同步'}</p>
         <button disabled={busy || !weekly?.eligible || weekly.claimed}
           onClick={() => void act('/missions/weekly-pve/claim', {}, '周任务奖励已入账。')}>{weekly?.claimed ? '已领取' : '领取周任务奖励'}</button></article>
-      {catalog?.ship_bundles.map(item => <article key={item.id}><h3>{item.name}</h3><p>{item.ship_ids.map(name).join('、')}</p>
-        <button disabled={busy || (wallet?.credits ?? 0) < item.credits || meta?.claims.includes('shop:ship-bundle:' + item.id)}
-          onClick={() => buy('ship_bundle', item.id)}>{item.credits} 补给币</button></article>)}
       {catalog?.ai_profiles.filter(a => a.cost).map(a => <article key={a.id}><h3>{a.name}</h3><p>解锁保存在联机账号。</p>
         <button disabled={busy || (wallet?.credits ?? 0) < a.cost! || meta?.ai_profiles.includes(a.id)} onClick={() => buy('ai', a.id)}>{a.cost} 补给币</button></article>)}
     </div></section>}
@@ -123,7 +131,9 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       <h2>{tab === 'fleet' ? '联机收藏 · ' + (meta?.owned_ships.length ?? 0) : '舰船兑换'}</h2>
       <label>筛选舰船 <input type="search" value={filter} onChange={e => setFilter(e.target.value)} placeholder="舰名或舰种" /></label>
       <div className="online-list">{visible.map(ship => <article key={ship.id}><h3>{ship.name}</h3>
-        <p>{ship.type} · {rarity[ship.rarity]}{!ship.combat_ready && ' · 收藏，尚未绑定出战舰卡'}</p>
+        <p>{shipTypeNames[ship.type] ?? ship.type} · {rarity[ship.rarity]}{!ship.combat_ready && ' · 收藏，尚未绑定出战舰卡'}</p>
+        {tab === 'fleet' && portraitOf(ship) &&
+          <button type="button" className="online-portrait-link" onClick={() => setPortrait(ship)}>查看全身立绘</button>}
         {tab === 'shop' && <div className="online-pools">
           {ship.rarity === 'common' && <button disabled={busy || owns(ship.id) || (wallet?.credits ?? 0) < ship.credits_price}
             onClick={() => buy('ship', ship.id)}>{ship.credits_price} 补给币</button>}
@@ -132,5 +142,6 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       </article>)}</div>
       {!visible.length && <p>没有符合条件的舰船。</p>}
     </section>}
+    {portrait && <ShipPortraitViewer ship={portrait} onClose={() => setPortrait(undefined)}/>}
   </main>;
 }

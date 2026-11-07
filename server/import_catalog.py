@@ -9,6 +9,15 @@ import subprocess
 COMMIT = "48385c8337d3f5a08e3ebc5676d68309df87542d"
 INPUTS = ["mobile/content/catalog.json", "mobile/content/campaign-scenarios.json"]
 OUTPUT = Path(__file__).with_name("catalog.json")
+# CAS-side overlay. A stable identity may claim combat readiness only after its
+# period card is registered for the same ID in src/ranked_fleets.rs PROFILES and
+# priced in the competitive point table; the value is the source note the
+# service exposes to players and requires at startup.
+COMBAT_READY = {
+    "IBS-U-USN-UNNAMED-T01-R03": "src/ranked_fleets.rs PROFILES（序章时期包 "
+                                 "cas-prologue-runtime-v1#north-carolina，美国舰表 PDF 8、109）；"
+                                 "点表 cas-points-surface-v1 已登记同名 ID",
+}
 
 
 def project(repo):
@@ -30,7 +39,8 @@ def project(repo):
             "recruitable": recruitable,
             "credits_price": max(200, ((old["cost"] + 99) // 100) * 100)
                              if recruitable and old["rarity"] == "common" else None,
-            "combat_ready": False,
+            "combat_ready": ship_id in COMBAT_READY,
+            **({"combat_source": COMBAT_READY[ship_id]} if ship_id in COMBAT_READY else {}),
         })
     pools = [{
         k: p[k] for k in ("id", "name", "kind", "ur_ship_ids", "rates", "pity",
@@ -47,7 +57,8 @@ def project(repo):
             "files": {INPUTS[0]: base_sha, INPUTS[1]: campaign_sha},
         },
         "ships": ships, "recruit_pools": pools,
-        "ship_bundles": [{k: b[k] for k in ("id", "name", "credits", "ship_ids")} for b in base["ship_bundles"]],
+        "ship_bundles": [{k: b[k] for k in ("id", "name", "description", "credits", "ship_ids") if k in b}
+                         for b in base["ship_bundles"]],
         "ai_profiles": [{k: a[k] for k in ("id", "name", "description", "unlock", "cost") if k in a}
                         for a in base["ai_profiles"]],
         "stages": [], "combat_catalog_available": False,

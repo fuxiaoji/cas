@@ -1,0 +1,33 @@
+/* Adapted from 铁底湾 0.6.11 mobile/src/economy/ship-bundles.css. */
+.ship-bundle-shelf{margin:14px 0 18px;color:#d6e8ef}
+.ship-bundle-shelf>header h3{margin:0 0 6px;color:#f3dcad;font:600 20px 'SimSun',serif}
+.ship-bundle-shelf>header p{margin:0 0 12px;color:#afc5cf;font-size:11px;line-height:1.55}
+.ship-bundle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr));gap:10px}
+.ship-bundle{display:flex;min-width:0;flex-direction:column;gap:7px;padding:12px;border:1px solid #7fa8b868;border-top:2px solid #d5b979;background:linear-gradient(150deg,#26475a,#0d2a40 72%)}
+.ship-bundle-kicker{display:flex;justify-content:space-between;gap:4px;color:#d6bc88;font-size:9px;letter-spacing:1px}
+.ship-bundle-kicker span{color:#a3beca;letter-spacing:0}
+.ship-bundle h4{margin:0;color:#f6e8cf;font-size:16px}
+.ship-bundle-shelf .ship-bundle>p{margin:0;color:#a8c4d0;font-size:10px;line-height:1.5;min-height:2.9em}
+.ship-bundle-ships{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:auto}
+.ship-bundle-ships>div{min-width:0;padding:3px 2px 5px;text-align:center;border:1px solid #658c9d57;background:#183849}
+.ship-bundle-art{height:43px;overflow:hidden}
+.ship-bundle-art .arrival-ship-art,.ship-bundle-art .arrival-ship-signal{width:100%;height:100%;object-fit:contain;object-position:top}
+.ship-bundle-ships strong,.ship-bundle-ships small{display:block;overflow-wrap:anywhere;line-height:1.35}
+.ship-bundle-ships strong{font-size:10px;color:#e1edf1}
+.ship-bundle-ships small{font-size:8px;color:#9dbcc8}
+.ship-bundle footer{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px}
+.ship-bundle footer strong,.ship-bundle footer small{display:block}
+.ship-bundle footer strong{font-size:12px;color:#f3d69f}
+.ship-bundle footer small{font-size:9px;color:#9dbcc8;margin-top:3px}
+.ship-bundle footer button{min-height:35px;padding:5px 9px;white-space:nowrap;font-size:10px}
+@media(orientation:landscape) and (min-width:700px) and (max-height:550px){
+ .ship-bundle-shelf>header{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-bottom:8px}
+ .ship-bundle-shelf>header>h3,.ship-bundle-shelf>header>p{margin:0}
+ .ship-bundle-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ .ship-bundle{gap:4px;padding:7px}
+ .ship-bundle h4{font-size:14px;margin-bottom:3px}
+ .ship-bundle-shelf .ship-bundle>p{font-size:9px;line-height:1.4;margin-bottom:4px;min-height:2.8em}
+ .ship-bundle-art{height:30px}
+ .ship-bundle footer strong{font-size:10px}
+ .ship-bundle footer button{min-height:34px}
+}

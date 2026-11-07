@@ -11,3 +11,11 @@ export function shipPortrait(classId?: string, characterId?: string) {
   const src = files[`./assets/portraits/${item.path}`];
   return src ? { src, name: item.character_name, id: item.ibs_character_id, representative: !characterId } : undefined;
 }
+
+/** Collection lookup by the stable character id recorded in the ledger. */
+export function shipPortraitById(characterId: string) {
+  const item = ledger.assets.find((entry) => entry.ibs_character_id === characterId);
+  if (!item) return undefined;
+  const src = files[`./assets/portraits/${item.path}`];
+  return src ? { src, name: item.character_name, id: item.ibs_character_id, representative: item.mapping === 'class_representative' } : undefined;
+}

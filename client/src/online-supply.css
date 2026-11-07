@@ -12,3 +12,18 @@
 .online-supply input{padding:.45rem;background:#0b1e2a;color:#e2e7e2;border:1px solid #627e83}
 .online-receipts{padding:.75rem 2rem;background:#224352;color:#f2dbab}
 .online-battle-list{display:grid;gap:.4rem;max-height:34dvh;overflow-y:auto;margin:.75rem 0}
+/* Full-body portrait viewer, adapted from 铁底湾 0.6.11 fleet-portrait-dialog. */
+.online-portrait-link{margin-top:.4rem;min-height:34px;padding:3px 10px;font-size:11px;color:#f1d9a3;background:#173742;border-color:#9d9164}
+.online-portrait-dialog{position:fixed;width:min(740px,96vw);height:min(730px,92dvh);max-width:none;max-height:none;padding:12px;color:#ecdfbc;background:#173240;border:1px solid #a39570}
+.online-portrait-dialog[open]{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(112px,1fr);align-items:center}
+.online-portrait-dialog::backdrop{background:#071018df}
+.online-portrait-dialog img{width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;object-position:center top}
+.online-portrait-dialog small{color:#dfc998;font-size:11px}
+.online-portrait-dialog h2{font:500 clamp(22px,5vw,34px)/1.3 'Noto Serif CJK SC','SimSun',serif;letter-spacing:2px;margin:6px 0;color:#f5e8c8}
+.online-portrait-dialog p{padding-right:8px;color:#c3d5d9;font-size:11px}
+.online-portrait-dialog>button{position:absolute;top:8px;right:8px;min-width:34px;min-height:34px;font-size:18px;color:#ecdfbc;background:#23455a;border-color:#7f939d}
+@media(orientation:landscape) and (max-height:550px){
+ .online-portrait-dialog{width:min(740px,96vw);height:min(400px,94dvh);padding:8px}
+ .online-portrait-dialog[open]{grid-template-columns:minmax(0,1.9fr) minmax(96px,1fr)}
+ .online-portrait-dialog h2{margin:3px 0}
+}
