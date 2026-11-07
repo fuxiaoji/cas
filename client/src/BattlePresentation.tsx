@@ -216,13 +216,16 @@ export function mountStatus(mount: GunMount, tick: number) {
   return mount.destroyed ? 'lost' : mount.training ? 'turning' : remaining ? 'loading' : 'ready';
 }
 
-function GunMountReadiness({ mount, slot, tick }: { mount: GunMount; slot: number; tick: number }) {
+function GunMountReadiness({ mount, slot, tick, shipHeading }: { mount: GunMount; slot: number; tick: number; shipHeading?: number }) {
   const state = mountStatus(mount, tick);
   const remaining = Math.max(0, (mount.readyTick ?? tick) - tick);
   const reload = remaining > 0 ? `装填 ${remaining} 秒` : '';
   const status = state === 'lost' ? '损毁' : state === 'turning' ? (reload ? `转炮 · ${reload}` : '转炮') : reload || '就绪';
+  // cas-realtime-v10: the mount's live absolute bearing, as on the chart.
+  const bearing = mount.bearing != null ? String(Math.round(mount.bearing) % 360).padStart(3, '0') + '°' : null;
   return <li className={'mount-readiness ' + state} data-gun-mount={mount.index} data-ready-tick={mount.readyTick}>
     <span>炮座 {slot + 1} <small>{mount.barrels} 门</small></span><b>{status}</b>
+    <em aria-label={'炮座 ' + (slot + 1) + '朝向'}>{bearing ?? '—'}</em>
   </li>;
 }
 
@@ -271,7 +274,7 @@ export function ShipSchematic({ ship, ships, select, tick = 0, torpedo }: {
       <div className="mount-rows">
         {timedGuns ? <div className="gun-readiness">
           <div className="gun-readiness-heading"><span>主炮状态</span>{ship.gunTarget && <b>待发目标 {ship.gunTarget}</b>}</div>
-          <ul aria-label="炮座状态">{systems.guns.map((mount, slot) => <GunMountReadiness mount={mount} slot={slot} tick={tick} key={mount.index} />)}</ul>
+          <ul aria-label="炮座状态">{systems.guns.map((mount, slot) => <GunMountReadiness mount={mount} slot={slot} tick={tick} shipHeading={ship.heading} key={mount.index} />)}</ul>
         </div> : <div className="mount-row"><span>炮座</span><div>
           {systems.guns.length ? systems.guns.map((gun, slot) => <span key={gun.index} className={'mount-icon ' + (gun.destroyed ? 'lost' : 'ready')}
             aria-label={'炮座 ' + (slot + 1) + '，' + gun.barrels + ' 门炮，' + (gun.destroyed ? '损毁' : '完好')}

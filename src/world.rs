@@ -713,6 +713,15 @@ impl World {
             self.resolve_fire(true);
             self.fired_this_cycle.clear();
             self.incoming_this_cycle.clear();
+            if !self.v10_family() {
+                self.detect(false);
+                self.radar_detect();
+            }
+        }
+        // cas-realtime-v10: acquisition runs every second; the printed per-phase
+        // chance is integrated into a per-second hazard rate so the window-end
+        // detection distribution still matches CAS §5.4.
+        if self.v10_family() {
             self.detect(false);
             self.radar_detect();
         }

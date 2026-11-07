@@ -253,9 +253,16 @@ try {
     const orderLight = page.getByRole('button', { name: /^下达照明弹/ });
     await orderLight.click();
     await page.getByRole('status').filter({ hasText: '照明弹已下令' }).waitFor();
-    await nextWindow();
-    const lit = await observed();
-    assert(lit.events.some((e) => e.kind === 'illumination' && e.tick === lit.tick));
+    // cas-realtime-v10: the starshell fires the moment its mount trains and
+    // loads — usually seconds after the order, before the next window.
+    let lit = await observed();
+    let waited = 0;
+    while (!lit.illuminations.some((mark) => mark.own) && waited < 240) {
+      await button('推进一秒').click();
+      lit = await observed();
+      waited += 1;
+    }
+    assert(lit.events.some((e) => e.kind === 'illumination'), 'the ordered starshell must ignite');
     assert(lit.illuminations.some((mark) => mark.own));
     await screenshot('14-integrated-night-light');
     await button('战情记录').click();

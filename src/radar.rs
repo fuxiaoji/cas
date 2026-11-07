@@ -647,6 +647,17 @@ impl RadarState {
         });
     }
 
+    /// cas-realtime-v10: turn the printed per-window acquisition chance into
+    /// a per-second hazard roll when `realtime`; otherwise one window roll.
+    fn acquisition_roll(rng: &mut u64, window_chance_pct: u32, realtime: bool) -> bool {
+        if !realtime {
+            return roll(rng, 100) <= window_chance_pct;
+        }
+        let window = f64::from(window_chance_pct) / 100.;
+        let per_second = crate::night::per_second_chance(window, 1.);
+        roll(rng, 10_000) as f64 / 10_000. < per_second
+    }
+
     fn prune(&mut self, tick: u32, data: &Data, ships: &[Ship], islands: &[Vec<P>], sea_state: u8) {
         let site = Site {
             islands,
@@ -687,6 +698,42 @@ impl RadarState {
         self.last_detection = Some(tick);
         self.prune(tick, data, ships, islands, sea_state);
         self.shared = std::mem::take(&mut self.waiting_to_share);
+        self.acquire(tick, data, ships, islands, sea_state, false);
+    }
+
+    /// cas-realtime-v10: per-second acquisition. Each powered device rolls the
+    /// printed per-window chance integrated into a per-second hazard rate, so
+    /// the window-end probability matches the CAS phase roll while first
+    /// contact may land on any second. Sharing and pruning stay on the
+    /// 180-second window boundaries with their one-window delay.
+    fn detect_realtime(
+        &mut self,
+        tick: u32,
+        data: &Data,
+        ships: &[Ship],
+        islands: &[Vec<P>],
+        sea_state: u8,
+    ) {
+        if self.last_detection == Some(tick) {
+            return;
+        }
+        self.last_detection = Some(tick);
+        if tick.is_multiple_of(CYCLE) {
+            self.prune(tick, data, ships, islands, sea_state);
+            self.shared = std::mem::take(&mut self.waiting_to_share);
+        }
+        self.acquire(tick, data, ships, islands, sea_state, true);
+    }
+
+    fn acquire(
+        &mut self,
+        tick: u32,
+        data: &Data,
+        ships: &[Ship],
+        islands: &[Vec<P>],
+        sea_state: u8,
+        realtime: bool,
+    ) {
         let site = Site {
             islands,
             sea_state,
@@ -706,14 +753,23 @@ impl RadarState {
                     }
                     let key = (*ship, index, t.id);
                     if let Some(sample) = self.direct.get_mut(&key) {
-                        sample.previous_window = Some((sample.window_tick, sample.window_position));
-                        sample.window_position = t.p;
-                        sample.window_tick = tick;
-                        sample.position = t.p;
-                        sample.seen_tick = tick;
-                    } else if roll(&mut self.rng, 100)
-                        <= rules().acquisition.chance_by_generation_pct[&set.generation]
-                    {
+                        if realtime && !tick.is_multiple_of(CYCLE) {
+                            // Mid-window re-acquisitions refresh the live plot
+                            // but do not advance the two-window solution pair.
+                            sample.position = t.p;
+                            sample.seen_tick = tick;
+                        } else {
+                            sample.previous_window = Some((sample.window_tick, sample.window_position));
+                            sample.window_position = t.p;
+                            sample.window_tick = tick;
+                            sample.position = t.p;
+                            sample.seen_tick = tick;
+                        }
+                    } else if Self::acquisition_roll(
+                        &mut self.rng,
+                        rules().acquisition.chance_by_generation_pct[&set.generation],
+                        realtime,
+                    ) {
                         self.direct.insert(
                             key,
                             Sample {
@@ -785,8 +841,10 @@ impl RadarState {
             .map(|(_, s)| s)
             .min_by_key(|s| s.first_tick)?;
         let (previous_tick, previous) = sample.previous_window?;
-        let latest_tick = self.last_detection?;
-        if latest_tick.checked_sub(previous_tick)? != CYCLE { return None; }
+        // cas-realtime-v10: detection runs per second, so align against the
+        // most recent completed window boundary instead of the raw last tick.
+        let latest_window = self.last_detection? - self.last_detection? % CYCLE;
+        if latest_window.checked_sub(previous_tick)? != CYCLE { return None; }
         let moved = sample.window_position - previous;
         contact.x = sample.position.x;
         contact.y = sample.position.y;
@@ -833,13 +891,25 @@ impl World {
 
     pub(crate) fn radar_detect(&mut self) {
         if self.radar_enabled() {
-            self.radar.detect(
-                self.tick,
-                self.data,
-                &self.ships,
-                &self.islands,
-                self.environment().sea_state,
-            );
+            let realtime = self.v10_family() && !self.tick.is_multiple_of(CYCLE);
+            if realtime {
+                let (tick, data, ships, islands, sea_state) = (
+                    self.tick,
+                    self.data,
+                    &self.ships,
+                    &self.islands,
+                    self.environment().sea_state,
+                );
+                self.radar.detect_realtime(tick, data, ships, islands, sea_state);
+            } else {
+                self.radar.detect(
+                    self.tick,
+                    self.data,
+                    &self.ships,
+                    &self.islands,
+                    self.environment().sea_state,
+                );
+            }
         }
         self.refresh_realtime_mk4_optics();
     }

@@ -47,10 +47,10 @@
 
 | 炮座 | 已发布 v4/v5 的装填／横转 | v6 的装填／横转和依据 |
 | --- | --- | --- |
-| 弗莱彻级 5 英寸／38 Mk30 单装 | 6 秒／18° 每秒 | **4 秒**／18° 每秒。同级 DD-793 的 55 号炮位记录给出最快约每 4 秒一次装填、瞄准与发射。用作本型号 RTS 射击间隔，未分别建模各舰供弹、炮组熟练度或战损。18° 仍是暂定值。[美国国家公园管理局 DD-793 炮位记录](https://www.nps.gov/bost/learn/usscy-virtual-tour.htm) |
+| 弗莱彻级 5 英寸／38 Mk30 单装 | 6 秒／18° 每秒 | **4 秒**／**28.7° 每秒**（v10）。装填沿用同级 DD-793 的 55 号炮位记录（最快约每 4 秒装填-瞄准-发射）。横转按 [NavWeaps 5"/38 Mark 12 页](https://www.navweaps.com/Weapons/WNUS_5-38_mk12.php)：Mk30 电力驱动 GE 控制 28.75°/秒（Ford 控制 34°/秒），取低者；此前的 18°/秒为暂定值，已替换。未分别建模各舰供弹与炮组熟练度。该页同时给出基环座 15–22 发/分（2.7–4 秒），与 4 秒装填一致。 |
 | 阳炎、天雾、夕雾的三年式 12.7 厘米／50 双联 | 9 秒／9° 每秒 | **12 秒／6° 每秒**。美国海军战后技术报告对这一炮族的早期电动座给出每管约 5 发／分和 6°／秒横转，并附 Type C 双联座图。按炮族作代表性估计，逐舰没有实测装填时间，炮身俯仰与回到装填角也未单独模拟。[USNTMJ O-47(N)-1 印刷第 41、61、63 页](https://www.fischer-tropsch.org/primary_documents/gvt_reports/USNAVY/USNTMJ%20Reports/USNTMJ-200F-0446-0523%20Report%20O-47%20N-1.pdf#page=44) |
 | 卯月的三年式 12 厘米／45 单装 | 12 秒／8° 每秒 | 同报告供弹表的一般 12 厘米／45 行约 5 发／分。继续用 12 秒作参考，8° 仍是暂定值。报告另列的防空版射速不用于该舰。[USNTMJ O-47(N)-1 印刷第 19 页供弹表](https://www.fischer-tropsch.org/primary_documents/gvt_reports/USNAVY/USNTMJ%20Reports/USNTMJ-200F-0446-0523%20Report%20O-47%20N-1.pdf#page=22) |
-| 克利夫兰、川内、夕云型、英国 J/K 级、德国驱逐舰 | 如上 | 保留暂定值。已查到的克利夫兰级三联炮资料给出装填仰角限制，未给出可据以设定统一实战射击间隔的逐炮试射数据。其他舰按对应炮座及年代补证。[美国海军学院《Naval Ordnance and Gunnery》§7F2](https://www.eugeneleeslover.com/USNAVY/CHAPTER-7.php) |
+| 克利夫兰、川内、夕云型、英国 J/K 级、德国驱逐舰 | 如上 | 克利夫兰 Mk16 三联 **10°/秒已接源**（v10）：[NavWeaps 6"/47 Mark 16 页](https://www.navweaps.com/Weapons/WNUS_6-47_mk16.php) "All: 10 degrees per second"，与此前暂定值一致，转为已核；该页射速 8–10 发/分（装填仰角限制降至约 5 发/分），现用 10 秒装填偏保守，保留。阳炎级 6°/秒已有 USNTMJ 与 [NavWeaps 日本 12.7cm/50 页](https://www.navweaps.com/Weapons/WNJAP_5-50_3ns.php)（"约 6°/秒"）双源一致。川内 14 厘米单装为人力俯仰座，7.5°/秒仍暂定；英国 J/K 与德国驱逐舰待逐座补证。[美国海军学院《Naval Ordnance and Gunnery》§7F2](https://www.eugeneleeslover.com/USNAVY/CHAPTER-7.php) |
 
 v6 将这套装填与横转参数用于实时演习和战役。版本 v4、v5 存档继续按各自的炮座时序重演。原书计划／反应火力的半伤与炮位限制、多指挥仪的独立火力组仍是实时版差额。炮弹飞行沿用按 CAS 射程求有效速度的实时弹道估计。
 

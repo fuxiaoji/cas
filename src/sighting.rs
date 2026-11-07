@@ -73,6 +73,127 @@ impl World {
         }
     }
 
+    /// cas-realtime-v10: per-second acquisition. The printed per-phase chance
+    /// is integrated into a per-second hazard rate, so the chance that a
+    /// formation is detected by the end of a 180-second phase matches the
+    /// window roll exactly, while first contact may happen at any second.
+    pub(crate) fn detect_night_realtime(&mut self) {
+        let mut observers: Vec<_> = self
+            .ships
+            .iter()
+            .filter(|o| o.side as usize == 0 && o.alive())
+            .map(|o| (o.id, o.p, self.night_range(o, o).to_string()))
+            .collect();
+        observers.clear();
+        for owner in 0..2usize {
+            let observers: Vec<_> = self
+                .ships
+                .iter()
+                .filter(|o| o.side == owner && o.alive())
+                .cloned()
+                .collect();
+            if observers.is_empty() {
+                continue;
+            }
+            let mut targets: Vec<_> = self
+                .ships
+                .iter()
+                .filter(|t| t.side != owner && t.alive() && !self.knows(owner, t.id))
+                .cloned()
+                .collect();
+            targets.sort_by_key(|t| (t.fleet, t.id));
+            // One hazard roll per formation per second, shared by its members.
+            let mut groups: Vec<(Option<u32>, bool, Vec<_>)> = Vec::new();
+            for target in targets {
+                let key = (target.fleet, target.fleet.is_none());
+                match groups.iter_mut().find(|(g, solo, _)| (*g, *solo) == key) {
+                    Some((_, _, list)) => list.push(target),
+                    None => groups.push((key.0, key.1, vec![target])),
+                }
+            }
+            for (fleet_key, _, members) in groups {
+                let cue = fleet_key.is_some_and(|fleet| {
+                    self.contacts[owner]
+                        .iter()
+                        .any(|c| self.ship(c.ship).is_some_and(|v| v.fleet == Some(fleet)))
+                });
+                let modifier = night::visual_d100_modifier(
+                    self.environment(),
+                    cue,
+                    false,
+                    false,
+                );
+                let mut views: Vec<(night::DetectionView, u32)> = Vec::new();
+                for target in &members {
+                    for o in &observers {
+                        let distance = o.p.dist(target.p) / YARD;
+                        let base = self.night_range(o, target);
+                        let modifier = night::visual_d100_modifier(
+                            self.environment(),
+                            cue,
+                            false,
+                            self.fired_this_turn(o),
+                        );
+                        views.push(((base, distance as u32, modifier), target.id));
+                    }
+                }
+                let window_chance = night::formation_detection_chance(
+                    &views.iter().map(|(view, _)| *view).collect::<Vec<_>>(),
+                );
+                let per_second = night::per_second_chance(window_chance, 1.);
+                if roll(&mut self.optics_rng, 10_000) as f64 / 10_000. >= per_second {
+                    continue;
+                }
+                // Acquisition: draw the confirming die and record each observer
+                // whose own base range reaches their target.
+                let die = roll(&mut self.optics_rng, 100) as i32;
+                for target in &members {
+                    if self.knows(owner, target.id) {
+                        continue;
+                    }
+                    let def = &self.data.ships[target.def];
+                    let mut best = None;
+                    for (view, view_target) in &views {
+                        if *view_target != target.id {
+                            continue;
+                        }
+                        let (base, distance, modifier) = *view;
+                        let limit =
+                            night::surface_detection_range_yd(base, die + modifier);
+                        if (distance as f64) <= f64::from(limit)
+                            && best.is_none_or(|(b, r)| (limit, base) > (r, b))
+                        {
+                            best = Some((base, limit));
+                        }
+                    }
+                    let Some((base, range)) = best else { continue };
+                    let id = format!("C{:02}", self.next_contacts[owner]);
+                    self.next_contacts[owner] += 1;
+                    self.add(
+                        1 << owner,
+                        "contact",
+                        format!("发现夜间水面接触 {id}"),
+                        Some("CAS-5.4.1.1"),
+                        Some(target.p),
+                    );
+                    self.contacts[owner].push(Contact {
+                        id,
+                        x: target.p.x,
+                        y: target.p.y,
+                        heading: target.h,
+                        speed: target.speed,
+                        kind: Some(def.kind.to_ascii_lowercase()),
+                        name: Some(def.name.clone()),
+                        ship: target.id,
+                        first_cycle: self.tick / CYCLE,
+                        acquisition_base_yd: base,
+                        acquisition_range_yd: range,
+                    });
+                }
+            }
+        }
+    }
+
     pub(crate) fn detect_night(&mut self) {
         // One visual roll per enemy formation and observing seat per detection phase.
         for owner in 0..2 {

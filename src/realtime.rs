@@ -37,9 +37,12 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
         // See docs/rules/realtime-gunnery-sources.md for fit and source limits.
         match class {
             "fletcher" | "ausburne" | "claxton" | "dyson" | "converse" | "spence" => {
+                // NavWeaps, USN 5"/38 Mark 12: Mark 30 singles with GE power
+                // drives train at 28.75 deg/s (Ford drives 34). Reload keeps
+                // the 4 s DD-793 gun-deck record.
                 return Some(Timings {
                     reload: 4,
-                    train: 18.,
+                    train: 28.7,
                 });
             }
             "kagero" | "amagiri" | "yugiri" => {
@@ -48,7 +51,7 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
                     train: 6.,
                 });
             }
-            "IBS-U-USN-FLETCHER" => return Some(Timings { reload: 4, train: 18. }),
+            "IBS-U-USN-FLETCHER" => return Some(Timings { reload: 4, train: 28.7 }),
             "IBS-U-USN-PERKINS" | "IBS-U-USN-MAURY" | "IBS-U-USN-DRAYTON" | "IBS-U-USN-LAMSON" =>
                 return Some(Timings { reload: 5, train: 15. }),
             "north-carolina" => return Some(Timings { reload: 30, train: 4. }),
@@ -609,13 +612,14 @@ mod tests {
             .iter()
             .find(|m| m["index"] == 2)
             .unwrap();
-        assert_eq!(amidships["turnSeconds"], 10);
+        // 180-deg Stern chase at the sourced Mark 30 GE train rate (28.7 deg/s).
+        assert_eq!(amidships["turnSeconds"], 7);
         w.order_realtime_gun(0, 1, &south, true).unwrap();
         let initial = w.ship(1).unwrap().battery.turrets[2].clone();
         w.advance();
         let turning = w.ship(1).unwrap().battery.turrets[2].clone();
         assert!(turning.training);
-        assert_eq!(delta(initial.relative, turning.relative).abs(), 18.);
+        assert!((delta(initial.relative, turning.relative).abs() - 28.7).abs() < 1e-6);
         w.cancel_realtime_gun(0, &json!({"ship":1})).unwrap();
         w.advance();
         let after_cancel = &w.ship(1).unwrap().battery.turrets[2];
@@ -624,21 +628,18 @@ mod tests {
         assert!(!after_cancel.training);
 
         w.order_realtime_gun(0, 1, &south, true).unwrap();
-        for _ in 0..9 {
+        // Arrival-driven: the mount reaches the stern chase bearing in
+        // ceil(180 / 28.7) seconds, fires, and the sustained order re-fires on
+        // its 4-second reload clock.
+        while w.ship(1).unwrap().battery.turrets[2].relative != 90. && w.tick < 60 {
             w.advance();
         }
         let first_south_fire = w.tick;
         assert_eq!(w.ship(1).unwrap().battery.turrets[2].relative, 90.);
         assert_eq!(w.ship(1).unwrap().battery.turrets[2].ready, w.tick + 4);
-        w.order_realtime_gun(0, 1, &south, true).unwrap();
-        for _ in 0..3 {
+        while w.tick < first_south_fire + 4 {
             w.advance();
         }
-        assert_eq!(
-            w.ship(1).unwrap().battery.turrets[2].ready,
-            first_south_fire + 4
-        );
-        w.advance();
         assert_eq!(
             w.ship(1).unwrap().battery.turrets[2].ready,
             first_south_fire + 8

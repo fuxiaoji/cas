@@ -107,11 +107,16 @@ impl World {
         if !self.has_starshells(){return;}
         self.illumination.marks.retain(|m| m.expires > self.tick);
         self.illumination.used.retain(|(_,_,cycle)| *cycle>=self.tick/CYCLE);
-        // Current tutorial exposes plotting orders at the planned window. It
-        // does not permit retroactive reactions against a new contact.
-        if !planned{return;}
+        // cas-realtime-v10: the starshell leaves the moment its mount is
+        // trained and loaded, planned or reaction, so mid-window contacts can
+        // be lit inside the same window. The one-mount-per-window CAS budget
+        // and the one-window burn time are unchanged. Earlier versions only
+        // resolve orders at the planned window boundary.
+        let realtime = self.v10_family() && !planned;
+        if !planned && !realtime {return;}
         let old=std::mem::take(&mut self.pending);
-        let (mut ready,wait):(Vec<_>,Vec<_>)=old.into_iter().partition(|p| p.weapon=="illumination"&&p.expires<=self.tick);
+        let (mut ready,wait):(Vec<_>,Vec<_>)=old.into_iter().partition(|p| p.weapon=="illumination"&&
+            (p.expires<=self.tick || realtime));
         self.pending=wait;
         ready.sort_by_key(|p|p.ship);
         for order in ready {
@@ -123,6 +128,11 @@ impl World {
             let s=s.unwrap();
             let bearing=(plan.contact.p()-s.p).heading();
             if !self.illumination_aligned(&s,plan.mount,bearing) {
+                if realtime && order.expires > self.tick {
+                    // The mount is still training; hold and retry next second.
+                    self.pending.push(order);
+                    continue;
+                }
                 self.add(1<<s.side,"rejected","照明弹未发射：炮座尚未转入射向".into(),Some("RTS-GUN-04"),None);
                 continue;
             }

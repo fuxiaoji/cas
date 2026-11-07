@@ -146,6 +146,50 @@ fn d100_column(roll: i32) -> usize {
         .unwrap_or(4)
 }
 
+/// The per-window acquisition probability for one formation, computed exactly
+/// from the printed detection table: the fraction of D100 outcomes whose
+/// detection range reaches any observer at the current distances. `bases_yd`
+/// and `distances_yd` are aligned per observer.
+/// One observing hull's view of one formation member: its own base range, the
+/// distance, and its own D100 modifier (cue, firing state).
+pub(crate) type DetectionView = (u32, u32, i32);
+
+pub(crate) fn formation_detection_chance(views: &[DetectionView]) -> f64 {
+    let automatic = automatic_visual_yd();
+    if views.is_empty() {
+        return 0.;
+    }
+    // Inside the automatic band every phase detects without a roll.
+    if views.iter().any(|(_, dist, _)| *dist < automatic) {
+        return 1.;
+    }
+    let mut hits = 0u32;
+    for die in 1..=100i32 {
+        if views
+            .iter()
+            .any(|(base, dist, modifier)| {
+                *dist <= surface_detection_range_yd(*base, die + modifier) as u32
+            })
+        {
+            hits += 1;
+        }
+    }
+    hits as f64 / 100.
+}
+
+/// cas-realtime-v10: spread a per-window CAS chance across per-second
+/// independent trials so the window-end detection distribution is unchanged
+/// while acquisition may happen at any second inside the window.
+pub(crate) fn per_second_chance(window_chance: f64, dt_seconds: f64) -> f64 {
+    if window_chance >= 1. {
+        return 1.;
+    }
+    if window_chance <= 0. || dt_seconds <= 0. {
+        return 0.;
+    }
+    1. - (1. - window_chance).powf(dt_seconds / 180.)
+}
+
 pub(crate) fn surface_detection_range_yd(base_yd: u32, modified_d100: i32) -> u32 {
     data()
         .visual_detection_yd
@@ -527,5 +571,53 @@ mod tests {
             })
         );
         assert_eq!(starshell_scatter(96), None);
+    }
+}
+
+#[cfg(test)]
+mod hazard_tests {
+    use super::*;
+
+    #[test]
+    fn automatic_band_and_empty_views_are_deterministic() {
+        assert_eq!(formation_detection_chance(&[]), 0.);
+        let close = automatic_visual_yd() - 10;
+        assert_eq!(formation_detection_chance(&[(10_000, close, 0)]), 1.);
+    }
+
+    #[test]
+    fn per_second_hazard_integrates_to_the_window_chance() {
+        for window in [0.05f64, 0.2, 0.5, 0.75, 0.99] {
+            let per_second = per_second_chance(window, 1.);
+            // Exactly 180 seconds of independent trials.
+            let no_detect = (1. - per_second).powi(180);
+            assert!((no_detect - (1. - window)).abs() < 1e-9, "window {window}: {no_detect}");
+        }
+        assert_eq!(per_second_chance(1., 1.), 1.);
+        assert_eq!(per_second_chance(0., 1.), 0.);
+    }
+
+    #[test]
+    fn monte_carlo_seconds_match_the_window_roll() {
+        // 180 Bernoulli draws at the per-second hazard reproduce the window
+        // roll frequency; 20k replications keep the 3-sigma band tight.
+        let window = 0.4f64;
+        let per_second = per_second_chance(window, 1.);
+        let mut state = 0x5eed_c0de_u64;
+        let mut detected = 0u32;
+        let reps = 20_000;
+        for _ in 0..reps {
+            let mut hit = false;
+            for _ in 0..180 {
+                if crate::world::roll(&mut state, 10_000) as f64 / 10_000. < per_second {
+                    hit = true;
+                    break;
+                }
+            }
+            detected += u32::from(hit);
+        }
+        let frequency = f64::from(detected) / f64::from(reps);
+        // 3 sigma of a binomial(p=0.4, n=20000) is ~0.0033.
+        assert!((frequency - window).abs() < 0.01, "frequency {frequency}");
     }
 }

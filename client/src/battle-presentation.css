@@ -68,6 +68,7 @@
 }
 .mount-readiness small { color: #9ab5b6; margin-left: 2px; }
 .mount-readiness b { color: var(--mount-tone); font-size: inherit; font-weight: 500; }
+.mount-readiness em { margin-left: auto; font-style: normal; color: #a8c8cf; }
 .mount-readiness.turning { --mount-tone: #f2ce82; }
 .mount-readiness.loading { --mount-tone: #9ad7e4; }
 .mount-readiness.lost { --mount-tone: #f3a589; }

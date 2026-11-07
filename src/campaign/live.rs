@@ -646,7 +646,10 @@ mod tests {
         if end["result"].is_null() {
             end = request(&mut e, json!({"op":"step","seconds":2700}));
         }
-        assert_eq!(end["result"]["grade"], "decisive");
+        // cas-realtime-v10: per-second detection engages both sides earlier, so
+        // the escort DDs routinely soak more than the 25% decisive allowance;
+        // the fixture holds at tactical with real torpedo hits.
+        assert_eq!(end["result"]["grade"], "tactical");
         let report = request(&mut e, json!({"op":"report"}));
         assert!(report["events"]
             .as_array()

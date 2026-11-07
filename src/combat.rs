@@ -152,7 +152,16 @@ impl World {
 
     pub fn detect(&mut self, initial: bool) {
         if self.environment().light == crate::night::Light::Night {
-            self.detect_night();
+            if self.v10_family() && !initial {
+                // cas-realtime-v10: per-second hazard-rate acquisition.
+                self.detect_night_realtime();
+            } else {
+                self.detect_night();
+            }
+            return;
+        }
+        if self.v10_family() && !initial {
+            self.detect_day_realtime();
             return;
         }
         let rules = &self.data.rules;
@@ -254,6 +263,122 @@ impl World {
             }
         }
     }
+    /// cas-realtime-v10: per-second day visual detection. The deterministic
+    /// parts (known hulls, the automatic band, base range) resolve every
+    /// second; the printed dice column becomes a per-second hazard rate whose
+    /// per-window integral matches the CAS roll exactly.
+    pub fn detect_day_realtime(&mut self) {
+        let initial = false;
+        let rules = &self.data.rules;
+        let full_sizes = self.curved_movement();
+        let automatic = n(&rules["visual_automatic_yd"]);
+        for s in 0..2 {
+            let observers: Vec<_> = self
+                .ships
+                .iter()
+                .filter(|v| v.side == s && v.alive())
+                .map(|v| (v.p, self.data.ships[v.def].size.clone()))
+                .collect();
+            if observers.is_empty() {
+                continue;
+            }
+            let enemy: Vec<_> = self
+                .ships
+                .iter()
+                .filter(|v| v.side != s && v.alive())
+                .cloned()
+                .collect();
+            let old = std::mem::take(&mut self.contacts[s]);
+            for t in &enemy {
+                let def = &self.data.ships[t.def];
+                let known = old.iter().find(|c| c.ship == t.id);
+                let mut margin = f64::NEG_INFINITY;
+                let mut in_automatic = false;
+                for (p, size) in &observers {
+                    let d = t.p.dist(*p) / YARD;
+                    let base = if full_sizes {
+                        u64::from(crate::night::surface_base_range_yd(
+                            self.environment(), size, &def.size, t.speed, false, false,
+                        ))
+                    } else {
+                        rules["visual_base_yd"][size][&def.size].as_u64().unwrap_or(0)
+                    };
+                    margin = margin.max(base as f64 - d);
+                    if d <= automatic { in_automatic = true; }
+                }
+                let detected = if known.is_some() || in_automatic {
+                    margin >= 0.
+                } else if margin < 0. {
+                    false
+                } else {
+                    // Marginal band: integrate the printed dice column over the
+                    // current geometry into a per-second hazard rate.
+                    let mut hits = 0u32;
+                    for die in 1..=100i32 {
+                        let column = rules["visual_roll_columns"]
+                            .as_array()
+                            .and_then(|a| {
+                                a.iter().position(|x| x.as_u64().is_some_and(|k| die as u64 <= k))
+                            })
+                            .unwrap_or(4);
+                        let reached = observers.iter().any(|(p, size)| {
+                            let d = t.p.dist(*p) / YARD;
+                            let base = if full_sizes {
+                                u64::from(crate::night::surface_base_range_yd(
+                                    self.environment(), size, &def.size, t.speed, false, false,
+                                ))
+                            } else {
+                                rules["visual_base_yd"][size][&def.size].as_u64().unwrap_or(0)
+                            };
+                            let limit = if full_sizes {
+                                f64::from(crate::night::surface_detection_range_yd(base as u32, die))
+                            } else {
+                                n(&rules["visual_chance_yd"][base.to_string()][column])
+                            };
+                            limit.max(automatic) >= d
+                        });
+                        if reached { hits += 1; }
+                    }
+                    let window_chance = hits as f64 / 100.;
+                    let per_second = crate::night::per_second_chance(window_chance, 1.);
+                    (self.d(10_000) as f64 / 10_000.) < per_second
+                };
+                if !detected {
+                    continue;
+                }
+                let id = known.map(|c| c.id.clone()).unwrap_or_else(|| {
+                    let k = self.next_contacts[s];
+                    self.next_contacts[s] += 1;
+                    format!("C{k:02}")
+                });
+                if known.is_none() {
+                    self.add(
+                        1 << s,
+                        "contact",
+                        format!("发现水面接触 {id}"),
+                        Some("CAS-5.4.1"),
+                        Some(t.p),
+                    );
+                }
+                self.contacts[s].push(Contact {
+                    id,
+                    x: t.p.x,
+                    y: t.p.y,
+                    heading: t.h,
+                    speed: t.speed,
+                    kind: Some(def.kind.to_ascii_lowercase()),
+                    name: None,
+                    ship: t.id,
+                    first_cycle: known.map_or(if initial { 0 } else { self.tick / CYCLE }, |x| {
+                        x.first_cycle
+                    }),
+                    acquisition_base_yd: 0,
+                    acquisition_range_yd: 0,
+                });
+            }
+        }
+    }
+
     pub fn update_tracks(&mut self) {
         let environment = self.environment();
         if environment.light == crate::night::Light::Night {
