@@ -1,5 +1,12 @@
 # 验证记录
 
+## 2026-11-07｜鱼雷再装填与远距过度集中（RTS-TORP-02 / RTS-GUN-05）
+
+- 鱼雷座按 `data/stage0.json` 已有的 `reserve`／`reload_seconds` 再装填：Kagero 级每座 4 枚备雷、360 秒；Sendai 每座 2 枚八年式、900 秒；Fletcher 无备雷。被武器临界击毁的发射管不再装填。仅 v10 家族，v9 家族与库拉湾保持冻结。
+- 远距／极远距带按同方同靶舰数施加过集中 −1／艘（CAS 5.1.2／6.1），中近距不受影响；仅 v10。
+- 状态经 `systems.tubes` 下发 `reserve`／`reloadingUntil`。
+- 验收：引擎 73 项（新增再装填、过集中各 1 项）、服务端 32 项、parity 17 场全过（[对照](artifacts/cas-parity-20261107-reload.json)）。PvE 决定性夹具种子 6117→6133；exercise v10 种子 6106 的胜方随日方再装填改为轴心（无断言，登记为平衡后果）。规则台账更新：realtime-torpedo-v10、coverage。
+
 ## 2026-11-07｜雷达引导照明弹与 AI 夜间工具
 
 - 照明弹下令／预览在 v10 家族可回退到本方水面雷达轨迹（CAS 5.4.4.5 允许雷达发现）；目视优先。新增端到端测试：雷达-only 接触下令并实际起亮。

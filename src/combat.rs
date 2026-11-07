@@ -951,6 +951,22 @@ impl World {
             deep: p.torpedo.deep,
         })
     }
+    /// CAS 5.1.2 / 6.1: at long and extreme range, every additional ship
+    /// firing at the same target costs -1 (over-concentration).
+    fn over_concentration(&self, s: &Ship, t: &Ship) -> i32 {
+        self.ships
+            .iter()
+            .filter(|o| o.side == s.side && o.id != s.id && o.alive())
+            .filter(|o| {
+                o.battery.order.as_ref().is_some_and(|order| {
+                    self.contact(o.side, &order.target)
+                        .ok()
+                        .is_some_and(|contact| contact.ship == t.id)
+                })
+            })
+            .count() as i32
+    }
+
     pub(crate) fn gun_values(&self,s:&Ship,t:&Ship,b:usize,barrels:u32,radar_only:bool,planned_targets:&[u32],extra:i32,prelight:bool)->(f64,u32){
         let td = &self.data.ships[t.def];
         let gun = &self.data.ships[s.def].gun;
@@ -974,6 +990,9 @@ impl World {
         } else {
             [0, -1, -2][target_aspect]
         };
+        if self.v10_family() && b >= 2 {
+            modifiers -= self.over_concentration(s, t);
+        }
         if self.environment().light == crate::night::Light::Night {
             let mut lighting = (!prelight).then(||self.illumination_modifier(s,t)).flatten();
             // cas-realtime-v10 (5.4.4.1): a target held in a friendly
@@ -1190,6 +1209,8 @@ impl World {
         };
         let tick = self.tick;
         let per_tube = self.torpedo_depths();
+        let v10 = self.v10_family();
+        let reload = d.reload_seconds;
         let ship = self.ship_mut(l.ship).unwrap();
         ship.ammo -= l.count;
         ship.torp_cycle = Some(tick / CYCLE);
@@ -1197,6 +1218,15 @@ impl World {
             ship.torp_mount_remaining[l.mount] -= l.count;
         } else {
             ship.torp_mount_remaining[l.mount] = 0;
+        }
+        // cas-realtime-v10 (CAS 6.3): a mount with a printed reload starts
+        // refilling from its reserve after the stated interval.
+        if v10
+            && reload.is_some()
+            && ship.torp_reserve[l.mount] > 0
+            && ship.torp_reload_at[l.mount] == 0
+        {
+            ship.torp_reload_at[l.mount] = tick + reload.unwrap();
         }
         self.add(
             1 << l.side,
@@ -1255,6 +1285,55 @@ impl World {
             .find(|(_, p)| roll <= **p)
             .map_or(0, |(i, _)| i as u32 + 1)
     }
+    /// cas-realtime-v10 (CAS 6.3): refill due torpedo mounts from their
+    /// reserve. The interval starts when the mount fires; a destroyed mount
+    /// never reloads, and older versions keep the frozen no-reload behaviour.
+    pub(crate) fn reload_torpedoes(&mut self) {
+        if !self.v10_family() {
+            return;
+        }
+        let tick = self.tick;
+        let mut done = Vec::new();
+        for index in 0..self.ships.len() {
+            let Some(def) = self.data.ships.get(self.ships[index].def).and_then(|d| d.torpedo.as_ref()) else {
+                continue;
+            };
+            if def.reload_seconds.is_none() {
+                continue;
+            }
+            for mount in 0..def.mounts.len() {
+                let s = &mut self.ships[index];
+                if s.torp_reload_at[mount] == 0 || s.torp_reload_at[mount] > tick {
+                    continue;
+                }
+                s.torp_reload_at[mount] = 0;
+                if s.torp_mount_destroyed[mount] {
+                    continue;
+                }
+                let need = def.mounts[mount]
+                    .tubes
+                    .saturating_sub(s.torp_mount_remaining[mount]);
+                let take = need.min(s.torp_reserve[mount]);
+                if take == 0 {
+                    continue;
+                }
+                s.torp_mount_remaining[mount] += take;
+                s.torp_reserve[mount] -= take;
+                s.ammo += take;
+                done.push((s.side, s.name.clone(), s.p, mount + 1, take));
+            }
+        }
+        for (side, name, p, mount, take) in done {
+            self.add(
+                1 << side,
+                "torpedo_reload",
+                format!("{name} · {mount} 号发射管再装填 {take} 枚"),
+                Some("CAS-6.3"),
+                Some(p),
+            );
+        }
+    }
+
     pub fn move_torpedoes(&mut self, before: &[P]) {
         if self.torps.is_empty() {
             return;
@@ -1598,6 +1677,57 @@ mod tests {
         assert_eq!(w.torps.len(), 1, "the held salvo launches once the tubes bear");
         assert!(w.pending.is_empty());
         assert_eq!(w.ship(1).unwrap().ammo, 5);
+    }
+
+    #[test]
+    fn v10_over_concentration_costs_long_range_fire() {
+        let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        w.enable_realtime().unwrap();
+        let p = w.ship(1).unwrap().p + P::bearing(0.) * (12_000. * YARD);
+        w.ship_mut(6).unwrap().p = p;
+        w.detect(true);
+        let contact = w.contacts[0]
+            .iter()
+            .find(|c| c.ship == 6)
+            .expect("the long-range contact must exist")
+            .id
+            .clone();
+        w.order_realtime_gun(0, 1, &contact, true).unwrap();
+        let s1 = w.ship(1).unwrap().clone();
+        let t = w.ship(6).unwrap().clone();
+        let alone = w.gun_values(&s1, &t, 2, 5, false, &[], 0, false).0;
+        w.order_realtime_gun(0, 2, &contact, true).unwrap();
+        let crowded = w.gun_values(&s1, &t, 2, 5, false, &[], 0, false).0;
+        assert!(crowded < alone, "over-concentration {crowded} must trail {alone}");
+        let medium = w.gun_values(&s1, &t, 1, 5, false, &[], 0, false).0;
+        w.ship_mut(2).unwrap().battery.order = None;
+        let medium_alone = w.gun_values(&s1, &t, 1, 5, false, &[], 0, false).0;
+        assert_eq!(medium, medium_alone, "the penalty applies only at long and extreme range");
+    }
+
+    #[test]
+    fn v10_torpedo_mounts_reload_from_their_reserve() {
+        let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        w.enable_realtime().unwrap();
+        let id = w
+            .ships
+            .iter()
+            .find(|s| s.side == 1 && s.torp_reserve.iter().any(|r| *r > 0))
+            .map(|s| s.id)
+            .expect("the fixture needs a Japanese destroyer with reloads");
+        let before = w.ship(id).unwrap();
+        let reserve = before.torp_reserve[0];
+        let tubes = w.data.ships[before.def].torpedo.as_ref().unwrap().mounts[0].tubes;
+        assert!(reserve >= tubes);
+        w.fire_torp(Launch { ship: id, side: 1, h: 90., mount: 0, count: tubes, deep: false });
+        assert_eq!(w.ship(id).unwrap().torp_mount_remaining[0], 0);
+        let due = w.ship(id).unwrap().torp_reload_at[0];
+        assert!(due > 0, "a fired mount must schedule its reload");
+        w.tick = due;
+        w.reload_torpedoes();
+        let after = w.ship(id).unwrap();
+        assert_eq!(after.torp_mount_remaining[0], tubes);
+        assert_eq!(after.torp_reserve[0], reserve - tubes);
     }
 
     #[test]

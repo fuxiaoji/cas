@@ -259,6 +259,8 @@ impl World {
             searchlight: None, searchlight_die: 0, searchlight_since: 0, smoking: false,
             rudder_jam: None, bridge_circle: None,
             torp_mount_destroyed: vec![false; d.torpedo.iter().map(|t| t.mounts.len()).sum()],
+            torp_reserve: d.torpedo.iter().flat_map(|t| t.mounts.iter().map(|m| m.reserve)).collect(),
+            torp_reload_at: vec![0; d.torpedo.iter().flat_map(|t| t.mounts.iter()).count()],
         });
         Ok(id)
     }
@@ -523,7 +525,13 @@ impl World {
             let tubes:Vec<_>=d.torpedo.iter().flat_map(|t|t.mounts.iter().enumerate()).map(|(index,m)|{
                 let remaining = s.torp_mount_remaining[index];
                 let mut view = json!({"index":index,"tubes":m.tubes,"spent":remaining == 0});
-                if self.torpedo_depths() { view["remaining"] = json!(remaining); }
+                if self.torpedo_depths() {
+                    view["remaining"] = json!(remaining);
+                    view["reserve"] = json!(s.torp_reserve[index]);
+                    if s.torp_reload_at[index] > self.tick {
+                        view["reloadingUntil"] = json!(s.torp_reload_at[index]);
+                    }
+                }
                 view
             }).collect();
             let mut data = json!({"gunRange":d.gun.range_yd.last().copied().unwrap_or(0.)*YARD,
@@ -737,6 +745,7 @@ impl World {
         let before: Vec<_> = self.ships.iter().map(|s| s.p).collect();
         self.move_ships();
         self.move_torpedoes(&before);
+        self.reload_torpedoes();
         self.update_tracks();
         // cas-realtime-v10 (5.4.5): a smoking destroyer drops one puff per
         // minute of trailing; puffs burn for four calm-weather windows.

@@ -158,9 +158,9 @@ class AuthorityTest(unittest.TestCase):
         self.good(self.post("/shop/purchase", request_id="unlock-torpedo", kind="ai", item_id="rc_torpedo_wings",
                             currency="credits"))
         # cas-realtime-v10 brings both sides into contact earlier and the
-        # closed 8.3 critical results moved the seed; 6117 still produces a
-        # real decisive victory in both standard and challenge.
-        self.seed = 6117
+        # closed 8.3 criticals plus torpedo reloads moved the seed; 6133 still
+        # produces a real decisive victory in both standard and challenge.
+        self.seed = 6133
         path = "/battles/" + self.start("real-decisive", difficulty="standard")["battle_id"]
         for i in range(2):
             self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, "torpedo"))

@@ -200,12 +200,18 @@ pub struct TorpedoDef {
     pub contact_fuze: bool,
     #[serde(default)]
     pub mounts: Vec<TorpedoMount>,
+    /// cas-realtime-v10: seconds to refill a mount from its reserve.
+    #[serde(default)]
+    pub reload_seconds: Option<u32>,
 }
 #[derive(Clone, Debug, Deserialize)]
 pub struct TorpedoMount {
     pub tubes: u32,
     pub arc: [f64; 2],
     pub arc2: Option<[f64; 2]>,
+    /// Reload torpedoes stowed for this mount (CAS 6.3).
+    #[serde(default)]
+    pub reserve: u32,
 }
 
 #[derive(Clone, Debug, Default, PartialEq)]
@@ -329,6 +335,10 @@ pub struct Ship {
     pub bridge_circle: Option<f64>,
     /// Torpedo mounts lost to a weapon critical (CAS 8.3).
     pub torp_mount_destroyed: Vec<bool>,
+    /// cas-realtime-v10: reserve torpedoes per mount and the tick each mount
+    /// finishes its next reload (0 = no reload running).
+    pub torp_reserve: Vec<u32>,
+    pub torp_reload_at: Vec<u32>,
 }
 impl Ship {
     pub fn alive(&self) -> bool {
