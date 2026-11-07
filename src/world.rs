@@ -49,6 +49,9 @@ pub struct World {
     pub gun_streak: Vec<(u32, u32, u32)>,
     pub(crate) surface_damage: Vec<crate::damage::SurfacePhase>,
     pub(crate) surface_critical_rng: u64,
+    /// cas-realtime-v10: smoke-screen puffs (5.4.5). Rebuilt deterministically
+    /// from the command log, so saves need no extra fields.
+    pub smoke: Vec<crate::model::SmokeCloud>,
 }
 impl World {
     pub(crate) fn exercise_data() -> E<&'static Data> {
@@ -101,6 +104,7 @@ impl World {
             gun_streak: vec![(0, 0, 0); 10],
             surface_damage: vec![Default::default(); 10],
             surface_critical_rng: (seed as u64) ^ 0x6271_09f5_29a3_084d,
+            smoke: vec![],
         }
     }
 
@@ -252,6 +256,7 @@ impl World {
             gun_mount_destroyed: vec![false; d.gun.mounts.len()],
             gun_mount_bearings: vec![None; d.gun.mounts.len()], gun_bearing_until: 0,
             battery: Default::default(), engineering_speed_levels: 0, jammed_until: 0,
+            searchlight: None, searchlight_die: 0, searchlight_since: 0, smoking: false,
         });
         Ok(id)
     }
@@ -531,6 +536,14 @@ impl World {
             } else if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
                 data["characterId"] = json!(character);
             }
+            if s.searchlight.is_some() {
+                if let Some(target) = self.ship(s.searchlight.unwrap()).filter(|t| t.alive()) {
+                    let bearing = (target.p - s.p).heading();
+                    data["searchlight"] = json!({"target": s.searchlight.unwrap(), "bearing": bearing});
+                } else {
+                    data["searchlight"] = json!({"target": null});
+                }
+            }
             if self.radar_enabled() {
                 data["systems"]["radars"] = json!(self.radar.own_observation(s.id));
                 // Own-seat only: the nominal surface-search reach of whatever is
@@ -585,8 +598,11 @@ impl World {
             .collect();
         let events = self.visible_events(owner, Some(90));
         let shells = self.shell_observation(owner);
+        let smoke_view: Vec<_> = self.smoke.iter().filter(|cloud| cloud.expires > self.tick)
+            .filter(|cloud| self.ships.iter().any(|s| s.side == owner && s.alive() && s.p.dist(cloud.p) <= 40_000.))
+            .map(|cloud| json!({"x": cloud.p.x, "y": cloud.p.y, "expires": cloud.expires})).collect();
         let mut view = json!({"tick":self.tick,"limit":self.field.limit,"width":self.field.width,"height":self.field.height,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,"smoke":smoke_view,
             "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
         if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
         if self.radar_enabled() {
@@ -647,6 +663,8 @@ impl World {
             Some("gun_cancel") => self.cancel_realtime_gun(s, &r)?,
             Some("illuminate") => self.queue_illumination(s,&r)?,
             Some("radar_set") => self.radar_power(s, &r)?,
+            Some("searchlight") => self.searchlight_cmd(s, &r)?,
+            Some("smoke") => self.smoke_cmd(s, &r)?,
             Some("ai") => {
                 let id = u(&r, "fleet")?;
                 self.fleet_for(s, id)?;
@@ -707,6 +725,14 @@ impl World {
         self.move_ships();
         self.move_torpedoes(&before);
         self.update_tracks();
+        // cas-realtime-v10 (5.4.5): a smoking destroyer drops one puff per
+        // minute of trailing; puffs burn for four calm-weather windows.
+        self.smoke.retain(|cloud| cloud.expires > self.tick);
+        if self.v10_family() && self.tick % 60 == 0 {
+            for s in self.ships.iter().filter(|s| s.smoking && s.alive()) {
+                self.smoke.push(crate::model::SmokeCloud { p: s.p, born: self.tick, expires: self.tick + 4 * CYCLE });
+            }
+        }
         self.radar_prune();
         if self.realtime() { self.prepare_illumination_mounts(); }
         if self.tick % CYCLE == 0 {
@@ -877,4 +903,118 @@ pub(crate) fn roll(state: &mut u64, sides: u32) -> u32 {
     r ^= r << 17;
     *state = r;
     (r % sides as u64) as u32 + 1
+}
+
+impl World {
+    /// cas-realtime-v10: searchlight order (5.4.4.1). Night only; the light
+    /// tracks one known contact. Turning it on rolls the illumination die.
+    fn searchlight_cmd(&mut self, owner: usize, r: &Value) -> E<()> {
+        if !self.v10_family() {
+            return Err("本局规则版本未开放探照灯".into());
+        }
+        if self.environment().light != crate::night::Light::Night {
+            return Err("探照灯只在夜战可用".into());
+        }
+        let id = u(r, "ship")?;
+        let s = self.ship_for(owner, id)?;
+        let on = r.get("on").and_then(Value::as_bool).ok_or("缺少探照灯开关")?;
+        let die_roll = self.d(100);
+        let now = self.tick;
+        if !on {
+            let (name, p) = {
+                let ship = self.ship_for(owner, id)?;
+                (ship.name.clone(), ship.p)
+            };
+            self.ship_mut(id).unwrap().searchlight = None;
+            self.add(1 << owner, "searchlight", format!("{name} · 关闭探照灯"), Some("RTS-LIGHT-02"), Some(p));
+            return Ok(());
+        }
+        let target = r.get("target").and_then(Value::as_str).ok_or("请选择要照亮的接触")?;
+        let (name, side, contact, p) = {
+            let ship = self.ship_for(owner, id)?;
+            let contact = self.contacts[owner].iter().find(|c| c.id == target)
+                .ok_or("请选择已发现的水面接触")?.ship;
+            (ship.name.clone(), ship.side, contact, ship.p)
+        };
+        let fixture: u32 = if side == 0 { 8000 } else { 7000 };
+        let ship = self.ship_mut(id).unwrap();
+        ship.searchlight = Some(contact);
+        ship.searchlight_die = die_roll;
+        ship.searchlight_since = now;
+        let _ = name;
+        self.add(1 << owner, "searchlight", format!("探照灯已开启（照距上限 {fixture} 码）"),
+            Some("RTS-LIGHT-02"), Some(p));
+        let mask = 1 << owner;
+        if self.curved_movement() {
+            if let Some(event) = self.events.last_mut().filter(|e| e.mask == mask) {
+                event.own_ship = Some(id);
+            }
+        }
+        Ok(())
+    }
+
+    /// cas-realtime-v10: smoke order (5.4.5). Destroyer generators only; the
+    /// screen burns for four calm-weather windows, one puff per minute of
+    /// trailing. Wind drift is not modelled (no wind in the environment).
+    fn smoke_cmd(&mut self, owner: usize, r: &Value) -> E<()> {
+        if !self.v10_family() {
+            return Err("本局规则版本未开放烟幕".into());
+        }
+        let id = u(r, "ship")?;
+        let s = self.ship_for(owner, id)?;
+        if self.data.ships[s.def].kind != "DD" {
+            return Err("烟幕发生器只装在驱逐舰上".into());
+        }
+        let on = r.get("on").and_then(Value::as_bool).ok_or("缺少烟幕开关")?;
+        let (name, p) = (s.name.clone(), s.p);
+        let ship = self.ship_mut(id).unwrap();
+        ship.smoking = on;
+        if on {
+            self.smoke.push(crate::model::SmokeCloud { p, born: self.tick, expires: self.tick + 4 * CYCLE });
+        }
+        let state = if on { "开始施放烟幕" } else { "停止施放烟幕" };
+        self.add(1 << owner, "smoke", format!("{name} · {state}"), Some("RTS-SMOKE-01"), Some(p));
+        Ok(())
+    }
+
+    /// The searchlight of a ship of `side` lighting `target`, with its
+    /// illumination range in yards (5.4.4.1, optical-v2 table).
+    pub(crate) fn searchlight_lit(&self, side: usize, target: u32) -> Option<(u32, u32)> {
+        self.ships.iter().filter(|s| s.side == side && s.alive())
+            .find_map(|s| {
+                if s.searchlight != Some(target) { return None; }
+                let fixture: u32 = if s.side == 0 { 8000 } else { 7000 };
+                let maintained = self.tick / CYCLE > s.searchlight_since / CYCLE;
+                let env = self.environment();
+                let range = crate::night::searchlight_illumination_range_yd(
+                    env, fixture, &self.data.ships[self.ship(target)?.def].size,
+                    s.searchlight_die, true, false, maintained,
+                );
+                Some((fixture, range))
+            })
+    }
+
+    /// Is `target` inside any live smoke puff, and the sighting cap that
+    /// follows (1,000 yd day / 500 yd night; 5.4.5)?
+    pub(crate) fn smoke_cap_yd(&self, target: &Ship) -> Option<u32> {
+        let inside = self.smoke.iter().any(|cloud| {
+            cloud.expires > self.tick && cloud.p.dist(target.p) <= crate::night::smoke_radius_yd() as f64 * YARD
+        });
+        inside.then(|| {
+            if self.environment().light == crate::night::Light::Night { 500 } else { 1000 }
+        })
+    }
+
+    /// Does the sighting ray cross a live smoke puff? (5.4.5 blocks sighting
+    /// through the screen for other surface units.)
+    pub(crate) fn smoke_blocks_ray(&self, from: P, to: P) -> bool {
+        let radius = crate::night::smoke_radius_yd() as f64 * YARD;
+        self.smoke.iter().filter(|cloud| cloud.expires > self.tick).any(|cloud| {
+            let ab = to - from;
+            let length2 = ab.x * ab.x + ab.y * ab.y;
+            if length2 < 1. { return cloud.p.dist(from) <= radius; }
+            let t = ((cloud.p - from).dot(ab) / length2).clamp(0., 1.);
+            cloud.p.dist(from + ab * t) <= radius
+        })
+    }
 }

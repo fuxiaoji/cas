@@ -277,6 +277,14 @@ pub struct Casualty {
     pub amount: f64,
 }
 
+/// cas-realtime-v10: one smoke-screen puff laid by a destroyer (5.4.5).
+#[derive(Clone, Debug)]
+pub struct SmokeCloud {
+    pub p: P,
+    pub born: u32,
+    pub expires: u32,
+}
+
 #[derive(Clone, Debug)]
 pub struct Ship {
     pub escaped: bool,
@@ -306,6 +314,13 @@ pub struct Ship {
     pub(crate) battery: crate::realtime::Battery,
     pub engineering_speed_levels: usize,
     pub jammed_until: u32,
+    /// cas-realtime-v10: searchlight lit on this target ship while Some
+    /// (5.4.4.1: the light itself is visible at five times its range).
+    pub searchlight: Option<u32>,
+    pub searchlight_die: u32,
+    pub searchlight_since: u32,
+    /// cas-realtime-v10: the ship is trailing a smoke screen (5.4.5).
+    pub smoking: bool,
 }
 impl Ship {
     pub fn alive(&self) -> bool {

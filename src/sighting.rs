@@ -78,13 +78,6 @@ impl World {
     /// formation is detected by the end of a 180-second phase matches the
     /// window roll exactly, while first contact may happen at any second.
     pub(crate) fn detect_night_realtime(&mut self) {
-        let mut observers: Vec<_> = self
-            .ships
-            .iter()
-            .filter(|o| o.side as usize == 0 && o.alive())
-            .map(|o| (o.id, o.p, self.night_range(o, o).to_string()))
-            .collect();
-        observers.clear();
         for owner in 0..2usize {
             let observers: Vec<_> = self
                 .ships
@@ -102,9 +95,104 @@ impl World {
                 .cloned()
                 .collect();
             targets.sort_by_key(|t| (t.fleet, t.id));
+            // cas-realtime-v10: a ship trailing smoke beyond the sighting cap
+            // loses its night track (5.4.5: sighting in smoke is capped).
+            let mut smoked_off: Vec<u32> = vec![];
+            for target in &targets {
+                let still_seen = observers.iter().any(|o| {
+                    let cap = self.smoke_cap_yd(target).unwrap_or_else(|| {
+                        // a smoke screen crossing the ray caps sighting the
+                        // same way as a smoking ship (5.4.5; 500 yd at night)
+                        if self.smoke_blocks_ray(o.p, target.p) { 500 } else { u32::MAX }
+                    });
+                    o.p.dist(target.p) <= f64::from(cap) * YARD
+                });
+                if !still_seen && self.knows(owner, target.id) {
+                    smoked_off.push(target.id);
+                }
+            }
+            if !smoked_off.is_empty() {
+                self.contacts[owner].retain(|c| !smoked_off.contains(&c.ship));
+                for id in smoked_off {
+                    self.add(1 << owner, "lost", "目标进入烟幕，接触丢失".into(), Some("RTS-SMOKE-01"), None);
+                }
+            }
+            // cas-realtime-v10: own-side searchlights auto-acquire their lit
+            // targets inside the light's illumination range (5.4.4.1), and a
+            // lit ship is auto-detected by every enemy hull within the light's
+            // source range (five times the fixture; x3 with precipitation) —
+            // the classic backlighting risk. Other views add the printed +20
+            // induced-search penalty against a lit ship.
+            let mut direct: Vec<(u32, u32, f64)> = vec![];
+            for target in &targets {
+                if let Some((fixture, range_yd)) = self.searchlight_lit(owner, target.id) {
+                    if let Some(o) = observers.iter().find(|o| o.p.dist(target.p) <= f64::from(range_yd) * YARD) {
+                        direct.push((target.id, fixture, o.p.dist(target.p)));
+                    }
+                }
+                if target.searchlight.is_some() {
+                    let env = self.environment();
+                    let fixture: u32 = if target.side == 0 { 8000 } else { 7000 };
+                    let source = night::searchlight_source_range_yd(
+                        env, fixture, &self.data.ships[observers[0].def].size, &self.data.ships[target.def].size,
+                    );
+                    if let Some(o) = observers.iter().find(|o| o.p.dist(target.p) <= f64::from(source) * YARD) {
+                        direct.push((target.id, fixture, o.p.dist(target.p)));
+                    }
+                }
+            }
+            // Direct acquisition: lit targets and ships inside a searchlight's
+            // source range are found without the hazard roll.
+            for (lit_id, _fixture, _distance) in &direct {
+                if self.knows(owner, *lit_id) {
+                    continue;
+                }
+                let Some(target) = targets.iter().find(|t| t.id == *lit_id) else { continue };
+                let def = &self.data.ships[target.def];
+                let mut best = None;
+                for o in &observers {
+                    let distance = o.p.dist(target.p) / YARD;
+                    let base = self.night_range(o, target);
+                    if best.is_none_or(|(b, _)| base > b) {
+                        best = Some((base, base));
+                    }
+                    let _ = distance;
+                }
+                let Some((base, range)) = best else { continue };
+                let id = format!("C{:02}", self.next_contacts[owner]);
+                self.next_contacts[owner] += 1;
+                self.add(
+                    1 << owner,
+                    "contact",
+                    format!("发现夜间水面接触 {id}"),
+                    Some("CAS-5.4.1.1"),
+                    Some(target.p),
+                );
+                self.contacts[owner].push(Contact {
+                    id,
+                    x: target.p.x,
+                    y: target.p.y,
+                    heading: target.h,
+                    speed: target.speed,
+                    kind: Some(def.kind.to_ascii_lowercase()),
+                    name: Some(def.name.clone()),
+                    ship: target.id,
+                    first_cycle: self.tick / CYCLE,
+                    acquisition_base_yd: base,
+                    acquisition_range_yd: range,
+                });
+            }
             // One hazard roll per formation per second, shared by its members.
             let mut groups: Vec<(Option<u32>, bool, Vec<_>)> = Vec::new();
             for target in targets {
+                if direct.iter().any(|(lit, _, _)| *lit == target.id) {
+                    continue;
+                }
+                // Known ships are maintained, not re-rolled (5.4.1.7): the
+                // hazard draws only cover hulls the formation does not hold.
+                if self.knows(owner, target.id) {
+                    continue;
+                }
                 let key = (target.fleet, target.fleet.is_none());
                 match groups.iter_mut().find(|(g, solo, _)| (*g, *solo) == key) {
                     Some((_, _, list)) => list.push(target),
@@ -122,8 +210,8 @@ impl World {
                     cue,
                     false,
                     false,
-                );
-                let mut views: Vec<(night::DetectionView, u32)> = Vec::new();
+                ) + 20 * i32::from(members.iter().any(|m| m.searchlight.is_some()));
+                let mut views: Vec<(night::DetectionView, u32, bool)> = Vec::new();
                 for target in &members {
                     for o in &observers {
                         let distance = o.p.dist(target.p) / YARD;
@@ -134,11 +222,12 @@ impl World {
                             false,
                             self.fired_this_turn(o),
                         );
-                        views.push(((base, distance as u32, modifier), target.id));
+                        let blocked = self.smoke_blocks_ray(o.p, target.p);
+                        views.push(((base, distance as u32, modifier), target.id, blocked));
                     }
                 }
                 let window_chance = night::formation_detection_chance(
-                    &views.iter().map(|(view, _)| *view).collect::<Vec<_>>(),
+                    &views.iter().map(|(view, _, _)| *view).collect::<Vec<_>>(),
                 );
                 let per_second = night::per_second_chance(window_chance, 1.);
                 if roll(&mut self.optics_rng, 10_000) as f64 / 10_000. >= per_second {
@@ -153,13 +242,18 @@ impl World {
                     }
                     let def = &self.data.ships[target.def];
                     let mut best = None;
-                    for (view, view_target) in &views {
+                    for (view, view_target, blocked) in &views {
                         if *view_target != target.id {
                             continue;
                         }
                         let (base, distance, modifier) = *view;
-                        let limit =
-                            night::surface_detection_range_yd(base, die + modifier);
+                        let cap = self
+                            .smoke_cap_yd(target)
+                            .or(blocked.then_some(500));
+                        let limit = cap.map_or(
+                            night::surface_detection_range_yd(base, die + modifier),
+                            |cap| night::surface_detection_range_yd(base, die + modifier).min(cap),
+                        );
                         if (distance as f64) <= f64::from(limit)
                             && best.is_none_or(|(b, r)| (limit, base) > (r, b))
                         {

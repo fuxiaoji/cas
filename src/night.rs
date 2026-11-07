@@ -150,6 +150,11 @@ fn d100_column(roll: i32) -> usize {
 /// from the printed detection table: the fraction of D100 outcomes whose
 /// detection range reaches any observer at the current distances. `bases_yd`
 /// and `distances_yd` are aligned per observer.
+/// cas-realtime-v10: the modelled radius of one smoke puff laid by a
+/// destroyer. The printed rule gives the downwind blocked zone (4,000 yards);
+/// with no wind modelled the puffs approximate the screen around their spawner.
+pub(crate) fn smoke_radius_yd() -> u32 { 1000 }
+
 /// One observing hull's view of one formation member: its own base range, the
 /// distance, and its own D100 modifier (cue, firing state).
 pub(crate) type DetectionView = (u32, u32, i32);

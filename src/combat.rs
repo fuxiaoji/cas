@@ -292,6 +292,25 @@ impl World {
             for t in &enemy {
                 let def = &self.data.ships[t.def];
                 let known = old.iter().find(|c| c.ship == t.id);
+                // cas-realtime-v10 (5.4.5): a smoking target, or one hidden
+                // behind a smoke screen, may only be sighted out to the
+                // smoke cap (1,000 yd day / 500 yd night).
+                let closest = observers
+                    .iter()
+                    .map(|(p, _)| *p)
+                    .min_by(|a, b| a.dist(t.p).total_cmp(&b.dist(t.p)))
+                    .unwrap_or(t.p);
+                let smoke_limit: Option<u32> = if self.smoke_cap_yd(t).is_some()
+                    || self.smoke_blocks_ray(closest, t.p)
+                {
+                    Some(if self.environment().light == crate::night::Light::Night {
+                        500
+                    } else {
+                        1000
+                    })
+                } else {
+                    None
+                };
                 let mut margin = f64::NEG_INFINITY;
                 let mut in_automatic = false;
                 for (p, size) in &observers {
@@ -303,7 +322,9 @@ impl World {
                     } else {
                         rules["visual_base_yd"][size][&def.size].as_u64().unwrap_or(0)
                     };
-                    margin = margin.max(base as f64 - d);
+                    let cap = smoke_limit
+                        .map_or(base as f64, |cap| (base as f64).min(f64::from(cap)));
+                    margin = margin.max(cap - d);
                     if d <= automatic { in_automatic = true; }
                 }
                 let detected = if known.is_some() || in_automatic {
@@ -335,6 +356,7 @@ impl World {
                             } else {
                                 n(&rules["visual_chance_yd"][base.to_string()][column])
                             };
+                            let limit = smoke_limit.map_or(limit, |cap| limit.min(f64::from(cap)));
                             limit.max(automatic) >= d
                         });
                         if reached { hits += 1; }
@@ -344,6 +366,17 @@ impl World {
                     (self.d(10_000) as f64 / 10_000.) < per_second
                 };
                 if !detected {
+                    // cas-realtime-v10 (5.4.5): a tracked contact that drops
+                    // behind smoke reports a lost track, like the night path.
+                    if known.is_some() && smoke_limit.is_some() {
+                        self.add(
+                            1 << s,
+                            "lost",
+                            "目标进入烟幕，接触丢失".into(),
+                            Some("RTS-SMOKE-01"),
+                            Some(t.p),
+                        );
+                    }
                     continue;
                 }
                 let id = known.map(|c| c.id.clone()).unwrap_or_else(|| {
@@ -942,7 +975,21 @@ impl World {
             [0, -1, -2][target_aspect]
         };
         if self.environment().light == crate::night::Light::Night {
-            modifiers += (!prelight).then(||self.illumination_modifier(s,t)).flatten().unwrap_or_else(||crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None));
+            let mut lighting = (!prelight).then(||self.illumination_modifier(s,t)).flatten();
+            // cas-realtime-v10 (5.4.4.1): a target held in a friendly
+            // searchlight is Illuminated; the ship firing with its own light on
+            // suffers the UsingSearchlight penalty on top.
+            if lighting.is_none() {
+                if let Some((_, range_yd)) = self.searchlight_lit(s.side, t.id) {
+                    if s.p.dist(t.p) / YARD <= f64::from(range_yd) {
+                        lighting = Some(crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::Illuminated));
+                    }
+                }
+            }
+            modifiers += lighting.unwrap_or_else(||crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None));
+            if s.searchlight.is_some() {
+                modifiers += crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::UsingSearchlight);
+            }
         } else if if self.realtime() {
             self.realtime_point_blank(s, t)
         } else {

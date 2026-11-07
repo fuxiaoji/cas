@@ -175,6 +175,175 @@ fn night_keeps_hidden_contacts_out_and_replays_real_exchange() {
 }
 
 #[test]
+fn searchlight_illuminates_fire_and_backlights_the_lit_ship() {
+    let mut w = World::new(6106, 0, "torpedo", "night", "coord", 0).unwrap();
+    w.enable_realtime().unwrap();
+    let own: Vec<u32> = w
+        .ships
+        .iter()
+        .filter(|s| s.side == 0 && s.alive())
+        .map(|s| s.id)
+        .collect();
+    let foe: Vec<u32> = w
+        .ships
+        .iter()
+        .filter(|s| s.side == 1 && s.alive())
+        .map(|s| s.id)
+        .collect();
+    assert_eq!(own.len(), 5);
+    assert_eq!(foe.len(), 5);
+    // Static geometry: own cluster near the origin, the enemy 3,500–4,700 yd
+    // out — inside normal night visual range, outside the automatic band.
+    for (i, id) in own.iter().enumerate() {
+        let s = w.ship_mut(*id).unwrap();
+        s.p = P { x: 6000. + 300. * i as f64, y: 6000. };
+        s.speed = 0.;
+    }
+    for (i, id) in foe.iter().enumerate() {
+        let s = w.ship_mut(*id).unwrap();
+        s.p = P { x: 9500. + 300. * i as f64, y: 6000. };
+        s.speed = 0.;
+    }
+    let mut guard = 0;
+    while w.contacts[0].is_empty() && guard < 1200 {
+        w.advance();
+        guard += 1;
+    }
+    assert!(!w.contacts[0].is_empty(), "no night contact after 1200 ticks");
+    let target = w.contacts[0][0].id.clone();
+    let target_ship = w.contacts[0][0].ship;
+    let lit_id = own[0];
+    // The command path: night-only, and it must name a known contact.
+    let r = w.external(json!({"op":"searchlight","ship":lit_id,"on":true,"target":target}));
+    assert!(r.is_ok(), "{r:?}");
+    let lit = w.ship(lit_id).unwrap();
+    assert_eq!(lit.searchlight, Some(target_ship));
+    assert!(lit.searchlight_die > 0);
+    let view = w.observation(0);
+    let ship_view = view["ships"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|s| s["id"] == lit_id)
+        .unwrap();
+    assert_eq!(ship_view["searchlight"]["target"], json!(target_ship));
+    assert!(ship_view["searchlight"]["bearing"].is_number());
+    // Friendly fire control: the lit target gets the Illuminated bonus only
+    // inside the light's illumination range (an 8,000-yd fixture reaches
+    // 5,000–6,000 yd for a C-size target over typical dice).
+    let a = w.ship(lit_id).unwrap().clone();
+    let b = w.ship(target_ship).unwrap().clone();
+    let lit_chance = w.gun_values(&a, &b, 0, 5, false, &[], 0, false).0;
+    w.ship_mut(lit_id).unwrap().searchlight = None;
+    let unlit_chance = w.gun_values(&a, &b, 0, 5, false, &[], 0, false).0;
+    assert!(
+        lit_chance > unlit_chance,
+        "illuminated {lit_chance} should beat unlit {unlit_chance}"
+    );
+    w.ship_mut(lit_id).unwrap().searchlight = Some(target_ship);
+    // Move the enemy far beyond normal night sighting. The backlight alone
+    // keeps the track (5.4.4.1 source range is five times the fixture)...
+    for (i, id) in foe.iter().enumerate() {
+        let s = w.ship_mut(*id).unwrap();
+        s.p = P { x: 21000. + 300. * i as f64, y: 21000. + 300. * i as f64 };
+    }
+    for _ in 0..2 {
+        w.advance();
+    }
+    assert!(w.knows(1, lit_id), "the backlit ship must stay acquired at long range");
+    // ...while turning the light off drops the track immediately.
+    let r = w.external(json!({"op":"searchlight","ship":lit_id,"on":false}));
+    assert!(r.is_ok(), "{r:?}");
+    for _ in 0..2 {
+        w.advance();
+    }
+    assert!(!w.knows(1, lit_id), "unlit ships cannot be tracked at this range");
+    // Re-light it and the enemy re-acquires the ship within a second.
+    w.ship_mut(lit_id).unwrap().searchlight = Some(target_ship);
+    w.ship_mut(lit_id).unwrap().searchlight_die = 50;
+    w.ship_mut(lit_id).unwrap().searchlight_since = w.tick;
+    for _ in 0..2 {
+        w.advance();
+    }
+    assert!(w.knows(1, lit_id), "the re-lit ship must be re-acquired by the enemy");
+    // Off clears the light.
+    let r = w.external(json!({"op":"searchlight","ship":lit_id,"on":false}));
+    assert!(r.is_ok(), "{r:?}");
+    assert_eq!(w.ship(lit_id).unwrap().searchlight, None);
+}
+
+#[test]
+fn smoke_hides_the_smoking_ship_and_expires_after_four_windows() {
+    let mut w = World::new(6106, 0, "torpedo", "", "coord", 0).unwrap();
+    w.enable_realtime().unwrap();
+    let own: Vec<u32> = w
+        .ships
+        .iter()
+        .filter(|s| s.side == 0 && s.alive())
+        .map(|s| s.id)
+        .collect();
+    let foe: Vec<u32> = w
+        .ships
+        .iter()
+        .filter(|s| s.side == 1 && s.alive())
+        .map(|s| s.id)
+        .collect();
+    for (i, id) in own.iter().enumerate() {
+        let s = w.ship_mut(*id).unwrap();
+        s.p = P { x: 6000. + 300. * i as f64, y: 6000. };
+        s.speed = 0.;
+    }
+    for (i, id) in foe.iter().enumerate() {
+        let s = w.ship_mut(*id).unwrap();
+        s.p = P { x: 9500. + 300. * i as f64, y: 6000. };
+        s.speed = 0.;
+    }
+    let dd = own[0];
+    // Daytime searchlights and non-destroyer smoke generators are rejected.
+    assert!(w
+        .external(json!({"op":"searchlight","ship":dd,"on":true,"target":"C01"}))
+        .is_err());
+    let cl = own
+        .iter()
+        .copied()
+        .find(|id| w.data.ships[w.ship(*id).unwrap().def].kind != "DD")
+        .unwrap();
+    assert!(w.external(json!({"op":"smoke","ship":cl,"on":true})).is_err());
+    // In daylight the enemy tracks the destroyer before the screen goes down.
+    let mut guard = 0;
+    while !w.knows(1, dd) && guard < 300 {
+        w.advance();
+        guard += 1;
+    }
+    assert!(w.knows(1, dd), "day contact of the DD never formed");
+    let r = w.external(json!({"op":"smoke","ship":dd,"on":true}));
+    assert!(r.is_ok(), "{r:?}");
+    assert!(w.ship(dd).unwrap().smoking);
+    assert_eq!(w.smoke.len(), 1);
+    let puff = w.smoke[0].clone();
+    assert_eq!(puff.expires, puff.born + 4 * CYCLE);
+    assert_eq!(w.observation(0)["smoke"].as_array().unwrap().len(), 1);
+    // Beyond the 1,000-yd day cap the enemy loses the smoking ship (5.4.5).
+    w.advance();
+    assert!(!w.knows(1, dd), "smoked DD must drop from the enemy track");
+    assert!(w
+        .events
+        .iter()
+        .any(|e| e.kind == "lost" && e.rule.as_deref() == Some("RTS-SMOKE-01")));
+    // Stop the generator; the puff burns out after four windows and the
+    // destroyer reappears in the enemy's day sighting.
+    w.external(json!({"op":"smoke","ship":dd,"on":false})).unwrap();
+    assert!(!w.ship(dd).unwrap().smoking);
+    let mut guard = 0;
+    while (!w.smoke.is_empty() || !w.knows(1, dd)) && guard < 800 {
+        w.advance();
+        guard += 1;
+    }
+    assert!(w.smoke.is_empty(), "puff outlived four windows");
+    assert!(w.knows(1, dd), "DD must be re-acquired once the screen burns out");
+}
+
+#[test]
 fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
     use std::collections::BTreeSet;
     let rows = ask(&mut Engine::default(), json!({"op":"campaign"}));
