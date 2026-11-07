@@ -11,14 +11,16 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
-pub(crate) const VERSION: &str = "cas-campaign-v9";
+pub(crate) const VERSION: &str = "cas-campaign-v10";
+/// v9 kept window-end torpedo launches and an AI that never powered radar.
+pub(crate) const WINDOW_TORPEDO_VERSION: &str = "cas-campaign-v9";
 pub(crate) const CURVE_VERSION: &str = "cas-campaign-v8";
 pub(crate) const IMPACT_VERSION: &str = "cas-campaign-v7";
 pub(crate) const CADENCE_VERSION: &str = "cas-campaign-v6";
 pub(crate) const LEGACY_VERSION: &str = "cas-campaign-v5";
 
 pub(crate) fn is_campaign_version(version: &str) -> bool {
-    matches!(version, VERSION | CURVE_VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
+    matches!(version, VERSION | WINDOW_TORPEDO_VERSION | CURVE_VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
 }
 pub(crate) const CONTENT: &str = "cas-cape-runtime-v1";
 pub(crate) const VARIANT: &str = "cape-st-george-rts";
@@ -565,21 +567,16 @@ mod tests {
                 json!({"op":"ai","fleet":fleet,"profile":"torpedo","mode":"auto","move":true,"gun":false,"torpedo":false}),
             );
         }
-        let current = request(&mut e, json!({"op":"step","seconds":540}));
-        let plan = request(&mut e, aim);
-        assert_eq!(plan["valid"], true);
-        request(
-            &mut e,
-            json!({"op":"fire","weapon":"torpedo","ship":1,"target":"R01","heading":plan["heading"]}),
-        );
-        let accepted = request(&mut e, json!({"op":"save"}));
-        for radar in ["us_sg", "us_sc2", "us_mk4_fd"] {
-            request(
-                &mut e,
-                json!({"op":"radar_set","ship":1,"radar":radar,"powered":false}),
-            );
+        // v10 fires at the launch-moment truth: close the range until the live
+        // two-window radar solution is inside torpedo range.
+        let mut current = request(&mut e, json!({"op":"step","seconds":540}));
+        let mut plan = request(&mut e, aim.clone());
+        while plan["valid"] == false {
+            current = request(&mut e, json!({"op":"step","seconds":60}));
+            assert!(current["tick"].as_u64().unwrap() < 3600, "solution never came in range");
+            plan = request(&mut e, aim.clone());
         }
-        let denied = request(&mut e, json!({"op":"step","seconds":180}));
+        assert_eq!(plan["valid"], true);
         let own_ammo = |v: &Value| {
             v["ships"]
                 .as_array()
@@ -589,15 +586,36 @@ mod tests {
                 .unwrap()["ammo"]
                 .as_u64()
         };
-        assert_eq!(own_ammo(&current), own_ammo(&denied));
-        assert!(denied["events"]
+        let loaded = own_ammo(&current).unwrap();
+        request(
+            &mut e,
+            json!({"op":"fire","weapon":"torpedo","ship":1,"target":"R01","heading":plan["heading"]}),
+        );
+        let accepted = request(&mut e, json!({"op":"save"}));
+        let seen = request(&mut e, json!({"op":"observe"}));
+        // The salvo leaves the tubes the same second the order is accepted.
+        assert!(own_ammo(&seen).unwrap() < loaded);
+        assert!(seen["torpedoes"]
             .as_array()
             .unwrap()
             .iter()
-            .any(|r| r["kind"] == "rejected"));
+            .any(|t| t["own"] == true && t["trail"].is_array()));
+        for radar in ["us_sg", "us_sc2", "us_mk4_fd"] {
+            request(
+                &mut e,
+                json!({"op":"radar_set","ship":1,"radar":radar,"powered":false}),
+            );
+        }
+        // A launch ordered after the device goes dark is refused: the solution
+        // must be live on the ship's own radar at the moment of firing.
+        let denied = e.handle(json!({"op":"fire","weapon":"torpedo","ship":1,"target":"R01","heading":plan["heading"]}));
+        assert_eq!(denied["ok"], false, "{denied}");
+        let later = request(&mut e, json!({"op":"step","seconds":180}));
+        assert_eq!(own_ammo(&later).unwrap(), own_ammo(&seen).unwrap());
+        // The running salvo keeps swimming across save and load.
         request(&mut e, json!({"op":"load","save":accepted}));
         let executed = request(&mut e, json!({"op":"step","seconds":180}));
-        assert!(own_ammo(&executed).unwrap() < own_ammo(&current).unwrap());
+        assert_eq!(own_ammo(&executed).unwrap(), own_ammo(&seen).unwrap());
         assert!(executed["torpedoes"]
             .as_array()
             .unwrap()
@@ -610,7 +628,7 @@ mod tests {
         let mut e = Engine::default();
         let start = request(
             &mut e,
-            json!({"op":"new_campaign","id":"CAMP-ALLIES-03","difficulty":"story","seed":6177}),
+            json!({"op":"new_campaign","id":"CAMP-ALLIES-03","difficulty":"story","seed":6154}),
         );
         assert_eq!(start["ships"].as_array().unwrap().len(), 5);
         assert_eq!(start["ships"][0]["classId"], "ausburne");

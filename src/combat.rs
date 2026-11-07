@@ -85,7 +85,42 @@ struct Launch {
 
 impl World {
     pub(crate) fn torpedo_depths(&self) -> bool {
+        matches!(
+            self.version,
+            crate::realtime::VERSION | crate::realtime::WINDOW_TORPEDO_VERSION
+                | crate::campaign::live::VERSION | crate::campaign::live::WINDOW_TORPEDO_VERSION
+        )
+    }
+
+    /// The v10 rule families: per-second torpedo launches, per-volley dice and
+    /// the AI fire discipline. Earlier versions replay their frozen timing.
+    pub(crate) fn v10_family(&self) -> bool {
         matches!(self.version, crate::realtime::VERSION | crate::campaign::live::VERSION)
+    }
+
+    /// v10 families fire torpedoes the moment the order is legal; earlier
+    /// versions keep the CAS window-end launch. See the realtime torpedo ledger.
+    pub(crate) fn immediate_torpedoes(&self) -> bool {
+        self.v10_family()
+    }
+
+    /// The threshold the next volley from `s` at `c` would roll a fresh D100
+    /// against in the real-time resolution. None when no gun bears or the
+    /// contact has no live hull; the AI fire gate and the seat view use it.
+    pub(crate) fn volley_chance(&self, s: &Ship, c: &Contact, radar_only: bool) -> Option<f64> {
+        let (b, barrels) = self.gun_band(s, c)?;
+        let t = self.ship(c.ship)?;
+        let aid = self.mk4_gun_aid(s, c, radar_only);
+        let modifier = aid.as_ref().map_or(0, |aid| {
+            let env = self.environment();
+            let visibility = if aid.ignore_low_visibility_modifier && env.light == crate::night::Light::Night
+                && self.illumination_modifier(s, t).is_none() {
+                crate::night::night_gun_modifier(env, crate::night::Lighting::None)
+            } else { 0 };
+            aid.fire_control_modifier + aid.land_clutter_modifier - visibility
+        });
+        let (chance, _) = self.gun_values(s, t, b, barrels, radar_only, &[], modifier, false);
+        Some(chance)
     }
 
     fn torpedo_order(&self, request: &Value) -> E<TorpedoOrder> {
@@ -438,7 +473,13 @@ impl World {
             .get("heading")
             .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
             .transpose()?;
-        let (future, projected) = self.project_launch(s, &c);
+        let (future, projected) = if self.immediate_torpedoes() {
+            // The salvo leaves this second; the preview shows the launch-moment
+            // solution instead of the window-end projection.
+            (s.clone(), c.into_owned())
+        } else {
+            self.project_launch(s, &c)
+        };
         let (h, range, friendly, error) = self.torp_solution(&future, &projected, angle, order);
         let arcs: Vec<_> = self.data.ships[s.def]
             .torpedo
@@ -467,6 +508,9 @@ impl World {
         let weapon = r["weapon"].as_str().ok_or("武器不可用")?;
         if weapon == "gun" && self.realtime() {
             return self.order_realtime_gun(owner, id, target, manual);
+        }
+        if weapon == "torpedo" && self.immediate_torpedoes() {
+            return self.order_immediate_torpedo(owner, r, id, target, manual);
         }
         if self
             .pending
@@ -582,8 +626,18 @@ impl World {
         let mut shots = vec![];
         let mut launches = vec![];
         for p in pending {
+            let hold = !planned && self.immediate_torpedoes() && p.weapon == "torpedo";
+            if hold && p.expires < self.tick {
+                if p.side == 0 || self.fleets.iter().any(|f| f.members.contains(&p.ship) && f.ai.mode == "manual") {
+                    self.add(1 << p.side, "rejected", "鱼雷射向始终未到或目标丢失，未消耗鱼雷".into(),
+                        Some("RTS-TORP-01"), None);
+                }
+                continue;
+            }
             let run = if planned {
                 p.expires <= self.tick
+            } else if hold {
+                true
             } else if !self.radar_enabled() {
                 p.weapon == "gun" && self.contact(p.side, &p.target).is_ok_and(|c| self.is_reaction(c))
             } else {
@@ -616,7 +670,15 @@ impl World {
                         launches.push(l);
                         None
                     }
-                    Err(e) => Some(e),
+                    Err(e) => {
+                        // A held v10 salvo keeps waiting while only its tubes
+                        // fail to bear; any other refusal drops the order.
+                        if hold && e.contains("射向") {
+                            self.pending.push(p);
+                            continue;
+                        }
+                        Some(e)
+                    }
                 }
             };
             if let Some(e) = fail {
@@ -641,6 +703,70 @@ impl World {
         }
         self.apply_impacts(impacts);
     }
+    /// cas-realtime-v10 家族的逐秒鱼雷：下令当秒发射，射向按发射时刻真实
+    /// 位置解算；CAS §6.3 的交会、舷向、概率与实际命中时刻不变。更早版本
+    /// 保持窗末发射的登记时序，见实时鱼雷台账。
+    fn order_immediate_torpedo(&mut self, owner: usize, r: &Value, id: u32, target: &str, manual: bool) -> E<()> {
+        let s = self.ship_for(owner, id)?;
+        let c = self.torpedo_contact(s, target)?;
+        let torpedo = self.torpedo_order(r)?;
+        let angle = r
+            .get("heading")
+            .map(|h| h.as_f64().filter(|v| v.is_finite()).ok_or("射向无效"))
+            .transpose()?;
+        if s.jammed_until > self.tick {
+            return Err("该舰正在处理转向损伤".into());
+        }
+        let explicit = torpedo.mount.is_some() || torpedo.count.is_some();
+        let (h, _, friendly, err) = self.torp_solution(s, &c, angle, torpedo);
+        if let Some(e) = &err {
+            // cas-realtime-v10: an automatic salvo whose tubes simply do not
+            // bear yet is held, not refused; every other refusal stands.
+            let arcs_not_bearing = e.contains("射向") && !explicit;
+            if !arcs_not_bearing {
+                return Err(e.clone());
+            }
+        }
+        if friendly && !manual {
+            return Err("AI 不向已知友舰航迹放雷".into());
+        }
+        match self.mount(s, h, torpedo) {
+            Some((mount, count)) if count > 0 => {
+                let fleet = s.fleet;
+                let side = s.side;
+                self.fire_torp(Launch { ship: id, side, h, mount, count, deep: torpedo.deep });
+                if manual {
+                    if let Some(f) = fleet.and_then(|i| self.fleet_mut(i)) {
+                        f.ai.torpedo = false;
+                    }
+                }
+                Ok(())
+            }
+            _ if explicit => Err("指定齐射数量超出可用发射管，或射向超出该座射界".into()),
+            _ => {
+                // The tubes cannot bear this second — the ship is mid-turn.
+                // Hold the order and launch the moment the arcs come round;
+                // an unfired order never expends a torpedo.
+                let fleet = s.fleet;
+                self.pending.push(Fire {
+                    side: owner,
+                    ship: id,
+                    weapon: "torpedo".into(),
+                    target: target.into(),
+                    heading: Some(h),
+                    expires: self.tick + crate::realtime::TORPEDO_HOLD,
+                    torpedo,
+                });
+                if manual {
+                    if let Some(f) = fleet.and_then(|i| self.fleet_mut(i)) {
+                        f.ai.torpedo = false;
+                    }
+                }
+                Ok(())
+            }
+        }
+    }
+
     fn validate_launch(&self, p: &Fire) -> E<Launch> {
         let s = self.ship_for(p.side, p.ship)?;
         let c = self.torpedo_contact(s, &p.target)?;
@@ -1271,6 +1397,35 @@ mod tests {
         let mut deep = order;
         deep["depth"] = json!("deep");
         assert_eq!(w.preview_aim(0, &deep).unwrap()["valid"], false);
+    }
+
+    #[test]
+    fn held_torpedo_launches_when_tubes_bear_and_never_spends_on_timeout() {
+        let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        w.enable_realtime().unwrap();
+        let p = w.ship(1).unwrap().p + P::bearing(90.) * 3_000.;
+        w.ship_mut(6).unwrap().p = p;
+        w.detect(true);
+        let target = w.contacts[0].iter().find(|c| c.ship == 6).unwrap().id.clone();
+        // Bow tubes face forward: order a shot dead astern so no tube bears yet.
+        let order = json!({"op":"fire","ship":1,"target":target,"weapon":"torpedo","heading":270.});
+        assert_eq!(w.preview_aim(0, &order).unwrap()["valid"], false, "{:?}", w.preview_aim(0, &order));
+        w.queue_fire(0, &order, true).unwrap();
+        assert!(w.torps.is_empty(), "an unbearing salvo must not launch");
+        assert_eq!(w.pending.len(), 1, "the held order waits for the arcs");
+        assert_eq!(w.ship(1).unwrap().ammo, 10, "holding never expends a torpedo");
+        // Turn the ship until the arcs bear; the held order launches by itself.
+        for _ in 0..120 {
+            w.tick += 1;
+            let ship = w.ship_mut(1).unwrap();
+            ship.h = norm(ship.h + 2.);
+            if w.tick % CYCLE != 0 { w.resolve_fire(false); }
+            if !w.torps.is_empty() { break; }
+            assert!(w.tick < 90 + 8, "the held order expires at 90 seconds");
+        }
+        assert_eq!(w.torps.len(), 1, "the held salvo launches once the tubes bear");
+        assert!(w.pending.is_empty());
+        assert_eq!(w.ship(1).unwrap().ammo, 5);
     }
 
     #[test]

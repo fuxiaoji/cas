@@ -50,7 +50,7 @@ class HullPrice(StrictModel):
 class PointsManifest(StrictModel):
     schema_version: Literal[1]
     version: Annotated[str, Field(pattern=r"^cas-[a-z0-9-]{3,90}$")]
-    rules_version: Literal["cas-realtime-v9"]
+    rules_version: Literal["cas-realtime-v10"]
     enabled_budgets: list[Budget] = Field(min_length=1, max_length=2)
     ships: dict[str, HullPrice] = Field(min_length=1, max_length=250)
 

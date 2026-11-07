@@ -426,3 +426,21 @@ fn night_starshell_uses_a_real_contact_and_the_planned_fire_window() {
     let expired = ask(&mut e, json!({"op":"step","seconds":180}));
     assert_eq!(expired["illuminations"], json!([]));
 }
+
+fn powered_flags(w: &World, id: u32) -> Vec<bool> {
+    w.radar.own_observation(id).iter().map(|d| d["powered"] == json!(true)).collect()
+}
+
+#[test]
+fn night_ai_powers_its_own_surface_radar() {
+    let mut w = World::new(6106, 0, "coord", crate::illumination::RADAR_TRAINING, "coord", 0).unwrap();
+    // The radar-training opening equips the player fleet and leaves every
+    // device dark; the fleet starts manual, so flip it to AI hands first.
+    w.external(json!({"op":"ai","fleet":1,"profile":"coord","mode":"auto","move":true,"gun":true,"torpedo":true})).unwrap();
+    assert_eq!(powered_flags(&w, 1), vec![false, false]);
+    w.drive_ai();
+    assert_eq!(powered_flags(&w, 1), vec![true, true]);
+    // Deterministic: the next pass keeps everything powered instead of toggling.
+    w.drive_ai();
+    assert_eq!(powered_flags(&w, 1), vec![true, true]);
+}

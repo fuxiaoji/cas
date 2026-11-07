@@ -296,6 +296,21 @@ pub(crate) struct RadarState {
 }
 
 impl RadarState {
+    /// Nominal surface-search reach in metres against a same-size hull for the
+    /// best powered, undamaged device; the seat view uses it for the radar
+    /// circle. Clutter geometry is ignored: the circle is indicative.
+    pub(crate) fn nominal_surface_range_m(&self, ship: u32, own_size: &str) -> Option<f64> {
+        let r = rules();
+        let own_class = r.acquisition.surface_class_column.get(own_size)?;
+        let target_col = r.acquisition.target_columns.iter().position(|c| *c == *own_class)?;
+        self.devices.get(&ship)?.iter()
+            .filter(|d| d.powered && !d.disabled)
+            .filter_map(|d| rules().sets.get(&d.key))
+            .map(|set| reduced_range(set.surface_range_nmi[target_col], set.generation, 0) * 1852.)
+            .fold(None, |best: Option<f64>, value| {
+                Some(match best { Some(best) if best >= value => best, _ => value })
+            })
+    }
     pub(crate) fn new(seed: u32) -> Self {
         Self {
             rng: u64::from(seed) ^ 0x9bc98e18e65ab026,

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from .accounts import AccountService
 
 
-RULE_VERSIONS = ("cas-campaign-v5", "cas-campaign-v6", "cas-campaign-v7", "cas-campaign-v8", "cas-campaign-v9")
+RULE_VERSIONS = ("cas-campaign-v5", "cas-campaign-v6", "cas-campaign-v7", "cas-campaign-v8", "cas-campaign-v9", "cas-campaign-v10")
 SIM_TICK_MS = 250  # 4×; the client never supplies elapsed time.
 MAX_TICKS = 120
 MAX_ACTIVE = 4

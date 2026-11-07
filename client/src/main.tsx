@@ -694,12 +694,15 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     { key: 'fleet', title: '编队' }, { key: 'ship', title: '舰况' }, { key: 'ai', title: '战术 AI' }, { key: 'log', title: '战情' },
   ];
   const fire = (ship: number, weapon: Weapon, target: string, heading?: number, torpedo?: TorpedoSettings) => {
+    // cas-realtime-v10 fires the moment the tubes bear: record the gesture
+    // signals before the command so the launch event cannot overtake them in
+    // the guided evidence sequence.
+    if (weapon === 'gun') record('gunOrdered');
+    else record('torpedoAimed', 'torpedoOrdered', ...(heading === undefined ? [] : ['torpedoAdjusted' as const]));
     void command({ op: 'fire', ship, weapon, target, heading, ...torpedo }, () => {
       hint(weapon === 'gun' && o?.realtimeGunnery ? '已下达炮击命令，炮座转向并装填完成后各自发射。' :
         '已下达' + aimAction[weapon] + '命令，执行进度见战情。');
       if (weapon === 'gun' || heading !== undefined) learn(weapon);
-      if (weapon === 'gun') record('gunOrdered');
-      else record('torpedoAimed', 'torpedoOrdered', ...(heading === undefined ? [] : ['torpedoAdjusted' as const]));
       if (fleet?.ai.mode === 'auto' && fleet.ai[weapon]) { learn('override'); record('override'); }
     });
   };

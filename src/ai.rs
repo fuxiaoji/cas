@@ -197,13 +197,18 @@ impl World {
                 score(a).total_cmp(&score(b)).then_with(|| a.id.cmp(&b.id))
             });
             if (!auto || fleet.ai.gun) && self.can_gun(s) {
+                // cas-realtime-v10: hold fire unless the next volley can
+                // actually hit — a 0% threshold means the shot is wasted.
+                let gate = |w: &Self, c: &Contact, radar_only: bool| {
+                    !w.v10_family() || w.volley_chance(s, c, radar_only).is_some_and(|chance| chance > 0.)
+                };
                 let radar;
-                let chosen = if let Some(t) = targets.iter().find(|c| self.gun_candidate(s, c)) {
+                let chosen = if let Some(t) = targets.iter().find(|c| self.gun_candidate(s, c) && gate(self, c, false)) {
                     Some(t.id.as_str())
                 } else {
                     radar = self
                         .radar_gun_contacts(s)
-                        .filter(|t| self.gun_candidate(s, t))
+                        .filter(|t| self.gun_candidate(s, t) && gate(self, t, true))
                         .min_by(|a, b| {
                             s.p.dist(a.p())
                                 .total_cmp(&s.p.dist(b.p()))
@@ -217,7 +222,7 @@ impl World {
             }
             if (!auto || fleet.ai.torpedo)
                 && tactic != Tactic::Withdraw
-                && self.tick % CYCLE >= 160
+                && (self.tick % CYCLE >= 160 || self.immediate_torpedoes())
                 && self.can_torp(s)
             {
                 let radar: Vec<_> = self.radar_torp_contacts(s).collect();
@@ -241,6 +246,27 @@ impl World {
         }
         Ok(orders)
     }
+    /// cas-realtime-v10 家族：夜战时 AI 舰组自行接通本舰未损坏的水面搜索
+    /// 雷达。更早版本保持原行为（AI 从不开机），以保证旧局按原时序重演。
+    /// 只在 drive_ai 执行路径生效，不进入给玩家的建议列表。
+    fn radar_orders(&self, owner: usize, fid: u32) -> Vec<Value> {
+        if !self.v10_family() || !self.radar_enabled() || self.environment().light != crate::night::Light::Night {
+            return vec![];
+        }
+        let Ok(fleet) = self.fleet_for(owner, fid) else {
+            return vec![];
+        };
+        let mut orders = vec![];
+        for id in &fleet.members {
+            for device in self.radar.own_observation(*id) {
+                if device["powered"] == json!(false) && device["disabled"] == json!(false) {
+                    orders.push(json!({"op":"radar_set","ship":id,"radar":device["id"],"powered":true}));
+                }
+            }
+        }
+        orders
+    }
+
     pub fn drive_ai(&mut self) {
         let task: Vec<_> = self
             .fleets
@@ -255,6 +281,11 @@ impl World {
                     let text = format!("{} · AI 转入{}", f.name, next.label());
                     self.fleet_mut(id).unwrap().tactic = next;
                     self.add(1 << owner, "ai_state", text, Some("RTS-AI-01"), None);
+                }
+            }
+            for r in self.radar_orders(owner, id) {
+                if r["op"].as_str() == Some("radar_set") {
+                    let _ = self.radar_power(owner, &r);
                 }
             }
             if let Ok(orders) = self.suggestions(owner, id) {

@@ -136,7 +136,7 @@ class AuthorityTest(unittest.TestCase):
     def test_real_victories_pay_fixed_rewards_once_and_weekly_clears(self):
         # The two fixtures reach different victory grades in both supported
         # native campaign versions. The server still pays from actual results.
-        self.seed = 6108
+        self.seed = 6102
         path = "/battles/" + self.start("real-tactical")["battle_id"]
         for i in range(2):
             self.good(self.ai(path, f"tactical-ai-{i}", i, i + 1, "coord"))

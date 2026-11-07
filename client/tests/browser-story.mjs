@@ -108,6 +108,15 @@ async function waitForWeapon(weapon, issuedTick, shipId) {
     }
     assert.fail(`No real-time gun launch after t=${issuedTick}`);
   }
+  if ((await observed()).realtimeGunnery) {
+    // cas-realtime-v10: the salvo leaves the tubes the second they bear
+    // (at most TORPEDO_HOLD later), so check the live event stream directly.
+    for (let elapsed = 1; elapsed <= 95; elapsed++) {
+      const world = await step();
+      if (world.events.some(event => event.tick >= issuedTick && event.kind === weapon && event.own_ship === shipId)) return;
+    }
+    assert.fail(`No real-time ${weapon} launch within 95s of t=${issuedTick}`);
+  }
   const phase = 180 - issuedTick % 180;
   if (phase > 1) await q('step', { seconds: phase - 1 });
   await step();

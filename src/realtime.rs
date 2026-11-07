@@ -6,13 +6,19 @@ use crate::{
 };
 use serde_json::{json, Value};
 
-pub(crate) const VERSION: &str = "cas-realtime-v9";
+pub(crate) const VERSION: &str = "cas-realtime-v10";
+/// v9 kept torpedoes on the window-end pending path and AI never powered radar;
+/// frozen so in-flight saves replay their original timing.
+pub(crate) const WINDOW_TORPEDO_VERSION: &str = "cas-realtime-v9";
 pub(crate) const CURVE_VERSION: &str = "cas-realtime-v8";
 pub(crate) const IMPACT_VERSION: &str = "cas-realtime-v7";
 pub(crate) const CADENCE_VERSION: &str = "cas-realtime-v6";
 pub(crate) const LEGACY_VERSION: &str = "cas-realtime-v4";
 pub(crate) const MAX_FLIGHT: u32 = 120;
 const ORDER_TIMEOUT: u32 = 90;
+/// cas-realtime-v10: a held torpedo order launches the moment its tubes bear,
+/// at most this many seconds after the order.
+pub(crate) const TORPEDO_HOLD: u32 = 90;
 
 #[derive(Clone, Copy)]
 pub(crate) struct Timings {
@@ -84,6 +90,9 @@ pub(crate) struct Order {
 pub(crate) struct Battery {
     turrets: Vec<Turret>,
     pub(crate) order: Option<Order>,
+    /// v9 families cache one D100 per 180-second window (frozen timing). v10
+    /// families ignore the cache and draw fresh dice per volley; tests may pin
+    /// both fields to force one deterministic outcome.
     pub(crate) dice_window: u32,
     pub(crate) hit_roll: Option<u32>,
     pub(crate) deck_roll: Option<u32>,
@@ -124,6 +133,11 @@ impl World {
     pub(crate) fn enable_realtime(&mut self) -> E<()> {
         let version = if self.campaign.is_some() {
             crate::campaign::live::VERSION
+        } else if self.variant == "challenge" {
+            // The 3-vs-5 challenge is a hand-tuned knife-edge; it keeps the
+            // v9 timing (shared window dice, window-end torpedoes) so the v10
+            // fire-discipline upgrades do not silently flip its balance.
+            WINDOW_TORPEDO_VERSION
         } else {
             VERSION
         };
@@ -470,6 +484,23 @@ impl World {
     }
 
     pub(crate) fn realtime_fire_dice(&mut self, id: u32, deck_needed: bool) -> (u32, Option<u32>) {
+        // cas-realtime-v10 families draw a fresh D100 per volley: a
+        // low-probability salvo no longer stakes the whole 180-second window on
+        // one shared roll. Expected window damage is unchanged because each
+        // volley's damage is scaled to its share of the window's CAS fire
+        // budget; only the all-or-nothing correlation goes. v9 families keep
+        // the cached window die so frozen in-flight saves replay exactly.
+        if self.v10_family() {
+            let pinned = self.ship(id).map(|s| (s.battery.hit_roll, s.battery.deck_roll));
+            let (hit_pin, deck_pin) = pinned.unwrap_or((None, None));
+            let hit = hit_pin.unwrap_or_else(|| self.d(100));
+            let deck = match deck_pin {
+                Some(die) => Some(die),
+                None if deck_needed => Some(self.d(100)),
+                None => None,
+            };
+            return (hit, deck);
+        }
         let cycle = self.tick / CYCLE;
         let b = &mut self.ship_mut(id).unwrap().battery;
         if b.dice_window != cycle {
@@ -489,7 +520,7 @@ impl World {
 }
 
 pub(crate) fn is_realtime_version(version: &str) -> bool {
-    matches!(version, VERSION | CURVE_VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
+    matches!(version, VERSION | WINDOW_TORPEDO_VERSION | CURVE_VERSION | IMPACT_VERSION | CADENCE_VERSION | LEGACY_VERSION)
         || crate::campaign::live::is_campaign_version(version)
 }
 
@@ -602,16 +633,17 @@ mod tests {
     }
 
     #[test]
-    fn same_window_dice_and_range_based_flight() {
+    fn every_volley_draws_fresh_dice_and_range_based_flight() {
         let mut w = fixture();
-        let rolled = w.realtime_fire_dice(1, true);
         let rng = w.rng;
-        w.tick = 149;
-        assert_eq!(w.realtime_fire_dice(1, true), rolled);
-        assert_eq!(w.rng, rng);
-        w.tick = CYCLE;
+        // cas-realtime-v10: no shared window die — each volley consumes fresh
+        // dice even inside the same 180-second window.
         w.realtime_fire_dice(1, true);
-        assert_ne!(w.rng, rng);
+        let after_first = w.rng;
+        assert_ne!(after_first, rng);
+        w.tick = 149;
+        w.realtime_fire_dice(1, true);
+        assert_ne!(w.rng, after_first);
         let (near, near_height) = flight(2_500., 18_200. * YARD);
         let (far, far_height) = flight(14_000., 18_200. * YARD);
         assert!(far > 4 * near && far_height > near_height);

@@ -41,7 +41,7 @@ class PointTableTest(unittest.TestCase):
 
     def test_manifest_matches_the_frozen_table(self):
         self.assertEqual(self.points.version, "cas-points-surface-v1")
-        self.assertEqual(self.points.rules_version, "cas-realtime-v9")
+        self.assertEqual(self.points.rules_version, "cas-realtime-v10")
         self.assertEqual(self.points.budgets, (3000,))
         self.assertEqual(len(self.points.hulls), 10)
         self.assertTrue(set(PROLOGUE_SHIPS) <= set(self.points.hulls))

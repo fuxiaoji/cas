@@ -2,7 +2,7 @@
   "enabled_budgets": [
     3000
   ],
-  "rules_version": "cas-realtime-v9",
+  "rules_version": "cas-realtime-v10",
   "schema_version": 1,
   "ships": {
     "IBS-U-IJN-ERMA-YAMATO": {

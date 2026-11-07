@@ -262,11 +262,13 @@ impl World {
             RADAR_VERSION => RADAR_VERSION,
             crate::illumination::VERSION => crate::illumination::VERSION,
             crate::realtime::VERSION => crate::realtime::VERSION,
+            crate::realtime::WINDOW_TORPEDO_VERSION => crate::realtime::WINDOW_TORPEDO_VERSION,
             crate::realtime::CURVE_VERSION => crate::realtime::CURVE_VERSION,
             crate::realtime::IMPACT_VERSION => crate::realtime::IMPACT_VERSION,
             crate::realtime::CADENCE_VERSION => crate::realtime::CADENCE_VERSION,
             crate::realtime::LEGACY_VERSION => crate::realtime::LEGACY_VERSION,
             live::VERSION => live::VERSION,
+            live::WINDOW_TORPEDO_VERSION => live::WINDOW_TORPEDO_VERSION,
             live::CURVE_VERSION => live::CURVE_VERSION,
             live::IMPACT_VERSION => live::IMPACT_VERSION,
             live::CADENCE_VERSION => live::CADENCE_VERSION,
@@ -277,7 +279,9 @@ impl World {
         let ranked = s.ranked.is_some();
         if (ranked && !s.duel) || (s.duel
             && (cfg!(target_arch = "wasm32")
-                || if ranked { version != crate::realtime::VERSION || s.variant != "personal-duel" }
+                || if ranked {
+                    !matches!(version, crate::realtime::VERSION | crate::realtime::WINDOW_TORPEDO_VERSION) || s.variant != "personal-duel"
+                }
                     else { version != crate::realtime::CURVE_VERSION || !s.variant.is_empty() }
                 || s.side != "allies"
                 || s.enemy != "coord"
@@ -294,7 +298,7 @@ impl World {
             return Err("存档命令的席位无效".into());
         }
         if matches!(s.variant.as_str(), crate::prologue::VARIANT | crate::illumination::RADAR_TRAINING)
-            && !matches!(version, crate::realtime::VERSION | crate::realtime::CURVE_VERSION)
+            && !matches!(version, crate::realtime::VERSION | crate::realtime::WINDOW_TORPEDO_VERSION | crate::realtime::CURVE_VERSION)
         {
             return Err("该教学存档的规则版本不符".into());
         }
@@ -529,7 +533,17 @@ impl World {
             }
             if self.radar_enabled() {
                 data["systems"]["radars"] = json!(self.radar.own_observation(s.id));
+                // Own-seat only: the nominal surface-search reach of whatever is
+                // powered, and the visual base range against a same-size hull
+                // in the current environment. Detection beyond the visual base
+                // stays probabilistic per CAS §5.
+                if let Some(range) = self.radar.nominal_surface_range_m(s.id, &d.size) {
+                    data["radarRange"] = json!(range);
+                }
             }
+            data["sightRange"] = json!(crate::night::surface_base_range_yd(
+                self.environment(), &d.size, &d.size, 0., false, false,
+            ) as f64 * YARD);
             if self.realtime() {
                 if let Some(order) = &s.battery.order {
                     data["gunTarget"] = json!(order.target);
@@ -673,6 +687,10 @@ impl World {
         }
     }
     pub fn advance(&mut self) {
+        if std::env::var("CAS_RNG_PROBE").is_ok() && self.tick % 60 == 0 {
+            eprintln!("RNGPROBE tick={} rng={:016x} optics={:016x} crit={:016x}",
+                self.tick, self.rng, self.optics_rng, self.surface_critical_rng);
+        }
         let settle_only = self.version != LEGACY_VERSION && self.action_closed();
         self.tick += 1;
         if settle_only {

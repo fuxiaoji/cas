@@ -143,7 +143,8 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     assert(start.ships.every(ship => ship.classId === ship.characterId));
     assert.equal(start.fleets.length, start.ships.length);
     assert.equal(end.result.winner, side);
-    assert.equal(end.result.grade, side === 'axis' ? 'tactical' : 'decisive');
+    // cas-realtime-v10: the axis escort AI now also reaches the decisive tier.
+    assert.equal(end.result.grade, 'decisive');
     assert(end.tick >= 720);
     assert(report.events.some(event => event.kind === 'sunk'));
     if (side === 'axis') assert(report.events.some(event => event.kind === 'torpedo_hit'));
@@ -163,10 +164,10 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 1, 'night'), await verify('allies', 1, 'radar'), await verify('allies', 1, 'night-training'),
   await verify('allies', 1, '', 6106, true), await verify('allies', 1, 'night-training', 6106, true),
   await verify('allies', 1, 'radar', 6106, true),
-  await verify('allies', 1, 'cape-st-george-rts', 6177, true, true),
+  await verify('allies', 1, 'cape-st-george-rts', 6148, true, true),
   await verify('axis', 3, 'cape-st-george-rts', 6106, true, true),
   await verify('allies', 4, 'channel-action-rts', 6107, true, true),
-  await verify('axis', 1, 'channel-action-rts', 53, true, true),
+  await verify('axis', 1, 'channel-action-rts', 57, true, true),
   await verify('allies', 1, 'prologue', 6106, true),
   await verify('allies', 1, 'night-radar-training', 6106, true),
   await verify('allies', 1, 'kula-gulf-rts', 6106, true, true),
