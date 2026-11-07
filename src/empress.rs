@@ -101,7 +101,13 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
                 x: column.x + heading_step(column.heading, -column.spacing * index as f64).0,
                 y: column.y + heading_step(column.heading, -column.spacing * index as f64).1,
             };
-            members.push(w.spawn(def, column.side, column.fleet, name.to_string(), position, column.heading)?);
+            let id = w.spawn(def, column.side, column.fleet, name.to_string(), position, column.heading)?;
+            // The scenario starts the columns already on course at their
+            // printed speed; do not accelerate from a dead stop.
+            let ship = w.ship_mut(id).unwrap();
+            ship.speed = column.speed;
+            ship.free_speed = column.speed;
+            members.push(id);
         }
         w.fleets.push(Fleet {
             id: column.fleet,
@@ -147,7 +153,7 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
         P { x: 70_500., y: 0. },
         P { x: 75_000., y: 0. },
         P { x: 74_000., y: 7_500. },
-        P { x: 72_500., y: 11_200. },
+        P { x: CAPE.x, y: CAPE.y },
         P { x: 71_000., y: 9_500. },
         P { x: 69_500., y: 5_000. },
     ]);
