@@ -1,5 +1,12 @@
 # 验证记录
 
+## 2026-11-07｜水面规则闭合载体：奥古斯塔皇后湾时期舰卡
+
+- 选定《旭日》PDF 90（印 90）奥古斯塔皇后湾海战作为“全机制中型剧本”：夜间、双方巡洋舰＋驱逐舰、三列纵队，覆盖雷达、照明弹／探照灯、烟雾、鱼雷再装填、巡洋舰副炮与多指挥仪、先验舰损与岸角方位。
+- 新建 `data/campaign/period/empress-augusta-bay-1943.json`：22 艘具名舰、9 个舰级（Cleveland、Fletcher、Myoko 1940、Sendai 1943、Agano、Kagero、Shiratsuyu、Yugumo、Akizuki），逐舰 Form 10 页与雷达配置；复用 8 个已核炮雷型号，从《The Emperor's Fleet》C-1/C-2 新录 Type 89 12.7cm/40、41st Yr 15cm/50、Type 98 8cm/60、Type 98 10cm/65 四行。
+- `data/campaign/empress-augusta-bay.json` 补 `ships`（22 舰映射）与 `period_records` 链接；`scripts/check-campaign.py` 新增 `verify_empress()`，主仓实跑通过（16 想定／32 关位／22 艘本剧本舰）。
+- 未决冲突 7 项按原样登记，不填默认值：Cleveland DP 级表 336 与 Form 10 396、妙高 428/35 与 471/33、Sendai 八年式鱼雷、Sendai 8cm/40 副炮未登记、Agano 346/302、F1M2 侦察机、多纵队与岸角方位。来源与差额见[源笔记](docs/campaign/empress-augusta-bay-source-notes.md)。
+
 ## 2026-11-07｜探照灯与烟幕的 v10 实时改编（RTS-LIGHT-02 / RTS-SMOKE-01）
 
 - **探照灯命令**：夜战对已知目视接触下令，当秒掷照距骰、逐秒生效；友方炮击只对照距表范围内的目标给照明修正（`gun_values` 增加距离门），发光舰自身承担 +1 使用修正；**暴露按原书**——源距（无降水为灯具最大距离 5 倍）内敌方逐舰免掷骰自动获得发光舰接触。视图暴露 `searchlight {target, bearing}`。现役四型舰表按阵营 8,000／7,000 码临时档，逐舰实装与射界仍待核。

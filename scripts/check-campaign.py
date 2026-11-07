@@ -421,6 +421,30 @@ def verify_tassafaronga():
     return len(named)
 
 
+def verify_empress():
+    scenario = load(CAMPAIGN / "empress-augusta-bay.json")
+    period = load(CAMPAIGN / "period" / "empress-augusta-bay-1943.json")
+    assert scenario["scenario_id"] == period["scenario_id"]
+    assert period["as_of"] == scenario["start"]["date_local"]
+    assert len(period["instances"]) == 22
+    assert len(period["profiles"]) == 9
+    assert set(period["instances"]) == {ship["id"] for ship in scenario["ships"]}
+    for ship in scenario["ships"]:
+        instance = period["instances"][ship["id"]]
+        profile = period["profiles"][instance["profile"]]
+        assert instance["profile"] == ship["profile"]
+        assert profile["turn_class"] in period["maneuver_classes"]
+        assert profile["main_gun"] in period["weapon_models"]
+        secondary = profile.get("secondary_gun")
+        assert secondary is None or secondary.get("model") is None or secondary["model"] in period["weapon_models"]
+        torpedoes = profile.get("torpedo_mounts")
+        assert torpedoes is None or torpedoes["model"] in period["weapon_models"]
+    assert {"jp_type89_12_7cm40", "jp_41st_yr_15cm50", "jp_type98_8cm60", "jp_type98_10cm65"} <= set(period["weapon_models"])
+    unresolved = {item["id"] for item in period["conflicts"] if item["status"] == "unresolved"}
+    assert {"cleveland-dp-row", "myoko-dp-speed", "sendai-torpedo-model", "agano-dp", "floatplanes", "multi-column"} <= unresolved
+    return len(period["instances"])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--ibs-worktree", type=Path, help="Optionally check the pinned 铁底湾 0.6.9 Git objects")
@@ -430,6 +454,7 @@ def main():
     cape_ships = verify_cape_st_george()
     horaniu_ships = verify_horaniu_basis()
     tassafaronga_ships = verify_tassafaronga()
+    empress_ships = verify_empress()
     roster_count = verify_roster(crosswalk, rows, cape_ships, args.ibs_worktree)
     originals = ROOT / crosswalk["source_path_root"]
     checked_sources = 0
@@ -442,7 +467,7 @@ def main():
         verify_baseline(crosswalk, rows, args.ibs_worktree)
     print(f"CAS campaign: {len(rows)} scenarios, 32 legacy stages, {len(linked)} catalogued and {len(next_records)} staged source-only imports; "
           f"{roster_count} legacy identities, {len(cape_ships)} dated Cape St. George, {horaniu_ships} source-only Horaniu destroyers "
-          f"and {tassafaronga_ships} source-only Tassafaronga named ships; "
+          f"{tassafaronga_ships} source-only Tassafaronga named ships and {empress_ships} Empress Augusta Bay hulls; "
           f"{checked_sources} local PDF hashes; pinned legacy baseline: {'checked' if args.ibs_worktree else 'not requested'}")
 
 
