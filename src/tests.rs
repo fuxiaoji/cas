@@ -266,6 +266,37 @@ fn empress_augusta_bay_runs_the_full_night_surface_kit() {
 }
 
 #[test]
+fn ship_view_shows_target_chance_and_the_fleet_speed_can_change() {
+    let mut w = World::new(6106, 0, "coord", "night", "coord", 0).unwrap();
+    w.enable_realtime().unwrap();
+    let target = w.ship(1).unwrap().p + P::bearing(0.) * (250. * YARD);
+    w.ship_mut(6).unwrap().p = target;
+    w.detect(true);
+    let contact = w.contacts[0]
+        .iter()
+        .find(|c| c.ship == 6)
+        .expect("contact")
+        .id
+        .clone();
+    w.order_realtime_gun(0, 1, &contact, true).unwrap();
+    let view = w.observation(0);
+    let ship = view["ships"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|s| s["id"] == 1)
+        .unwrap();
+    let chance = ship["targetChance"].as_f64().expect("target chance");
+    assert!(chance > 0. && chance <= 100., "{chance}");
+    assert_eq!(ship["gunTarget"], json!(contact));
+    w.external(json!({"op":"speed","fleet":1,"speed":24})).unwrap();
+    assert_eq!(w.fleet(1).unwrap().speed, 24.);
+    assert!(w
+        .external(json!({"op":"speed","fleet":1,"speed":99}))
+        .is_err(), "an impossible formation speed must be refused");
+}
+
+#[test]
 fn v10_secondary_battery_fires_on_its_own() {
     let mut w = World::new(6106, 0, "coord", "night", "coord", 0).unwrap();
     w.enable_realtime().unwrap();

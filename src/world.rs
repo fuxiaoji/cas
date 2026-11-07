@@ -596,6 +596,13 @@ impl World {
             if self.realtime() {
                 if let Some(order) = &s.battery.order {
                     data["gunTarget"] = json!(order.target);
+                    // The live per-volley threshold against the ship's
+                    // current target, for the status panel.
+                    if let Ok((contact, radar)) = self.gun_contact(s, &order.target) {
+                        if let Some(chance) = self.volley_chance(s, contact.as_ref(), radar) {
+                            data["targetChance"] = json!(chance);
+                        }
+                    }
                 }
             }
             if self.torpedo_depths() && d.torpedo_protection_dp > 0. {
@@ -700,6 +707,7 @@ impl World {
             Some("illuminate") => self.queue_illumination(s,&r)?,
             Some("radar_set") => self.radar_power(s, &r)?,
             Some("searchlight") => self.searchlight_cmd(s, &r)?,
+            Some("speed") => self.fleet_speed(s, &r)?,
             Some("smoke") => self.smoke_cmd(s, &r)?,
             Some("ai") => {
                 let id = u(&r, "fleet")?;
@@ -944,6 +952,36 @@ pub(crate) fn roll(state: &mut u64, sides: u32) -> u32 {
 }
 
 impl World {
+    /// Set the fleet's ordered speed without replanning the route. The
+    /// formation still accelerates/decelerates through the normal movement
+    /// code; only the target speed changes.
+    fn fleet_speed(&mut self, owner: usize, r: &Value) -> E<()> {
+        let id = u(r, "fleet")?;
+        let speed = r["speed"]
+            .as_f64()
+            .filter(|v| v.is_finite() && *v >= 0.)
+            .ok_or("航速无效")?;
+        let max = {
+            let fleet = self.fleet_for(owner, id)?;
+            let mut max = f64::INFINITY;
+            for member in &fleet.members {
+                if let Some(ship) = self.ship(*member) {
+                    max = max.min(self.max_speed(ship));
+                }
+            }
+            if max.is_finite() { max } else { 0. }
+        };
+        if speed > max + 1e-6 {
+            return Err(format!("航速不得超过编队当前最大航速 {max:.0} 节"));
+        }
+        let fleet = self.fleet_mut(id).unwrap();
+        fleet.speed = speed;
+        let name = fleet.name.clone();
+        let side = fleet.side;
+        self.add(1 << side, "speed", format!("{name} · 编队航速 {speed:.0} 节"), Some("RTS-NAV-03"), None);
+        Ok(())
+    }
+
     /// cas-realtime-v10: searchlight order (5.4.4.1). Night only; the light
     /// tracks one known contact. Turning it on rolls the illumination die.
     pub(crate) fn searchlight_cmd(&mut self, owner: usize, r: &Value) -> E<()> {

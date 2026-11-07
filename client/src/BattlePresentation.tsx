@@ -273,7 +273,7 @@ export function ShipSchematic({ ship, ships, select, tick = 0, torpedo }: {
     {systems ? <>
       <div className="mount-rows">
         {timedGuns ? <div className="gun-readiness">
-          <div className="gun-readiness-heading"><span>主炮状态</span>{ship.gunTarget && <b>待发目标 {ship.gunTarget}</b>}</div>
+          <div className="gun-readiness-heading"><span>主炮状态</span>{ship.gunTarget && <b>待发目标 {ship.gunTarget}{ship.targetChance !== undefined ? ` · 命中率 ${Math.round(ship.targetChance)}%` : ''}</b>}</div>
           <ul aria-label="炮座状态">{systems.guns.map((mount, slot) => <GunMountReadiness mount={mount} slot={slot} tick={tick} shipHeading={ship.heading} key={mount.index} />)}</ul>
         </div> : <div className="mount-row"><span>炮座</span><div>
           {systems.guns.length ? systems.guns.map((gun, slot) => <span key={gun.index} className={'mount-icon ' + (gun.destroyed ? 'lost' : 'ready')}

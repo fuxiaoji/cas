@@ -67,6 +67,20 @@ function eventTone(event: LogEvent) {
   return 'plain';
 }
 
+function FleetSpeed({ fleet, busy, apply }: {
+  fleet: { id: number; speed: number }; busy: boolean; apply: (speed: number) => void;
+}) {
+  const [value, setValue] = useState(String(fleet.speed));
+  useEffect(() => { setValue(String(fleet.speed)); }, [fleet.id, fleet.speed]);
+  const commit = () => {
+    const next = Number(value);
+    if (Number.isFinite(next) && next >= 0 && next !== fleet.speed) apply(next);
+  };
+  return <label className="fleet-speed">编队航速 <input type="number" min={0} max={40} step={1} value={value}
+    disabled={busy} onChange={(event) => setValue(event.target.value)} onBlur={commit}
+    onKeyDown={(event) => { if (event.key === 'Enter') event.currentTarget.blur(); }} /> 节</label>;
+}
+
 function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => void }) {
   const accountSaveKey = profileKey(profile, SAVE_KEY);
   const accountPortKey = profileKey(profile, PORT_KEY);
@@ -943,6 +957,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
               </select> : <h2>{fleet.name}</h2>}
               <span>{ships.filter((ship) => ship.hp > 0).length} 艘在队</span>
             </div>
+            <FleetSpeed fleet={fleet} busy={busy || finished || !!replay}
+              apply={(speed) => void command({ op: 'speed', fleet: fleet.id, speed }, () => hint(`编队航速 ${speed} 节。`))} />
             <section className="maneuver-section">
               <div className="section-heading"><h3>编队航线</h3><span>{maneuverNames[fleet.mode]} · {fleet.speed} 节</span></div>
               {fleet.notice && <p className="inline-warning">{fleet.notice}</p>}

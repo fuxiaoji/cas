@@ -13,6 +13,7 @@ export interface Ship extends Position {
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
   gunTarget?: string;
+  targetChance?: number;
   searchlight?: { target: number | null; bearing: number };
   smoking?: boolean;
 }
