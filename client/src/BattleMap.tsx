@@ -647,7 +647,7 @@ export function BattleMap(props: MapProps) {
     {rangesVisible && !editing && !reformPreview && !gesture && (gunRange > 0 || torpedoRange > 0) && <div className="range-legend" aria-label="所选舰最大射程">
       {gunRange > 0 && <span><i className="gun-ring" />舰炮 {(gunRange / 1000).toFixed(1)} km</span>}
       {torpedoRange > 0 && <span><i className="torpedo-ring" />鱼雷 {(torpedoRange / 1000).toFixed(1)} km</span>}
-      {sightRange > 0 && <span><i className="sight-ring" />目视 {(sightRange / 1000).toFixed(1)} km</span>}
+      {sightRange > 0 && <span title="同型目标、静止目标的基准距离；目标更大、更快或正在开火时会更远"><i className="sight-ring" />目视基准 {(sightRange / 1000).toFixed(1)} km</span>}
       {radarRange > 0 && <span><i className="radar-ring" />雷达 {(radarRange / 1000).toFixed(1)} km</span>}
     </div>}
   </div>;
