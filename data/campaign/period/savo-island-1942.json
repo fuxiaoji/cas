@@ -1,0 +1,795 @@
+{
+  "schema_version": 1,
+  "id": "savo_island_1942_08_09",
+  "content_version": "cas-rs-savo-island-period-v1",
+  "scenario_id": "cas-rs-savo-island",
+  "ibs_id": "IBS-S-10",
+  "title": "萨沃岛海战",
+  "title_en": "The Battle of Savo Island",
+  "status": "source_only_not_runtime_ready",
+  "policy": "原页逐字优先；舰队书类级页与 dated 备注次之；Rising Sun 具名 Form 10 仅作佐证。登记页码以实际目视核页为准。空值与未裁决备选一律不启用。",
+  "source": {
+    "document": "rising_sun_5e",
+    "file": "剧本/Rising_Sun_5th_ed_Std_1_Oct_25.pdf",
+    "pdf_pages": [52, 53, 54],
+    "printed_pages": [51, 52, 53],
+    "page_mapping_note": "PDF 页从 1 起算；PDF 52=印刷 51（正文与双方编制）、PDF 53=印刷 52（整页海图 Battle of Savo Island）、PDF 54=印刷 53（Setup/Special Rules/Variations/Historical Outcome 与 ONI 41-42 Furutaka 级识别卡）。与 source-crosswalk.md 登记一致，未发现差异。"
+  },
+  "start": {
+    "local_date": "1942-08-09",
+    "local_time": "00:52",
+    "location": "Iron Bottom Sound",
+    "location_zh": "铁底湾",
+    "map_type": "scenario_chart",
+    "chart_pdf_page": 53,
+    "chart_printed_page": 52,
+    "chart_extent": {
+      "longitude_e": [159.583, 160.333],
+      "latitude_s": [-9.417, -9.0],
+      "scale_nmi": 10,
+      "note": "图缘刻度为 159°35'E–160°20'E、09°00'S–09°25'S，比例尺 0–10 NM；海图为北朝上。"
+    }
+  },
+  "environment": {
+    "light": "night",
+    "verbatim": "Night, 100% overcast at 2000 meters ceiling, visibility 10%. Thunderstorm with lightning over and within 3 nmi of Savo. Sea State 3. Civil twilight is at 0611 (visibility 20%), with dawn at 0633 (visibility 50%)",
+    "visibility_pct": 10,
+    "overcast_pct": 100,
+    "cloud_ceiling_m": 2000,
+    "storm": {
+      "present": true,
+      "lightning": true,
+      "radius_nmi_around_savo": 3
+    },
+    "sea_state": 3,
+    "civil_twilight_local": "06:11",
+    "civil_twilight_visibility_pct": 20,
+    "dawn_local": "06:33",
+    "dawn_visibility_pct": 50,
+    "moon": null,
+    "moon_note": "原页未登记月光相位与月出月没；按五版 §5 需要该输入时记待裁决。",
+    "illumination_orders": "原页无双方照明弹/探照灯命令；历史叙述仅记日军探照灯照北队与搜索雷达式照明描述，正式照明数据未给出，待裁决。"
+  },
+  "forces": {
+    "allies": {
+      "commanders": [
+        {"group": "TG 62.6 Western Screen", "commander": "RADM Victor A. C. Crutchley RN"},
+        {"group": "TG 62.4 Eastern Screen", "commander": "RADM Norman Scott"},
+        {"group": "TG 61.2 Transport Group Yoke (Tulagi)", "commander": "CAPT G. B. Ashe"}
+      ],
+      "readiness": "The Allied ships are all at Condition II, modified general quarters.",
+      "groups": [
+        {
+          "unit": "TG 62.6 雷达哨舰",
+          "unit_en": "Radar Pickets",
+          "kind": "DD",
+          "ships": ["Blue", "Ralph Talbot"],
+          "class_en": "both Bagley class DD"
+        },
+        {
+          "unit": "TG 62.6 南队",
+          "unit_en": "Southern Group",
+          "kind": "CA/DD",
+          "ships": ["Australia", "Canberra", "Chicago", "Bagley", "Patterson"],
+          "class_en": "Australia, Canberra (both Kent class CA), Chicago (Northampton class CA), Bagley, Patterson (both Bagley class DD)",
+          "note": "Australia, originally leading the Southern Group in column, was detached before the battle so that Crutchley could meet with ADM Turner. After the meeting, she took up an independent patrol line."
+        },
+        {
+          "unit": "TG 62.6 北队",
+          "unit_en": "Northern Group",
+          "kind": "CA/DD",
+          "ships": ["Vincennes", "Quincy", "Astoria", "Helm", "Wilson"],
+          "class_en": "Vincennes, Quincy (w/5 SOC-3), Astoria (all New Orleans class CA), Helm (Gridley class DD), Wilson (Benham class DD)",
+          "note": "Quincy 括注 w/5 SOC-3（载 5 架 SOC-3 水上机）按原页照录。"
+        },
+        {
+          "unit": "TG 62.4 东屏护",
+          "unit_en": "Eastern Screen",
+          "kind": "CL/DD",
+          "ships": ["San Juan", "Hobart", "Monssen", "Buchanan", "Jarvis"],
+          "class_en": "San Juan (flag) (Atlanta class CL), Hobart (Perth class CL), Monssen (Benson class DD), Buchanan (Bristol class DD), Jarvis (Bagley class DD)"
+        },
+        {
+          "unit": "TG 62.1 X-Ray 屏护",
+          "unit_en": "Transport Group X-Ray Screen",
+          "kind": "DMS/DD",
+          "ships": ["Hopkins", "Trever", "Zane", "Southard", "Hovey", "Dewey", "Selfridge", "Mugford"],
+          "class_en": "Hopkins, Trever, Zane, Southard (all Clemson class DMS), Hovey (Clemson Mod class DMS), Dewey (Farragut class DD), Selfridge (Porter class DD), Mugford (Gridley class DD)"
+        },
+        {
+          "unit": "TG 62.1 X-Ray 运输",
+          "unit_en": "Transport Group X-Ray",
+          "kind": "APA/AKA/AP/AK",
+          "divisions": [
+            {"div": "Transdiv A", "ships": ["Fuller", "American Legion", "Bellatrix"], "class_en": "Fuller (Heywood class APA), American Legion (Harris class APA), Bellatrix (Arcturus class AKA)"},
+            {"div": "Transport Division B", "ships": ["McCawley", "Barnett", "George F. Elliott", "Libra"], "class_en": "McCawley, Barnett (both McCawley class AP), George F. Elliott (Heywood class APA), Libra (Arcturus class AKA)"},
+            {"div": "Transdiv C", "ships": ["Hunter Liggett", "Alchiba", "Betelgeuse", "Formalhaut"], "class_en": "Hunter Liggett (Harris class APA), Alchiba, Betelgeuse (both Arcturus class AKA), Formalhaut (Formalhaut class AK)"},
+            {"div": "Transdiv D", "ships": ["Crescent City", "President Hayes", "President Adams", "Alhena"], "class_en": "Crescent City (Crescent City APA), President Hayes, President Adams (both President Jackson class APA), Alhena (Alhena class AKA)"}
+          ]
+        },
+        {
+          "unit": "TG 61.2 Yoke 屏护与分遣",
+          "unit_en": "Transport Group Yoke Screen and Detached",
+          "kind": "DD",
+          "ships": ["Henley", "Ellet", "Hull"],
+          "class_en": "Screen: Henley (Gridley class DD), Ellet (Benham class DD). Detached: Hull (Farragut class DD) with damaged transport George F. Elliot (Heywood class APA)",
+          "note": "George F. Elliott（X-Ray B 分队名录，双 t）与随 Hull 分遣的 George F. Elliot（单 t）为同一艘受损运输舰，不能重复生成。"
+        },
+        {
+          "unit": "TG 61.2 Yoke 运输",
+          "unit_en": "Transport Group Yoke",
+          "kind": "APA/APD",
+          "divisions": [
+            {"div": "Transdiv E", "ships": ["Heywood", "Neville", "Zellin", "President Jackson"], "class_en": "Heywood, Neville (both Heywood class APA), Zellin (Harris class APA), President Jackson (President Jackson class APA)"},
+            {"div": "Transdiv 12", "ships": ["Colhoun", "Little", "Gregory", "McKean"], "class_en": "all Wickes class APD", "note": "(also acting as part of the screen)"}
+          ]
+        }
+      ]
+    },
+    "axis": {
+      "commander": "Striking Force, VADM Gunichi Mikawa",
+      "groups": [
+        {
+          "unit": "Crudiv 4",
+          "kind": "CA",
+          "ships": ["Chokai"],
+          "class_en": "Chokai (flag) (Takao class CA)"
+        },
+        {
+          "unit": "Crudiv 6",
+          "kind": "CA",
+          "ships": ["Aoba", "Kinugasa", "Furutaka", "Kako"],
+          "class_en": "Aoba, Kinugasa (both Aoba class CA), Furutaka, Kako (both Furutaka class CA)"
+        },
+        {
+          "unit": "Crudiv 18",
+          "kind": "CL",
+          "ships": ["Tenryu", "Yubari"],
+          "class_en": "Tenryu (Tenryu class CL), Yubari (Yubari class CL)"
+        },
+        {
+          "unit": "Desdiv 29",
+          "kind": "DD",
+          "ships": ["Yunagi"],
+          "class_en": "Yunagi (Kamikaze class DD)"
+        }
+      ],
+      "optional_not_in_base": [
+        {"ships": ["Tatsuta", "Yuzuki", "Uzuki"], "class_en": "Tatsuta (Tenryu class CL), Yuzuki, Uzuki (both Mutsuki class DDs)", "note": "These are 8th Fleet ships escorting a convoy to Buna that was recalled when the Marines landed. 不纳入基础编成。"},
+        {"note": "Variations 1（Hudson 报告被正确评估、Australia 不分遣、哨舰加倍、两队合并）与 2（全员 general quarters、TG 62.3 三驱逐 2330 分遣）为备战变体，不纳入基础编成。"}
+      ],
+      "column_order_setup": ["Chokai", "Aoba", "Kako", "Kinugasa", "Furutaka", "Tenryu", "Yubari", "Yunagi"],
+      "column_order_note": "Setup 页纵队顺序（Chokai 在先，Aoba、Kako、Kinugasa、Furutaka，再 Tenryu、Yubari、Yunagi）与编制页 Crudiv 6 列举顺序（Aoba、Kinugasa、Furutaka、Kako）不同；两者均照录，实战纵队按 Setup。"
+    }
+  },
+  "setup": {
+    "verbatim": "See scenario map. The Allied ships are placed at the positions indicated, and are patrolling at 12 knots. The Japanese ships are approaching Blue's picket line on a course and speed of 135° at 28 knots. The force is in column with 1300 yards separating the cruisers. Chokai is in the lead, followed by Aoba, Kako, Kinugasa, Furutaka, and then Tenryu, Yubari, Yunagi. Chokai bears 345° at 12 kyds from Blue, which is on the course 235° leg of her patrol line.",
+    "allied_patrol_speed_knots": 12,
+    "allied_readiness_start": "not at battle stations (Special Rules)",
+    "axis_course_deg": 135,
+    "axis_speed_knots_start": 28,
+    "axis_speed_history_knots": {"midnight": 28, "at_0133_all_ships_attack": 30},
+    "axis_column_spacing_yd_cruisers": 1300,
+    "axis_column_spacing_note": "原页只给巡洋舰间距 1300 码；Tenryu/Yubari/Yunagi 段间距未印，待裁决。",
+    "chokai_from_blue": {"bearing_deg": 345, "range_kyd": 12},
+    "blue_patrol_course_deg": 235,
+    "blue_patrol_course_note": "Blue 位于其巡逻线 235° 航向段上。",
+    "special_rules_verbatim": "The Allied ships are not at battle stations, and cannot fire for D6/3 Tactical Turns (rounded up) after the Japanese are detected. Because Japanese floatplanes are operating over the area, the Japanese have detected the Northern and Southern Force and Transport Group Yoke.",
+    "special_rules": [
+      "盟军未进入战斗岗位；日军被探测后 D6/3 战术回合（向上取整）内不能开火。",
+      "日军水上机在区域上空活动：日军已探测北队、南队与 Yoke 运输队的位置（雷达哨舰、东屏护、X-Ray 不在列）。"
+    ],
+    "chart_deployment": {
+      "patrol_lines": [
+        {"name": "Blue Patrol Line", "note": "萨沃岛西南，双向虚线巡逻线，线上一艘具名哨舰 Blue。"},
+        {"name": "Ralph Talbot Patrol Line", "note": "萨沃岛西北，双向虚线巡逻线，线上一艘具名哨舰 Ralph Talbot。"},
+        {"name": "Northern Force Patrol Box", "note": "萨沃岛东侧虚线箱形巡逻区，箭头顺时针循环；Wilson 与 Helm 位于箱西南角附近，箱内沿南缘为北队三艘巡洋舰剪影，箱下方标注 Northern Force: Vincennes, Quincy, Astoria；Jarvis 单独位于箱东南方向。"},
+        {"name": "Southern Force Patrol Line", "note": "萨沃岛以南双向虚线巡逻线，自东北向西南依次为 Bagley、Patterson 与两艘无标注巡洋舰剪影，线端标注 Southern Force: Canberra, Chicago。"},
+        {"name": "Australia Patrol Line", "note": "南线东南、伦加点以西的独立双向虚线巡逻线，线上一艘剪影（Australia 分遣后的独立巡逻线）。"},
+        {"name": "Eastern Force Patrol Line", "note": "Yoke 运输区西北的双向虚线巡逻线，自西北向东南依次为两艘标注 DD 的剪影与 San Juan、Hobart（两艘 DD 未具名，按 TG 62.4 编制为 Monssen、Buchanan，待裁决）。"}
+      ],
+      "transport_areas": [
+        {"name": "X-Ray Transports and Screen", "note": "伦加点外海（Guadalcanal 北侧），Henderson Field 标注于伦加点内陆。"},
+        {"name": "Transports and Screen Yoke", "note": "图拉吉与佛罗里达岛之间水道。"}
+      ],
+      "misc_markers": [
+        "Transport George F. Elliot, DIW, on fire：图示位于 Yoke 区东南、东巡逻线以东（烧毁坐沉状态标记）。"
+      ],
+      "silhouette_heading_note": "海图剪影无航向数字；各舰精确航向、队内间距与哨位距离未在原页给出，待裁决。"
+    },
+    "historical_outcome_dates": {
+      "0125": "VADM Mikawa radioed 'Three heavy cruisers south of Savo Island. Prepare to fire torpedoes.'",
+      "0133": "'All ships attack' signaled, speed increased to 30 knots.",
+      "0143": "Patterson lookout 'Ships ahead!'",
+      "post_battle": "日军分两群：Chokai/Aoba/Kako/Kinugasa 东群，Furutaka/Tenryu/Yubari 西群；Yunagi 分遣对 Jarvis；战后 Mikawa 撤退，同盟沉四巡、重创一巡。"
+    }
+  },
+  "objectives": {
+    "allies": {
+      "orders_verbatim": "Prevent enemy interference with the unloading operations in Transport Areas X-Ray and Yoke.",
+      "decisive_verbatim": "The Allied force inflicts damage at a 3:1 ratio to the Japanese and no transport is damaged 25%.",
+      "tactical_verbatim": "The Allied force inflicts 1:1 damage ratio on the Japanese and no transport is damaged 50%."
+    },
+    "axis": {
+      "orders_verbatim": "Destroy Allied shipping off Lunga Point and Tulagi, and then withdraw north of Savo so that its 0600 position will be at least 120 nmi northwest of Savo to avoid attack by carrier-based aircraft expected at sunrise.",
+      "decisive_verbatim": "The Japanese sink or damage more than 75% five transports.",
+      "decisive_note": "原句即如此印（more than 75% 后直接接 five transports，无 of）；按库拉湾/塔萨法隆格惯例保留原文，目标基数「五艘运输舰」的算法归 RTS 分级裁决。",
+      "tactical_verbatim": "Japanese inflict a 2:1 ratio of damage points on Allied forces."
+    }
+  },
+  "weapon_models": {
+    "us_8in55_mk9_10_11_13_14": {
+      "source": {"document": "american_fleets", "pdf_page": 109, "printed_page": "C-3"},
+      "mount_row": "Mk9, 10, 11, 13, 14 8in/55",
+      "range_bands_kyd": [[0, 7], [7.1, 16], [16.1, 25.5], [25.6, 31.9]],
+      "shells": {
+        "APC": {"belt": [33, 22, 15, 12], "deck": [null, null, 5, 10], "damage_dp": [23, 18, 15, 13]},
+        "SpCOM": {"belt": [15, 10, 7, 5], "deck": [null, null, 2, 4], "damage_dp": [24, 19, 17, 15]},
+        "Com": {"belt": [10, 7, 5, 4], "deck": [null, null, 2, 4], "damage_dp": [23, 18, 16, 14]},
+        "HC": {"belt": [3, 2, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [26, 22, 19, 17]}
+      }
+    },
+    "us_5in38_mk12_mk38": {
+      "source": {"document": "american_fleets", "pdf_page": 108, "printed_page": "C-2"},
+      "mount_row": "Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38",
+      "range_bands_kyd": [[0, 5.5], [5.6, 10.9], [11, 14.6], [14.7, 18.2]],
+      "shells": {
+        "SpCOM": {"belt": [7, 4, 3, 2], "deck": [null, null, 1, 2], "damage_dp": [18, 14, 12, 11]},
+        "COM": {"belt": [5, 3, 2, 2], "deck": [null, null, 1, 2], "damage_dp": [22, 19, 17, 15]},
+        "HE": {"belt": [2, 1, 1, 1], "deck": [null, null, 0, 1], "damage_dp": [18, 15, 14, 12], "range_bands_kyd": [[0, 7.1], [7.2, 14.3], [14.4, 19], [19.1, 23.8]]}
+      },
+      "note": "短/中/远段与库拉湾包及圣乔治角 v2 复核一致；HE 弹距带与圣乔治角 v2 的 7100/14300/19000/23800 码一致。"
+    },
+    "gb_8in50_mkviii": {
+      "source": {"document": "home_fleet", "pdf_page": 115, "printed_page": "C-2"},
+      "mount_row": "8in/50 MkVIII",
+      "range_bands_kyd": [[0, 6.7], [6.8, 15.3], [15.4, 24.4], [24.5, 30.5]],
+      "shells": {
+        "APC": {"belt": [33, 22, 15, 12], "deck": [null, null, 5, 10], "damage_dp": [26, 20, 17, 15]},
+        "SAP": {"belt": [20, 13, 9, 7], "deck": [null, null, 4, 7], "damage_dp": [26, 21, 18, 16]},
+        "HE": {"belt": [3, 2, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [28, 23, 20, 18]}
+      }
+    },
+    "gb_6in50_mkxxiii": {
+      "source": {"document": "home_fleet", "pdf_page": 115, "printed_page": "C-2"},
+      "mount_row": "6in/50 MkXXIII",
+      "range_bands_kyd": [[0, 6], [6.1, 12.6], [12.7, 20.2], [20.3, 25.2]],
+      "shells": {
+        "APC": {"belt": [21, 13, 9, 7], "deck": [null, null, 3, 6], "damage_dp": [20, 15, 13, 11]},
+        "HE": {"belt": [2, 1, 1, 1], "deck": [null, null, 1, 1], "damage_dp": [22, 18, 16, 14]}
+      }
+    },
+    "jp_3rd_yr_type_no2_20cm50": {
+      "source": {"document": "emperors_fleet", "pdf_page": 98, "printed_page": "C-2"},
+      "mount_row": "3rd Yr Type No. 2 20cm/50",
+      "range_bands_kyd": [[0, 7], [7.1, 16], [16.1, 25.6], [25.7, 32]],
+      "shells": {
+        "APC": {"belt": [34, 23, 16, 12], "deck": [null, null, 5, 10], "damage_dp": [26, 20, 17, 15]},
+        "HE": {"belt": [3, 2, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [28, 23, 21, 18]}
+      },
+      "note": "3rd Yr Type No.1 20cm/50 行同页在列（APC 0-6.4/33/24 起，COM 行短段 belt 10），本关未用，仅备查。"
+    },
+    "jp_10th_yr_type_12cm45": {
+      "source": {"document": "emperors_fleet", "pdf_page": 97, "printed_page": "C-1"},
+      "mount_row": "10th Yr Type 12cm/45",
+      "range_bands_kyd": [[0, 5.3], [5.4, 10.6], [10.7, 14.1], [14.2, 17.6]],
+      "shells": {
+        "COM": {"belt": [4, 3, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [15, 12, 11, 10]},
+        "HE": {"belt": [1, 1, 1, 1], "deck": [null, null, 0, 1], "damage_dp": [17, 14, 13, 11]}
+      }
+    },
+    "jp_3rd_11th_yr_type_12cm45": {
+      "source": {"document": "emperors_fleet", "pdf_page": 97, "printed_page": "C-1"},
+      "mount_row": "3rd Yr Type & 11th Yr Type 12cm/45",
+      "range_bands_kyd": [[0, 5.3], [5.4, 10.6], [10.7, 14.1], [14.2, 17.6]],
+      "shells": {
+        "COM": {"belt": [4, 3, 2, 1], "deck": [null, null, 1, 2], "damage_dp": [14, 11, 10, 9]},
+        "HE": {"belt": [1, 1, 1, 0], "deck": [null, null, 0, 1], "damage_dp": [15, 13, 11, 10]}
+      }
+    },
+    "jp_3rd_yr_type_14cm50": {
+      "source": {"document": "emperors_fleet", "pdf_page": 97, "printed_page": "C-1"},
+      "mount_row": "3rd Yr Type 14cm/50",
+      "range_bands_kyd": [[0, 6.6], [6.7, 13.2], [13.3, 17.6], [17.7, 22]],
+      "shells": {
+        "SpCOM": {"belt": [9, 5, 4, 3], "deck": [null, null, 1, 2], "damage_dp": [17, 13, 12, 10]}
+      },
+      "note": "Form 10（Tenryu pdf 81）同弹行 SpCOM 短段 9/17、中段 5/13、长段 4/1/12，与 C-1 一致。"
+    },
+    "jp_8th_yr_type_no1_torpedo": {
+      "source": {"document": "emperors_fleet", "pdf_page": 105, "printed_page": "F-1"},
+      "torpedo": {"diameter_mm": 610, "warhead_kg": 300, "damage_dp": 83, "range_speed_pairs_yd_knots": [[6800, 43], [10900, 37], [16400, 26]], "propulsion": "steam", "platforms": "Surf (CLs and DDs)"}
+    },
+    "jp_8th_yr_type_no2_torpedo": {
+      "source": {"document": "emperors_fleet", "pdf_page": 105, "printed_page": "F-1"},
+      "torpedo": {"diameter_mm": 610, "warhead_kg": 345, "damage_dp": 87, "range_speed_pairs_yd_knots": [[10900, 38], [16400, 32], [21900, 28]], "propulsion": "steam", "platforms": "Surf (Inter-war BBs, CLs, DDs)"}
+    },
+    "jp_type93_model1_mod1_2_torpedo": {
+      "source": {"document": "emperors_fleet", "pdf_page": 105, "printed_page": "F-1"},
+      "torpedo": {"diameter_mm": 610, "warhead_kg": 490, "damage_dp": 95, "range_speed_pairs_yd_knots": [[22000, 49], [35000, 41], [43800, 37]], "propulsion": "steam", "platforms": "Surf", "printed_name": "Type 93 Model 1 Mod 1/2 (Long Lance)"},
+      "note": "与库拉湾包已核的九三式一型 Mod 1/2（22kyd/49kt、35/41、43.8/37、490kg、95 DP）一致。"
+    },
+    "gb_mkix_torpedo": {
+      "source": {"document": "home_fleet", "pdf_page": 122, "printed_page": "F-1"},
+      "torpedo": {"diameter_mm": 533, "warhead_kg": 330, "damage_dp": 84, "range_speed_pairs_yd_knots": [[11000, 45], [15000, 35]], "launch": "Surf", "printed_name": "MkIX, MkIX*"}
+    },
+    "us_mk15_tnt_torpedo": {
+      "source": {"document": "american_fleets", "pdf_page": 119, "printed_page": "F-1", "note": "行值沿用库拉湾包已核引用（87 DP TNT，6000/45、10000/34、15000/27），本批未逐列重核。"},
+      "torpedo": {"diameter_mm": 533, "damage_dp": 87, "range_speed_pairs_yd_knots": [[6000, 45], [10000, 34], [15000, 27]]}
+    }
+  },
+  "profiles": {
+    "us_new_orleans_ca": {
+      "class": "New Orleans",
+      "side": "allies", "kind": "CA", "size_class_en": "B/Medium",
+      "source": {"document": "american_fleets", "pdf_page": 16, "printed_page": "A-13"},
+      "displacement_std_tons": 10050, "in_class": 7, "in_service_year": 1934, "crew": 1042,
+      "armor_rating": "14/6", "gunnery_standard_block": "IV",
+      "damage_points": [0, 99, 199, 298, 357, 397],
+      "speed_knots": [32, 24, 16, 8, 0, 0],
+      "main_gun": "us_8in55_mk9_10_11_13_14",
+      "gun_mounts_verbatim": "2F/A(3)3 Mk12, 15 8in/55",
+      "gun_note": "First three units had Mk9 or Mk14 8in/55 guns.（Astoria、Quincy、Vincennes 为前三艘，用 Mk9/14 行）",
+      "secondary_verbatim": "P/S(1)8 Mk17 5in/25",
+      "torpedoes": null,
+      "aircraft": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+      "area_aa_verbatim": "(1)8 Mk17 5in/25 (1.7)",
+      "light_aa_verbatim": "(1)8 .50 cal. (0.6)",
+      "sensors": "SG, SK。",
+      "remarks_verbatim": "Also known as Astoria class."
+    },
+    "us_northampton_ca": {
+      "class": "Northampton",
+      "side": "allies", "kind": "CA", "size_class_en": "B/Medium",
+      "source": {"document": "american_fleets", "pdf_page": 17, "printed_page": "A-14"},
+      "displacement_std_tons": 9050, "in_class": 6, "in_service_year": 1929, "crew": 621,
+      "armor_rating": "7/3", "gunnery_standard_block": "III",
+      "damage_points": [0, 83, 166, 278, 335, 370],
+      "speed_knots": [32, 24, 16, 8, 0, 0],
+      "main_gun": "us_8in55_mk9_10_11_13_14",
+      "gun_mounts_verbatim": "2F/A(3)3 Mk14 8in/55",
+      "secondary_block_verbatim": "P/S(1)4 Mk11 5in/25",
+      "torpedoes_block_verbatim": "P/S(3)2 533mm TT w/3 Mk12 torpedoes",
+      "torpedo_effective_note": "备注：Mid-30s secondary upgraded to P/S(1)8 Mk11 5in/25 and torpedo tubes removed；1936: Torpedo tubes removed。1942 年 8 月有效配置为无雷装、8× 5in/25；弹行 5in/25（Mk10/11/13/17/19/23/27）未逐列登记。",
+      "aircraft": "2 Midships catapult, 4 O2U",
+      "area_aa_verbatim": "(1)4 Mk11 5in/25 (0.4)",
+      "light_aa_verbatim": "(1)8 0.50 cal. (0.6)",
+      "fit_conflict": "编制块（1929 配置）与备注（1936 起拆雷装、8× 5in/25）并存；块内 Gunner Standard III 与备注 Mid-30s 后 IV 并存。1942-08 有效值取备注，差值记录在案。"
+    },
+    "gb_kent_1939_ca": {
+      "class": "GB Kent (1939)",
+      "side": "allies", "kind": "CA", "size_class_en": "B/Medium",
+      "source": {"document": "home_fleet", "pdf_page": 9, "printed_page": "A-5"},
+      "displacement_std_tons": 9850, "in_class": 2, "in_service": "1939 (1928)", "crew": 685,
+      "armor_rating": "6/4", "gunnery_standard": "IV",
+      "damage_points": [0, 83, 167, 250, 300, 333],
+      "speed_knots": [32, 24, 16, 8, 0, 0],
+      "main_gun": "gb_8in50_mkviii",
+      "gun_mounts_verbatim": "F/A(2)4 8in/50 MkVIII//1 Type 284",
+      "secondary_verbatim": "P/S(1)4 4in/45 QF MkV",
+      "torpedoes_verbatim": "P/S(4)2 533mm TT w/4 MkIX torp",
+      "torpedo_model": "gb_mkix_torpedo",
+      "aircraft": "1 Midships catapult, 3 Sea Otter",
+      "area_aa_verbatim": "(1)4 4in/45 QF MkV (0.4)",
+      "light_aa_verbatim": "(1)4 2pdr QF MkII//1 Type 282, (4)2 0.5 inch (1.5)",
+      "sensors": "Type 132 (K)；Type 286 (J)",
+      "remarks_verbatim": "Australia, Canberra. Last two units of British Kent class built for Australian Navy. Configuration as of war's start. Total of 6 DC carried. Laid down before 1925, special damage modifier of -15%.",
+      "dated_remarks": {
+        "Australia": [
+          "Nov - Dec 40: 4 single 4 inch gun replaced by (2)4 4 inch, Type 286 added. Area AA 1.7.",
+          "1942: DC fit 1 DC rail w/6 MkVII DC, total of 15 DC carried."
+        ],
+        "Canberra": [
+          "Apr/May 41: (1)4 2pdr, (1)4 4inch guns removed, (8)2 2pdr added. Lt AA 3.6. (1)5 20mm added at some later time, Lt AA 3.7",
+          "1942: DC fit 1 DC rail w/6 MkVII DC, total of 15 DC carried.",
+          "9 Aug 42: Sunk in Battle of Savo Island."
+        ]
+      },
+      "canberra_20mm_note": "Canberra 的 (1)5 20mm「at some later time」无具体日期，8 月 9 日是否已装待裁决。"
+    },
+    "jp_takao_1939_ca": {
+      "class": "Takao (1939)",
+      "side": "axis", "kind": "CA", "size_class_en": "B/Medium",
+      "source": {"document": "emperors_fleet", "pdf_pages": [16, 17], "printed_pages": ["A-13", "A-14"]},
+      "displacement_std_tons": 13000, "in_class_block": 2, "in_class_1932_entry": 4, "in_service": "1939 (1932)", "crew": "900 - 970",
+      "armor_rating": "8/5", "gunnery_standard": "IV",
+      "damage_points": [0, 100, 201, 301, 361, 401],
+      "speed_knots": [33, 25, 16, 8, 0, 0],
+      "main_gun": "jp_3rd_yr_type_no2_20cm50",
+      "gun_mounts_verbatim": "2F/P&S/2A(2)5 3rd Yr Type No. 2 20cm/50",
+      "secondary_verbatim": "P/S(1)4 10th Yr Type 12cm/45",
+      "torpedo_verbatim_maya_chokai": "P/S(2)4 610mm TT w/2 Type 93 torps（8 reserve torp for quick reload of P or S TT in 6 min）",
+      "torpedo_verbatim_takao_atago": "P/S(4)4 610mm TT w/4 Type 93 torps（8 reserve torp for quick reload of P or S TT in 6 min）",
+      "torpedo_model": "jp_type93_model1_mod1_2_torpedo",
+      "aircraft": "2 Midships catapult, 2 E8N1 Dave, then F1M2 Pete; 1 E13A1 Jake",
+      "area_aa_verbatim": "(1)4 10th Yr Type 12cm/45 (0.6)",
+      "light_aa_verbatim_block": "(2)4 Type 96 25mm, (2)2 Type 93 13.2mm (1.2)",
+      "sensors": "Type 93 Model 2 passive sonar",
+      "remarks_verbatim": "Takao, Atago. Configuration as of 1938 - 39 refit. Light alloy used in superstructure, special damage modifier of -15%.",
+      "chokai_dated_remarks": [
+        "22 Apr - 22 May 42: 4 DC racks w/1 DC added, 6-12 DC carried. (2)2 13.2mm replaced by (2)2 25mm, Lt AA 1.4.",
+        "8 Aug 42: Damaged in Battle of Savo Island. Forward 20cm turret damaged, only one gun could be fired after repairs."
+      ],
+      "in_class_conflict": "1939 配置块印 In Class: 2，1932 配置与备注列四舰（Takao, Atago, Maya, Chokai）；按备注取四舰，块值记录在案。"
+    },
+    "jp_aoba_1938_ca": {
+      "class": "Aoba (1938)",
+      "side": "axis", "kind": "CA", "size_class_en": "B/Medium",
+      "source": {"document": "emperors_fleet", "pdf_page": 17, "printed_page": "A-14"},
+      "displacement_std_tons": 9000, "in_class": 2, "in_service": "1938 (1927)", "crew": 625,
+      "armor_rating": "6/4", "gunnery_standard": "IV",
+      "damage_points": [0, 79, 157, 236, 283, 314],
+      "speed_knots": [33, 25, 16, 8, 0, 0],
+      "speed_special_row": {"label": "S Sp (Aoba)", "knots": [28, 21, 14, 7, 0, 0], "note": "Aoba 专属特速行，原页照录；Kinugasa 是否适用待裁决。"},
+      "main_gun": "jp_3rd_yr_type_no2_20cm50",
+      "gun_mounts_verbatim": "2F/A(2)3 3rd Yr Type No. 2 20cm/50",
+      "secondary_verbatim": "P/S(1)4 10th Yr Type 12cm/45",
+      "torpedo_verbatim": "P/S(4)2 610mm TT w/4 Type 93 torp（4 reserve torp/mount for reload in 15 minutes）",
+      "torpedo_model": "jp_type93_model1_mod1_2_torpedo",
+      "aircraft": "1 Aft Catapult, 2 E7K Alf",
+      "area_aa_verbatim": "(1)4 10th Yr Type 12cm/45 (0.6)",
+      "light_aa_verbatim": "(2)4 Type 95 25mm, (1)2, (2)2 Type 93 13.2mm (1.3)",
+      "remarks_verbatim": "Aoba, Kinugasa. Laid down before 1925, special damage modifier of -15%. Refitted 1937 - 38, Configuration as of 1938 refit.",
+      "dated_remarks": {
+        "Aoba": ["Fall 42: E7K2 Alf floatplanes replaced by E13A1 Jake.（8 月 9 日换装与否待裁决）", "12 Oct 42: Heavily damaged in Battle of Cape Esperance.（萨沃之后）"],
+        "Kinugasa": ["14 Nov 42: Sunk at Naval Battle of Guadalcanal (no modifications).（萨沃前无改装）"]
+      }
+    },
+    "jp_furutaka_1937_ca": {
+      "class": "Furutaka (1937)",
+      "side": "axis", "kind": "CA", "size_class_en": "B/Medium",
+      "source": {"document": "emperors_fleet", "pdf_pages": [17, 18], "printed_pages": ["A-14", "A-15"]},
+      "displacement_std_tons": 8700, "in_class": 2, "in_service": "1937 (1926)", "crew": 639,
+      "armor_rating": "6/4", "gunnery_standard": "IV",
+      "damage_points": [0, 77, 154, 230, 276, 307],
+      "speed_knots": [33, 25, 16, 8, 0, 0],
+      "main_gun": "jp_3rd_yr_type_no2_20cm50",
+      "gun_mounts_verbatim": "2F/A(2)3 3rd Yr Type No. 2 20cm/50",
+      "secondary_verbatim": "P/S(1)4 10th Yr Type 12cm/45",
+      "torpedo_verbatim": "P/S(4)2 610mm TT w/8 Type 93 torp（4 reserve torp/mount for quick reload in 6 minutes）",
+      "torpedo_model": "jp_type93_model1_mod1_2_torpedo",
+      "aircraft": "1 Midships Catapult, 1 E7K",
+      "area_aa_verbatim": "(1)4 10th Yr Type 12cm/45 (0.6)",
+      "light_aa_verbatim": "(2)4 Type 96 25mm, (2)2 Type 93 13.2mm (1.2)",
+      "remarks_verbatim": "Furutaka (1937), Kako (1936-37). Refitted. Laid down before 1925, special damage modifier of -15%.",
+      "dated_remarks": ["10 Aug 42: Kako torpedoed and sunk by S-44.（萨沃次日凌晨，战场外）", "12 Oct 42: Furutaka sunk during the Battle of Cape Esperance."]
+    },
+    "us_atlanta_cl": {
+      "class": "Atlanta",
+      "side": "allies", "kind": "CL", "size_class_en": "B/Medium",
+      "source": {"document": "american_fleets", "pdf_page": 18, "printed_page": "A-15"},
+      "displacement_std_tons": 6718, "in_class": 4, "in_service_year": 1941, "crew": 810,
+      "armor_rating": "7/3", "gunnery_standard": "IV",
+      "damage_points": [0, 76, 152, 228, 274, 304],
+      "speed_knots": [33, 25, 16, 8, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "5F/P/S/A 2 Mk29 5in/38/2 Mk4",
+      "torpedoes_verbatim": "2P/S(2) 533mm TT w/4 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk3 DC rail w/5 Mk6/9 DC；6 Mk6 K-gun w/4 Mk6/9 DC（无备装）",
+      "area_aa_verbatim": "(2)8 5in/38 (4.5)",
+      "light_aa_verbatim": "(4)4 1.1 in, 8 20mm (3.3)",
+      "sensors": "Early QC series sonar (K, J)",
+      "dated_remark": "Feb 42: All units had SC-1 air search radar, Mk4 radars for 5 inch guns. San Juan and Juneau also had SG-1 radars."
+    },
+    "gb_perth_cl": {
+      "class": "Perth",
+      "side": "allies", "kind": "CL", "size_class_en": "B/Medium",
+      "source": {"document": "home_fleet", "pdf_page": 9, "printed_page": "A-5"},
+      "displacement_note": "Displacement: See Remarks（Hobart 7105 t std, Perth 6980 t std, Sydney 6830 t std）",
+      "in_class": 3, "in_service_year": 1934, "crew": 570,
+      "armor_rating": "6/3", "gunnery_standard": "IV",
+      "damage_points_perth": [0, 77, 155, 232, 278, 309],
+      "damage_points_hobart": [0, 79, 158, 236, 284, 315],
+      "speed_knots": [32, 24, 16, 8, 0, 0],
+      "main_gun": "gb_6in50_mkxxiii",
+      "gun_mounts_verbatim": "F/A(2)4 6in/50 MkXXIII",
+      "secondary_verbatim": "P/S(2)4 4in/45 MkXVI",
+      "torpedoes_verbatim": "P/S(4)2 533mm TT w/4 MkIX torps",
+      "torpedo_model": "gb_mkix_torpedo",
+      "aircraft": "1 Midships catapult, 2 Seagull V (not on Perth)",
+      "area_aa_verbatim": "(2)4 4in/45 MkXVI (1.7)",
+      "light_aa_verbatim": "(4)3 0.5 inch MkIII (1.2)",
+      "sensors": "Type 132 (Perth only)（Hobart 无此声呐，待核 Hobart 实际声呐）",
+      "dated_remarks": {
+        "Perth": ["Jan-Feb 41: Perth fitted with quad 2pdr, Lt AA 1.9.", "Jul 41: Perth had quad 2pdr removed, fitted with 53 foot catapult, Lt AA 1.2.", "Aug - Oct 41: Perth fitted with Type 279 radar, catapult, Seagull V.", "1 Mar 42: Perth lost in Battle of Sunda Strait.（本关后）"],
+        "Hobart": ["Dec 41: Hobart had (4)2 2pdr added, Lt AA 2.6.", "Oct 42: Hobart had catapult and quad .50 cal removed, (1)1 20mm, (2)5 20mm, (4)2 2pdr, Type 279, 272, 284, 285, 282, 283, SG radars added. Lt AA 5.7.（萨沃之后）"]
+      }
+    },
+    "jp_tenryu_cl": {
+      "class": "Tenryu",
+      "side": "axis", "kind": "CL", "size_class_en": "C/Small",
+      "source": {"document": "emperors_fleet", "pdf_page": 23, "printed_page": "A-20"},
+      "displacement_std_tons": 3230, "in_class": 2, "in_service_year": 1919, "crew": 337,
+      "armor_rating": "4/2", "gunnery_standard": "II",
+      "damage_points": [0, 40, 79, 118, 142, 158],
+      "speed_knots": [33, 25, 16, 8, 0, 0],
+      "main_gun": "jp_3rd_yr_type_14cm50",
+      "gun_mounts_verbatim": "F/P&S/A(1)4 3rd Yr Type 14cm/50",
+      "secondary_verbatim": "A(1)1 3rd Yr Type 8cm/40",
+      "torpedoes_verbatim": "P&S(2)3 533mm TT w/6 8th Yr Type torp",
+      "torpedo_model": "jp_8th_yr_type_no1_torpedo",
+      "area_aa_verbatim": "(1)1 3rd Yr 8cm/40 (0.1)",
+      "light_aa_1942_08": "编制块 (2)2 Type 93 13.2mm (0.1)；Feb 42: (2)2 25mm added, Lt AA 1.0 → 8 月有效轻防空为 (2)2 25mm 加编制 13.2mm",
+      "remarks_verbatim": "Tenryu, Tatsuta. Laid down before 1925, special damage modifier of -15%.",
+      "optional_ship_note": "Tatsuta 同级同 fit（Feb 42 备注），仅在变体编成中出现。"
+    },
+    "jp_yubari_cl": {
+      "class": "Yubari",
+      "side": "axis", "kind": "CL", "size_class_en": "C/Small",
+      "source": {"document": "emperors_fleet", "pdf_page": 22, "printed_page": "A-19"},
+      "displacement_std_tons": 3387, "in_class": 1, "in_service_year": 1923, "crew": 328,
+      "armor_rating": "5/2", "gunnery_standard": "III",
+      "damage_points": [0, 41, 82, 122, 147, 163],
+      "speed_knots": [35, 26, 18, 9, 0, 0],
+      "speed_special_row": {"label": "Surf Spd (44)", "knots": [32, 24, 16, 8, 0, 0], "note": "1944 年特速行，本关不用。"},
+      "main_gun": "jp_3rd_yr_type_14cm50",
+      "gun_mounts_verbatim": "F/A(2)2 3rd Yr Type 14cm/50；F/A(1)2 3rd Yr Type 14cm/50",
+      "secondary_verbatim": "P&S(1)1 7th Yr Type 8cm/40",
+      "torpedoes_verbatim": "P&S(2)2 610mm TT w/4 8th Yr Type No.2 torps（1 reserve torp/mount for reload in 15 minutes）",
+      "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+      "area_aa_verbatim": "(1)1 3rd Yr Type 8cm/40 (0.1)",
+      "light_aa_1942_08": "2 Type 92 7.7mm (0.1) + Jul-Nov 35 加装 (2)1 Type 93 13.2mm（Lt AA 0.2）；25mm 系 1943-04 才加装，8 月无",
+      "remarks_note": "Design displacement 2890, but exceeded in practice. Laid down before 1925, special damage modifier of -15%."
+    },
+    "jp_kamikaze_1941_dd": {
+      "class": "Kamikaze (1941)",
+      "side": "axis", "kind": "DD", "size_class_en": "D/Small",
+      "source": {"document": "emperors_fleet", "pdf_page": 27, "printed_page": "A-24"},
+      "displacement_std_tons": 1422, "in_class": 9, "in_service": "1941 (1925)", "crew": 148,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 23, 46, 69, 83, 92],
+      "speed_knots": [35, 26, 18, 9, 0, 0],
+      "main_gun": "jp_3rd_11th_yr_type_12cm45",
+      "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+      "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+      "torpedo_model": null,
+      "torpedo_conflict": "原页印 Type 96 torp；《Emperor's Fleet》F-1 无 Type 96 行；533mm 水面舰候选为 Type 89 Mod 1（Sub/DDS 平台，late 42 退役）或 6th Yr Type（Ro SS）。不启用任何替代值，待裁决。",
+      "asw": "(2)2 Type 94 Y-gun w/4 DC；6 DC racks w/1 DC, 18 DC carried",
+      "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+      "sensors": "Type 93 (passive), Type 93 Model 1 (K)",
+      "remarks_verbatim": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%."
+    },
+    "us_bagley_dd": {
+      "class": "Bagley",
+      "side": "allies", "kind": "DD", "size_class_en": "C/Small",
+      "source": {"document": "american_fleets", "pdf_page": 21, "printed_page": "A-18"},
+      "displacement_std_tons": 1646, "in_class": 8, "in_service_year": 1937, "crew": 158,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 30, 60, 89, 107, 119],
+      "speed_knots": [36, 27, 18, 9, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/A(1)4 Mk21, Mk30 5in/38",
+      "torpedoes_verbatim": "P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC",
+      "area_aa_verbatim": "(1)4 Mk21, Mk30 5in/38 (1.1)",
+      "light_aa_1942_08": "编制 (1)4 .50 cal (0.3)；Spring 42: 1(6) 20mm and Mk4 fire-control radar added, Lt AA 1.8",
+      "sensors": "Early QC series sonar (K)",
+      "remarks_verbatim": "DD 386-393. Similar to Gridley class with different machinery.",
+      "ships_en": "Bagley, Blue, Helm, Henley, Mugford, Ralph Talbot",
+      "henley_class_conflict": "《American Fleets》A-18 把 Henley 列入 Bagley 级；《Rising Sun》想定页印 Henley (Gridley class DD)。想定照录，级属以舰队书为疑，待裁决。"
+    },
+    "us_gridley_dd": {
+      "class": "Gridley",
+      "side": "allies", "kind": "DD", "size_class_en": "C/Small",
+      "source": {"document": "american_fleets", "pdf_page": 21, "printed_page": "A-18"},
+      "displacement_std_tons": 1590, "in_class": 4, "in_service_year": 1937, "crew": 158,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 29, 58, 87, 104, 116],
+      "speed_knots": [38, 28, 19, 10, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/A(1)4 Mk24 5in/38",
+      "torpedoes_verbatim": "P&S(2)4 533mm TT w/4 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk6 DC rail w/6 Mk7 or 8 Mk6/9 DC",
+      "area_aa_verbatim": "(1)4 Mk21, Mk24 5in/38 (1.1)",
+      "light_aa_1942_08": "编制 (1)4 .50 cal；Late 41 改 (1)6 20mm, Lt AA 1.5",
+      "sensors": "Early QC series sonar (K)",
+      "radar_note": "Mid 42 起仅 Craven 装 SC；Mk4 由 Dec 43 起。Helm/Mugford 8 月无雷达。"
+    },
+    "us_benham_dd": {
+      "class": "Benham",
+      "side": "allies", "kind": "DD", "size_class_en": "C/Small",
+      "source": {"document": "american_fleets", "pdf_page": 21, "printed_page": "A-18"},
+      "displacement_std_tons": 1637, "in_class": 12, "in_service_year": 1939, "crew": 258,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 36, 72, 93, 112, 124],
+      "speed_knots": [35, 26, 18, 9, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/A(1)4 Mk30 5in/38",
+      "torpedoes_verbatim": "P/S(4)4 Mk12 533mm TT w/4 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "torpedo_note": "Dec 41 拆一组 P/S 雷装的是大西洋舰队单位（all but Benham and Ellet）；Wilson/Ellet 保留全部雷装。",
+      "asw": "4 Mk6 K-gun w/4 Mk6 DC；2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC",
+      "area_aa_verbatim": "(1)4 Mk30 5in/38 (1.1)",
+      "light_aa_1942_08": "(1)6 20mm（1942：replaced .50 cal，大西洋单位加雷达；太平洋单位 Spring 42 已有雷达），Lt AA 1.5",
+      "sensors": "QCE sonar (K)",
+      "dated_remark": "Spring 42: Pac units receive search radars, including SC, and Mk4 gunfire control radars."
+    },
+    "us_benson_dd": {
+      "class": "Benson",
+      "side": "allies", "kind": "DD", "size_class_en": "C/Small",
+      "source": {"document": "american_fleets", "pdf_page": 20, "printed_page": "A-17"},
+      "displacement_std_tons": 1839, "in_class": 24, "in_service_year": 1940, "crew": 208,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 36, 72, 108, 130, 144],
+      "speed_knots": [37, 28, 18, 9, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/A(1)4 Mk30 5in/38",
+      "torpedoes_verbatim": "P/S(2)4 Mk14 533mm TT w/5 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC",
+      "area_aa_verbatim": "(1)5 Mk30 5in/38 (1.4)",
+      "light_aa_1942_08": "(1)6 20mm（1942：.50 cal replaced），Lt AA 1.5",
+      "sensors": "Early QC series sonar (K)",
+      "dated_remark": "1942: .50 cal replaced by (1)6 20mm, Lt AA 1.5, center 5 in gun (except Benson and Gleaves) and aft TT mount removed (not all units), 4 Mk6 K-guns w/4 Mk6/9 DC, SC, Mk4 radar added. Some Atlantic units received HFD/DF.",
+      "monssen_note": "Monssen DD-436 属该级页 DD 421-444；「center 5 in gun 与 aft TT 拆除 (not all units)」是否含 Monssen 未印，待裁决。"
+    },
+    "us_bristol_dd": {
+      "class": "Bristol",
+      "side": "allies", "kind": "DD", "size_class_en": "C/Small",
+      "source": {"document": "american_fleets", "pdf_page": 20, "printed_page": "A-17"},
+      "displacement_std_tons": 1630, "in_class": 72, "in_service_year": 1941, "crew": 208,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 30, 59, 89, 106, 118],
+      "speed_knots": [37, 28, 18, 9, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/A(1)4 Mk30 5in/38",
+      "torpedoes_verbatim": "P&S(4)4 533mm TT w/5 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC",
+      "area_aa_verbatim": "(1)4 Mk30 5in/38 (1.1)",
+      "light_aa_1942_08": "Early war: TT mount 换 4 single 20mm；Early 42: (2)2 40mm, (1)? 20mm, Lt AA 2.0",
+      "sensors": "Early QC series sonar (K)",
+      "dated_remark": "1942: Lt AA increased (3)2 40mm, (1)? 20mm, Lt AA 2.8. Assume SC, Mk4 radars fitted."
+    },
+    "us_farragut_dd": {
+      "class": "Farragut",
+      "side": "allies", "kind": "DD", "size_class_en": "D/Small",
+      "source": {"document": "american_fleets", "pdf_page": 22, "printed_page": "A-19"},
+      "displacement_std_tons": 1365, "in_class": 8, "in_service_year": 1934, "crew": 250,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 36, 53, 79, 95, 105],
+      "speed_knots": [36, 26, 18, 9, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/P&S/A(1)5 Mk21 5in/38",
+      "torpedoes_verbatim": "P&S(2)4 Mk11 533mm TT w/4 Mk15 torpedoes",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC",
+      "area_aa_verbatim": "(1)5 Mk21 5in/38 (0.7)",
+      "light_aa_1942_08": "(1)8 20mm（1942: P&S 5in removed——年内时点未印，8 月是否已拆待裁决），Lt AA 2.0",
+      "sensors": "Early QC series (K)",
+      "radar_note": "End 42: SC, Mk4 radar added → 8 月无雷达。"
+    },
+    "us_porter_dd": {
+      "class": "Porter",
+      "side": "allies", "kind": "DD", "size_class_en": "C/Small",
+      "source": {"document": "american_fleets", "pdf_page": 22, "printed_page": "A-19"},
+      "displacement_std_tons": 1850, "in_class": 8, "in_service_year": 1935, "crew": 230,
+      "armor_rating": 0, "gunnery_standard": "IV",
+      "damage_points": [0, 35, 70, 104, 125, 139],
+      "speed_knots": [37, 28, 18, 9, 0, 0],
+      "main_gun": "us_5in38_mk12_mk38",
+      "gun_mounts_verbatim": "F/A(2)4 Mk22 5in/38 LA",
+      "gun_note": "5 inch guns are for surface fire only。",
+      "torpedoes_verbatim": "P&S(4)2 Mk12 533mm TT w/4 Mk15 torpedoes（4 reserve torp/mount for reload in 15 minutes）",
+      "torpedo_model": "us_mk15_tnt_torpedo",
+      "asw": "2 Mk3 DC rails w/6 Mk7 or 8 Mk6/9 DC",
+      "light_aa_1942_08": "Jan 42: No.3 5 inch mount, quad 1.1 in, 50 cal. and center TT replaced by (1)6 20mm, (2)3 40mm, Lt AA 3.0. Air search and fire control radar added.",
+      "sensors": "QC series (K)",
+      "radar_note": "Jan 42 加「air search and fire control radar」未印型号；按同期惯例记 SC/Mk4 候选，型号待核。"
+    },
+    "us_clemson_dms": {
+      "class": "Clemson (Minesweeper) / Wickes (Minesweeper I, II)",
+      "side": "allies", "kind": "DMS", "size_class_en": "D/Small",
+      "source": {"document": "american_fleets", "pdf_page": 26, "printed_page": "A-23"},
+      "fit_status": "未核",
+      "note": "A-23 给 Clemson (Minesweeper) DMS（1090 std, In Svc 1942 (1918)，2F/A(1)4 Mk22 3in/50、F(1)1 MkVII 3in/23、2 Mk3 DC rail、2 Mk6 K-gun、机械/磁性扫雷具，0/30/59/89/106/118，37/28/18/9/0）与 Wickes (Minesweeper I/II) DMS（1160 std，0/19/38/56/68/75，35/26/18/9/0）。萨沃五艘 DMS（Hopkins、Trever、Zane、Southard、Hovey）何时由 DD 改装为 DMS、换 3in/50 与 20mm 的时点未逐舰核到，8 月有效 fit 未核，不启用。"
+    },
+    "us_wickes_apd": {
+      "class": "Wickes (APD)",
+      "side": "allies", "kind": "APD", "size_class_en": "D/Small",
+      "source": {"document": "american_fleets", "pdf_page": 22, "printed_page": "A-19", "note": "基础船体行为 Wickes/Clemson DD 联合条目；APD 改装条目未在本批定位。"},
+      "fit_status": "未核",
+      "note": "Colhoun、Little、Gregory、McKean 按《Rising Sun》为 Wickes class APD 且兼任屏护；APD 改装后的武器与雷装未核，不启用。"
+    }
+  },
+  "instances": {
+    "savo-blue": {"name_zh": "布鲁", "name_en": "Blue", "side": "allies", "group": "TG 62.6 雷达哨舰", "profile": "us_bagley_dd", "scenario_class_en": "Bagley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_mk4_fd"], "radar_note": "Spring 42 类级备注加装 Mk4 火控雷达；搜索雷达类级页未印，未核。", "setup_role": "Chokai 自其 345°/12kyd 处被探测；所在巡逻线 235° 航向段。"},
+    "savo-ralph-talbot": {"name_zh": "拉尔夫·托尔伯特", "name_en": "Ralph Talbot", "side": "allies", "group": "TG 62.6 雷达哨舰", "profile": "us_bagley_dd", "scenario_class_en": "Bagley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_mk4_fd"], "setup_role": "萨沃岛西北 Ralph Talbot Patrol Line。", "history": "撤退日军发现后重创，躲入雨区脱离（Historical Outcome）。"},
+    "savo-australia": {"name_zh": "澳大利亚", "name_en": "Australia", "side": "allies", "group": "TG 62.6 南队（已分遣）", "profile": "gb_kent_1939_ca", "scenario_class_en": "Kent class CA", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["gb_type286"], "radar_note": "Nov-Dec 40 备注加装 Type 286；Type 132 声呐为类级设备。", "setup_role": "战前离开南队纵队，会后进入独立 Australia Patrol Line。"},
+    "savo-canberra": {"name_zh": "堪培拉", "name_en": "Canberra", "side": "allies", "group": "TG 62.6 南队", "profile": "gb_kent_1939_ca", "scenario_class_en": "Kent class CA", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": [], "radar_note": "类级备注未给 Canberra 加装 Type 286；是否已有待核。", "history": "Chokai 开火摧毁舰桥、重创机舱，两雷命中起火，0800 自沉（Historical Outcome；舰队书 9 Aug 42 sunk）。"},
+    "savo-chicago": {"name_zh": "芝加哥", "name_en": "Chicago", "side": "allies", "group": "TG 62.6 南队", "profile": "us_northampton_ca", "scenario_class_en": "Northampton class CA", "form10": {"document": "rising_sun_form10", "pdf_page": 248, "form_date": "Dec 1941"}, "radar_confirmed": ["us_cxam"], "radar_candidates": ["us_sc", "us_sg", "us_mk3", "us_mk4"], "radar_note": "1940/41 备注给 CXAM；「1942: Ships fitted SC and SG, Mk3, Mk4」未给月份，8 月状态待裁决。", "history": "被一条鱼雷炸掉舰艏一段。"},
+    "savo-vincennes": {"name_zh": "文森斯", "name_en": "Vincennes", "side": "allies", "group": "TG 62.6 北队", "profile": "us_new_orleans_ca", "scenario_class_en": "New Orleans class CA", "form10": {"document": "rising_sun_form10", "pdf_page": 246, "form_date": "May-Jul 1942 Modification"}, "radar_confirmed": ["us_sc", "us_mk3"], "radar_note": "May-Jul 42 备注：Pearl Harbor 加 SC、2 Mk3。", "history": "Kako 探照灯锁定，中 2-3 条 Chokai 鱼雷与 Yubari 一条，约 50-60 弹命中，0250 倾覆沉没。"},
+    "savo-quincy": {"name_zh": "昆西", "name_en": "Quincy", "side": "allies", "group": "TG 62.6 北队", "profile": "us_new_orleans_ca", "scenario_class_en": "New Orleans class CA", "scenario_note": "w/5 SOC-3（原页括注）", "form10": {"document": "rising_sun_form10", "pdf_page": 244, "form_date": "Mar-May 1942 Modification"}, "radar_confirmed": ["us_sc", "us_mk3"], "radar_note": "Mar-May 42 备注：New York Navy Yard 加 SC、2 Mk3，16× 1.1in、8× 20mm，Lt AA 3.3。", "history": "探照灯眩光中被抓住，弹爆水上机与 5in 备弹库，0235 沉没。"},
+    "savo-astoria": {"name_zh": "阿斯托里亚", "name_en": "Astoria", "side": "allies", "group": "TG 62.6 北队", "profile": "us_new_orleans_ca", "scenario_class_en": "New Orleans class CA", "form10": {"document": "rising_sun_form10", "pdf_page": 240, "form_date": "1942 Modification"}, "radar_confirmed": ["us_sc", "us_mk3"], "radar_note": "1942(e) 备注：SC, 2 Mk3 radar added；1941(e) 6× 1.1in、8(e) 20mm，Lt AA 3.3。", "history": "Chokai 8in 集火，数分钟内失去战力。"},
+    "savo-helm": {"name_zh": "赫尔姆", "name_en": "Helm", "side": "allies", "group": "TG 62.6 北队", "profile": "us_gridley_dd", "scenario_class_en": "Gridley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": [], "setup_role": "北队巡逻箱西南角外侧剪影。"},
+    "savo-wilson": {"name_zh": "威尔逊", "name_en": "Wilson", "side": "allies", "group": "TG 62.6 北队", "profile": "us_benham_dd", "scenario_class_en": "Benham class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_sc", "us_mk4_fd"], "radar_note": "Spring 42 太平洋单位领 SC 搜索雷达与 Mk4 射控雷达。", "setup_role": "北队巡逻箱内西南角。"},
+    "savo-san-juan": {"name_zh": "圣胡安", "name_en": "San Juan", "side": "allies", "group": "TG 62.4 东屏护", "profile": "us_atlanta_cl", "scenario_class_en": "Atlanta class CL", "flag": true, "form10": {"document": "rising_sun_form10", "pdf_page": 262, "form_date": "May 1942"}, "radar_confirmed": ["us_sc1", "us_mk4_fd", "us_sg1"], "radar_note": "Feb 42 类级备注：全员 SC-1 与 5in Mk4；San Juan 与 Juneau 另有 SG-1。", "setup_role": "东巡逻线东南端（与 Hobart 同线，线西北端两艘 DD）。"},
+    "savo-hobart": {"name_zh": "霍巴特", "name_en": "Hobart", "side": "allies", "group": "TG 62.4 东屏护", "profile": "gb_perth_cl", "scenario_class_en": "Perth class CL", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": [], "radar_note": "Hobart 的雷达系 Oct 42 加装（类级备注），8 月无雷达；Type 132 声呐为 Perth only。"},
+    "savo-monssen": {"name_zh": "蒙森", "name_en": "Monssen", "side": "allies", "group": "TG 62.4 东屏护", "profile": "us_benson_dd", "scenario_class_en": "Benson class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_sc", "us_mk4_fd"], "radar_note": "Benson 级 1942 备注加 SC 与 Mk4；「拆中炮/尾雷 (not all units)」是否含 Monssen 待裁决。", "setup_role": "东巡逻线西北端两艘未具名 DD 之一（按编制推定，待裁决）。"},
+    "savo-buchanan": {"name_zh": "布坎南", "name_en": "Buchanan", "side": "allies", "group": "TG 62.4 东屏护", "profile": "us_bristol_dd", "scenario_class_en": "Bristol class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_sc", "us_mk4_fd"], "radar_note": "Bristol 级 1942 备注为 Assume SC, Mk4 radars fitted。", "setup_role": "东巡逻线西北端两艘未具名 DD 之一（按编制推定，待裁决）。"},
+    "savo-jarvis": {"name_zh": "贾维斯", "name_en": "Jarvis", "side": "allies", "group": "TG 62.4 东屏护", "profile": "us_bagley_dd", "scenario_class_en": "Bagley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_mk4_fd"], "setup_role": "海图上位于北队巡逻箱东南的单独剪影。", "history": "与 Yunagi 短促炮战后脱离，翌晨被日机空袭炸沉。"},
+    "savo-bagley": {"name_zh": "巴格莱", "name_en": "Bagley", "side": "allies", "group": "TG 62.6 南队", "profile": "us_bagley_dd", "scenario_class_en": "Bagley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_mk4_fd"], "setup_role": "南队巡逻线东北端。", "history": "Historical Outcome 中最早发出鱼雷航迹警报的舰位之一。"},
+    "savo-patterson": {"name_zh": "帕特森", "name_en": "Patterson", "side": "allies", "group": "TG 62.6 南队", "profile": "us_bagley_dd", "scenario_class_en": "Bagley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_mk4_fd"], "setup_role": "南队巡逻线中段。", "history": "0143 了望喊 Ships ahead!，并广播 Warning! Warning! Strange ships entering harbor。"},
+    "savo-henley": {"name_zh": "亨利", "name_en": "Henley", "side": "allies", "group": "TG 61.2 Yoke 屏护", "profile": "us_bagley_dd", "scenario_class_en": "Gridley class DD（想定原印）", "profile_conflict": "想定页印 Gridley 级；《American Fleets》A-18 列 Henley 为 Bagley 级。profile 暂挂 Bagley，级属待裁决。", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_mk4_fd"]},
+    "savo-ellet": {"name_zh": "埃利特", "name_en": "Ellet", "side": "allies", "group": "TG 61.2 Yoke 屏护", "profile": "us_benham_dd", "scenario_class_en": "Benham class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_sc", "us_mk4_fd"]},
+    "savo-hull": {"name_zh": "赫尔", "name_en": "Hull", "side": "allies", "group": "TG 61.2 Yoke 分遣", "profile": "us_farragut_dd", "scenario_class_en": "Farragut class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": [], "setup_role": "护送受损运输舰 George F. Elliot，不在基础交战阵位内。"},
+    "savo-dewey": {"name_zh": "杜威", "name_en": "Dewey", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_farragut_dd", "scenario_class_en": "Farragut class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": [], "radar_note": "Farragut 级 End 42 才加 SC/Mk4。"},
+    "savo-selfridge": {"name_zh": "赛尔弗里纪", "name_en": "Selfridge", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_porter_dd", "scenario_class_en": "Porter class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": ["us_sc", "us_mk4_fd"], "radar_note": "Jan 42 备注「air search and fire control radar added」未印型号，SC/Mk4 为候选，待核。"},
+    "savo-mugford": {"name_zh": "穆格福德", "name_en": "Mugford", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_gridley_dd", "scenario_class_en": "Gridley class DD", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核"}, "radar_confirmed": []},
+    "savo-hopkins": {"name_zh": "霍普金斯", "name_en": "Hopkins", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_clemson_dms", "scenario_class_en": "Clemson class DMS", "fit_status": "未核"},
+    "savo-trever": {"name_zh": "特雷弗", "name_en": "Trever", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_clemson_dms", "scenario_class_en": "Clemson class DMS", "fit_status": "未核"},
+    "savo-zane": {"name_zh": "赞恩", "name_en": "Zane", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_clemson_dms", "scenario_class_en": "Clemson class DMS", "fit_status": "未核"},
+    "savo-southard": {"name_zh": "索撒德", "name_en": "Southard", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_clemson_dms", "scenario_class_en": "Clemson class DMS", "fit_status": "未核"},
+    "savo-hovey": {"name_zh": "霍维", "name_en": "Hovey", "side": "allies", "group": "TG 62.1 X-Ray 屏护", "profile": "us_clemson_dms", "scenario_class_en": "Clemson Mod class DMS", "fit_status": "未核"},
+    "savo-colhoun": {"name_zh": "科尔霍恩", "name_en": "Colhoun", "side": "allies", "group": "TG 61.2 Transdiv 12", "profile": "us_wickes_apd", "scenario_class_en": "Wickes class APD", "fit_status": "未核"},
+    "savo-little": {"name_zh": "利特尔", "name_en": "Little", "side": "allies", "group": "TG 61.2 Transdiv 12", "profile": "us_wickes_apd", "scenario_class_en": "Wickes class APD", "fit_status": "未核"},
+    "savo-gregory": {"name_zh": "格雷戈里", "name_en": "Gregory", "side": "allies", "group": "TG 61.2 Transdiv 12", "profile": "us_wickes_apd", "scenario_class_en": "Wickes class APD", "fit_status": "未核"},
+    "savo-mckean": {"name_zh": "麦基恩", "name_en": "McKean", "side": "allies", "group": "TG 61.2 Transdiv 12", "profile": "us_wickes_apd", "scenario_class_en": "Wickes class APD", "fit_status": "未核"},
+    "savo-chokai": {"name_zh": "鸟海", "name_en": "Chokai", "side": "axis", "group": "Crudiv 4（旗舰）", "profile": "jp_takao_1939_ca", "scenario_class_en": "Takao class CA", "flag": true, "form10": {"document": "rising_sun_form10", "pdf_pages": [49, 50], "form_date": "Aug 1942 Damage / Apr-May 1942 Modification"}, "radar_confirmed": [], "history": "8 Aug 42 备注即萨沃战损（前 20cm 炮塔受损）。"},
+    "savo-aoba": {"name_zh": "青叶", "name_en": "Aoba", "side": "axis", "group": "Crudiv 6", "profile": "jp_aoba_1938_ca", "scenario_class_en": "Aoba class CA", "form10": {"document": "rising_sun_form10", "pdf_page": 46, "form_date": "Dec 1941"}, "radar_confirmed": []},
+    "savo-kinugasa": {"name_zh": "衣笠", "name_en": "Kinugasa", "side": "axis", "group": "Crudiv 6", "profile": "jp_aoba_1938_ca", "scenario_class_en": "Aoba class CA", "form10": {"document": "rising_sun_form10", "pdf_page": 47, "form_date": "Dec 1941"}, "radar_confirmed": [], "history": "被 Vincennes 还击命中（Historical Outcome）。"},
+    "savo-furutaka": {"name_zh": "古鹰", "name_en": "Furutaka", "side": "axis", "group": "Crudiv 6", "profile": "jp_furutaka_1937_ca", "scenario_class_en": "Furutaka class CA", "form10": {"document": "rising_sun_form10", "pdf_page": 53, "form_date": "Dec 1941"}, "radar_confirmed": []},
+    "savo-kako": {"name_zh": "加古", "name_en": "Kako", "side": "axis", "group": "Crudiv 6", "profile": "jp_furutaka_1937_ca", "scenario_class_en": "Furutaka class CA", "form10": {"document": "rising_sun_form10", "pdf_page": null, "status": "未核（同页相邻位置推定 pdf 54，未目视）"}, "radar_confirmed": [], "history": "用探照灯锁定 Vincennes 并 8000 码开火。"},
+    "savo-tenryu": {"name_zh": "天龙", "name_en": "Tenryu", "side": "axis", "group": "Crudiv 18", "profile": "jp_tenryu_cl", "scenario_class_en": "Tenryu class CL", "form10": {"document": "rising_sun_form10", "pdf_page": 81, "form_date": "Feb 1942 Modification"}, "radar_confirmed": []},
+    "savo-yubari": {"name_zh": "夕张", "name_en": "Yubari", "side": "axis", "group": "Crudiv 18", "profile": "jp_yubari_cl", "scenario_class_en": "Yubari class CL", "form10": {"document": "rising_sun_form10", "pdf_page": 75, "form_date": "Jan 1942"}, "radar_confirmed": [], "history": "0203 一条鱼雷补中 Vincennes。"},
+    "savo-yunagi": {"name_zh": "夕凪", "name_en": "Yunagi", "side": "axis", "group": "Desdiv 29", "profile": "jp_kamikaze_1941_dd", "scenario_class_en": "Kamikaze class DD", "form10": {"document": "rising_sun_form10", "pdf_page": 176, "form_date": "Dec 1941"}, "radar_confirmed": [], "history": "与 Jarvis 短促炮战，误报交战 Achilles 级轻巡。"}
+  },
+  "auxiliary_transports": {
+    "policy": "运输舰与 DMS/APD 武备、载员、雷装均未核，不生成战斗实例；仅按原页登记名单与船级。",
+    "x_ray": ["Fuller", "American Legion", "Bellatrix", "McCawley", "Barnett", "George F. Elliott", "Libra", "Hunter Liggett", "Alchiba", "Betelgeuse", "Formalhaut", "Crescent City", "President Hayes", "President Adams", "Alhena"],
+    "yoke": ["Heywood", "Neville", "Zellin", "President Jackson", "Colhoun", "Little", "Gregory", "McKean"],
+    "axis_decisive_denominator_note": "日方决定胜利条件以「five transports」为基数；五艘指哪五艘原页未指定，待裁决。",
+    "dupe_note": "George F. Elliott 同时出现在 X-Ray Transport Division B 与 Yoke 分遣描述（Hull 护送，海图标 DIW on fire），为同一舰。"
+  },
+  "optional_japanese_ships": {
+    "not_in_base": true,
+    "ships": [
+      {"name_en": "Tatsuta", "name_zh": null, "name_zh_status": "zh-labels.json 未登记龙田，词表待补", "class": "Tenryu class CL", "profile": "jp_tenryu_cl", "form10": {"document": "rising_sun_form10", "pdf_page": 80, "form_date": "Feb 1942 Modification", "title_read_note": "Form 10 页眉缩略读作 Tatsuya，疑为 Tatsuta 之印误，待放大复核"}},
+      {"name_en": "Yuzuki", "name_zh": "夕月", "class": "Mutsuki class DD", "profile": null, "profile_status": "未核（Mutsuki 级见 Emperor's Fleet A-27/28，本批未录）"},
+      {"name_en": "Uzuki", "name_zh": "卯月", "class": "Mutsuki class DD", "profile": null, "profile_status": "未核"}
+    ]
+  },
+  "conflicts": [
+    {"id": "henley-class-label", "status": "unresolved", "detail": "想定页印 Henley (Gridley class DD)；《American Fleets》A-18 级备注把 Henley 列入 Bagley 级（DD 386-393）。想定照录，级属待裁决。"},
+    {"id": "yunagi-torpedo-type96", "status": "unresolved", "detail": "Kamikaze (1941) 印 P&S(2)2 533mm TT w/2 Type 96 torp；F-1 无 Type 96 行。候选：6th Yr Type（533mm 但平台记 Ro SS）、Type 89 Mod 1（533mm，DDS/Sub）。不启用。"},
+    {"id": "takao-in-class", "status": "resolved_by_remarks", "detail": "1939 配置块印 In Class: 2，1932 配置印 In Class: 4 且备注列 Takao/Atago/Maya/Chokai 四舰；按四舰处理，块值记录在案。"},
+    {"id": "northampton-fit-drift", "status": "resolved_by_dated_remarks", "detail": "Northampton 编制块为 1929 配置（含 P/S(3)2 雷装、4× 5in/25、GS III）；Mid-30s/1936 备注拆除雷装、升 8× 5in/25、GS IV。1942-08 有效值取备注，块值保留。"},
+    {"id": "george-f-elliott-duplicate", "status": "resolved_single_ship", "detail": "X-Ray B 分队印 George F. Elliott（双 t），Yoke 分遣行与海图印 George F. Elliot（单 t）并标 DIW on fire；同一舰，不重复生成。"},
+    {"id": "axis-column-vs-oob-order", "status": "recorded_as_printed", "detail": "纵队顺序（Aoba、Kako、Kinugasa、Furutaka）与编制列举顺序（Aoba、Kinugasa、Furutaka、Kako）不同，两处均照录。"},
+    {"id": "farragut-1942-refit-date", "status": "unresolved", "detail": "Farragut 级「1942: P&S 5in removed」未给月份，Dewey/Hull 8 月 9 日是否已拆炮待裁决；End 42 雷达在萨沃之后。"},
+    {"id": "canberra-20mm-date", "status": "unresolved", "detail": "Canberra (1)5 20mm「added at some later time」无日期，8 月是否已装待裁决。"},
+    {"id": "aoba-floatplane-date", "status": "unresolved", "detail": "Aoba Fall 42 换 E13A1 Jake 未给日期，8 月 9 日机种待裁决。"},
+    {"id": "tassafaronga-crosscheck", "status": "resolved", "detail": "New Orleans 级 0/99/199/298/357/397 与 Chokai 备注 8 Aug 42 与 roadmap 第 05 条（塔萨法隆格 8 英寸炮按 C-3 核定）口径一致。"}
+  ],
+  "pending_adjudication": [
+    "月光相位与月出月没（原页未登记）。",
+    "双方照明弹/探照灯的正式规则数据（原页只有历史叙述）。",
+    "海图各巡逻线/箱的精确距离与各舰航向、队内间距（原页无数字）。",
+    "日军纵队 Tenryu/Yubari/Yunagi 段间距（原页只给巡洋舰 1300 码）。",
+    "东巡逻线两艘未具名 DD 的身份（Monssen/Buchanan 为编制推定）。",
+    "Yunagi 鱼雷型号（Type 96 无 F-1 行）。",
+    "Henley 级属（Gridley vs Bagley）。",
+    "Dewey/Hull、Monssen、Canberra、Aoba 的 1942 年内改装时点（见 conflicts）。",
+    "五艘 DMS 与四艘 APD 的 8 月有效武备（US 舰队书 A-23/APD 条目未逐舰核）。",
+    "日方决定胜利条件「five transports」的基数算法与计数方式。",
+    "Tatsuta 中文名未登记词表；Form 10 页眉 Tatsuya 印误待复核。",
+    "Kako Form 10 页码（推定 pdf 54 未目视）。"
+  ],
+  "evidence": {
+    "scenario_pdf": [52, 53, 54],
+    "scenario_printed_pages": [51, 52, 53],
+    "american_fleets": [16, 17, 18, 20, 21, 22, 26, 108, 109],
+    "home_fleet": [9, 115, 122],
+    "emperors_fleet": [16, 17, 18, 22, 23, 27, 97, 98, 105],
+    "rising_sun_form10_spot_checks": {
+      "chokai": [49, 50], "aoba": 46, "kinugasa": 47, "furutaka": 53, "takao": 52,
+      "tenryu": 81, "yubari": 75, "yunagi": 176, "tatsuta": 80,
+      "astoria": 240, "quincy": 244, "vincennes": 246, "chicago": 248, "san_juan": 262,
+      "note": "以上页眉逐页目视确认；美英驱逐舰与运输舰 Form 10 未定位，标未核。"
+    },
+    "policy": "主炮与鱼雷用各舰队书 Annex C/F 弹种行；Form 10 仅佐证并记录印期。装载、备雷与未核武备不默认启用。"
+  }
+}
