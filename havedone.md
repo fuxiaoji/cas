@@ -154,3 +154,10 @@
 - **游戏内实测**：新增 `client/tests/browser-online-recruit.mjs` 专项验收主题图、概率页（各档保底表）、十连到港、逐舰揭示、跳过、上次到港回看、换池、重复请求幂等（同编号重放同回执、改参 409、钱包不变）、刷新重登恢复、指定兑换（进度 91→11）、740×360 短屏到港、重登余额对账，全部通过（[凭证](artifacts/client/online-recruit/browser-receipt.json)）。`browser-online.mjs` 补到港演出关闭步骤后通过（[凭证](artifacts/client/online/browser-receipt.json)）。
 - **主仓全套复验**（验收 agent，隔离 target，HEAD `b99c29a`）：Rust 59 项、原生与 WASM 17 场对照逐项一致、服务端 16 项（含模拟器路径实跑）、战役资料检查（16 想定/32 关位/11 登记/210 舰身份）、`tsc` 0 错误，7/7 通过（[台账](artifacts/cas-acceptance-20261107.json)、[对照](artifacts/cas-integration-native-wasm-20261107.json)）。
 - 并行推进中：排位前端在 `E:/CAS-ranked-ui` 工作区开发（两档展示、赛季段位、点价校验、排队/取消/作废态与浏览器验收）；塔萨法隆格在 `E:/CAS-rules-next` 按五版《旭日》PDF 75–76 核页录入。两处产出审查通过后再合入主仓。
+
+## 2026-11-07｜塔萨法隆格原页核页与时期录入
+
+- 《旭日》五版 PDF 75–76（印 74–75）逐页目视核验：19 艘具名舰为美方 11（5 巡洋舰＋6 驱逐舰）＋日方 8 驱逐舰，原页无具名驳船单位；三处 Resupply Point、1.5 海里半径、每点三舰、每舰五串每窗一串、卸货限 2 节、未卸串扣分、载桶六舰无备用雷（长波/高波各 8 枚）均按原页登记。
+- 500/250 两档原页都印「Decisive」，原样保留；RTS 分级登记采用 500=决定、250=战术并要求用户可见内容标明采用分级，两条门槛随美方 120/240 在 `check-campaign.py` 的 `verify_tassafaronga()` 中分别断言，普通与 `--ibs-worktree` 两种运行方式通过。
+- 8in/55（AF C-3 四弹种行）、6in/47（C-2）、5in/38 与 12.7cm/50（对照圣乔治角 v2 逐列一致）、Mk15 TNT（F-1 单档 87 DP）与 Type 93（EF F-1 95 DP）登记进 `data/campaign/period/tassafaronga-1942.json`（source_only_not_runtime_ready）；Mk15 与旧登记的三档速度差异列为未决冲突，未擅自合并。
+- 来源与冲突登记在 `docs/campaign/tassafaronga-source-notes.md`：Form 10 索引三处页码错误已目视改正（Maury=320、Kuroshio=106、Oyashio=109），Kagero 已完成 4–5 月反潜改装而 Oyashio/Kuroshio 未改装的 DC 差异分别建档。纵队逐舰座位、补给点坐标、弹种实配等 10 项待裁决留空，未以默认值填补。引擎接线未动。
