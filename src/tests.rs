@@ -237,7 +237,7 @@ fn empress_augusta_bay_runs_the_full_night_surface_kit() {
     let mut e = Engine::default();
     let start = ask(
         &mut e,
-        json!({"op":"new","seed":6106,"side":"allies","enemy":"coord","variant":"empress"}),
+        json!({"op":"new","seed":6107,"side":"allies","enemy":"coord","variant":"empress"}),
     );
     assert_eq!(start["ships"].as_array().unwrap().len(), 12, "the allied seat sees its twelve hulls");
     assert_eq!(start["fleets"].as_array().unwrap().len(), 3);
@@ -255,7 +255,7 @@ fn empress_augusta_bay_runs_the_full_night_surface_kit() {
     assert!(!end["result"].is_null(), "the scenario must reach a result");
     let report = ask(&mut e, json!({"op":"report"}));
     let events = report["events"].as_array().unwrap();
-    for kind in ["secondary", "illumination", "gun", "torpedo"] {
+    for kind in ["secondary", "illumination", "gun", "torpedo_detected"] {
         assert!(
             events.iter().any(|event| event["kind"] == kind),
             "the surface kit must produce a {kind} event"

@@ -103,6 +103,19 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
     if let Some(id) = w.ships.iter().find(|s| s.name == "羽黑").map(|s| s.id) {
         w.ship_mut(id).unwrap().speed_cap = Some(30.);
     }
+    // US radar: SG and SC-2 on every cruiser and destroyer (Form 10s). The
+    // Japanese Type 21 is an air-search set and cannot range surface targets,
+    // so the axis side keeps visual fire control.
+    let radar_ships: Vec<u32> = w
+        .ships
+        .iter()
+        .filter(|s| s.side == 0)
+        .map(|s| s.id)
+        .collect();
+    for id in radar_ships {
+        w.radar.equip(id, "us_sg")?;
+        w.radar.equip(id, "us_sc2")?;
+    }
     w.enable_realtime()?;
     // A course for every column so the battle closes without player input.
     for column in columns() {
