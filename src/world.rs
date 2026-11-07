@@ -590,9 +590,41 @@ impl World {
                     data["radarRange"] = json!(range);
                 }
             }
-            data["sightRange"] = json!(crate::night::surface_base_range_yd(
-                self.environment(), &d.size, &d.size, 0., false, false,
-            ) as f64 * YARD);
+            // Detection rings are live against the contacts this seat holds:
+            // larger, faster or firing targets are seen farther, and the
+            // "being seen" ring uses the known enemy classes as observers.
+            let env = self.environment();
+            let cycle = self.tick / CYCLE;
+            let mut sight = crate::night::surface_base_range_yd(
+                env, &d.size, &d.size, 0., false, false,
+            );
+            let mut seen = 0u32;
+            for contact in &self.contacts[s.side] {
+                let Some(enemy) = self.ship(contact.ship).filter(|e| e.alive()) else {
+                    continue;
+                };
+                let enemy_def = &self.data.ships[enemy.def];
+                sight = sight.max(crate::night::surface_base_range_yd(
+                    env,
+                    &d.size,
+                    &enemy_def.size,
+                    enemy.speed,
+                    enemy.gun_cycle == Some(cycle),
+                    !enemy.fires.is_empty(),
+                ));
+                seen = seen.max(crate::night::surface_base_range_yd(
+                    env,
+                    &enemy_def.size,
+                    &d.size,
+                    s.speed,
+                    s.gun_cycle == Some(cycle),
+                    !s.fires.is_empty(),
+                ));
+            }
+            data["sightRange"] = json!(sight as f64 * YARD);
+            if seen > 0 {
+                data["seenRange"] = json!(seen as f64 * YARD);
+            }
             if self.realtime() {
                 if let Some(order) = &s.battery.order {
                     data["gunTarget"] = json!(order.target);

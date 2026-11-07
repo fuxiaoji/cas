@@ -8,7 +8,7 @@ export type TorpedoSettings = { depth?: 'shallow' | 'deep'; count?: number };
 export interface Point { x: number; y: number }
 export interface Position extends Point { heading: number; speed: number }
 export interface Ship extends Position {
-  sightRange?: number; radarRange?: number;
+  sightRange?: number; seenRange?: number; radarRange?: number;
   id: number; name: string; kind: 'dd' | 'cl' | 'bb'; fleet: number | null;
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;

@@ -97,3 +97,4 @@
   .range-legend { bottom: 35px; }
   .battle-alerts { width: 54%; }
 }
+.range-legend .seen-ring { width: 15px; border-top: 2px dashed #e6a3a0; }

@@ -124,6 +124,7 @@ export function BattleMap(props: MapProps) {
   const gunRange = rangedShip?.gunRange ?? 0;
   const torpedoRange = rangedShip?.torpedoRange ?? 0;
   const sightRange = rangedShip?.sightRange ?? 0;
+  const seenRange = rangedShip?.seenRange ?? 0;
   const radarRange = rangedShip?.radarRange ?? 0;
   const tracks = [...o.contacts, ...(o.radarContacts ?? []).map((report) => ({ ...report, heading: 0, speed: 0, kind: 'radar', name: undefined }))];
   const target = tracks.find((contact) => contact.id === gesture?.contact?.id);
@@ -294,7 +295,7 @@ export function BattleMap(props: MapProps) {
       ctx.beginPath(); ctx.rect(left, north, o.width * mapRatio, o.height * mapRatio); ctx.clip();
       for (const [range, color, pattern] of [
         [gunRange, '#80cde2a8', [4, 4]], [torpedoRange, '#dfb872bc', [10, 4]],
-        [sightRange, '#9fe0b0a0', [2, 3]], [radarRange, '#b7a5e8a8', [12, 3, 2, 3]],
+        [sightRange, '#9fe0b0a0', [2, 3]], [seenRange, '#e6a3a0a8', [5, 3]], [radarRange, '#b7a5e8a8', [12, 3, 2, 3]],
       ] as const) {
         if (range <= 0) continue;
         ctx.beginPath(); ctx.arc(at.x, at.y, range * mapRatio, 0, TAU);
@@ -647,7 +648,8 @@ export function BattleMap(props: MapProps) {
     {rangesVisible && !editing && !reformPreview && !gesture && (gunRange > 0 || torpedoRange > 0) && <div className="range-legend" aria-label="所选舰最大射程">
       {gunRange > 0 && <span><i className="gun-ring" />舰炮 {(gunRange / 1000).toFixed(1)} km</span>}
       {torpedoRange > 0 && <span><i className="torpedo-ring" />鱼雷 {(torpedoRange / 1000).toFixed(1)} km</span>}
-      {sightRange > 0 && <span title="同型目标、静止目标的基准距离；目标更大、更快或正在开火时会更远"><i className="sight-ring" />目视基准 {(sightRange / 1000).toFixed(1)} km</span>}
+      {sightRange > 0 && <span title="对本席已发现敌舰的基准距离；敌舰越大、越快或正在开火越远"><i className="sight-ring" />目视 {(sightRange / 1000).toFixed(1)} km</span>}
+      {seenRange > 0 && <span title="已发现敌舰按本舰尺寸、航速与火光能看见本舰的基准距离"><i className="seen-ring" />被目视 {(seenRange / 1000).toFixed(1)} km</span>}
       {radarRange > 0 && <span><i className="radar-ring" />雷达 {(radarRange / 1000).toFixed(1)} km</span>}
     </div>}
   </div>;

@@ -308,6 +308,8 @@ fn ship_view_shows_target_chance_and_the_fleet_speed_can_change() {
         .iter()
         .find(|s| s["id"] == 1)
         .unwrap();
+    assert!(ship["sightRange"].as_f64().unwrap_or(0.) > 0.);
+    assert!(ship["seenRange"].as_f64().unwrap_or(0.) > 0.);
     let chance = ship["targetChance"].as_f64().expect("target chance");
     assert!(chance > 0. && chance <= 100., "{chance}");
     assert_eq!(ship["gunTarget"], json!(contact));
