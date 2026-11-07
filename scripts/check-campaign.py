@@ -288,6 +288,139 @@ def verify_horaniu_basis():
     return len(named)
 
 
+def verify_tassafaronga():
+    record = load(CAMPAIGN / "tassafaronga.json")
+    period = load(CAMPAIGN / "period" / "tassafaronga-1942.json")
+    assert record["playable"] is False and period["status"] == "source_only_not_runtime_ready"
+    assert period["scenario_id"] == record["scenario_id"] == "cas-rs-tassafaronga"
+    assert period["scenario_source"]["pdf_pages"] == record["source"]["pdf_pages"] == [75, 76]
+    assert period["scenario_source"]["printed_pages"] == record["source"]["printed_pages"] == [74, 75]
+    assert period["as_of"] == record["start"]["date_local"] == "1942-11-30"
+
+    named = period["named_ships"]
+    assert len({ship["id"] for ship in named}) == len(named) == period["named_ship_count"] == 19
+    assert Counter(ship["side"] for ship in named) == {"allies": 11, "axis": 8}
+    assert Counter(ship["kind"] for ship in named) == {"CA": 4, "CL": 1, "DD": 14}
+    assert all(ship["profile"] in period["profiles"] for ship in named)
+    # Original page force list (Rising Sun PDF 75 / printed 74).
+    assert {ship["name"] for ship in named if ship["side"] == "allies"} == {
+        "Minneapolis", "New Orleans", "Pensacola", "Northampton", "Honolulu",
+        "Fletcher", "Perkins", "Maury", "Drayton", "Lamson", "Lardner",
+    }
+    assert {ship["name"] for ship in named if ship["side"] == "axis"} == {
+        "Naganami", "Makinami", "Takanami", "Oyashio", "Kuroshio", "Kagero", "Kawakaze", "Suzukaze",
+    }
+    # Dated Form 10 pages confirmed against the printed page headers.
+    form10 = {ship["id"]: ship["form10"]["pdf_pages"][0] for ship in named}
+    assert form10 == {
+        "minneapolis": 241, "new_orleans": 243, "pensacola": 252, "northampton": 250, "honolulu": 267,
+        "fletcher": 277, "perkins": 332, "maury": 320, "drayton": 330, "lamson": 331, "lardner": 298,
+        "naganami": 92, "makinami": 90, "takanami": 94, "oyashio": 109, "kuroshio": 106,
+        "kagero": 105, "kawakaze": 128, "suzukaze": 138,
+    }
+    assert not any(ship.get("hull_number") for ship in named)
+    assert period["hull_numbers"]["registered"] is False
+
+    # Resupply strings (PDF 75 Special Rules + PDF 76 chart).
+    resupply = period["resupply_rules"]
+    assert resupply["points_per_string_dropped_within_radius"] == 20
+    assert resupply["resupply_radius_nmi"] == 1.5
+    assert resupply["resupply_point_count"] == 3
+    assert resupply["simultaneous_capacity_destroyer_loads"] == 3
+    assert resupply["strings_per_ship"] == 5
+    assert resupply["turns_to_fully_offload"] == 5
+    assert resupply["unloading_max_speed_knots"] == 2
+    assert resupply["loaded_destroyers"] == ["makinami", "oyashio", "kuroshio", "kagero", "kawakaze", "suzukaze"]
+    assert resupply["string_totals_derived"]["max_supply_points"] == 600
+    assert resupply["string_duration"] == "no per-string offload duration in minutes is printed; the rule is expressed in Tactical Turns only (see pending items)"
+
+    # Victory tiers: the 500/250 double-Decisive print conflict plus the US 120/240 rows.
+    printed = period["victory_conditions_as_printed"]
+    assert [tier["label_as_printed"] for tier in printed["japanese_tiers"]] == ["Decisive", "Decisive"]
+    assert [tier["text"] for tier in printed["japanese_tiers"]] == ["500 or more total points.", "250 or more total points."]
+    reading = period["objective_reading_for_rts_fixture"]
+    assert reading["japan"]["decisive_total_points_min"] == 500
+    assert reading["japan"]["tactical_total_points_min"] == 250
+    assert reading["us"]["decisive"]["japanese_delivered_points_max"] == 120
+    assert reading["us"]["tactical"]["japanese_delivered_points_max"] == 240
+    assert reading["us"]["decisive"]["us_heavy_cruiser_crippled_max"] == 1
+    assert reading["us"]["tactical"]["us_heavy_cruiser_sunk_max"] == 1
+    assert "500" in reading["testability"] and "250" in reading["testability"]
+
+    # Annex C shell rows (American Fleets C-2/C-3, Emperor's Fleet C-1) and Annex F torpedo rows.
+    shells = period["weapon_models"]
+    eight_in = shells["us_8in55_mk9_10_11_13_14"]
+    assert eight_in["source"]["printed_pages"] == ["C-3"]
+    assert eight_in["shells"] == {
+        "APC": {"belt": [33, 22, 15, 12], "deck": [None, None, 5, 10], "damage_dp": [23, 18, 15, 13]},
+        "SpCOM": {"belt": [15, 10, 7, 5], "deck": [None, None, 2, 4], "damage_dp": [24, 19, 17, 15]},
+        "Com": {"belt": [10, 7, 5, 4], "deck": [None, None, 2, 4], "damage_dp": [23, 18, 16, 14]},
+        "HC": {"belt": [3, 2, 2, 1], "deck": [None, None, 1, 2], "damage_dp": [26, 22, 19, 17]},
+    }
+    assert shells["us_6in47_mk16"]["shells"] == {
+        "APC": {"belt": [15, 9, 7, 5], "deck": [None, None, 2, 4], "damage_dp": [18, 14, 12, 11]},
+        "HC": {"belt": [1, 1, 1, 0], "deck": [None, None, 0, 1], "damage_dp": [24, 20, 18, 16]},
+    }
+    cape = load(CAMPAIGN / "period" / "cape-st-george-1943.json")
+    for gun in ("us_mk30_5in38", "jp_3rd_yr_127mm50"):
+        assert shells[gun]["shells"] == cape["weapon_models"][gun]["shells"], gun
+    assert shells["us_8in55_mk12_15"]["shells"]["APC"]["damage_dp"] == [24, 19, 16, 14]
+    assert shells["us_mk15_tnt"]["torpedo"]["damage_dp"] == 87
+    assert shells["us_mk15_tnt"]["torpedo"]["range_speed_pairs_yd_knots"] == [[6000, 45]]
+    assert shells["us_mk15_tnt"]["torpex_variant"]["in_service"] == 1943
+    assert shells["jp_type93_m1_mod1_2"]["torpedo"]["damage_dp"] == 95
+    assert shells["jp_type93_m1_mod1_2"]["torpedo"]["range_speed_pairs_yd_knots"] == [[22000, 49], [35000, 41], [43800, 37]]
+
+    # Class hull rows (damage points, speeds, crews) verified against the annex pages.
+    expected_rows = {
+        "new_orleans_1942": ([0, 99, 199, 298, 357, 397], [32, 24, 16, 8, 0], 1042, "B"),
+        "northampton_1942": ([0, 93, 185, 278, 333, 370], [32, 24, 16, 8, 0], 621, "B"),
+        "pensacola_1942": ([0, 93, 186, 279, 335, 372], [32, 24, 16, 8, 0], 653, "B"),
+        "brooklyn_first_group_1942": ([0, 97, 194, 291, 349, 388], [32, 24, 16, 8, 0], 1200, "B"),
+        "fletcher_1942_tassafaronga": ([0, 36, 72, 108, 130, 144], [37, 28, 18, 9, 0], 273, "A"),
+        "bristol_1942": ([0, 30, 59, 89, 106, 118], [37, 28, 18, 9, 0], 208, "C"),
+        "mahan_1942": ([0, 28, 56, 84, 101, 112], [36, 27, 18, 9, 0], 172, "D"),
+        "gridley_1942": ([0, 29, 58, 87, 104, 116], [38, 28, 19, 10, 0], 158, "C"),
+        "yugumo_1942": ([0, 35, 70, 105, 126, 140], [35, 26, 18, 9, 0], 228, "C"),
+        "kagero_1942_base": ([0, 35, 69, 104, 124, 138], [35, 26, 18, 9, 0], 240, "C"),
+        "shiratsuyu_1942": ([0, 31, 61, 92, 110, 122], [34, 26, 17, 8, 0], 180, "C"),
+    }
+    classes = {}
+    for profile_id, (dp, knots, crew, turn) in expected_rows.items():
+        profile = period["profiles"][profile_id]
+        assert [row[0] for row in profile["damage_speed_rows_dp_knots"]] == dp, profile_id
+        assert [row[1] for row in profile["damage_speed_rows_dp_knots"][:-1]] == knots, profile_id
+        assert profile["damage_speed_rows_dp_knots"][-1][1] is None  # sunk, not stopped
+        assert profile["crew"] == crew and profile["turn_class"] == turn, profile_id
+        classes[profile_id] = profile
+    assert period["accel_decel_rates"]["B"] == {"accel_0_75_knots": 10, "accel_76_100_knots": 5, "decel_knots": 12}
+    assert period["accel_decel_rates"]["C"] == {"accel_0_75_knots": 12, "accel_76_100_knots": 6, "decel_knots": 15}
+    assert period["maneuver_classes"]["B"] == {"normal_advance_yd": 300, "normal_loss_knots": 2, "hard_advance_yd": 200, "hard_loss_knots": 3}
+
+    # Scenario torpedo-reload exception and the Kagero-class DC variants.
+    loaded = {ship["id"] for ship in named if ship.get("scenario_carries_drum_strings")}
+    assert loaded == set(resupply["loaded_destroyers"])
+    full_reserve = {ship["id"] for ship in named if ship.get("scenario_torpedo_reserve", "").startswith("full")}
+    assert full_reserve == {"naganami", "takanami"}
+    assert loaded & full_reserve == set()
+    assert classes["yugumo_1942"]["torpedo_mounts"]["reserve_per_mount"] == [4, 4]
+    assert classes["kagero_1942_base"]["dc_fit_1942"]["applies_at_scenario"] is True
+    assert period["profiles"]["kagero_1942_asw_refit"]["dc_fit_1942"]["refit_window"].startswith("Kagero")
+
+    unresolved = {item["id"] for item in period["conflicts"] if item["status"] == "unresolved"}
+    assert unresolved == {
+        "mk15-tnt-speed-range-pairs", "mahan-late42-center-gun", "gridley-mount-text",
+        "ijn-column-seat-order", "us-column-seat-order", "honolulu-sg-timing",
+        "mahan-search-radar-type", "minneapolis-prebattle-radar", "us-shell-loadout-selection",
+        "resupply-point-geometry", "string-offload-duration",
+    }
+    assert {item["id"] for item in period["conflicts"] if item["status"] == "recorded_as_printed"} == {
+        "us-victory-wording", "northampton-in-service-1929", "form10-index-page-errors",
+    }
+    assert len(period["pending_items"]) == 10
+    return len(named)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--ibs-worktree", type=Path, help="Optionally check the pinned 铁底湾 0.6.9 Git objects")
@@ -296,6 +429,7 @@ def main():
     rows, linked, next_records = verify_imports(crosswalk)
     cape_ships = verify_cape_st_george()
     horaniu_ships = verify_horaniu_basis()
+    tassafaronga_ships = verify_tassafaronga()
     roster_count = verify_roster(crosswalk, rows, cape_ships, args.ibs_worktree)
     originals = ROOT / crosswalk["source_path_root"]
     checked_sources = 0
@@ -307,7 +441,8 @@ def main():
     if args.ibs_worktree:
         verify_baseline(crosswalk, rows, args.ibs_worktree)
     print(f"CAS campaign: {len(rows)} scenarios, 32 legacy stages, {len(linked)} catalogued and {len(next_records)} staged source-only imports; "
-          f"{roster_count} legacy identities, {len(cape_ships)} dated Cape St. George and {horaniu_ships} source-only Horaniu destroyers; "
+          f"{roster_count} legacy identities, {len(cape_ships)} dated Cape St. George, {horaniu_ships} source-only Horaniu destroyers "
+          f"and {tassafaronga_ships} source-only Tassafaronga named ships; "
           f"{checked_sources} local PDF hashes; pinned legacy baseline: {'checked' if args.ibs_worktree else 'not requested'}")
 
 
