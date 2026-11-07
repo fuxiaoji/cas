@@ -175,9 +175,15 @@ class AccountService:
     def __init__(self, db_path: str | Path, catalog_path: str | Path = CATALOG_FILE):
         self.db_path = Path(db_path).resolve()
         self.catalog = json.loads(Path(catalog_path).read_text(encoding="utf-8"))
-        if (self.catalog["combat_catalog_available"] is not False
-                or any(ship["combat_ready"] is not False for ship in self.catalog["ships"])):
+        if self.catalog["combat_catalog_available"] is not False:
             raise ValueError("The free economy requires a collection-only catalog")
+        # A ship may claim combat readiness only when the catalog cites its
+        # verified CAS profile source (see src/ranked_fleets.rs PROFILES).
+        unverified = [ship["id"] for ship in self.catalog["ships"]
+                      if ship["combat_ready"] is not False and not ship.get("combat_source")]
+        if unverified:
+            raise ValueError("Combat-ready catalog ships must cite their verified CAS combat source: "
+                             + ", ".join(unverified))
         self._random = lambda: secrets.randbelow(1_000_000) / 1_000_000
 
     def connect(self):

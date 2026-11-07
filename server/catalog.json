@@ -1887,7 +1887,8 @@
       "rarity": "rare",
       "recruitable": false,
       "credits_price": null,
-      "combat_ready": false
+      "combat_ready": true,
+      "combat_source": "src/ranked_fleets.rs PROFILES（序章时期包 cas-prologue-runtime-v1#north-carolina，美国舰表 PDF 8、109）；点表 cas-points-surface-v1 已登记同名 ID"
     },
     {
       "id": "IBS-U-USN-UNNAMED-T01-R06",

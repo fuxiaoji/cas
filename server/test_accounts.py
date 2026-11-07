@@ -194,7 +194,14 @@ class FreeEconomyTest(unittest.TestCase):
         catalog = self.client.get("/catalog").json()
         self.assertEqual(len(catalog["ships"]), 210)
         self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 22)
-        self.assertTrue(all(not s["combat_ready"] and "record_id" not in s and "cost" not in s for s in catalog["ships"]))
+        combat_ships = [s for s in catalog["ships"] if s["combat_ready"]]
+        # Only the verified North Carolina period card may claim combat
+        # readiness, and it must cite its registered CAS profile source.
+        self.assertEqual([s["id"] for s in combat_ships], ["IBS-U-USN-UNNAMED-T01-R03"])
+        self.assertEqual(catalog["ships"].count(combat_ships[0]), 1)
+        self.assertIn("cas-prologue-runtime-v1#north-carolina", combat_ships[0]["combat_source"])
+        self.assertTrue(all(not s["combat_ready"] or s.get("combat_source") for s in catalog["ships"]))
+        self.assertTrue(all("record_id" not in s and "cost" not in s for s in catalog["ships"]))
         self.assertFalse(self.client.get("/health").json()["real_payments"])
         foreign = self.db.with_name("iron-bottom.sqlite3")
         with closing(sqlite3.connect(foreign)) as db:

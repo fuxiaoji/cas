@@ -20,11 +20,16 @@ DAY_MS = 86_400_000
 BEIJING_OFFSET_MS = 28_800_000
 UNIX_EPOCH = date(1970, 1, 1)
 CHECK_IN_SHIP = "IBS-U-USN-UNNAMED-T01-R03"
+# Same stable ID as the verified period card in src/ranked_fleets.rs PROFILES
+# (source_class north-carolina) and the cas-points-surface-v1 point table.
+CHECK_IN_SHIP_SOURCE = ("同稳定 ID 时期舰卡已核：src/ranked_fleets.rs PROFILES · 序章时期包 "
+                        "cas-prologue-runtime-v1#north-carolina · 美国舰表 PDF 8、109；"
+                        "点表 cas-points-surface-v1 已登记")
 SCHEDULE = (
     {"credits": 500, "standard_tickets": 2}, {"up_tickets": 2},
     {"credits": 800, "standard_tickets": 3}, {"up_tickets": 3},
     {"credits": 1200, "standard_tickets": 5}, {"up_tickets": 5},
-    {"ship_ids": [CHECK_IN_SHIP]},
+    {"ship_ids": [CHECK_IN_SHIP], "ship_source": CHECK_IN_SHIP_SOURCE},
 )
 REWARDS = tuple({"id": f"{CHECK_IN_VERSION}:{day}", "title": f"新手七日签到 · 第 {day} 天", **reward}
                 for day, reward in enumerate(SCHEDULE, start=1))
