@@ -169,3 +169,10 @@
 - 8in/55（AF C-3 四弹种行）、6in/47（C-2）、5in/38 与 12.7cm/50（对照圣乔治角 v2 逐列一致）、Mk15 TNT（F-1 单档 87 DP）与 Type 93（EF F-1 95 DP）登记进 `data/campaign/period/tassafaronga-1942.json`（source_only_not_runtime_ready）；Mk15 与旧登记的三档速度差异列为未决冲突，未擅自合并。
 - 来源与冲突登记在 `docs/campaign/tassafaronga-source-notes.md`：Form 10 索引三处页码错误已目视改正（Maury=320、Kuroshio=106、Oyashio=109），Kagero 已完成 4–5 月反潜改装而 Oyashio/Kuroshio 未改装的 DC 差异分别建档。纵队逐舰座位、补给点坐标、弹种实配等 10 项待裁决留空，未以默认值填补。引擎接线未动。
 - 分支 `tassafaronga-entry` 已审查合入主仓：`check-campaign.py` 的 `verify_tassafaronga()` 在主仓实跑通过，档案层偏差与 10 项待裁决见[源笔记](docs/campaign/tassafaronga-source-notes.md)；引擎接线另行验收。
+
+## 2026-11-07｜埃斯佩兰斯角与萨沃岛原页录入、排位服务端验收
+
+- **埃斯佩兰斯角（02）**：分支 `entry-esperance` 合入主仓。《旭日》PDF 65（印 64）单页正文、无海图；14 艘具名舰（美方 9：旧金山/盐湖城/博伊西/海伦娜+Desron 12 五驱逐，日方 5：青叶/古鹰/衣笠/吹雪/初雪）加 1 架 SOC-3；三种开局（2324 标准、2339 海伦娜无线电、2345 目视 5000 码）与 2330 反航记录核出；14 舰雷达逐舰核名（盐湖城显式无雷达）；原页**没有**可选增援与输送/撤离条款，如实登记为「原页没有」；10 项待裁决未以默认值填补（[源笔记](docs/campaign/cape-esperance-source-notes.md)）。`scripts/check-cape-esperance.py` 主仓实跑通过（14 艘、17 页已核 Form 10、0 failures）。
+- **萨沃岛（10）**：分支 `entry-savo` 合入主仓。《旭日》PDF 52–54（印 51–53，扫描页逐页目视）；同盟 32 艘舰体+19 艘运输（哨舰/南北队/东屏护/X-Ray/Yoke 屏护/Transdiv 12/运输队）与轴心 8 艘+3 备选（鸟海旗舰，纵队顺序 Aoba→Kako→Kinugasa→Furutaka 与列举顺序差异两处照录）；环境整句（夜 10% 能见、满云 2000 米云底、萨沃 3 海里雷暴带闪电、0611/0633 天光）；「未进战位+被探测后 D6/3 回合禁射」特例登记；美 8in/55、日 20cm/50 No.2、英 8in/50 MkVIII 主炮行及 Type 93 M1 Mod 1/2 等逐行核定；月光相位与照明规则原页未给，10 条冲突 13 项待裁决（[源笔记](docs/campaign/savo-island-source-notes.md)）。`scripts/check-savo-island.py` 主仓实跑通过（40 具名实例、23 辅助舰体、20 profiles、13 炮雷型号）。
+- **排位服务端验收**（`d7d453a`，`server/test_ranked.py` 12 项全过）：点表准入门（免费 FLETCHER/PERKINS/MAURY 三舰 1875 分合法、五舰 3050 分超限拒绝、错阵营/未拥有/风格未解锁/风格不支持各拒）；队列重试幂等（同编号同回执、改参 409）；匹配后投降结算 ±12；**真实互射到自然终局**（双方航线接近、逐窗对射、战报含双方炮击事件）；**平局结算**（时限 0:0 draw、双方 delta 0、draws+1）；作废不入账；服务重启后同局恢复；结算幂等（settlements 单行、重放同回执）。全套服务端 28 项通过，Rust 59 项不受数据合入影响。
+- 剧本录入按指示在此暂停：科隆班加拉岛（08）工作区 `E:/CAS-entry-kolombangara`（分支 `entry-kolombangara`）已建好待后续启动；03/04 的补核、11 奥古斯塔皇后湾等继续按台账排队。
