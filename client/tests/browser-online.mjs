@@ -146,6 +146,11 @@ try {
   assert.match(await recruitResult.innerText(), /入列|重复转为勋章/);
   await wallet(500, 4, 2);
   await screenshot(page, '02-recruit-receipt.png');
+  // The restored 0.6.11 arrival dialog is modal; skip the reveal and close it
+  // before using other tabs.
+  await button('跳过动画', page).click();
+  await button('关闭到港清册', page).click();
+  await page.locator('.online-recruit-arrival').waitFor({ state: 'detached' });
 
   // The currency for this purchase comes from the UI check-in above.
   await button('补给商店', supplies).click();

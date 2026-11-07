@@ -9,5 +9,6 @@
 7. 在开发服务器运行 `node tests/browser-radio.mjs` 验收本席战情触发、跨暂停续播、重演不重播及双方原版舰队电台。标准构建不包含旧音频；仅内部试玩构建可显式设置 `VITE_CAS_LOCAL_VOICE=1`。音频路径、原始 SHA-256 和试用范围见 `client/src/audio/assets/ledger.json`。
 8. 运行 `node tests/browser-campaign.mjs` 验收圣乔治角和通道行动双线出航、三档难度、锁定其他关卡、具名借舰、任务栏、同席重演和重启存档。逐舰打开舰况，核对十八个角色 ID、原图解码和登记的 SHA-256。使用 `CAS_CAMPAIGN_REWARD=1` 附加运行两关真实胜利、评级、领奖防重和本机账号隔离。凭证默认写入 `artifacts/client/campaign/`。
 9. 按 [服务运行说明](../../server/README.md) 在回环地址启动账号服务，设置 `CAS_SIM_PATH` 启用权威战役，并将 `CAS_ACCOUNT_DB` 指向 `artifacts/` 下独立的 `*qa*.sqlite3` 测试库。给脚本的 `CAS_ONLINE_TEST_DB` 设置同一测试库；如服务依赖不在默认 Python，可设 `CAS_ONLINE_TEST_PYTHON`。运行 `node tests/browser-online.mjs` 验收联机注册、云签到和重登防重、邮件领取、常驻征募、商店兑换、真实权威战役和重登续战。夹具只向当次新建账号投递邮件；商店使用活动中心实际发放的签到补给币。默认使用 `http://127.0.0.1:8021`；如改服务地址，同时配置客户端的 `VITE_CAS_ACCOUNT_URL` 和脚本的 `CAS_ONLINE_TEST_API`。脚本限制在本机回环，截图和凭证默认写入 `artifacts/client/online/`。
+10. 同一服务下运行 `node tests/browser-online-recruit.mjs` 专项验收 0.6.11 线上征募台：主题图、概率页、十连到港、逐舰揭示、跳过、上次到港回看、换池、重复请求幂等与冲突拒绝、刷新后重登、指定兑换、740×360 短屏和余额对账。截图与凭证默认写入 `artifacts/client/online-recruit/`。
 
 验收走真实海图、舰船标记、触屏和母港控件。为缩短等待时间，脚本通过页面正在使用的 Worker 推进模拟秒并读回权威观察，不注入战果或资产。默认在 `artifacts/client/port/` 写入截图、录屏和 JSON 凭证；可用 `CAS_ARTIFACTS` 更换位置。740×360 项是浏览器触屏模拟，实体安卓需另测。

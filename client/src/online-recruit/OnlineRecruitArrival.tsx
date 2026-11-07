@@ -38,6 +38,7 @@ export function OnlineRecruitArrival({ receipts, ships, replay, onClose }: {
     else setPhase('report');
   }
   return <dialog ref={dialog} className="online-recruit-arrival" aria-labelledby={title} data-phase={phase}
+    data-receipt-rarity={phase === 'ship' ? receipt.rarity : undefined}
     onCancel={event => { event.preventDefault(); onClose(); }}>
     <header><div><small>联机征募 · 已入账</small><h2 id={title}>{phase === 'scan' ? '港灯正在引航' : phase === 'ship' ? '舰船到港' : '到港清册'}</h2></div>
       {phase !== 'report' && <button type="button" onClick={() => setPhase('report')}>跳过动画</button>}
@@ -47,7 +48,7 @@ export function OnlineRecruitArrival({ receipts, ships, replay, onClose }: {
         <div><small>{rarityNames[receipt.rarity]} · {ship?.type ?? '舰船'}</small><h3>{ship?.name ?? receipt.ship_id}</h3>
           <p>{receipt.duplicate ? '重复舰船已转为舰队勋章。' : ship?.combat_ready ? '已编入收藏，可加入编队。' : '已编入收藏。'}</p></div>
         {portrait && <img src={portrait} alt={(ship?.name ?? receipt.ship_id) + '立绘'} data-character={receipt.ship_id} />}
-      </div> : <ol className="online-arrival-report" aria-label="本次到港清册">{receipts.map(row =>
+      </div> : <ol className="online-arrival-report" aria-label="本次到港清册" data-count={receipts.length}>{receipts.map(row =>
         <li key={row.id} data-receipt-id={row.id}><b>{byId.get(row.ship_id)?.name ?? row.ship_id}</b>
           <span>{rarityNames[row.rarity]} · {row.duplicate ? '重复转为勋章' : '新舰入列'}</span></li>)}</ol>}
     <footer><span>{phase === 'ship' ? `第 ${index + 1} / ${receipts.length} 艘` : `本次征募 ${receipts.length} 艘`}</span>
