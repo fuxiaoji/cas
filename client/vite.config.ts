@@ -10,6 +10,7 @@ export default defineConfig(({ command, mode }) => {
     define: { __CAS_LOCAL_RADIO__: JSON.stringify(localRadio) },
     resolve: { alias: {
       'virtual:cas-fleet-radio-clips': fileURLToPath(new URL(localRadio ? './src/audio/localRadioClips.ts' : './src/audio/noRadioClips.ts', import.meta.url)),
+      'virtual:cas-commander-clips': fileURLToPath(new URL(localRadio ? './src/audio/commanderRadioClips.ts' : './src/audio/noCommanderClips.ts', import.meta.url)),
     } },
   };
 });

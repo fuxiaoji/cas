@@ -15,8 +15,8 @@ interface VoiceFrame {
   paused: boolean;
 }
 
-type Settings = { enabled: boolean; volume: number };
-type Clip = { cue: string; id: string; side: Side };
+type Settings = { enabled: boolean; volume: number; pack: string };
+type Clip = { cue: string; id: string; side: Side; pack: string };
 type Frame = { scope: string; tick: number; seen: Set<string> };
 const clampVolume = (volume: number) => Number.isFinite(volume) ? Math.min(1, Math.max(0, volume)) : .9;
 const eventId = (event: LogEvent) => event.id == null ? `${event.tick}:${event.kind}:${event.text}` : String(event.id);
@@ -29,9 +29,11 @@ class FleetRadio {
   private current?: Clip;
   private lastCue = new Map<string, number>();
   private clipFor?: (side: Side, cue: string) => string | undefined;
+  private commanderClipFor?: (pack: string, cue: string) => string | undefined;
   private disposed = false;
   private enabled = false;
   private paused = true;
+  private pack = 'auto';
   private unlocked = navigator.userActivation?.hasBeenActive ?? false;
   private background = false;
 
@@ -50,6 +52,11 @@ class FleetRadio {
     if (LOCAL_RADIO) void import('virtual:cas-fleet-radio-clips').then(({ localClip }) => {
       if (this.disposed) return;
       this.clipFor = localClip;
+      this.pump();
+    }).catch(() => { this.queue = []; });
+    if (LOCAL_RADIO) void import('virtual:cas-commander-clips').then(({ commanderClip }) => {
+      if (this.disposed) return;
+      this.commanderClipFor = commanderClip;
       this.pump();
     }).catch(() => { this.queue = []; });
   }
@@ -90,14 +97,18 @@ class FleetRadio {
     const before = this.lastCue.get(event.voiceCue);
     if (before !== undefined && now - before < VOICE_COOLDOWN) return;
     this.lastCue.set(event.voiceCue, now);
-    this.queue.push({ cue: event.voiceCue, id: eventId(event), side });
+    this.queue.push({ cue: event.voiceCue, id: eventId(event), side, pack: this.pack });
   }
 
   private pump() {
     if (!this.enabled || !this.unlocked || this.isSuspended() || !this.clipFor) return;
     while (!this.current && this.queue.length) {
       const candidate = this.queue.shift()!;
-      const url = this.clipFor(candidate.side, candidate.cue);
+      // A chosen commander pack must never silently fall back to the faction
+      // radio: without the private files the seat stays silent instead.
+      const url = candidate.pack !== 'auto'
+        ? this.commanderClipFor?.(candidate.pack, candidate.cue)
+        : this.clipFor(candidate.side, candidate.cue);
       if (!url) continue;
       this.current = candidate;
       this.audio.src = url;
@@ -114,6 +125,7 @@ class FleetRadio {
     const wasEnabled = this.enabled;
     this.enabled = settings.enabled;
     this.paused = paused;
+    this.pack = settings.pack;
     if (!observation || !live || replaying) {
       if (this.frame) this.stop();
       this.frame = undefined;
@@ -162,8 +174,9 @@ class FleetRadio {
 function readSettings(key: string): Settings {
   try {
     const saved = JSON.parse(localStorage.getItem(key) ?? '{}');
-    return { enabled: saved.enabled !== false, volume: clampVolume(saved.volume) };
-  } catch { return { enabled: true, volume: .9 }; }
+    return { enabled: saved.enabled !== false, volume: clampVolume(saved.volume),
+      pack: typeof saved.pack === 'string' && saved.pack ? saved.pack : 'auto' };
+  } catch { return { enabled: true, volume: .9, pack: 'auto' }; }
 }
 
 export function useBattleVoice({ settingsKey = 'cas.fleet-radio.v1', ...frame }: VoiceFrame & { settingsKey?: string }) {
@@ -180,7 +193,8 @@ export function useBattleVoice({ settingsKey = 'cas.fleet-radio.v1', ...frame }:
     catch { /* An unavailable local setting must not interrupt the battle. */ }
     radio?.update(frame, settings);
   }, [radio, settings, settingsKey, frame.session, frame.observation, frame.live, frame.replaying, frame.paused]);
-  return { available: LOCAL_RADIO, enabled: settings.enabled, volume: settings.volume,
+  return { available: LOCAL_RADIO, enabled: settings.enabled, volume: settings.volume, pack: settings.pack,
     setEnabled: (enabled: boolean) => setSettings((previous) => ({ ...previous, enabled })),
-    setVolume: (volume: number) => setSettings((previous) => ({ ...previous, volume: clampVolume(volume) })) };
+    setVolume: (volume: number) => setSettings((previous) => ({ ...previous, volume: clampVolume(volume) })),
+    setPack: (pack: string) => setSettings((previous) => ({ ...previous, pack: pack || 'auto' })) };
 }
