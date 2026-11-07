@@ -61,7 +61,11 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
     }
     let (reload, train) = match class {
         "fletcher" | "ausburne" | "claxton" | "dyson" | "converse" | "spence" => (6, 18.),
-        "cleveland" => (10, 10.),
+        "cleveland" | "cleveland_empress" => (10, 10.),
+        "myoko" => (12, 6.),
+        "agano" => (10, 8.),
+        "shiratsuyu" | "yugumo" => (12, 6.),
+        "akizuki" => (8, 10.),
         "kagero" => (9, 9.),
         "sendai" => (12, 7.5),
         "onami" | "makinami" | "amagiri" | "yugiri" => (9, 9.),

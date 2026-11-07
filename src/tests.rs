@@ -198,6 +198,70 @@ fn ai_exposes_a_searchlight_in_a_close_night_battle() {
 }
 
 #[test]
+fn empress_augusta_bay_runs_the_full_night_surface_kit() {
+    let mut e = Engine::default();
+    let start = ask(
+        &mut e,
+        json!({"op":"new","seed":6106,"side":"allies","enemy":"coord","variant":"empress"}),
+    );
+    assert_eq!(start["ships"].as_array().unwrap().len(), 12, "the allied seat sees its twelve hulls");
+    assert_eq!(start["fleets"].as_array().unwrap().len(), 3);
+    assert_eq!(start["environment"], json!({"light":"night","visibility":10,"sea_state":1,"precipitation":true}));
+    for fleet in [1, 2, 3] {
+        ask(
+            &mut e,
+            json!({"op":"ai","fleet":fleet,"profile":"coord","mode":"auto","move":true,"gun":true,"torpedo":true}),
+        );
+    }
+    let mut end = ask(&mut e, json!({"op":"step","seconds":2700}));
+    if end["result"].is_null() {
+        end = ask(&mut e, json!({"op":"step","seconds":2700}));
+    }
+    assert!(!end["result"].is_null(), "the scenario must reach a result");
+    let report = ask(&mut e, json!({"op":"report"}));
+    let events = report["events"].as_array().unwrap();
+    for kind in ["secondary", "illumination", "gun", "torpedo"] {
+        assert!(
+            events.iter().any(|event| event["kind"] == kind),
+            "the surface kit must produce a {kind} event"
+        );
+    }
+    let save = ask(&mut e, json!({"op":"save"}));
+    assert_eq!(ask(&mut e, json!({"op":"replay","save":save})), end);
+}
+
+#[test]
+fn v10_secondary_battery_fires_on_its_own() {
+    let mut w = World::new(6106, 0, "coord", "night", "coord", 0).unwrap();
+    w.enable_realtime().unwrap();
+    let def = w
+        .data
+        .ships
+        .iter()
+        .position(|d| d.id == "cleveland_empress")
+        .expect("the Empress Cleveland card must exist");
+    let id = w
+        .spawn(def, 0, 1, "测试克利夫兰".into(), P { x: 6000., y: 6000. }, 90.)
+        .unwrap();
+    w.fleet_mut(1).unwrap().members.push(id);
+    // A target 3,000 yards ahead: secondary range, no main-battery order.
+    let target = w.ship(6).unwrap().p;
+    w.ship_mut(6).unwrap().p = P { x: target.x, y: 6000. };
+    w.ship_mut(6).unwrap().p = P { x: 6000. + 3000. * YARD, y: 6000. };
+    w.detect(true);
+    for _ in 0..30 {
+        w.advance();
+        if w.events.iter().any(|event| event.kind == "secondary") {
+            break;
+        }
+    }
+    assert!(
+        w.events.iter().any(|event| event.kind == "secondary"),
+        "the secondary battery must engage without a main-gun order"
+    );
+}
+
+#[test]
 fn ai_lights_a_starshell_when_the_scenario_has_them() {
     let mut e = Engine::default();
     ask(

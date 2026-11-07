@@ -1,4 +1,5 @@
 mod ai;
+mod empress;
 pub mod campaign;
 mod combat;
 mod damage;

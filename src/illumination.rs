@@ -31,7 +31,9 @@ pub(crate) struct LightShot {
 
 impl World {
     pub(crate) fn has_starshells(&self) -> bool {
-        self.version == VERSION || (self.realtime() && matches!(self.variant.as_str(), TRAINING | RADAR_TRAINING))
+        self.version == VERSION
+            || self.variant == crate::empress::VARIANT
+            || (self.realtime() && matches!(self.variant.as_str(), TRAINING | RADAR_TRAINING))
     }
 
     fn light_shot(&self, ship: &Ship, contact: &Contact) -> E<LightShot> {

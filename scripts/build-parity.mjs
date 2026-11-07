@@ -63,6 +63,9 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     const ownFleets = side === 'axis' ? [1, 2, 3] : [4, 5, 6, 7, 8];
     for (const fleet of ownFleets) commands.push(
       { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: side === 'axis', gun: true, torpedo: true });
+  } else if (variant === 'empress') {
+    for (const fleet of [1, 2, 3]) commands.push(
+      { op: 'ai', fleet, profile: 'coord', mode: 'auto', move: true, gun: true, torpedo: true });
   } else if (campaign && side === 'axis') {
     for (const [fleet, x, y, speed] of [[3, 30000, 35000, 35], [4, 33000, 3000, 33]]) commands.push(
       { op: 'route', fleet, mode: 'follow', speed, points: [{ x, y }, { x: 400, y }] },
@@ -176,8 +179,13 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     assert(gun && gun.tick > 0 && gun.tick < 180);
     assert(onTheWay && onTheWay.arcHeightM > 0 && onTheWay.impactTick - onTheWay.launchTick > 8);
   }
-  assert.equal(start.ships.length, variant === 'prologue' ? 9 : kula ? (side === 'allies' ? 7 : 10) : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
+  assert.equal(start.ships.length, variant === 'prologue' ? 9 : variant === 'empress' ? 12 : kula ? (side === 'allies' ? 7 : 10) : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
   assert.equal(start.variant, variant);
+  if (variant === 'empress') {
+    assert.equal(start.fleets.length, 3);
+    assert.equal(start.environment.visibility, 10);
+    assert.equal(start.environment.precipitation, true);
+  }
   if (variant === 'prologue') {
     const handover = wasmOutput[2].data;
     assert.equal(handover.contacts.filter(contact => contact.kind === 'bb').length, 2);
@@ -239,6 +247,7 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('axis', 1, 'channel-action-rts', 17, true, true),
   await verify('allies', 1, 'prologue', 6106, true),
   await verify('allies', 1, 'night-radar-training', 6106, true),
+  await verify('allies', 1, 'empress', 6106, true),
   await verify('allies', 1, 'kula-gulf-rts', 6106, true, true),
   await verify('axis', 2, 'kula-gulf-rts', 2, true, true)];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';

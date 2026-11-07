@@ -161,7 +161,10 @@ impl World {
         let def = &self.data.ships[ship.def];
         let damage = def.dp - ship.hp;
         if def.damage_speed.is_empty() {
-            return def.max_knots.min(self.flooding_speed_limit(ship));
+            return def
+                .max_knots
+                .min(ship.speed_cap.unwrap_or(f64::INFINITY))
+                .min(self.flooding_speed_limit(ship));
         }
         let i = def
             .damage_speed
@@ -170,6 +173,7 @@ impl World {
             .unwrap_or(0);
         def.damage_speed[(i + ship.engineering_speed_levels).min(def.damage_speed.len() - 1)]
             .knots
+            .min(ship.speed_cap.unwrap_or(f64::INFINITY))
             .min(self.flooding_speed_limit(ship))
     }
     fn fleet_max(&self, f: &Fleet) -> f64 {

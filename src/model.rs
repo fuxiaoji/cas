@@ -153,6 +153,10 @@ pub struct ShipDef {
     pub speed_loss_knots: f64,
     pub accel_knots_per_turn: f64,
     pub gun: GunDef,
+    /// cas-realtime-v10 (CAS 6.1.5): secondary battery used against surface
+    /// targets. It fires on its own reload cycle at the main battery's target.
+    #[serde(default)]
+    pub secondary: Option<GunDef>,
     pub torpedo: Option<TorpedoDef>,
     #[serde(default)]
     pub length_m: f64,
@@ -183,6 +187,13 @@ pub struct GunDef {
     pub pen_belt: Vec<Option<f64>>,
     pub pen_deck: Vec<Option<f64>>,
     pub armor_piercing: bool,
+    /// cas-realtime-v10: the forward main-battery director's relative arc.
+    /// Aft mounts outside it fall to local control.
+    #[serde(default)]
+    pub director_arc: Option<[f64; 2]>,
+    /// Seconds between secondary salvos (CAS 6.1.5 rate).
+    #[serde(default)]
+    pub reload_seconds: Option<u32>,
 }
 #[derive(Clone, Debug, Deserialize)]
 pub struct GunMount {
@@ -339,6 +350,10 @@ pub struct Ship {
     /// finishes its next reload (0 = no reload running).
     pub torp_reserve: Vec<u32>,
     pub torp_reload_at: Vec<u32>,
+    /// Tick when the secondary battery can fire its next salvo.
+    pub secondary_ready: u32,
+    /// Scenario-imposed speed ceiling (e.g. Haguro after the 0130 bombing).
+    pub speed_cap: Option<f64>,
 }
 impl Ship {
     pub fn alive(&self) -> bool {

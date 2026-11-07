@@ -109,7 +109,7 @@ impl World {
     }
 
     pub fn new(seed: u32, player: usize, enemy: &str, variant: &str, profile: &str, leader_slot: usize) -> E<Self> {
-        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING | crate::illumination::RADAR_TRAINING | crate::prologue::VARIANT) {
+        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING | crate::illumination::RADAR_TRAINING | crate::prologue::VARIANT | crate::empress::VARIANT) {
             return Err("未知演习想定".into());
         }
         Ai::new(profile, "manual").validate()?;
@@ -122,6 +122,10 @@ impl World {
         }
         let data = Self::exercise_data()?;
         let mut w = Self::blank(data, seed, player, enemy, variant, profile, leader_slot);
+        if variant == crate::empress::VARIANT {
+            crate::empress::fill(&mut w)?;
+            return Ok(w);
+        }
         for s in 0..2 {
             let (ids, x, y, h, inc, name) = if s == 0 {
                 (
@@ -261,7 +265,15 @@ impl World {
             torp_mount_destroyed: vec![false; d.torpedo.iter().map(|t| t.mounts.len()).sum()],
             torp_reserve: d.torpedo.iter().flat_map(|t| t.mounts.iter().map(|m| m.reserve)).collect(),
             torp_reload_at: vec![0; d.torpedo.iter().flat_map(|t| t.mounts.iter()).count()],
+            secondary_ready: 0, speed_cap: None,
         });
+        // Per-ship arrays are indexed by hull id; campaigns can field more
+        // than the ten exercise hulls.
+        let hulls = self.ships.len();
+        if self.gun_streak.len() < hulls {
+            self.gun_streak.resize(hulls, (0, 0, 0));
+            self.surface_damage.resize(hulls, Default::default());
+        }
         Ok(id)
     }
     pub fn from_save(s: Saved, tick: u32) -> E<Self> {
@@ -623,7 +635,7 @@ impl World {
             .filter(|cloud| self.ships.iter().any(|s| s.side == owner && s.alive() && s.p.dist(cloud.p) <= 40_000.))
             .map(|cloud| json!({"x": cloud.p.x, "y": cloud.p.y, "expires": cloud.expires})).collect();
         let mut view = json!({"tick":self.tick,"limit":self.field.limit,"width":self.field.width,"height":self.field.height,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,"smoke":smoke_view,
+            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::empress::VARIANT=>crate::empress::LABEL,crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,"smoke":smoke_view,
             "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
         if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
         if self.radar_enabled() {
@@ -775,6 +787,7 @@ impl World {
         }
         self.resolve_fire(false);
         if self.realtime() { self.resolve_realtime_guns(); }
+        if self.v10_family() { self.resolve_secondaries(); }
         self.resolve_damage_control();
         self.advance_shells();
         if self.variant == live::VARIANT {

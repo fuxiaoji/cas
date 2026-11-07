@@ -993,6 +993,19 @@ impl World {
         if self.v10_family() && b >= 2 {
             modifiers -= self.over_concentration(s, t);
         }
+        // CAS 6.1.1: a single forward director cannot control aft mounts once
+        // the target falls outside its arc; those mounts use local control (-2).
+        if self.v10_family() {
+            if let Some(arc) = gun.director_arc {
+                let relative = norm((t.p - s.p).heading() - s.h);
+                if !circle(relative, arc) && gun.mounts.iter().any(|mount| {
+                    let center = norm(mount.arc[0] + norm(mount.arc[1] - mount.arc[0]) / 2.);
+                    (90. ..270.).contains(&center)
+                }) {
+                    modifiers -= 2;
+                }
+            }
+        }
         if self.environment().light == crate::night::Light::Night {
             let mut lighting = (!prelight).then(||self.illumination_modifier(s,t)).flatten();
             // cas-realtime-v10 (5.4.4.1): a target held in a friendly
@@ -1285,6 +1298,105 @@ impl World {
             .find(|(_, p)| roll <= **p)
             .map_or(0, |(i, _)| i as u32 + 1)
     }
+    /// cas-realtime-v10 (CAS 6.1.5): the secondary battery fires on its own
+    /// reload cycle at the main battery's target, or the nearest visible
+    /// contact. Hit chance uses the same GS table as the main battery; damage
+    /// and penetration use the secondary gun's own row.
+    pub(crate) fn resolve_secondaries(&mut self) {
+        if !self.v10_family() {
+            return;
+        }
+        let tick = self.tick;
+        let ids: Vec<u32> = self
+            .ships
+            .iter()
+            .filter(|s| s.alive() && s.secondary_ready <= tick)
+            .map(|s| s.id)
+            .collect();
+        let mut impacts = Vec::new();
+        let mut events = Vec::new();
+        for id in ids {
+            let Some(s) = self.ship(id).cloned() else { continue };
+            let Some(gun) = self.data.ships[s.def].secondary.clone() else { continue };
+            let target = s
+                .battery
+                .order
+                .as_ref()
+                .and_then(|order| self.contact(s.side, &order.target).ok().map(|c| c.ship))
+                .or_else(|| {
+                    self.contacts[s.side]
+                        .iter()
+                        .map(|c| c.ship)
+                        .filter(|target| self.ship(*target).is_some_and(Ship::alive))
+                        .min_by(|a, b| {
+                            let da = self.ship(*a).map_or(f64::INFINITY, |t| s.p.dist(t.p));
+                            let db = self.ship(*b).map_or(f64::INFINITY, |t| s.p.dist(t.p));
+                            da.total_cmp(&db)
+                        })
+                });
+            let Some(t) = target.and_then(|id| self.ship(id).cloned()).filter(|t| t.alive()) else {
+                continue;
+            };
+            let distance = s.p.dist(t.p) / YARD;
+            let Some(band) = gun.range_yd.iter().position(|max| distance <= *max) else {
+                continue;
+            };
+            let relative = norm((t.p - s.p).heading() - s.h);
+            let barrels: u32 = gun
+                .mounts
+                .iter()
+                .filter(|mount| m_arc(relative, mount.arc, mount.arc2))
+                .map(|mount| mount.barrels)
+                .sum();
+            if barrels == 0 {
+                continue;
+            }
+            let chance = self.gun_values(&s, &t, band, barrels, false, &[], 0, false).0;
+            if (self.d(100) as f64) <= chance {
+                let td = &self.data.ships[t.def];
+                let deck = band >= 2 && self.d(100) > if band == 2 { 40 } else { 30 };
+                let armor = if deck { td.armor_deck } else { td.armor_belt };
+                let pen = if deck { &gun.pen_deck } else { &gun.pen_belt };
+                let mut damage = gun.damage[band] * gun_multiplier(&self.data.rules, barrels, band);
+                if self.realtime_point_blank(&s, &t) {
+                    damage *= 2.;
+                }
+                let mut penetrated = true;
+                if let Some(p) = pen.get(band).copied().flatten() {
+                    if p <= armor && armor > 0. {
+                        damage *= 0.5;
+                        penetrated = false;
+                    }
+                    if gun.armor_piercing && armor <= 2. && p >= armor + 10. {
+                        damage *= 0.1;
+                    }
+                }
+                impacts.push(Impact::gun(&t, damage, s.side, penetrated));
+                events.push((s.side, s.name.clone(), t.name.clone(), s.p));
+            }
+            let reload = gun.reload_seconds.unwrap_or(if gun.caliber_mm <= 76. {
+                3
+            } else if gun.caliber_mm <= 128. {
+                4
+            } else {
+                8
+            });
+            if let Some(ship) = self.ship_mut(id) {
+                ship.secondary_ready = tick + reload;
+            }
+        }
+        for (side, name, target, p) in events {
+            self.add(
+                1 << side,
+                "secondary",
+                format!("{name} · 副炮向 {target} 射击"),
+                Some("CAS-6.1.5"),
+                Some(p),
+            );
+        }
+        self.apply_impacts(impacts);
+    }
+
     /// cas-realtime-v10 (CAS 6.3): refill due torpedo mounts from their
     /// reserve. The interval starts when the mount fires; a destroyed mount
     /// never reloads, and older versions keep the frozen no-reload behaviour.

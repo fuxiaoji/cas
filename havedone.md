@@ -1,5 +1,13 @@
 # 验证记录
 
+## 2026-11-07｜副炮、多指挥仪与奥古斯塔皇后湾运行时（RTS-GUN-06/07、RTS-SCEN-01）
+
+- 副炮对海：`ShipDef.secondary` 独立自动火力组，按主炮当前目标（否则最近接触）每 `reload_seconds` 掷 D100，命中使用副炮自身表伤/穿深；不占主炮指令与装填。Cleveland 5in/38、妙高八九式 12.7cm/40、阿贺野九八式 8cm/60 已接入。
+- 多指挥仪：`GunDef.director_arc` 单前向指挥仪在目标出扇区时对尾炮施加局地控制 −2；Cleveland/妙高双指挥仪不触发。观察尺寸降一级未建模，登记差额。
+- 运行时 `variant:"empress"`：22 艘具名舰、每方三列纵队、能见度 10%、阵雨、海况 1、Haguro 30 节上限；照明弹、探照灯、烟幕、副炮、鱼雷再装填、临界与雷达引导全部启用。
+- 新增舰级 `cleveland_empress`、`myoko`、`agano`、`shiratsuyu`、`yugumo`、`akizuki` 进演习数据；实时炮座时序核准（10/10、12/6、10/8、12/6、8/10 秒/度）。
+- 验收：引擎 75 项（含 22 舰整场、副炮、再装填、过集中）、服务端 32 项、parity **18 场**（新增 empress）全过；empress 种子 6106 在 1064 秒内打出结果并逐字节重演一致（[对照](artifacts/cas-parity-20261107-empress.json)）。托罗基纳角几何函数已备，评级待 11 号关位绑定。
+
 ## 2026-11-07｜鱼雷再装填与远距过度集中（RTS-TORP-02 / RTS-GUN-05）
 
 - 鱼雷座按 `data/stage0.json` 已有的 `reserve`／`reload_seconds` 再装填：Kagero 级每座 4 枚备雷、360 秒；Sendai 每座 2 枚八年式、900 秒；Fletcher 无备雷。被武器临界击毁的发射管不再装填。仅 v10 家族，v9 家族与库拉湾保持冻结。
