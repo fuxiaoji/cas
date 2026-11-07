@@ -162,4 +162,4 @@
 - 协议以实际合入代码对齐：`GET /pvp/ranked/status` 返回 `season/ratings/historical_ratings/queue/matches/available_budgets/point_table_version`；排位 summary 带 `mode='ranked'`、`budget`、`season_id`、`own_fleet`、`fleet_cost`、`rated`、`rating`。与 roadmap 文字的两处差异：点表版本实际为 `cas-points-surface-v1`（文件名才是 cas-competitive-points-v1.json）；`end_reason` 作废时当前代码固定为 `server_fault` 而非 null，前端按 `rated=false` 或 `result=null` 兜底。
 - 验收（全部真跑）：服务端 16 项单测含 2 项原生双席测试通过（`CAS_TEST_DUEL_SIM_PATH` 指向本次构建的 cas-sim）；`tsc` 通过；新增 `client/tests/browser-online-ranked.mjs` 两席全新账号序章领舰、1875 分预设、实际匹配、双席各自战局、一席投降、两席排位战果（+12 白银／−12 青铜）、取消入队不再匹配、操作端 CLI 作废后两席停止操作且积分不变，凭证与截图在 artifacts/client/online-ranked/。回归 browser-online-duel.mjs、browser-online-fleet.mjs、browser-online.mjs 全部通过。
 - 剩余边界：10000 分档等点表开放后需另行验收；`end_reason=null` 的作废形态当前服务端代码不会产生，前端已兼容但无实测；排位战果的重演入口沿用既有战报，未单独录结局图。
->>>>>>> ranked-ui-v1
+- 分支 `ranked-ui-v1` 已审查合入主仓（`3e51193`），排位服务契约按实际代码登记进 `docs/battle-contract.md`（`1c3847d`）；合入后在主仓重跑 `browser-online-ranked.mjs` 通过：两全新账号实际匹配、投降结算 −12 与积分变动、`--void-ranked` 作废后两席停止操作且积分不变（[主仓凭证](artifacts/client/online-ranked/browser-receipt.json)）。
