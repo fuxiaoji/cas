@@ -14,6 +14,7 @@ import type { LobbySection } from './GrowthPort';
 import { Login } from './Login';
 import { useBattleVoice } from './audio/BattleVoice';
 import { useOriginalScore } from './audio/OriginalScore';
+import { playClickCue, useClickCues } from './audio/click/ClickCues';
 import { ActivityCenter } from './activities/ActivityCenter';
 import { recordChallengeClear } from './activities/week';
 import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY } from './prologue';
@@ -145,6 +146,21 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const music = useOriginalScore({ settingsKey: profile.id + ':score',
     scene: storyOpen ? 'prologue' : portOpen || replay ? 'off' : result ? (result.winner === o?.side ? 'victory' : 'defeat')
       : contactCount ? 'engagement' : 'maneuver' });
+  const uiSound = useClickCues(profile.id + ':ui-cues');
+  const seatError = portError ?? loadError ?? cloudError;
+
+  // Operation click cues, ported from the 0.6.11 global click split:
+  // primary actions confirm, ordinary controls tap. See audio/click/ledger.json.
+  useEffect(() => {
+    const click = (event: MouseEvent) => {
+      const el = (event.target as Element | null)?.closest?.('button,summary,select,input[type=checkbox]');
+      if (el && !(el as HTMLButtonElement).disabled)
+        playClickCue(el.classList.contains('primary') || el.closest('.commit-bar') ? 'confirm' : 'tap');
+    };
+    document.addEventListener('click', click, true);
+    return () => document.removeEventListener('click', click, true);
+  }, []);
+  useEffect(() => { if (seatError) playClickCue('error'); }, [seatError]);
 
   function record(...signals: TrainingSignal[]) {
     const active = courseLive.current;
@@ -158,6 +174,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     window.clearTimeout(noticeTimer.current);
     setNotice(o?.campaign ? campaignText(message) : message);
     noticeTimer.current = window.setTimeout(() => setNotice(''), 4200);
+  }
+  function warn(message: string) {
+    playClickCue('error');
+    hint(message);
   }
   function update(observation: Observation, live = true) {
     clockTick.current = observation.tick;
@@ -212,7 +232,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         : localCampaignId && data.campaign ? { ...data, localCampaignId } : data));
       lastSave.current = typeof data.tick === 'number' ? data.tick : clockTick.current;
       if (toast) hint('演习已保存，下次打开可继续。');
-    } catch (error) { if (toast) hint('保存失败：' + errorText(error)); }
+    } catch (error) { if (toast) warn('保存失败：' + errorText(error)); }
   }
 
   useEffect(() => {
@@ -234,7 +254,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             lastSave.current = observation.tick; update(observation); return;
           }
         } catch {
-          hint('旧存档无法恢复，已开始新的演习。');
+          warn('旧存档无法恢复，已开始新的演习。');
         }
         update(await ask<Observation>({ op: 'new', ...defaultSetup }));
         await persist();
@@ -244,7 +264,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   }, []);
   useEffect(() => {
     try { writePort(port, accountPortKey); }
-    catch { hint('本机无法保存母港进度。'); }
+    catch { warn('本机无法保存母港进度。'); }
   }, [port]);
   useEffect(() => {
     if (!cloudToken) return;
@@ -300,7 +320,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       void onlineRequest<OnlineBattle | OnlineDuel>(cloudPath, cloudToken).then(next => {
         if (!cancelled) { syncBattle(next); if (showedError) hint('已恢复联机战局。'); showedError = false; }
       }, error => {
-        if (!cancelled && !showedError) { hint(errorText(error)); showedError = true; }
+        if (!cancelled && !showedError) { warn(errorText(error)); showedError = true; }
       }).finally(() => { fetching = false; });
     }, 450);
     return () => { cancelled = true; window.clearInterval(interval); };
@@ -331,7 +351,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         update(observation, !replay);
         if (replay && observation.tick >= replay.end) setRunning(false);
         if (!replay && (observation.result || observation.tick - lastSave.current >= 20)) void persist();
-      }, (error) => { if (!disposed) { hint(errorText(error)); setRunning(false); } }).finally(() => { inFlight.current = false; });
+      }, (error) => { if (!disposed) { warn(errorText(error)); setRunning(false); } }).finally(() => { inFlight.current = false; });
     }, 125);
     return () => { disposed = true; window.clearInterval(interval); };
   }, [running, busy, speed, finished, replay]);
@@ -380,9 +400,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
 
   function selectShip(ship: Ship) {
     if (o?.variant === 'prologue' && ship.fleet !== 1) {
-      hint('其他编队由总指挥调度。请指挥第五驱逐小队。');
+      warn('其他编队由总指挥调度。请指挥第五驱逐小队。');
       return;
     }
+    playClickCue('select');
     setShipId(ship.id);
     if (ship.fleet !== null && ship.fleet !== fleet?.id) {
       setFleetId(ship.fleet);
@@ -438,7 +459,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       campaignId.current = undefined;
       await persist();
       resetPanel(); update(next); setDialog(false); setTraining(false); setPresetActive(false);
-    } catch (error) { hint(errorText(error)); }
+    } catch (error) { warn(errorText(error)); }
     finally { setBusy(false); }
   }
   async function oneStep() {
@@ -1002,6 +1023,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             </div>
             {radio.available && <label className="radio-toggle"><input type="checkbox" checked={radio.enabled}
               onChange={event => radio.setEnabled(event.target.checked)} /> 舰队电台语音</label>}
+            <label className="radio-toggle"><input type="checkbox" checked={uiSound.enabled}
+              onChange={event => uiSound.setEnabled(event.target.checked)} /> 操作点击音效</label>
             {!latest.length && <p className="empty-state">开始演习后，这里会记录接触、开火与战果。</p>}
             <ol>{latest.map((event, index) =>
               <li key={event.id ?? (String(event.tick) + ':' + index)} className={'log-event ' + eventTone(event)}>
@@ -1037,6 +1060,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         <label>演习编号 <input type="number" min={0} max={4294967295} value={setup.seed} onChange={(event) => setSetup({ ...setup, seed: Math.max(0, Math.min(4294967295, Math.trunc(Number(event.target.value)))) })} /></label>
         {radio.available && <label>电台音量 <input type="range" min={0} max={1} step={0.05} value={radio.volume}
           onChange={event => radio.setVolume(Number(event.target.value))} /></label>}
+        <label>操作音量 <input type="range" min={0} max={1} step={0.05} value={uiSound.volume}
+          onChange={event => uiSound.setVolume(Number(event.target.value))} /></label>
         <label><input type="checkbox" checked={music.enabled} onChange={event => music.setEnabled(event.target.checked)} /> 战斗配乐</label>
         <label>配乐音量 <input type="range" min={0} max={1} step={0.05} value={music.volume}
           onChange={event => music.setVolume(Number(event.target.value))} /></label>

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
 import fs from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -28,8 +29,14 @@ try {
         window.casRadioLoads.push({ id: target.dataset.eventId, cue: target.dataset.voiceCue, source: target.getAttribute('src') });
       }
     }, true);
+    window.casUiCues = [];
+    document.addEventListener('cas-ui-cue', ({ detail }) => window.casUiCues.push(detail));
   });
   const loads = () => page.evaluate(() => window.casRadioLoads);
+  const cues = () => page.evaluate(() => window.casUiCues);
+  const lastCue = async () => (await cues()).at(-1);
+  const cueError = () => page.evaluate(async () =>
+    (await import('/src/audio/click/ClickCues.ts')).playClickCue('error'));
   const waitAudio = (paused) => page.waitForFunction((expected) =>
     document.querySelector('audio[data-channel=fleet-radio]')?.paused === expected, paused);
 
@@ -90,10 +97,92 @@ try {
   await page.getByRole('checkbox', { name: '舰队电台语音' }).uncheck();
   await waitAudio(true);
   assert.equal((await state()).id, undefined);
+
+  // --- Operation click cues (port of the 0.6.11 synthesized uiCue) ---
+  await button('编队').click();
+  assert.equal((await lastCue()).kind, 'tap', 'ordinary controls play the tap cue');
+  await page.locator('.roster-ship').first().click();
+  assert.equal((await lastCue()).kind, 'select', 'picking a ship plays the select cue');
+  await cueError();
+  assert.equal((await lastCue()).kind, 'error', 'rejected or failed actions play the error cue');
+  await button('演习设置').click();
+  await page.getByLabel('操作音量').fill('0.25');
+  await button('开始新演习').click();
+  await page.getByRole('dialog').waitFor({ state: 'hidden' });
+  assert.equal((await lastCue()).kind, 'confirm', 'primary actions play the confirm cue');
+  await page.waitForFunction(() => Object.entries(localStorage)
+    .some(([key, value]) => key.endsWith(':ui-cues') && JSON.parse(value).volume === .25));
+
+  await page.reload();
+  await signInLocal(page, 'cas-radio-qa', false);
+  await resumeExercise(page);
+  const firstReload = await page.evaluate(() => Object.fromEntries(Object.entries(localStorage)));
+  const uiKey = Object.keys(firstReload).find((key) => key.endsWith(':ui-cues'));
+  assert.deepEqual(JSON.parse(firstReload[uiKey]), { enabled: true, volume: .25 }, 'click-cue volume persists');
+  await button('战情记录').click();
+  await page.getByRole('checkbox', { name: '操作点击音效' }).uncheck();
+  await page.waitForFunction(() => Object.entries(localStorage)
+    .some(([key, value]) => key.endsWith(':ui-cues') && JSON.parse(value).enabled === false));
+  const quiet = (await cues()).length;
+  await button('舰况').click();
+  await cueError();
+  assert.equal((await cues()).length, quiet, 'switching the click cues off silences them');
+
+  await page.reload();
+  await signInLocal(page, 'cas-radio-qa', false);
+  await resumeExercise(page);
+  const secondReload = await page.evaluate(() => Object.fromEntries(Object.entries(localStorage)));
+  assert.deepEqual(JSON.parse(secondReload[uiKey]), { enabled: false, volume: .25 }, 'click-cue switch persists');
+  await button('战情记录').click();
+  assert(!(await page.getByRole('checkbox', { name: '操作点击音效' }).isChecked()), 'switch stays off after reload');
+  const quietReload = (await cues()).length;
+  await button('舰况').click();
+  assert.equal((await cues()).length, quietReload, 'no cue after reload while the switch stays off');
+  await button('战情记录').click();
+  await page.getByRole('checkbox', { name: '操作点击音效' }).check();
+  await page.getByRole('checkbox', { name: '舰队电台语音' }).check();
+  await page.waitForFunction(() => Object.entries(localStorage)
+    .some(([key, value]) => key.endsWith(':ui-cues') && JSON.parse(value).enabled === true));
+  await button('编队').click();
+  const restored = await lastCue();
+  assert.equal(restored.kind, 'tap', 're-enabling restores ordinary tap cues');
+  assert.ok(Math.abs(restored.level - .25 * .11) < 1e-9, `restored volume drives the gain: ${restored.level}`);
+
   assert.deepEqual(errors, []);
   const report = { realSeatEvent: started.id, sameCueLoadedOnce: true, nativeBackgroundPaused: true,
     foregroundRespectedManualPause: true, resumedSameClip: true, silentReplay: true, safeReturnToLive: true,
-    distinctPacks: ['wows-us', 'wows-jp'], volume: axis.volume, muteStopsPlaying: true };
+    distinctPacks: ['wows-us', 'wows-jp'], volume: axis.volume, muteStopsPlaying: true,
+    clickCues: { tap: true, select: true, error: true, confirm: true, switchSilences: true, persistsAcrossReload: true },
+    clickCueVolumeDrivesGain: true };
   await fs.writeFile(out + '/browser-receipt.json', JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
 } finally { await browser.close(); }
+
+// --- A formal build must not carry the private faction radio ---
+if (!process.env.CAS_SKIP_FORMAL_BUILD) {
+  const clientRoot = fileURLToPath(new URL('../', import.meta.url));
+  const dist = clientRoot + 'dist/';
+  await fs.rm(dist, { recursive: true, force: true });
+  const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith('VITE_CAS_')));
+  await new Promise((resolve, reject) => {
+    const child = spawn('npm', ['run', 'build'], { cwd: clientRoot, env, shell: process.platform === 'win32' });
+    child.on('exit', (code) => code === 0 ? resolve(undefined) : reject(new Error('formal build exited with ' + code)));
+  });
+  const offenders = [];
+  const walk = async (dir) => {
+    for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
+      const path = dir + entry.name;
+      if (entry.isDirectory()) await walk(path + '/');
+      else if (/\.m4a$/i.test(entry.name)) offenders.push(path);
+    }
+  };
+  await walk(dist);
+  assert.equal(offenders.length, 0, 'formal build must not carry radio audio: ' + offenders);
+  for (const entry of await fs.readdir(dist + 'assets/', { withFileTypes: true })) {
+    if (entry.name.endsWith('.js')) {
+      const text = await fs.readFile(dist + 'assets/' + entry.name, 'utf8');
+      assert.ok(!text.includes('wows-us'), entry.name + ' references the faction radio files');
+    }
+  }
+  console.log(JSON.stringify({ formalBuildClean: true, dist: dist }, null, 2));
+}

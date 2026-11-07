@@ -1,0 +1,21 @@
+{
+  "feature": "操作点击音效（点按/确认/选舰/错误 四种短促提示音）",
+  "source_worktree": "F:/Codex/worktrees/android-mobile/铁底湾",
+  "source_commit": "41a1fb93063673ac8f84388a8f326a8b1a5fc3d5",
+  "source_implementation": [
+    "mobile/src/sound.ts — SoundDirector.uiCue：四种提示音的合成定义（音高、时距、包络、uiVolume 缩放）与开关门槛",
+    "mobile/src/main.tsx — 全局点击分流（button/summary/select/checkbox → confirm/tap）、选舰 select、错误 error",
+    "mobile/src/Presentation.tsx — 「声音与演出」面板：操作点击音效开关、操作音量滑杆"
+  ],
+  "asset_files": [],
+  "finding": "0.6.11 原作不存在四种点击音效的音频文件：它们由原代码在运行时用 WebAudio 正弦振荡器合成（tap 1250Hz；confirm 720→1080Hz；select 900Hz；error 220→170Hz；音量 = uiVolume×0.11，同一 AudioContext，静音/后台不播）。因此没有可复制的录音；CAS 以代码移植原合成参数实现（client/src/audio/click/ClickCues.ts），未使用任何占位或自造音频冒充原素材。",
+  "rights": "纯代码合成音，不包含任何第三方录音，无授权限制。",
+  "build_scope": "默认包含于正式构建与本地试玩构建（无素材分发问题）。",
+  "wiring": {
+    "tap": "全局 document 点击捕获：button/summary/select/checkbox（未禁用）且非主行动",
+    "confirm": "主行动（.primary 按钮，对应原作 primary/commit-bar）",
+    "select": "选舰（BattleMap/编制表 selectShip 成功选中）",
+    "error": "失败提示（hint 失败分支与 portError/cloudError 等错误状态）",
+    "settings": "每账号 localStorage「{profile}:ui-cues」：{enabled, volume}，默认 enabled=true, volume=0.35（与原作 defaultMedia.uiSound/uiVolume 一致）"
+  }
+}
