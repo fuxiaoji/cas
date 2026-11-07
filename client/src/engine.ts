@@ -13,6 +13,8 @@ export interface Ship extends Position {
   hp: number; maxHp: number; gun: boolean; torpedo: boolean; ammo: number;
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
   gunTarget?: string;
+  searchlight?: { target: number | null; bearing: number };
+  smoking?: boolean;
 }
 export interface GunMount {
   index: number; barrels: number; destroyed: boolean;
@@ -46,12 +48,13 @@ export interface LogEvent { id?: number | string; tick: number; kind: string; te
 export interface Result { winner: string; allies: number; axis: number; primary?: boolean | string; grade?: CampaignGrade }
 export interface Observation {
   tick: number; limit: number; width: number; height: number; side: Side; scenario: string;
-  variant?: string; settling?: boolean; realtimeGunnery?: boolean; torpedoDepths?: boolean;
+  variant?: string; version?: string; settling?: boolean; realtimeGunnery?: boolean; torpedoDepths?: boolean;
   environment?: { light: 'night' | 'day' | 'twilight'; visibility: number; sea_state: number; precipitation: boolean };
   campaign?: CampaignMission & { withdrawalX?: number };
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
   radarContacts?: RadarContact[];
   illuminations?: (Point & { radius: number; expires: number; own: boolean })[];
+  smoke?: (Point & { expires: number })[];
   torpedoes: Torpedo[]; shells?: Shell[];
   events: LogEvent[]; result: Result | null; islands: Point[][];
 }

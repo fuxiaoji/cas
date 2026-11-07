@@ -137,6 +137,11 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const result = o?.result;
   const finished = Boolean(result) || duelVoided;
   const nightRadar = o?.variant === 'night-radar-training';
+  // cas-realtime-v10: searchlights and destroyer smoke are open in the v10
+  // families only (kula stays on the frozen v9 timing). Searchlights are
+  // night-only; smoke screens work in any light per 5.4.5.
+  const v10Family = ['cas-realtime-v10', 'cas-campaign-v10'].includes(o?.version ?? '');
+  const v10Night = v10Family && o?.environment?.light === 'night';
   const guided = nightRadar || o?.variant === 'prologue';
   const radioKey = profile.id + ':fleet-radio';
   const radio = useBattleVoice({ session, observation: o, live: !portOpen, replaying: !!replay,
@@ -888,6 +893,26 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
               onClick={() => selected && void command({ op: 'illuminate', ship: selected.id, target: nightTarget }, () => {
                 setLightPreview(undefined); record('lightAccepted'); hint('照明弹已下令；等待火力窗口。');
               })}>下达照明弹{lightPreview?.valid && lightPreview.mount !== undefined ? ' · 炮座 ' + (lightPreview.mount + 1) : ''}</button>
+          </section>}
+          {v10Night && !replay && !finished && selected && <section className="night-tools" aria-label="探照灯">
+            <h3>探照灯 <small>{selected.name}</small></h3>
+            {selected.searchlight?.target ? (
+              <button type="button" disabled={busy}
+                onClick={() => void command({ op: 'searchlight', ship: selected.id, on: false }, () => hint('探照灯已关闭。'))}>关闭探照灯</button>
+            ) : <>
+              <label>照亮接触 <select value={o.contacts.some(c => c.id === nightTarget) ? nightTarget : ''}
+                onChange={event => setNightTarget(event.target.value)}>
+                <option value="">{o.contacts.length ? '选择接触' : '尚无目视接触'}</option>
+                {o.contacts.map(c => <option key={c.id} value={c.id}>{c.name ? c.name + ' · ' : ''}{c.id}</option>)}
+              </select></label>
+              <button type="button" disabled={busy || !nightTarget}
+                onClick={() => void command({ op: 'searchlight', ship: selected.id, on: true, target: nightTarget }, () => hint('探照灯已开启——光柱也会把你的位置送给敌人。'))}>开启探照灯</button>
+            </>}
+          </section>}
+          {v10Family && !replay && !finished && selected?.kind === 'dd' && <section className="night-tools" aria-label="烟幕">
+            <h3>烟幕 <small>{selected.name}</small></h3>
+            <button type="button" disabled={busy} aria-pressed={!!selected.smoking}
+              onClick={() => void command({ op: 'smoke', ship: selected.id, on: !selected.smoking }, () => hint(selected.smoking ? '烟幕发生器已停止。' : '开始施放烟幕，每团燃烧四个窗口。'))}>{selected.smoking ? '停止施放' : '施放烟幕'}</button>
           </section>}
           {tab === 'fleet' && fleet && <>
             <div className="group-heading">

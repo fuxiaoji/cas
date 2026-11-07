@@ -6,7 +6,8 @@
 - **烟幕命令**：仅驱逐舰；每 60 秒落一朵半径 1,000 码烟团、燃烧四窗；烟团内目标与射线穿烟的目标目视上限昼 1,000／夜 500 码（§5.4.5），超出丢接触并发 `RTS-SMOKE-01` 丢失事件（昼间边际路径补上了同一上限与事件，与夜间一致）。无风场，烟团不漂移。
 - **探测积分修正**：夜间编队危险率只对尚未保持的舰体掷骰（§5.4.1.7 保持）；此前探照灯改造把已见舰也并入了编队视图，会经共享骰流挪动其他编队的首次接触时点——雷达夜战教学的照明弹射程带断言因此翻转，已在 parity 里暴露并修复（首次接触时点与 HEAD 逐秒一致，照明弹照常起亮）。
 - **验收**：引擎测试 66 项全过（新增探照灯命令路径／照距门／暴露再捕获与烟幕遮蔽／丢失事件／四窗燃尽两套白盒测试）；原生 vs WASM parity 17 场逐项一致（[对照](artifacts/cas-parity-20261107-searchlight-smoke.json)）；浏览器 offline／visuals／realtime／story／radio／campaign／original-score 七套回归全绿。规则台账更新：[realtime-torpedo-v10](docs/rules/realtime-torpedo-v10.md)、[night-gap](docs/rules/night-gap.md)、[coverage](docs/rules/coverage.md)、[optical-v2](docs/rules/optical-v2.md)。
-- 客户端尚未接线探照灯／烟幕按钮（引擎与视图已就绪）；经济舰库立绘与音频两个迁移 agent 因配额中止，2026-11-08 01:22 限额重置后重试。
+- **客户端接线**：指挥面板新增探照灯（夜战 v10 家族、已知接触下令／关闭）与烟幕（仅驱逐舰、施放／停止）两节；海图渲染烟团（1,000 码半径）与本舰探照灯光锥；`searchlight/smoke` 命令接入引擎分发（`lib.rs` 外部命令表）。browser-visuals 夜航演习段新增真实交互验收：开灯后视图暴露 target/bearing、烟团落图、关灯停烟后字段消失（[凭证](artifacts/client/visuals/browser-visual-receipt.json) 的 nightSearchlightBacklight/nightSmokePuff 与 07b-night-tools 截图）。
+- 经济舰库立绘与音频两个迁移 agent 因配额中止，2026-11-08 01:22 限额重置后重试。
 
 ## 2026-11-06｜Windows 昼战试玩与 Android 单机预览
 

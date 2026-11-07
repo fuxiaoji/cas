@@ -544,6 +544,9 @@ impl World {
                     data["searchlight"] = json!({"target": null});
                 }
             }
+            if s.smoking {
+                data["smoking"] = json!(true);
+            }
             if self.radar_enabled() {
                 data["systems"]["radars"] = json!(self.radar.own_observation(s.id));
                 // Own-seat only: the nominal surface-search reach of whatever is

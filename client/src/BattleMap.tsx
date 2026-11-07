@@ -254,8 +254,25 @@ export function BattleMap(props: MapProps) {
       ctx.beginPath(); island.forEach((point, i) => { const p = screen(point); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.fillStyle = '#5a674e'; ctx.fill(); ctx.strokeStyle = '#a2b18a'; ctx.stroke();
     }
-    if (rangedShip && rangesVisible && !gesture && !editing && !reformPreview) {
-      const at = screen(rangedShip);
+    // cas-realtime-v10: smoke puffs (1,000-yd radius, four-window burn) and
+    // the lit cones of own searchlights toward their targets.
+    for (const puff of o.smoke ?? []) {
+      const at = screen(puff);
+      ctx.beginPath(); ctx.arc(at.x, at.y, Math.max(914 * mapRatio, 8), 0, TAU);
+      ctx.fillStyle = '#b6c0c556'; ctx.fill();
+      ctx.strokeStyle = '#dde4e370'; ctx.lineWidth = 1; ctx.stroke();
+    }
+    for (const ship of o.ships) {
+      if (!ship.searchlight?.target) continue;
+      const at = screen(ship);
+      const bearing = ship.searchlight.bearing * Math.PI / 180;
+      ctx.beginPath();
+      ctx.moveTo(at.x, at.y);
+      ctx.arc(at.x, at.y, Math.max(4000 * mapRatio, 70), bearing - 0.07, bearing + 0.07);
+      ctx.closePath();
+      ctx.fillStyle = '#fff3b170'; ctx.fill();
+    }
+    if (rangedShip && rangesVisible && !gesture && !editing && !reformPreview) {      const at = screen(rangedShip);
       ctx.save();
       ctx.beginPath(); ctx.rect(left, north, o.width * mapRatio, o.height * mapRatio); ctx.clip();
       for (const [range, color, pattern] of [

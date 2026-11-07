@@ -195,7 +195,40 @@ assert.equal(night.variant,'night');
 assert.equal(night.ships.length,5);
 assert.equal(night.contacts.length,0);
 await page.screenshot({path:root+'/07-night-exercise.png'});
-reports.push({archiveCount:16,historicalMatches:11,historicalDetailsRendered:sourceCount,playableHistorical:openHistorical,playableAdaptations:openAdaptations,nightInitialContacts:night.contacts.length});
+// cas-realtime-v10 night tools: a searchlight backlights the lit ship, and
+// destroyer smoke drops a puff on the chart. The exercise opens paused, so
+// the worker is stepped to a contact first, then the live UI is started
+// briefly so its own view refreshes before the panel actions.
+let nightWait=0;
+while(!(await q('observe')).contacts.length && nightWait<3600){await q('step',{seconds:60});nightWait+=60;}
+const litStart=await q('observe');
+assert(litStart.contacts.length>0,'night exercise must make contact');
+assert.equal(litStart.version,'cas-realtime-v10');
+const litShip=litStart.ships[0];
+const litTarget=litStart.contacts[0];
+await btn('开始演习').click();
+await page.locator('[data-contact]').first().waitFor({ state: 'attached' });
+await btn('暂停演习').click();
+await page.getByRole('button',{name:'开启探照灯'}).waitFor();
+await page.getByLabel('照亮接触').selectOption(litTarget.id);
+await page.getByRole('button',{name:'开启探照灯'}).click();
+await page.getByRole('button',{name:'施放烟幕'}).click();
+await page.waitForTimeout(200);
+const litView=await q('observe');
+const litViewShip=litView.ships.find(ship=>ship.id===litShip.id);
+assert.equal(typeof litViewShip.searchlight.target,'number');
+assert.equal(typeof litViewShip.searchlight.bearing,'number');
+assert.equal(litViewShip.smoking,true);
+assert(litView.smoke.length>=1);
+await page.screenshot({path:root+'/07b-night-tools.png'});
+await page.getByRole('button',{name:'关闭探照灯'}).click();
+await page.getByRole('button',{name:'停止施放'}).click();
+await page.waitForTimeout(200);
+const cleared=await q('observe');
+const clearedShip=cleared.ships.find(ship=>ship.id===litShip.id);
+assert.equal(clearedShip.searchlight,undefined);
+assert.equal(clearedShip.smoking,undefined);
+reports.push({archiveCount:16,historicalMatches:11,historicalDetailsRendered:sourceCount,playableHistorical:openHistorical,playableAdaptations:openAdaptations,nightInitialContacts:night.contacts.length,nightSearchlightBacklight:true,nightSmokePuff:true});
 await btn('演习设置').click();
 await page.getByLabel('演习时段').selectOption('radar');
 await page.getByLabel('所属方').selectOption('allies');
