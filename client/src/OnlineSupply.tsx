@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { OnlineError, onlineMeta, onlineRequest } from './online';
 import type { OnlineMeta } from './online';
+import { ShipBundleShelf } from './ShipBundleShelf';
 import { OnlineRecruitDesk } from './online-recruit/OnlineRecruitDesk';
 import { OnlineRecruitArrival } from './online-recruit/OnlineRecruitArrival';
 import type { RecruitPool, RecruitReceipt, RecruitShip } from './online-recruit/types';
@@ -9,7 +10,7 @@ import './online-supply.css';
 type Catalog = {
   ships: RecruitShip[];
   recruit_pools: RecruitPool[];
-  ship_bundles: { id: string; name: string; credits: number; ship_ids: string[] }[];
+  ship_bundles: { id: string; name: string; description?: string; credits: number; ship_ids: string[] }[];
   ai_profiles: { id: string; name: string; cost?: number }[];
 };
 type Mail = { id: string; title: string; body: string; sender: string; claimed_at: string | null;
@@ -78,7 +79,8 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
     } finally { locked.current = false; setBusy(false); }
   }
   const buy = (kind: string, item_id: string, currency = 'credits', extra = {}) =>
-    void act('/shop/purchase', { kind, item_id, currency, ...extra }, '兑换已入账。');
+    void act('/shop/purchase', { kind, item_id, currency, ...extra },
+      kind === 'ship_bundle' ? '礼包已入账，重复舰船转为勋章。' : '兑换已入账。');
 
   return <main className="online-supply">
     <header><button onClick={onBack}>‹ 返回母港</button><div><p>联机免费内测</p><h1>征募与补给</h1></div>
@@ -107,15 +109,14 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       <button disabled={busy || !!letter.claimed_at} onClick={() => void act('/mail/' + encodeURIComponent(letter.id) + '/claim', {}, '邮件附件已领取。')}>
         {letter.claimed_at ? '已领取' : '领取附件'}</button>
     </article>)}</div> : <p>没有邮件。</p>}</section>}
+    {tab === 'shop' && catalog && meta && <ShipBundleShelf bundles={catalog.ship_bundles} ships={catalog.ships}
+      meta={meta} busy={busy} onBuy={id => buy('ship_bundle', id)}/>}
     {tab === 'shop' && <section><h2>免费兑换</h2><div className="online-list">
       <article><h3>每周补给券</h3><button disabled={busy || !wallet || wallet.credits < 500}
         onClick={() => buy('weekly_ticket', '')}>500 补给币兑常驻券</button></article>
       <article><h3>每周实战补给</h3><p>{weekly ? `权威战役达成 ${weekly.count} / ${weekly.target}` : '等待战绩同步'}</p>
         <button disabled={busy || !weekly?.eligible || weekly.claimed}
           onClick={() => void act('/missions/weekly-pve/claim', {}, '周任务奖励已入账。')}>{weekly?.claimed ? '已领取' : '领取周任务奖励'}</button></article>
-      {catalog?.ship_bundles.map(item => <article key={item.id}><h3>{item.name}</h3><p>{item.ship_ids.map(name).join('、')}</p>
-        <button disabled={busy || (wallet?.credits ?? 0) < item.credits || meta?.claims.includes('shop:ship-bundle:' + item.id)}
-          onClick={() => buy('ship_bundle', item.id)}>{item.credits} 补给币</button></article>)}
       {catalog?.ai_profiles.filter(a => a.cost).map(a => <article key={a.id}><h3>{a.name}</h3><p>解锁保存在联机账号。</p>
         <button disabled={busy || (wallet?.credits ?? 0) < a.cost! || meta?.ai_profiles.includes(a.id)} onClick={() => buy('ai', a.id)}>{a.cost} 补给币</button></article>)}
     </div></section>}
