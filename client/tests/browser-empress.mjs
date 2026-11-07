@@ -47,6 +47,22 @@ try {
     assert(report.events.some(event => event.kind === kind), 'missing ' + kind);
   }
   await page.screenshot({ path: root + 'empress-battle.png' });
+  // Campaign slot 11: the same action launches from the campaign chart.
+  await btn('母港').click();
+  await page.locator('.growth-campaign-entry').click();
+  await page.locator('.archive-list').waitFor();
+  await page.getByRole('button', { name: '同盟战线', exact: true }).click();
+  const row = page.locator('li[data-stage-id="CAMP-ALLIES-11"]');
+  await row.waitFor();
+  assert.equal(await row.getAttribute('data-playable'), 'true');
+  await row.locator(':scope > details > summary').first().click();
+  await row.getByRole('button', { name: '出航作战' }).click();
+  await page.locator('.battle-map').waitFor();
+  const campaign = await q('observe');
+  assert.equal(campaign.campaign.stageId, 'CAMP-ALLIES-11');
+  assert.equal(campaign.ships.length, 12);
+  assert.equal(campaign.fleets.length, 3);
+  await page.screenshot({ path: root + 'empress-campaign.png' });
   await fs.writeFile(root + 'browser-receipt.json', JSON.stringify({
     ok: true,
     variant: start.variant,
