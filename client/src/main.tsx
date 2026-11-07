@@ -41,7 +41,7 @@ const options = [1, 2, 4, 8] as const;
 type Speed = typeof options[number];
 type Tab = 'fleet' | 'ship' | 'ai' | 'log';
 interface Replay { data: unknown; end: number }
-const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' | 'radar', realtime: true };
+const defaultSetup = { seed: 6106, side: 'allies' as Side, enemy: 'gunnery' as Profile, variant: '' as '' | 'night' | 'radar' | 'empress', realtime: true };
 type LightPreview = { valid: boolean; error?: string; mount?: number };
 const aimAction: Record<Weapon, string> = { gun: '炮击', torpedo: '雷击' };
 const hullNames = { dd: '驱逐舰', cl: '轻巡洋舰', bb: '战列舰' };
@@ -532,7 +532,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     if (running) record('paused');
     setRunning((value) => !value);
   }
-  function openSetup() { setRunning(false); setSetup((current) => ({ ...current, variant: o?.variant === 'night' ? 'night' : o?.variant === 'radar' ? 'radar' : '' })); setDialog(true); }
+  function openSetup() { setRunning(false); setSetup((current) => ({ ...current, variant: o?.variant === 'night' ? 'night' : o?.variant === 'radar' ? 'radar' : o?.variant === 'empress' ? 'empress' : '' })); setDialog(true); }
   async function openStory() {
     if (busy || !o || storyLive.current) return;
     setBusy(true); setRunning(false); setPortError(undefined);
@@ -863,7 +863,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         </div> : <CampaignEndingGate key={endingKey} observation={o}
           seen={seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}>{reopen => <div className="result-screen">
           <div className="result-card">
-            <p>{onlineDuel ? (onlineDuel.mode === 'ranked' ? '排位战果' : '线上约战结束') : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : '昼间水面演习结束'}</p>
+            <p>{onlineDuel ? (onlineDuel.mode === 'ranked' ? '排位战果' : '线上约战结束') : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : o.variant === 'empress' ? '奥古斯塔皇后湾 · 演习结束' : '昼间水面演习结束'}</p>
             {o.campaign && result ? <CampaignResultSummary campaign={o.campaign} result={result} /> :
               <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>}
             <div className="score"><span>同盟 {result?.allies}</span><span>轴心 {result?.axis}</span></div>
@@ -903,7 +903,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             <h3>待发炮击 <small>{selected.name} → {selected.gunTarget}</small></h3>
             <button type="button" disabled={busy} onClick={() => void command({ op: 'gun_cancel', ship: selected.id }, () => hint('已撤销尚未发射的炮座。'))}>取消待发炮击</button>
           </section>}
-          {(o.variant === 'night-training' || nightRadar) && !replay && <section className="night-tools" aria-label="照明" data-guide-control="illumination">
+          {(o.variant === 'night-training' || nightRadar || o.variant === 'empress') && !replay && <section className="night-tools" aria-label="照明" data-guide-control="illumination">
             <h3>照明弹 <small>{selected?.name}</small></h3>
             <label>可见接触 <select value={o.contacts.some(c => c.id === nightTarget) ? nightTarget : ''}
               onChange={event => { setLightPreview(undefined); setNightTarget(event.target.value); if (event.target.value) record('contactViewed'); }}>
@@ -1073,7 +1073,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="演习设置">
         <p>虚构水面演习</p><h2>重新部署舰队</h2>
         <label>演习时段 <select value={setup.variant} onChange={(event) => setSetup({ ...setup, variant: event.target.value as typeof setup.variant })}>
-          <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option><option value="radar">1943 夜间雷达演习</option>
+          <option value="">昼间水面演习</option><option value="night">夜航接敌演习</option><option value="radar">1943 夜间雷达演习</option><option value="empress">奥古斯塔皇后湾 · 22 舰夜战</option>
         </select></label>
         <label className="realtime-option"><input type="checkbox" checked={setup.realtime} onChange={event => setSetup({ ...setup, realtime: event.target.checked })} /> 实时主炮</label>
         <p className="field-note">装填和转向决定开火时点。CAS 火力表决定命中和伤害，伤害按战术回合分摊。已有资料的炮座采用参考射速，其余沿用暂定节奏。关闭实时主炮后使用旧版计划火力窗口。</p>

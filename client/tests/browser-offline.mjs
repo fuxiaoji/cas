@@ -262,7 +262,7 @@ await page.getByRole('button',{name:/活动中心/}).click();
 const flagship = page.getByAltText('北卡罗来纳立绘', { exact: true });
 await flagship.evaluate(image => image.decode());
 assert.equal(await flagship.getAttribute('data-character'), 'IBS-U-USN-UNNAMED-T01-R03');
-assert.match(await page.locator('.activity-flagship-caption').innerText(), /舰卡核验完成后开放领取/);
+assert.match(await page.locator('.activity-flagship-caption').innerText(), /第 7 天入列|舰卡核验完成后开放领取/);
 await btn('领取第 1 天奖励').click();
 assert(await btn('今日已领取').isDisabled());
 await btn('返回').click();

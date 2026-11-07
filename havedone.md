@@ -6,7 +6,8 @@
 - 多指挥仪：`GunDef.director_arc` 单前向指挥仪在目标出扇区时对尾炮施加局地控制 −2；Cleveland/妙高双指挥仪不触发。观察尺寸降一级未建模，登记差额。
 - 运行时 `variant:"empress"`：22 艘具名舰、每方三列纵队、能见度 10%、阵雨、海况 1、Haguro 30 节上限；照明弹、探照灯、烟幕、副炮、鱼雷再装填、临界与雷达引导全部启用。
 - 新增舰级 `cleveland_empress`、`myoko`、`agano`、`shiratsuyu`、`yugumo`、`akizuki` 进演习数据；实时炮座时序核准（10/10、12/6、10/8、12/6、8/10 秒/度）。
-- 验收：引擎 75 项（含 22 舰整场、副炮、再装填、过集中）、服务端 32 项、parity **18 场**（新增 empress）全过；empress 种子 6106 在 1064 秒内打出结果并逐字节重演一致（[对照](artifacts/cas-parity-20261107-empress.json)）。托罗基纳角几何函数已备，评级待 11 号关位绑定。
+- 验收：引擎 75 项（含 22 舰整场、副炮、再装填、过集中）、服务端 32 项、parity **18 场**（新增 empress）全过；empress 种子 6106 在 1064 秒内打出结果并逐字节重演一致（[对照](artifacts/cas-parity-20261107-empress.json)）。
+- 客户端验收：演习设置新增「奥古斯塔皇后湾 · 22 舰夜战」入口；`client/tests/browser-empress.mjs` 真实点击开局，核对本方 12 舰／3 列、夜战 10% 能见度与阵雨、AI 推进至战果，以及副炮／照明弹／炮击／鱼雷事件（[凭证](artifacts/client/empress/browser-receipt.json)）。回归 browser-offline／visuals 通过；顺带修正离线签到文案的旧断言。托罗基纳角几何函数已备，评级待 11 号关位绑定。
 
 ## 2026-11-07｜鱼雷再装填与远距过度集中（RTS-TORP-02 / RTS-GUN-05）
 
