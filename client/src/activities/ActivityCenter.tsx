@@ -109,8 +109,9 @@ function CheckInView({onClose,online,status,rewards=CHECK_IN_REWARDS,message,err
  const {claimed,next,available,clockBehind,shipPending}=status??{};
  const done=!!status&&!next;
  const dayReward=available&&next?.ship_ids?.length;
- const hint=message||(busy&&online?'正在同步签到…':done?'七天奖励已全部领取。':
-  shipPending?'北卡罗来纳舰卡尚未就绪，保留签到进度。':clockBehind?(online?'签到日期尚未更新，请稍后再试。':'请检查设备日期和时间。'):
+  const hint=message||(busy&&online?'正在同步签到…':done?'七天奖励已全部领取。':
+  shipPending?(online?'北卡罗来纳舰卡尚未就绪，保留签到进度。':'单机档暂不发放签到舰船，联机内测第七天可领取北卡罗来纳。'):
+  clockBehind?(online?'签到日期尚未更新，请稍后再试。':'请检查设备日期和时间。'):
   available?'今天的补给已备好。':'今日已签到，明天可继续。');
  const actionLabel=busy?'请稍候':retry?`重试${retry}`:done?'已全部领取':
   available?`领取第 ${(claimed??0)+1} 天奖励`:shipPending||clockBehind?'暂不能签到':'今日已领取';
@@ -145,7 +146,7 @@ function CheckInView({onClose,online,status,rewards=CHECK_IN_REWARDS,message,err
      <div className="activity-flagship-caption">
       <span>{done?'七日航程完成':'第 7 天奖励'} <i aria-hidden="true">◆</i> 战列舰</span>
       <h3>{shipName}</h3>
-      <small>{done?'第七天奖励已结算':dayReward?'今日可领取':'舰卡核验完成后开放领取'}</small>
+      <small>{done?'第七天奖励已结算':dayReward?'今日可领取':online?'舰卡已核验 · 第 7 天入列':'第 7 天入列，联机内测领取'}</small>
      </div>
     </aside>
    </article>
