@@ -1,0 +1,1042 @@
+{
+  "chart": {
+    "source": "savo-page53-upright.png",
+    "image_size_px": [
+      2025,
+      1553
+    ],
+    "extent": {
+      "west": 159.58333,
+      "east": 160.33333,
+      "north": -9.00000,
+      "south": -9.41667,
+      "coordinate_order": "[longitude_E_positive, latitude_S_negative]",
+      "scale_bar_nm": 10
+    },
+    "control_points": [
+      {
+        "label": "159°35'E",
+        "printed_text": "159°35'",
+        "edge": "top",
+        "pixel": [
+          261.0,
+          281.5
+        ]
+      },
+      {
+        "label": "159°40'E",
+        "printed_text": "40'",
+        "edge": "top",
+        "pixel": [
+          425.5,
+          281.5
+        ]
+      },
+      {
+        "label": "159°45'E",
+        "printed_text": "45'",
+        "edge": "top",
+        "pixel": [
+          589.5,
+          281.5
+        ]
+      },
+      {
+        "label": "159°50'E",
+        "printed_text": "50'",
+        "edge": "top",
+        "pixel": [
+          753.5,
+          281.5
+        ]
+      },
+      {
+        "label": "159°55'E",
+        "printed_text": "55'",
+        "edge": "top",
+        "pixel": [
+          918.0,
+          281.5
+        ]
+      },
+      {
+        "label": "160°00'E",
+        "printed_text": "160°00'",
+        "edge": "top",
+        "pixel": [
+          1084.0,
+          281.5
+        ]
+      },
+      {
+        "label": "160°05'E",
+        "printed_text": "05'",
+        "edge": "top",
+        "pixel": [
+          1251.5,
+          281.5
+        ]
+      },
+      {
+        "label": "160°10'E",
+        "printed_text": "10'",
+        "edge": "top",
+        "pixel": [
+          1417.5,
+          281.5
+        ]
+      },
+      {
+        "label": "160°15'E",
+        "printed_text": "15'",
+        "edge": "top",
+        "pixel": [
+          1584.0,
+          281.5
+        ]
+      },
+      {
+        "label": "160°20'E",
+        "printed_text": "20'",
+        "edge": "top",
+        "pixel": [
+          1749.0,
+          281.5
+        ]
+      },
+      {
+        "label": "159°35'E",
+        "printed_text": "159°35'E",
+        "edge": "bottom",
+        "pixel": [
+          261.0,
+          1295.0
+        ]
+      },
+      {
+        "label": "159°40'E",
+        "printed_text": "40'",
+        "edge": "bottom",
+        "pixel": [
+          425.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "159°45'E",
+        "printed_text": "45'",
+        "edge": "bottom",
+        "pixel": [
+          589.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "159°50'E",
+        "printed_text": "50'",
+        "edge": "bottom",
+        "pixel": [
+          753.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "159°55'E",
+        "printed_text": "55'",
+        "edge": "bottom",
+        "pixel": [
+          917.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "160°00'E",
+        "printed_text": "160°00'E",
+        "edge": "bottom",
+        "pixel": [
+          1083.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "160°05'E",
+        "printed_text": "05'",
+        "edge": "bottom",
+        "pixel": [
+          1251.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "160°10'E",
+        "printed_text": "10'",
+        "edge": "bottom",
+        "pixel": [
+          1417.5,
+          1295.0
+        ]
+      },
+      {
+        "label": "160°15'E",
+        "printed_text": "15'",
+        "edge": "bottom",
+        "pixel": [
+          1584.0,
+          1295.0
+        ]
+      },
+      {
+        "label": "160°20'E",
+        "printed_text": "20'",
+        "edge": "bottom",
+        "pixel": [
+          1749.0,
+          1295.0
+        ]
+      },
+      {
+        "label": "09°00'S",
+        "printed_text": "09°00'S",
+        "edge": "left",
+        "pixel": [
+          173.0,
+          412.5
+        ]
+      },
+      {
+        "label": "09°05'S",
+        "printed_text": "05'",
+        "edge": "left",
+        "pixel": [
+          173.0,
+          580.0
+        ]
+      },
+      {
+        "label": "09°10'S",
+        "printed_text": "10'",
+        "edge": "left",
+        "pixel": [
+          173.0,
+          750.0
+        ]
+      },
+      {
+        "label": "09°15'S",
+        "printed_text": "15'",
+        "edge": "left",
+        "pixel": [
+          173.0,
+          915.5
+        ]
+      },
+      {
+        "label": "09°20'S",
+        "printed_text": "20'",
+        "edge": "left",
+        "pixel": [
+          173.0,
+          1081.5
+        ]
+      },
+      {
+        "label": "09°25'S",
+        "printed_text": "09°25'S",
+        "edge": "left",
+        "pixel": [
+          173.0,
+          1247.5
+        ]
+      },
+      {
+        "label": "09°00'S",
+        "printed_text": "09°00'",
+        "edge": "right",
+        "pixel": [
+          1859.0,
+          412.5
+        ]
+      },
+      {
+        "label": "09°05'S",
+        "printed_text": "05'",
+        "edge": "right",
+        "pixel": [
+          1859.0,
+          580.0
+        ]
+      },
+      {
+        "label": "09°10'S",
+        "printed_text": "10'",
+        "edge": "right",
+        "pixel": [
+          1859.0,
+          749.5
+        ]
+      },
+      {
+        "label": "09°15'S",
+        "printed_text": "15'",
+        "edge": "right",
+        "pixel": [
+          1859.0,
+          915.5
+        ]
+      },
+      {
+        "label": "09°20'S",
+        "printed_text": "20'",
+        "edge": "right",
+        "pixel": [
+          1859.0,
+          1081.5
+        ]
+      },
+      {
+        "label": "09°25'S",
+        "printed_text": "09°25'",
+        "edge": "right",
+        "pixel": [
+          1859.0,
+          1247.5
+        ]
+      }
+    ],
+    "rotation_deg": 0.0,
+    "rotation_correction": "none; original upright image, tick-axis skew below 0.01 deg",
+    "transform": {
+      "type": "affine",
+      "matrix": [
+        [
+          0.000503629347,
+          4.9692e-08,
+          159.4530028401
+        ],
+        [
+          -2.4663e-08,
+          -0.0004989722,
+          -8.793600006779
+        ]
+      ],
+      "rms_px": 1.48,
+      "rms_definition": "1D edge-tick coordinate residual converted to pixel units; longitude ticks constrain lon, latitude ticks constrain lat",
+      "control_point_count": 32
+    }
+  },
+  "patrol_lines": [
+    {
+      "name": "Blue Patrol Line",
+      "kind": "line",
+      "pixels": [
+        [
+          363.5,
+          728.0
+        ],
+        [
+          514.5,
+          611.0
+        ]
+      ],
+      "lonlat": [
+        [
+          159.63611,
+          -9.15686
+        ],
+        [
+          159.71215,
+          -9.09848
+        ]
+      ],
+      "line_style": "dashed",
+      "arrow_directions": "both endpoints (outward)",
+      "arrow_bearings_deg": [
+        232.1,
+        52.1
+      ],
+      "confidence": 0.98
+    },
+    {
+      "name": "Ralph Talbot Patrol Line",
+      "kind": "line",
+      "pixels": [
+        [
+          741.5,
+          478.0
+        ],
+        [
+          929.0,
+          403.0
+        ]
+      ],
+      "lonlat": [
+        [
+          159.82647,
+          -9.03213
+        ],
+        [
+          159.92089,
+          -8.99471
+        ]
+      ],
+      "line_style": "dashed",
+      "arrow_directions": "both endpoints (outward)",
+      "arrow_bearings_deg": [
+        248.1,
+        68.1
+      ],
+      "confidence": 0.98
+    },
+    {
+      "name": "Northern Force Patrol Box",
+      "kind": "box",
+      "pixels": [
+        [
+          1075.0,
+          548.0
+        ],
+        [
+          1194.0,
+          649.0
+        ],
+        [
+          1088.5,
+          774.5
+        ],
+        [
+          968.0,
+          674.0
+        ]
+      ],
+      "lonlat": [
+        [
+          159.99443,
+          -9.06706
+        ],
+        [
+          160.05437,
+          -9.11746
+        ],
+        [
+          160.00124,
+          -9.18008
+        ],
+        [
+          159.94055,
+          -9.12993
+        ]
+      ],
+      "line_style": "dashed",
+      "corner_order": "top, right, bottom, left",
+      "arrow_directions": [
+        {
+          "from_corner": 3,
+          "to_corner": 0,
+          "bearing_deg": 40.2
+        },
+        {
+          "from_corner": 0,
+          "to_corner": 1,
+          "bearing_deg": 130.4
+        },
+        {
+          "from_corner": 1,
+          "to_corner": 2,
+          "bearing_deg": 220.0
+        }
+      ],
+      "unmarked_edge": "bottom-to-left (no readable arrowhead)",
+      "confidence": 0.94
+    },
+    {
+      "name": "Southern Force Patrol Line",
+      "kind": "line",
+      "pixels": [
+        [
+          909.5,
+          920.5
+        ],
+        [
+          796.5,
+          836.5
+        ]
+      ],
+      "lonlat": [
+        [
+          159.91110,
+          -9.25293
+        ],
+        [
+          159.85419,
+          -9.21101
+        ]
+      ],
+      "line_style": "dashed",
+      "arrow_directions": "both endpoints (outward)",
+      "arrow_bearings_deg": [
+        126.7,
+        306.7
+      ],
+      "confidence": 0.96
+    },
+    {
+      "name": "Australia Patrol Line",
+      "kind": "line",
+      "pixels": [
+        [
+          1065.0,
+          1170.0
+        ],
+        [
+          1178.0,
+          994.0
+        ]
+      ],
+      "lonlat": [
+        [
+          159.98943,
+          -9.37742
+        ],
+        [
+          160.04633,
+          -9.28961
+        ]
+      ],
+      "line_style": "dashed",
+      "arrow_directions": "both endpoints (outward)",
+      "arrow_bearings_deg": [
+        212.6,
+        32.6
+      ],
+      "confidence": 0.97
+    },
+    {
+      "name": "Eastern Force Patrol Line",
+      "kind": "line",
+      "pixels": [
+        [
+          1488.0,
+          918.0
+        ],
+        [
+          1290.0,
+          742.5
+        ]
+      ],
+      "lonlat": [
+        [
+          160.20245,
+          -9.25169
+        ],
+        [
+          160.10272,
+          -9.16412
+        ]
+      ],
+      "line_style": "dashed",
+      "arrow_directions": "both endpoints (outward)",
+      "arrow_bearings_deg": [
+        131.7,
+        311.7
+      ],
+      "confidence": 0.97
+    }
+  ],
+  "ships": [
+    {
+      "label": "Blue",
+      "pixel": [
+        427.7,
+        667.6
+      ],
+      "lonlat": [
+        159.66844,
+        -9.12672
+      ],
+      "heading_deg": null,
+      "group": "Blue Patrol Line",
+      "confidence": 0.85,
+      "label_source": "patrol line title, not separately adjacent ship label"
+    },
+    {
+      "label": "Ralph Talbot",
+      "pixel": [
+        829.4,
+        432.6
+      ],
+      "lonlat": [
+        159.87073,
+        -9.00948
+      ],
+      "heading_deg": null,
+      "group": "Ralph Talbot Patrol Line",
+      "confidence": 0.88,
+      "label_source": "patrol line title, not separately adjacent ship label"
+    },
+    {
+      "label": "Wilson",
+      "pixel": [
+        1011.2,
+        683.4
+      ],
+      "lonlat": [
+        159.96231,
+        -9.13462
+      ],
+      "heading_deg": null,
+      "group": "Northern Force Patrol Box",
+      "confidence": 0.98
+    },
+    {
+      "label": "Helm",
+      "pixel": [
+        985.8,
+        716.8
+      ],
+      "lonlat": [
+        159.94952,
+        -9.15129
+      ],
+      "heading_deg": null,
+      "group": "Northern Force Patrol Box",
+      "confidence": 0.98
+    },
+    {
+      "label": null,
+      "pixel": [
+        1011.8,
+        716.3
+      ],
+      "lonlat": [
+        159.96261,
+        -9.15104
+      ],
+      "heading_deg": null,
+      "group": "Northern Force Patrol Box",
+      "confidence": 0.93,
+      "nearby_group_text": "Vincennes, Quincy, Astoria; individual correspondence unreadable"
+    },
+    {
+      "label": null,
+      "pixel": [
+        1038.5,
+        738.8
+      ],
+      "lonlat": [
+        159.97606,
+        -9.16227
+      ],
+      "heading_deg": null,
+      "group": "Northern Force Patrol Box",
+      "confidence": 0.93,
+      "nearby_group_text": "Vincennes, Quincy, Astoria; individual correspondence unreadable"
+    },
+    {
+      "label": null,
+      "pixel": [
+        1065.4,
+        761.5
+      ],
+      "lonlat": [
+        159.98961,
+        -9.17359
+      ],
+      "heading_deg": null,
+      "group": "Northern Force Patrol Box",
+      "confidence": 0.93,
+      "nearby_group_text": "Vincennes, Quincy, Astoria; individual correspondence unreadable"
+    },
+    {
+      "label": "Bagley",
+      "pixel": [
+        816.4,
+        820.1
+      ],
+      "lonlat": [
+        159.86421,
+        -9.20283
+      ],
+      "heading_deg": null,
+      "group": "Southern Force Patrol Line",
+      "confidence": 0.98
+    },
+    {
+      "label": "Patterson",
+      "pixel": [
+        786.9,
+        874.0
+      ],
+      "lonlat": [
+        159.84935,
+        -9.22972
+      ],
+      "heading_deg": null,
+      "group": "Southern Force Patrol Line",
+      "confidence": 0.98
+    },
+    {
+      "label": null,
+      "pixel": [
+        820.6,
+        854.1
+      ],
+      "lonlat": [
+        159.86632,
+        -9.21979
+      ],
+      "heading_deg": null,
+      "group": "Southern Force Patrol Line",
+      "confidence": 0.93,
+      "nearby_group_text": "Canberra, Chicago; individual correspondence unreadable"
+    },
+    {
+      "label": null,
+      "pixel": [
+        857.6,
+        882.0
+      ],
+      "lonlat": [
+        159.88496,
+        -9.23371
+      ],
+      "heading_deg": null,
+      "group": "Southern Force Patrol Line",
+      "confidence": 0.93,
+      "nearby_group_text": "Canberra, Chicago; individual correspondence unreadable"
+    },
+    {
+      "label": "Jarvis",
+      "pixel": [
+        1127.4,
+        917.4
+      ],
+      "lonlat": [
+        160.02084,
+        -9.25138
+      ],
+      "heading_deg": null,
+      "group": null,
+      "confidence": 0.98
+    },
+    {
+      "label": "Australia",
+      "pixel": [
+        1123.2,
+        1089.2
+      ],
+      "lonlat": [
+        160.01873,
+        -9.33711
+      ],
+      "heading_deg": null,
+      "group": "Australia Patrol Line",
+      "confidence": 0.88,
+      "label_source": "patrol line title, not separately adjacent ship label"
+    },
+    {
+      "label": null,
+      "pixel": [
+        1379.1,
+        774.8
+      ],
+      "lonlat": [
+        160.14760,
+        -9.18024
+      ],
+      "heading_deg": null,
+      "group": "Eastern Force Patrol Line",
+      "confidence": 0.97,
+      "visible_class_text": "DD"
+    },
+    {
+      "label": null,
+      "pixel": [
+        1346.4,
+        806.4
+      ],
+      "lonlat": [
+        160.13113,
+        -9.19600
+      ],
+      "heading_deg": null,
+      "group": "Eastern Force Patrol Line",
+      "confidence": 0.97,
+      "visible_class_text": "DD"
+    },
+    {
+      "label": null,
+      "pixel": [
+        1376.9,
+        806.6
+      ],
+      "lonlat": [
+        160.14649,
+        -9.19610
+      ],
+      "heading_deg": null,
+      "group": "Eastern Force Patrol Line",
+      "confidence": 0.93,
+      "nearby_group_text": "San Juan, Hobart; individual correspondence unreadable"
+    },
+    {
+      "label": null,
+      "pixel": [
+        1402.4,
+        827.0
+      ],
+      "lonlat": [
+        160.15933,
+        -9.20628
+      ],
+      "heading_deg": null,
+      "group": "Eastern Force Patrol Line",
+      "confidence": 0.93,
+      "nearby_group_text": "San Juan, Hobart; individual correspondence unreadable"
+    },
+    {
+      "label": "George F. Elliot",
+      "pixel": [
+        1553.4,
+        877.3
+      ],
+      "lonlat": [
+        160.23538,
+        -9.23139
+      ],
+      "heading_deg": null,
+      "group": null,
+      "confidence": 0.99,
+      "status": "DIW, on fire",
+      "vessel_type_text": "Transport"
+    }
+  ],
+  "transport_areas": [
+    {
+      "name": "X-Ray Transports and Screen",
+      "pixels": [
+        [
+          1206.0,
+          1135.0
+        ],
+        [
+          1359.0,
+          1135.0
+        ],
+        [
+          1359.0,
+          1202.0
+        ],
+        [
+          1206.0,
+          1202.0
+        ]
+      ],
+      "lonlat": [
+        [
+          160.06044,
+          -9.35996
+        ],
+        [
+          160.13749,
+          -9.35997
+        ],
+        [
+          160.13749,
+          -9.39340
+        ],
+        [
+          160.06044,
+          -9.39339
+        ]
+      ],
+      "center_pixel": [
+        1282.5,
+        1168.5
+      ],
+      "center_lonlat": [
+        160.09897,
+        -9.37668
+      ],
+      "confidence": 0.98
+    },
+    {
+      "name": "Transports and Screen Yoke",
+      "pixels": [
+        [
+          1344.0,
+          673.0
+        ],
+        [
+          1496.0,
+          673.0
+        ],
+        [
+          1496.0,
+          740.0
+        ],
+        [
+          1344.0,
+          740.0
+        ]
+      ],
+      "lonlat": [
+        [
+          160.12991,
+          -9.12944
+        ],
+        [
+          160.20647,
+          -9.12945
+        ],
+        [
+          160.20647,
+          -9.16288
+        ],
+        [
+          160.12992,
+          -9.16287
+        ]
+      ],
+      "center_pixel": [
+        1420.0,
+        706.5
+      ],
+      "center_lonlat": [
+        160.16819,
+        -9.14616
+      ],
+      "confidence": 0.99
+    }
+  ],
+  "landmarks": [
+    {
+      "name": "Savo Is.",
+      "pixel": [
+        735.0,
+        675.0
+      ],
+      "lonlat": [
+        159.82320,
+        -9.13042
+      ],
+      "confidence": 0.99
+    },
+    {
+      "name": "Guadalcanal Is.",
+      "pixel": [
+        610.0,
+        1100.0
+      ],
+      "lonlat": [
+        159.76027,
+        -9.34248
+      ],
+      "confidence": 0.99
+    },
+    {
+      "name": "Florida Is.",
+      "pixel": [
+        1565.0,
+        545.0
+      ],
+      "lonlat": [
+        160.24121,
+        -9.06558
+      ],
+      "confidence": 0.99
+    },
+    {
+      "name": "Tulagi Is.",
+      "pixel": [
+        1417.0,
+        665.0
+      ],
+      "lonlat": [
+        160.16668,
+        -9.12545
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "Cape Esperance",
+      "pixel": [
+        565.0,
+        916.0
+      ],
+      "lonlat": [
+        159.73760,
+        -9.25067
+      ],
+      "confidence": 0.91
+    },
+    {
+      "name": "Lunga Point",
+      "pixel": [
+        1165.0,
+        1215.0
+      ],
+      "lonlat": [
+        160.03979,
+        -9.39988
+      ],
+      "confidence": 0.9
+    },
+    {
+      "name": "Henderson Field",
+      "pixel": [
+        1172.0,
+        1260.0
+      ],
+      "lonlat": [
+        160.04332,
+        -9.42233
+      ],
+      "confidence": 0.98
+    }
+  ],
+  "japanese_arrow": {
+    "start_pixel": [
+      229.0,
+      321.0
+    ],
+    "end_pixel": [
+      364.5,
+      509.0
+    ],
+    "start_lonlat": [
+      159.56835,
+      -8.95378
+    ],
+    "end_lonlat": [
+      159.63660,
+      -9.04759
+    ],
+    "bearing_deg": 144.3,
+    "confidence": 0.97
+  },
+  "other_markers": [
+    {
+      "name": "George F. Elliot, DIW, on fire",
+      "pixel": [
+        1553.4,
+        877.3
+      ],
+      "lonlat": [
+        160.23538,
+        -9.23139
+      ],
+      "ship_entry_ref": "George F. Elliot",
+      "confidence": 0.99
+    }
+  ],
+  "unreadable": [
+    "Individual ship heading_deg is null throughout: no ship-specific arrowhead indicating bow direction is legible; patrol arrows indicate patrol-line direction only.",
+    "Northern Force label lists Vincennes, Quincy, Astoria, but none of the three silhouettes has an unambiguous text-to-ship association.",
+    "Southern Force label lists Canberra, Chicago, but the two silhouettes cannot be reliably assigned to those names individually.",
+    "Eastern Force lists San Juan, Hobart without an unambiguous per-silhouette identity match; two other silhouettes are marked DD only, with no individual names.",
+    "Blue, Ralph Talbot, Australia are written in patrol-line titles; their single-silhouette identities are inferred from chart labeling, not individually printed next to silhouettes.",
+    "Transport areas depict boxed groups, not identifiable individual transport hull positions; no such ship positions were generated.",
+    "The Japanese Force arrow marks a plotted direction, with no Japanese ship silhouette at its origin or endpoint.",
+    "No individual distances, speeds, or unseen ship positions are provided in the source diagram."
+  ]
+}
