@@ -24,6 +24,9 @@ pub struct World {
     pub next_contacts: [u32; 2],
     pub torps: Vec<Torpedo>,
     pub illumination: crate::illumination::Illumination,
+    pub resupply: Vec<crate::model::ResupplyPoint>,
+    pub drum_strings: Vec<u8>,
+    pub supply_score: u32,
     pub shells: Vec<Shell>,
     pub version: &'static str,
     pub event_ids: [u32; 2],
@@ -79,6 +82,9 @@ impl World {
             next_contacts: [1, 1],
             torps: vec![],
             illumination: Default::default(),
+            resupply: vec![],
+            drum_strings: vec![],
+            supply_score: 0,
             shells: vec![],
             version: match variant { RADAR_DRILL=>RADAR_VERSION,crate::illumination::TRAINING=>crate::illumination::VERSION,_=>VERSION },
             event_ids: [0, 0],
@@ -273,6 +279,9 @@ impl World {
         if self.gun_streak.len() < hulls {
             self.gun_streak.resize(hulls, (0, 0, 0));
             self.surface_damage.resize(hulls, Default::default());
+        }
+        if self.drum_strings.len() < hulls {
+            self.drum_strings.resize(hulls, 0);
         }
         Ok(id)
     }
@@ -556,6 +565,9 @@ impl World {
                 "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
                 "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
+            if let Some(&strings)=self.drum_strings.get((s.id-1) as usize) {
+                data["drumStrings"] = json!(strings);
+            }
             if (self.variant == crate::prologue::VARIANT || self.ranked_duel.is_some()) && d.id.starts_with("IBS-U-") {
                 data["characterId"] = json!(d.id);
             } else if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
@@ -698,6 +710,12 @@ impl World {
         if self.has_starshells() { view["illuminations"]=json!(self.visible_illumination(owner)); }
         if self.realtime() { view["realtimeGunnery"] = json!(true); }
         if self.torpedo_depths() { view["torpedoDepths"] = json!(true); }
+        if !self.resupply.is_empty() {
+            view["resupply"] = json!(self.resupply.iter().map(|p| json!({
+                "x":p.x,"y":p.y,"radius":p.radius,"capacity":p.capacity
+            })).collect::<Vec<_>>());
+            view["supplyScore"] = json!(self.supply_score);
+        }
         if let Some(ranked) = &self.ranked_duel {
             view["scenario"] = json!(if ranked.budget == 3000 { "三千分护航战" } else { "万分战列舰战" });
         }
@@ -790,6 +808,7 @@ impl World {
         }
         let settle_only = self.version != LEGACY_VERSION && self.action_closed();
         self.tick += 1;
+        self.unload_supplies();
         if settle_only {
             self.advance_shells();
             if self.realtime()
@@ -905,6 +924,37 @@ impl World {
             }
         }
     }
+    /// Tassafaronga 5.4/objective rule: one drum string per ship per tactical
+    /// window, at most three ships per Resupply Point, at 2 knots or less.
+    fn unload_supplies(&mut self) {
+        if self.resupply.is_empty() || self.tick == 0 || self.tick % CYCLE != 0 {
+            return;
+        }
+        let points = self.resupply.clone();
+        let mut used = vec![0u32; points.len()];
+        let mut unloads = Vec::new();
+        for ship in self.ships.iter().filter(|s| s.side == 1 && s.alive()) {
+            let index = (ship.id - 1) as usize;
+            if self.drum_strings.get(index).copied().unwrap_or(0) == 0 || ship.speed > 2.05 {
+                continue;
+            }
+            let point = points.iter().enumerate().find(|(index, point)| {
+                used[*index] < point.capacity
+                    && ship.p.dist(P { x: point.x, y: point.y }) <= point.radius
+            }).map(|(index, _)| index);
+            let Some(point) = point else { continue };
+            used[point] += 1;
+            unloads.push((index, point, used[point], ship.p, ship.name.clone()));
+        }
+        for (index, point, count, at, name) in unloads {
+            self.drum_strings[index] -= 1;
+            self.supply_score += 20;
+            self.add(2, "resupply",
+                format!("{name} · 已卸下一串补给桶（本点 {count}/3）"),
+                Some("CAS-TASS-RESUPPLY-01"), Some(at));
+        }
+    }
+
     fn check_outcome(&mut self) {
         let lost: Vec<u32> = (0..2)
             .map(|side| {

@@ -15,6 +15,7 @@ export interface Ship extends Position {
   gunTarget?: string;
   targetChance?: number;
   searchlight?: { target: number | null; bearing: number; x?: number; y?: number };
+  drumStrings?: number;
   smoking?: boolean;
 }
 export interface GunMount {
@@ -55,6 +56,8 @@ export interface Observation {
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
   radarContacts?: RadarContact[];
   illuminations?: (Point & { radius: number; expires: number; own: boolean; targetX?: number; targetY?: number })[];
+  resupply?: { x: number; y: number; radius: number; capacity: number }[];
+  supplyScore?: number;
   smoke?: (Point & { expires: number })[];
   torpedoes: Torpedo[]; shells?: Shell[];
   events: LogEvent[]; result: Result | null; islands: Point[][];

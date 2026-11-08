@@ -528,6 +528,14 @@ pub struct Entry {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub seat: Option<String>,
 }
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
+pub struct ResupplyPoint {
+    pub x: f64,
+    pub y: f64,
+    pub radius: f64,
+    pub capacity: u32,
+}
+
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct Saved {

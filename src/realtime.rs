@@ -72,7 +72,12 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
         // 6in/47 Mk16 triple (10 deg/s, 10 s), 5in/25 (15 deg/s, 5 s), and the
         // Japanese 20cm/50 No.2 (6 deg/s, 12 s from the same family data).
         "new_orleans_1942" | "northampton_1942" | "salt_lake_city_1942" => (20, 4.),
-        "brooklyn_second_group_1942" => (10, 10.),
+        "tass_minneapolis" | "tass_new_orleans" | "tass_pensacola" | "tass_northampton" => (20, 4.),
+        "brooklyn_second_group_1942" | "tass_honolulu" => (10, 10.),
+        "tass_fletcher" => (4, 28.7),
+        "tass_perkins" | "tass_maury" | "tass_drayton" | "tass_lamson" | "tass_lardner" => (5, 15.),
+        "tass_naganami" | "tass_makinami" | "tass_takanami" | "tass_kawakaze" | "tass_suzukaze" => (12, 6.),
+        "tass_oyashio" | "tass_kuroshio" | "tass_kagero" => (9, 9.),
         "aoba_1938" | "kinugasa_1938" | "furutaka_1937" => (12, 6.),
         "fubuki_1936_refit" => (12, 6.),
         "sendai" => (12, 7.5),

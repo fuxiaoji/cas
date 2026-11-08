@@ -156,6 +156,14 @@ Decisive: 250 or more total points.
 8. 主档案 `data/campaign/tassafaronga.json`（档案层，非本轮交付物）有几处与原页的偏差，本轮不改该文件，仅在此记录：US 编制把 TG 67.2.2 与 67.2.3 合写成「TG67.2.2–3」；SG 接触时间记 2300（原页 2306）；「未卸货的分数从日方总分扣除」一句写成独立特则而非引用原文。
 9. 原页美阵列句印作「The trailing destroyers are off Northampton's port quarter」——核页过程记录：该词在低倍渲染下曾误读，高倍渲染确认印作 trailing。
 
+## 运行时闭合（2026-11-08）
+
+- `scripts/compile-tassafaronga-runtime.py` 由本文件与 `tassafaronga-1942.json` 生成 `tassafaronga-runtime.json`：19 艘具名舰逐舰 DP、损伤掉速、转向/加减速、炮座、鱼雷与备雷。六个载桶舰备雷置 0；长波、高波保留各 4×2 备雷。
+- 弹种选择登记为：8in APC、6in APC、5in SpCOM、12.7cm COM。Gridley 的 `F/A(1)4` 采用四座单装 F/F/A/A 的 RTS 读法，并在舰卡 `gun_note` 写明。
+- 三处补给圈坐标是 PDF 76 的**图面登记**（原页未印坐标）：`(30000,54000)/(38000,55000)/(46000,56000)` 米，半径 1.5 海里、每点同时 3 舰；卸货速度 ≤2 节、每舰每战术窗 1 串、每串 20 分，未卸串不计分。`World::unload_supplies` 每 180 秒结算一次。
+- 日方总分 = 已卸补给分 + 对美舰造成的 DP；美方按已卸分 120/240 与重巡损伤/沉没数评级。500/250 双“Decisive”按 RTS 分级采用 500=决定、250=战术。
+- 航空单位按用户要求不纳入：原页美方水上机因无风无法起飞，日方无航空单位；本关不生成飞机。
+
 ## 待裁决项（清单）
 
 1. 三处补给点坐标未印，海图数字化前 1.5 海里规则无法运行。

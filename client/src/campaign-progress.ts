@@ -9,6 +9,8 @@ export interface CampaignMission extends CampaignLaunch {
   objectives: string;
   supplyZone?: { x: number; y: number; radius: number; label: string };
   supplySeconds?: number;
+  supplyScore?: number;
+  supplyStrings?: number;
   supplyComplete?: boolean;
 }
 export interface CampaignOutcome { grade?: CampaignGrade; primary?: string | boolean }

@@ -74,6 +74,7 @@ export function CampaignMissionBrief({ campaign }: { campaign: CampaignMission }
   return <section className="campaign-mission-brief" aria-label="战役任务">
     <strong>{campaign.missionLabel}</strong><span>{campaignDifficulties[campaign.difficulty]}难度</span><p>{campaign.objectives}</p>
     {campaign.supplySeconds !== undefined && <p>{campaign.supplyComplete ? '维拉卸载已完成' : `维拉卸载连续计时 ${clock(campaign.supplySeconds)} / 30:00`}</p>}
+    {campaign.supplyScore !== undefined && <p>已卸补给 {campaign.supplyScore} 分{campaign.supplyStrings !== undefined ? ` · 余 ${campaign.supplyStrings} 串` : ''}</p>}
   </section>;
 }
 

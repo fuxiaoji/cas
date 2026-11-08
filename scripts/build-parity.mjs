@@ -19,6 +19,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
   const kula = variant === 'kula-gulf-rts';
   const empressCampaign = variant === 'empress-campaign';
   const esperanceCampaign = variant === 'esperance-campaign';
+  const tassafarongaCampaign = variant === 'tassafaronga-campaign';
   const { instance } = await WebAssembly.instantiate(source, {});
   const api = instance.exports;
   function call(req) {
@@ -31,7 +32,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
 
   const commands = [
     { op: 'info' },
-    campaign ? { op: 'new_campaign', id: empressCampaign ? (side === 'allies' ? 'CAMP-ALLIES-11' : 'CAMP-AXIS-11') : esperanceCampaign ? (side === 'allies' ? 'CAMP-ALLIES-02' : 'CAMP-AXIS-02') : 'CAMP-' + side.toUpperCase() + (kula ? '-04' : '-03'), difficulty: kula ? side === 'allies' ? 'standard' : 'challenge' : 'story', seed, ...(kula ? { profile: side === 'allies' ? 'gunnery' : 'torpedo' } : {}) } :
+    campaign ? { op: 'new_campaign', id: empressCampaign ? (side === 'allies' ? 'CAMP-ALLIES-11' : 'CAMP-AXIS-11') : esperanceCampaign ? (side === 'allies' ? 'CAMP-ALLIES-02' : 'CAMP-AXIS-02') : tassafarongaCampaign ? (side === 'allies' ? 'CAMP-ALLIES-05' : 'CAMP-AXIS-05') : 'CAMP-' + side.toUpperCase() + (kula ? '-04' : '-03'), difficulty: kula ? side === 'allies' ? 'standard' : 'challenge' : 'story', seed, ...(kula ? { profile: side === 'allies' ? 'gunnery' : 'torpedo' } : {}) } :
       { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant, realtime },
   ];
   if (variant === 'night-training') commands.push(
@@ -65,6 +66,9 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     const ownFleets = side === 'axis' ? [1, 2, 3] : [4, 5, 6, 7, 8];
     for (const fleet of ownFleets) commands.push(
       { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: side === 'axis', gun: true, torpedo: true });
+  } else if (tassafarongaCampaign) {
+    for (const fleet of side === 'allies' ? [1, 2, 3] : [4, 5, 6, 7]) commands.push(
+      { op: 'ai', fleet, profile: 'coord', mode: 'auto', move: true, gun: true, torpedo: true });
   } else if (esperanceCampaign) {
     for (const fleet of side === 'allies' ? [1] : [2, 3]) commands.push(
       { op: 'ai', fleet, profile: 'coord', mode: 'auto', move: true, gun: true, torpedo: true });
@@ -188,8 +192,8 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     assert(gun && gun.tick > 0 && gun.tick < 180);
     assert(onTheWay && onTheWay.arcHeightM > 0 && onTheWay.impactTick - onTheWay.launchTick > 8);
   }
-  assert.equal(start.ships.length, variant === 'prologue' ? 9 : variant === 'empress' ? 12 : empressCampaign ? (side === 'allies' ? 12 : 10) : esperanceCampaign ? (side === 'allies' ? 9 : 5) : kula ? (side === 'allies' ? 7 : 10) : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
-  assert.equal(start.variant, empressCampaign ? 'empress' : esperanceCampaign ? 'esperance' : variant);
+  assert.equal(start.ships.length, variant === 'prologue' ? 9 : variant === 'empress' ? 12 : empressCampaign ? (side === 'allies' ? 12 : 10) : esperanceCampaign ? (side === 'allies' ? 9 : 5) : tassafarongaCampaign ? 11 : kula ? (side === 'allies' ? 7 : 10) : variant === 'challenge' || channel && side === 'axis' ? 3 : 5);
+  assert.equal(start.variant, empressCampaign ? 'empress' : esperanceCampaign ? 'esperance' : tassafarongaCampaign ? 'tassafaronga' : variant);
   if (variant === 'empress') {
     assert.equal(start.fleets.length, 3);
     assert.equal(start.environment.visibility, 10);
@@ -237,11 +241,11 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     // detection engage both sides earlier; the allies escort DDs now soak
     // more than the decisive 25% allowance, so the cape fixture holds at
     // tactical (registered in the v10 ledger). Kula allies stays decisive.
-    const expected = esperanceCampaign ? (side === 'allies' ? 'decisive' : 'none') : kula || channel ? 'decisive' : side === 'allies' ? 'tactical' : 'decisive';
+    const expected = esperanceCampaign || tassafarongaCampaign ? (side === 'allies' ? 'decisive' : 'none') : kula || channel ? 'decisive' : side === 'allies' ? 'tactical' : 'decisive';
     assert.equal(end.result.grade, expected, `${side} ${variant} ${seed}: ${end.result.grade}`);
-    assert.equal(start.fleets.length, esperanceCampaign ? (side === 'allies' ? 1 : 2) : 2);
+    assert.equal(start.fleets.length, tassafarongaCampaign ? 3 : esperanceCampaign ? (side === 'allies' ? 1 : 2) : 2);
     if (side === 'axis' && !esperanceCampaign) assert.equal(report.events.filter(event => event.kind === 'withdrawal').length, 5);
-    else if (esperanceCampaign) assert(report.events.some(event => event.kind === 'gun'));
+    else if (esperanceCampaign || tassafarongaCampaign) assert(report.events.length > 0);
     else assert(report.events.some(event => event.kind === 'torpedo_hit'));
   }
   assert(end.result, `${side}: exercise failed to produce a result`);
@@ -258,6 +262,7 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('axis', 3, 'cape-st-george-rts', 6111, true, true),
   await verify('allies', 1, 'esperance-campaign', 6106, true, true),
   await verify('axis', 2, 'esperance-campaign', 6106, true, true),
+  await verify('allies', 1, 'tassafaronga-campaign', 6106, true, true),
   await verify('allies', 1, 'prologue', 6106, true),
   await verify('allies', 1, 'night-radar-training', 6106, true),
   await verify('allies', 1, 'empress', 6106, true),

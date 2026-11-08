@@ -1,0 +1,2669 @@
+{
+  "ships": [
+    {
+      "id": "tass_minneapolis",
+      "name": "明尼阿波利斯",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 397,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 99,
+          "knots": 24
+        },
+        {
+          "damage": 199,
+          "knots": 16
+        },
+        {
+          "damage": 298,
+          "knots": 8
+        },
+        {
+          "damage": 357,
+          "knots": 0
+        },
+        {
+          "damage": 397,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 14,
+      "armor_deck": 6,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000,
+          16000,
+          25500,
+          31900
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "barrels": 18,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_class": "new_orleans_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_new_orleans",
+      "name": "新奥尔良",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 397,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 99,
+          "knots": 24
+        },
+        {
+          "damage": 199,
+          "knots": 16
+        },
+        {
+          "damage": 298,
+          "knots": 8
+        },
+        {
+          "damage": 357,
+          "knots": 0
+        },
+        {
+          "damage": 397,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 14,
+      "armor_deck": 6,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000,
+          16000,
+          25500,
+          31900
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "barrels": 18,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_class": "new_orleans_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_pensacola",
+      "name": "彭萨科拉",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 372,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 93,
+          "knots": 24
+        },
+        {
+          "damage": 186,
+          "knots": 16
+        },
+        {
+          "damage": 279,
+          "knots": 8
+        },
+        {
+          "damage": 335,
+          "knots": 0
+        },
+        {
+          "damage": 372,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 5,
+      "armor_deck": 3,
+      "in_service_year": 1929,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000,
+          16000,
+          25500,
+          31900
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "barrels": 10,
+        "gs": 3,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_class": "pensacola_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_northampton",
+      "name": "北安普敦",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 370,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 93,
+          "knots": 24
+        },
+        {
+          "damage": 185,
+          "knots": 16
+        },
+        {
+          "damage": 278,
+          "knots": 8
+        },
+        {
+          "damage": 333,
+          "knots": 0
+        },
+        {
+          "damage": 370,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 7,
+      "armor_deck": 3,
+      "in_service_year": 1929,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000,
+          16000,
+          25500,
+          31900
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "barrels": 18,
+        "gs": 3,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_class": "northampton_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_honolulu",
+      "name": "火奴鲁鲁",
+      "side": "allies",
+      "kind": "CL",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 388,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 97,
+          "knots": 24
+        },
+        {
+          "damage": 194,
+          "knots": 16
+        },
+        {
+          "damage": 291,
+          "knots": 8
+        },
+        {
+          "damage": 349,
+          "knots": 0
+        },
+        {
+          "damage": 388,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 13,
+      "armor_deck": 5,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk16 6in/47 APC",
+        "caliber_mm": 152,
+        "range_yd": [
+          6200,
+          13000,
+          20800,
+          26000
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 15,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          15,
+          9,
+          7,
+          5
+        ],
+        "pen_deck": [
+          null,
+          null,
+          2,
+          4
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_class": "brooklyn_first_group_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_fletcher",
+      "name": "弗莱彻",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null
+      },
+      "source_class": "fletcher_1942_tassafaronga",
+      "gun_note": null
+    },
+    {
+      "id": "tass_perkins",
+      "name": "帕金斯",
+      "side": "allies",
+      "kind": "DD",
+      "size": "D",
+      "max_knots": 36,
+      "dp": 112,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 28,
+          "knots": 27
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 84,
+          "knots": 9
+        },
+        {
+          "damage": 101,
+          "knots": 0
+        },
+        {
+          "damage": 112,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 12,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null
+      },
+      "source_class": "mahan_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_maury",
+      "name": "莫里",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 38,
+      "dp": 116,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 38
+        },
+        {
+          "damage": 29,
+          "knots": 28
+        },
+        {
+          "damage": 58,
+          "knots": 19
+        },
+        {
+          "damage": 87,
+          "knots": 10
+        },
+        {
+          "damage": 104,
+          "knots": 0
+        },
+        {
+          "damage": 116,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 4,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 16,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null
+      },
+      "source_class": "gridley_1942",
+      "gun_note": "Gridley 'F/A(1)4' adopted as four single mounts F/F/A/A (registered RTS reading)."
+    },
+    {
+      "id": "tass_drayton",
+      "name": "德雷顿",
+      "side": "allies",
+      "kind": "DD",
+      "size": "D",
+      "max_knots": 36,
+      "dp": 112,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 28,
+          "knots": 27
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 84,
+          "knots": 9
+        },
+        {
+          "damage": 101,
+          "knots": 0
+        },
+        {
+          "damage": 112,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 12,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null
+      },
+      "source_class": "mahan_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_lamson",
+      "name": "拉姆森",
+      "side": "allies",
+      "kind": "DD",
+      "size": "D",
+      "max_knots": 36,
+      "dp": 112,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 28,
+          "knots": 27
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 84,
+          "knots": 9
+        },
+        {
+          "damage": 101,
+          "knots": 0
+        },
+        {
+          "damage": 112,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 5,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 12,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null
+      },
+      "source_class": "mahan_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_lardner",
+      "name": "拉德纳",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 118,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 30,
+          "knots": 28
+        },
+        {
+          "damage": 59,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 106,
+          "knots": 0
+        },
+        {
+          "damage": 118,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "Mk30 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "barrels": 8,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 10,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 5,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": null
+      },
+      "source_class": "bristol_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_naganami",
+      "name": "长波",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 140,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 70,
+          "knots": 18
+        },
+        {
+          "damage": 105,
+          "knots": 9
+        },
+        {
+          "damage": 126,
+          "knots": 0
+        },
+        {
+          "damage": 140,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "yugumo_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_makinami",
+      "name": "卷波",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 140,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 70,
+          "knots": 18
+        },
+        {
+          "damage": 105,
+          "knots": 9
+        },
+        {
+          "damage": 126,
+          "knots": 0
+        },
+        {
+          "damage": 140,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "yugumo_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_takanami",
+      "name": "高波",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 140,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 70,
+          "knots": 18
+        },
+        {
+          "damage": 105,
+          "knots": 9
+        },
+        {
+          "damage": 126,
+          "knots": 0
+        },
+        {
+          "damage": 140,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "yugumo_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_oyashio",
+      "name": "亲潮",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 138,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 69,
+          "knots": 18
+        },
+        {
+          "damage": 104,
+          "knots": 9
+        },
+        {
+          "damage": 124,
+          "knots": 0
+        },
+        {
+          "damage": 138,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "kagero_1942_base",
+      "gun_note": null
+    },
+    {
+      "id": "tass_kuroshio",
+      "name": "黑潮",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 138,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 69,
+          "knots": 18
+        },
+        {
+          "damage": 104,
+          "knots": 9
+        },
+        {
+          "damage": 124,
+          "knots": 0
+        },
+        {
+          "damage": 138,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "kagero_1942_base",
+      "gun_note": null
+    },
+    {
+      "id": "tass_kagero",
+      "name": "阳炎",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 138,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 35,
+          "knots": 26
+        },
+        {
+          "damage": 69,
+          "knots": 18
+        },
+        {
+          "damage": 104,
+          "knots": 9
+        },
+        {
+          "damage": 124,
+          "knots": 0
+        },
+        {
+          "damage": 138,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 6,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "kagero_1942_asw_refit",
+      "gun_note": null
+    },
+    {
+      "id": "tass_kawakaze",
+      "name": "川风",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 34,
+      "dp": 122,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 31,
+          "knots": 26
+        },
+        {
+          "damage": 61,
+          "knots": 17
+        },
+        {
+          "damage": 92,
+          "knots": 8
+        },
+        {
+          "damage": 110,
+          "knots": 0
+        },
+        {
+          "damage": 122,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 4,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "shiratsuyu_1942",
+      "gun_note": null
+    },
+    {
+      "id": "tass_suzukaze",
+      "name": "凉风",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 34,
+      "dp": 122,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 31,
+          "knots": 26
+        },
+        {
+          "damage": 61,
+          "knots": 17
+        },
+        {
+          "damage": 92,
+          "knots": 8
+        },
+        {
+          "damage": 110,
+          "knots": 0
+        },
+        {
+          "damage": 122,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 250,
+      "speed_loss_knots": 4,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "三年式 12.7cm/50 COM",
+        "caliber_mm": 127,
+        "range_yd": [
+          6000,
+          12000,
+          16000,
+          20000
+        ],
+        "damage": [
+          16,
+          13,
+          11,
+          10
+        ],
+        "barrels": 4,
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          5,
+          3,
+          2,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "reload_seconds": 360
+      },
+      "source_class": "shiratsuyu_1942",
+      "gun_note": null
+    }
+  ],
+  "metadata": {
+    "content_version": "cas-tassafaronga-runtime-v1",
+    "scenario_id": "cas-rs-tassafaronga",
+    "as_of": "1942-11-30",
+    "status": "restricted_rts_adaptation_only",
+    "policy": "Scenario exceptions, then Fifth Edition rules, then annex class and dated refit entries. Legacy dated Form 10 is corroboration, with differences retained explicitly. Nulls and unresolved alternatives are not executable; printed conflicts are retained verbatim and marked.",
+    "restrictions": [
+      "Shell selections: 8in APC, 6in APC, 5in SpCOM, 12.7cm COM. The source leaves per-ship loadouts unresolved.",
+      "Gridley 'F/A(1)4' adopted as four single mounts.",
+      "Only Naganami and Takanami keep torpedo reloads; the six drum carriers start with zero reserve.",
+      "Resupply-point coordinates are an RTS chart registration, not printed values."
+    ]
+  }
+}

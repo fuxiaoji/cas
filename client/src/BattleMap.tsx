@@ -272,6 +272,14 @@ export function BattleMap(props: MapProps) {
       ctx.beginPath(); island.forEach((point, i) => { const p = screen(point); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.fillStyle = '#5a674e'; ctx.fill(); ctx.strokeStyle = '#a2b18a'; ctx.stroke();
     }
+    for (const point of o.resupply ?? []) {
+      const at = screen(point);
+      ctx.beginPath(); ctx.arc(at.x, at.y, point.radius * mapRatio, 0, TAU);
+      ctx.fillStyle = '#e5b9661f'; ctx.fill();
+      ctx.setLineDash([4, 4]); ctx.strokeStyle = '#e5b966a8'; ctx.lineWidth = 1.1; ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#f3cf8b'; ctx.font = '11px sans-serif';
+      ctx.fillText(`补给点 · ${point.capacity}`, at.x + point.radius * mapRatio + 5, at.y - 3);
+    }
     // cas-realtime-v10: smoke puffs (1,000-yd radius, four-window burn) and
     // the lit cones of own searchlights toward their targets.
     for (const puff of o.smoke ?? []) {

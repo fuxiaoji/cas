@@ -641,8 +641,9 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
         let kula = item["ibs_id"] == "IBS-S-02";
         let empress = item["cas"]["scenario_id"] == "cas-rs-empress-augusta-bay";
         let esperance = item["cas"]["scenario_id"] == "cas-rs-cape-esperance";
-        assert_eq!(item["playable"], cape || kula || empress || esperance);
-        if cape || kula || empress || esperance {
+        let tassafaronga = item["cas"]["scenario_id"] == "cas-rs-tassafaronga";
+        assert_eq!(item["playable"], cape || kula || empress || esperance || tassafaronga);
+        if cape || kula || empress || esperance || tassafaronga {
             assert_eq!(item["runtime"]["historicalReady"], false);
         }
         for id in item["stage_ids"].as_array().unwrap() {

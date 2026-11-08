@@ -68,6 +68,9 @@ impl Start {
     pub(crate) fn is_esperance(&self) -> bool {
         matches!(self.stage_id.as_str(), "CAMP-ALLIES-02" | "CAMP-AXIS-02")
     }
+    pub(crate) fn is_tassafaronga(&self) -> bool {
+        matches!(self.stage_id.as_str(), "CAMP-ALLIES-05" | "CAMP-AXIS-05")
+    }
     pub(crate) fn variant(&self) -> &'static str {
         if self.is_channel() {
             channel::VARIANT
@@ -77,6 +80,8 @@ impl Start {
             crate::empress::VARIANT
         } else if self.is_esperance() {
             super::esperance::VARIANT
+        } else if self.is_tassafaronga() {
+            super::tassafaronga::VARIANT
         } else {
             VARIANT
         }
@@ -90,6 +95,8 @@ impl Start {
             crate::empress::LIMIT
         } else if self.is_esperance() {
             super::esperance::LIMIT
+        } else if self.is_tassafaronga() {
+            super::tassafaronga::LIMIT
         } else {
             FIELD.limit
         }
@@ -103,14 +110,16 @@ impl Start {
             crate::empress::CONTENT
         } else if self.is_esperance() {
             super::esperance::CONTENT
+        } else if self.is_tassafaronga() {
+            super::tassafaronga::CONTENT
         } else {
             CONTENT
         }
     }
     pub(crate) fn seat(&self) -> E<usize> {
         match self.stage_id.as_str() {
-            "CAMP-ALLIES-03" | "CAMP-ALLIES-04" | "CAMP-ALLIES-11" | "CAMP-ALLIES-02" => Ok(0),
-            "CAMP-AXIS-03" | "CAMP-AXIS-04" | "CAMP-AXIS-11" | "CAMP-AXIS-02" => Ok(1),
+            "CAMP-ALLIES-03" | "CAMP-ALLIES-04" | "CAMP-ALLIES-11" | "CAMP-ALLIES-02" | "CAMP-ALLIES-05" => Ok(0),
+            "CAMP-AXIS-03" | "CAMP-AXIS-04" | "CAMP-AXIS-11" | "CAMP-AXIS-02" | "CAMP-AXIS-05" => Ok(1),
             _ => Err("此战役尚未通过出航核验".into()),
         }
     }
@@ -299,6 +308,11 @@ impl World {
             finish_fleet(&mut w, fleet, basic)?;
             return Ok(w);
         }
+        if start.is_tassafaronga() {
+            let mut w = super::tassafaronga::open(seed, start, player, enemy, profile)?;
+            finish_fleet(&mut w, fleet, basic)?;
+            return Ok(w);
+        }
         let runtime = runtime()?;
         let mut w = Self::blank(&runtime.data, seed, player, enemy, VARIANT, profile, 0);
         w.field = FIELD;
@@ -432,6 +446,8 @@ impl World {
             crate::empress::view(start, owner)
         } else if start.is_esperance() {
             super::esperance::view(start, owner)
+        } else if start.is_tassafaronga() {
+            super::tassafaronga::view(start, owner)
         } else {
             let stage = if owner == 0 {
                 "CAMP-ALLIES-03"
@@ -441,6 +457,10 @@ impl World {
             json!({"stageId":stage,"difficulty":start.difficulty,"missionLabel":LABEL,
                 "objectives":objectives(owner),"withdrawalX":WEST_EXIT})
         };
+        if start.is_tassafaronga() {
+            view["supplyScore"] = json!(self.supply_score);
+            view["supplyStrings"] = json!(self.drum_strings.iter().filter(|&&n| n > 0).sum::<u8>());
+        }
         if self.result.is_some() {
             // The tactical projection contains only ships still on the chart. The
             // debrief also needs this seat's sunk and withdrawn participants.
@@ -523,6 +543,10 @@ impl World {
         }
         if self.variant == super::esperance::VARIANT {
             self.finish_campaign(super::esperance::outcome(self), allied_sunk, axis_sunk, "CAS-RS-CAPE-ESP-01");
+            return;
+        }
+        if self.variant == super::tassafaronga::VARIANT {
+            self.finish_campaign(super::tassafaronga::outcome(self), allied_sunk, axis_sunk, "CAS-RS-TASS-01");
             return;
         }
         let states = self
