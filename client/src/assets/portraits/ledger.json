@@ -1,225 +1,337 @@
 {
-  "schema_version": 1,
-  "source_project": "铁底湾",
-  "source_commit": "3ba9c5b01c48a3e7f8bb104da5d9f7ad4b1456a9",
-  "source_manifest": "mobile/content/fleet-portrait-manifest.json",
-  "scope": "CAS local developer and test builds; public distribution rights not established.",
-  "assets": [
-    {
-      "cas_class_id": "fletcher",
-      "ibs_character_id": "IBS-U-USN-FLETCHER",
-      "character_name": "弗莱彻",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-fletcher.png",
-      "path": "fletcher.png",
-      "sha256": "43910f725219330a044f6bce08bd77719118c246c8f868404b13e3113403428c",
-      "mapping": "class_representative"
-    },
-    {
-      "cas_class_id": "cleveland",
-      "ibs_character_id": "IBS-U-USN-UNNAMED-T01-R26",
-      "character_name": "克利夫兰",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r26.png",
-      "path": "cleveland.png",
-      "sha256": "275643134b2cb2b5d5032cfddbe1e3043785a9c6e276335d2f36ee3b269d9c90",
-      "mapping": "class_representative"
-    },
-    {
-      "cas_class_id": "kagero",
-      "ibs_character_id": "IBS-U-IJN-KAGERO",
-      "character_name": "阳炎",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kagero.png",
-      "path": "kagero.png",
-      "sha256": "22bf931585c659b9073ac2a75023f4783d1fd7bd3667b86043d22b27dd3e6f0d",
-      "mapping": "class_representative"
-    },
-    {
-      "cas_class_id": "sendai",
-      "ibs_character_id": "IBS-U-IJN-SENDAI",
-      "character_name": "川内",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-sendai.png",
-      "path": "sendai.png",
-      "sha256": "eaefdc9bad95f5e5119b8fb1ce6916f0e82af6840fc2be076b323b163d3a9c10",
-      "mapping": "class_representative"
-    },
-    {
-      "cas_class_id": "amagiri",
-      "ibs_character_id": "IBS-U-IJN-AMAGIRI",
-      "character_name": "天雾",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-amagiri.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-amagiri.png",
-      "sha256": "8a2ad7d150751055bc3f6aabd1fb18d86e5d49ebb0b083128bd8031bb9aac8a0",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "makinami",
-      "ibs_character_id": "IBS-U-IJN-MAKINAMI",
-      "character_name": "卷波",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-makinami.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-makinami.png",
-      "sha256": "b633a526ff00d3f1ae0c09857cb7384b7ebb8bd289e73aa56842e0f982806c25",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "onami",
-      "ibs_character_id": "IBS-U-IJN-ONAMI",
-      "character_name": "大波",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-onami.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-onami.png",
-      "sha256": "75ba4c4fe2b55ec0f4face4166702065a3dbbe8c8ff4e85fa6cc7b2d0c234f32",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "uzuki",
-      "ibs_character_id": "IBS-U-IJN-UZUKI",
-      "character_name": "卯月(II)",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-uzuki-2.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-uzuki.png",
-      "sha256": "e14f3110d63a47b342b4be14ac5a2cfd334f930f36974d2892ce0718d0835409",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "yugiri",
-      "ibs_character_id": "IBS-U-IJN-YUGIRI",
-      "character_name": "夕雾",
-      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-yugiri.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-yugiri.png",
-      "sha256": "f9e95ea28a1671bdff35a2aa899d921b88df16a7d52ed29b559898bd243a1df0",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-KM-HANS-LODY",
-      "ibs_character_id": "IBS-U-KM-HANS-LODY",
-      "character_name": "汉斯·洛迪",
-      "source_path": "mobile/public/characters/ships/fleet-v2/km-hans-lody.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-km-hans-lody.png",
-      "sha256": "df4a67b2b1a9af4a445d53f7e831e626bd9eaadf3b4b5dad040792ae34ba8921",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-KM-KARL-GALSTER",
-      "ibs_character_id": "IBS-U-KM-KARL-GALSTER",
-      "character_name": "卡尔加尔斯特",
-      "source_path": "mobile/public/characters/ships/fleet-v2/km-karl-galster.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-km-karl-galster.png",
-      "sha256": "90f695fa8b6c15375ac914b3d2eae5db6b0bb6cac681f5a543d13dff6bc85d11",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-KM-RICHARD-BEITZEN",
-      "ibs_character_id": "IBS-U-KM-RICHARD-BEITZEN",
-      "character_name": "里夏德·拜茨恩",
-      "source_path": "mobile/public/characters/ships/fleet-v2/km-richard-beitzen.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-km-richard-beitzen.png",
-      "sha256": "bb34ba0112c511c0b2746a9c969f1d68370f8575c1830ed77a0d3e2eccb8a596",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-RN-JACKAL",
-      "ibs_character_id": "IBS-U-RN-JACKAL",
-      "character_name": "豺",
-      "source_path": "mobile/public/characters/ships/fleet-v2/rn-jackal.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-rn-jackal.png",
-      "sha256": "a06cc21c5712a05dcbca9ba9814e826bf06a938663377f02eadb1ccea8cc57fc",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-RN-JAVELIN",
-      "ibs_character_id": "IBS-U-RN-JAVELIN",
-      "character_name": "标枪",
-      "source_path": "mobile/public/characters/ships/fleet-v2/rn-javelin.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-rn-javelin.png",
-      "sha256": "a347375dc95e23eb5475ca89153f7838781a74a8650347747257707cf2196de5",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-RN-JERSEY",
-      "ibs_character_id": "IBS-U-RN-JERSEY",
-      "character_name": "泽西",
-      "source_path": "mobile/public/characters/ships/fleet-v2/rn-jersey.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-rn-jersey.png",
-      "sha256": "66e01ea6bf6cafc9fd79ee47cffa76f7e51ca87780b85bc7c31c8ce6cc76ee40",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-RN-JUPITER",
-      "ibs_character_id": "IBS-U-RN-JUPITER",
-      "character_name": "朱庇特",
-      "source_path": "mobile/public/characters/ships/fleet-v2/rn-jupiter.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-rn-jupiter.png",
-      "sha256": "597726f144dfa3da1522fbcb1d53d56f619833f8e6c53ab487e77b0562682275",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "IBS-U-RN-KASHMIR",
-      "ibs_character_id": "IBS-U-RN-KASHMIR",
-      "character_name": "克什米尔",
-      "source_path": "mobile/public/characters/ships/fleet-v2/rn-kashmir.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "channel-rn-kashmir.png",
-      "sha256": "33bad6edead827b10c22815ae278fcc16a27003a6267979087c6c7018b72e9f2",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "ausburne",
-      "ibs_character_id": "IBS-U-USN-CF-AUSBURNE",
-      "character_name": "查尔斯·奥斯本",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-cf-ausburne.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-ausburne.png",
-      "sha256": "8a3a397ce1d59017b490cdd86777dfabeef5b4ab7317ee4c60dcbbf68c9ee1a4",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "claxton",
-      "ibs_character_id": "IBS-U-USN-CLAXTON",
-      "character_name": "克拉克斯顿",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-claxton.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-claxton.png",
-      "sha256": "ca45000b0376e56173e94b21fc9b5aa2415c48d860d6d776c412fb5c4981cb28",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "converse",
-      "ibs_character_id": "IBS-U-USN-CONVERSE",
-      "character_name": "康弗斯",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-converse.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-converse.png",
-      "sha256": "d51f742d4479d07b0bd6d5d37303e4727e1f3e67416aaf1810d3a679b74e364f",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "dyson",
-      "ibs_character_id": "IBS-U-USN-DYSON",
-      "character_name": "戴森",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-dyson.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-dyson.png",
-      "sha256": "232decf4355aa08edb100961925271b12bebedec6dfe0898b4de80605557813f",
-      "mapping": "named_identity"
-    },
-    {
-      "cas_class_id": "spence",
-      "ibs_character_id": "IBS-U-USN-SPENCE",
-      "character_name": "斯彭斯",
-      "source_path": "mobile/public/characters/ships/fleet-v2/usn-spence.png",
-      "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
-      "path": "cape-spence.png",
-      "sha256": "407e144bbaefd9b13911c129ae4ba9238ef363959f4082616b5f6bb70c50dbbd",
-      "mapping": "named_identity"
-    }
-  ]
+ "schema_version": 1,
+ "source_project": "铁底湾",
+ "source_commit": "3ba9c5b01c48a3e7f8bb104da5d9f7ad4b1456a9",
+ "source_manifest": "mobile/content/fleet-portrait-manifest.json",
+ "scope": "CAS local developer and test builds; public distribution rights not established.",
+ "assets": [
+  {
+   "cas_class_id": "amagiri",
+   "ibs_character_id": "IBS-U-IJN-AMAGIRI",
+   "character_name": "天雾",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-amagiri.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-amagiri.png",
+   "sha256": "8a2ad7d150751055bc3f6aabd1fb18d86e5d49ebb0b083128bd8031bb9aac8a0",
+   "mapping": "named_identity"
+  },
+  {
+   "ibs_character_id": "IBS-U-IJN-AOBA",
+   "character_name": "青叶",
+   "path": "esperance-ijn-aoba.png",
+   "bytes": 2039035,
+   "sha256": "69ac660084f702a8ea36adb3bb6df0b2a1e0f0839843ac9ae20900d1d6789d5f",
+   "source": "approved-first-50"
+  },
+  {
+   "ibs_character_id": "IBS-U-IJN-FUBUKI",
+   "character_name": "吹雪",
+   "path": "esperance-ijn-fubuki.png",
+   "bytes": 1996176,
+   "sha256": "5ab16e956eaf23071b5a3a0b82c0f4f8f0312c00d02b6eecd6e1f54768c66c08",
+   "source": "approved-first-50"
+  },
+  {
+   "ibs_character_id": "IBS-U-IJN-FURUTAKA",
+   "character_name": "古鹰",
+   "path": "esperance-ijn-furutaka.png",
+   "bytes": 1924909,
+   "sha256": "05db851d9a5208b521b7b736d74dd3bb98ca06ff7be97bfe9d8a4907a55acfd8",
+   "source": "built-in image_gen"
+  },
+  {
+   "ibs_character_id": "IBS-U-IJN-HATSUYUKI",
+   "character_name": "初雪",
+   "path": "esperance-ijn-hatsuyuki.png",
+   "bytes": 1965810,
+   "sha256": "c0da70e6655eeaebec21d8ba0de357a4d92b880cabdcd4f36d3467cea5a09f4e",
+   "source": "built-in image_gen"
+  },
+  {
+   "cas_class_id": "kagero",
+   "ibs_character_id": "IBS-U-IJN-KAGERO",
+   "character_name": "阳炎",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kagero.png",
+   "path": "kagero.png",
+   "sha256": "22bf931585c659b9073ac2a75023f4783d1fd7bd3667b86043d22b27dd3e6f0d",
+   "mapping": "class_representative"
+  },
+  {
+   "ibs_character_id": "IBS-U-IJN-KINUGASA",
+   "character_name": "衣笠",
+   "path": "esperance-ijn-kinugasa.png",
+   "bytes": 2135559,
+   "sha256": "5c571929c47505449c86ed25a11b940b5e762836557ea8fb3f7dab3b476ecf05",
+   "source": "approved-first-50"
+  },
+  {
+   "cas_class_id": "makinami",
+   "ibs_character_id": "IBS-U-IJN-MAKINAMI",
+   "character_name": "卷波",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-makinami.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-makinami.png",
+   "sha256": "b633a526ff00d3f1ae0c09857cb7384b7ebb8bd289e73aa56842e0f982806c25",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "onami",
+   "ibs_character_id": "IBS-U-IJN-ONAMI",
+   "character_name": "大波",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-onami.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-onami.png",
+   "sha256": "75ba4c4fe2b55ec0f4face4166702065a3dbbe8c8ff4e85fa6cc7b2d0c234f32",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "sendai",
+   "ibs_character_id": "IBS-U-IJN-SENDAI",
+   "character_name": "川内",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-sendai.png",
+   "path": "sendai.png",
+   "sha256": "eaefdc9bad95f5e5119b8fb1ce6916f0e82af6840fc2be076b323b163d3a9c10",
+   "mapping": "class_representative"
+  },
+  {
+   "cas_class_id": "uzuki",
+   "ibs_character_id": "IBS-U-IJN-UZUKI",
+   "character_name": "卯月(II)",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-uzuki-2.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-uzuki.png",
+   "sha256": "e14f3110d63a47b342b4be14ac5a2cfd334f930f36974d2892ce0718d0835409",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "yugiri",
+   "ibs_character_id": "IBS-U-IJN-YUGIRI",
+   "character_name": "夕雾",
+   "source_path": "mobile/public/characters/ships/fleet-v2/ijn-yugiri.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-yugiri.png",
+   "sha256": "f9e95ea28a1671bdff35a2aa899d921b88df16a7d52ed29b559898bd243a1df0",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-KM-HANS-LODY",
+   "ibs_character_id": "IBS-U-KM-HANS-LODY",
+   "character_name": "汉斯·洛迪",
+   "source_path": "mobile/public/characters/ships/fleet-v2/km-hans-lody.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-km-hans-lody.png",
+   "sha256": "df4a67b2b1a9af4a445d53f7e831e626bd9eaadf3b4b5dad040792ae34ba8921",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-KM-KARL-GALSTER",
+   "ibs_character_id": "IBS-U-KM-KARL-GALSTER",
+   "character_name": "卡尔加尔斯特",
+   "source_path": "mobile/public/characters/ships/fleet-v2/km-karl-galster.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-km-karl-galster.png",
+   "sha256": "90f695fa8b6c15375ac914b3d2eae5db6b0bb6cac681f5a543d13dff6bc85d11",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-KM-RICHARD-BEITZEN",
+   "ibs_character_id": "IBS-U-KM-RICHARD-BEITZEN",
+   "character_name": "里夏德·拜茨恩",
+   "source_path": "mobile/public/characters/ships/fleet-v2/km-richard-beitzen.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-km-richard-beitzen.png",
+   "sha256": "bb34ba0112c511c0b2746a9c969f1d68370f8575c1830ed77a0d3e2eccb8a596",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-RN-JACKAL",
+   "ibs_character_id": "IBS-U-RN-JACKAL",
+   "character_name": "豺",
+   "source_path": "mobile/public/characters/ships/fleet-v2/rn-jackal.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-rn-jackal.png",
+   "sha256": "a06cc21c5712a05dcbca9ba9814e826bf06a938663377f02eadb1ccea8cc57fc",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-RN-JAVELIN",
+   "ibs_character_id": "IBS-U-RN-JAVELIN",
+   "character_name": "标枪",
+   "source_path": "mobile/public/characters/ships/fleet-v2/rn-javelin.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-rn-javelin.png",
+   "sha256": "a347375dc95e23eb5475ca89153f7838781a74a8650347747257707cf2196de5",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-RN-JERSEY",
+   "ibs_character_id": "IBS-U-RN-JERSEY",
+   "character_name": "泽西",
+   "source_path": "mobile/public/characters/ships/fleet-v2/rn-jersey.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-rn-jersey.png",
+   "sha256": "66e01ea6bf6cafc9fd79ee47cffa76f7e51ca87780b85bc7c31c8ce6cc76ee40",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-RN-JUPITER",
+   "ibs_character_id": "IBS-U-RN-JUPITER",
+   "character_name": "朱庇特",
+   "source_path": "mobile/public/characters/ships/fleet-v2/rn-jupiter.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-rn-jupiter.png",
+   "sha256": "597726f144dfa3da1522fbcb1d53d56f619833f8e6c53ab487e77b0562682275",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "IBS-U-RN-KASHMIR",
+   "ibs_character_id": "IBS-U-RN-KASHMIR",
+   "character_name": "克什米尔",
+   "source_path": "mobile/public/characters/ships/fleet-v2/rn-kashmir.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "channel-rn-kashmir.png",
+   "sha256": "33bad6edead827b10c22815ae278fcc16a27003a6267979087c6c7018b72e9f2",
+   "mapping": "named_identity"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-BOISE",
+   "character_name": "博伊西",
+   "path": "esperance-usn-boise.png",
+   "bytes": 2034046,
+   "sha256": "af5f88e5b2b57a370b0dd6b22163922d1a1fe2c050d93a6153cb053be65d0cdc",
+   "source": "approved-first-50"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-BUCHANAN",
+   "character_name": "布坎南",
+   "path": "esperance-usn-buchanan.png",
+   "bytes": 2112026,
+   "sha256": "d42de151b4ef03f24dbdb011cc5f6236ff20241d5ba585b248b0e7d4643c2dfd",
+   "source": "built-in image_gen"
+  },
+  {
+   "cas_class_id": "ausburne",
+   "ibs_character_id": "IBS-U-USN-CF-AUSBURNE",
+   "character_name": "查尔斯·奥斯本",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-cf-ausburne.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-ausburne.png",
+   "sha256": "8a3a397ce1d59017b490cdd86777dfabeef5b4ab7317ee4c60dcbbf68c9ee1a4",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "claxton",
+   "ibs_character_id": "IBS-U-USN-CLAXTON",
+   "character_name": "克拉克斯顿",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-claxton.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-claxton.png",
+   "sha256": "ca45000b0376e56173e94b21fc9b5aa2415c48d860d6d776c412fb5c4981cb28",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "converse",
+   "ibs_character_id": "IBS-U-USN-CONVERSE",
+   "character_name": "康弗斯",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-converse.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-converse.png",
+   "sha256": "d51f742d4479d07b0bd6d5d37303e4727e1f3e67416aaf1810d3a679b74e364f",
+   "mapping": "named_identity"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-DUNCAN",
+   "character_name": "邓肯",
+   "path": "esperance-usn-duncan.png",
+   "bytes": 1925218,
+   "sha256": "28a2a0448650294477e984f6551018720051d14f68bcbf1feacd30d28ecd3b7e",
+   "source": "built-in image_gen"
+  },
+  {
+   "cas_class_id": "dyson",
+   "ibs_character_id": "IBS-U-USN-DYSON",
+   "character_name": "戴森",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-dyson.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-dyson.png",
+   "sha256": "232decf4355aa08edb100961925271b12bebedec6dfe0898b4de80605557813f",
+   "mapping": "named_identity"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-FARENHOLT",
+   "character_name": "法伦霍尔特",
+   "path": "esperance-usn-farenholt.png",
+   "bytes": 2164836,
+   "sha256": "30c0f1ee3d8dc44280672faaf52b522b900080e3b6e6c4cf8fe55186ae227d6d",
+   "source": "built-in image_gen"
+  },
+  {
+   "cas_class_id": "fletcher",
+   "ibs_character_id": "IBS-U-USN-FLETCHER",
+   "character_name": "弗莱彻",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-fletcher.png",
+   "path": "fletcher.png",
+   "sha256": "43910f725219330a044f6bce08bd77719118c246c8f868404b13e3113403428c",
+   "mapping": "class_representative"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-HELENA",
+   "character_name": "海伦娜",
+   "path": "esperance-usn-helena.png",
+   "bytes": 2168093,
+   "sha256": "d9a51584e12885d5ea2e206be9475eab5038511c92044c91174a69c53e67de7d",
+   "source": "approved-first-50"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-LAFFEY",
+   "character_name": "拉菲",
+   "path": "esperance-usn-laffey.png",
+   "bytes": 1800265,
+   "sha256": "1e1d81808d319a0405e46d2dc13cc07efe8fcac74b4a615088c4c754317f6c94",
+   "source": "approved-first-50"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-MCCALLA",
+   "character_name": "麦卡拉",
+   "path": "esperance-usn-mccalla.png",
+   "bytes": 1917130,
+   "sha256": "57ca157dd08235ef2cb72f35aa0a9a1a980f4045f47799143b014058497333a2",
+   "source": "built-in image_gen"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-SALT-LAKE-CITY",
+   "character_name": "盐湖城",
+   "path": "esperance-usn-salt-lake-city.png",
+   "bytes": 1974691,
+   "sha256": "74c33ab03f39846eeec8044bdfaeb03ab9904e7f662a70dfd084df8cf3a02075",
+   "source": "built-in image_gen"
+  },
+  {
+   "ibs_character_id": "IBS-U-USN-SAN-FRANCISCO",
+   "character_name": "旧金山",
+   "path": "esperance-usn-san-francisco.png",
+   "bytes": 2190987,
+   "sha256": "928b0e96c5d0ac39275317fca6acd9fa2a248c5dc0ae4bd425e07e8f561f3b0d",
+   "source": "approved-first-50"
+  },
+  {
+   "cas_class_id": "spence",
+   "ibs_character_id": "IBS-U-USN-SPENCE",
+   "character_name": "斯彭斯",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-spence.png",
+   "source_commit": "48385c8337d3f5a08e3ebc5676d68309df87542d",
+   "path": "cape-spence.png",
+   "sha256": "407e144bbaefd9b13911c129ae4ba9238ef363959f4082616b5f6bb70c50dbbd",
+   "mapping": "named_identity"
+  },
+  {
+   "cas_class_id": "cleveland",
+   "ibs_character_id": "IBS-U-USN-UNNAMED-T01-R26",
+   "character_name": "克利夫兰",
+   "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r26.png",
+   "path": "cleveland.png",
+   "sha256": "275643134b2cb2b5d5032cfddbe1e3043785a9c6e276335d2f36ee3b269d9c90",
+   "mapping": "class_representative"
+  }
+ ]
 }

@@ -186,18 +186,20 @@ pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile:
 
 pub(crate) fn view(start: &Start, owner: usize) -> serde_json::Value {
     let stage = if owner == 0 { "CAMP-ALLIES-02" } else { "CAMP-AXIS-02" };
+    // The printed conditions are damage-point ratios (Rising Sun PDF 64).
     let objectives = if owner == 0 {
-        "击沉或重创日方巡洋舰，确保萨沃岛以南海路通畅。日方炮击战果超过本方即失利。"
+        "截击敌方巡洋舰部队。造成 3:1 损伤点比获决定性胜利；1.5:1 获战术胜利。"
     } else {
-        "以巡洋舰炮击击破美方巡洋舰队；安全撤出而不受重创。"
+        "炮击亨德森机场方向的美方巡洋舰队。造成 3:1 损伤比获决定性胜利；1:1 获战术胜利。"
     };
     json!({"stageId":stage, "difficulty":start.difficulty, "missionLabel":LABEL,
         "objectives":objectives, "withdrawalX":null})
 }
 
+/// Rising Sun PDF 64: both sides grade on the damage-point ratio of the
+/// action — 3:1 decisive, 1.5:1 (allies) / 1:1 (axis) tactical.
 pub(crate) fn outcome(w: &World) -> Outcome {
     let dp = |ship: &crate::model::Ship| w.data.ships[ship.def].dp;
-    let sunk = |side: usize| w.ships.iter().filter(|s| s.side == side && s.hp <= 0.).count() as u32;
     let damage = |side: usize| {
         w.ships
             .iter()
@@ -205,12 +207,17 @@ pub(crate) fn outcome(w: &World) -> Outcome {
             .map(|s| (dp(s) - s.hp).max(0.))
             .sum::<f64>()
     };
-    let axis_sunk = sunk(1);
-    let allies = if axis_sunk >= 2 { Grade::Decisive }
-        else if axis_sunk >= 1 { Grade::Tactical }
+    // "造成 3:1 损伤点比" = the side inflicted three times the damage it
+    // suffered: inflicted (enemy damage) over suffered (own damage).
+    let (allied_inflicted, allied_suffered) = (damage(1), damage(0));
+    let (axis_inflicted, axis_suffered) = (damage(0), damage(1));
+    let allied_ratio = allied_inflicted / allied_suffered.max(1.);
+    let axis_ratio = axis_inflicted / axis_suffered.max(1.);
+    let allies = if allied_ratio >= 3. { Grade::Decisive }
+        else if allied_ratio >= 1.5 { Grade::Tactical }
         else { Grade::None };
-    let axis = if damage(0) > damage(1) * 1.5 { Grade::Decisive }
-        else if damage(0) > damage(1) { Grade::Tactical }
+    let axis = if axis_ratio >= 3. { Grade::Decisive }
+        else if axis_ratio >= 1. { Grade::Tactical }
         else { Grade::None };
     Outcome { allies, axis }
 }

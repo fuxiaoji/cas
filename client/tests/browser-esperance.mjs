@@ -15,7 +15,15 @@ const q = (op, params = {}) => page.evaluate(async request =>
 try {
   await page.goto('http://127.0.0.1:5175/');
   await signInLocal(page, 'cas-esperance-qa', true);
-  await resumeExercise(page);
+  // Always start from a fresh state: a stale autosave from an earlier run
+  // would resume instead of launching the campaign sortie.
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await signInLocal(page, 'cas-esperance-qa2', true);
+  // A brand-new commander lands in the prologue; fast-forward through it.
+  await page.getByRole('button', { name: '打开主菜单', exact: true }).click();
+  await page.getByRole('button', { name: '继续演习', exact: true }).click();
+  await page.locator('.battle-map').waitFor();
   await page.getByRole('button', { name: '母港', exact: true }).click();
   await page.locator('.growth-campaign-entry').click();
   await page.locator('.archive-list').waitFor();
@@ -38,6 +46,12 @@ try {
   if (!end.result) end = await q('step', { seconds: 1500 });
   console.log('result', JSON.stringify(end.result));
   const report = await q('report');
+  const damage = { allies: 0, axis: 0 };
+  for (const ship of (await q('observe')).ships) {
+    const dmg = Math.max(0, ship.maxHp - ship.hp);
+    if (ship.side === 'allies') damage.allies += dmg; else damage.axis += dmg;
+  }
+  console.log('final damage sums', JSON.stringify(damage));
   console.log('gun events', report.events.filter(e => e.kind === 'gun').length, 'torpedo', report.events.filter(e => e.kind === 'torpedo').length);
   await page.screenshot({ path: root + 'esperance-battle.png' });
   await fs.writeFile(root + 'browser-receipt.json', JSON.stringify({
@@ -45,6 +59,7 @@ try {
     stage: obs.campaign.stageId, playable, ships: obs.ships.length, columns: obs.fleets.length,
     environment: obs.environment, islands: obs.islands.map(i => i.length), result: end.result,
     gunEvents: report.events.filter(e => e.kind === 'gun').length,
+    damage,
   }, null, 2));
   assert.deepEqual(errors, []);
   function assert_playable() {}

@@ -251,7 +251,11 @@ class FreeEconomyTest(unittest.TestCase):
     def test_catalog_and_foreign_database_gate(self):
         catalog = self.client.get("/catalog").json()
         self.assertEqual(len(catalog["ships"]), 210)
-        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 22)
+        # 22 original recruits plus the 11 newly recruitable Esperance identities
+        # (San Francisco, Boise, Salt Lake City, Helena, Farenholt, Duncan,
+        # Laffey, Buchanan, McCalla, Aoba, Furutaka, Kinugasa; Fubuki and
+        # Hatsuyuki were already recruitable).
+        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 33)
         combat_ships = [s for s in catalog["ships"] if s["combat_ready"]]
         # Only the verified North Carolina period card may claim combat
         # readiness, and it must cite its registered CAS profile source.
