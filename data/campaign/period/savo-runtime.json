@@ -1,0 +1,6536 @@
+{
+  "ships": [
+    {
+      "id": "savo_vincennes",
+      "name": "文森斯",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 397,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 99,
+          "knots": 24
+        },
+        {
+          "damage": 199,
+          "knots": 16
+        },
+        {
+          "damage": 298,
+          "knots": 8
+        },
+        {
+          "damage": 357,
+          "knots": 0
+        },
+        {
+          "damage": 397,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 14,
+      "armor_deck": 6,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25500.0,
+          31900.0
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_profile": "us_new_orleans_ca"
+    },
+    {
+      "id": "savo_quincy",
+      "name": "昆西",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 397,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 99,
+          "knots": 24
+        },
+        {
+          "damage": 199,
+          "knots": 16
+        },
+        {
+          "damage": 298,
+          "knots": 8
+        },
+        {
+          "damage": 357,
+          "knots": 0
+        },
+        {
+          "damage": 397,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 14,
+      "armor_deck": 6,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25500.0,
+          31900.0
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_profile": "us_new_orleans_ca"
+    },
+    {
+      "id": "savo_astoria",
+      "name": "阿斯托利亚",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 397,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 99,
+          "knots": 24
+        },
+        {
+          "damage": 199,
+          "knots": 16
+        },
+        {
+          "damage": 298,
+          "knots": 8
+        },
+        {
+          "damage": 357,
+          "knots": 0
+        },
+        {
+          "damage": 397,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 14,
+      "armor_deck": 6,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25500.0,
+          31900.0
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_profile": "us_new_orleans_ca"
+    },
+    {
+      "id": "savo_chicago",
+      "name": "芝加哥",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 370,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 83,
+          "knots": 24
+        },
+        {
+          "damage": 166,
+          "knots": 16
+        },
+        {
+          "damage": 278,
+          "knots": 8
+        },
+        {
+          "damage": 335,
+          "knots": 0
+        },
+        {
+          "damage": 370,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 7,
+      "armor_deck": 3,
+      "in_service_year": 1929,
+      "gun": {
+        "name": "Mk9/14 8in/55 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25500.0,
+          31900.0
+        ],
+        "damage": [
+          23,
+          18,
+          15,
+          13
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_profile": "us_northampton_ca"
+    },
+    {
+      "id": "savo_australia",
+      "name": "澳大利亚",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 333,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 83,
+          "knots": 24
+        },
+        {
+          "damage": 167,
+          "knots": 16
+        },
+        {
+          "damage": 250,
+          "knots": 8
+        },
+        {
+          "damage": 300,
+          "knots": 0
+        },
+        {
+          "damage": 333,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 4,
+      "in_service_year": 1928,
+      "gun": {
+        "name": "8in/50 MkVIII APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          6700.0,
+          15300.0,
+          24400.0,
+          30500.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "MkIX",
+        "speed_knots": 45,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)2 533mm TT w/4 MkIX torp"
+      },
+      "source_profile": "gb_kent_1939_ca"
+    },
+    {
+      "id": "savo_canberra",
+      "name": "堪培拉",
+      "side": "allies",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 333,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 83,
+          "knots": 24
+        },
+        {
+          "damage": 167,
+          "knots": 16
+        },
+        {
+          "damage": 250,
+          "knots": 8
+        },
+        {
+          "damage": 300,
+          "knots": 0
+        },
+        {
+          "damage": 333,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 4,
+      "in_service_year": 1928,
+      "gun": {
+        "name": "8in/50 MkVIII APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          6700.0,
+          15300.0,
+          24400.0,
+          30500.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          33,
+          22,
+          15,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "MkIX",
+        "speed_knots": 45,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)2 533mm TT w/4 MkIX torp"
+      },
+      "source_profile": "gb_kent_1939_ca"
+    },
+    {
+      "id": "savo_san_juan",
+      "name": "圣胡安",
+      "side": "allies",
+      "kind": "CL",
+      "size": "B",
+      "max_knots": 33,
+      "dp": 304,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 76,
+          "knots": 25
+        },
+        {
+          "damage": 152,
+          "knots": 16
+        },
+        {
+          "damage": 228,
+          "knots": 8
+        },
+        {
+          "damage": 274,
+          "knots": 0
+        },
+        {
+          "damage": 304,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 7,
+      "armor_deck": 3,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 10,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 4,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row 2P/S(2) 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_atlanta_cl"
+    },
+    {
+      "id": "savo_hobart",
+      "name": "霍巴特",
+      "side": "allies",
+      "kind": "CL",
+      "size": "B",
+      "max_knots": 32,
+      "dp": 315,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 79,
+          "knots": 24
+        },
+        {
+          "damage": 158,
+          "knots": 16
+        },
+        {
+          "damage": 236,
+          "knots": 8
+        },
+        {
+          "damage": 284,
+          "knots": 0
+        },
+        {
+          "damage": 315,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 3,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "6in/50 MkXXIII APC",
+        "caliber_mm": 152,
+        "range_yd": [
+          6000.0,
+          12600.0,
+          20200.0,
+          25200.0
+        ],
+        "damage": [
+          20,
+          15,
+          13,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          21,
+          13,
+          9,
+          7
+        ],
+        "pen_deck": [
+          null,
+          null,
+          3,
+          6
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "MkIX",
+        "speed_knots": 45,
+        "range_yd": 11000,
+        "warhead": 84,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)2 533mm TT w/4 MkIX torps"
+      },
+      "source_profile": "gb_perth_cl"
+    },
+    {
+      "id": "savo_chokai",
+      "name": "鸟海",
+      "side": "axis",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 33,
+      "dp": 401,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 100,
+          "knots": 25
+        },
+        {
+          "damage": 201,
+          "knots": 16
+        },
+        {
+          "damage": 301,
+          "knots": 8
+        },
+        {
+          "damage": 361,
+          "knots": 0
+        },
+        {
+          "damage": 401,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 8,
+      "armor_deck": 5,
+      "in_service_year": 1932,
+      "gun": {
+        "name": "三年式二号 20cm/50 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25600.0,
+          32000.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 20,
+        "mounts": [
+          {
+            "barrels": 5,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 5,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 5,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 5,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          34,
+          23,
+          16,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 16,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 2
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 2
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 2
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 2
+          }
+        ],
+        "fit_note": "mount row "
+      },
+      "source_profile": "jp_takao_1939_ca"
+    },
+    {
+      "id": "savo_aoba",
+      "name": "青叶",
+      "side": "axis",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 33,
+      "dp": 314,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 79,
+          "knots": 25
+        },
+        {
+          "damage": 157,
+          "knots": 16
+        },
+        {
+          "damage": 236,
+          "knots": 8
+        },
+        {
+          "damage": 283,
+          "knots": 0
+        },
+        {
+          "damage": 314,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 4,
+      "in_service_year": 1927,
+      "gun": {
+        "name": "三年式二号 20cm/50 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25600.0,
+          32000.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          34,
+          23,
+          16,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row "
+      },
+      "source_profile": "jp_aoba_1938_ca"
+    },
+    {
+      "id": "savo_kako",
+      "name": "加古",
+      "side": "axis",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 33,
+      "dp": 307,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 77,
+          "knots": 25
+        },
+        {
+          "damage": 154,
+          "knots": 16
+        },
+        {
+          "damage": 230,
+          "knots": 8
+        },
+        {
+          "damage": 276,
+          "knots": 0
+        },
+        {
+          "damage": 307,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 4,
+      "in_service_year": 1926,
+      "gun": {
+        "name": "三年式二号 20cm/50 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25600.0,
+          32000.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          34,
+          23,
+          16,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row "
+      },
+      "source_profile": "jp_furutaka_1937_ca"
+    },
+    {
+      "id": "savo_kinugasa",
+      "name": "衣笠",
+      "side": "axis",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 33,
+      "dp": 314,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 79,
+          "knots": 25
+        },
+        {
+          "damage": 157,
+          "knots": 16
+        },
+        {
+          "damage": 236,
+          "knots": 8
+        },
+        {
+          "damage": 283,
+          "knots": 0
+        },
+        {
+          "damage": 314,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 4,
+      "in_service_year": 1927,
+      "gun": {
+        "name": "三年式二号 20cm/50 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25600.0,
+          32000.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          34,
+          23,
+          16,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row "
+      },
+      "source_profile": "jp_aoba_1938_ca"
+    },
+    {
+      "id": "savo_furutaka",
+      "name": "古鹰",
+      "side": "axis",
+      "kind": "CA",
+      "size": "B",
+      "max_knots": 33,
+      "dp": 307,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 77,
+          "knots": 25
+        },
+        {
+          "damage": 154,
+          "knots": 16
+        },
+        {
+          "damage": 230,
+          "knots": 8
+        },
+        {
+          "damage": 276,
+          "knots": 0
+        },
+        {
+          "damage": 307,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 2,
+      "accel_knots_per_turn": 10,
+      "accel_high_knots_per_turn": 5,
+      "brake_knots_per_turn": 12,
+      "armor_belt": 6,
+      "armor_deck": 4,
+      "in_service_year": 1926,
+      "gun": {
+        "name": "三年式二号 20cm/50 APC",
+        "caliber_mm": 203,
+        "range_yd": [
+          7000.0,
+          16000.0,
+          25600.0,
+          32000.0
+        ],
+        "damage": [
+          26,
+          20,
+          17,
+          15
+        ],
+        "gs": 4,
+        "barrels": 12,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          34,
+          23,
+          16,
+          12
+        ],
+        "pen_deck": [
+          null,
+          null,
+          5,
+          10
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "九三式一型 Mod 1/2",
+        "speed_knots": 49,
+        "range_yd": 22000,
+        "warhead": 95,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row "
+      },
+      "source_profile": "jp_furutaka_1937_ca"
+    },
+    {
+      "id": "savo_tenryu",
+      "name": "天龙",
+      "side": "axis",
+      "kind": "CL",
+      "size": "C",
+      "max_knots": 33,
+      "dp": 158,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 33
+        },
+        {
+          "damage": 40,
+          "knots": 25
+        },
+        {
+          "damage": 79,
+          "knots": 16
+        },
+        {
+          "damage": 118,
+          "knots": 8
+        },
+        {
+          "damage": 142,
+          "knots": 0
+        },
+        {
+          "damage": 158,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 4,
+      "armor_deck": 2,
+      "in_service_year": 1919,
+      "gun": {
+        "name": "三年式 14cm/50 SpCOM",
+        "caliber_mm": 140,
+        "range_yd": [
+          6600.0,
+          13200.0,
+          17600.0,
+          22000.0
+        ],
+        "damage": [
+          17,
+          13,
+          12,
+          10
+        ],
+        "gs": 4,
+        "barrels": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          9,
+          5,
+          4,
+          3
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "八年式二号",
+        "speed_knots": 38,
+        "range_yd": 10900,
+        "warhead": 87,
+        "tubes": 6,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P&S(2)3 533mm TT w/6 8th Yr Type torp"
+      },
+      "source_profile": "jp_tenryu_cl"
+    },
+    {
+      "id": "savo_yubari",
+      "name": "夕张",
+      "side": "axis",
+      "kind": "CL",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 163,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 41,
+          "knots": 26
+        },
+        {
+          "damage": 82,
+          "knots": 18
+        },
+        {
+          "damage": 122,
+          "knots": 9
+        },
+        {
+          "damage": 147,
+          "knots": 0
+        },
+        {
+          "damage": 163,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 5,
+      "armor_deck": 2,
+      "in_service_year": 1923,
+      "gun": {
+        "name": "三年式 14cm/50 SpCOM",
+        "caliber_mm": 140,
+        "range_yd": [
+          6600.0,
+          13200.0,
+          17600.0,
+          22000.0
+        ],
+        "damage": [
+          17,
+          13,
+          12,
+          10
+        ],
+        "gs": 4,
+        "barrels": 6,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          9,
+          5,
+          4,
+          3
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "八年式二号",
+        "speed_knots": 38,
+        "range_yd": 10900,
+        "warhead": 87,
+        "tubes": 4,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 1
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 1
+          }
+        ],
+        "fit_note": "mount row P&S(2)2 610mm TT w/4 8th Yr Type No.2 torps（1 reserve torp/mount for reload in 15 minutes）"
+      },
+      "source_profile": "jp_yubari_cl"
+    },
+    {
+      "id": "savo_yunagi",
+      "name": "夕凪",
+      "side": "axis",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 92,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 23,
+          "knots": 26
+        },
+        {
+          "damage": 46,
+          "knots": 18
+        },
+        {
+          "damage": 69,
+          "knots": 9
+        },
+        {
+          "damage": 83,
+          "knots": 0
+        },
+        {
+          "damage": 92,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1925,
+      "gun": {
+        "name": "三年/十一年式 12cm/45 COM",
+        "caliber_mm": 120,
+        "range_yd": [
+          5300.0,
+          10600.0,
+          14100.0,
+          17600.0
+        ],
+        "damage": [
+          14,
+          11,
+          10,
+          9
+        ],
+        "gs": 4,
+        "barrels": 3,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "source_profile": "jp_kamikaze_1941_dd"
+    },
+    {
+      "id": "savo_blue",
+      "name": "布鲁",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 119,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 60,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 107,
+          "knots": 0
+        },
+        {
+          "damage": 119,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_bagley_dd"
+    },
+    {
+      "id": "savo_ralph_talbot",
+      "name": "拉尔夫·托尔伯特",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 119,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 60,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 107,
+          "knots": 0
+        },
+        {
+          "damage": 119,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_bagley_dd"
+    },
+    {
+      "id": "savo_bagley",
+      "name": "巴格利",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 119,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 60,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 107,
+          "knots": 0
+        },
+        {
+          "damage": 119,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_bagley_dd"
+    },
+    {
+      "id": "savo_patterson",
+      "name": "帕特森",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 119,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 60,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 107,
+          "knots": 0
+        },
+        {
+          "damage": 119,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_bagley_dd"
+    },
+    {
+      "id": "savo_helm",
+      "name": "赫尔姆",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 119,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 60,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 107,
+          "knots": 0
+        },
+        {
+          "damage": 119,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_bagley_dd"
+    },
+    {
+      "id": "savo_wilson",
+      "name": "威尔逊",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 124,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 36,
+          "knots": 26
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 93,
+          "knots": 9
+        },
+        {
+          "damage": 112,
+          "knots": 0
+        },
+        {
+          "damage": 124,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_benham_dd"
+    },
+    {
+      "id": "savo_monssen",
+      "name": "蒙森",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 144,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 36,
+          "knots": 28
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 108,
+          "knots": 9
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        },
+        {
+          "damage": 144,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": null,
+      "source_profile": "us_benson_dd"
+    },
+    {
+      "id": "savo_buchanan",
+      "name": "布坎南",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 118,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 30,
+          "knots": 28
+        },
+        {
+          "damage": 59,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 106,
+          "knots": 0
+        },
+        {
+          "damage": 118,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P&S(4)4 533mm TT w/5 Mk15 torpedoes"
+      },
+      "source_profile": "us_bristol_dd"
+    },
+    {
+      "id": "savo_jarvis",
+      "name": "贾维斯",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 119,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 30,
+          "knots": 27
+        },
+        {
+          "damage": 60,
+          "knots": 18
+        },
+        {
+          "damage": 89,
+          "knots": 9
+        },
+        {
+          "damage": 107,
+          "knots": 0
+        },
+        {
+          "damage": 119,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_bagley_dd"
+    },
+    {
+      "id": "savo_selfridge",
+      "name": "塞尔弗里奇",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 37,
+      "dp": 139,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 37
+        },
+        {
+          "damage": 35,
+          "knots": 28
+        },
+        {
+          "damage": 70,
+          "knots": 18
+        },
+        {
+          "damage": 104,
+          "knots": 9
+        },
+        {
+          "damage": 125,
+          "knots": 0
+        },
+        {
+          "damage": 139,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1936,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 2,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 4,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          },
+          {
+            "tubes": 2,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 4
+          }
+        ],
+        "fit_note": "mount row P&S(4)2 Mk12 533mm TT w/4 Mk15 torpedoes（4 reserve torp/mount for reload in 15 minutes）"
+      },
+      "source_profile": "us_porter_dd"
+    },
+    {
+      "id": "savo_mugford",
+      "name": "马格福德",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 38,
+      "dp": 116,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 38
+        },
+        {
+          "damage": 29,
+          "knots": 28
+        },
+        {
+          "damage": 58,
+          "knots": 19
+        },
+        {
+          "damage": 87,
+          "knots": 10
+        },
+        {
+          "damage": 104,
+          "knots": 0
+        },
+        {
+          "damage": 116,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P&S(2)4 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_gridley_dd"
+    },
+    {
+      "id": "savo_dewey",
+      "name": "杜威",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 105,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 36,
+          "knots": 26
+        },
+        {
+          "damage": 53,
+          "knots": 18
+        },
+        {
+          "damage": 79,
+          "knots": 9
+        },
+        {
+          "damage": 95,
+          "knots": 0
+        },
+        {
+          "damage": 105,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 5,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P&S(2)4 Mk11 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_farragut_dd"
+    },
+    {
+      "id": "savo_hull",
+      "name": "赫尔",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 36,
+      "dp": 105,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 36
+        },
+        {
+          "damage": 36,
+          "knots": 26
+        },
+        {
+          "damage": 53,
+          "knots": 18
+        },
+        {
+          "damage": 79,
+          "knots": 9
+        },
+        {
+          "damage": 95,
+          "knots": 0
+        },
+        {
+          "damage": 105,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1934,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 5,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P&S(2)4 Mk11 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_farragut_dd"
+    },
+    {
+      "id": "savo_henley",
+      "name": "亨利",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 38,
+      "dp": 116,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 38
+        },
+        {
+          "damage": 29,
+          "knots": 28
+        },
+        {
+          "damage": 58,
+          "knots": 19
+        },
+        {
+          "damage": 87,
+          "knots": 10
+        },
+        {
+          "damage": 104,
+          "knots": 0
+        },
+        {
+          "damage": 116,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1937,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P&S(2)4 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_gridley_dd"
+    },
+    {
+      "id": "savo_ellet",
+      "name": "埃利特",
+      "side": "allies",
+      "kind": "DD",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 124,
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 35
+        },
+        {
+          "damage": 36,
+          "knots": 26
+        },
+        {
+          "damage": 72,
+          "knots": 18
+        },
+        {
+          "damage": 93,
+          "knots": 9
+        },
+        {
+          "damage": 112,
+          "knots": 0
+        },
+        {
+          "damage": 124,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 1,
+      "accel_knots_per_turn": 12,
+      "accel_high_knots_per_turn": 6,
+      "brake_knots_per_turn": 15,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1939,
+      "gun": {
+        "name": "Mk12/38 5in/38 SpCOM",
+        "caliber_mm": 127,
+        "range_yd": [
+          5500.0,
+          10900.0,
+          14600.0,
+          18200.0
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "barrels": 8,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              210,
+              150
+            ],
+            "arc2": null
+          },
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              330
+            ],
+            "arc2": null
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": true
+      },
+      "torpedo": {
+        "name": "Mk15（TNT）",
+        "speed_knots": 45,
+        "range_yd": 6000,
+        "warhead": 87,
+        "tubes": 8,
+        "contact_fuze": true,
+        "mounts": [
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          },
+          {
+            "tubes": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ],
+            "reserve": 0
+          }
+        ],
+        "fit_note": "mount row P/S(4)4 Mk12 533mm TT w/4 Mk15 torpedoes"
+      },
+      "source_profile": "us_benham_dd"
+    },
+    {
+      "id": "savo_fuller",
+      "name": "富勒",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 129,
+      "damage_speed": [
+        {
+          "damage": 32,
+          "knots": 16
+        },
+        {
+          "damage": 65,
+          "knots": 12
+        },
+        {
+          "damage": 97,
+          "knots": 8
+        },
+        {
+          "damage": 116,
+          "knots": 4
+        },
+        {
+          "damage": 129,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 8000 ltshp Heywood APA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_american_legion",
+      "name": "美国军团",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 17,
+      "dp": 169,
+      "damage_speed": [
+        {
+          "damage": 42,
+          "knots": 17
+        },
+        {
+          "damage": 85,
+          "knots": 13
+        },
+        {
+          "damage": 127,
+          "knots": 9
+        },
+        {
+          "damage": 152,
+          "knots": 4
+        },
+        {
+          "damage": 169,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 13529 std Harris APA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_bellatrix",
+      "name": "贝拉特里克斯",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 16,
+      "dp": 174,
+      "damage_speed": [
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 87,
+          "knots": 12
+        },
+        {
+          "damage": 131,
+          "knots": 8
+        },
+        {
+          "damage": 157,
+          "knots": 4
+        },
+        {
+          "damage": 174,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "5in/38或3in/50（武装商船）",
+        "caliber_mm": 127.0,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Arcturus AKA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_mccawley",
+      "name": "麦考利",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 168,
+      "damage_speed": [
+        {
+          "damage": 42,
+          "knots": 16
+        },
+        {
+          "damage": 84,
+          "knots": 12
+        },
+        {
+          "damage": 126,
+          "knots": 8
+        },
+        {
+          "damage": 151,
+          "knots": 4
+        },
+        {
+          "damage": 168,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 7858 std McCawley AP；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_barnett",
+      "name": "巴尼特",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 168,
+      "damage_speed": [
+        {
+          "damage": 42,
+          "knots": 16
+        },
+        {
+          "damage": 84,
+          "knots": 12
+        },
+        {
+          "damage": 126,
+          "knots": 8
+        },
+        {
+          "damage": 151,
+          "knots": 4
+        },
+        {
+          "damage": 168,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 McCawley AP；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_george_f_elliott",
+      "name": "乔治·F·埃利奥特",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 129,
+      "damage_speed": [
+        {
+          "damage": 32,
+          "knots": 16
+        },
+        {
+          "damage": 65,
+          "knots": 12
+        },
+        {
+          "damage": 97,
+          "knots": 8
+        },
+        {
+          "damage": 116,
+          "knots": 4
+        },
+        {
+          "damage": 129,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Heywood APA · 原页标记 DIW on fire；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_libra",
+      "name": "天秤座",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 16,
+      "dp": 174,
+      "damage_speed": [
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 87,
+          "knots": 12
+        },
+        {
+          "damage": 131,
+          "knots": 8
+        },
+        {
+          "damage": 157,
+          "knots": 4
+        },
+        {
+          "damage": 174,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "5in/38或3in/50（武装商船）",
+        "caliber_mm": 127.0,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Arcturus AKA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_hunter_liggett",
+      "name": "亨特·利格特",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 17,
+      "dp": 169,
+      "damage_speed": [
+        {
+          "damage": 42,
+          "knots": 17
+        },
+        {
+          "damage": 85,
+          "knots": 13
+        },
+        {
+          "damage": 127,
+          "knots": 9
+        },
+        {
+          "damage": 152,
+          "knots": 4
+        },
+        {
+          "damage": 169,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 13529 std Harris APA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_alchiba",
+      "name": "菜鸟座",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 16,
+      "dp": 174,
+      "damage_speed": [
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 87,
+          "knots": 12
+        },
+        {
+          "damage": 131,
+          "knots": 8
+        },
+        {
+          "damage": 157,
+          "knots": 4
+        },
+        {
+          "damage": 174,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "5in/38或3in/50（武装商船）",
+        "caliber_mm": 127.0,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Arcturus AKA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_betelgeuse",
+      "name": "参宿四",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 16,
+      "dp": 174,
+      "damage_speed": [
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 87,
+          "knots": 12
+        },
+        {
+          "damage": 131,
+          "knots": 8
+        },
+        {
+          "damage": 157,
+          "knots": 4
+        },
+        {
+          "damage": 174,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "5in/38或3in/50（武装商船）",
+        "caliber_mm": 127.0,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Arcturus AKA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_fomalhaut",
+      "name": "北落师门",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 16,
+      "dp": 177,
+      "damage_speed": [
+        {
+          "damage": 44,
+          "knots": 16
+        },
+        {
+          "damage": 89,
+          "knots": 12
+        },
+        {
+          "damage": 133,
+          "knots": 8
+        },
+        {
+          "damage": 159,
+          "knots": 4
+        },
+        {
+          "damage": 177,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "5in/38或3in/50（武装商船）",
+        "caliber_mm": 127.0,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Fomalhaut AK；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_crescent_city",
+      "name": "新月城",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 168,
+      "damage_speed": [
+        {
+          "damage": 42,
+          "knots": 16
+        },
+        {
+          "damage": 84,
+          "knots": 12
+        },
+        {
+          "damage": 126,
+          "knots": 8
+        },
+        {
+          "damage": 151,
+          "knots": 4
+        },
+        {
+          "damage": 168,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 8429 Crescent City APA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_president_hayes",
+      "name": "海斯总统",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 207,
+      "damage_speed": [
+        {
+          "damage": 52,
+          "knots": 16
+        },
+        {
+          "damage": 104,
+          "knots": 12
+        },
+        {
+          "damage": 155,
+          "knots": 8
+        },
+        {
+          "damage": 186,
+          "knots": 4
+        },
+        {
+          "damage": 207,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 9500 President Jackson APA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_president_adams",
+      "name": "亚当斯总统",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 207,
+      "damage_speed": [
+        {
+          "damage": 52,
+          "knots": 16
+        },
+        {
+          "damage": 104,
+          "knots": 12
+        },
+        {
+          "damage": 155,
+          "knots": 8
+        },
+        {
+          "damage": 186,
+          "knots": 4
+        },
+        {
+          "damage": 207,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 President Jackson APA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_alhena",
+      "name": "阿尔赫纳",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 16,
+      "dp": 171,
+      "damage_speed": [
+        {
+          "damage": 43,
+          "knots": 16
+        },
+        {
+          "damage": 86,
+          "knots": 12
+        },
+        {
+          "damage": 128,
+          "knots": 8
+        },
+        {
+          "damage": 154,
+          "knots": 4
+        },
+        {
+          "damage": 171,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1941,
+      "gun": {
+        "name": "5in/38或3in/50（武装商船）",
+        "caliber_mm": 127.0,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 1,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 7101 Alhena AKA；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_heywood_yoke",
+      "name": "海伍德（Yoke）",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 129,
+      "damage_speed": [
+        {
+          "damage": 32,
+          "knots": 16
+        },
+        {
+          "damage": 65,
+          "knots": 12
+        },
+        {
+          "damage": 97,
+          "knots": 8
+        },
+        {
+          "damage": 116,
+          "knots": 4
+        },
+        {
+          "damage": 129,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Heywood APA · Yoke；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_neville",
+      "name": "内维尔",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 129,
+      "damage_speed": [
+        {
+          "damage": 32,
+          "knots": 16
+        },
+        {
+          "damage": 65,
+          "knots": 12
+        },
+        {
+          "damage": 97,
+          "knots": 8
+        },
+        {
+          "damage": 116,
+          "knots": 4
+        },
+        {
+          "damage": 129,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1940,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 8000 ltshp Heywood APA · Yoke；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_zeilin",
+      "name": "塞林",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 17,
+      "dp": 169,
+      "damage_speed": [
+        {
+          "damage": 42,
+          "knots": 17
+        },
+        {
+          "damage": 85,
+          "knots": 13
+        },
+        {
+          "damage": 127,
+          "knots": 9
+        },
+        {
+          "damage": 152,
+          "knots": 4
+        },
+        {
+          "damage": 169,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 13529 std Harris APA · Yoke；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_president_jackson",
+      "name": "杰克逊总统",
+      "side": "allies",
+      "kind": "AP",
+      "size": "B",
+      "max_knots": 16,
+      "dp": 207,
+      "damage_speed": [
+        {
+          "damage": 52,
+          "knots": 16
+        },
+        {
+          "damage": 104,
+          "knots": 12
+        },
+        {
+          "damage": 155,
+          "knots": 8
+        },
+        {
+          "damage": 186,
+          "knots": 4
+        },
+        {
+          "damage": 207,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 President Jackson APA · Yoke；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_colhoun",
+      "name": "科尔霍恩",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 25,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 25
+        },
+        {
+          "damage": 38,
+          "knots": 19
+        },
+        {
+          "damage": 56,
+          "knots": 13
+        },
+        {
+          "damage": 68,
+          "knots": 6
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Wickes APD；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_little",
+      "name": "利特尔",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 25,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 25
+        },
+        {
+          "damage": 38,
+          "knots": 19
+        },
+        {
+          "damage": 56,
+          "knots": 13
+        },
+        {
+          "damage": 68,
+          "knots": 6
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Wickes APD；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_gregory",
+      "name": "格雷戈里",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 25,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 25
+        },
+        {
+          "damage": 38,
+          "knots": 19
+        },
+        {
+          "damage": 56,
+          "knots": 13
+        },
+        {
+          "damage": 68,
+          "knots": 6
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Wickes APD；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_mckean",
+      "name": "麦基恩",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 25,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 25
+        },
+        {
+          "damage": 38,
+          "knots": 19
+        },
+        {
+          "damage": 56,
+          "knots": 13
+        },
+        {
+          "damage": 68,
+          "knots": 6
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 3,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Wickes APD；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_hopkins",
+      "name": "霍普金斯",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 35
+        },
+        {
+          "damage": 38,
+          "knots": 26
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 68,
+          "knots": 9
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Clemson DMS（Form 10 Jun-42）；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_trever",
+      "name": "特雷弗",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 35
+        },
+        {
+          "damage": 38,
+          "knots": 26
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 68,
+          "knots": 9
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Clemson DMS；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_zane",
+      "name": "赞恩",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 35
+        },
+        {
+          "damage": 38,
+          "knots": 26
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 68,
+          "knots": 9
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Clemson DMS；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_southard",
+      "name": "绍瑟德",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 35
+        },
+        {
+          "damage": 38,
+          "knots": 26
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 68,
+          "knots": 9
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Clemson DMS；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    },
+    {
+      "id": "savo_hovey",
+      "name": "霍维",
+      "side": "allies",
+      "kind": "AP",
+      "size": "C",
+      "max_knots": 35,
+      "dp": 75,
+      "damage_speed": [
+        {
+          "damage": 19,
+          "knots": 35
+        },
+        {
+          "damage": 38,
+          "knots": 26
+        },
+        {
+          "damage": 56,
+          "knots": 18
+        },
+        {
+          "damage": 68,
+          "knots": 9
+        },
+        {
+          "damage": 75,
+          "knots": 0
+        }
+      ],
+      "turn_advance_yards": 300,
+      "speed_loss_knots": 3,
+      "accel_knots_per_turn": 6,
+      "accel_high_knots_per_turn": 3,
+      "brake_knots_per_turn": 9,
+      "armor_belt": 0,
+      "armor_deck": 0,
+      "in_service_year": 1942,
+      "gun": {
+        "name": "3in/38或3in/50（武装商船）",
+        "caliber_mm": 76.19999999999999,
+        "range_yd": [
+          5500,
+          10900,
+          14600,
+          18200
+        ],
+        "damage": [
+          18,
+          14,
+          12,
+          11
+        ],
+        "gs": 4,
+        "mounts": [
+          {
+            "barrels": 4,
+            "arc": [
+              30,
+              150
+            ],
+            "arc2": [
+              210,
+              330
+            ]
+          }
+        ],
+        "pen_belt": [
+          7,
+          4,
+          3,
+          2
+        ],
+        "pen_deck": [
+          null,
+          null,
+          1,
+          2
+        ],
+        "armor_piercing": false
+      },
+      "torpedo": null,
+      "note": "武装商船/辅助舰，位移 Chandler Mod DMS；民用建造 -50% 特殊损伤修正，单轴工程临界双倍掉速。Form 10/AF A-42–A-47。"
+    }
+  ],
+  "metadata": {
+    "content_version": "cas-savo-runtime-v1",
+    "scenario_id": "cas-rs-savo-island",
+    "as_of": "1942-08-09",
+    "status": "restricted_rts_adaptation_only",
+    "policy": "Combat hulls from savo-island-1942.json annex rows; transports/DMS/APD from American Fleets A-42-A-47 and Rising Sun Form 10s pages 354-380. Chart anchors from chart-savo.json; unanchored screen and transport hulls use the transport area centre with the registered 500-yard spacing default.",
+    "restrictions": [
+      "Henley printed as Gridley in the scenario but listed as Bagley in AF A-18; profile uses the Gridley card with the conflict retained.",
+      "Yunagi Type 96 torpedoes have no Annex F row; torpedo fit omitted rather than substituted.",
+      "DMS/APD/transport cards use the auxiliary turn table and their printed civilian damage modifiers; weapons shown are defensive AA-capable mounts only.",
+      "Tenryu/Yubari/Yunagi column interval is not printed; the global 500-yard default applies.",
+      "Yunagi Torpedo Type 96 unavailable; Type 93 candidates not substituted."
+    ]
+  }
+}
