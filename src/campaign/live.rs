@@ -43,6 +43,9 @@ pub struct Start {
     pub stage_id: String,
     pub difficulty: String,
     pub content_version: String,
+    /// Basic-difficulty point-buy picks, in the printed player hull order.
+    #[serde(default)]
+    pub fleet: Option<Vec<String>>,
 }
 impl Start {
     pub(crate) fn new(stage_id: &str, difficulty: &str) -> Self {
@@ -50,6 +53,7 @@ impl Start {
             stage_id: stage_id.into(),
             difficulty: difficulty.into(),
             content_version: String::new(),
+            fleet: None,
         };
         start.content_version = start.expected_content().into();
         start
@@ -253,6 +257,18 @@ fn objectives(seat: usize) -> &'static str {
     }
 }
 
+fn finish_fleet(w: &mut World, fleet: Option<Vec<String>>, basic: bool) -> E<()> {
+    if !basic {
+        return Ok(());
+    }
+    if let Some(picks) = fleet.filter(|picks| !picks.is_empty()) {
+        super::fleet::apply(w, &picks)?;
+        w.detect(true);
+        w.radar_detect();
+    }
+    Ok(())
+}
+
 impl World {
     pub(crate) fn new_campaign(seed: u32, start: Start, profile: &str) -> E<Self> {
         let player = start.seat()?;
@@ -261,17 +277,27 @@ impl World {
             return Err("此存档使用另一个战役内容版本".into());
         }
         Ai::new(profile, "manual").validate()?;
+        let fleet = start.fleet.clone();
+        let basic = start.difficulty == "story";
         if start.is_channel() {
-            return channel::open(seed, start, player, enemy, profile);
+            let mut w = channel::open(seed, start, player, enemy, profile)?;
+            finish_fleet(&mut w, fleet, basic)?;
+            return Ok(w);
         }
         if start.is_kula() {
-            return kula::open(seed, start, player, enemy, profile);
+            let mut w = kula::open(seed, start, player, enemy, profile)?;
+            finish_fleet(&mut w, fleet, basic)?;
+            return Ok(w);
         }
         if start.is_empress() {
-            return crate::empress::open(seed, start, player, enemy, profile);
+            let mut w = crate::empress::open(seed, start, player, enemy, profile)?;
+            finish_fleet(&mut w, fleet, basic)?;
+            return Ok(w);
         }
         if start.is_esperance() {
-            return super::esperance::open(seed, start, player, enemy, profile);
+            let mut w = super::esperance::open(seed, start, player, enemy, profile)?;
+            finish_fleet(&mut w, fleet, basic)?;
+            return Ok(w);
         }
         let runtime = runtime()?;
         let mut w = Self::blank(&runtime.data, seed, player, enemy, VARIANT, profile, 0);
@@ -392,6 +418,7 @@ impl World {
         }
         w.detect(true);
         w.radar_detect();
+        finish_fleet(&mut w, fleet, basic)?;
         Ok(w)
     }
 

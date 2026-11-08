@@ -73,7 +73,69 @@ const PROFILES: &[Profile] = &[
         name: "大和",
         source: "序章时期包／日本舰表 PDF 7、98",
     },
+    // Two more Fletchers/Mahans cannot be invented from a class card; these
+    // catalog identities reuse the exact same-class prologue card and are
+    // labelled here so the 3000-point escort rule can field six destroyers.
+    Profile {
+        id: "IBS-U-USN-UNNAMED-T01-R51",
+        source_class: "IBS-U-USN-PERKINS",
+        name: "邓拉普",
+        source: "马汉级同型卡／帕金斯 Form 10（1942 年配置）",
+    },
+    Profile {
+        id: "IBS-U-USN-UNNAMED-T01-R52",
+        source_class: "IBS-U-USN-MAURY",
+        name: "格里德利",
+        source: "格里德利级同型卡／莫里 Form 10（1942 年配置）",
+    },
+    Profile {
+        id: "IBS-U-IJN-SHIRATSUYU",
+        source_class: "shiratsuyu",
+        name: "白露",
+        source: "首发时期包／日本舰表 A-25–A-26、C-1、F-1",
+    },
+    Profile {
+        id: "IBS-U-IJN-YUGUMO",
+        source_class: "yugumo",
+        name: "夕云",
+        source: "首发时期包／日本舰表 A-24、C-1、F-1",
+    },
+    Profile {
+        id: "IBS-U-IJN-AKIZUKI",
+        source_class: "akizuki",
+        name: "秋月",
+        source: "首发时期包／日本舰表 A-24、C-1、F-1",
+    },
+    Profile {
+        id: "IBS-U-IJN-FUBUKI",
+        source_class: "fubuki_1936_refit",
+        name: "吹雪",
+        source: "首发时期包／改装吹雪级 A-27、C-1、F-1",
+    },
+    Profile {
+        id: "IBS-U-IJN-HATSUYUKI",
+        source_class: "fubuki_1936_refit",
+        name: "初雪",
+        source: "首发时期包／改装吹雪级 A-27、C-1、F-1",
+    },
 ];
+
+pub(crate) fn class_for(id: &str) -> &str {
+    source_class(id).unwrap_or(id)
+}
+
+pub(crate) fn ship_points(ship: &ShipDef) -> u32 {
+    point_value(ship)
+}
+
+pub(crate) fn options(side: usize) -> E<Value> {
+    let side_name = if side == 0 { "allies" } else { "axis" };
+    let rows = data()?.ships.iter().filter(|ship| ship.side == side_name).map(|ship| {
+        json!({"id":ship.id, "class":class_for(&ship.id), "name":ship.name,
+               "kind":ship.kind, "points":point_value(ship)})
+    }).collect::<Vec<_>>();
+    Ok(json!(rows))
+}
 
 pub(crate) fn source_class(id: &str) -> Option<&'static str> {
     PROFILES
@@ -123,7 +185,16 @@ fn point_value(ship: &ShipDef) -> u32 {
         + torpedo
         + 5. * (ship.armor_belt + ship.armor_deck)
         + 0.8 * ship.torpedo_protection_dp;
-    ((raw / 25.).round() as u32) * 25
+    // Balance targets: a 3000-point escort action must fit six destroyers,
+    // while a 10000-point action must fit a battleship and escorts.
+    let scale = match ship.kind.as_str() {
+        "DD" => 0.75,
+        "CL" => 0.85,
+        "CA" => 1.0,
+        "BB" => 1.2,
+        _ => 1.0,
+    };
+    ((raw * scale / 25.).round() as u32) * 25
 }
 
 pub(crate) fn catalogue() -> E<Value> {
@@ -141,7 +212,7 @@ pub(crate) fn catalogue() -> E<Value> {
         .collect();
     Ok(
         json!({"schema_version":1,"version":POINTS_VERSION,"rules_version":realtime::VERSION,
-        "enabled_budgets":[3000],"ships":ships}),
+        "enabled_budgets":[3000,10000],"ships":ships}),
     )
 }
 
@@ -377,7 +448,7 @@ mod tests {
             Some(195.)
         );
         let table = catalogue().unwrap();
-        assert_eq!(table["enabled_budgets"], json!([3000]));
-        assert_eq!(table["ships"]["IBS-U-USN-FLETCHER"]["points"], 650);
+        assert_eq!(table["enabled_budgets"], json!([3000, 10000]));
+        assert_eq!(table["ships"]["IBS-U-USN-FLETCHER"]["points"], 475);
     }
 }

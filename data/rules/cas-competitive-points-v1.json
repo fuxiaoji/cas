@@ -1,60 +1,96 @@
 {
-  "enabled_budgets": [
-    3000
-  ],
-  "rules_version": "cas-realtime-v10",
-  "schema_version": 1,
-  "ships": {
-    "IBS-U-IJN-ERMA-YAMATO": {
-      "points": 3325,
-      "profile_id": "cas-prologue-runtime-v1#yamato",
-      "source": "序章时期包／日本舰表 PDF 7、98"
-    },
-    "IBS-U-IJN-KAGERO": {
-      "points": 625,
-      "profile_id": "cas-prologue-runtime-v1#kagero",
-      "source": "首发时期包／日本舰表 PDF 28、97、108"
-    },
-    "IBS-U-IJN-SENDAI": {
-      "points": 775,
-      "profile_id": "cas-prologue-runtime-v1#sendai",
-      "source": "首发时期包／日本舰表 PDF 21–22、97、108"
-    },
-    "IBS-U-USN-DRAYTON": {
-      "points": 575,
-      "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-DRAYTON",
-      "source": "序章时期包／马汉级与德雷顿 Form 10"
-    },
-    "IBS-U-USN-FLETCHER": {
-      "points": 650,
-      "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-FLETCHER",
-      "source": "序章时期包／弗莱彻舰表与具名 Form 10"
-    },
-    "IBS-U-USN-LAMSON": {
-      "points": 600,
-      "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-LAMSON",
-      "source": "序章时期包／马汉级与拉姆森 Form 10"
-    },
-    "IBS-U-USN-MAURY": {
-      "points": 650,
-      "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
-      "source": "序章时期包／格里德利级与莫里 Form 10"
-    },
-    "IBS-U-USN-PERKINS": {
-      "points": 575,
-      "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
-      "source": "序章时期包／马汉级与帕金斯 Form 10"
-    },
-    "IBS-U-USN-UNNAMED-T01-R03": {
-      "points": 2500,
-      "profile_id": "cas-prologue-runtime-v1#north-carolina",
-      "source": "序章时期包／美国舰表 PDF 8、109"
-    },
-    "IBS-U-USN-WASHINGTON": {
-      "points": 2500,
-      "profile_id": "cas-prologue-runtime-v1#north-carolina",
-      "source": "序章时期包／美国舰表 PDF 8、109"
-    }
+ "enabled_budgets": [
+  3000,
+  10000
+ ],
+ "rules_version": "cas-realtime-v10",
+ "schema_version": 1,
+ "ships": {
+  "IBS-U-IJN-ERMA-YAMATO": {
+   "points": 4000,
+   "profile_id": "cas-prologue-runtime-v1#yamato",
+   "source": "序章时期包／日本舰表 PDF 7、98"
   },
-  "version": "cas-points-surface-v1"
+  "IBS-U-IJN-KAGERO": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "首发时期包／日本舰表 PDF 28、97、108"
+  },
+  "IBS-U-IJN-SENDAI": {
+   "points": 675,
+   "profile_id": "cas-prologue-runtime-v1#sendai",
+   "source": "首发时期包／日本舰表 PDF 21–22、97、108"
+  },
+  "IBS-U-USN-DRAYTON": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-DRAYTON",
+   "source": "序章时期包／马汉级与德雷顿 Form 10"
+  },
+  "IBS-U-USN-FLETCHER": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-FLETCHER",
+   "source": "序章时期包／弗莱彻舰表与具名 Form 10"
+  },
+  "IBS-U-USN-LAMSON": {
+   "points": 450,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-LAMSON",
+   "source": "序章时期包／马汉级与拉姆森 Form 10"
+  },
+  "IBS-U-USN-MAURY": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
+   "source": "序章时期包／格里德利级与莫里 Form 10"
+  },
+  "IBS-U-USN-PERKINS": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
+   "source": "序章时期包／马汉级与帕金斯 Form 10"
+  },
+  "IBS-U-USN-UNNAMED-T01-R03": {
+   "points": 3000,
+   "profile_id": "cas-prologue-runtime-v1#north-carolina",
+   "source": "序章时期包／美国舰表 PDF 8、109"
+  },
+  "IBS-U-USN-WASHINGTON": {
+   "points": 3000,
+   "profile_id": "cas-prologue-runtime-v1#north-carolina",
+   "source": "序章时期包／美国舰表 PDF 8、109"
+  },
+  "IBS-U-IJN-AKIZUKI": {
+   "points": 500,
+   "profile_id": "cas-prologue-runtime-v1#akizuki",
+   "source": "同型时期舰卡／CAS 点数表"
+  },
+  "IBS-U-IJN-FUBUKI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "同型时期舰卡／CAS 点数表"
+  },
+  "IBS-U-IJN-HATSUYUKI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "同型时期舰卡／CAS 点数表"
+  },
+  "IBS-U-IJN-SHIRATSUYU": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "同型时期舰卡／CAS 点数表"
+  },
+  "IBS-U-IJN-YUGUMO": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "同型时期舰卡／CAS 点数表"
+  },
+  "IBS-U-USN-UNNAMED-T01-R51": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
+   "source": "同型时期舰卡／CAS 点数表"
+  },
+  "IBS-U-USN-UNNAMED-T01-R52": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
+   "source": "同型时期舰卡／CAS 点数表"
+  }
+ },
+ "version": "cas-points-surface-v1"
 }

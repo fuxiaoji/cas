@@ -6,7 +6,6 @@ mod damage;
 mod illumination;
 #[cfg(not(target_arch = "wasm32"))]
 mod match_host;
-#[cfg(not(target_arch = "wasm32"))]
 mod ranked_fleets;
 mod model;
 mod movement;
@@ -49,10 +48,21 @@ impl Engine {
                 let difficulty = r["difficulty"].as_str().ok_or("请选择战役难度")?;
                 let seed = if r.get("seed").is_some() { world::u(&r, "seed")? } else { 6106 };
                 let profile = r.get("profile").and_then(Value::as_str).unwrap_or("coord");
-                let w = World::new_campaign(seed, campaign::live::Start::new(id, difficulty), profile)?;
+                let mut start = campaign::live::Start::new(id, difficulty);
+                start.fleet = r.get("fleet").and_then(Value::as_array).map(|picks| {
+                    picks.iter().filter_map(Value::as_str).map(str::to_string).collect()
+                });
+                let w = World::new_campaign(seed, start, profile)?;
                 let view = w.observation(w.player);
                 self.world = Some(w);
                 Ok(view)
+            }
+            "campaign_fleet" => {
+                let id = r["id"].as_str().ok_or("请选择战役关卡")?;
+                let difficulty = r.get("difficulty").and_then(Value::as_str).unwrap_or("story");
+                let seed = if r.get("seed").is_some() { world::u(&r, "seed")? } else { 6106 };
+                let w = World::new_campaign(seed, campaign::live::Start::new(id, difficulty), "coord")?;
+                Ok(campaign::fleet::options(&w))
             }
             "new" => {
                 let seed = match r.get("seed") {

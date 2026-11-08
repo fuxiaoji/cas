@@ -185,7 +185,8 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
 }
 
 pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile: &str) -> E<World> {
-    let data = World::exercise_data()?;
+    // The campaign point-buy pool includes the verified prologue cards.
+    let data = crate::prologue::data()?;
     let mut w = World::blank(data, seed, player, enemy, VARIANT, profile, 0);
     w.campaign = Some(start);
     fill(&mut w)?;
