@@ -3,7 +3,7 @@ import type { PortState } from './port';
 export const campaignDifficulties = { story: '故事', standard: '标准', challenge: '挑战' } as const;
 export type CampaignDifficulty = keyof typeof campaignDifficulties;
 export type CampaignGrade = 'none' | 'tactical' | 'decisive';
-export interface CampaignLaunch { stageId: string; difficulty: CampaignDifficulty }
+export interface CampaignLaunch { stageId: string; difficulty: CampaignDifficulty; fleet?: string[] }
 export interface CampaignMission extends CampaignLaunch {
   missionLabel: string;
   objectives: string;
