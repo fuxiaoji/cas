@@ -31,7 +31,7 @@ try {
   console.log('brief title', await page.locator('.war-brief h2').innerText());
   await page.screenshot({ path: root + 'campaign-brief.png' });
   await page.getByRole('button', { name: '关闭', exact: true }).click();
-  await page.getByRole('button', { name: '序章 · 未明的海', exact: true }).click();
+  await page.getByRole('button', { name: '剧情模式 · 序章 未明的海', exact: true }).click();
   await page.locator('.story-mode').waitFor();
   console.log('story chapters', await page.locator('.story-chapters li > button').count());
   await page.screenshot({ path: root + 'story-mode.png' });

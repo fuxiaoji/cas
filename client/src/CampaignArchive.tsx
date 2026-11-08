@@ -319,7 +319,7 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
         <CampaignMap entries={matchingEntries} side={side} selection={mapSelection} onSelectionChange={chooseMap}
           activeScenarioId={selected?.entry.ibs_id} />
         <div className="war-utility">
-          <button type="button" onClick={onStory} disabled={!onStory}>序章 · 未明的海</button>
+          <button type="button" onClick={onStory} disabled={!onStory} aria-label="剧情模式 · 序章 未明的海">剧情模式</button>
           <button type="button" onClick={review} disabled={!review}>操作复习</button>
           <span>地图按地理分区，列表按出航顺序。</span>
         </div>
