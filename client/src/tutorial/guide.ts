@@ -74,6 +74,19 @@ export function guidedTrainingProgress(course: CourseId, evidence: TrainingEvide
   return { current, complete: index < 0 ? steps.length : index, total: steps.length, next, cue };
 }
 
+/** Fixed-flow tutorial: complete the current step without free-play inputs. */
+export function completeTrainingStep(course: CourseId, evidence: TrainingEvidence, options?: GuidanceOptions): TrainingEvidence {
+  let result = evidence;
+  for (let guard = 0; guard < 12; guard++) {
+    const progress = guidedTrainingProgress(course, result, options);
+    if (!progress.current || !progress.next) break;
+    const id = progress.current.id;
+    result = { ...result, [progress.next]: true };
+    if (guidedTrainingProgress(course, result, options).current?.id !== id) break;
+  }
+  return result;
+}
+
 export function guidedTrainingDone(course: CourseId, evidence: TrainingEvidence, options?: GuidanceOptions) {
   return !guidedTrainingProgress(course, evidence, options).current;
 }

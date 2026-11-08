@@ -1,6 +1,12 @@
 const password = 'CASQA-local-2026';
 
 export async function signInLocal(page, user, register = false) {
+  // The test build opens the port with the fixed test commander; login is
+  // skipped entirely. Keep the old UI path as a fallback for online builds.
+  if (await page.locator('.growth-port').count()) {
+    await page.locator('.growth-port').waitFor();
+    return;
+  }
   const button = (name) => page.getByRole('button', { name, exact: true });
   if (register) await button('新用户，创建账号').click();
   await page.getByLabel('用户名').fill(user);

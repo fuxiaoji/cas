@@ -216,7 +216,17 @@ impl World {
     }
 
     pub(crate) fn visible_illumination(&self,owner:usize)->Vec<Value>{
-        self.illumination.marks.iter().filter(|m|m.expires>self.tick && (m.owner==owner || self.ships.iter().any(|s|s.side==owner&&s.alive()&&s.p.dist(m.center)<=30.*1852.))).map(|m|
-            json!({"x":m.center.x,"y":m.center.y,"radius":f64::from(m.profile.radius_yd)*YARD,"expires":m.expires,"own":m.owner==owner})).collect()
+        self.illumination.marks.iter().filter(|m|m.expires>self.tick && (m.owner==owner || self.ships.iter().any(|s|s.side==owner&&s.alive()&&s.p.dist(m.center)<=30.*1852.))).map(|m|{
+            let mut view=json!({"x":m.center.x,"y":m.center.y,"radius":f64::from(m.profile.radius_yd)*YARD,
+                "expires":m.expires,"own":m.owner==owner});
+            // The firing seat knows the aimed contact; show the target point so
+            // the chart can mark the ship, not only the burst centre.
+            if m.owner==owner {
+                if let Some(target)=self.ship(m.target) {
+                    view["targetX"]=json!(target.p.x); view["targetY"]=json!(target.p.y);
+                }
+            }
+            view
+        }).collect()
     }
 }

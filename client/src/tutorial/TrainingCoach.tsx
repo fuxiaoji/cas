@@ -5,7 +5,7 @@ import type { CourseId, TrainingEvidence } from './curriculum';
 import { guidedTrainingProgress, guideSelectors } from './guide';
 import './training-coach.css';
 
-type Props = { course: CourseId; evidence: TrainingEvidence; onFinish: () => void; onExit: () => void;
+type Props = { course: CourseId; evidence: TrainingEvidence; onFinish: () => void; onExit: () => void; onAdvance?: () => void;
   onGuide?: (selector: string) => void; lightingAvailable?: boolean; guided?: boolean; radar?: boolean };
 
 function findGuideTarget(selectors: readonly string[]) {
@@ -24,7 +24,7 @@ function findGuideTarget(selectors: readonly string[]) {
   }
 }
 
-export function TrainingCoach({ course, evidence, onFinish, onExit, onGuide, lightingAvailable = true, guided = false, radar = false }: Props) {
+export function TrainingCoach({ course, evidence, onFinish, onExit, onAdvance, onGuide, lightingAvailable = true, guided = false, radar = false }: Props) {
   const [expanded, setExpanded] = useState(true);
   const [pulse, setPulse] = useState(0);
   const { title, steps } = trainingCourses[course];
@@ -104,8 +104,10 @@ export function TrainingCoach({ course, evidence, onFinish, onExit, onGuide, lig
       </div> : <p className="training-coach-result" role="status">所需操作均已记录。炮击和雷击不要求命中。</p>}
       <div className="training-coach-actions">
         <button type="button" onClick={onExit}>退出实操</button>
-        {!current ? <button type="button" className="primary" onClick={onFinish}>{course === 'day' || course === 'night' ? '完成课程' : '继续序章'}</button> :
-          <button type="button" disabled={missingLight} onClick={pointOutControl}>指出操作位置</button>}
+        {!current ? <button type="button" className="primary" onClick={onFinish}>{course === 'day' || course === 'night' ? '完成课程' : '继续序章'}</button> : <>
+          {onAdvance && <button type="button" className="primary" onClick={onAdvance}>继续（固定流程）</button>}
+          <button type="button" disabled={missingLight} onClick={pointOutControl}>指出操作位置</button>
+        </>}
       </div>
     </>}
     {!expanded && !current && <button type="button" className="training-coach-compact-finish primary" onClick={onFinish}>{course === 'day' || course === 'night' ? '完成课程' : '继续序章'}</button>}

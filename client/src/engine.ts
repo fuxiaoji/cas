@@ -14,7 +14,7 @@ export interface Ship extends Position {
   classId?: string; characterId?: string; gunRange?: number; torpedoRange?: number; systems?: ShipSystems;
   gunTarget?: string;
   targetChance?: number;
-  searchlight?: { target: number | null; bearing: number };
+  searchlight?: { target: number | null; bearing: number; x?: number; y?: number };
   smoking?: boolean;
 }
 export interface GunMount {
@@ -43,7 +43,7 @@ export interface AiConfig {
 }
 export interface Fleet {
   id: number; name: string; leader: number; members: number[];
-  mode: Maneuver; speed: number; points: Point[]; paths: Path[]; ai: AiConfig; notice?: string;
+  mode: Maneuver; speed: number; actual?: number; maxSpeed?: number; points: Point[]; paths: Path[]; ai: AiConfig; notice?: string;
 }
 export interface LogEvent { id?: number | string; tick: number; kind: string; text: string; rule?: string; x?: number; y?: number; voiceCue?: string; own_ship?: number }
 export interface Result { winner: string; allies: number; axis: number; primary?: boolean | string; grade?: CampaignGrade }
@@ -54,7 +54,7 @@ export interface Observation {
   campaign?: CampaignMission & { withdrawalX?: number };
   ships: Ship[]; fleets: Fleet[]; contacts: Contact[];
   radarContacts?: RadarContact[];
-  illuminations?: (Point & { radius: number; expires: number; own: boolean })[];
+  illuminations?: (Point & { radius: number; expires: number; own: boolean; targetX?: number; targetY?: number })[];
   smoke?: (Point & { expires: number })[];
   torpedoes: Torpedo[]; shells?: Shell[];
   events: LogEvent[]; result: Result | null; islands: Point[][];

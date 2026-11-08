@@ -283,12 +283,25 @@ export function BattleMap(props: MapProps) {
     for (const ship of o.ships) {
       if (!ship.searchlight?.target) continue;
       const at = screen(ship);
-      const bearing = ship.searchlight.bearing * Math.PI / 180;
-      ctx.beginPath();
-      ctx.moveTo(at.x, at.y);
-      ctx.arc(at.x, at.y, Math.max(4000 * mapRatio, 70), bearing - 0.07, bearing + 0.07);
-      ctx.closePath();
-      ctx.fillStyle = '#fff3b170'; ctx.fill();
+      const target = ship.searchlight.x != null && ship.searchlight.y != null
+        ? screen({ x: ship.searchlight.x, y: ship.searchlight.y }) : undefined;
+      if (target) {
+        // Draw the beam to the lit ship, not a fixed 4,000-yard stub.
+        ctx.beginPath(); ctx.moveTo(at.x, at.y); ctx.lineTo(target.x, target.y);
+        ctx.strokeStyle = '#fff3b170'; ctx.lineWidth = 2; ctx.stroke();
+        const reach = Math.max(Math.hypot(target.x - at.x, target.y - at.y), 1);
+        const bearing = Math.atan2(target.y - at.y, target.x - at.x);
+        ctx.beginPath(); ctx.moveTo(at.x, at.y);
+        ctx.arc(at.x, at.y, reach, bearing - 0.05, bearing + 0.05); ctx.closePath();
+        ctx.fillStyle = '#fff3b126'; ctx.fill();
+        ctx.beginPath(); ctx.arc(target.x, target.y, 9, 0, TAU);
+        ctx.strokeStyle = '#ffe9a8'; ctx.lineWidth = 1.3; ctx.stroke();
+      } else {
+        const bearing = ship.searchlight.bearing * Math.PI / 180;
+        ctx.beginPath(); ctx.moveTo(at.x, at.y);
+        ctx.arc(at.x, at.y, Math.max(4000 * mapRatio, 70), bearing - 0.07, bearing + 0.07);
+        ctx.closePath(); ctx.fillStyle = '#fff3b170'; ctx.fill();
+      }
     }
     if (rangedShip && rangesVisible && !gesture && !editing && !reformPreview) {      const at = screen(rangedShip);
       ctx.save();
@@ -351,6 +364,11 @@ export function BattleMap(props: MapProps) {
       glow.addColorStop(0, '#f8dfa683'); glow.addColorStop(1, '#ffe0a800');
       ctx.beginPath(); ctx.arc(p.x, p.y, radius, 0, TAU); ctx.fillStyle = glow; ctx.fill();
       ctx.strokeStyle = '#ffe0a87d'; ctx.stroke();
+      if (mark.targetX != null && mark.targetY != null) {
+        const aim = screen({ x: mark.targetX, y: mark.targetY });
+        ctx.beginPath(); ctx.arc(aim.x, aim.y, 8, 0, TAU);
+        ctx.strokeStyle = '#ffe0a8d9'; ctx.lineWidth = 1.2; ctx.stroke();
+      }
     }
     for (const contact of tracks) {
       const p = screen(contact);

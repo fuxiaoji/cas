@@ -23,7 +23,7 @@ import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROL
 import { StoryMode } from './story/StoryMode';
 import type { StarterDDId } from './prologue';
 import { PROLOGUE_HANDOVER_TICK } from './prologue/PrologueFilm';
-import { guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainingCourseDone } from './tutorial';
+import { completeTrainingStep, guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainingCourseDone } from './tutorial';
 import type { CourseId, TrainingEvidence, TrainingSignal } from './tutorial';
 import { profileKey } from './account';
 import type { LocalProfile } from './account';
@@ -70,18 +70,26 @@ function eventTone(event: LogEvent) {
 }
 
 function FleetSpeed({ fleet, busy, apply }: {
-  fleet: { id: number; speed: number }; busy: boolean; apply: (speed: number) => void;
+  fleet: { id: number; speed: number; actual?: number; maxSpeed?: number }; busy: boolean; apply: (speed: number) => void;
 }) {
-  const [value, setValue] = useState(String(fleet.speed));
-  useEffect(() => { setValue(String(fleet.speed)); }, [fleet.id, fleet.speed]);
+  const max = Math.max(1, Math.floor(fleet.maxSpeed ?? 40));
+  const target = Math.min(max, Math.max(0, fleet.speed));
+  const [value, setValue] = useState(String(target));
+  useEffect(() => { setValue(String(target)); }, [fleet.id, target]);
   const commit = () => {
-    const next = Number(value);
-    if (Number.isFinite(next) && next >= 0 && next !== fleet.speed) apply(next);
+    const next = Math.min(max, Math.max(0, Number(value)));
+    if (Number.isFinite(next) && next !== target) apply(next);
+    else setValue(String(target));
   };
-  return <label className="fleet-speed">编队航速 <input type="range" min={0} max={40} step={1} value={value}
-    aria-label="编队航速" disabled={busy} onChange={(event) => setValue(event.target.value)}
-    onPointerUp={commit} onKeyUp={(event) => { if (event.key.startsWith('Arrow') || event.key === 'Home' || event.key === 'End') commit(); }}
-    onBlur={commit} /> <b>{value} 节</b></label>;
+  return <div className="fleet-speed">
+    <span>编队航速</span>
+    <input type="range" min={0} max={max} step={1} value={value} aria-label="目标编队航速" disabled={busy}
+      onChange={(event) => setValue(event.target.value)}
+      onPointerUp={commit} onKeyUp={(event) => { if (event.key.startsWith('Arrow') || event.key === 'Home' || event.key === 'End') commit(); }}
+      onBlur={commit} />
+    <b>{(fleet.actual ?? target).toFixed(1)} 节</b>
+    <small>目标 {value} · 上限 {max}</small>
+  </div>;
 }
 
 function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => void }) {
@@ -928,6 +936,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         <div className="staff-scroll">
           {o.campaign && <CampaignMissionBrief campaign={o.campaign} />}
           {course && <TrainingCoach course={course} evidence={evidence} guided={guided} radar={nightRadar}
+            onAdvance={() => setEvidence(value => completeTrainingStep(course, value, { radar: nightRadar }))}
             onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
           {nightRadar && course === 'night' && <button type="button" className="training-window" data-guide-control="clock-window"
             disabled={busy || finished} onClick={() => void nextNightWindow()}>推进到下一探测窗口</button>}
@@ -1148,12 +1157,27 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   </main>;
 }
 
+function testProfile(): LocalProfile {
+  try {
+    const saved = localStorage.getItem('cas.test.profile.v1');
+    if (saved) {
+      const parsed = JSON.parse(saved) as LocalProfile;
+      if (parsed && typeof parsed.id === 'string' && typeof parsed.name === 'string') return parsed;
+    }
+  } catch { /* fall through to a fresh test commander */ }
+  const profile = { id: 'test-commander', name: '测试指挥官' };
+  localStorage.setItem('cas.test.profile.v1', JSON.stringify(profile));
+  return profile;
+}
+
 function Entry() {
-  const [profile,setProfile]=useState<LocalProfile>();
-  return profile ? <App key={profile.id} profile={profile} onLogout={()=>{
+  // Test build: no account wall. The fixed test commander keeps the same
+  // local port/story keys across reloads; online accounts stay optional.
+  const [profile, setProfile] = useState<LocalProfile>(testProfile);
+  return <App key={profile.id} profile={profile} onLogout={() => {
     if (profile.online) void onlineRequest('/auth/logout', profile.online.token, {}).catch(() => {});
-    closeSession();setProfile(undefined);
-  }} /> : <Login onLogin={setProfile} />;
+    closeSession(); setProfile(testProfile());
+  }} />;
 }
 
 createRoot(document.getElementById('root')!).render(<Entry />);

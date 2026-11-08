@@ -564,7 +564,8 @@ impl World {
             if s.searchlight.is_some() {
                 if let Some(target) = self.ship(s.searchlight.unwrap()).filter(|t| t.alive()) {
                     let bearing = (target.p - s.p).heading();
-                    data["searchlight"] = json!({"target": s.searchlight.unwrap(), "bearing": bearing});
+                    data["searchlight"] = json!({"target": s.searchlight.unwrap(), "bearing": bearing,
+                        "x": target.p.x, "y": target.p.y});
                 } else {
                     data["searchlight"] = json!({"target": null});
                 }
@@ -648,6 +649,7 @@ impl World {
             let paths:Vec<_>=members.iter().filter_map(|&&id|self.ship(id).and_then(|s|s.track.as_ref()).filter(|t|!t.done())
                 .map(|t|json!({"ship":id,"points":t.remaining()}))).collect();
             Some(json!({"id":f.id,"name":f.name,"leader":f.leader,"members":members,"mode":f.mode,"speed":f.speed,
+                "actual":f.actual,"maxSpeed":self.fleet_max(f),
                 "points":if paths.is_empty(){&[][..]}else{&f.points[..]},"paths":paths,"ai":f.ai,"notice":f.notice,"aiState":f.tactic.label()}))
         }).collect();
         let torpedoes: Vec<_> = self

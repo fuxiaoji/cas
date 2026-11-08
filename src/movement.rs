@@ -176,7 +176,7 @@ impl World {
             .min(ship.speed_cap.unwrap_or(f64::INFINITY))
             .min(self.flooding_speed_limit(ship))
     }
-    fn fleet_max(&self, f: &Fleet) -> f64 {
+    pub(crate) fn fleet_max(&self, f: &Fleet) -> f64 {
         f.members
             .iter()
             .filter_map(|&id| self.ship(id))
@@ -494,12 +494,6 @@ impl World {
         if f.leader == s {
             return Ok(());
         }
-        if f.members
-            .iter()
-            .any(|x| self.ship(*x).is_some_and(|s| s.speed > 0.5))
-        {
-            return Err("先等编队完成当前机动，再更换领舰".into());
-        }
         let ids = f.members.clone();
         let old_id = f.leader;
         let deployment = self.tick == 0
@@ -511,28 +505,9 @@ impl World {
             let new = self.ship(s).unwrap().p;
             self.ship_mut(old_id).unwrap().p = new;
             self.ship_mut(s).unwrap().p = old;
-        } else {
-            let p = self.ship(s).unwrap().p;
-            let axis = ids
-                .iter()
-                .filter_map(|i| self.ship(*i))
-                .filter(|i| i.alive() && i.id != s)
-                .max_by(|a, b| a.p.dist(p).total_cmp(&b.p.dist(p)))
-                .map(|other| (other.p - p).unit());
-            if let Some(axis) = axis {
-                if ids
-                    .iter()
-                    .filter_map(|i| self.ship(*i))
-                    .filter(|i| i.alive())
-                    .any(|i| (i.p - p).dot(axis) < -40. || (i.p - p).cross(axis).abs() > 75.)
-                {
-                    return Err("战斗中请从队列一端选择领舰".into());
-                }
-            }
         }
-        for &m in &ids {
-            self.ship_mut(m).unwrap().track = None;
-        }
+        // In battle any living member may take over; every ship keeps its
+        // current track, so the handover does not stop the formation.
         let f = self.fleet_mut(id).unwrap();
         f.leader = s;
         if deployment {
@@ -548,7 +523,7 @@ impl World {
         f.notice = if deployment {
             None
         } else {
-            Some("已选领舰；如果领舰不在队首，先重整纵队。".into())
+            Some("领舰已更换；各舰沿用当前航迹，如需整齐队列可重整。".into())
         };
         self.add(
             1 << owner,

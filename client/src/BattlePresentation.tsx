@@ -272,10 +272,11 @@ export function ShipSchematic({ ship, ships, select, tick = 0, torpedo }: {
                   : systems.guns.length === 3 ? [[90, 56], [90, 108], [90, 160]]
                   : systems.guns.length === 2 ? [[90, 68], [90, 150]] : [[90, 108]];
                 const [cx, cy] = slots[slot] ?? [90, 108];
-                const rel = gun.bearing != null ? (gun.bearing - ship.heading) * Math.PI / 180 : null;
-                return <g key={gun.index} transform={`translate(${cx} ${cy})`}>
-                  <circle r="7" fill="#244b57" stroke={gun.destroyed ? '#c96a5a' : '#d8c58c'} strokeWidth="1.2"/>
-                  {rel !== null && !gun.destroyed && <line x1="0" y1="0" x2={Math.sin(rel) * 20} y2={-Math.cos(rel) * 20} stroke="#e8c589" strokeWidth="2"/>}
+                const relDeg = gun.bearing != null ? gun.bearing - ship.heading : 0;
+                return <g key={gun.index} transform={`translate(${cx} ${cy}) rotate(${relDeg})`}>
+                  <circle r="7.5" fill="#244b57" stroke={gun.destroyed ? '#c96a5a' : '#d8c58c'} strokeWidth="1.2"/>
+                  {!gun.destroyed && <rect x="-2.1" y="-21" width="4.2" height="17" rx="1" fill="#e8c589" stroke="#8b7448" strokeWidth=".6"/>}
+                  {!gun.destroyed && <circle r="2.2" cy="-3" fill="#f2dda8"/>}
                   {gun.destroyed && <path d="M-4 -4l8 8m0-8l-8 8" stroke="#c96a5a" strokeWidth="1.5"/>}
                 </g>;
               })}
