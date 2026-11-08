@@ -106,3 +106,18 @@
 - 新增文件：`data/campaign/period/savo-island-1942.json`、`docs/campaign/savo-island-source-notes.md`（本文）、`scripts/check-savo-island.py`；未改动 src/、server/、client/、data/rules/ 与其他战役文件。
 - 运行校验：`python scripts/check-savo-island.py`（见提交记录中的运行输出）。
 - 本批不跑 cargo、uvicorn 或浏览器；历史关不标可玩，`status` 保持 `source_only_not_runtime_ready`，与 [savo-island.json](../../data/campaign/savo-island.json) v1 档案互为引用。
+
+## 7. 运输舰数据补充核页（2026-11-08）
+
+此前 `savo-island-1942.json` 的 `auxiliary_transports.policy` 写“不生成战斗实例”，这是**本批未转录**的状态，不是原书没有数据。复核《American Fleets》PDF 45–50（印刷 A-42–A-47）后确认存在运输/辅助舰卡：
+
+| 页 | 内容 |
+| --- | --- |
+| PDF 45（A-42） | Arcturus AKA（DP 0/43/86/128/154/171，16 节，5in/38、40mm/20mm，民用 -50% 损伤修正）、Indus AKN 等 |
+| PDF 46（A-43） | Patoka AO 等辅助舰 |
+| PDF 47（A-44） | McCawley AP（DP 0/78/156/233/280/311，21 节，4×5in/38）、Harry Lee AP 等 |
+| PDF 48（A-45） | President Jackson 级 APA、Doyen APA、Windsor APA 等 |
+| PDF 49（A-46） | Arthur Middleton APA、Crescent City APA、Heywood/Harris APA 等 |
+| PDF 50（A-47） | Wickes APD、Clemson DMS 等 |
+
+因此运输舰可以按舰级卡转录为可受损/可击沉实例；`Neville`、`Zellin`、`Colhoun`、`Gregory`、`McKean` 等 Yoke 小舰需按对应 APD/DMS/DE 舰级页补核。运输舰的民用 -50% 损伤修正、单轴工程临界双倍掉速和载员/登陆艇字段按上表页录入，不用默认值代替。
