@@ -11,6 +11,7 @@ pub(crate) mod channel;
 pub(crate) mod kula;
 pub mod horaniu;
 pub mod esperance;
+pub(crate) mod savo;
 pub(crate) mod tassafaronga;
 pub use legacy::{Deployment as LegacyDeployment, MapGeometry as LegacyMapGeometry};
 
@@ -135,6 +136,9 @@ fn public_row(mut row: Value) -> Value {
     } else if row["cas"]["scenario_id"] == "cas-rs-cape-esperance" {
         row["playable"] = json!(true);
         row["runtime"] = json!({"historicalReady":false,"label":esperance::LABEL,"contentVersion":esperance::CONTENT,"localOnly":true});
+    } else if row["cas"]["scenario_id"] == "cas-rs-savo-island" {
+        row["playable"] = json!(true);
+        row["runtime"] = json!({"historicalReady":false,"label":savo::LABEL,"contentVersion":savo::CONTENT,"localOnly":true});
     } else if row["cas"]["scenario_id"] == "cas-rs-tassafaronga" {
         row["playable"] = json!(true);
         row["runtime"] = json!({"historicalReady":false,"label":tassafaronga::LABEL,"contentVersion":tassafaronga::CONTENT,"localOnly":true});
@@ -365,7 +369,7 @@ mod tests {
             let allies = detail(&format!("CAMP-ALLIES-{n:02}")).unwrap();
             let axis = detail(&format!("CAMP-AXIS-{n:02}")).unwrap();
             assert_eq!(allies, axis);
-            assert_eq!(allies["entry"]["playable"], matches!(n, 2 | 3 | 4 | 5 | 11));
+            assert_eq!(allies["entry"]["playable"], matches!(n, 2 | 3 | 4 | 5 | 10 | 11));
             if !allies["record"].is_null() {
                 sources += 1;
                 assert_eq!(allies["record"]["ibs_id"], allies["entry"]["ibs_id"]);

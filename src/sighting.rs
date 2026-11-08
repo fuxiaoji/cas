@@ -14,6 +14,10 @@ impl World {
             Environment { light: night::Light::Night, visibility: 10, sea_state: 1, precipitation: true }
         } else if self.variant == crate::campaign::esperance::VARIANT {
             Environment { light: night::Light::Night, visibility: 10, sea_state: 3, precipitation: false }
+        } else if self.variant == crate::campaign::savo::VARIANT {
+            // Printed: night, 10% (New Moon row), 100% overcast with a
+            // thunderstorm near Savo, sea state 3.
+            Environment { light: night::Light::Night, visibility: 10, sea_state: 3, precipitation: true }
         } else if self.campaign.is_some() {
             crate::campaign::live::environment()
         } else if self.variant == "night" || self.radar_enabled() || self.has_starshells() {

@@ -73,6 +73,27 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
         // Japanese 20cm/50 No.2 (6 deg/s, 12 s from the same family data).
         "new_orleans_1942" | "northampton_1942" | "salt_lake_city_1942" => (20, 4.),
         "tass_minneapolis" | "tass_new_orleans" | "tass_pensacola" | "tass_northampton" => (20, 4.),
+        // Savo Island 1942-08-09. US 8in/55 Mk9 (NavWeaps hand-hydraulic
+        // trains ~4 deg/s, 20 s tethered-barrel reload); 5in/38 singles and
+        // twins at the Fletcher 4 s/28.7 record; Japanese 20cm/50 No.2 at
+        // 6 deg/s and 12 s from the same family data; 14cm/50 singles 8 s.
+        "savo_vincennes" | "savo_quincy" | "savo_astoria" | "savo_chicago"
+        | "savo_australia" | "savo_canberra" => (20, 4.),
+        // Auxiliaries and mine sweeps use the local-control 5in/38 cadence.
+        "savo_fuller" | "savo_american_legion" | "savo_bellatrix" | "savo_mccawley"
+        | "savo_barnett" | "savo_george_f_elliott" | "savo_libra" | "savo_hunter_liggett"
+        | "savo_alchiba" | "savo_betelgeuse" | "savo_fomalhaut" | "savo_crescent_city"
+        | "savo_president_hayes" | "savo_president_adams" | "savo_alhena" | "savo_heywood_yoke"
+        | "savo_neville" | "savo_zeilin" | "savo_president_jackson" | "savo_colhoun"
+        | "savo_little" | "savo_gregory" | "savo_mckean" | "savo_hopkins" | "savo_trever"
+        | "savo_zane" | "savo_southard" | "savo_hovey" => (6, 9.),
+        "savo_san_juan" | "savo_hobart" => (6, 18.),
+        "savo_chokai" | "savo_aoba" | "savo_kako" | "savo_kinugasa" | "savo_furutaka" => (12, 6.),
+        "savo_tenryu" | "savo_yubari" => (8, 10.),
+        "savo_yunagi" => (9, 9.),
+        "savo_blue" | "savo_ralph_talbot" | "savo_bagley" | "savo_patterson" | "savo_helm"
+        | "savo_wilson" | "savo_monssen" | "savo_buchanan" | "savo_jarvis" | "savo_selfridge"
+        | "savo_mugford" | "savo_dewey" | "savo_hull" | "savo_henley" | "savo_ellet" => (4, 28.7),
         "brooklyn_second_group_1942" | "tass_honolulu" => (10, 10.),
         "tass_fletcher" => (4, 28.7),
         "tass_perkins" | "tass_maury" | "tass_drayton" | "tass_lamson" | "tass_lardner" => (5, 15.),

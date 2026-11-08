@@ -268,7 +268,7 @@ def aux_row(id, name, dp, speeds, size, gun_barrels, caliber, year, displacement
         "gun": {
             "name": f"{caliber}in/38或3in/50（武装商船）", "caliber_mm": caliber * 25.4,
             "range_yd": [5500, 10900, 14600, 18200],
-            "damage": [18, 14, 12, 11], "gs": 4,
+            "damage": [18, 14, 12, 11], "gs": 4, "barrels": gun_barrels,
             "mounts": [{"barrels": gun_barrels, "arc": [30, 150], "arc2": [210, 330]}],
             "pen_belt": [7, 4, 3, 2], "pen_deck": [None, None, 1, 2],
             "armor_piercing": False,

@@ -79,6 +79,8 @@ const rewardsByStage: Record<string, readonly CampaignReward[]> = {
   'CAMP-AXIS-11': capeRewards,
   'CAMP-ALLIES-02': capeRewards,
   'CAMP-ALLIES-05': capeRewards,
+  'CAMP-ALLIES-10': capeRewards,
+  'CAMP-AXIS-10': capeRewards,
   'CAMP-AXIS-05': capeRewards,
   'CAMP-AXIS-02': capeRewards,
 };
