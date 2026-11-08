@@ -631,23 +631,26 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
     use std::collections::BTreeSet;
     let rows = ask(&mut Engine::default(), json!({"op":"campaign"}));
     let scenarios = rows["scenarios"].as_array().unwrap();
-    assert_eq!(scenarios.len(), 16);
+    // The four stages without CAS counterparts are removed from the list.
+    assert_eq!(scenarios.len(), 12);
     let mut stages = BTreeSet::new();
     for item in scenarios {
         let cape = item["cas"]["scenario_id"] == "cas-rs-cape-st-george";
-        let channel = item["ibs_id"] == "IBS-S-03";
+        // Channel Action was removed from the list with the other three
+        // CAS-less scenarios. The playable check stands without it.
         let kula = item["ibs_id"] == "IBS-S-02";
         let empress = item["cas"]["scenario_id"] == "cas-rs-empress-augusta-bay";
         let esperance = item["cas"]["scenario_id"] == "cas-rs-cape-esperance";
-        assert_eq!(item["playable"], cape || channel || kula || empress || esperance);
-        if cape || channel || kula || empress || esperance {
+        assert_eq!(item["playable"], cape || kula || empress || esperance);
+        if cape || kula || empress || esperance {
             assert_eq!(item["runtime"]["historicalReady"], false);
         }
         for id in item["stage_ids"].as_array().unwrap() {
             assert!(stages.insert(id.as_str().unwrap()));
         }
     }
-    assert_eq!(stages.len(), 32);
+    // 12 kept scenarios x both seats = 24 stage slots.
+    assert_eq!(stages.len(), 24);
 }
 #[test]
 fn close_range_torpedo_uses_actual_mount_and_advancing_spread() {

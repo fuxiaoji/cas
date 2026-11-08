@@ -736,8 +736,10 @@ mod tests {
     #[test]
     fn home_fleet_jk_engineering_critical_doubles_speed_steps_only() {
         use crate::campaign::live::Start;
+        // The campaign no longer exposes the Channel stage; exercise the
+        // frozen runtime directly.
         let mut w =
-            World::new_campaign(53, Start::new("CAMP-ALLIES-01", "story"), "coord").unwrap();
+            crate::campaign::channel::open(53, Start::new("CAMP-ALLIES-01", "story"), 0, "coord", "coord").unwrap();
         for (id, step_loss, speed) in [(4, 2, 18.), (1, 1, 29.)] {
             w.rng = 1; // D10 = 2; no boiler explosion.
             let full = w.ship(id).unwrap().hp;

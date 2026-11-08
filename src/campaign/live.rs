@@ -105,8 +105,8 @@ impl Start {
     }
     pub(crate) fn seat(&self) -> E<usize> {
         match self.stage_id.as_str() {
-            "CAMP-ALLIES-03" | "CAMP-ALLIES-01" | "CAMP-ALLIES-04" | "CAMP-ALLIES-11" | "CAMP-ALLIES-02" => Ok(0),
-            "CAMP-AXIS-03" | "CAMP-AXIS-01" | "CAMP-AXIS-04" | "CAMP-AXIS-11" | "CAMP-AXIS-02" => Ok(1),
+            "CAMP-ALLIES-03" | "CAMP-ALLIES-04" | "CAMP-ALLIES-11" | "CAMP-ALLIES-02" => Ok(0),
+            "CAMP-AXIS-03" | "CAMP-AXIS-04" | "CAMP-AXIS-11" | "CAMP-AXIS-02" => Ok(1),
             _ => Err("此战役尚未通过出航核验".into()),
         }
     }

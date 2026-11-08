@@ -33,6 +33,13 @@ fn source_for(id: &str) -> Option<&'static str> {
     })
 }
 
+/// Per the RTS fidelity standard the campaign only lists scenarios with a
+/// registered CAS counterpart. These four legacy stages (Channel Action 1940,
+/// the two 1928 fiction duels and the Ironbottom Echo finale) have none — the
+/// user removed them from the campaign; their records stay in the crosswalk
+/// and their data files stay in the repository for future restoration.
+const REMOVED_SCENARIOS: [&str; 4] = ["IBS-S-03", "IBS-S-07", "IBS-S-12", "IBS-S-FM-01"];
+
 fn catalogue_row(id: &str) -> Result<&'static Value, String> {
     static CATALOGUE: OnceLock<Value> = OnceLock::new();
     let catalogue =
@@ -65,6 +72,9 @@ pub fn legacy_deployment(id: &str) -> Result<LegacyDeployment, String> {
 
 pub fn detail(id: &str) -> Result<Value, String> {
     let row = catalogue_row(id)?;
+    if row["ibs_id"].as_str().is_some_and(|ibs| REMOVED_SCENARIOS.contains(&ibs)) {
+        return Err(String::from("此想定没有对应的 CAS 剧本，已从战役移除"));
+    }
     let cas_id = row["cas"]["scenario_id"].as_str();
     let record = cas_id
         .and_then(source_for)
@@ -99,7 +109,9 @@ pub fn detail(id: &str) -> Result<Value, String> {
 pub fn catalogue() -> Result<Value, String> {
     let mut catalog: Value = serde_json::from_str(CROSSWALK)
         .map_err(|e| format!("无法读取战役档案：{e}"))?;
-    for row in catalog["scenarios"].as_array_mut().expect("campaign rows") {
+    let rows = catalog["scenarios"].as_array_mut().expect("campaign rows");
+    rows.retain(|row| !row["ibs_id"].as_str().is_some_and(|ibs| REMOVED_SCENARIOS.contains(&ibs)));
+    for row in rows {
         *row = public_row(row.take());
     }
     Ok(catalog)
@@ -339,10 +351,16 @@ mod tests {
         let mut fallback_count = 0;
         let mut fallback_ships = 0;
         for n in 1..=16 {
+            // The four stages without CAS counterparts are removed from the
+            // campaign list (record stays in the crosswalk).
+            if matches!(n, 1 | 7 | 12 | 16) {
+                assert!(detail(&format!("CAMP-ALLIES-{n:02}")).is_err());
+                continue;
+            }
             let allies = detail(&format!("CAMP-ALLIES-{n:02}")).unwrap();
             let axis = detail(&format!("CAMP-AXIS-{n:02}")).unwrap();
             assert_eq!(allies, axis);
-            assert_eq!(allies["entry"]["playable"], matches!(n, 1 | 2 | 3 | 4 | 11));
+            assert_eq!(allies["entry"]["playable"], matches!(n, 2 | 3 | 4 | 11));
             if !allies["record"].is_null() {
                 sources += 1;
                 assert_eq!(allies["record"]["ibs_id"], allies["entry"]["ibs_id"]);
@@ -367,9 +385,12 @@ mod tests {
                 fallback_ships += deployment.ships.len();
             }
         }
+        // Stage 01 (Channel Action), 07 (Solomons 1928), 12 (Bougainville
+        // 1928) and 16 (Midnight Fleet) were removed — no CAS counterpart.
+        // Stage 15 keeps its Philippine Sea surface fallback (24 ships).
         assert_eq!(sources, 11);
-        assert_eq!(fallback_count, 5);
-        assert_eq!(fallback_ships, 159);
+        assert_eq!(fallback_count, 1);
+        assert_eq!(fallback_ships, 24);
         assert!(legacy_deployment("CAMP-ALLIES-02").is_err());
         assert!(detail("../cape-st-george").is_err());
     }

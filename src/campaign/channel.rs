@@ -178,7 +178,9 @@ mod tests {
     fn keeps_original_opening_and_scores_cas_damage_speed_not_throttle() {
         let start = Start::new("CAMP-ALLIES-01", "story");
         let original = legacy_deployment(&start.stage_id).unwrap();
-        let mut w = World::new_campaign(53, start, "coord").unwrap();
+        // The campaign no longer exposes the Channel stage (no CAS scenario
+        // counterpart); the frozen runtime stays testable directly.
+        let mut w = open(53, start, 0, "coord", "coord").unwrap();
         assert_eq!(w.field.limit, 720);
         assert_eq!(w.ships.iter().filter(|s| s.side == 1).count(), 3);
         assert_eq!(w.ships.len(), 8);

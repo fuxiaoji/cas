@@ -326,7 +326,6 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
                 </div>
                 <p>本关按历史编制借舰，不消耗个人舰库。</p>
                 {!online && <CampaignRewardActions stageId={stageId} progress={progress} busy={busy} onClaim={() => onClaim(stageId)} />}
-                {stageId === 'CAMP-AXIS-01' && <p>原首通舰高波待核准 CAS 舰卡后开放，补给可照常领取。</p>}
                 {stageId.endsWith('-04') && <p>原首通舰{side === 'allies' ? '海伦娜' : '新月'}待个人舰库接入，补给可照常领取。</p>}
                 {campaignRewards(stageId).length > 0 && <details className="campaign-reward-ledger"><summary>查看星级奖励</summary>
                   <ol>{campaignRewards(stageId).map(reward => <li key={reward.stars}><span>{reward.stars} 星 · {reward.title}</span>

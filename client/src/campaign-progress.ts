@@ -69,8 +69,6 @@ const channelStarRewards = [
   { stars: 3, title: '战术星章', credits: 0, tickets: 2, marks: 10 },
 ] as const;
 const rewardsByStage: Record<string, readonly CampaignReward[]> = {
-  'CAMP-ALLIES-01': [{ stars: 1, title: '首通补给与舰队勋章', credits: 700, tickets: 1, marks: 5 }, ...channelStarRewards],
-  'CAMP-AXIS-01': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
   'CAMP-ALLIES-03': capeRewards,
   'CAMP-AXIS-03': capeRewards,
   'CAMP-ALLIES-04': [{ stars: 1, title: '首通补给', credits: 400, tickets: 1, marks: 0 }, ...channelStarRewards],
