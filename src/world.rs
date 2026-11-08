@@ -27,6 +27,10 @@ pub struct World {
     pub resupply: Vec<crate::model::ResupplyPoint>,
     pub drum_strings: Vec<u8>,
     pub supply_score: u32,
+    /// Savo special rule: the Allied side cannot fire for D6/3 tactical
+    /// windows (rounded up) after the Japanese are first detected.
+    pub fire_hold: [u32; 2],
+    pub fire_hold_rolled: bool,
     pub shells: Vec<Shell>,
     pub version: &'static str,
     pub event_ids: [u32; 2],
@@ -85,6 +89,8 @@ impl World {
             resupply: vec![],
             drum_strings: vec![],
             supply_score: 0,
+            fire_hold: [0, 0],
+            fire_hold_rolled: false,
             shells: vec![],
             version: match variant { RADAR_DRILL=>RADAR_VERSION,crate::illumination::TRAINING=>crate::illumination::VERSION,_=>VERSION },
             event_ids: [0, 0],
@@ -809,6 +815,7 @@ impl World {
         let settle_only = self.version != LEGACY_VERSION && self.action_closed();
         self.tick += 1;
         self.unload_supplies();
+        self.apply_savo_fire_hold();
         if settle_only {
             self.advance_shells();
             if self.realtime()
@@ -953,6 +960,22 @@ impl World {
                 format!("{name} · 已卸下一串补给桶（本点 {count}/3）"),
                 Some("CAS-TASS-RESUPPLY-01"), Some(at));
         }
+    }
+
+    /// 5th edition Savo special rule. The first Allied detection of the
+    /// Japanese force fixes a D6/3-window fire hold; the D6 is rolled once
+    /// and carried in the replay stream.
+    pub(crate) fn apply_savo_fire_hold(&mut self) {
+        if self.variant != "savo" || self.fire_hold_rolled || self.contacts[0].is_empty() {
+            return;
+        }
+        self.fire_hold_rolled = true;
+        let die = self.d(6);
+        let windows = (die + 2) / 3;
+        self.fire_hold[0] = self.tick + windows * CYCLE;
+        self.add(1, "fire_hold",
+            format!("日军已被发现：盟军 {windows} 个战术窗口内不能开火（D6={die}）"),
+            Some("CAS-RS-SAVO-01"), None);
     }
 
     fn check_outcome(&mut self) {

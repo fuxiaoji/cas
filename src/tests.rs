@@ -902,3 +902,21 @@ fn night_ai_powers_its_own_surface_radar() {
     w.drive_ai();
     assert_eq!(powered_flags(&w, 1), vec![true, true]);
 }
+
+#[test]
+fn savo_detection_rolls_one_fire_hold_of_d6_over_three_windows() {
+    let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+    w.variant = "savo".into();
+    w.contacts[0].push(Contact {
+        id: "C01".into(), x: 1000., y: 1000., heading: 0., speed: 12.,
+        kind: Some("ca".into()), name: None, ship: 6, first_cycle: 0,
+        acquisition_base_yd: 0, acquisition_range_yd: 0,
+    });
+    w.apply_savo_fire_hold();
+    assert!(w.fire_hold_rolled);
+    let hold = w.fire_hold[0];
+    assert!(matches!(hold, 180 | 360 | 540), "{hold}");
+    assert!(w.external(json!({"op":"fire","ship":1,"weapon":"gun","target":"C01"})).is_err());
+    w.tick = hold;
+    assert!(w.fire_hold[0] <= w.tick);
+}

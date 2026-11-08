@@ -354,6 +354,9 @@ impl World {
         target: &str,
         manual: bool,
     ) -> E<()> {
+        if self.fire_hold[owner] > self.tick {
+            return Err("日军刚被发现，本席在 D6/3 战术窗口内不能开火".into());
+        }
         let v10 = self.v10_family();
         let existing_target = self.ship(ship).and_then(|s| s.battery.order.as_ref().map(|o| o.target.clone()));
         if let Some(existing) = existing_target {

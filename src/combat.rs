@@ -664,6 +664,9 @@ impl World {
         let s = self.ship_for(owner, id)?;
         let target = r["target"].as_str().ok_or("请把火力拖向一个接触")?;
         let weapon = r["weapon"].as_str().ok_or("武器不可用")?;
+        if self.fire_hold[owner] > self.tick {
+            return Err("日军刚被发现，本席在 D6/3 战术窗口内不能开火".into());
+        }
         if weapon == "gun" && self.realtime() {
             return self.order_realtime_gun(owner, id, target, manual);
         }
