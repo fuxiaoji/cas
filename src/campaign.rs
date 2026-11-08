@@ -5,6 +5,7 @@ use serde_json::{json, Value};
 use std::{collections::BTreeMap, sync::OnceLock};
 
 mod legacy;
+pub(crate) mod fleet;
 pub(crate) mod live;
 pub(crate) mod channel;
 pub(crate) mod kula;
@@ -38,7 +39,7 @@ fn source_for(id: &str) -> Option<&'static str> {
 /// the two 1928 fiction duels and the Ironbottom Echo finale) have none — the
 /// user removed them from the campaign; their records stay in the crosswalk
 /// and their data files stay in the repository for future restoration.
-const REMOVED_SCENARIOS: [&str; 4] = ["IBS-S-03", "IBS-S-07", "IBS-S-12", "IBS-S-FM-01"];
+const REMOVED_SCENARIOS: [&str; 5] = ["IBS-S-03", "IBS-S-07", "IBS-S-12", "IBS-S-EM-01", "IBS-S-FM-01"];
 
 fn catalogue_row(id: &str) -> Result<&'static Value, String> {
     static CATALOGUE: OnceLock<Value> = OnceLock::new();
@@ -353,7 +354,7 @@ mod tests {
         for n in 1..=16 {
             // The four stages without CAS counterparts are removed from the
             // campaign list (record stays in the crosswalk).
-            if matches!(n, 1 | 7 | 12 | 16) {
+            if matches!(n, 1 | 7 | 12 | 15 | 16) {
                 assert!(detail(&format!("CAMP-ALLIES-{n:02}")).is_err());
                 continue;
             }
@@ -386,11 +387,11 @@ mod tests {
             }
         }
         // Stage 01 (Channel Action), 07 (Solomons 1928), 12 (Bougainville
-        // 1928) and 16 (Midnight Fleet) were removed — no CAS counterpart.
-        // Stage 15 keeps its Philippine Sea surface fallback (24 ships).
+        // 1928), 15 (Philippine Sea air battle) and 16 (Midnight Fleet) were
+        // removed — no surface CAS counterpart.
         assert_eq!(sources, 11);
-        assert_eq!(fallback_count, 1);
-        assert_eq!(fallback_ships, 24);
+        assert_eq!(fallback_count, 0);
+        assert_eq!(fallback_ships, 0);
         assert!(legacy_deployment("CAMP-ALLIES-02").is_err());
         assert!(detail("../cape-st-george").is_err());
     }

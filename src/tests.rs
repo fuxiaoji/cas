@@ -631,13 +631,13 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
     use std::collections::BTreeSet;
     let rows = ask(&mut Engine::default(), json!({"op":"campaign"}));
     let scenarios = rows["scenarios"].as_array().unwrap();
-    // The four stages without CAS counterparts are removed from the list.
-    assert_eq!(scenarios.len(), 12);
+    // The five stages without a surface CAS counterpart are removed.
+    assert_eq!(scenarios.len(), 11);
     let mut stages = BTreeSet::new();
     for item in scenarios {
         let cape = item["cas"]["scenario_id"] == "cas-rs-cape-st-george";
-        // Channel Action was removed from the list with the other three
-        // CAS-less scenarios. The playable check stands without it.
+        // Channel Action was removed with the other four CAS-less scenarios.
+        // The playable check stands without it.
         let kula = item["ibs_id"] == "IBS-S-02";
         let empress = item["cas"]["scenario_id"] == "cas-rs-empress-augusta-bay";
         let esperance = item["cas"]["scenario_id"] == "cas-rs-cape-esperance";
@@ -649,8 +649,8 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
             assert!(stages.insert(id.as_str().unwrap()));
         }
     }
-    // 12 kept scenarios x both seats = 24 stage slots.
-    assert_eq!(stages.len(), 24);
+    // 11 kept scenarios x both seats = 22 stage slots.
+    assert_eq!(stages.len(), 22);
 }
 #[test]
 fn close_range_torpedo_uses_actual_mount_and_advancing_spread() {
