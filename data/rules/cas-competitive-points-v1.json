@@ -59,37 +59,37 @@
   "IBS-U-IJN-AKIZUKI": {
    "points": 500,
    "profile_id": "cas-prologue-runtime-v1#akizuki",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "首发时期包／日本舰表 A-24、C-1、F-1"
   },
   "IBS-U-IJN-FUBUKI": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "首发时期包／改装吹雪级 A-27、C-1、F-1"
   },
   "IBS-U-IJN-HATSUYUKI": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "首发时期包／改装吹雪级 A-27、C-1、F-1"
   },
   "IBS-U-IJN-SHIRATSUYU": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "首发时期包／日本舰表 A-25–A-26、C-1、F-1"
   },
   "IBS-U-IJN-YUGUMO": {
    "points": 475,
    "profile_id": "cas-prologue-runtime-v1#yugumo",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "首发时期包／日本舰表 A-24、C-1、F-1"
   },
   "IBS-U-USN-UNNAMED-T01-R51": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "马汉级同型卡／帕金斯 Form 10（1942 年配置）"
   },
   "IBS-U-USN-UNNAMED-T01-R52": {
    "points": 475,
    "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
-   "source": "同型时期舰卡／CAS 点数表"
+   "source": "格里德利级同型卡／莫里 Form 10（1942 年配置）"
   }
  },
  "version": "cas-points-surface-v1"

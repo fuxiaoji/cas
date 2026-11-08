@@ -292,3 +292,43 @@
   .campaign-archive .war-utility span { display: none; }
   .campaign-archive .war-entry { min-height: 52px; }
 }
+
+.campaign-archive .war-fleet-picker {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #d5b57366;
+  border-left: 3px solid #e4c483;
+  background: #102d3fcc;
+  color: #c9dcdb;
+  font-size: 11px;
+}
+.campaign-archive .war-fleet-picker > header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.campaign-archive .war-fleet-picker > header div { display: flex; align-items: baseline; gap: 8px; }
+.campaign-archive .war-fleet-picker > header span { color: #d7bf8d; font-size: 10px; letter-spacing: 2px; }
+.campaign-archive .war-fleet-picker > header strong { color: #f1e3c1; font: 600 16px 'Noto Serif CJK SC', 'SimSun', serif; }
+.campaign-archive .war-fleet-picker > header b { color: #f0d79e; font: 600 14px Georgia, serif; }
+.campaign-archive .war-fleet-picker > header b[data-over="true"] { color: #ffb69a; }
+.campaign-archive .war-fleet-picker p { margin: 0; line-height: 1.65; }
+.campaign-archive .war-fleet-picker ol {
+  display: grid;
+  gap: 4px;
+  max-height: min(42vh, 340px);
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: #5e7f83 #0b2434;
+}
+.campaign-archive .war-fleet-picker li { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) 38px; align-items: center; gap: 7px; }
+.campaign-archive .war-fleet-picker li > span { overflow: hidden; color: #a9c3c6; text-overflow: ellipsis; white-space: nowrap; }
+.campaign-archive .war-fleet-picker select { min-width: 0; min-height: 30px; font-size: 11px; }
+.campaign-archive .war-fleet-picker li > b { color: #e8cf9c; font: 600 12px Georgia, serif; text-align: right; }
+.campaign-archive .war-fleet-picker .war-fleet-error { color: #ffb69a; }
+.campaign-archive .war-fleet-actions { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.campaign-archive .war-fleet-actions button { min-height: 32px; padding: 4px 11px; font-size: 11px; }
+.campaign-archive .war-fleet-actions span { color: #9fbdc2; }
+@media (max-width: 640px) {
+  .campaign-archive .war-fleet-picker li { grid-template-columns: minmax(0, 1fr) 96px 32px; }
+}

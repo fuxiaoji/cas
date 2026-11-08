@@ -7,7 +7,7 @@ import type {OnlineMeta} from './online';
 import {shipPortrait} from './shipPortraits';
 import './growth-port.css';
 
-export type LobbySection='academy'|'campaign'|'challenge'|'fleet'|'economy'|'activities';
+export type LobbySection='academy'|'campaign'|'challenge'|'fleet'|'economy'|'activities'|'mail';
 interface Props {state:PortState;onNavigate:(section:LobbySection)=>void;onHome:()=>void;onReplayPrologue:()=>void;onWatch:(id:string)=>void;onOnline?:()=>void;online?:{meta?:OnlineMeta;error?:string};}
 function DockIcon({kind}:{kind:string}){return <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">{kind==='fleet'?<><path d="M5 25h30l-5 8H11zM13 25V14h14v11M18 14V7h4v7M8 20h5m14 0h5M5 36h30"/><path d="M17 19h6"/></>:kind==='academy'?<><path d="m3 15 17-8 17 8-17 8zM10 20v10q10 7 20 0V20M36 16v15"/></>:kind==='supply'?<><path d="m8 13 12-6 12 6v18l-12 6-12-6zM8 13l12 6 12-6M20 19v18M14 10l12 6v9"/></>:kind==='online'?<><circle cx="20" cy="20" r="14"/><path d="M6 20h28M20 6c-10 10-10 18 0 28 10-10 10-18 0-28M10 11q10 7 20 0M10 29q10-7 20 0"/></>:<><circle cx="20" cy="20" r="13"/><path d="m20 8 4 12-4 12-4-12zM5 20h7m16 0h7M20 3v3m0 28v3"/></>}</svg>}
 export function GrowthPort({state,onNavigate,onHome,onReplayPrologue,onWatch,onOnline,online}:Props){
@@ -35,6 +35,10 @@ export function GrowthPort({state,onNavigate,onHome,onReplayPrologue,onWatch,onO
     <span><i aria-hidden="true">◈</i><b>{meta.wallet?.credits.toLocaleString()??'—'}</b><small>补给币</small></span>
     <span><i aria-hidden="true">▱</i><b>{recruitTickets}</b><small>征募券</small></span>
     <span><i aria-hidden="true">✧</i><b>{meta.wallet?.medals??'—'}</b><small>舰队勋章</small></span>
+   </div>
+   <div className="growth-utility" aria-label="港口通信">
+    <button type="button" onClick={()=>onNavigate('activities')}>活动</button>
+    <button type="button" onClick={()=>onNavigate('mail')}>邮箱</button>
    </div>
   </header>
   <section className="growth-welcome">

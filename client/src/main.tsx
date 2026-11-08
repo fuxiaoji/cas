@@ -10,6 +10,7 @@ import { claimCampaignRewards, recordCampaignResult } from './campaign-progress'
 import type { CampaignLaunch } from './campaign-progress';
 import { campaignObservationLabels, campaignText } from './campaign-labels';
 import { GrowthPort } from './GrowthPort';
+import { Mailbox } from './Mailbox';
 import type { LobbySection } from './GrowthPort';
 import { Login } from './Login';
 import { useBattleVoice } from './audio/BattleVoice';
@@ -121,7 +122,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const cloudLaunch = useRef<{ stageId: string; difficulty: string; id: string } | undefined>(undefined);
   const cloudToken = profile.online?.token;
   const [portOpen, setPortOpen] = useState(true);
-  const [section, setSection] = useState<HarborTab | 'activities' | 'fleet-editor' | 'duel'>();
+  const [section, setSection] = useState<HarborTab | 'activities' | 'mail' | 'fleet-editor' | 'duel'>();
   const [duelTab, setDuelTab] = useState<'casual' | 'ranked'>('casual');
   const [mainMenu, setMainMenu] = useState(false);
   const [portError, setPortError] = useState<string>();
@@ -649,7 +650,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
   }
-  async function launchCampaign({stageId, difficulty}: CampaignLaunch) {
+  async function launchCampaign({stageId, difficulty, fleet}: CampaignLaunch) {
     if (busy) return;
     setBusy(true); setPortError(undefined); setRunning(false);
     try {
@@ -668,7 +669,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         resetPanel(); syncBattle(next, true); setPortOpen(false); setTraining(false); setPresetActive(false);
         return;
       }
-      const next = await ask<Observation>({ op: 'new_campaign', id: stageId, difficulty, seed: defaultSetup.seed, profile: port.preset.profile });
+      const next = await ask<Observation>({ op: 'new_campaign', id: stageId, difficulty, seed: defaultSetup.seed, profile: port.preset.profile,
+        ...(fleet?.length ? { fleet } : {}) });
       challengeId.current = undefined;
       campaignId.current = crypto.randomUUID();
       await persist();
@@ -724,7 +726,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     } finally { cloudSending.current = false; setBusy(false); }
   }
   function navigateLobby(value: LobbySection) {
-    const sections = { academy: 'training', campaign: 'archive', challenge: 'challenge', fleet: 'fleet', economy: 'recruit', activities: 'activities' } as const;
+    const sections = { academy: 'training', campaign: 'archive', challenge: 'challenge', fleet: 'fleet', economy: 'recruit', activities: 'activities', mail: 'mail' } as const;
     setPortError(undefined); setSection(sections[value]);
   }
   function openPort() {
@@ -774,6 +776,9 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       onExit={async () => { await closeStory(); setStoryMenu(true); }} />;
     if (section === 'activities') return <ActivityCenter state={port} change={setPort} onClose={() => setSection(undefined)}
       online={cloudToken ? {token:cloudToken,onMeta:meta => {setCloudMeta(meta);setCloudError(undefined);}} : undefined} />;
+    if (section === 'mail') return <Mailbox token={cloudToken} state={port} change={setPort}
+      onMeta={meta => {setCloudMeta(meta);setCloudError(undefined);}} onBack={() => setSection(undefined)}
+      onRecruit={() => setSection('recruit')} />;
     if (section === 'archive') return <CampaignArchive busy={busy || !o} progress={cloudToken ? undefined : port.campaignProgress}
       onCampaign={(options) => void launchCampaign(options)} online={!!cloudToken} onReturn={() => setSection(undefined)}
       onStory={() => setStoryMenu(true)} onReview={() => setSection('training')}

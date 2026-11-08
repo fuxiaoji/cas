@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+import fs from 'node:fs/promises';
+import { signInLocal } from './browser-login.mjs';
+const require = createRequire(import.meta.url);
+const { chromium } = require(process.env.CAS_PLAYWRIGHT_MODULE || 'playwright');
+const root = process.env.CAS_ARTIFACTS || 'artifacts/client/activities/';
+await fs.mkdir(root, { recursive: true });
+const errors = [];
+const browser = await chromium.launch({ executablePath: process.env.CAS_BROWSER_PATH, headless: true });
+const page = await (await browser.newContext({ viewport: { width: 1360, height: 768 } })).newPage();
+page.on('pageerror', error => errors.push(error.stack));
+try {
+  await page.goto('http://127.0.0.1:5175/');
+  await signInLocal(page, 'cas-activities-' + Date.now().toString(36), true);
+  await page.getByRole('button', { name: '活动', exact: true }).click();
+  await page.locator('.activity-center').waitFor();
+  await page.getByRole('button', { name: /领取第 1 天奖励/ }).click();
+  await page.locator('.activity-day.is-taken').first().waitFor();
+  console.log('check-in claimed');
+  await page.screenshot({ path: root + 'check-in.png' });
+  await page.getByRole('button', { name: '返回', exact: true }).click();
+  await page.getByRole('button', { name: '邮箱', exact: true }).click();
+  await page.locator('.mailbox').waitFor();
+  const before = await page.locator('.mailbox-attachment').first().innerText();
+  assert.match(before, /20 抽/);
+  await page.getByRole('button', { name: '领取附件', exact: true }).click();
+  await page.getByRole('button', { name: '已领取', exact: true }).waitFor();
+  console.log('mail claimed', before);
+  await page.screenshot({ path: root + 'mailbox.png' });
+  await page.getByRole('button', { name: '‹ 返回母港', exact: true }).click();
+  const wallet = await page.locator('.growth-wallet').innerText();
+  console.log('wallet after', wallet.replace(/\n/g, ' '));
+  assert.match(wallet.replace(/\n/g, ' '), /22 征募券/);
+  assert.deepEqual(errors, []);
+  await fs.writeFile(root + 'browser-receipt.json', JSON.stringify({ ok: true, before }, null, 2));
+} finally { await browser.close(); }

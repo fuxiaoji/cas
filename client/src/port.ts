@@ -29,6 +29,14 @@ export type Pool = 'standard' | 'up';
 type Wallet = Record<Pool, number>;
 export interface FleetPreset { side: Side; leaderSlot: number; profile: Profile }
 interface Draw { id: number; pool: Pool; hull: Hull; duplicate: boolean; guaranteed: boolean; batchSize?: 10 }
+export interface LocalMail {
+  id: string; title: string; body: string; sender: string; created: number; claimed: boolean;
+  standard: number; up: number;
+}
+export function welcomeMail(): LocalMail {
+  return { id: 'welcome-20', title: '内测启航补给', body: '20 次征募补给已放入邮箱，请在邮箱领取。',
+    sender: '舰桥补给处', created: 0, claimed: false, standard: 20, up: 0 };
+}
 export interface PortState {
   version: 1; lessons: Lesson[]; starter: boolean; challengeClear: boolean; challengeClaim: boolean;
   wallet: Wallet; marks: number; pity: Wallet; owned: Partial<Record<Hull, number>>;
@@ -37,14 +45,14 @@ export interface PortState {
   prologueReward?: boolean;
   campaignProgress?: CampaignProgress;
   challengeReceipts: Record<string, { time: number; first: boolean; claimed: boolean }>;
-  weeklySupply?: string; weeklyTicket?: string;
+  weeklySupply?: string; weeklyTicket?: string; mail?: LocalMail[];
 }
 export type PortLaunch = { side: Side; profile: Profile; leaderSlot: number; variant?: 'challenge' | 'night'; training?: boolean };
 function fresh(): PortState {
   return { version: 1, lessons: [], starter: false, challengeClear: false, challengeClaim: false,
     wallet: { standard: 0, up: 0 }, marks: 0, pity: { standard: 0, up: 0 }, owned: {},
     profiles: ['coord'], preset: { side: 'allies', leaderSlot: 0, profile: 'coord' }, upSide: 'axis', sequence: 0, history: [],
-    credits: 0, courses: [], attendance: [], challengeReceipts: {} };
+    credits: 0, courses: [], attendance: [], challengeReceipts: {}, mail: [welcomeMail()] };
 }
 function nonnegative(value: unknown) { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0; }
 export function loadPort(key = PORT_KEY): PortState {
@@ -57,12 +65,22 @@ export function loadPort(key = PORT_KEY): PortState {
     const owned = Object.fromEntries((Object.keys(hulls) as Hull[]).filter(id => nonnegative(s.owned[id])).map(id => [id, Math.min(hulls[id].max, s.owned[id] ?? 0)]));
     const challengeReceipts = Object.fromEntries(Object.entries(s.challengeReceipts ?? {}).filter(([id, row]) =>
       /^[0-9a-f-]{36}$/i.test(id) && row && nonnegative(row.time) && typeof row.first === 'boolean' && typeof row.claimed === 'boolean'));
-    return { ...s, owned, challengeReceipts, campaignProgress: normalizeCampaignProgress(s.campaignProgress), credits: nonnegative(s.credits) ? s.credits : 0,
+    const mail = Array.isArray(s.mail) ? s.mail.filter(letter => letter && typeof letter.id === 'string' &&
+      typeof letter.title === 'string' && typeof letter.body === 'string' && typeof letter.sender === 'string' &&
+      typeof letter.claimed === 'boolean' && nonnegative(letter.standard) && nonnegative(letter.up)) : [welcomeMail()];
+    return { ...s, owned, challengeReceipts, campaignProgress: normalizeCampaignProgress(s.campaignProgress), credits: nonnegative(s.credits) ? s.credits : 0, mail,
       courses: Array.isArray(s.courses) ? [...new Set(s.courses.filter(v => typeof v === 'string'))] : [],
       attendance: Array.isArray(s.attendance) ? [...new Set(s.attendance.filter(nonnegative))].sort((a,b)=>a-b).slice(0,7) : [],
       watch: s.watch && Object.hasOwn(hulls, s.watch) ? s.watch : undefined,
       upSide: s.upSide === 'allies' || s.upSide === 'axis' ? s.upSide : s.preset.side === 'allies' ? 'axis' : 'allies' };
   } catch { return fresh(); }
+}
+export function claimLocalMail(s: PortState, id: string): PortState {
+  const letter = s.mail?.find(item => item.id === id);
+  if (!letter || letter.claimed) return s;
+  return { ...s, credits: s.credits,
+    wallet: { standard: s.wallet.standard + letter.standard, up: s.wallet.up + letter.up },
+    mail: s.mail!.map(item => item.id === id ? { ...item, claimed: true } : item) };
 }
 export function writePort(s: PortState, key = PORT_KEY) { localStorage.setItem(key, JSON.stringify(s)); }
 export function recordLesson(s: PortState, id: Lesson): PortState {

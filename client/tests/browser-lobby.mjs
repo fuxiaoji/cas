@@ -23,8 +23,8 @@ try {
   await page.locator('.war-archive-entries .war-entry').first().waitFor();
   const entries = await page.locator('.war-archive-entries .war-entry').count();
   const stars = await page.locator('.war-star-total').innerText();
-  assert.equal(entries, 12);
-  assert.match(stars, /0 \/ 36/);
+  assert.equal(entries, 11);
+  assert.match(stars, /0 \/ 33/);
   await page.screenshot({ path: root + 'campaign-lobby.png' });
   await page.getByRole('button', { name: '作战简报', exact: true }).click();
   await page.locator('.war-brief').waitFor();

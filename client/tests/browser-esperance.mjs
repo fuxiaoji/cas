@@ -34,6 +34,8 @@ try {
   await row.locator('button.war-entry').click();
   await page.getByRole('button', { name: '作战简报', exact: true }).click();
   await page.locator('.war-brief').waitFor();
+  await page.locator('.war-fleet-picker li').first().waitFor();
+  console.log('basic fleet budget', await page.locator('.war-fleet-picker > header b').innerText());
   await page.getByRole('button', { name: '出航作战', exact: true }).click();
   await page.locator('.battle-map').waitFor();
   const obs = await q('observe');

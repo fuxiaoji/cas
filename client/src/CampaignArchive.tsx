@@ -16,6 +16,8 @@ type Entry = {
   playable: boolean; note: string; runtime?: { historicalReady: boolean; label: string; localOnly?: boolean };
 };
 interface Archive { schema_version: number; content_version: string; scenarios: Entry[] }
+type FleetOption = { id: string; class: string; name: string; kind: string; points: number };
+type FleetPick = { budget: number; historical: { class: string; name: string; kind: string; points: number; slot: number }[]; options: FleetOption[] };
 type Condition = { type: string; count?: number; kind?: string; pct?: number; damage_pct?: number; damage_pct_gte?: number;
   fraction?: number; distance_nmi?: number; duration_seconds?: number; tonnage_gt?: number };
 type Goal = string | { all_of: Condition[] } | { type: string; ratio?: number } | null;
@@ -255,6 +257,9 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
   const [difficulty, setDifficulty] = useState<CampaignDifficulty>('story');
   const [selectedId, setSelectedId] = useState<string>();
   const [brief, setBrief] = useState<{ entry: Entry; stageId: string }>();
+  const [fleet, setFleet] = useState<FleetPick>();
+  const [picks, setPicks] = useState<string[]>([]);
+  const [fleetError, setFleetError] = useState('');
   const [mapSelection, setMapSelection] = useState<CampaignMapSelection>({ region: 'overview' });
   useEffect(() => {
     let active = true;
@@ -263,6 +268,22 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
     }, () => { if (active) setError(true); });
     return () => { active = false; };
   }, [attempt]);
+  useEffect(() => {
+    if (!brief || difficulty !== 'story' || online) { setFleet(undefined); setPicks([]); setFleetError(''); return; }
+    let active = true;
+    setFleet(undefined); setFleetError('');
+    void ask<FleetPick>({ op: 'campaign_fleet', id: brief.stageId, difficulty }).then(value => {
+      if (!active) return;
+      setFleet(value); setPicks(value.historical.map(slot => slot.class));
+    }, (failure) => { if (active) setFleetError(failure instanceof Error ? failure.message : String(failure)); });
+    return () => { active = false; };
+  }, [brief?.stageId, difficulty, online]);
+  const pointOf = (id: string) => fleet?.options.find(option => option.id === id)?.points
+    ?? fleet?.options.find(option => option.class === id)?.points
+    ?? fleet?.historical.find(slot => slot.class === id)?.points ?? 0;
+  const fleetTotal = picks.reduce((sum, id) => sum + pointOf(id), 0);
+  const fleetReady = difficulty !== 'story' || online || (!!fleet &&
+    picks.length === fleet.historical.length && fleetTotal <= fleet.budget);
   const stagePrefix = side === 'allies' ? 'CAMP-ALLIES-' : 'CAMP-AXIS-';
   const canLaunch = (entry: Entry) => entry.playable && !(online && entry.runtime?.localOnly);
   const matchingEntries = archive?.scenarios ?? [];
@@ -381,10 +402,43 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
           {brief.entry.playable && <div className="archive-sortie-brief">
             <div className="archive-sortie-row"><div><strong>本方作战目标</strong>
               <span>{campaignDifficulties[difficulty]}难度 · 按历史编制借舰，不消耗个人舰库</span></div>
-              <button type="button" className="primary" disabled={busy || !onCampaign || !canLaunch(brief.entry)}
-                onClick={() => onCampaign?.({ stageId: brief.stageId, difficulty })}>出航作战</button></div>
+              <button type="button" className="primary"
+                disabled={busy || !onCampaign || !canLaunch(brief.entry) || !fleetReady}
+                onClick={() => onCampaign?.({ stageId: brief.stageId, difficulty,
+                  ...(difficulty === 'story' && !online && picks.length ? { fleet: picks } : {}) })}>出航作战</button></div>
             {!online && <CampaignRewardActions stageId={brief.stageId} progress={progress} busy={busy} onClaim={() => onClaim(brief.stageId)} />}
           </div>}
+          {brief.entry.playable && difficulty === 'story' && !online && <section className="war-fleet-picker" aria-label="基础难度分数编队">
+            <header><div><span>基础难度</span><strong>分数编队</strong></div>
+              <b data-over={!!fleet && fleetTotal > fleet.budget}>{fleet ? `${fleetTotal} / ${fleet.budget} 分` : '载入分数…'}</b></header>
+            {fleetError && <p className="war-fleet-error" role="alert">{fleetError}</p>}
+            {!fleet && !fleetError && <p>正在读取历史兵力与已登记舰卡…</p>}
+            {fleet && <>
+              <p>历史兵力共 {fleet.historical.length} 个舰位。每个舰位可换成同阵营已登记舰卡（历史舰为临时体验）；高难度使用原历史兵力。</p>
+              <ol>
+                {fleet.historical.map((slot, index) => {
+                  const value = picks[index] ?? slot.class;
+                  const choices = [...fleet.options];
+                  if (!choices.some(option => option.id === slot.class || option.class === slot.class)) choices.unshift({ ...slot, id: slot.class });
+                  return <li key={slot.slot}>
+                    <span>第 {index + 1} 舰位 · {slot.name}</span>
+                    <select value={value} aria-label={`第 ${index + 1} 舰位`} onChange={event => setPicks(current => {
+                      const next = [...current]; next[index] = event.target.value; return next;
+                    })}>
+                      {choices.map(option => <option key={option.id} value={option.id}>
+                        {option.name} · {option.kind} · {option.points} 分
+                      </option>)}
+                    </select>
+                    <b>{pointOf(value)}</b>
+                  </li>;
+                })}
+              </ol>
+              <div className="war-fleet-actions">
+                <button type="button" onClick={() => setPicks(fleet.historical.map(slot => slot.class))}>按历史编制</button>
+                <span>{fleetTotal > fleet.budget ? `超出 ${fleetTotal - fleet.budget} 分` : '点价在历史兵力预算内'}</span>
+              </div>
+            </>}
+          </section>}
           <StageSource key={brief.stageId} id={brief.stageId} side={side} playable={brief.entry.playable} historicalReady={brief.entry.runtime?.historicalReady} />
           <p className="war-brief-note">{campaignText(brief.entry.note)}</p>
           {!brief.entry.playable && <p className="war-brief-note">本关保持资料层，未通过出航核验前不能作战。</p>}
