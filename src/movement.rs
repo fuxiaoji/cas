@@ -900,6 +900,24 @@ mod tests {
         }
     }
 
+
+    #[test]
+    fn a_moving_fleet_can_hand_leadership_to_the_second_ship_without_stopping() {
+        let mut world = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+        world.enable_realtime().unwrap();
+        world.external(json!({"op":"route","fleet":1,"mode":"follow","speed":18,
+            "points":[{"x":7000,"y":6550}]})).unwrap();
+        for _ in 0..20 { world.advance(); }
+        let before = world.ship(2).unwrap().track.clone();
+        assert!(before.is_some());
+        assert!(world.ship(1).unwrap().speed > 0.5);
+        world.external(json!({"op":"lead","fleet":1,"ship":2})).unwrap();
+        let fleet = world.fleets.iter().find(|fleet| fleet.id == 1).unwrap();
+        assert_eq!(fleet.leader, 2);
+        assert!(world.ship(2).unwrap().track.is_some());
+        assert!(world.ship(1).unwrap().track.is_some());
+    }
+
     #[test]
     fn a_short_reversal_is_rejected_instead_of_cutting_the_radius() {
         let mut world = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
