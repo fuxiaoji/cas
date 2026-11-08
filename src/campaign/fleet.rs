@@ -25,8 +25,15 @@ pub(crate) fn historical(w: &World) -> (u32, Vec<Value>) {
 
 pub(crate) fn options(w: &World) -> Value {
     let (budget, historical) = historical(w);
-    json!({"budget":budget,"historical":historical,
-           "options":ranked_fleets::options(w.player).unwrap_or_else(|_| json!([]))})
+    // Only cards present in this scenario's runtime data are selectable; the
+    // historical classes themselves are always offered by the picker.
+    let available = |class: &str| w.data.ships.iter().any(|ship| ship.id == class);
+    let options = ranked_fleets::options(w.player).unwrap_or_else(|_| json!([]));
+    let filtered = options.as_array().map(|rows| {
+        rows.iter().filter(|row| row["class"].as_str().is_some_and(available)
+            || row["id"].as_str().is_some_and(available)).cloned().collect::<Vec<_>>()
+    }).unwrap_or_default();
+    json!({"budget":budget,"historical":historical,"options":filtered})
 }
 
 /// Replace the player's hulls in place. Picks are catalog identities or

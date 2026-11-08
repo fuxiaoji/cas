@@ -15,7 +15,7 @@ struct Profile {
 const PROFILES: &[Profile] = &[
     Profile {
         id: "IBS-U-USN-FLETCHER",
-        source_class: "IBS-U-USN-FLETCHER",
+        source_class: "fletcher",
         name: "弗莱彻",
         source: "序章时期包／弗莱彻舰表与具名 Form 10",
     },
