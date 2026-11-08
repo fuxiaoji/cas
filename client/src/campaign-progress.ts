@@ -78,6 +78,8 @@ const rewardsByStage: Record<string, readonly CampaignReward[]> = {
   'CAMP-ALLIES-11': capeRewards,
   'CAMP-AXIS-11': capeRewards,
   'CAMP-ALLIES-02': capeRewards,
+  'CAMP-ALLIES-05': capeRewards,
+  'CAMP-AXIS-05': capeRewards,
   'CAMP-AXIS-02': capeRewards,
 };
 type CampaignReward = { stars: Exclude<CampaignStars, 0>; title: string; credits: number; tickets: number; marks: number };
