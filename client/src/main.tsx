@@ -23,7 +23,8 @@ import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROL
 import { StoryMode } from './story/StoryMode';
 import type { StarterDDId } from './prologue';
 import { PROLOGUE_HANDOVER_TICK } from './prologue/PrologueFilm';
-import { completeTrainingStep, guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainingCourseDone } from './tutorial';
+import { completeTrainingStep, GuidedTutorial, guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainingCourseDone } from './tutorial';
+import type { GuidedStep } from './tutorial';
 import type { CourseId, TrainingEvidence, TrainingSignal } from './tutorial';
 import { profileKey } from './account';
 import type { LocalProfile } from './account';
@@ -617,10 +618,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
   }
-  async function leaveCourse(complete: boolean) {
+  async function leaveCourse(complete: boolean, force = false) {
     const id = courseLive.current;
     const done = id && (guided ? guidedTrainingDone(id, evidence, { radar: nightRadar }) : trainingCourseDone(id, evidence));
-    if (!id || busy || (complete && !done)) return;
+    if (!id || busy || (complete && !done && !force)) return;
     setRunning(false); setBusy(true);
     try {
       if (storyLive.current) {
@@ -636,7 +637,12 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       resetPanel(); update(exercise); setCourse(undefined); setPortOpen(true);
       if (id === 'day' || id === 'night') {
         setSection('training');
-        if (complete) setPort(state => state.courses.includes(id) ? state : { ...state, courses: [...state.courses, id] });
+        if (complete) setPort(state => {
+          const next = state.courses.includes(id) ? state : { ...state, courses: [...state.courses, id] };
+          return force && id === 'day'
+            ? { ...next, lessons: [...new Set([...next.lessons, ...lessons.map(lesson => lesson.id)])] }
+            : next;
+        });
       } else {
         setSection(undefined); setStoryOpen(true);
         if (complete) setStory(progress => completePrologueBattle(progress, id));
@@ -830,6 +836,22 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const winner = result?.winner === 'allies' || result?.winner === 'axis' ? sideNames[result.winner] + '胜出' : '双方打平';
   const endingKey = cloud.current ? onlineBattlePath(cloud.current) : (campaignId.current ?? 'session-' + session);
   const editing = !!editMode && !replay && !finished;
+  const dayLead = ships.find(ship => ship.id === fleet?.leader) ?? selected;
+  const dayAhead = dayLead ? { x: dayLead.x + Math.sin(dayLead.heading * Math.PI / 180) * 2500,
+    y: dayLead.y + Math.cos(dayLead.heading * Math.PI / 180) * 2500 } : { x: 0, y: 0 };
+  const dayTurn = dayLead ? { x: dayAhead.x + Math.sin((dayLead.heading + 25) * Math.PI / 180) * 2500,
+    y: dayAhead.y + Math.cos((dayLead.heading + 25) * Math.PI / 180) * 2500 } : dayAhead;
+  const daySteps: GuidedStep[] = fleet ? [
+    { selector: '.staff-tabs button:first-child', title: '打开编队', text: '教官已标出「编队」。点这里查看领舰和后续舰。', action: () => setTab('fleet') },
+    { selector: '.roster-ship:not([aria-pressed="true"])', title: '选中第二艘舰', text: '点高亮的第二艘舰，准备让它接任领舰。', action: () => { if (ships[1]) selectShip(ships[1]); } },
+    { selector: '[data-guide-control="set-leader"]', title: '设为领舰', text: '点「设为领舰」，让第二艘舰接管编队。', action: () => { if (ships[1]) void command({ op: 'lead', fleet: fleet.id, ship: ships[1].id }); } },
+    { selector: '.maneuver-choice button:first-child', title: '选择领舰移动', text: '点「领舰移动」，后舰会沿领舰航迹通过转向点。', action: () => chooseMode('follow') },
+    { selector: '.battle-map', title: '放下第一个航点', text: '点高亮的海图，教官替你放下第一个航点。', action: () => addPoint(dayAhead) },
+    { selector: '.battle-map', title: '放下第二个航点', text: '再点一次海图，放下转向后的第二个航点。', action: () => addPoint(dayTurn) },
+    { selector: '[data-guide-control="route-commit"]', title: '下达航线', text: '点「下达航线」，编队开始按这条航迹机动。', action: () => { void command({ op: 'route', fleet: fleet.id, mode: 'follow', points: [dayAhead, dayTurn], speed: 15 }); } },
+    { selector: '.clock-play', title: '开始演习', text: '点时钟的开始键，让编队实际动起来。', action: () => setRunning(true) },
+    { selector: '.battle-map', title: '教学完成', text: '点一下海图结束本课，进入下一项。', action: () => undefined },
+  ] : [];
   const courseDone = course && (guided ? guidedTrainingDone(course, evidence, { radar: nightRadar }) : trainingCourseDone(course, evidence));
   const nextLesson = training && lessons.find(({ id }) => !port.lessons.includes(id));
   return <main className={'command-shell' + (o.environment?.light === 'night' ? ' night-exercise' : '')}>
@@ -935,9 +957,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         )}</nav>
         <div className="staff-scroll">
           {o.campaign && <CampaignMissionBrief campaign={o.campaign} />}
-          {course && <TrainingCoach course={course} evidence={evidence} guided={guided} radar={nightRadar}
-            onAdvance={() => setEvidence(value => completeTrainingStep(course, value, { radar: nightRadar }))}
-            onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
+          {course === 'day' && daySteps.length > 0 ? <GuidedTutorial steps={daySteps} onFinish={() => void leaveCourse(true, true)} /> : course &&
+            <TrainingCoach course={course} evidence={evidence} guided={guided} radar={nightRadar}
+              onAdvance={() => setEvidence(value => completeTrainingStep(course, value, { radar: nightRadar }))}
+              onExit={() => void leaveCourse(false)} onFinish={() => void leaveCourse(true)} />}
           {nightRadar && course === 'night' && <button type="button" className="training-window" data-guide-control="clock-window"
             disabled={busy || finished} onClick={() => void nextNightWindow()}>推进到下一探测窗口</button>}
           {course && finished && !courseDone && <p className="inline-warning">演习已结束。退出后可重新开始本课。</p>}

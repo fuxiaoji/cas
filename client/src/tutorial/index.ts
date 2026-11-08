@@ -1,3 +1,5 @@
+export { GuidedTutorial } from './GuidedTutorial';
+export type { GuidedStep } from './GuidedTutorial';
 export { TrainingCoach } from './TrainingCoach';
 export { trainingCourses, trainingCourseDone, trainingStepDone } from './curriculum';
 export { completeTrainingStep, guidedTrainingDone, guidedTrainingProgress, recordGuidedTrainingSignals } from './guide';

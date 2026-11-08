@@ -1,0 +1,34 @@
+.guided-tutorial { position: fixed; inset: 0; z-index: 80; pointer-events: none; }
+.guided-mask { position: absolute; inset: 0; background: #020d16a8; }
+.guided-proxy { pointer-events: auto; position: fixed; z-index: 2; border: 0; padding: 0; background: transparent; cursor: pointer; }
+.guided-spot {
+  position: fixed;
+  border: 2px solid #f1d28d;
+  border-radius: 5px;
+  box-shadow: 0 0 0 9999px #020d16b8, 0 0 22px #f1d28dcc;
+  transition: left .15s ease, top .15s ease, width .15s ease, height .15s ease;
+  pointer-events: none;
+}
+.guided-panel {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 28px));
+  padding: 12px 18px 14px;
+  border: 1px solid #b89b67;
+  border-top: 2px solid #e8c885;
+  background: linear-gradient(150deg, #1a3b4e, #0b2537);
+  color: #e6eeea;
+  box-shadow: 0 14px 40px #000a;
+  pointer-events: none;
+}
+.guided-panel > span { color: #d7bf8d; font-size: 10px; letter-spacing: 3px; }
+.guided-panel h2 { margin: 4px 0 5px; color: #f3e7ca; font: 600 21px 'Noto Serif CJK SC', 'SimSun', serif; }
+.guided-panel p { margin: 0 0 7px; color: #b6cdd0; font-size: 12px; line-height: 1.7; }
+.guided-panel small { color: #91b2b8; font-size: 11px; }
+.guided-panel .guided-wrong { color: #ffb69a; }
+@media (max-width: 640px), (orientation: portrait) {
+  .guided-panel { bottom: 12px; padding: 10px 14px; }
+  .guided-panel h2 { font-size: 18px; }
+}
