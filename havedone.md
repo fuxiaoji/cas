@@ -1,5 +1,13 @@
 # 验证记录
 
+## 2026-11-08｜卫星实拍海图底层与海岸线重制
+
+- 用户反馈岛屿轮廓粗糙（旧投影每岛仅 36 点且地理错位约 25 km）。重写 `scripts/refine-basemap-coastlines.py`：numpy 分类水体/植被（蓝≥绿为水），形态学闭运算弥合岛内阴影，scipy 标记连通块并按角度排序轮廓，Douglas-Peucker 220 m 简化——Guadalcanal 503 点、Florida 314 点、Savo 12 点。
+- 海图锚点改用数字化 Savo 地标（159.82320, −9.13042）作为各场 origin 的实测依据：esperance (159.5894, −8.8898)、tassafaronga (159.6902, −8.9029)、savo (159.5834, −8.8969)；y 从场南边向北增长（与数字化海图/引擎同约定）。
+- 新增 `scripts/build-map-mosaics.py`：把 48 张缓存卫星瓦片拼成 3072×2304 ironbottom.jpg（365 KB）供三个剧本共用，manifest 记录地理范围。
+- 客户端 `basemaps.ts` 按 variant 注册卫星底层与场锚点；BattleMap 在场裁剪内先画实拍图（brightness 1.3、12% 夜色叠加），有底层时不再绘制多边形岛屿（多边形仍由引擎用于碰撞/航线）；photoImg 进入主绘制依赖。
+- 验收：引擎 86 项、服务端 33 项、parity 21 场全过；browser 五项回归通过；萨沃截图确认 Guadalcanal/Florida/Savo 与舰位对齐。
+
 ## 2026-11-08｜萨沃岛数据闭合与运行时
 
 - 数字化海图接入：`savo-chart-digitized.json`（32 刻度点、仿射 RMS 1.48 px）→ `chart-savo.json` 引擎米制坐标；6 巡逻线、18 舰影、2 运输区、7 地标、日军箭头全部保留，未加图外舰位。

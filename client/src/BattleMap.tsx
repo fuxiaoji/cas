@@ -3,6 +3,7 @@ import type { CSSProperties, PointerEvent as ReactPointer } from 'react';
 import { ask, clock } from './engine';
 import type { Aim, Contact, Fleet, Observation, Point, RoutePreview, Ship, TorpedoSettings, Weapon } from './engine';
 import { alertKind, BattleAlerts, BattleProjectiles, mountStatus } from './BattlePresentation';
+import { basemapFor } from './basemaps';
 
 type MapProps = {
   observation: Observation; fleet?: Fleet; selected?: number; disabled: boolean;
@@ -97,6 +98,15 @@ function Compass() {
 export function BattleMap(props: MapProps) {
   const { observation: o, fleet, selected, disabled, editing, waypoints, preview, reformPreview, session, running, speed, replaying } = props;
   const viewport = useRef<HTMLDivElement>(null);
+  const photo = basemapFor(o.variant);
+  const [photoImg, setPhotoImg] = useState<HTMLImageElement>();
+  useEffect(() => {
+    if (!photo) { setPhotoImg(undefined); return; }
+    const image = new Image();
+    image.src = photo.src;
+    image.onload = () => { setPhotoImg(image); };
+    return () => { image.onload = null; };
+  }, [photo?.src]);
   const canvas = useRef<HTMLCanvasElement>(null);
   const cancelWell = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 1, h: 1 });
@@ -180,7 +190,7 @@ export function BattleMap(props: MapProps) {
     setZoom(z);
     setPan({ x: (o.width / 2 - lead.x) * ratio - size.w * 0.08,
       y: (lead.y - o.height / 2) * ratio + size.h * 0.12 });
-  }, [session, o.variant, o.side, o.ships.length, size.w, size.h, fleet?.leader, props.cameraCue?.id]);
+  }, [session, o.variant, o.side, o.ships.length, size.w, size.h, fleet?.leader, props.cameraCue?.id, photoImg]);
 
   useLayoutEffect(() => {
     const element = viewport.current!;
@@ -233,6 +243,26 @@ export function BattleMap(props: MapProps) {
     ctx.strokeRect(left + .5, north + .5, o.width * mapRatio, o.height * mapRatio);
     ctx.save();
     ctx.beginPath(); ctx.rect(left, north, o.width * mapRatio, o.height * mapRatio); ctx.clip();
+    // Satellite underlay: the mosaic covers more ocean than the field, so
+    // position it by its registered bounds; the islands stay engine-side for
+    // collision and are not drawn when the photo carries the coastline.
+    if (photo && photoImg) {
+      canvas.current?.setAttribute('data-photo', String(photoImg.naturalWidth));
+      const mPerLon = 111320 * Math.cos(radians(photo.field.lat_origin));
+      const imgX0 = (photo.bounds.lon_w - photo.field.lon_w) * mPerLon;
+      const imgY0 = (photo.bounds.lat_n - photo.field.lat_origin) * 110574; // mosaic top vs field origin
+      const imgW = (photo.bounds.lon_e - photo.bounds.lon_w) * mPerLon;
+      const imgH = (photo.bounds.lat_n - photo.bounds.lat_s) * 110574;
+      // The mosaic top sits imgY0 north of the field origin; engine y grows
+      // north, so the image's top-left on screen is screen({imgX0, imgY0}).
+      const at = screen({ x: imgX0, y: imgY0 });
+      ctx.save();
+      ctx.filter = 'brightness(1.3) saturate(.92)';
+      ctx.drawImage(photoImg, at.x, at.y, imgW * mapRatio, imgH * mapRatio);
+      ctx.restore();
+      ctx.fillStyle = 'rgba(8,37,51,.12)';
+      ctx.fillRect(left, north, o.width * mapRatio, o.height * mapRatio);
+    }
     ctx.font = '9px ui-monospace, Consolas, monospace'; ctx.fillStyle = '#96b9c081';
     const grid = 1000 * mapRatio < 22 ? 2000 : 1000;
     for (let x = grid; x < o.width; x += grid) {
@@ -267,7 +297,7 @@ export function BattleMap(props: MapProps) {
       ctx.fillText('撤离线', x + 6, Math.max(north + 30, 30));
     }
     ctx.restore();
-    for (const island of o.islands) {
+    if (!(photo && photoImg)) for (const island of o.islands) {
       if (!island.length) continue;
       ctx.beginPath(); island.forEach((point, i) => { const p = screen(point); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
       ctx.closePath(); ctx.fillStyle = '#5a674e'; ctx.fill(); ctx.strokeStyle = '#a2b18a'; ctx.stroke();

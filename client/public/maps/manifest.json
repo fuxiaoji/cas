@@ -1,0 +1,10 @@
+{
+ "source": "ArcGIS World_Imagery z10 tiles cached in artifacts/basemap",
+ "image": "ironbottom.jpg",
+ "lon_w": 158.203125,
+ "lon_e": 161.015625,
+ "lat_n": -8.059229627200187,
+ "lat_s": -10.141931686131025,
+ "width": 3072,
+ "height": 2304
+}
