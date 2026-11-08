@@ -7,6 +7,8 @@
 /client/node_modules/
 /client/dist/
 /client/public/cas_core.wasm
+/client/tsconfig.tsbuildinfo
+/client/artifacts/
 /desktop/bin/
 /desktop/obj/
 /target-acceptance/
