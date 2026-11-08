@@ -1,0 +1,565 @@
+{
+  "schema_version": 1,
+  "source": "data/campaign/roster-crosswalk.json",
+  "removed_scenarios": [
+    "IBS-S-03",
+    "IBS-S-07",
+    "IBS-S-12",
+    "IBS-S-FM-01"
+  ],
+  "ships": {
+    "IBS-U-IJN-AGANO": [
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-AKATSUKI": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-AKIGUMO": [
+      "IBS-S-13"
+    ],
+    "IBS-U-IJN-AKIZUKI": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-AMAGIRI": [
+      "IBS-S-02",
+      "IBS-S-05"
+    ],
+    "IBS-U-IJN-AMATSU-KAZE": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-AOBA": [
+      "IBS-S-01",
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-ASAGUMO": [
+      "IBS-S-01",
+      "IBS-S-06",
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-ATAGO": [
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-AYANAMI": [
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-CHITOSE": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-CHOKAI": [
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-ERMA-AZUMA": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-GOKASE": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-IBUKI": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-ISHIKARI": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-KURAMA": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-MUSASHI": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-SHIMAKAZE": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-SHINANO": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-YAMATO": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-FUBUKI": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-FUMIZUKI": [
+      "IBS-S-13"
+    ],
+    "IBS-U-IJN-FURUTAKA": [
+      "IBS-S-01",
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-HAGURO": [
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-HAMAKAZE": [
+      "IBS-S-02",
+      "IBS-S-04",
+      "IBS-S-08",
+      "IBS-S-14"
+    ],
+    "IBS-U-IJN-HARUSAME": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-HATSU-KAZE": [
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-HATSUYUKI": [
+      "IBS-S-01",
+      "IBS-S-02",
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-HIEI": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-IKAZUCHI": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-INAZUMA": [
+      "IBS-S-06",
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-ISOKAZE": [
+      "IBS-S-13",
+      "IBS-S-14"
+    ],
+    "IBS-U-IJN-JINTSU-I": [
+      "IBS-S-08"
+    ],
+    "IBS-U-IJN-KAGERO": [
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-KAKO-I": [
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-KAWAKAZE": [
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-KAZEKUMO": [
+      "IBS-S-13"
+    ],
+    "IBS-U-IJN-KINUGASA": [
+      "IBS-S-01",
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-KIRISHIMA": [
+      "IBS-S-06",
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-KIYONAMI": [
+      "IBS-S-08"
+    ],
+    "IBS-U-IJN-KUROSHIO": [
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-MAKINAMI": [
+      "IBS-S-04",
+      "IBS-S-05"
+    ],
+    "IBS-U-IJN-MATSU-KAZE": [
+      "IBS-S-08",
+      "IBS-S-13"
+    ],
+    "IBS-U-IJN-MIKAZUKI": [
+      "IBS-S-02",
+      "IBS-S-04",
+      "IBS-S-08"
+    ],
+    "IBS-U-IJN-MINAZUKI": [
+      "IBS-S-08"
+    ],
+    "IBS-U-IJN-MONCHIZUKI": [
+      "IBS-S-02",
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-MURAKUMO": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-MURASAME": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-MYOKO": [
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-NAGANAMI": [
+      "IBS-S-04",
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-NAGARA": [
+      "IBS-S-06",
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-NAGATSUKI": [
+      "IBS-S-02"
+    ],
+    "IBS-U-IJN-NATSUGUMO": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-NIIZUKI": [
+      "IBS-S-02"
+    ],
+    "IBS-U-IJN-NISSHIN": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-ONAMI": [
+      "IBS-S-05"
+    ],
+    "IBS-U-IJN-OYASHIO": [
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-SAMIDARE": [
+      "IBS-S-06",
+      "IBS-S-09",
+      "IBS-S-11",
+      "IBS-S-13"
+    ],
+    "IBS-U-IJN-SATSUKI": [
+      "IBS-S-02",
+      "IBS-S-08"
+    ],
+    "IBS-U-IJN-SAZANAMI": [
+      "IBS-S-14"
+    ],
+    "IBS-U-IJN-SENDAI": [
+      "IBS-S-06",
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-SHIGURE": [
+      "IBS-S-11",
+      "IBS-S-13",
+      "IBS-S-14"
+    ],
+    "IBS-U-IJN-SHIKINAMI": [
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-SHIRATSUYU": [
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-SHIRAYUKI": [
+      "IBS-S-01",
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-SUZUKAZE": [
+      "IBS-S-02",
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-TAKANAMI": [
+      "IBS-S-04"
+    ],
+    "IBS-U-IJN-TAKAO": [
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-TANIKAZE": [
+      "IBS-S-02"
+    ],
+    "IBS-U-IJN-TENRYU": [
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-TERUZUKI": [
+      "IBS-S-06",
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-URANAMI": [
+      "IBS-S-06"
+    ],
+    "IBS-U-IJN-UZUKI": [
+      "IBS-S-05"
+    ],
+    "IBS-U-IJN-WAKATSUKI": [
+      "IBS-S-11"
+    ],
+    "IBS-U-IJN-XIFENG": [
+      "IBS-S-08",
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-YAMAGUMO": [
+      "IBS-S-01"
+    ],
+    "IBS-U-IJN-YUBARI": [
+      "IBS-S-10"
+    ],
+    "IBS-U-IJN-YUDACHI": [
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-YUGIRI": [
+      "IBS-S-05"
+    ],
+    "IBS-U-IJN-YUGUMO": [
+      "IBS-S-13"
+    ],
+    "IBS-U-IJN-YUGURE": [
+      "IBS-S-08"
+    ],
+    "IBS-U-IJN-YUKIKAZE": [
+      "IBS-S-08",
+      "IBS-S-09"
+    ],
+    "IBS-U-IJN-YUNAGI": [
+      "IBS-S-13"
+    ],
+    "IBS-U-RAN-CANBERRA": [
+      "IBS-S-10"
+    ],
+    "IBS-U-RN-UNNAMED-T05-R01": [
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-AARON-WARD": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-ASTORIA": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-BAGLEY": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-BARTON": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-BENHAM": [
+      "IBS-S-06"
+    ],
+    "IBS-U-USN-BOISE": [
+      "IBS-S-01"
+    ],
+    "IBS-U-USN-BUCHANAN": [
+      "IBS-S-01",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-CF-AUSBURNE": [
+      "IBS-S-05",
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-CHEVALIER": [
+      "IBS-S-13",
+      "IBS-S-14"
+    ],
+    "IBS-U-USN-CLAXTON": [
+      "IBS-S-05",
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-CONVERSE": [
+      "IBS-S-05",
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-CUSHING": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-DRAYTON": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-DUNCAN": [
+      "IBS-S-01"
+    ],
+    "IBS-U-USN-DYSON": [
+      "IBS-S-05",
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-ERMA-ALASKA": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-ALLEN-M-SUMNER": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-COOPER": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-DES-MOINES": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-GUAM": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-INGRAHAM": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-IOWA": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-MISSOURI": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-NEW-JERSEY": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-SALEM": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-WISCONSIN": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-ERMA-WORCESTER": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-USN-FARENHOLT": [
+      "IBS-S-01"
+    ],
+    "IBS-U-USN-FLETCHER": [
+      "IBS-S-04",
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-FOOTE": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-GWIN": [
+      "IBS-S-06",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-HELENA": [
+      "IBS-S-01",
+      "IBS-S-02",
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-HELM": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-HONOLULU": [
+      "IBS-S-02",
+      "IBS-S-04",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-JARVIS": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-JENKINS": [
+      "IBS-S-02",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-LA-VALLETTE": [
+      "IBS-S-13"
+    ],
+    "IBS-U-USN-LAFFEY": [
+      "IBS-S-01",
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-LAMSON": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-LARDNER": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-MAURY": [
+      "IBS-S-04",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-MCCALLA": [
+      "IBS-S-01"
+    ],
+    "IBS-U-USN-MINNEAPOLIS": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-MONSSEN": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-NEW-ORLEANS": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-NICHOLAS": [
+      "IBS-S-02",
+      "IBS-S-08",
+      "IBS-S-14"
+    ],
+    "IBS-U-USN-NORTHAMPTON": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-OBANNON": [
+      "IBS-S-02",
+      "IBS-S-08",
+      "IBS-S-09",
+      "IBS-S-13",
+      "IBS-S-14"
+    ],
+    "IBS-U-USN-PATTERSON": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-PENSACOLA": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-PERKINS": [
+      "IBS-S-04"
+    ],
+    "IBS-U-USN-PRESTON": [
+      "IBS-S-06"
+    ],
+    "IBS-U-USN-QUINCY": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-RADFORD": [
+      "IBS-S-02",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-RALPH-TALBOT": [
+      "IBS-S-08",
+      "IBS-S-13"
+    ],
+    "IBS-U-USN-SALT-LAKE-CITY": [
+      "IBS-S-01"
+    ],
+    "IBS-U-USN-SAN-FRANCISCO": [
+      "IBS-S-01",
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-SELFRIDGE": [
+      "IBS-S-13"
+    ],
+    "IBS-U-USN-SOUTH-DAKOTA": [
+      "IBS-S-06"
+    ],
+    "IBS-U-USN-SPENCE": [
+      "IBS-S-05",
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-ST-LOUIS": [
+      "IBS-S-02",
+      "IBS-S-08"
+    ],
+    "IBS-U-USN-STANLY": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-STERETT": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-TAYLOR": [
+      "IBS-S-08",
+      "IBS-S-13",
+      "IBS-S-14"
+    ],
+    "IBS-U-USN-THATCHER": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R12": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R20": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R23": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R24": [
+      "IBS-S-09"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R26": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R27": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R28": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R29": [
+      "IBS-S-11"
+    ],
+    "IBS-U-USN-VINCENNES": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-WALKE": [
+      "IBS-S-06"
+    ],
+    "IBS-U-USN-WASHINGTON": [
+      "IBS-S-06"
+    ],
+    "IBS-U-USN-WILSON": [
+      "IBS-S-10"
+    ],
+    "IBS-U-USN-WOODWORTH": [
+      "IBS-S-08"
+    ]
+  }
+}

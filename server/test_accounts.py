@@ -251,11 +251,17 @@ class FreeEconomyTest(unittest.TestCase):
     def test_catalog_and_foreign_database_gate(self):
         catalog = self.client.get("/catalog").json()
         self.assertEqual(len(catalog["ships"]), 210)
-        # 22 original recruits plus the 11 newly recruitable Esperance identities
-        # (San Francisco, Boise, Salt Lake City, Helena, Farenholt, Duncan,
-        # Laffey, Buchanan, McCalla, Aoba, Furutaka, Kinugasa; Fubuki and
-        # Hatsuyuki were already recruitable).
-        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 33)
+        # Every identity listed by a kept scenario joins the free-economy pool:
+        # 164 scenario members plus the two storefront identities without a
+        # kept-scenario membership. See server/scenario-recruitable.json and
+        # scripts/import-scenario-portraits.py.
+        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 166)
+        overlay = json.loads((Path(__file__).with_name("scenario-recruitable.json"))
+                             .read_text(encoding="utf-8"))["ships"]
+        entries = {ship["id"]: ship for ship in catalog["ships"]}
+        self.assertTrue(all(entries[ship_id]["recruitable"] for ship_id in overlay))
+        self.assertTrue(all(entries[ship_id]["credits_price"] >= 200
+                            for ship_id in overlay if entries[ship_id]["rarity"] == "common"))
         combat_ships = [s for s in catalog["ships"] if s["combat_ready"]]
         # Only the verified North Carolina period card may claim combat
         # readiness, and it must cite its registered CAS profile source.
