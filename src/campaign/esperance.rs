@@ -26,8 +26,16 @@ const COLUMN_YD: f64 = 500.;
 /// Savo Island's detected center on the chart (satellite projection).
 const SAVO_P: P = P { x: 25_642., y: 23_380. };
 
+/// Millimetre snap: the scenario geometry is trigonometric, and native libm
+/// and the wasm target can differ by one ulp in sin/cos. Snapping to the
+/// millimetre keeps the printed bearings/distances while making the canonical
+/// observation byte-identical across native and WASM.
+fn snap(p: P) -> P {
+    P { x: (p.x * 1000.).round() / 1000., y: (p.y * 1000.).round() / 1000. }
+}
+
 fn offset(from: P, bearing: f64, distance_m: f64) -> P {
-    from + P::bearing(bearing) * distance_m
+    snap(from + P::bearing(bearing) * distance_m)
 }
 
 fn islands() -> Vec<Vec<P>> {
@@ -155,10 +163,10 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
     for column in columns() {
         let radians = column.heading.to_radians();
         let (dx, dy) = (radians.sin() * 15_000., radians.cos() * 15_000.);
-        let points = vec![P {
+        let points = vec![snap(P {
             x: column.x + dx,
             y: column.y + dy,
-        }];
+        })];
         w.route(
             column.side,
             &json!({"op":"route","fleet":column.fleet,"mode":"follow","speed":column.speed,
