@@ -55,3 +55,240 @@
 .archive-placement-toggle { display: flex; align-items: center; gap: 7px; }
 .archive-source .archive-sides details > summary { padding: 3px 4px; min-height: 25px; display: list-item; }
 @media (max-width: 540px) { .archive-source .archive-sides { grid-template-columns: 1fr; } }
+
+/* Campaign lobby: full-screen war atlas (mobile 0.6.11 layout). */
+.campaign-archive.war-atlas {
+  --war-deck: #0b2739;
+  --war-paper: #e6eee9;
+  --war-dim: #abc5c8;
+  --war-brass: #ebcd90;
+  --war-line: #95bdc447;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #081f2f;
+  color: var(--war-paper);
+}
+.campaign-archive .war-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 22px);
+  padding: 9px clamp(12px, 2.4vw, 30px);
+  border-bottom: 1px solid var(--war-line);
+  background: linear-gradient(#0e2c41, #0a2436d9);
+}
+.campaign-archive .war-header > button {
+  min-height: 38px;
+  padding: 5px 13px;
+  border: 1px solid #7f9fa680;
+  border-radius: 2px;
+  background: #14384cd9;
+  color: #dbe7e6;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.campaign-archive .war-header h1 {
+  margin: 0;
+  color: #f2ead6;
+  font: 600 clamp(20px, 2.4vw, 30px) 'Noto Serif CJK SC', 'SimSun', serif;
+  letter-spacing: 4px;
+  white-space: nowrap;
+}
+.campaign-archive .war-side-tabs { margin-left: auto; display: flex; gap: 5px; }
+.campaign-archive .war-side-tabs button {
+  min-height: 38px;
+  padding: 5px 12px;
+  border: 1px solid #718e9680;
+  border-radius: 2px;
+  background: #0d2d41b8;
+  color: #b9cfd2;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.campaign-archive .war-side-tabs button[aria-pressed="true"] {
+  color: #f6deb3;
+  border-color: #d3b073;
+  background: #233f4fd9;
+  box-shadow: inset 0 0 0 1px #d3b07340;
+}
+.campaign-archive .war-star-total {
+  color: var(--war-brass);
+  font: 600 clamp(14px, 1.6vw, 19px) Georgia, serif;
+  white-space: nowrap;
+}
+.campaign-archive .war-alert, .campaign-archive .war-loading { margin: 16px 24px; color: #c8dada; }
+.campaign-archive .war-alert button { margin-left: 10px; }
+.campaign-archive .war-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 33%);
+  gap: 10px;
+  padding: 10px clamp(10px, 1.6vw, 20px) 8px;
+}
+.campaign-archive .war-map { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.campaign-archive .war-map .cas-campaign-map { flex: 1; min-height: 0; grid-template-rows: auto minmax(0, 1fr) auto; }
+.campaign-archive .war-utility {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 0;
+  color: #8faeba;
+  font-size: 11px;
+}
+.campaign-archive .war-utility button {
+  min-height: 36px;
+  padding: 5px 12px;
+  border: 1px solid #7f9fa680;
+  border-radius: 2px;
+  background: #102f42d9;
+  color: #d9e5e4;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.campaign-archive .war-utility span { margin-left: auto; text-align: right; }
+.campaign-archive .war-archive {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid var(--war-line);
+  background: #0c293c;
+}
+.campaign-archive .war-archive-header {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--war-line);
+}
+.campaign-archive .war-archive-header h2 {
+  margin: 0;
+  color: #eeddb8;
+  font: 600 clamp(15px, 1.5vw, 19px) 'Noto Serif CJK SC', 'SimSun', serif;
+  letter-spacing: 1px;
+}
+.campaign-archive .war-archive-header small { margin-left: 8px; color: #93b1b8; }
+.campaign-archive .war-archive-header > span { color: #9fbdbe; font-size: 10px; white-space: nowrap; }
+.campaign-archive .war-archive-entries {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: #5e7f83 #0b2434;
+}
+.campaign-archive .war-entry {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 58px;
+  padding: 8px 11px;
+  border: 0;
+  border-bottom: 1px solid #8bb0b92b;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #dfe9e6;
+  text-align: left;
+}
+.campaign-archive .war-entry[aria-pressed="true"] {
+  border-left-color: var(--war-brass);
+  background: linear-gradient(90deg, #1d4357, #113345 70%);
+}
+.campaign-archive .war-entry-number {
+  color: #c8b17b;
+  font: italic clamp(18px, 1.8vw, 24px) Georgia, serif;
+  text-align: center;
+}
+.campaign-archive .war-entry-copy { min-width: 0; }
+.campaign-archive .war-entry-copy strong {
+  display: block;
+  overflow: hidden;
+  color: #f0eee2;
+  font: 600 clamp(13px, 1.25vw, 16px) 'Noto Serif CJK SC', 'SimSun', serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.campaign-archive .war-entry-copy small { display: block; margin-top: 3px; color: #93b1b8; font-size: 10px; }
+.campaign-archive .war-entry-status { color: #93b1b8; font-size: 10px; white-space: nowrap; }
+.campaign-archive .war-entry-status.ready { color: #f0d79e; }
+.campaign-archive .war-empty { padding: 18px 12px; color: #a9c2c5; font-size: 12px; line-height: 1.7; }
+.campaign-archive .war-archive-footer {
+  flex: none;
+  padding: 9px 12px 10px;
+  border-top: 1px solid var(--war-line);
+  background: #0a2435;
+}
+.campaign-archive .war-archive-footer > p { margin: 0 0 7px; color: #b8cdce; font-size: 11px; }
+.campaign-archive .war-launch-line { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.campaign-archive .war-difficulty-tabs { display: flex; gap: 3px; }
+.campaign-archive .war-difficulty-tabs button {
+  min-height: 38px;
+  padding: 5px 12px;
+  border: 1px solid #718e9680;
+  border-radius: 2px;
+  background: #102f42c9;
+  color: #b9cfd2;
+  font-size: 12px;
+}
+.campaign-archive .war-difficulty-tabs button[aria-pressed="true"] { color: #f6deb3; border-color: #d3b073; background: #24404f; }
+.campaign-archive .war-brief-button { min-height: 40px; padding: 6px 18px; font-size: 13px; letter-spacing: 1px; }
+.campaign-archive .war-difficulty-note { display: block; margin-top: 7px; color: #89a8b2; font-size: 10px; }
+.campaign-archive .war-brief-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #03101cbd;
+}
+.campaign-archive .war-brief {
+  width: min(820px, 96vw);
+  max-height: 88vh;
+  overflow: auto;
+  padding: 0 0 14px;
+  border: 1px solid #8fb2bb80;
+  border-top: 2px solid #e4c483;
+  background: linear-gradient(150deg, #193c50, #0b2638 78%);
+  box-shadow: 0 18px 60px #020d17d9;
+}
+.campaign-archive .war-brief > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px 11px;
+  border-bottom: 1px solid #8eabb744;
+}
+.campaign-archive .war-brief > header span { color: #a9c6c8; font-size: 10px; }
+.campaign-archive .war-brief > header h2 {
+  margin: 3px 0 2px;
+  color: #f1dfb7;
+  font: 600 23px/1.3 'Noto Serif CJK SC', 'SimSun', serif;
+}
+.campaign-archive .war-brief > header p { margin: 0; color: #b6cfd3; font-size: 11px; }
+.campaign-archive .war-brief > header button { flex: none; min-height: 34px; padding: 4px 13px; background: #123248; color: #d9e6e5; }
+.campaign-archive .war-brief-body { display: grid; gap: 9px; padding: 12px 18px 0; }
+.campaign-archive .war-brief-source { margin: 0; color: #b7cfcc; font-size: 11px; line-height: 1.7; }
+.campaign-archive .war-brief-source strong { color: #efd8a5; font-size: 13px; }
+.campaign-archive .war-brief-note { margin: 0; color: #9fbdc2; font-size: 11px; line-height: 1.7; }
+.campaign-archive .war-brief .archive-source { color: #c4d8d6; }
+@media (max-width: 860px), (orientation: portrait) {
+  .campaign-archive .war-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(260px, 46%) minmax(0, 1fr); }
+  .campaign-archive .war-header { flex-wrap: wrap; gap: 7px; }
+  .campaign-archive .war-header h1 { letter-spacing: 2px; }
+  .campaign-archive .war-side-tabs { margin-left: 0; order: 4; width: 100%; }
+  .campaign-archive .war-star-total { margin-left: auto; }
+  .campaign-archive .war-utility span { display: none; }
+  .campaign-archive .war-entry { min-height: 52px; }
+}

@@ -22,19 +22,19 @@ try {
   await signInLocal(page, 'cas-esperance-qa2', true);
   // A brand-new commander lands in the prologue; fast-forward through it.
   await page.getByRole('button', { name: '打开主菜单', exact: true }).click();
-  await page.getByRole('button', { name: '继续演习', exact: true }).click();
-  await page.locator('.battle-map').waitFor();
-  await page.getByRole('button', { name: '母港', exact: true }).click();
+  await page.getByRole('button', { name: '返回母港', exact: true }).click();
+  await page.locator('.growth-port').waitFor();
   await page.locator('.growth-campaign-entry').click();
-  await page.locator('.archive-list').waitFor();
-  await page.getByRole('button', { name: '同盟战线', exact: true }).click();
-  const row = page.locator('li[data-stage-id="CAMP-ALLIES-02"]');
+  await page.locator('.campaign-archive.war-atlas').waitFor();
+  await page.getByRole('button', { name: '同盟方战线', exact: true }).click();
+  const row = page.locator('.war-archive-entries li').filter({ hasText: '埃斯佩兰斯角' }).first();
   await row.waitFor();
-  assert_playable: {}
-  const playable = await row.getAttribute('data-playable');
-  console.log('stage02 playable:', playable);
-  await row.locator(':scope > details > summary').first().click();
-  await row.getByRole('button', { name: '出航作战' }).click();
+  const playable = await row.locator('.war-entry-status').innerText();
+  console.log('stage02 status:', playable);
+  await row.locator('button.war-entry').click();
+  await page.getByRole('button', { name: '作战简报', exact: true }).click();
+  await page.locator('.war-brief').waitFor();
+  await page.getByRole('button', { name: '出航作战', exact: true }).click();
   await page.locator('.battle-map').waitFor();
   const obs = await q('observe');
   console.log('stage', obs.campaign.stageId, 'ships', obs.ships.length, 'fleets', obs.fleets.length, 'env', JSON.stringify(obs.environment));

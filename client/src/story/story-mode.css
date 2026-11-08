@@ -1,0 +1,128 @@
+.story-mode {
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 70% 18%, #2b5064, transparent 62%), linear-gradient(#0a2032, #06151f 72%);
+  color: #e6eeea;
+  --story-brass: #ebcd90;
+}
+.story-sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 22% 14%, #d9e6e51f 0 2px, transparent 3px),
+    radial-gradient(circle at 64% 9%, #d9e6e51a 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 29%, #d9e6e51f 0 2px, transparent 3px),
+    radial-gradient(circle at 44% 33%, #d9e6e514 0 1px, transparent 2px),
+    radial-gradient(ellipse at 72% 88%, #28516266, transparent 60%);
+  pointer-events: none;
+}
+.story-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 34px);
+  padding: 14px clamp(14px, 3vw, 42px);
+  border-bottom: 1px solid #95bdc447;
+  background: linear-gradient(#0d2b3fdd, #0a2436a8);
+}
+.story-header > button {
+  min-height: 40px;
+  padding: 6px 15px;
+  border: 1px solid #7f9fa680;
+  border-radius: 2px;
+  background: #14384cd9;
+  color: #dbe7e6;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.story-header > div { display: flex; align-items: baseline; gap: 14px; }
+.story-header span { color: #d7bf8d; font-size: 11px; letter-spacing: 5px; }
+.story-header h1 {
+  margin: 0;
+  color: #f2ead6;
+  font: 600 clamp(24px, 3vw, 34px) 'Noto Serif CJK SC', 'SimSun', serif;
+  letter-spacing: 6px;
+  white-space: nowrap;
+}
+.story-header p { margin: 0 0 0 auto; max-width: 430px; color: #9ebcc4; font-size: 12px; line-height: 1.7; }
+.story-chapters {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(1080px, 94%);
+  margin: 0 auto;
+  padding: clamp(14px, 2.6vh, 26px) 0;
+  overflow: auto;
+}
+.story-chapter-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.story-chapter-head h2 { margin: 0; color: #efdcb3; font: 600 20px 'Noto Serif CJK SC', 'SimSun', serif; letter-spacing: 3px; }
+.story-chapter-head span { color: #8faeba; font-size: 11px; }
+.story-chapters ol { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.story-chapters li > button {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(10px, 2vw, 22px);
+  width: 100%;
+  min-height: 132px;
+  padding: 14px clamp(12px, 2vw, 24px);
+  border: 1px solid #8fb0b96b;
+  border-left: 3px solid #e4c483;
+  background: linear-gradient(110deg, #1d4a5ed9, #0d2b3fd9 72%);
+  color: #e8efec;
+  text-align: left;
+  transition: filter .15s, border-color .15s;
+}
+.story-chapters li > button:hover:not(:disabled) { filter: brightness(1.12); border-color: #e4c483; }
+.story-chapters li > button:disabled { opacity: .55; }
+.story-index { color: #c9b27c; font: italic 34px Georgia, serif; text-align: center; }
+.story-copy { min-width: 0; }
+.story-copy small { color: #d7bf8d; font-size: 10px; letter-spacing: 2px; }
+.story-copy strong {
+  display: block;
+  margin: 3px 0 5px;
+  color: #f3e8cc;
+  font: 600 clamp(18px, 2vw, 24px) 'Noto Serif CJK SC', 'SimSun', serif;
+  letter-spacing: 2px;
+}
+.story-copy p { margin: 0; max-width: 600px; color: #a7c2c8; font-size: 12px; line-height: 1.75; }
+.story-status { display: flex; align-items: center; gap: 8px; color: #9fbdc2; font-size: 12px; white-space: nowrap; }
+.story-status[data-done="true"] { color: var(--story-brass); }
+.story-status b { font-size: 26px; font-weight: 400; color: #cfe0e0; }
+.story-next {
+  display: grid;
+  place-items: center;
+  min-height: 108px;
+  padding: 16px 22px;
+  border: 1px dashed #7f9fa66b;
+  background: #0b263896;
+  color: #9fbdc2;
+  text-align: center;
+}
+.story-next span { color: #d7bf8d; font-size: 10px; letter-spacing: 3px; }
+.story-next strong { display: block; margin: 4px 0 5px; color: #d8e3e0; font: 500 17px 'Noto Serif CJK SC', 'SimSun', serif; letter-spacing: 2px; }
+.story-next p { margin: 0; font-size: 11px; line-height: 1.7; }
+.story-foot {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px clamp(14px, 3vw, 42px) 12px;
+  color: #7497a7;
+  font-size: 10px;
+}
+@media (max-width: 720px), (orientation: portrait) {
+  .story-header { flex-wrap: wrap; }
+  .story-header p { margin: 0; max-width: none; }
+  .story-chapters li > button { grid-template-columns: 44px minmax(0, 1fr); }
+  .story-status { grid-column: 2; justify-self: start; }
+  .story-index { font-size: 26px; }
+}

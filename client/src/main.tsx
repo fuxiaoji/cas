@@ -4,7 +4,7 @@ import { BattleMap } from './BattleMap';
 import { alertKind, ShipSchematic } from './BattlePresentation';
 import { Harbor } from './Harbor';
 import type { HarborTab } from './Harbor';
-import { CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
+import { CampaignArchive, CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
 import { CampaignEndingGate } from './campaign-ending/CampaignEndingScene';
 import { claimCampaignRewards, recordCampaignResult } from './campaign-progress';
 import type { CampaignLaunch } from './campaign-progress';
@@ -19,6 +19,7 @@ import { commanderPacks } from 'virtual:cas-commander-clips';
 import { ActivityCenter } from './activities/ActivityCenter';
 import { recordChallengeClear } from './activities/week';
 import { PrologueScene, completePrologueBattle, loadPrologue, savePrologue, PROLOGUE_STORAGE_KEY } from './prologue';
+import { StoryMode } from './story/StoryMode';
 import type { StarterDDId } from './prologue';
 import { PROLOGUE_HANDOVER_TICK } from './prologue/PrologueFilm';
 import { guidedTrainingDone, recordGuidedTrainingSignals, TrainingCoach, trainingCourseDone } from './tutorial';
@@ -126,6 +127,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const [portError, setPortError] = useState<string>();
   const [training, setTraining] = useState(false);
   const [storyOpen, setStoryOpen] = useState(false);
+  const [storyMenu, setStoryMenu] = useState(false);
   const [story, setStory] = useState(() => loadPrologue(storyKey));
   const storyLive = useRef(false);
   const storyBattleKey = storyKey + ':battle';
@@ -752,6 +754,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     });
   };
 
+  if (storyMenu) return <StoryMode progress={story} onBack={() => setStoryMenu(false)}
+    onOpen={() => { setStoryMenu(false); void openStory(); }} />;
   if (portOpen) {
     if (cloudToken && section === 'duel') return <OnlineDuelLobby token={cloudToken} initialTab={duelTab}
       onBack={() => setSection(undefined)} onBattle={openDuel} />;
@@ -766,15 +770,21 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       error={portError ?? loadError} claimed={port.prologueReward}
       rewards={['同盟演习舰队（首次领取初始舰队时）', '补给币 2,000', '常驻券与 UP 券各 10 张（首次领取初始舰队时）']}
       onBattle={(stage, leader) => void startCourse(stage, 'allies', leader)}
-      onFinish={async () => { setPort(grantPrologue); await closeStory(); }}
-      onExit={() => void closeStory()} />;
+      onFinish={async () => { setPort(grantPrologue); await closeStory(); setStoryMenu(true); }}
+      onExit={async () => { await closeStory(); setStoryMenu(true); }} />;
     if (section === 'activities') return <ActivityCenter state={port} change={setPort} onClose={() => setSection(undefined)}
       online={cloudToken ? {token:cloudToken,onMeta:meta => {setCloudMeta(meta);setCloudError(undefined);}} : undefined} />;
-    if (section && section !== 'fleet-editor' && section !== 'duel') return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onLaunch={(options) => void launchFromHarbor(options)} onCampaign={(options) => void launchCampaign(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} online={!!cloudToken} />;
+    if (section === 'archive') return <CampaignArchive busy={busy || !o} progress={cloudToken ? undefined : port.campaignProgress}
+      onCampaign={(options) => void launchCampaign(options)} online={!!cloudToken} onReturn={() => setSection(undefined)}
+      onStory={() => setStoryMenu(true)} onReview={() => setSection('training')}
+      onClaim={(stageId) => setPort(current => claimCampaignRewards(current, stageId))}
+      onNight={() => startCourse('night')} />;
+    if (section && section !== 'fleet-editor' && section !== 'duel') return <Harbor key={section} initialTab={section} state={port} change={setPort} onReturn={() => setSection(undefined)} onSection={setSection} onLaunch={(options) => void launchFromHarbor(options)} onCampaign={(options) => void launchCampaign(options)} onCourse={(id, side) => void startCourse(id, side)} busy={busy || !o} error={portError} online={!!cloudToken} />;
     return <>
       <GrowthPort state={port} onNavigate={navigateLobby} onHome={() => void openMainMenu()}
+        onOnline={cloudToken ? () => setSection('duel') : undefined}
         online={cloudToken ? {meta:cloudMeta,error:cloudError} : undefined}
-        onReplayPrologue={() => void openStory()}
+        onReplayPrologue={() => setStoryMenu(true)}
         onWatch={id => setPort(s => Object.hasOwn(hulls,id) && (s.owned[id as Hull] ?? 0) > 0 ? { ...s, watch: id as Hull } : s)} />
       {mainMenu && <div className="dialog-backdrop" onClick={e=>{if(e.target===e.currentTarget)setMainMenu(false);}}>
         <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="主菜单">

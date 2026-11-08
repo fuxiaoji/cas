@@ -4,7 +4,7 @@
 .harbor-head div:first-child span { font-size: 10px; color: var(--muted); letter-spacing: .12em; }
 .harbor-wallet { display: flex; gap: 14px; color: var(--muted); font-size: 11px; }
 .harbor-wallet b { color: var(--brass); font: 14px var(--numbers); }
-.harbor-body { display: grid; grid-template-columns: minmax(112px, 19vw) minmax(0, 1fr); min-height: 0; }
+.harbor-body { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 0; }
 .harbor-tabs { display: flex; flex-direction: column; gap: 5px; padding: 17px 11px; border-right: 1px solid #395460; }
 .harbor-tabs button { background: transparent; border-color: transparent; text-align: left; color: #b5cbd0; padding: 8px 10px; }
 .harbor-tabs button[aria-pressed=true] { border-color: #81714f; background: #23393d; color: var(--brass); }

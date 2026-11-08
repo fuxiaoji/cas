@@ -14,13 +14,8 @@ import './harbor.css';
 export type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge' | 'archive';
 type Props = { state: PortState; change: (reducer: (current: PortState) => PortState) => void;
   onReturn: () => void; onLaunch: (options: PortLaunch) => void; onCourse: (id: 'day' | 'night', side?: Side) => void;
-  onCampaign?: (launch: CampaignLaunch) => void;
+  onCampaign?: (launch: CampaignLaunch) => void; onSection?: (section: HarborTab) => void;
   busy: boolean; error?: string; initialTab?: HarborTab; online?: boolean };
-const tabs: { id: HarborTab; name: string }[] = [
-  { id: 'training', name: '舰桥学堂' }, { id: 'fleet', name: '舰库与编队' },
-  { id: 'recruit', name: '本机征募' }, { id: 'challenge', name: '越级挑战' },
-  { id: 'archive', name: 'CAS 战役档案' },
-];
 function HarborArt() {
   return <svg className="harbor-art" aria-hidden="true" viewBox="0 0 800 275" preserveAspectRatio="xMidYMax slice">
     <defs>
@@ -41,8 +36,11 @@ function HarborArt() {
   </svg>;
 }
 
-export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse, busy, error, online, initialTab = 'training' }: Props) {
-  const [tab, setTab] = useState<HarborTab>(initialTab);
+const sectionNames: Record<HarborTab, string> = {
+  training: '教学复习', fleet: '舰库与编队', recruit: '征募与补给', challenge: '越级挑战', archive: '战役航图',
+};
+export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse, onSection, busy, error, online, initialTab = 'training' }: Props) {
+  const tab = initialTab;
   const [starterSide, setStarterSide] = useState<Side>(state.preset.side);
   const [pool, setPool] = useState<'standard' | 'up'>('standard');
   const [economy, setEconomy] = useState<'recruit' | 'supply' | 'ai'>('recruit');
@@ -62,19 +60,15 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
   }
   return <main className="harbor">
     <header className="harbor-head">
-      <div><span>CAS 舰队勤务</span><h1>母港</h1></div>
+      <div><span>母港 · 舰队勤务</span><h1>{sectionNames[tab]}</h1></div>
       <div className="harbor-wallet">
-        <span>补给币 <b>{state.credits.toLocaleString()}</b></span><span>常驻券 <b>{state.wallet.standard}</b></span><span>UP 券 <b>{state.wallet.up}</b></span><span>舰队勋章 <b>{state.marks}</b></span>
+        <span>补给币 <b>{state.credits.toLocaleString()}</b></span><span>征募券 <b>{state.wallet.standard + state.wallet.up}</b></span><span>舰队勋章 <b>{state.marks}</b></span>
       </div>
       <button type="button" onClick={onReturn} disabled={busy}>返回母港</button>
     </header>
     <div className="harbor-body">
-      <nav className="harbor-tabs" aria-label="母港区域">
-        {tabs.map(({ id, name }) => <button key={id} type="button" aria-pressed={tab === id} onClick={() => setTab(id)}>{name}</button>)}
-        <span>离线演习进度</span>
-      </nav>
       <section className="harbor-content">
-        <div className="harbor-hero"><HarborArt /><div><p>停泊区</p><h2>{tabs.find(({ id }) => id === tab)?.name}</h2></div></div>
+        <div className="harbor-hero"><HarborArt /><div><p>停泊区</p><h2>{sectionNames[tab]}</h2></div></div>
         {error && <p className="harbor-error" role="alert">{error}</p>}
         {tab === 'training' && <section className="harbor-section">
           <div className="harbor-title"><h3>入门实操</h3><span>{state.lessons.length} / {lessons.length} 完成</span></div>
@@ -129,8 +123,8 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
             <button type="button" aria-pressed={economy === 'ai'} onClick={() => setEconomy('ai')}>AI 战术</button>
           </nav>
           {economy === 'recruit' && <LocalRecruitDesk state={state} pool={pool} busy={busy || !!arrival} onPoolChange={setPool}
-            onRecruit={recruit} onReview={id => setArrival({ id, replay: true })} onTraining={() => setTab('training')}
-            onSupply={() => setEconomy('supply')} onCampaign={() => setTab('archive')} />}
+            onRecruit={recruit} onReview={id => setArrival({ id, replay: true })} onTraining={() => onSection?.('training')}
+            onSupply={() => setEconomy('supply')} onCampaign={() => onSection?.('archive')} />}
           {economy === 'supply' && <>
             <div className="harbor-title"><h3>每周常驻券</h3><span>周一北京时间 00:00 刷新</span></div>
             <p className="harbor-fine">单机补给商店每周可兑换 1 张常驻券。</p>
