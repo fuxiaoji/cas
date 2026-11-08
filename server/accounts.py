@@ -254,6 +254,13 @@ class AccountService:
             except sqlite3.IntegrityError:
                 deny("用户名已存在。", 409)
             conn.execute("INSERT INTO assets VALUES(?,?)", (account_id, encode(initial_meta())))
+            # Free-beta mailbox gift: 20 standard recruit pulls, one claim per
+            # account. The mail is part of registration, not a client grant.
+            conn.execute(
+                "INSERT INTO account_mail(account_id,id,title,body,sender,created_at,up_tickets,standard_tickets) "
+                "VALUES(?,?,?,?,?,?,?,?)",
+                (account_id, "welcome-20", "内测启航补给", "20 次征募补给已放入邮箱，请在邮箱领取。",
+                 "舰桥补给处", int(time.time() * 1000), 0, 20))
             token = self._session(conn, account_id)
         return {"account_id": account_id, "username": username, "token": token, "token_type": "bearer", "expires_in": SESSION_SECONDS}
 

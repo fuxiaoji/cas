@@ -88,7 +88,9 @@ class FreeEconomyTest(unittest.TestCase):
             self.service.deliver_mail(aid, "weekly-1", **{**info, "body": "changed"})
         self.assertEqual(conflict.exception.status_code, 409)
         self.assertEqual(self.meta()["wallet"]["up_tickets"], 0)
-        self.assertEqual(self.client.get("/mail", headers=other_headers).json(), {"messages": []})
+        other_mail = self.client.get("/mail", headers=other_headers).json()["messages"]
+        self.assertEqual([message["id"] for message in other_mail], ["welcome-20"])
+        self.assertEqual(other_mail[0]["attachments"], {"up_tickets": 0, "standard_tickets": 20})
         self.assertEqual(self.post("/mail/weekly-1/claim", "other-user-claim", other_headers).status_code, 404)
         with ThreadPoolExecutor(max_workers=5) as workers:
             copies = list(workers.map(lambda i: self.post("/mail/weekly-1/claim", f"same-mail-retry-{i}"), range(8)))
@@ -144,11 +146,11 @@ class FreeEconomyTest(unittest.TestCase):
         self.service._random = lambda: next(randoms)
         off_banner = advance("missouri-up", 1, "draw-up-offbanner")
         self.assertEqual(off_banner["receipts"][0]["rarity"], "ur")
-        self.assertNotEqual(off_banner["receipts"][0]["ship_id"], "IBS-U-USN-ERMA-MISSOURI")
+        self.assertNotEqual(off_banner["receipts"][0]["ship_id"], "IBS-U-USN-UNNAMED-T01-R03")
         self.assertTrue(off_banner["meta"]["pools"]["missouri-up"]["up_guaranteed"])
         randoms = iter([0.99, 0.0])  # Natural UR; featured guarantee needs no 50/50 roll.
         next_ur = advance("missouri-up", 1, "draw-up-guarantee")
-        self.assertEqual(next_ur["receipts"][0]["ship_id"], "IBS-U-USN-ERMA-MISSOURI")
+        self.assertEqual(next_ur["receipts"][0]["ship_id"], "IBS-U-USN-UNNAMED-T01-R03")
         self.assertFalse(next_ur["meta"]["pools"]["missouri-up"]["up_guaranteed"])
         self.assertEqual(next_ur["meta"]["pools"]["standard-v2"], standard_state)
         ex = self.assert_success(self.post("/shop/purchase", "exchange-standard-one", kind="pool_ship",
@@ -255,7 +257,7 @@ class FreeEconomyTest(unittest.TestCase):
         # 164 scenario members plus the two storefront identities without a
         # kept-scenario membership. See server/scenario-recruitable.json and
         # scripts/import-scenario-portraits.py.
-        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 166)
+        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 167)
         overlay = json.loads((Path(__file__).with_name("scenario-recruitable.json"))
                              .read_text(encoding="utf-8"))["ships"]
         entries = {ship["id"]: ship for ship in catalog["ships"]}

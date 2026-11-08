@@ -1884,8 +1884,8 @@
       "name": "北卡罗来纳",
       "side": "allies",
       "type": "BB",
-      "rarity": "rare",
-      "recruitable": false,
+      "rarity": "ur",
+      "recruitable": true,
       "credits_price": null,
       "combat_ready": true,
       "combat_source": "src/ranked_fleets.rs PROFILES（序章时期包 cas-prologue-runtime-v1#north-carolina，美国舰表 PDF 8、109）；点表 cas-points-surface-v1 已登记同名 ID"
@@ -2114,9 +2114,10 @@
   "recruit_pools": [
     {
       "id": "missouri-up",
-      "name": "密苏里 · 决战旗舰",
+      "name": "北卡罗来纳 · 决战旗舰",
       "kind": "up",
       "ur_ship_ids": [
+        "IBS-U-USN-UNNAMED-T01-R03",
         "IBS-U-USN-ERMA-IOWA",
         "IBS-U-USN-ERMA-DES-MOINES",
         "IBS-U-USN-ERMA-WORCESTER",
@@ -2135,8 +2136,8 @@
         "ur": 80
       },
       "exchange_price": 80,
-      "description": "UR中密苏里占50%；未获得UP时，下次UR必为密苏里。",
-      "featured_ship_id": "IBS-U-USN-ERMA-MISSOURI"
+      "description": "UR中北卡罗来纳占50%；未获得UP时，下次UR必为北卡罗来纳。",
+      "featured_ship_id": "IBS-U-USN-UNNAMED-T01-R03"
     },
     {
       "id": "standard-v2",

@@ -109,16 +109,16 @@ class FleetTest(unittest.TestCase):
         # The battleship is obtained through the real UP purchase path, not a fake roster.
         with patch.object(self.app.state.accounts, "_random", side_effect=[.99, .1, .0]):
             draw = self.good(self.client.post("/recruit", headers=self.headers, json={
-                "request_id": "fleet-get-missouri", "count": 1, "pool_id": "missouri-up"}))
+                "request_id": "fleet-get-carolina", "count": 1, "pool_id": "missouri-up"}))
         battleship = draw["receipts"][0]["ship_id"]
-        self.assertEqual(battleship, "IBS-U-USN-ERMA-MISSOURI")
+        self.assertEqual(battleship, "IBS-U-USN-UNNAMED-T01-R03")
         with_bb = [battleship, *PROLOGUE_SHIPS[:2]]
         self.assertEqual(self.save("escort-illegal-bb", ship_ids=with_bb).status_code, 400)
         self.assertEqual(self.save("five-dd-illegal", budget=10000, ship_ids=[battleship, *PROLOGUE_SHIPS]).status_code, 400)
         valid = self.good(self.save("battleship-draft", budget=10000, ship_ids=with_bb))
         self.assertTrue(valid["validation"]["structure_valid"])
-        self.assertFalse(valid["validation"]["ranked_ready"])
-        self.assertEqual(valid["validation"]["unavailable_ship_ids"], with_bb)
+        self.assertFalse(valid["validation"]["ranked_ready"])  # the two escorts are not owned yet
+        self.assertEqual(valid["validation"]["unavailable_ship_ids"], with_bb[1:])
 
     def test_role_limits_preserve_original_ranked_composition(self):
         self.assertEqual(ranked_composition_errors(3000, ["DD"] * 6), [])

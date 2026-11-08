@@ -1844,6 +1844,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-unnamed-t01-r03.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R03",
+      "character_name": "北卡罗来纳",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r03.png",
+      "source_sha256": "0e2284b3e11ed4cd18e31c07538b8a0c1e5d11f6ac6e9df421ff339509479453",
+      "sha256": "fdc9b3b30ec8789ca9b482fe4932866661a9990a2b08cc23187f17bcceaf3494",
+      "size": [
+        700,
+        1050
+      ]
+    },
+    {
       "path": "ibs-u-usn-unnamed-t01-r12.webp",
       "character_id": "IBS-U-USN-UNNAMED-T01-R12",
       "character_name": "芝加哥",

@@ -42,16 +42,22 @@ class PointTableTest(unittest.TestCase):
     def test_manifest_matches_the_frozen_table(self):
         self.assertEqual(self.points.version, "cas-points-surface-v1")
         self.assertEqual(self.points.rules_version, "cas-realtime-v10")
-        self.assertEqual(self.points.budgets, (3000,))
-        self.assertEqual(len(self.points.hulls), 10)
+        self.assertEqual(self.points.budgets, (3000, 10000))
+        self.assertEqual(len(self.points.hulls), 17)
         self.assertTrue(set(PROLOGUE_SHIPS) <= set(self.points.hulls))
-        self.assertEqual(set(self.points.probes), {3000})
+        self.assertEqual(set(self.points.probes), {3000, 10000})
 
     def test_free_starter_fleet_is_ranked_ready(self):
         snapshot = self.points.checked(self.meta(), 3000, "fleet-free")
-        self.assertEqual(snapshot["cost"], 1875)
-        with self.assertRaises(Exception):
-            self.points.checked(self.meta(ships=list(PROLOGUE_SHIPS)), 3000, "fleet-free")
+        self.assertEqual(snapshot["cost"], 1375)
+        # 3000 points is the minimum scale: the six cheapest destroyers fit.
+        six = ["IBS-U-USN-FLETCHER", "IBS-U-USN-PERKINS", "IBS-U-USN-MAURY",
+               "IBS-U-USN-DRAYTON", "IBS-U-USN-LAMSON", "IBS-U-IJN-KAGERO"]
+        # The sixth identity is axis, so build two same-side six-DD probes.
+        allied_six = ["IBS-U-USN-FLETCHER", "IBS-U-USN-PERKINS", "IBS-U-USN-MAURY",
+                      "IBS-U-USN-DRAYTON", "IBS-U-USN-LAMSON"]
+        snapshot = self.points.checked(self.meta(ships=allied_six), 3000, "fleet-free")
+        self.assertEqual(snapshot["cost"], 2250)
         self.assertEqual(snapshot["fleet"]["cost_version"], "cas-points-surface-v1")
         self.assertEqual(snapshot["fleet"]["ship_ids"][0], PROLOGUE_SHIPS[0])
 

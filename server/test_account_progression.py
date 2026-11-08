@@ -149,9 +149,9 @@ class AccountProgressionTest(unittest.TestCase):
         self.assertTrue(seventh["claimed"])
         reward = seventh["rewards"][0]
         self.assertNotIn("ship_ids", reward)
-        self.assertEqual(reward["medals"], 20)  # The North Carolina card is rare.
+        self.assertEqual(reward["medals"], 50)  # The North Carolina card is UR after the UP promotion.
         self.assertEqual(seventh["meta"]["owned_ships"].count(CHECK_IN_SHIP), 1)
-        self.assertEqual(seventh["meta"]["wallet"]["medals"], 20)
+        self.assertEqual(seventh["meta"]["wallet"]["medals"], 50)
 
     def test_summary_reads_only_the_authenticated_accounts_growth(self):
         other = self.register("separate-tester")
