@@ -895,6 +895,7 @@ impl World {
                         | crate::campaign::kula::VARIANT
                         | crate::illumination::RADAR_TRAINING
                         | crate::empress::VARIANT
+                        | crate::campaign::esperance::VARIANT
                 ))
     }
 

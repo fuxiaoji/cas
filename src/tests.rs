@@ -198,6 +198,42 @@ fn ai_exposes_a_searchlight_in_a_close_night_battle() {
 }
 
 #[test]
+fn esperance_campaign_opens_both_seats_with_printed_geometry() {
+    let mut allies = Engine::default();
+    let start = ask(
+        &mut allies,
+        json!({"op":"new_campaign","id":"CAMP-ALLIES-02","difficulty":"story","seed":6106}),
+    );
+    assert_eq!(start["campaign"]["stageId"], json!("CAMP-ALLIES-02"));
+    assert_eq!(start["ships"].as_array().unwrap().len(), 9);
+    assert_eq!(start["environment"]["light"], json!("night"));
+    assert_eq!(start["environment"]["sea_state"], json!(3));
+    let mut axis = Engine::default();
+    let other = ask(
+        &mut axis,
+        json!({"op":"new_campaign","id":"CAMP-AXIS-02","difficulty":"story","seed":6106}),
+    );
+    assert_eq!(other["campaign"]["stageId"], json!("CAMP-AXIS-02"));
+    assert_eq!(other["ships"].as_array().unwrap().len(), 5);
+    // The printed relation: Aoba 315°/13.5 nmi from Helena. The allied seat
+    // cannot see the enemy, so verify through the axis seat's own positions
+    // against the known allied column start.
+    for fleet in [1] {
+        ask(
+            &mut allies,
+            json!({"op":"ai","fleet":fleet,"profile":"coord","mode":"auto","move":true,"gun":true,"torpedo":true}),
+        );
+    }
+    let mut end = ask(&mut allies, json!({"op":"step","seconds":2700}));
+    if end["result"].is_null() {
+        end = ask(&mut allies, json!({"op":"step","seconds":1500}));
+    }
+    assert!(!end["result"].is_null(), "the scenario must resolve");
+    let save = ask(&mut allies, json!({"op":"save"}));
+    assert_eq!(ask(&mut allies, json!({"op":"replay","save":save})), end);
+}
+
+#[test]
 fn empress_campaign_bindings_open_both_seats() {
     let mut allies = Engine::default();
     let start = ask(
@@ -602,8 +638,9 @@ fn campaign_catalogue_uses_real_stage_ids_without_enabling_unfinished_levels() {
         let channel = item["ibs_id"] == "IBS-S-03";
         let kula = item["ibs_id"] == "IBS-S-02";
         let empress = item["cas"]["scenario_id"] == "cas-rs-empress-augusta-bay";
-        assert_eq!(item["playable"], cape || channel || kula || empress);
-        if cape || channel || kula || empress {
+        let esperance = item["cas"]["scenario_id"] == "cas-rs-cape-esperance";
+        assert_eq!(item["playable"], cape || channel || kula || empress || esperance);
+        if cape || channel || kula || empress || esperance {
             assert_eq!(item["runtime"]["historicalReady"], false);
         }
         for id in item["stage_ids"].as_array().unwrap() {

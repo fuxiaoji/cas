@@ -67,6 +67,14 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
         "shiratsuyu" | "yugumo" => (12, 6.),
         "akizuki" => (8, 10.),
         "kagero" => (9, 9.),
+        // Cape Esperance 1942: US 8in/55 Mk9 (NavWeaps trains ~4 deg/s with
+        // hand-hydraulic drive; 20 s reload from the tethered-barrel record),
+        // 6in/47 Mk16 triple (10 deg/s, 10 s), 5in/25 (15 deg/s, 5 s), and the
+        // Japanese 20cm/50 No.2 (6 deg/s, 12 s from the same family data).
+        "new_orleans_1942" | "northampton_1942" | "salt_lake_city_1942" => (20, 4.),
+        "brooklyn_second_group_1942" => (10, 10.),
+        "aoba_1938" | "kinugasa_1938" | "furutaka_1937" => (12, 6.),
+        "fubuki_1936_refit" => (12, 6.),
         "sendai" => (12, 7.5),
         "onami" | "makinami" | "amagiri" | "yugiri" => (9, 9.),
         "uzuki" => (12, 8.),

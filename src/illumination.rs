@@ -33,6 +33,7 @@ impl World {
     pub(crate) fn has_starshells(&self) -> bool {
         self.version == VERSION
             || self.variant == crate::empress::VARIANT
+            || self.variant == crate::campaign::esperance::VARIANT
             || (self.realtime() && matches!(self.variant.as_str(), TRAINING | RADAR_TRAINING))
     }
 

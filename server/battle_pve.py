@@ -34,7 +34,7 @@ REWARDS = (
     ("STAR3", "战术星章", {"tickets": 2, "medals": 10}),
 )
 AI_UNLOCK = {"gunnery": "fleet", "torpedo": "rc_torpedo_wings"}
-Stage = Literal["CAMP-ALLIES-03", "CAMP-AXIS-03", "CAMP-ALLIES-11", "CAMP-AXIS-11"]
+Stage = Literal["CAMP-ALLIES-03", "CAMP-AXIS-03", "CAMP-ALLIES-11", "CAMP-AXIS-11", "CAMP-ALLIES-02", "CAMP-AXIS-02"]
 Difficulty = Literal["story", "standard", "challenge"]
 UnitId = Annotated[int, Field(gt=0, le=10000)]
 ContactId = Annotated[str, Field(min_length=1, max_length=24, pattern=r"^[A-Za-z0-9_.:-]+$")]
