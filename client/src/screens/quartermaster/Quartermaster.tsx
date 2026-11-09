@@ -426,10 +426,6 @@ export function Quartermaster({ state, change, busy, counter, onCounter, onRecru
 
   return <div className="quartermaster" data-quartermaster-counter={counter}>
     <header className="qm-top">
-      <div className="qm-title">
-        <small>QUARTERMASTER · 干船坞三号库</small>
-        <h2>干船坞账本</h2>
-      </div>
       <WalletBar className="qm-wallet" items={walletItems} label="军需处账面" />
       <div className="qm-top-actions">
         <button type="button" className="qm-acquire" onClick={() => onCounter('supply')}>获取</button>
@@ -492,7 +488,7 @@ export function Quartermaster({ state, change, busy, counter, onCounter, onRecru
           <div><span>本周实战</span><b>{Math.min(week.count, 3)} / 3</b></div>
           <div><span>AI 已解锁</span><b>{unlockedAi} / {AI_SHOP.length}</b></div>
         </section>
-        <p className="qm-order__note">军需处只做采购与兑换；征募在「军港征募」独立页面进行。账面为白天干船坞抄录，购买后盖章入册。</p>
+        <p className="qm-order__note">军需处只做采购与兑换；征募在「军港征募」独立页面进行。账面在干船坞抄录，购买后盖章入册。</p>
       </aside>
     </section>
 

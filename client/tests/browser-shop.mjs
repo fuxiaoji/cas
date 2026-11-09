@@ -64,7 +64,7 @@ try {
 
   await openQuartermaster();
   assert.equal((await page.locator('.harbor-head h1').innerText()).trim(), '军需处');
-  assert.equal((await page.locator('.qm-title h2').innerText()).trim(), '干船坞账本');
+  assert.equal(await page.locator('.qm-title').count(), 0, 'quartermaster keeps one page title');
   assert.equal(await page.locator('.qm-counter').count(), 4, 'the quartermaster has four counters');
   console.log('wallet', await page.locator('.qm-wallet').innerText());
   assert.match(await page.locator('[data-wallet-item="credits"]').innerText(), /5,000/);

@@ -38,27 +38,27 @@
 .ai-shop-buy button { white-space: nowrap; }
 .ai-shop-reason { margin-top: 5px; font-size: 11px; color: #b9ccd0; line-height: 1.5; }
 .harbor-error { margin: 10px 26px 0; color: #efaf92; }
-/* 军需处 takes the whole body as a daylight dry-dock ledger; the night hero and
-   the old wallet stay out of this section. */
-.harbor--quartermaster { background: #d8c9a9; }
+/* 军需处 is part of the same dark chartroom; the ledger is brass and stamps,
+   not a daylight paper page. The night hero and old wallet stay out of this section. */
+.harbor--quartermaster { background: #081820; }
 .harbor--quartermaster .harbor-head {
   grid-template-columns: minmax(0, 1fr) auto auto;
-  border-bottom-color: #b39863;
-  background: linear-gradient(180deg, #f7efdd, #e7d9bc);
-  color: #2e2a20;
+  border-bottom-color: var(--cas-line);
+  background: linear-gradient(180deg, #102a36, #0b202a);
+  color: var(--cas-ink);
 }
-.harbor--quartermaster .harbor-head h1 { color: #342d20; }
-.harbor--quartermaster .harbor-head div:first-child span { color: #7c6a4a; }
+.harbor--quartermaster .harbor-head h1 { color: var(--cas-ink); }
+.harbor--quartermaster .harbor-head div:first-child span { color: var(--cas-muted); }
 .harbor--quartermaster .harbor-head > button {
   grid-column: 3;
-  border-color: #b39863; background: #fbf5e7; color: #59451f;
+  border-color: var(--cas-line-strong); background: #0e2631; color: var(--cas-ink);
 }
-.harbor--quartermaster .harbor-head > button:hover:not(:disabled) { border-color: #8a6626; background: #fffaf0; }
+.harbor--quartermaster .harbor-head > button:hover:not(:disabled) { border-color: var(--cas-brass); background: #17333f; }
 .harbor-content--quartermaster { display: flex; flex-direction: column; overflow: hidden; }
 .harbor-content--quartermaster > .quartermaster { flex: 1 1 auto; height: auto; min-height: 0; }
 .harbor--quartermaster .harbor-error {
-  flex: none; margin: 0; padding: 5px 18px; border-bottom: 1px solid #a5654f;
-  background: #f0ddcf; color: #7b3f2c;
+  flex: none; margin: 0; padding: 5px 18px; border-bottom: 1px solid var(--cas-alert);
+  background: #2b1d1b; color: #ffd3c2;
 }
 .lesson-list { list-style: none; padding: 0; margin: 0; }
 .lesson-list li { display: grid; grid-template-columns: 23px 1fr; gap: 7px; padding: 6px 0; border-bottom: 1px solid #2c4650; }
