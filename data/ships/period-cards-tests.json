@@ -1,0 +1,114 @@
+{
+ "as_of": "2026-11-08",
+ "cargo_test_release_locked": {
+  "command": "cargo test --release --locked",
+  "lib_passed": 100,
+  "lib_failed": 0,
+  "binary_and_doc_targets": "0 tests, ok",
+  "ranked_fleets_tests": [
+   "ranked_fleets::tests::free_fleet_mirrors_keep_their_named_profiles_and_replay",
+   "ranked_fleets::tests::capital_ships_inherit_source_batteries_and_armor",
+   "ranked_fleets::tests::frozen_manifest_matches_the_runtime_point_formula",
+   "ranked_fleets::tests::every_profile_source_class_resolves_to_a_loaded_card",
+   "ranked_fleets::tests::period_cards_carry_complete_hulls_into_a_ranked_duel",
+   "ranked_fleets::tests::period_card_stats_follow_the_printed_hull_pages",
+   "ranked_fleets::tests::every_period_hull_has_a_realtime_gun_cadence",
+   "ranked_fleets::tests::declared_tiers_fit_the_cheapest_legal_fleets"
+  ]
+ },
+ "server_test_ranked": {
+  "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_ranked",
+  "ran": 12,
+  "failures": 0,
+  "skipped": 0,
+  "without_native_sim": "12 ran, 0 failed, 4 skipped (duel flow tests need the native sim path)"
+ },
+ "server_other_suites": {
+  "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_accounts server.test_battle_pve server.test_account_progression server.test_fleets server.test_duels",
+  "ran": 21,
+  "failures": 0
+ },
+ "client": {
+  "tsc": "node node_modules/typescript/bin/tsc --noEmit -> pass",
+  "vite_build": "node node_modules/vite/bin/vite.js build -> pass（仅既有 chunk-size 警告）"
+ },
+ "wasm": "未重建：本批只增加 ranked 注册表数据与 23 条实时炮座时序，未改任何剧本、裁决路径或既有舰卡；ranked 对局由原生服务端权威执行，浏览器内核不受影响。",
+ "stale_assertions_fixed": [
+  "server/test_ranked.py：免费序章编队点价 1875 → 1375（点表公式在 balance 批改为按实际舰卡计算，该断言只在设置 CAS_TEST_DUEL_SIM_PATH 时执行，此前一直跳过）",
+  "server/test_ranked.py：ranked_budgets / available_budgets [3000] → [3000, 10000]（10000 分档已开放，点表 enabled_budgets 已含）"
+ ],
+ "stat_correction_round": {
+  "rule": "有本舰 Form 10 个体页的取个体页（guns/torpedoes/DP/损伤-航速行），class 表只作未印项兜底；逐舰炮座/雷管与 13 张同型 source card 对齐（Gwin p.301 / Barton p.291 口径＝2 座×5）。差额与冲突逐条写入 period-cards.json 的 stat_conflicts。",
+  "cards": [
+   {
+    "identity": "IBS-U-IJN-CHOKAI",
+    "page": "Rising Sun Form 10 p.49（Chokai CA, Aug 42 Damage）",
+    "gun": "9 管 / 5 座（Fwd 单装 1 + Fwd 双联 2 + P&S 双联 2 + Aft 双联 2 + Aft 双联 2）",
+    "torpedo": "8 雷管 / 2 座×4（Port/Stbd），8 枚备雷",
+    "dp_speed": "471 DP；损伤行 0/118/236/353/424/471 → 33/25/16/8/0",
+    "before": "20 管 / 4 座×5；16 雷管 / 4 座；401 DP（class 行）",
+    "points": "1800 → 1375",
+    "playable": true
+   },
+   {
+    "identity": "IBS-U-USN-WILSON",
+    "page": "Rising Sun Form 10 p.317（Wilson DD, Dec 1941）＋AF A-18",
+    "gun": "4 门单装 / 4 座（Fwd 2 + Aft 2）",
+    "torpedo": "16 雷管 / 4 座×4（Port 2 + Stbd 2）",
+    "dp_speed": "118 DP、38 节；损伤行 0/30/59/89/106/118 → 38/28/19/10/0",
+    "before": "8 管 / 2 座×4；8 雷管 / 2 座；124 DP/35 节（class 行）",
+    "points": "500 → 475",
+    "playable": true
+   },
+   {
+    "identity": "IBS-U-USN-MONSSEN",
+    "page": "Rising Sun Form 10 p.303（Monssen DD, May 42 Modification）",
+    "gun": "4 门单装 / 4 座（Fwd 2 + Aft 2）",
+    "torpedo": "10 雷管 / 2 座×5（Port & Stbd (5)×2；同型 Gwin p.301 口径，与 13 张同型卡一致）",
+    "dp_speed": "128 DP、35 节；损伤行 0/32/64/96/115/128 → 35/26/18/9/0",
+    "before": "8 管 / 2 座×4；无鱼雷；144 DP/37 节（class 行）",
+    "points": "475 → 425",
+    "playable": true
+   },
+   {
+    "identity": "IBS-U-USN-BUCHANAN",
+    "page": "Rising Sun Form 10 p.292/p.293（Buchanan DD, Mar 42）＋AF A-17",
+    "gun": "4 门单装 / 4 座（Fwd 2 + Aft 2）",
+    "torpedo": "10 雷管 / 2 座×5（Port & Stbd (5)×2；同型 Barton p.291 口径）",
+    "dp_speed": "118 DP、37 节（与 class 行一致）",
+    "before": "8 管 / 2 座×4；8 雷管 / 2 座×4",
+    "points": "500 → 425",
+    "playable": true
+   },
+   {
+    "identity": "IBS-U-USN-UNNAMED-T01-R25",
+    "page": "Rising Sun Form 10 p.262（San Juan CL, May 1942）＋AF A-15",
+    "gun": "16 管 / 8 座×2（3F + Port + Stbd + 3A）",
+    "torpedo": "8 雷管 / 2 座×4（Port + Stbd）",
+    "dp_speed": "304 DP、33 节（与 class 行一致）",
+    "before": "10 管 / 5 座×2；4 雷管 / 2 座×2",
+    "points": "850 → 1025",
+    "playable": true
+   },
+   {
+    "identity": "IBS-U-USN-HULL-I",
+    "page": "American Fleets A-19（Farragut；无本舰 Form 10）",
+    "gun": "5 门单装 / 5 座（2F + P&S + 2A，Mk21 5in/38）",
+    "torpedo": "8 雷管 / 2 座×4（P&S(4)2 Mk11）",
+    "dp_speed": "105 DP、36 节；损伤行 0/26/53/79/95/105 → 36/27/18/9/0；Size D/Small、Standard Rudder 200 yds (1)",
+    "before": "damage 36/speed 26、turn 300、size C（Savo 包旧值）",
+    "points": "425 → 425",
+    "playable": true
+   }
+  ],
+  "all_verified": "23 张 stat_verified 全为 true，均仍可出战；无一张需要挂 blocker。",
+  "profile_old_values_not_used": "合并时以重建 ship 为准：period-cards 的 ship 覆盖 savo profile 旧值（us_atlanta_cl 5 座→8 座、us_benson_dd 8 管→10 管、us_bristol_dd 雷装→2×5、us_benham_dd 35/124→38/118、us_farragut_dd 36/26→26/27 与 200/1/D）；builder 只在重建表缺失时才回落到包内行，不把旧 profile 写回。"
+ },
+ "notes": [
+  "23 条 period 舰卡全部为完整 ShipDef（结构字段、主炮表、鱼雷段或源页明确的 null、装甲、损伤/航速行齐备）。",
+  "10 条有已核 Form 10 页（Boise 265、Farenholt 296、Duncan 295、Laffey 297、McCalla 299、Honolulu 267、Uzuki 183、San Juan 262、Tenryu 81、Yubari 75）；其余 13 条源包登记为未核（null），不补默认值。",
+  "Buchanan 与 Honolulu 各有两张 period 卡；本批按剧本运行时的逐舰卡选 us_bristol_dd（Savo）与 brooklyn_1（Kula），另一张记录在 also_recorded。",
+  "Chokai/Wilson/Monssen/Buchanan/San Juan 五张按个体页重录炮座与雷管（含 Monssen/Wilson/Chokai 的 DP 与损伤行），Hull 按 AF A-19 对齐；class 行与个体页差额保留在 stat_conflicts，不再原样沿用 runtime 错值。",
+  "Boise、Honolulu、Uzuki 三条源 period 卡没有鱼雷行（Brooklyn 级无鱼雷管、Uzuki 1943 运输配置拆雷），torpedo 保持 null，不臆造；其余 20 条按源卡登记鱼雷。"
+ ]
+}

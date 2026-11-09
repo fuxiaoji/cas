@@ -11,5 +11,12 @@
 9. 按 [服务运行说明](../../server/README.md) 在回环地址启动账号服务，设置 `CAS_SIM_PATH` 启用权威战役，并将 `CAS_ACCOUNT_DB` 指向 `artifacts/` 下独立的 `*qa*.sqlite3` 测试库。给脚本的 `CAS_ONLINE_TEST_DB` 设置同一测试库；如服务依赖不在默认 Python，可设 `CAS_ONLINE_TEST_PYTHON`。运行 `node tests/browser-online.mjs` 验收联机注册、云签到和重登防重、邮件领取、常驻征募、商店兑换、真实权威战役和重登续战。夹具只向当次新建账号投递邮件；商店使用活动中心实际发放的签到补给币。默认使用 `http://127.0.0.1:8021`；如改服务地址，同时配置客户端的 `VITE_CAS_ACCOUNT_URL` 和脚本的 `CAS_ONLINE_TEST_API`。脚本限制在本机回环，截图和凭证默认写入 `artifacts/client/online/`。
 10. 运行 `node tests/browser-empress.mjs` 验收奥古斯塔皇后湾 22 舰夜战：演习设置入口、本方 12 舰／3 列、夜战 10% 能见度与阵雨、AI 推进到战果，以及副炮／照明弹／炮击／鱼雷事件。凭证默认写入 `artifacts/client/empress/`。
 11. 同一服务下运行 `node tests/browser-online-recruit.mjs` 专项验收 0.6.11 线上征募台：主题图、概率页、十连到港、逐舰揭示、跳过、上次到港回看、换池、重复请求幂等与冲突拒绝、刷新后重登、指定兑换、740×360 短屏和余额对账。截图与凭证默认写入 `artifacts/client/online-recruit/`。
+12. 运行 `node tests/browser-deployment.mjs` 验收关前编成：9 舰位换舰、保存/载入预设、按历史编制、刷新后草稿、740×360 参谋抽屉，以及换舰后的真实出航。凭证默认写入 `artifacts/client/deployment/`。
+13. 运行 `node tests/browser-campaign-modes.mjs` 验收战役模式边界：史料馆 11 行、未开放关卡按钮禁用、标准难度按历史编制直出。凭证默认写入 `artifacts/client/campaign-modes/`。
+14. 运行 `node tests/browser-taskforce.mjs` 验收特混编成（奥古斯塔皇后湾）：3 个初设位置、第 1 位战列舰、第 2 位空置、第 3 位驱逐舰；出航 2 舰/2 编队并核对两处历史锚点。凭证默认写入 `artifacts/client/taskforce/`。
+15. 运行 `node tests/browser-taskforce-esperance.mjs` 验收单编队极端：1 个初设位置、单舰北卡罗来纳、核对历史锚点。凭证默认写入 `artifacts/client/taskforce-esperance/`。
+16. 运行 `node tests/browser-ai-shop.mjs` 验收 evolved AI 商店：三条 profile 的价格/解锁条件/provisional 标记、战役通关解锁、常驻征募券扣款与防重复、刷新持久化、740×360 无横向滚动、母港预设与战役编成进战斗、存档重载后 profile 不丢。凭证默认写入 `artifacts/client/ai-shop/`。
+
+> `browser-campaign.mjs` 是旧 `.archive-list` 版本的战役脚本，早于当前 `.war-*` 档案页；当前战役与编成验收使用上列 `browser-esperance` / `browser-deployment` / `browser-campaign-modes` / `browser-taskforce`。
 
 验收走真实海图、舰船标记、触屏和母港控件。为缩短等待时间，脚本通过页面正在使用的 Worker 推进模拟秒并读回权威观察，不注入战果或资产。默认在 `artifacts/client/port/` 写入截图、录屏和 JSON 凭证；可用 `CAS_ARTIFACTS` 更换位置。740×360 项是浏览器触屏模拟，实体安卓需另测。

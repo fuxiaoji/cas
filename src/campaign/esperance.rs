@@ -103,7 +103,20 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
     w.field = FIELD;
     w.islands = islands();
     let player = w.player;
+    let groups = w.campaign.as_ref().and_then(|start| start.groups.clone());
+    let mut anchors = Vec::new();
     for column in columns() {
+        if column.side == player && groups.is_some() {
+            anchors.push(super::fleet::GroupAnchor {
+                fleet: column.fleet,
+                name: column.name.into(),
+                p: P { x: column.x, y: column.y },
+                h: column.heading,
+                speed: column.speed,
+                spacing: COLUMN_YD * YARD,
+            });
+            continue;
+        }
         let mut members = Vec::new();
         for (index, (class, name)) in column.ships.iter().enumerate() {
             let def = w
@@ -142,6 +155,15 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
             tactic: Tactic::Search,
         });
     }
+    if let Some(groups) = groups {
+        let budget = super::fleet::historical_budget(
+            w,
+            columns().iter()
+                .filter(|column| column.side == player)
+                .flat_map(|column| column.ships.iter().map(|(class, _)| *class)),
+        );
+        super::fleet::spawn_groups(w, &anchors, &groups, budget)?;
+    }
     // US radar: SG and SC-2 on every allied hull (Form 10s). The Japanese
     // ships carry no surface-search radar in October 1942 — Type 21 is
     // air-search only — so their fire control stays optical.
@@ -161,6 +183,10 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
     // turns take over from there. 15 km of route keeps both columns inside
     // the chart without crossing the detected Guadalcanal coast.
     for column in columns() {
+        // A task-force position may be intentionally empty.
+        if w.fleet(column.fleet).is_none() {
+            continue;
+        }
         let radians = column.heading.to_radians();
         let (dx, dy) = (radians.sin() * 15_000., radians.cos() * 15_000.);
         let points = vec![snap(P {

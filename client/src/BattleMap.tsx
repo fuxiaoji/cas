@@ -670,7 +670,7 @@ export function BattleMap(props: MapProps) {
     <div className="map-compass"><Compass /></div>
     <BattleAlerts events={o.events} tick={o.tick} session={session} enabled={!replaying} />
     <div className="map-note">
-      <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : o.campaign ? o.scenario.split(' · ', 1)[0] : night ? '夜航接敌' : o.variant === 'challenge' ? '少舰迎击' : o.realtimeGunnery ? '实时炮击演习' : '昼间水面演习'}</strong>
+      <strong>{editing ? '在海图点选途经点' : reformPreview ? '重整纵队预览' : o.campaign ? o.scenario.split(' · ', 1)[0] : night ? '夜航接敌' : o.variant === 'challenge' ? '越级挑战' : o.realtimeGunnery ? '实时炮击演习' : '昼间水面演习'}</strong>
       <span>{editing ? '拖动编号航点可修正航线' : o.campaign ? '历史阵位 · RTS 改编' : o.variant === 'radar' ? '虚构夜间演习 · 雷达回波 R' : night ? '虚构夜间演习 · 目视搜索' : '虚构演习 · 开阔水域'}</span>
     </div>
     {gesture && <div className={'gesture-tip' + (gesture.aim?.friendly || gesture.aim?.valid === false || (gesture.weapon === 'torpedo' && aimInArc === false) ? ' warning' : '')}

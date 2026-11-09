@@ -1,0 +1,40 @@
+{
+    "schema":  "cas-ai-cas-sim-evidence-v1",
+    "source":  "cas-sim host protocol: new + ai + step + report + save, then replay(save) in a fresh process",
+    "seed":  6106,
+    "side":  "allies",
+    "candidateProfile":  "evo-screen",
+    "opponentProfile":  "torpedo",
+    "variant":  "",
+    "result":  {
+                   "allies":  5,
+                   "axis":  1,
+                   "winner":  "allies"
+               },
+    "stepTick":  2348,
+    "replayTick":  2348,
+    "replayResult":  {
+                         "allies":  5,
+                         "axis":  1,
+                         "winner":  "allies"
+                     },
+    "replayMatches":  true,
+    "saveSha256":  "2e3944cffd84e343eb7597242d17935009d5e92ebc2e5fbdc3ceacbb8d2bc178",
+    "saveBytes":  268,
+    "events":  {
+                   "sunk":  6,
+                   "torpedo_hit":  0,
+                   "torpedo":  0,
+                   "hit":  19,
+                   "total":  248,
+                   "gun":  42
+               },
+    "sunkShips":  [
+                      "已观测到敌舰沉没",
+                      "已观测到敌舰沉没",
+                      "弗莱彻级 1 沉没",
+                      "已观测到敌舰沉没",
+                      "已观测到敌舰沉没",
+                      "已观测到敌舰沉没"
+                  ]
+}

@@ -1,0 +1,7113 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-source-cards-allies-v1",
+ "as_of": "2026-11-08",
+ "scope": "66 个非当前剧本身份中 side=allies 且有 CAS 船表的舰（排除 CV）；本文件 21 条 = 22 条 allies cas_source_table 减去 Midway (CV)。",
+ "policy": "只转录已核页：profile 取 AF Annex A 或 RS Form 10 的舰卡行，主炮/鱼雷取 AF Annex C/F 或 Form 10 本页表；class profile 同型复用，Colorado 1929 与 West Virginia 1944 因源页是两张不同配置卡而分列；McDonough 按 DD-351 实际 Farragut 级重建，catalog 的 usn-4in-dd 错标签只保留为 catalog_class_recorded。不补默认值、不写点价；本批 21 条全部可出 ship，0 条 blocker。",
+ "sources": {
+  "american_fleets": {
+   "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "pdf_pages": 139,
+   "printed": "Annex A ships + Annex C1/C2 guns + Annex F torpedoes"
+  },
+  "home_fleet": {
+   "file": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+   "pdf_pages": 140,
+   "printed": "Annex F torpedoes"
+  },
+  "rising_sun_form10": {
+   "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "pdf_pages": 380,
+   "printed": "Form 10 ship cards"
+  }
+ },
+ "profiles": {
+  "usn_colorado_bb_1929": {
+   "class": "Colorado (1929)",
+   "catalog_class": "usn-colorado-bb",
+   "side": "allies",
+   "kind": "BB",
+   "size_class_en": "A/Large",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     9,
+     10
+    ],
+    "printed_pages": [
+     "A-6",
+     "A-7"
+    ]
+   },
+   "displacement_std_tons": 32500,
+   "in_class": "3 + 1",
+   "in_service": "1929 (1921)",
+   "configuration": "1928-29 refit (AF A-6)",
+   "in_service_year": 1929,
+   "crew": 1080,
+   "armor_rating": "29/12/135",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    185,
+    369,
+    554,
+    664,
+    738
+   ],
+   "speed_knots": [
+    21,
+    16,
+    11,
+    5,
+    0,
+    0
+   ],
+   "main_gun": "us_16in45_mk1",
+   "gun_mounts_verbatim": "F/A(2)4 Mk1 16in/45",
+   "secondary_verbatim": "Casemate(1)14 Mk15 5in/51",
+   "tertiary_verbatim": "P/S(1)8 Mk10/11 5in/25",
+   "torpedoes_verbatim": null,
+   "torpedo_model": null,
+   "aircraft": "2 Aft catapult, 3 O2U floatplanes",
+   "area_aa_verbatim": "(1)8 Mk10/11 5in/25 (1.7)",
+   "light_aa_verbatim": "1930s: (1)8 .50 cal. added (0.6)",
+   "sensors": null,
+   "remarks_verbatim": "Colorado, Maryland, West Virginia. Incomplete fourth unit Washington scrapped in 1922 as part of Washington Naval Treaty. Also known as Maryland class. Improved Tennessee design with 16 in guns. Laid down before 1925, special damage modifier of -15%. Configuration as of 1928-29 refit.",
+   "dated_remarks": [
+    "1930s: (1)8 .50 cal. added, Lt AA 0.6.",
+    "1937: SOC Seagull replaced UO-1.",
+    "1940: OS2U Kingfisher replaced Seagull.",
+    "Colorado: Jun 41 - Mar 42: in refit, fitted with torpedo bulge (Armor Rtng 29/12/135), Mk3 radar for main battery, CXAM-1 radar.",
+    "Mid-42: 5in/25 replaced by (1)8 Mk30 5in/38, 12 20mm added. Area AA 2.2, Lt AA 3.6.",
+    "Nov 42: Lt AA battery (4)4 1.1 in, 22 20mm, 8 .50 cal. mgs, Lt AA 7.4.",
+    "Nov 43: Two 5in/51, all 1.1 in, .50 cal. removed. Lt AA battery (4)6 and (2)4 40mm, 42 20mm. Lt AA 18.5.",
+    "Dec 43 - Jan 44: Brief refit at Bremerton.",
+    "Feb - May 44: Refitted at Puget Sound.",
+    "Early 44: (2)4 40mm replaced by (4)4 20mm, quad 20mm added Lt AA 20.5.",
+    "24 Jun 44: Struck by shore battery fire, minor damage.",
+    "Aug - Oct 44: Repaired at Puget Sound. Fitted with Mk8 vice Mk3 for 16in guns.",
+    "Summer 45: Planned to fit SP and SCR-720 radars, (2)8 5in/38//4 Mk12/22 with all 5in/51 and single 5in/38 removed. Area AA 4.5.",
+    "Aug 45: (4)8 40mm, (2)2 40mm, (4)1 20mm, (1)39 20mm, Lt AA 19.8."
+   ],
+   "special_damage_modifier_pct": -15,
+   "variant_notes": [
+    "AF A-6 is the 1928-29 refit card. The later 1941-45 Colorado refits are transcribed in dated_remarks only; this profile is the printed card configuration."
+   ]
+  },
+  "usn_colorado_bb_1944": {
+   "class": "West Virginia (1944)",
+   "catalog_class": "usn-colorado-bb",
+   "side": "allies",
+   "kind": "BB",
+   "size_class_en": "A/Large",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     7
+    ],
+    "printed_pages": [
+     "A-4"
+    ]
+   },
+   "displacement_std_tons": 32500,
+   "in_class": "1",
+   "in_service": "1944 (1921)",
+   "configuration": "May 42 - Jul 44 refit (AF A-4)",
+   "in_service_year": 1944,
+   "crew": 1080,
+   "armor_rating": "29/12/135",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    185,
+    369,
+    554,
+    664,
+    738
+   ],
+   "speed_knots": [
+    21,
+    16,
+    11,
+    5,
+    0,
+    0
+   ],
+   "main_gun": "us_16in45_mk1",
+   "gun_mounts_verbatim": "F/A(2)4 Mk1 16in/45//2 Mk8",
+   "secondary_verbatim": "P/S(2)8 Mk28 5in/38//4 Mk4",
+   "tertiary_verbatim": null,
+   "torpedoes_verbatim": null,
+   "torpedo_model": null,
+   "aircraft": "2 Aft catapult, 3 OS2U Kingfisher",
+   "area_aa_verbatim": "(2)8 Mk28 5in/38 (4.5)",
+   "light_aa_verbatim": "(4)10 40mm, 40 20mm (20.0)",
+   "sensors": "SG, SC-2",
+   "remarks_verbatim": "Unit of Colorado class sunk at Pearl Harbor, raised and rebuilt. Laid down before 1925, special damage modifier of -15%. Configuration after May 42 - Jul 44 refit.",
+   "dated_remarks": [
+    "Aug 45: (4)10 40mm, (2)2 20mm, (1)58 20mm, Lt AA 25.5.",
+    "Summer 45: Planned to fit SP and SCR-720 radars."
+   ],
+   "special_damage_modifier_pct": -15,
+   "variant_notes": [
+    "Same catalog class as Colorado but a separate CAS card (AF A-4, 1944 rebuild). It is not merged into the Colorado (1929) profile: the guns, secondary battery, gunnery standard and sensors differ on the printed cards."
+   ]
+  },
+  "usn_lexington_bc_1924": {
+   "class": "Lexington (BC)",
+   "catalog_class": "列克星敦",
+   "side": "allies",
+   "kind": "BC",
+   "size_class_en": "A/Large",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     10,
+     11
+    ],
+    "printed_pages": [
+     "A-7",
+     "A-8"
+    ]
+   },
+   "displacement_std_tons": 43500,
+   "in_class": "6",
+   "in_service": "1924",
+   "configuration": "final design (AF A-7/A-8)",
+   "in_service_year": 1924,
+   "crew": 1315,
+   "armor_rating": "18/8/135",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    224,
+    449,
+    673,
+    807,
+    897
+   ],
+   "speed_knots": [
+    33,
+    24,
+    17,
+    8,
+    0,
+    0
+   ],
+   "main_gun": "us_16in50_mk3",
+   "gun_mounts_verbatim": "F/A(2)4 Mk3 16in/50",
+   "secondary_verbatim": "Casemate(1)16 Mk18 6in/53",
+   "tertiary_verbatim": "P/S(1)6 Mk20 3in/50",
+   "torpedoes_verbatim": "P/S(2)2 533mm TT w/8 (est) Mk9 torp total; P/S(2)2 subm 533mm TT w/8 (est) Mk9 torp total",
+   "torpedo_model": "us_mk9_torpedo",
+   "aircraft": "1 Aft catapult, 1 Floatplane",
+   "area_aa_verbatim": "(1)6 Mk20 3in/50 (0.8)",
+   "light_aa_verbatim": "12 .50 cal. (0.8)",
+   "sensors": null,
+   "remarks_verbatim": "Configuration of final design. Constitution, Constellation, Ranger, United States scrapped, Lexington and Saratoga completed as aircraft carriers. Light AA estimated. Max torpedo launch speed 16 knots. Laid down before 1925, special damage modifier of -15%.",
+   "dated_remarks": [],
+   "special_damage_modifier_pct": -15,
+   "variant_notes": [
+    "AF C-3 prints two APC rows under 'Mk2, 3 16in/50'. The second row is used for the Mk3 card; the first row is recorded here so the ambiguity is not hidden: 8500/22000/35600/44500 yd, pen 82/59/41/32, damage 46/36/31/27.",
+    "The 16in/50 shell is the 2240 lb APC of the 1924 design. No separate 1944-45 refit card exists for this never-completed class."
+   ]
+  },
+  "usn_northampton_ca_1942_02": {
+   "class": "Northampton (Feb 42)",
+   "catalog_class": "北安普顿",
+   "side": "allies",
+   "kind": "CA",
+   "size_class_en": "B/Medium",
+   "source": {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     249
+    ],
+    "printed_pages": [
+     "249"
+    ]
+   },
+   "displacement_std_tons": 9050,
+   "in_class": "6",
+   "in_service": "1929",
+   "in_service_year": 1929,
+   "crew": 621,
+   "armor_rating": "7/3",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    93,
+    185,
+    278,
+    333,
+    370
+   ],
+   "speed_knots": [
+    32,
+    24,
+    16,
+    8,
+    0,
+    0
+   ],
+   "main_gun": "us_8in55_mk14",
+   "gun_mounts_verbatim": "Fwd (3) Mk14 8in/55 ×2; Aft (3) Mk14 8in/55 ×2",
+   "secondary_verbatim": "Port/Stbd (1) Mk11 5in/25 ×8",
+   "tertiary_verbatim": "Port (1) Mk10 3in/50 ×2; Stbd (1) Mk10 3in/50 ×1",
+   "torpedoes_verbatim": null,
+   "torpedo_model": null,
+   "aircraft": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+   "area_aa_verbatim": "(1)8 Mk11 5in/25, (1)3 Mk10 3in/50 (2.5)",
+   "light_aa_verbatim": "4 1.1 in, 8 .50 cal. (1.8)",
+   "sensors": "CXAM",
+   "remarks_verbatim": "Northampton, Chester, Louisville, Chicago, Houston, Augusta. Improved stability over Pensacola class.",
+   "configuration": "Feb 42 Modification (Form 10 p.249)",
+   "form10_footer": "Feb 42 Modification",
+   "dated_remarks": [
+    "Mid-30s: Secondary armament upgraded to P/S(1)8 Mk11 5 in/25 and torpedo tubes removed. Area AA 0.8. Gunnery Standard IV.",
+    "1936: Torpedo tubes removed.",
+    "1940: Chester, Chicago and Northampton fitted with CXAM radar.",
+    "1941: All ships except Louisville fitted with CXAM search radar. Authorized Lt AA fit (4)4 1.1 in. Due to shortage of 1.1 in guns, some ships, including Houston, were fitted with 2P/S(1)3 Mk10 3 in/50 and (4)1 1.1 in (in place of 4th 3 inch gun). Area AA 2.5, Lt AA 0.9.",
+    "Dec 41: Houston had replaced her temporary 3in/50s with (4)4 1.1 in by this date. Total Lt AA (4)5 1.1 in, Lt AA 2.2.",
+    "Dec 41: One quad 1.1 in from Houston landed for use at Corregidor. Lt AA 1.8.",
+    "Mar 42: Houston sunk, AA fit (1) 8 Mk11 5 in, 2P/S(1)3 Mk10 3 in, (4)1 1.1. in (1) 8 .50 cal. Area AA 2.5, Lt AA 0.9."
+   ],
+   "special_damage_modifier_pct": null,
+   "variant_notes": [
+    "AF A-14 prints the 1929 class card with Gunnery Standard III and a 4×5in/25 secondary. Houston's own Form 10 p.249 is the Feb 42 modification: GS IV, 8×5in/25, 3×3in/50. The profile follows the Form 10.",
+    "Form 10 p.249 8in/55 APC prints damage 25/19/16/14; AF C-3 prints 23/18/15/13 for the same gun row. The ship uses the Form 10 values."
+   ]
+  },
+  "usn_omaha_cl_1923": {
+   "class": "Omaha",
+   "catalog_class": "usn-omaha-cl",
+   "side": "allies",
+   "kind": "CL",
+   "size_class_en": "B/Medium",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     19
+    ],
+    "printed_pages": [
+     "A-16"
+    ]
+   },
+   "displacement_std_tons": 7050,
+   "in_class": "10",
+   "in_service": "1923",
+   "configuration": "1923 class card (AF A-16)",
+   "in_service_year": 1923,
+   "crew": 458,
+   "armor_rating": "5/3",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    67,
+    133,
+    200,
+    239,
+    266
+   ],
+   "speed_knots": [
+    33,
+    25,
+    16,
+    8,
+    0,
+    0
+   ],
+   "main_gun": "us_6in53_mk12_14_18",
+   "gun_mounts_verbatim": "F/A(2)2 Mk12 6in/53; PW/PA/SW/SA(1)8 Mk12 6in/53",
+   "secondary_verbatim": "P/S(1)4 Mk10 3in/50",
+   "tertiary_verbatim": null,
+   "torpedoes_verbatim": "P/S(3)2 533mm TT w/3 Mk8 Mod 8 torp; P/S(2)2 533mm TT w/2 Mk8 Mod 8 torp",
+   "torpedo_model": "us_mk8_torpedo",
+   "aircraft": "2 Midships catapult, 2 UO-1",
+   "area_aa_verbatim": "(1)4 Mk10 3in/50 (0.6)",
+   "light_aa_verbatim": "(1)8 .50 cal. (0.6)",
+   "sensors": null,
+   "remarks_verbatim": "Omaha, Milwaukee, Cincinnati, Raleigh, Detroit, Richmond, Concord, Trenton, Marblehead, Memphis. First U.S. cruiser class built since 1905. Memphis never entered combat. Laid down before 1925, special damage modifier of -15%. Search and fire control radars updated as new types became available. Gunhouses have blast protection only. Originally planned fit of two 3 inch AA doubled during construction to four. Originally fitted to lay mines, but never used after unsuccessful tests in 1924.",
+   "dated_remarks": [
+    "1935: SOC Seagull replaced UO-1.",
+    "1938-39: Cincinnati, Richmond, Concord, Trenton, and Marblehead had aft and lowest pair of 6 inch guns removed, leaving 2PW/2SW/PA/SA(1)6 Mk12 6in/53. A(1)1 6in/53 added on Marblehead. Other ships retained all 12 6 inch guns. Gunnery Standard IV.",
+    "1939-40: P/S(2)2 TT removed. Area AA fit changed to F/3P/3S/A(1)8 Mk10 3in/50, except Marblehead 3P/3S/P&S(1)7 3in/50, Area AA 2.2, Marblehead 2.0.",
+    "1940: OS2U Kingfisher replaced SOC Seagull.",
+    "Dec 41: Raleigh damaged at Pearl harbor.",
+    "Jan - Feb 42: Detroit fitted with SC-1, Mk3 radars.",
+    "Feb 42: SG, CXAM-1 radar added.",
+    "4 Feb 42: Marblehead severely damaged by air attack, arrived in New York 4 May for repairs until 15 Oct 42. Fitted with SC, SG, Mk3 radars.",
+    "Jul - Aug 42: Detroit fitted with SG radar.",
+    "Aug 42: Detroit, Raleigh, Cincinnati, and Concord fitted with (4)2 1.1 in replacing two 3in/50. Area AA 0.8, Lt AA 1.2.",
+    "Dec 42 - Jan 43: Richmond had SC replaced by SC(e), SG, Mk3 added, (4)2 1.1 in replaced by 4 40mm, Lt AA 1.6.",
+    "Feb-Mar 43: Detroit fitted with SK in place of SC, received second SC, second Mk3 radar.",
+    "Early '43: All were fitted with SC and SG (Memphis and Cincinnati had CXAM-1 instead) search radar and Mk3 for 6 in guns.",
+    "Jan 43: Richmond Lt AA (2)2 40mm replaced (4)2 1.1 inch.",
+    "Aug - Sep 43: Richmond second SG(e), second Mk3(e) radars added, Lt AA 6 40mm, 8 20mm, Lt AA 3.5.",
+    "Modified AA fit (4)2 40mm, (1)14 20mm, Lt AA 5.5.",
+    "April 1944: Milwaukee loaned to Soviet Navy. Returned to US in March 1949."
+   ],
+   "special_damage_modifier_pct": -15,
+   "variant_notes": [
+    "AF A-16 is the 1923 class card (12×6in/53, 4×3in/50, 10 torpedo tubes). The late-1930s/1942 refits (8×3in/50, torpedo tubes removed, radar) are transcribed in dated_remarks but are not the printed card configuration.",
+    "RS Form 10 p.268 is Marblehead (Omaha class, Dec 1941), a different hull with a different 6in fit; it is not used for Omaha/Memphis."
+   ]
+  },
+  "usn_clemson_4in_dd_1918": {
+   "class": "Wickes/Clemson (Clemson 1120 t)",
+   "catalog_class": "usn-4in-dd",
+   "side": "allies",
+   "kind": "DD",
+   "size_class_en": "D/Small",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     22,
+     23
+    ],
+    "printed_pages": [
+     "A-19",
+     "A-20"
+    ]
+   },
+   "displacement_std_tons": 1120,
+   "in_class": "111/144",
+   "in_service": "1918",
+   "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+   "in_service_year": 1918,
+   "crew": 100,
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    20,
+    39,
+    59,
+    70,
+    78
+   ],
+   "speed_knots": [
+    35,
+    26,
+    18,
+    9,
+    0,
+    0
+   ],
+   "main_gun": "us_4in50_mk9",
+   "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+   "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+   "tertiary_verbatim": null,
+   "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+   "torpedo_model": "us_mk8_torpedo",
+   "aircraft": null,
+   "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+   "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+   "sensors": null,
+   "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+   "dated_remarks": [
+    "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+    "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+    "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+    "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+    "Late 30s: Early QC series sonar added.",
+    "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+    "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+    "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+    "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+    "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+   ],
+   "special_damage_modifier_pct": -15,
+   "variant_notes": [
+    "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+    "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+    "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+    "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+   ]
+  },
+  "us_farragut_dd": {
+   "class": "Farragut",
+   "catalog_class": "us_farragut_dd",
+   "catalog_label_recorded": "usn-4in-dd",
+   "catalog_label_note": "catalog legacy label usn-4in-dd is wrong for DD-351: the actual class is Farragut (AF A-19, 5in/38, 8 Mk15 tubes).",
+   "side": "allies",
+   "kind": "DD",
+   "size_class_en": "D/Small",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     22
+    ],
+    "printed_pages": [
+     "A-19"
+    ]
+   },
+   "displacement_std_tons": 1365,
+   "in_class": "8",
+   "in_service": "1934",
+   "configuration": "1934-42 class card (AF A-19)",
+   "in_service_year": 1934,
+   "crew": 250,
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    26,
+    53,
+    79,
+    95,
+    105
+   ],
+   "speed_knots": [
+    36,
+    27,
+    18,
+    9,
+    0,
+    0
+   ],
+   "main_gun": "us_5in38_mk12_mk38",
+   "gun_mounts_verbatim": "2F/P&S/2A(1)5 Mk21 5in/38",
+   "secondary_verbatim": null,
+   "tertiary_verbatim": null,
+   "torpedoes_verbatim": "P&S(4)2 Mk11 533mm TT w/4 Mk15 torpedoes",
+   "torpedo_model": "us_mk15_tnt_torpedo",
+   "aircraft": null,
+   "area_aa_verbatim": "(1)5 Mk21 5in/38 (0.7)",
+   "light_aa_verbatim": "(1)4 .50 cal. (0.3)",
+   "sensors": "Early QC series",
+   "asw": "2 Mk3 DC rail w/7 Mk7 or 8 Mk6/9 DC",
+   "remarks_verbatim": "DD 348-355.",
+   "dated_remarks": [
+    "Late 41: DC fit 2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC, 4 Mk6 K-gun w/4 Mk6/9 DC. Total of 23 Mk7 & 16 Mk6 or 41 Mk6/9 DCs carried.",
+    "1942: P&S 5in removed, Light AA fit (1)8 20mm. Area AA 1.1, Lt AA 2.0.",
+    "End 42: SC, Mk4 radar added. Light AA fit (2)2 40mm, (1)5 20mm. Lt AA 2.3."
+   ],
+   "special_damage_modifier_pct": null,
+   "savo_cross_check": {
+    "file": "data/campaign/period/savo-island-1942.json",
+    "profile": "us_farragut_dd",
+    "differences": [
+     "Savo damage_points 0/36/53/79/95/105 vs AF A-19 0/26/53/79/95/105.",
+     "Savo speed_knots 36/26/18/9/0/0 vs AF A-19 36/27/18/9/0/0.",
+     "Savo asw '2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC' vs AF A-19 'w/7 Mk7 or 8 Mk6/9 DC'.",
+     "Savo runtime savo_dewey/savo_hull use size C / turn 300 yd / speed loss 1; AF A-19 and Savo's own profile print D/Small."
+    ],
+    "resolution": "按 AF A-19 原页取 DP 0/26/53/79/95/105、speed 36/27/18/9/0/0、asw w/7、size D / 200 yd / 1 kt；Savo 数值未采用。"
+   },
+   "variant_notes": [
+    "catalog 的 usn-4in-dd 是错标签；DD-351 是 Farragut 级，按 AF A-19 重建，不再使用 Clemson/Wickes 4in 卡。",
+    "Savo 的 us_farragut_dd 与 AF A-19 原页冲突（DP 36 vs 26、speed 26 vs 27、ASW w/6 vs w/7），本卡按 AF A-19 原页修正；详见 savo_cross_check。",
+    "Savo runtime savo_dewey/savo_hull 把 Farragut 标成 size C / turn 300；AF A-19 与 Savo 的 profile 都写 D/Small，本卡按 D / 200 yd / 1 kt。"
+   ]
+  },
+  "rn_j_class_dd_1941_12": {
+   "class": "J, K & N class (Jupiter, Dec 1941)",
+   "catalog_class": "rn-j-class-dd",
+   "side": "allies",
+   "kind": "DD",
+   "size_class_en": "C/Small",
+   "source": {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     32
+    ],
+    "printed_pages": [
+     "32"
+    ]
+   },
+   "displacement_std_tons": 1690,
+   "in_class": "8, 8, 8",
+   "in_service": "1939",
+   "in_service_year": 1939,
+   "crew": 183,
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    30,
+    61,
+    91,
+    109,
+    121
+   ],
+   "speed_knots": [
+    36,
+    27,
+    18,
+    9,
+    0,
+    0
+   ],
+   "main_gun": "gb_4_7in45_mkxii",
+   "gun_mounts_verbatim": "Fwd (2) MkXII 4.7in/45 ×2; Aft (2) MkXII 4.7in/45 ×1",
+   "secondary_verbatim": "Aft (1) MkV 4.0 in/45",
+   "tertiary_verbatim": null,
+   "torpedoes_verbatim": "Port & Stbd (5) 533mm TT w/5 MkIX torp",
+   "torpedo_model": "gb_mkix_torpedo",
+   "aircraft": null,
+   "area_aa_verbatim": "(2)3 MkXII 4.7in/45, (1)1 MkV 4in (1.1)",
+   "light_aa_verbatim": "4 2pdr, 2 20mm, 8 .50 cal. (2.0)",
+   "sensors": "Type 286M radar; Type 128 sonar",
+   "remarks_verbatim": "Total 4 DC carried.",
+   "configuration": "Dec 1941 (Jupiter Form 10 p.32)",
+   "dated_remarks": [],
+   "special_damage_modifier_pct": null,
+   "variant_notes": [
+    "The only J/K/N-class Form 10 in the checked source is Jupiter (Dec 1941). It is reused as the class profile for the five catalog identities; no per-hull 1942-43 fit is invented.",
+    "The RS class index (p.13) lists Jupiter as page 33, but the actual card is PDF page 32 (page 33 is Electra). The name index (p.19) correctly says 32."
+   ]
+  },
+  "usn_gearing_dd_1944": {
+   "class": "Gearing",
+   "catalog_class": null,
+   "side": "allies",
+   "kind": "DD",
+   "size_class_en": "C/Small",
+   "source": {
+    "document": "american_fleets",
+    "pdf_pages": [
+     19,
+     20
+    ],
+    "printed_pages": [
+     "A-16",
+     "A-17"
+    ]
+   },
+   "displacement_std_tons": 2616,
+   "in_class": "98 + 7 + 47",
+   "in_service": "1944",
+   "configuration": "1944 (AF A-16/A-17)",
+   "in_service_year": 1944,
+   "crew": 350,
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    41,
+    81,
+    122,
+    146,
+    162
+   ],
+   "speed_knots": [
+    36,
+    27,
+    18,
+    9,
+    0,
+    0
+   ],
+   "main_gun": "us_5in38_mk38",
+   "gun_mounts_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk12/22",
+   "secondary_verbatim": null,
+   "tertiary_verbatim": null,
+   "torpedoes_verbatim": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+   "torpedo_model": "us_mk15_tnt_torpedo",
+   "aircraft": null,
+   "area_aa_verbatim": "(2)3 Mk38 5in/38 (1.7)",
+   "light_aa_verbatim": "(4)2 40mm, (2)2 40mm, (1)10 20mm (5.5)",
+   "sensors": "QGA sonar; SC-2, SG radar",
+   "remarks_verbatim": "DD 710-719, 742, 743, 763-765, 782-790, 805-808, 817-853, 858-890 (only DD 710-713, 742, 743, 782-785, 805-808, 829-838, 858-860, 862-866, 873-885 commissioned during war). Lengthened Sumner class with increased fuel capacity. Stowage for 64 DCs.",
+   "dated_remarks": [
+    "1945 Anti-kamikaze modification: Aft TT mount removed. Lt AA to (4)3 40mm, (2)2 40mm, (2)9-10 20mm, Lt AA 8.5 or 9.0.",
+    "Radar Picket Conversion - DD 742, 743, 805-808, 823, 873-877 fitted with SR vice SC-2, SP radar added, TDY radar jammers, DBM (1st Gen ES), AA to (4)3 40mm (two have MK34 radars for blind-fire control), (2)2 40mm, (2)8 20mm, Lt AA 8.0. DD 742 and DD 743 had one TT mount; remainder have both mounts removed."
+   ],
+   "special_damage_modifier_pct": null,
+   "variant_notes": [
+    "AF F-1 prints Mk15 87 DP (TNT) for the 1935-42 rows and a 1943 Torpex 99 DP row. The ship uses the registered 87 DP TNT row; the Torpex alternative is registered but not used, because the card does not date Gearing's torpedo lot.",
+    "The damage table 0/41/81/122/146/162 and speed 36/27/18/9/0 are printed at the top of A-17 and belong to the Gearing card begun on A-16."
+   ]
+  }
+ },
+ "cards": [
+  {
+   "identity": "IBS-U-USN-COLORADO",
+   "name": "科罗拉多",
+   "side": "allies",
+   "type": "BB",
+   "catalog_class": "usn-colorado-bb",
+   "catalog_class_recorded": "usn-colorado-bb",
+   "catalog_class_note": null,
+   "class_profile": "usn_colorado_bb_1929",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    9,
+    10
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     9,
+     10,
+     109
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      109
+     ],
+     "printed_pages": [
+      "C-3"
+     ],
+     "what": "主炮表 Mk1 16in/45"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit american hits 4/7/9：4 是 Index of Ship Classes（A-1）；7 是 West Virginia (1944) 卡（A-4）；9–10 才是 Colorado (1929) 卡（A-6/A-7，损伤表续到 A-7）。三条 hit 均已回指，未把 7 当 Colorado 数据页。",
+   "profile": {
+    "class": "Colorado (1929)",
+    "catalog_class": "usn-colorado-bb",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      9,
+      10
+     ],
+     "printed_pages": [
+      "A-6",
+      "A-7"
+     ]
+    },
+    "displacement_std_tons": 32500,
+    "in_class": "3 + 1",
+    "in_service": "1929 (1921)",
+    "configuration": "1928-29 refit (AF A-6)",
+    "in_service_year": 1929,
+    "crew": 1080,
+    "armor_rating": "29/12/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     185,
+     369,
+     554,
+     664,
+     738
+    ],
+    "speed_knots": [
+     21,
+     16,
+     11,
+     5,
+     0,
+     0
+    ],
+    "main_gun": "us_16in45_mk1",
+    "gun_mounts_verbatim": "F/A(2)4 Mk1 16in/45",
+    "secondary_verbatim": "Casemate(1)14 Mk15 5in/51",
+    "tertiary_verbatim": "P/S(1)8 Mk10/11 5in/25",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 3 O2U floatplanes",
+    "area_aa_verbatim": "(1)8 Mk10/11 5in/25 (1.7)",
+    "light_aa_verbatim": "1930s: (1)8 .50 cal. added (0.6)",
+    "sensors": null,
+    "remarks_verbatim": "Colorado, Maryland, West Virginia. Incomplete fourth unit Washington scrapped in 1922 as part of Washington Naval Treaty. Also known as Maryland class. Improved Tennessee design with 16 in guns. Laid down before 1925, special damage modifier of -15%. Configuration as of 1928-29 refit.",
+    "dated_remarks": [
+     "1930s: (1)8 .50 cal. added, Lt AA 0.6.",
+     "1937: SOC Seagull replaced UO-1.",
+     "1940: OS2U Kingfisher replaced Seagull.",
+     "Colorado: Jun 41 - Mar 42: in refit, fitted with torpedo bulge (Armor Rtng 29/12/135), Mk3 radar for main battery, CXAM-1 radar.",
+     "Mid-42: 5in/25 replaced by (1)8 Mk30 5in/38, 12 20mm added. Area AA 2.2, Lt AA 3.6.",
+     "Nov 42: Lt AA battery (4)4 1.1 in, 22 20mm, 8 .50 cal. mgs, Lt AA 7.4.",
+     "Nov 43: Two 5in/51, all 1.1 in, .50 cal. removed. Lt AA battery (4)6 and (2)4 40mm, 42 20mm. Lt AA 18.5.",
+     "Dec 43 - Jan 44: Brief refit at Bremerton.",
+     "Feb - May 44: Refitted at Puget Sound.",
+     "Early 44: (2)4 40mm replaced by (4)4 20mm, quad 20mm added Lt AA 20.5.",
+     "24 Jun 44: Struck by shore battery fire, minor damage.",
+     "Aug - Oct 44: Repaired at Puget Sound. Fitted with Mk8 vice Mk3 for 16in guns.",
+     "Summer 45: Planned to fit SP and SCR-720 radars, (2)8 5in/38//4 Mk12/22 with all 5in/51 and single 5in/38 removed. Area AA 4.5.",
+     "Aug 45: (4)8 40mm, (2)2 40mm, (4)1 20mm, (1)39 20mm, Lt AA 19.8."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-6 is the 1928-29 refit card. The later 1941-45 Colorado refits are transcribed in dated_remarks only; this profile is the printed card configuration."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-COLORADO",
+    "name": "科罗拉多",
+    "side": "allies",
+    "kind": "BB",
+    "size": "A",
+    "max_knots": 21,
+    "dp": 738,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 21
+     },
+     {
+      "damage": 185,
+      "knots": 16
+     },
+     {
+      "damage": 369,
+      "knots": 11
+     },
+     {
+      "damage": 554,
+      "knots": 5
+     },
+     {
+      "damage": 664,
+      "knots": 0
+     },
+     {
+      "damage": 738,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 29,
+    "armor_deck": 12,
+    "in_service_year": 1929,
+    "gun": {
+     "name": "Mk1 16in/45 APC",
+     "caliber_mm": 406,
+     "shell": "APC",
+     "range_yd": [
+      6900,
+      17200,
+      27400,
+      34300
+     ],
+     "damage": [
+      43,
+      34,
+      29,
+      25
+     ],
+     "pen_belt": [
+      75,
+      53,
+      38,
+      29
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      24
+     ],
+     "armor_piercing": true,
+     "barrels": 4,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 109,
+      "printed_page": "C-3",
+      "mount_row": "Mk1 16in/45"
+     }
+    },
+    "torpedo": null,
+    "source_class": "usn_colorado_bb_1929",
+    "period_label": "1928-29 refit (Colorado 1929)",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       9,
+       10
+      ],
+      "printed_pages": [
+       "A-6",
+       "A-7"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       109
+      ],
+      "printed_pages": [
+       "C-3"
+      ],
+      "what": "主炮表 Mk1 16in/45"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-WEST-VIRGINIA",
+   "name": "西弗吉尼亚",
+   "side": "allies",
+   "type": "BB",
+   "catalog_class": "usn-colorado-bb",
+   "catalog_class_recorded": "usn-colorado-bb",
+   "catalog_class_note": null,
+   "class_profile": "usn_colorado_bb_1944",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    7
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     7,
+     109
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      109
+     ],
+     "printed_pages": [
+      "C-3"
+     ],
+     "what": "主炮表 Mk1 16in/45"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit american hits 4/7/9：4 是索引；7 是 West Virginia (1944) 卡（A-4）；9 是 Colorado (1929) 卡（A-6），只在同级备注提到 West Virginia，不是本舰卡。",
+   "profile": {
+    "class": "West Virginia (1944)",
+    "catalog_class": "usn-colorado-bb",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      7
+     ],
+     "printed_pages": [
+      "A-4"
+     ]
+    },
+    "displacement_std_tons": 32500,
+    "in_class": "1",
+    "in_service": "1944 (1921)",
+    "configuration": "May 42 - Jul 44 refit (AF A-4)",
+    "in_service_year": 1944,
+    "crew": 1080,
+    "armor_rating": "29/12/135",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     185,
+     369,
+     554,
+     664,
+     738
+    ],
+    "speed_knots": [
+     21,
+     16,
+     11,
+     5,
+     0,
+     0
+    ],
+    "main_gun": "us_16in45_mk1",
+    "gun_mounts_verbatim": "F/A(2)4 Mk1 16in/45//2 Mk8",
+    "secondary_verbatim": "P/S(2)8 Mk28 5in/38//4 Mk4",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 3 OS2U Kingfisher",
+    "area_aa_verbatim": "(2)8 Mk28 5in/38 (4.5)",
+    "light_aa_verbatim": "(4)10 40mm, 40 20mm (20.0)",
+    "sensors": "SG, SC-2",
+    "remarks_verbatim": "Unit of Colorado class sunk at Pearl Harbor, raised and rebuilt. Laid down before 1925, special damage modifier of -15%. Configuration after May 42 - Jul 44 refit.",
+    "dated_remarks": [
+     "Aug 45: (4)10 40mm, (2)2 20mm, (1)58 20mm, Lt AA 25.5.",
+     "Summer 45: Planned to fit SP and SCR-720 radars."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "Same catalog class as Colorado but a separate CAS card (AF A-4, 1944 rebuild). It is not merged into the Colorado (1929) profile: the guns, secondary battery, gunnery standard and sensors differ on the printed cards."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-WEST-VIRGINIA",
+    "name": "西弗吉尼亚",
+    "side": "allies",
+    "kind": "BB",
+    "size": "A",
+    "max_knots": 21,
+    "dp": 738,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 21
+     },
+     {
+      "damage": 185,
+      "knots": 16
+     },
+     {
+      "damage": 369,
+      "knots": 11
+     },
+     {
+      "damage": 554,
+      "knots": 5
+     },
+     {
+      "damage": 664,
+      "knots": 0
+     },
+     {
+      "damage": 738,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 29,
+    "armor_deck": 12,
+    "in_service_year": 1944,
+    "gun": {
+     "name": "Mk1 16in/45 APC",
+     "caliber_mm": 406,
+     "shell": "APC",
+     "range_yd": [
+      6900,
+      17200,
+      27400,
+      34300
+     ],
+     "damage": [
+      43,
+      34,
+      29,
+      25
+     ],
+     "pen_belt": [
+      75,
+      53,
+      38,
+      29
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      24
+     ],
+     "armor_piercing": true,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 109,
+      "printed_page": "C-3",
+      "mount_row": "Mk1 16in/45"
+     }
+    },
+    "torpedo": null,
+    "source_class": "usn_colorado_bb_1944",
+    "period_label": "May 42 - Jul 44 refit (West Virginia 1944)",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       7
+      ],
+      "printed_pages": [
+       "A-4"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       109
+      ],
+      "printed_pages": [
+       "C-3"
+      ],
+      "what": "主炮表 Mk1 16in/45"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R06",
+   "name": "列克星敦",
+   "side": "allies",
+   "type": "BC",
+   "catalog_class": "列克星敦",
+   "catalog_class_recorded": "列克星敦",
+   "catalog_class_note": null,
+   "class_profile": "usn_lexington_bc_1924",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    10,
+    11
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     10,
+     11,
+     109,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      109
+     ],
+     "printed_pages": [
+      "C-3"
+     ],
+     "what": "主炮表 Mk2, 3 16in/50 (2nd APC row)"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk9"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit american hits 5/10/11/12/13/68：5 是索引；10–11 是 Lexington (BC) 卡（A-7/A-8）；12–13 是 Lexington/Saratoga 的 CV 卡（不同舰种）；68 是 B-29 页（无关）。audit emperor 24 不在任务给定的三张船表内，未采用。",
+   "profile": {
+    "class": "Lexington (BC)",
+    "catalog_class": "列克星敦",
+    "side": "allies",
+    "kind": "BC",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      10,
+      11
+     ],
+     "printed_pages": [
+      "A-7",
+      "A-8"
+     ]
+    },
+    "displacement_std_tons": 43500,
+    "in_class": "6",
+    "in_service": "1924",
+    "configuration": "final design (AF A-7/A-8)",
+    "in_service_year": 1924,
+    "crew": 1315,
+    "armor_rating": "18/8/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     224,
+     449,
+     673,
+     807,
+     897
+    ],
+    "speed_knots": [
+     33,
+     24,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_16in50_mk3",
+    "gun_mounts_verbatim": "F/A(2)4 Mk3 16in/50",
+    "secondary_verbatim": "Casemate(1)16 Mk18 6in/53",
+    "tertiary_verbatim": "P/S(1)6 Mk20 3in/50",
+    "torpedoes_verbatim": "P/S(2)2 533mm TT w/8 (est) Mk9 torp total; P/S(2)2 subm 533mm TT w/8 (est) Mk9 torp total",
+    "torpedo_model": "us_mk9_torpedo",
+    "aircraft": "1 Aft catapult, 1 Floatplane",
+    "area_aa_verbatim": "(1)6 Mk20 3in/50 (0.8)",
+    "light_aa_verbatim": "12 .50 cal. (0.8)",
+    "sensors": null,
+    "remarks_verbatim": "Configuration of final design. Constitution, Constellation, Ranger, United States scrapped, Lexington and Saratoga completed as aircraft carriers. Light AA estimated. Max torpedo launch speed 16 knots. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF C-3 prints two APC rows under 'Mk2, 3 16in/50'. The second row is used for the Mk3 card; the first row is recorded here so the ambiguity is not hidden: 8500/22000/35600/44500 yd, pen 82/59/41/32, damage 46/36/31/27.",
+     "The 16in/50 shell is the 2240 lb APC of the 1924 design. No separate 1944-45 refit card exists for this never-completed class."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-UNNAMED-T01-R06",
+    "name": "列克星敦",
+    "side": "allies",
+    "kind": "BC",
+    "size": "A",
+    "max_knots": 33,
+    "dp": 897,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 224,
+      "knots": 24
+     },
+     {
+      "damage": 449,
+      "knots": 17
+     },
+     {
+      "damage": 673,
+      "knots": 8
+     },
+     {
+      "damage": 807,
+      "knots": 0
+     },
+     {
+      "damage": 897,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 18,
+    "armor_deck": 8,
+    "in_service_year": 1924,
+    "gun": {
+     "name": "Mk3 16in/50 APC",
+     "caliber_mm": 406,
+     "shell": "APC",
+     "range_yd": [
+      8500,
+      22000,
+      36100,
+      45100
+     ],
+     "damage": [
+      43,
+      34,
+      28,
+      24
+     ],
+     "pen_belt": [
+      78,
+      55,
+      39,
+      30
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      25
+     ],
+     "armor_piercing": true,
+     "barrels": 4,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 109,
+      "printed_page": "C-3",
+      "mount_row": "Mk2, 3 16in/50 (2nd APC row)"
+     }
+    },
+    "torpedo": {
+     "name": "Mk9",
+     "speed_knots": 25,
+     "range_yd": 7000,
+     "warhead": 55,
+     "warhead_kg": 95,
+     "diameter_mm": 533,
+     "tubes": 16,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk9"
+     }
+    },
+    "source_class": "usn_lexington_bc_1924",
+    "period_label": "final design (1924)",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       10,
+       11
+      ],
+      "printed_pages": [
+       "A-7",
+       "A-8"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       109
+      ],
+      "printed_pages": [
+       "C-3"
+      ],
+      "what": "主炮表 Mk2, 3 16in/50 (2nd APC row)"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk9"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R07",
+   "name": "合众国",
+   "side": "allies",
+   "type": "BC",
+   "catalog_class": "列克星敦",
+   "catalog_class_recorded": "列克星敦",
+   "catalog_class_note": null,
+   "class_profile": "usn_lexington_bc_1924",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    10,
+    11
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     10,
+     11,
+     109,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      109
+     ],
+     "printed_pages": [
+      "C-3"
+     ],
+     "what": "主炮表 Mk2, 3 16in/50 (2nd APC row)"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk9"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit american hits 5/10/11/12/13/68：5 是索引；10–11 是 Lexington (BC) 卡（A-7/A-8）；12–13 是 Lexington/Saratoga 的 CV 卡（不同舰种）；68 是 B-29 页（无关）。audit emperor 24 不在任务给定的三张船表内，未采用。",
+   "profile": {
+    "class": "Lexington (BC)",
+    "catalog_class": "列克星敦",
+    "side": "allies",
+    "kind": "BC",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      10,
+      11
+     ],
+     "printed_pages": [
+      "A-7",
+      "A-8"
+     ]
+    },
+    "displacement_std_tons": 43500,
+    "in_class": "6",
+    "in_service": "1924",
+    "configuration": "final design (AF A-7/A-8)",
+    "in_service_year": 1924,
+    "crew": 1315,
+    "armor_rating": "18/8/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     224,
+     449,
+     673,
+     807,
+     897
+    ],
+    "speed_knots": [
+     33,
+     24,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_16in50_mk3",
+    "gun_mounts_verbatim": "F/A(2)4 Mk3 16in/50",
+    "secondary_verbatim": "Casemate(1)16 Mk18 6in/53",
+    "tertiary_verbatim": "P/S(1)6 Mk20 3in/50",
+    "torpedoes_verbatim": "P/S(2)2 533mm TT w/8 (est) Mk9 torp total; P/S(2)2 subm 533mm TT w/8 (est) Mk9 torp total",
+    "torpedo_model": "us_mk9_torpedo",
+    "aircraft": "1 Aft catapult, 1 Floatplane",
+    "area_aa_verbatim": "(1)6 Mk20 3in/50 (0.8)",
+    "light_aa_verbatim": "12 .50 cal. (0.8)",
+    "sensors": null,
+    "remarks_verbatim": "Configuration of final design. Constitution, Constellation, Ranger, United States scrapped, Lexington and Saratoga completed as aircraft carriers. Light AA estimated. Max torpedo launch speed 16 knots. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF C-3 prints two APC rows under 'Mk2, 3 16in/50'. The second row is used for the Mk3 card; the first row is recorded here so the ambiguity is not hidden: 8500/22000/35600/44500 yd, pen 82/59/41/32, damage 46/36/31/27.",
+     "The 16in/50 shell is the 2240 lb APC of the 1924 design. No separate 1944-45 refit card exists for this never-completed class."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-UNNAMED-T01-R07",
+    "name": "合众国",
+    "side": "allies",
+    "kind": "BC",
+    "size": "A",
+    "max_knots": 33,
+    "dp": 897,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 224,
+      "knots": 24
+     },
+     {
+      "damage": 449,
+      "knots": 17
+     },
+     {
+      "damage": 673,
+      "knots": 8
+     },
+     {
+      "damage": 807,
+      "knots": 0
+     },
+     {
+      "damage": 897,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 18,
+    "armor_deck": 8,
+    "in_service_year": 1924,
+    "gun": {
+     "name": "Mk3 16in/50 APC",
+     "caliber_mm": 406,
+     "shell": "APC",
+     "range_yd": [
+      8500,
+      22000,
+      36100,
+      45100
+     ],
+     "damage": [
+      43,
+      34,
+      28,
+      24
+     ],
+     "pen_belt": [
+      78,
+      55,
+      39,
+      30
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      25
+     ],
+     "armor_piercing": true,
+     "barrels": 4,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 109,
+      "printed_page": "C-3",
+      "mount_row": "Mk2, 3 16in/50 (2nd APC row)"
+     }
+    },
+    "torpedo": {
+     "name": "Mk9",
+     "speed_knots": 25,
+     "range_yd": 7000,
+     "warhead": 55,
+     "warhead_kg": 95,
+     "diameter_mm": 533,
+     "tubes": 16,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk9"
+     }
+    },
+    "source_class": "usn_lexington_bc_1924",
+    "period_label": "final design (1924)",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       10,
+       11
+      ],
+      "printed_pages": [
+       "A-7",
+       "A-8"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       109
+      ],
+      "printed_pages": [
+       "C-3"
+      ],
+      "what": "主炮表 Mk2, 3 16in/50 (2nd APC row)"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk9"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R08",
+   "name": "宪法",
+   "side": "allies",
+   "type": "BC",
+   "catalog_class": "列克星敦",
+   "catalog_class_recorded": "列克星敦",
+   "catalog_class_note": null,
+   "class_profile": "usn_lexington_bc_1924",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    10,
+    11
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     10,
+     11,
+     109,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      109
+     ],
+     "printed_pages": [
+      "C-3"
+     ],
+     "what": "主炮表 Mk2, 3 16in/50 (2nd APC row)"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk9"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit american hits 5/10/11/12/13/68：5 是索引；10–11 是 Lexington (BC) 卡（A-7/A-8）；12–13 是 Lexington/Saratoga 的 CV 卡（不同舰种）；68 是 B-29 页（无关）。audit emperor 24 不在任务给定的三张船表内，未采用。",
+   "profile": {
+    "class": "Lexington (BC)",
+    "catalog_class": "列克星敦",
+    "side": "allies",
+    "kind": "BC",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      10,
+      11
+     ],
+     "printed_pages": [
+      "A-7",
+      "A-8"
+     ]
+    },
+    "displacement_std_tons": 43500,
+    "in_class": "6",
+    "in_service": "1924",
+    "configuration": "final design (AF A-7/A-8)",
+    "in_service_year": 1924,
+    "crew": 1315,
+    "armor_rating": "18/8/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     224,
+     449,
+     673,
+     807,
+     897
+    ],
+    "speed_knots": [
+     33,
+     24,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_16in50_mk3",
+    "gun_mounts_verbatim": "F/A(2)4 Mk3 16in/50",
+    "secondary_verbatim": "Casemate(1)16 Mk18 6in/53",
+    "tertiary_verbatim": "P/S(1)6 Mk20 3in/50",
+    "torpedoes_verbatim": "P/S(2)2 533mm TT w/8 (est) Mk9 torp total; P/S(2)2 subm 533mm TT w/8 (est) Mk9 torp total",
+    "torpedo_model": "us_mk9_torpedo",
+    "aircraft": "1 Aft catapult, 1 Floatplane",
+    "area_aa_verbatim": "(1)6 Mk20 3in/50 (0.8)",
+    "light_aa_verbatim": "12 .50 cal. (0.8)",
+    "sensors": null,
+    "remarks_verbatim": "Configuration of final design. Constitution, Constellation, Ranger, United States scrapped, Lexington and Saratoga completed as aircraft carriers. Light AA estimated. Max torpedo launch speed 16 knots. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF C-3 prints two APC rows under 'Mk2, 3 16in/50'. The second row is used for the Mk3 card; the first row is recorded here so the ambiguity is not hidden: 8500/22000/35600/44500 yd, pen 82/59/41/32, damage 46/36/31/27.",
+     "The 16in/50 shell is the 2240 lb APC of the 1924 design. No separate 1944-45 refit card exists for this never-completed class."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-UNNAMED-T01-R08",
+    "name": "宪法",
+    "side": "allies",
+    "kind": "BC",
+    "size": "A",
+    "max_knots": 33,
+    "dp": 897,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 224,
+      "knots": 24
+     },
+     {
+      "damage": 449,
+      "knots": 17
+     },
+     {
+      "damage": 673,
+      "knots": 8
+     },
+     {
+      "damage": 807,
+      "knots": 0
+     },
+     {
+      "damage": 897,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 18,
+    "armor_deck": 8,
+    "in_service_year": 1924,
+    "gun": {
+     "name": "Mk3 16in/50 APC",
+     "caliber_mm": 406,
+     "shell": "APC",
+     "range_yd": [
+      8500,
+      22000,
+      36100,
+      45100
+     ],
+     "damage": [
+      43,
+      34,
+      28,
+      24
+     ],
+     "pen_belt": [
+      78,
+      55,
+      39,
+      30
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      25
+     ],
+     "armor_piercing": true,
+     "barrels": 4,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 109,
+      "printed_page": "C-3",
+      "mount_row": "Mk2, 3 16in/50 (2nd APC row)"
+     }
+    },
+    "torpedo": {
+     "name": "Mk9",
+     "speed_knots": 25,
+     "range_yd": 7000,
+     "warhead": 55,
+     "warhead_kg": 95,
+     "diameter_mm": 533,
+     "tubes": 16,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk9"
+     }
+    },
+    "source_class": "usn_lexington_bc_1924",
+    "period_label": "final design (1924)",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       10,
+       11
+      ],
+      "printed_pages": [
+       "A-7",
+       "A-8"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       109
+      ],
+      "printed_pages": [
+       "C-3"
+      ],
+      "what": "主炮表 Mk2, 3 16in/50 (2nd APC row)"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk9"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R13",
+   "name": "休斯顿",
+   "side": "allies",
+   "type": "CA",
+   "catalog_class": "北安普顿",
+   "catalog_class_recorded": "北安普顿",
+   "catalog_class_note": null,
+   "class_profile": "usn_northampton_ca_1942_02",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    249
+   ],
+   "all_pages_used": {
+    "rising_sun_form10": [
+     249
+    ],
+    "american_fleets": [
+     17
+    ]
+   },
+   "source_tables": [],
+   "also_sources": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      17
+     ],
+     "printed_pages": [
+      "A-14"
+     ],
+     "what": "Northampton 级类卡（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 hits 4/8/15/18/19/20 全是索引页，没有命中实际卡；Houston 的 Form 10 在 PDF 249 页（Feb 42 Modification），已目视核页。audit american 5/15/17：5 是索引，15 是 A-12（Alaska/Des Moines 等），17 是 A-14 Northampton 类卡（交叉核对，不是本舰 Form 10）。",
+   "profile": {
+    "class": "Northampton (Feb 42)",
+    "catalog_class": "北安普顿",
+    "side": "allies",
+    "kind": "CA",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "rising_sun_form10",
+     "pdf_pages": [
+      249
+     ],
+     "printed_pages": [
+      "249"
+     ]
+    },
+    "displacement_std_tons": 9050,
+    "in_class": "6",
+    "in_service": "1929",
+    "in_service_year": 1929,
+    "crew": 621,
+    "armor_rating": "7/3",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     93,
+     185,
+     278,
+     333,
+     370
+    ],
+    "speed_knots": [
+     32,
+     24,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_8in55_mk14",
+    "gun_mounts_verbatim": "Fwd (3) Mk14 8in/55 ×2; Aft (3) Mk14 8in/55 ×2",
+    "secondary_verbatim": "Port/Stbd (1) Mk11 5in/25 ×8",
+    "tertiary_verbatim": "Port (1) Mk10 3in/50 ×2; Stbd (1) Mk10 3in/50 ×1",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(1)8 Mk11 5in/25, (1)3 Mk10 3in/50 (2.5)",
+    "light_aa_verbatim": "4 1.1 in, 8 .50 cal. (1.8)",
+    "sensors": "CXAM",
+    "remarks_verbatim": "Northampton, Chester, Louisville, Chicago, Houston, Augusta. Improved stability over Pensacola class.",
+    "configuration": "Feb 42 Modification (Form 10 p.249)",
+    "form10_footer": "Feb 42 Modification",
+    "dated_remarks": [
+     "Mid-30s: Secondary armament upgraded to P/S(1)8 Mk11 5 in/25 and torpedo tubes removed. Area AA 0.8. Gunnery Standard IV.",
+     "1936: Torpedo tubes removed.",
+     "1940: Chester, Chicago and Northampton fitted with CXAM radar.",
+     "1941: All ships except Louisville fitted with CXAM search radar. Authorized Lt AA fit (4)4 1.1 in. Due to shortage of 1.1 in guns, some ships, including Houston, were fitted with 2P/S(1)3 Mk10 3 in/50 and (4)1 1.1 in (in place of 4th 3 inch gun). Area AA 2.5, Lt AA 0.9.",
+     "Dec 41: Houston had replaced her temporary 3in/50s with (4)4 1.1 in by this date. Total Lt AA (4)5 1.1 in, Lt AA 2.2.",
+     "Dec 41: One quad 1.1 in from Houston landed for use at Corregidor. Lt AA 1.8.",
+     "Mar 42: Houston sunk, AA fit (1) 8 Mk11 5 in, 2P/S(1)3 Mk10 3 in, (4)1 1.1. in (1) 8 .50 cal. Area AA 2.5, Lt AA 0.9."
+    ],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "AF A-14 prints the 1929 class card with Gunnery Standard III and a 4×5in/25 secondary. Houston's own Form 10 p.249 is the Feb 42 modification: GS IV, 8×5in/25, 3×3in/50. The profile follows the Form 10.",
+     "Form 10 p.249 8in/55 APC prints damage 25/19/16/14; AF C-3 prints 23/18/15/13 for the same gun row. The ship uses the Form 10 values."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-UNNAMED-T01-R13",
+    "name": "休斯顿",
+    "side": "allies",
+    "kind": "CA",
+    "size": "B",
+    "max_knots": 32,
+    "dp": 370,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 32
+     },
+     {
+      "damage": 93,
+      "knots": 24
+     },
+     {
+      "damage": 185,
+      "knots": 16
+     },
+     {
+      "damage": 278,
+      "knots": 8
+     },
+     {
+      "damage": 333,
+      "knots": 0
+     },
+     {
+      "damage": 370,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 7,
+    "armor_deck": 3,
+    "in_service_year": 1929,
+    "gun": {
+     "name": "Mk14 8in/55 APC",
+     "caliber_mm": 203,
+     "shell": "APC",
+     "range_yd": [
+      7000,
+      16000,
+      25500,
+      31900
+     ],
+     "damage": [
+      25,
+      19,
+      16,
+      14
+     ],
+     "pen_belt": [
+      33,
+      22,
+      15,
+      12
+     ],
+     "pen_deck": [
+      null,
+      null,
+      5,
+      10
+     ],
+     "armor_piercing": true,
+     "barrels": 12,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 3,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 3,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 3,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 3,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 249,
+      "printed_page": "249",
+      "mount_row": "Fwd/Aft (3) Mk14 8 in/55"
+     }
+    },
+    "torpedo": null,
+    "source_class": "usn_northampton_ca_1942_02",
+    "period_label": "Feb 42 Modification",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       249
+      ],
+      "printed_pages": [
+       "249"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       17
+      ],
+      "printed_pages": [
+       "A-14"
+      ],
+      "what": "Northampton 级类卡（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-OMAHA",
+   "name": "奥马哈",
+   "side": "allies",
+   "type": "CL",
+   "catalog_class": "usn-omaha-cl",
+   "catalog_class_recorded": "usn-omaha-cl",
+   "catalog_class_note": null,
+   "class_profile": "usn_omaha_cl_1923",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    19
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     19,
+     108,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      108
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "what": "主炮表 Mk12, 14, 18 6in/53"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 8/15/19/21/24 是索引，268 是 Marblehead CL（同级不同舰、6in 改装不同），不能当 Omaha/Memphis 卡；american 5 是索引、19（A-16）才是 Omaha 级 1923 卡、88 是 B-32 飞机页；home 108 是 Tempest 页。均非本舰数据页。",
+   "profile": {
+    "class": "Omaha",
+    "catalog_class": "usn-omaha-cl",
+    "side": "allies",
+    "kind": "CL",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      19
+     ],
+     "printed_pages": [
+      "A-16"
+     ]
+    },
+    "displacement_std_tons": 7050,
+    "in_class": "10",
+    "in_service": "1923",
+    "configuration": "1923 class card (AF A-16)",
+    "in_service_year": 1923,
+    "crew": 458,
+    "armor_rating": "5/3",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     67,
+     133,
+     200,
+     239,
+     266
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_6in53_mk12_14_18",
+    "gun_mounts_verbatim": "F/A(2)2 Mk12 6in/53; PW/PA/SW/SA(1)8 Mk12 6in/53",
+    "secondary_verbatim": "P/S(1)4 Mk10 3in/50",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)2 533mm TT w/3 Mk8 Mod 8 torp; P/S(2)2 533mm TT w/2 Mk8 Mod 8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": "2 Midships catapult, 2 UO-1",
+    "area_aa_verbatim": "(1)4 Mk10 3in/50 (0.6)",
+    "light_aa_verbatim": "(1)8 .50 cal. (0.6)",
+    "sensors": null,
+    "remarks_verbatim": "Omaha, Milwaukee, Cincinnati, Raleigh, Detroit, Richmond, Concord, Trenton, Marblehead, Memphis. First U.S. cruiser class built since 1905. Memphis never entered combat. Laid down before 1925, special damage modifier of -15%. Search and fire control radars updated as new types became available. Gunhouses have blast protection only. Originally planned fit of two 3 inch AA doubled during construction to four. Originally fitted to lay mines, but never used after unsuccessful tests in 1924.",
+    "dated_remarks": [
+     "1935: SOC Seagull replaced UO-1.",
+     "1938-39: Cincinnati, Richmond, Concord, Trenton, and Marblehead had aft and lowest pair of 6 inch guns removed, leaving 2PW/2SW/PA/SA(1)6 Mk12 6in/53. A(1)1 6in/53 added on Marblehead. Other ships retained all 12 6 inch guns. Gunnery Standard IV.",
+     "1939-40: P/S(2)2 TT removed. Area AA fit changed to F/3P/3S/A(1)8 Mk10 3in/50, except Marblehead 3P/3S/P&S(1)7 3in/50, Area AA 2.2, Marblehead 2.0.",
+     "1940: OS2U Kingfisher replaced SOC Seagull.",
+     "Dec 41: Raleigh damaged at Pearl harbor.",
+     "Jan - Feb 42: Detroit fitted with SC-1, Mk3 radars.",
+     "Feb 42: SG, CXAM-1 radar added.",
+     "4 Feb 42: Marblehead severely damaged by air attack, arrived in New York 4 May for repairs until 15 Oct 42. Fitted with SC, SG, Mk3 radars.",
+     "Jul - Aug 42: Detroit fitted with SG radar.",
+     "Aug 42: Detroit, Raleigh, Cincinnati, and Concord fitted with (4)2 1.1 in replacing two 3in/50. Area AA 0.8, Lt AA 1.2.",
+     "Dec 42 - Jan 43: Richmond had SC replaced by SC(e), SG, Mk3 added, (4)2 1.1 in replaced by 4 40mm, Lt AA 1.6.",
+     "Feb-Mar 43: Detroit fitted with SK in place of SC, received second SC, second Mk3 radar.",
+     "Early '43: All were fitted with SC and SG (Memphis and Cincinnati had CXAM-1 instead) search radar and Mk3 for 6 in guns.",
+     "Jan 43: Richmond Lt AA (2)2 40mm replaced (4)2 1.1 inch.",
+     "Aug - Sep 43: Richmond second SG(e), second Mk3(e) radars added, Lt AA 6 40mm, 8 20mm, Lt AA 3.5.",
+     "Modified AA fit (4)2 40mm, (1)14 20mm, Lt AA 5.5.",
+     "April 1944: Milwaukee loaned to Soviet Navy. Returned to US in March 1949."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-16 is the 1923 class card (12×6in/53, 4×3in/50, 10 torpedo tubes). The late-1930s/1942 refits (8×3in/50, torpedo tubes removed, radar) are transcribed in dated_remarks but are not the printed card configuration.",
+     "RS Form 10 p.268 is Marblehead (Omaha class, Dec 1941), a different hull with a different 6in fit; it is not used for Omaha/Memphis."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-OMAHA",
+    "name": "奥马哈",
+    "side": "allies",
+    "kind": "CL",
+    "size": "B",
+    "max_knots": 33,
+    "dp": 266,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 67,
+      "knots": 25
+     },
+     {
+      "damage": 133,
+      "knots": 16
+     },
+     {
+      "damage": 200,
+      "knots": 8
+     },
+     {
+      "damage": 239,
+      "knots": 0
+     },
+     {
+      "damage": 266,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 5,
+    "armor_deck": 3,
+    "in_service_year": 1923,
+    "gun": {
+     "name": "Mk12 6in/53 AP",
+     "caliber_mm": 152,
+     "shell": "AP",
+     "range_yd": [
+      6100,
+      12700,
+      20200,
+      25300
+     ],
+     "damage": [
+      21,
+      15,
+      13,
+      12
+     ],
+     "pen_belt": [
+      18,
+      11,
+      8,
+      6
+     ],
+     "pen_deck": [
+      null,
+      null,
+      3,
+      6
+     ],
+     "armor_piercing": true,
+     "barrels": 12,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 108,
+      "printed_page": "C-2",
+      "mount_row": "Mk12, 14, 18 6in/53"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_omaha_cl_1923",
+    "period_label": "1923 class card",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       19
+      ],
+      "printed_pages": [
+       "A-16"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       108
+      ],
+      "printed_pages": [
+       "C-2"
+      ],
+      "what": "主炮表 Mk12, 14, 18 6in/53"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R22",
+   "name": "孟菲斯",
+   "side": "allies",
+   "type": "CL",
+   "catalog_class": "奥马哈",
+   "catalog_class_recorded": "奥马哈",
+   "catalog_class_note": null,
+   "class_profile": "usn_omaha_cl_1923",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    19
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     19,
+     108,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      108
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "what": "主炮表 Mk12, 14, 18 6in/53"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 8/15/19/21/24 是索引，268 是 Marblehead CL（同级不同舰、6in 改装不同），不能当 Omaha/Memphis 卡；american 5 是索引、19（A-16）才是 Omaha 级 1923 卡、88 是 B-32 飞机页；home 108 是 Tempest 页。均非本舰数据页。",
+   "profile": {
+    "class": "Omaha",
+    "catalog_class": "usn-omaha-cl",
+    "side": "allies",
+    "kind": "CL",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      19
+     ],
+     "printed_pages": [
+      "A-16"
+     ]
+    },
+    "displacement_std_tons": 7050,
+    "in_class": "10",
+    "in_service": "1923",
+    "configuration": "1923 class card (AF A-16)",
+    "in_service_year": 1923,
+    "crew": 458,
+    "armor_rating": "5/3",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     67,
+     133,
+     200,
+     239,
+     266
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_6in53_mk12_14_18",
+    "gun_mounts_verbatim": "F/A(2)2 Mk12 6in/53; PW/PA/SW/SA(1)8 Mk12 6in/53",
+    "secondary_verbatim": "P/S(1)4 Mk10 3in/50",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)2 533mm TT w/3 Mk8 Mod 8 torp; P/S(2)2 533mm TT w/2 Mk8 Mod 8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": "2 Midships catapult, 2 UO-1",
+    "area_aa_verbatim": "(1)4 Mk10 3in/50 (0.6)",
+    "light_aa_verbatim": "(1)8 .50 cal. (0.6)",
+    "sensors": null,
+    "remarks_verbatim": "Omaha, Milwaukee, Cincinnati, Raleigh, Detroit, Richmond, Concord, Trenton, Marblehead, Memphis. First U.S. cruiser class built since 1905. Memphis never entered combat. Laid down before 1925, special damage modifier of -15%. Search and fire control radars updated as new types became available. Gunhouses have blast protection only. Originally planned fit of two 3 inch AA doubled during construction to four. Originally fitted to lay mines, but never used after unsuccessful tests in 1924.",
+    "dated_remarks": [
+     "1935: SOC Seagull replaced UO-1.",
+     "1938-39: Cincinnati, Richmond, Concord, Trenton, and Marblehead had aft and lowest pair of 6 inch guns removed, leaving 2PW/2SW/PA/SA(1)6 Mk12 6in/53. A(1)1 6in/53 added on Marblehead. Other ships retained all 12 6 inch guns. Gunnery Standard IV.",
+     "1939-40: P/S(2)2 TT removed. Area AA fit changed to F/3P/3S/A(1)8 Mk10 3in/50, except Marblehead 3P/3S/P&S(1)7 3in/50, Area AA 2.2, Marblehead 2.0.",
+     "1940: OS2U Kingfisher replaced SOC Seagull.",
+     "Dec 41: Raleigh damaged at Pearl harbor.",
+     "Jan - Feb 42: Detroit fitted with SC-1, Mk3 radars.",
+     "Feb 42: SG, CXAM-1 radar added.",
+     "4 Feb 42: Marblehead severely damaged by air attack, arrived in New York 4 May for repairs until 15 Oct 42. Fitted with SC, SG, Mk3 radars.",
+     "Jul - Aug 42: Detroit fitted with SG radar.",
+     "Aug 42: Detroit, Raleigh, Cincinnati, and Concord fitted with (4)2 1.1 in replacing two 3in/50. Area AA 0.8, Lt AA 1.2.",
+     "Dec 42 - Jan 43: Richmond had SC replaced by SC(e), SG, Mk3 added, (4)2 1.1 in replaced by 4 40mm, Lt AA 1.6.",
+     "Feb-Mar 43: Detroit fitted with SK in place of SC, received second SC, second Mk3 radar.",
+     "Early '43: All were fitted with SC and SG (Memphis and Cincinnati had CXAM-1 instead) search radar and Mk3 for 6 in guns.",
+     "Jan 43: Richmond Lt AA (2)2 40mm replaced (4)2 1.1 inch.",
+     "Aug - Sep 43: Richmond second SG(e), second Mk3(e) radars added, Lt AA 6 40mm, 8 20mm, Lt AA 3.5.",
+     "Modified AA fit (4)2 40mm, (1)14 20mm, Lt AA 5.5.",
+     "April 1944: Milwaukee loaned to Soviet Navy. Returned to US in March 1949."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-16 is the 1923 class card (12×6in/53, 4×3in/50, 10 torpedo tubes). The late-1930s/1942 refits (8×3in/50, torpedo tubes removed, radar) are transcribed in dated_remarks but are not the printed card configuration.",
+     "RS Form 10 p.268 is Marblehead (Omaha class, Dec 1941), a different hull with a different 6in fit; it is not used for Omaha/Memphis."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-UNNAMED-T01-R22",
+    "name": "孟菲斯",
+    "side": "allies",
+    "kind": "CL",
+    "size": "B",
+    "max_knots": 33,
+    "dp": 266,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 67,
+      "knots": 25
+     },
+     {
+      "damage": 133,
+      "knots": 16
+     },
+     {
+      "damage": 200,
+      "knots": 8
+     },
+     {
+      "damage": 239,
+      "knots": 0
+     },
+     {
+      "damage": 266,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 5,
+    "armor_deck": 3,
+    "in_service_year": 1923,
+    "gun": {
+     "name": "Mk12 6in/53 AP",
+     "caliber_mm": 152,
+     "shell": "AP",
+     "range_yd": [
+      6100,
+      12700,
+      20200,
+      25300
+     ],
+     "damage": [
+      21,
+      15,
+      13,
+      12
+     ],
+     "pen_belt": [
+      18,
+      11,
+      8,
+      6
+     ],
+     "pen_deck": [
+      null,
+      null,
+      3,
+      6
+     ],
+     "armor_piercing": true,
+     "barrels": 12,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 108,
+      "printed_page": "C-2",
+      "mount_row": "Mk12, 14, 18 6in/53"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_omaha_cl_1923",
+    "period_label": "1923 class card",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       19
+      ],
+      "printed_pages": [
+       "A-16"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       108
+      ],
+      "printed_pages": [
+       "C-2"
+      ],
+      "what": "主炮表 Mk12, 14, 18 6in/53"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-PERRY",
+   "name": "佩里",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "usn-4in-dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": null,
+   "class_profile": "usn_clemson_4in_dd_1918",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22,
+    23
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     23,
+     107,
+     119
+    ],
+    "rising_sun_form10": [
+     346
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      107
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "what": "主炮表 Mk9 4in/50"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      346
+     ],
+     "printed_pages": [
+      "346"
+     ],
+     "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 4/10/12/16/17/18 全是索引页；实际 Clemson 卡在 Form 10 346–354。本组 6 艘按 catalog class usn-4in-dd 取 AF 22–23（A-19/A-20）Wickes/Clemson 类卡；Form 10 346（Edsall, Dec 1941）作交叉核对。McDonough 不在本组（catalog 标签错误，另见 us_farragut_dd）。audit american 4/6 是索引，22–23 是数据页，24–25 是 Wickes/Clemson (Long-range escort) DE 改装；home 9/11/16/20/21/27 是 RN 的 4in 炮行（澳/英舰），不是美国 4in 驱逐舰；emperor 4/26/27 不在任务给定的三张船表内。",
+   "profile": {
+    "class": "Wickes/Clemson (Clemson 1120 t)",
+    "catalog_class": "usn-4in-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22,
+      23
+     ],
+     "printed_pages": [
+      "A-19",
+      "A-20"
+     ]
+    },
+    "displacement_std_tons": 1120,
+    "in_class": "111/144",
+    "in_service": "1918",
+    "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+    "in_service_year": 1918,
+    "crew": 100,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     20,
+     39,
+     59,
+     70,
+     78
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_4in50_mk9",
+    "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+    "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+    "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+    "sensors": null,
+    "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [
+     "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+     "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+     "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+     "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+     "Late 30s: Early QC series sonar added.",
+     "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+     "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+     "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+     "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+     "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+     "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+     "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+     "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-PERRY",
+    "name": "佩里",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 35,
+    "dp": 78,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 20,
+      "knots": 26
+     },
+     {
+      "damage": 39,
+      "knots": 18
+     },
+     {
+      "damage": 59,
+      "knots": 9
+     },
+     {
+      "damage": 70,
+      "knots": 0
+     },
+     {
+      "damage": 78,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1918,
+    "gun": {
+     "name": "Mk9 4in/50 COM",
+     "caliber_mm": 102,
+     "shell": "COM",
+     "range_yd": [
+      4800,
+      9500,
+      12700,
+      15900
+     ],
+     "damage": [
+      13,
+      11,
+      10,
+      8
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 107,
+      "printed_page": "C-1",
+      "mount_row": "Mk9 4in/50"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 12,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_clemson_4in_dd_1918",
+    "period_label": "1918 class card; RS Form 10 Dec 1941 cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22,
+       23
+      ],
+      "printed_pages": [
+       "A-19",
+       "A-20"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       107
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "what": "主炮表 Mk9 4in/50"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     },
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       346
+      ],
+      "printed_pages": [
+       "346"
+      ],
+      "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-TRUXTON",
+   "name": "特鲁斯顿",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "usn-4in-dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": null,
+   "class_profile": "usn_clemson_4in_dd_1918",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22,
+    23
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     23,
+     107,
+     119
+    ],
+    "rising_sun_form10": [
+     346
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      107
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "what": "主炮表 Mk9 4in/50"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      346
+     ],
+     "printed_pages": [
+      "346"
+     ],
+     "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 4/10/12/16/17/18 全是索引页；实际 Clemson 卡在 Form 10 346–354。本组 6 艘按 catalog class usn-4in-dd 取 AF 22–23（A-19/A-20）Wickes/Clemson 类卡；Form 10 346（Edsall, Dec 1941）作交叉核对。McDonough 不在本组（catalog 标签错误，另见 us_farragut_dd）。audit american 4/6 是索引，22–23 是数据页，24–25 是 Wickes/Clemson (Long-range escort) DE 改装；home 9/11/16/20/21/27 是 RN 的 4in 炮行（澳/英舰），不是美国 4in 驱逐舰；emperor 4/26/27 不在任务给定的三张船表内。",
+   "profile": {
+    "class": "Wickes/Clemson (Clemson 1120 t)",
+    "catalog_class": "usn-4in-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22,
+      23
+     ],
+     "printed_pages": [
+      "A-19",
+      "A-20"
+     ]
+    },
+    "displacement_std_tons": 1120,
+    "in_class": "111/144",
+    "in_service": "1918",
+    "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+    "in_service_year": 1918,
+    "crew": 100,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     20,
+     39,
+     59,
+     70,
+     78
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_4in50_mk9",
+    "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+    "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+    "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+    "sensors": null,
+    "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [
+     "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+     "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+     "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+     "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+     "Late 30s: Early QC series sonar added.",
+     "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+     "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+     "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+     "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+     "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+     "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+     "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+     "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-TRUXTON",
+    "name": "特鲁斯顿",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 35,
+    "dp": 78,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 20,
+      "knots": 26
+     },
+     {
+      "damage": 39,
+      "knots": 18
+     },
+     {
+      "damage": 59,
+      "knots": 9
+     },
+     {
+      "damage": 70,
+      "knots": 0
+     },
+     {
+      "damage": 78,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1918,
+    "gun": {
+     "name": "Mk9 4in/50 COM",
+     "caliber_mm": 102,
+     "shell": "COM",
+     "range_yd": [
+      4800,
+      9500,
+      12700,
+      15900
+     ],
+     "damage": [
+      13,
+      11,
+      10,
+      8
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 107,
+      "printed_page": "C-1",
+      "mount_row": "Mk9 4in/50"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 12,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_clemson_4in_dd_1918",
+    "period_label": "1918 class card; RS Form 10 Dec 1941 cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22,
+       23
+      ],
+      "printed_pages": [
+       "A-19",
+       "A-20"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       107
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "what": "主炮表 Mk9 4in/50"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     },
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       346
+      ],
+      "printed_pages": [
+       "346"
+      ],
+      "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-BAINBRIDGE",
+   "name": "班布里奇",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "usn-4in-dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": null,
+   "class_profile": "usn_clemson_4in_dd_1918",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22,
+    23
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     23,
+     107,
+     119
+    ],
+    "rising_sun_form10": [
+     346
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      107
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "what": "主炮表 Mk9 4in/50"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      346
+     ],
+     "printed_pages": [
+      "346"
+     ],
+     "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 4/10/12/16/17/18 全是索引页；实际 Clemson 卡在 Form 10 346–354。本组 6 艘按 catalog class usn-4in-dd 取 AF 22–23（A-19/A-20）Wickes/Clemson 类卡；Form 10 346（Edsall, Dec 1941）作交叉核对。McDonough 不在本组（catalog 标签错误，另见 us_farragut_dd）。audit american 4/6 是索引，22–23 是数据页，24–25 是 Wickes/Clemson (Long-range escort) DE 改装；home 9/11/16/20/21/27 是 RN 的 4in 炮行（澳/英舰），不是美国 4in 驱逐舰；emperor 4/26/27 不在任务给定的三张船表内。",
+   "profile": {
+    "class": "Wickes/Clemson (Clemson 1120 t)",
+    "catalog_class": "usn-4in-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22,
+      23
+     ],
+     "printed_pages": [
+      "A-19",
+      "A-20"
+     ]
+    },
+    "displacement_std_tons": 1120,
+    "in_class": "111/144",
+    "in_service": "1918",
+    "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+    "in_service_year": 1918,
+    "crew": 100,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     20,
+     39,
+     59,
+     70,
+     78
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_4in50_mk9",
+    "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+    "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+    "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+    "sensors": null,
+    "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [
+     "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+     "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+     "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+     "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+     "Late 30s: Early QC series sonar added.",
+     "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+     "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+     "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+     "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+     "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+     "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+     "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+     "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-BAINBRIDGE",
+    "name": "班布里奇",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 35,
+    "dp": 78,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 20,
+      "knots": 26
+     },
+     {
+      "damage": 39,
+      "knots": 18
+     },
+     {
+      "damage": 59,
+      "knots": 9
+     },
+     {
+      "damage": 70,
+      "knots": 0
+     },
+     {
+      "damage": 78,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1918,
+    "gun": {
+     "name": "Mk9 4in/50 COM",
+     "caliber_mm": 102,
+     "shell": "COM",
+     "range_yd": [
+      4800,
+      9500,
+      12700,
+      15900
+     ],
+     "damage": [
+      13,
+      11,
+      10,
+      8
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 107,
+      "printed_page": "C-1",
+      "mount_row": "Mk9 4in/50"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 12,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_clemson_4in_dd_1918",
+    "period_label": "1918 class card; RS Form 10 Dec 1941 cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22,
+       23
+      ],
+      "printed_pages": [
+       "A-19",
+       "A-20"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       107
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "what": "主炮表 Mk9 4in/50"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     },
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       346
+      ],
+      "printed_pages": [
+       "346"
+      ],
+      "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-FOX",
+   "name": "福克斯",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "usn-4in-dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": null,
+   "class_profile": "usn_clemson_4in_dd_1918",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22,
+    23
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     23,
+     107,
+     119
+    ],
+    "rising_sun_form10": [
+     346
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      107
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "what": "主炮表 Mk9 4in/50"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      346
+     ],
+     "printed_pages": [
+      "346"
+     ],
+     "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 4/10/12/16/17/18 全是索引页；实际 Clemson 卡在 Form 10 346–354。本组 6 艘按 catalog class usn-4in-dd 取 AF 22–23（A-19/A-20）Wickes/Clemson 类卡；Form 10 346（Edsall, Dec 1941）作交叉核对。McDonough 不在本组（catalog 标签错误，另见 us_farragut_dd）。audit american 4/6 是索引，22–23 是数据页，24–25 是 Wickes/Clemson (Long-range escort) DE 改装；home 9/11/16/20/21/27 是 RN 的 4in 炮行（澳/英舰），不是美国 4in 驱逐舰；emperor 4/26/27 不在任务给定的三张船表内。",
+   "profile": {
+    "class": "Wickes/Clemson (Clemson 1120 t)",
+    "catalog_class": "usn-4in-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22,
+      23
+     ],
+     "printed_pages": [
+      "A-19",
+      "A-20"
+     ]
+    },
+    "displacement_std_tons": 1120,
+    "in_class": "111/144",
+    "in_service": "1918",
+    "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+    "in_service_year": 1918,
+    "crew": 100,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     20,
+     39,
+     59,
+     70,
+     78
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_4in50_mk9",
+    "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+    "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+    "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+    "sensors": null,
+    "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [
+     "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+     "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+     "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+     "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+     "Late 30s: Early QC series sonar added.",
+     "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+     "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+     "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+     "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+     "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+     "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+     "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+     "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-FOX",
+    "name": "福克斯",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 35,
+    "dp": 78,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 20,
+      "knots": 26
+     },
+     {
+      "damage": 39,
+      "knots": 18
+     },
+     {
+      "damage": 59,
+      "knots": 9
+     },
+     {
+      "damage": 70,
+      "knots": 0
+     },
+     {
+      "damage": 78,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1918,
+    "gun": {
+     "name": "Mk9 4in/50 COM",
+     "caliber_mm": 102,
+     "shell": "COM",
+     "range_yd": [
+      4800,
+      9500,
+      12700,
+      15900
+     ],
+     "damage": [
+      13,
+      11,
+      10,
+      8
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 107,
+      "printed_page": "C-1",
+      "mount_row": "Mk9 4in/50"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 12,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_clemson_4in_dd_1918",
+    "period_label": "1918 class card; RS Form 10 Dec 1941 cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22,
+       23
+      ],
+      "printed_pages": [
+       "A-19",
+       "A-20"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       107
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "what": "主炮表 Mk9 4in/50"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     },
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       346
+      ],
+      "printed_pages": [
+       "346"
+      ],
+      "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-DAHLGREN",
+   "name": "达尔格伦",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "usn-4in-dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": null,
+   "class_profile": "usn_clemson_4in_dd_1918",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22,
+    23
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     23,
+     107,
+     119
+    ],
+    "rising_sun_form10": [
+     346
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      107
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "what": "主炮表 Mk9 4in/50"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      346
+     ],
+     "printed_pages": [
+      "346"
+     ],
+     "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 4/10/12/16/17/18 全是索引页；实际 Clemson 卡在 Form 10 346–354。本组 6 艘按 catalog class usn-4in-dd 取 AF 22–23（A-19/A-20）Wickes/Clemson 类卡；Form 10 346（Edsall, Dec 1941）作交叉核对。McDonough 不在本组（catalog 标签错误，另见 us_farragut_dd）。audit american 4/6 是索引，22–23 是数据页，24–25 是 Wickes/Clemson (Long-range escort) DE 改装；home 9/11/16/20/21/27 是 RN 的 4in 炮行（澳/英舰），不是美国 4in 驱逐舰；emperor 4/26/27 不在任务给定的三张船表内。",
+   "profile": {
+    "class": "Wickes/Clemson (Clemson 1120 t)",
+    "catalog_class": "usn-4in-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22,
+      23
+     ],
+     "printed_pages": [
+      "A-19",
+      "A-20"
+     ]
+    },
+    "displacement_std_tons": 1120,
+    "in_class": "111/144",
+    "in_service": "1918",
+    "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+    "in_service_year": 1918,
+    "crew": 100,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     20,
+     39,
+     59,
+     70,
+     78
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_4in50_mk9",
+    "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+    "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+    "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+    "sensors": null,
+    "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [
+     "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+     "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+     "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+     "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+     "Late 30s: Early QC series sonar added.",
+     "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+     "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+     "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+     "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+     "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+     "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+     "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+     "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-DAHLGREN",
+    "name": "达尔格伦",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 35,
+    "dp": 78,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 20,
+      "knots": 26
+     },
+     {
+      "damage": 39,
+      "knots": 18
+     },
+     {
+      "damage": 59,
+      "knots": 9
+     },
+     {
+      "damage": 70,
+      "knots": 0
+     },
+     {
+      "damage": 78,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1918,
+    "gun": {
+     "name": "Mk9 4in/50 COM",
+     "caliber_mm": 102,
+     "shell": "COM",
+     "range_yd": [
+      4800,
+      9500,
+      12700,
+      15900
+     ],
+     "damage": [
+      13,
+      11,
+      10,
+      8
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 107,
+      "printed_page": "C-1",
+      "mount_row": "Mk9 4in/50"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 12,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_clemson_4in_dd_1918",
+    "period_label": "1918 class card; RS Form 10 Dec 1941 cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22,
+       23
+      ],
+      "printed_pages": [
+       "A-19",
+       "A-20"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       107
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "what": "主炮表 Mk9 4in/50"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     },
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       346
+      ],
+      "printed_pages": [
+       "346"
+      ],
+      "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-DECATUR",
+   "name": "迪凯特",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "usn-4in-dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": null,
+   "class_profile": "usn_clemson_4in_dd_1918",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22,
+    23
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     23,
+     107,
+     119
+    ],
+    "rising_sun_form10": [
+     346
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      107
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "what": "主炮表 Mk9 4in/50"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk8"
+    }
+   ],
+   "also_sources": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      346
+     ],
+     "printed_pages": [
+      "346"
+     ],
+     "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+    }
+   ],
+   "source_note": "audit form10 4/10/12/16/17/18 全是索引页；实际 Clemson 卡在 Form 10 346–354。本组 6 艘按 catalog class usn-4in-dd 取 AF 22–23（A-19/A-20）Wickes/Clemson 类卡；Form 10 346（Edsall, Dec 1941）作交叉核对。McDonough 不在本组（catalog 标签错误，另见 us_farragut_dd）。audit american 4/6 是索引，22–23 是数据页，24–25 是 Wickes/Clemson (Long-range escort) DE 改装；home 9/11/16/20/21/27 是 RN 的 4in 炮行（澳/英舰），不是美国 4in 驱逐舰；emperor 4/26/27 不在任务给定的三张船表内。",
+   "profile": {
+    "class": "Wickes/Clemson (Clemson 1120 t)",
+    "catalog_class": "usn-4in-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22,
+      23
+     ],
+     "printed_pages": [
+      "A-19",
+      "A-20"
+     ]
+    },
+    "displacement_std_tons": 1120,
+    "in_class": "111/144",
+    "in_service": "1918",
+    "configuration": "1918 class card (AF A-19/A-20); RS Form 10 p.346 cross-check",
+    "in_service_year": 1918,
+    "crew": 100,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     20,
+     39,
+     59,
+     70,
+     78
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_4in50_mk9",
+    "gun_mounts_verbatim": "F/PW/SW/A(1)4 Mk9 4in/50",
+    "secondary_verbatim": "P&S(1)1 Mk14 3in/23",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P/S(3)4 533mm TT w/3 Mk8 torp",
+    "torpedo_model": "us_mk8_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)1 Mk14 3in/23 (0.1)",
+    "light_aa_verbatim": "(1)2 Mk1 1pdr (0.1)",
+    "sensors": null,
+    "remarks_verbatim": "\"Flush-deckers\" or \"Four-pipers.\" No directors, all guns use local control. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": [
+     "Wickes class (DD 75-185) had large turning diameter, treat as B/Medium-sized ships.",
+     "Clemson class (DD 186-199, 206-7) fitted with foundations strong enough for Mk7 5in/51, but only five ships (DD 231 - 235) fitted.",
+     "DD-208 Hovey and DD-209 Long (Clemson class) had (2)4 4in/50 in twin mounts.",
+     "8 Sep 23: Seven units of Destroyer Squadron 11, all Clemson class (Chauncey, Fuller, S. P. Lee, Nicholas, Young, Delphy, Woodbury) ran aground off Honda Point and were lost. Farragut and Somers also grounded but were able to extricate themselves.",
+     "Late 30s: Early QC series sonar added.",
+     "Dec 40-Dec 41: DD 118, 126, 128, 130, 142, 144, 145, 147, 152-155, 157-160, 199, 210, 220, 221, 223, 229, 239, 240, 245, 246, 341 fitted with (1)6 3in/50 vice all 4in, (1)4 .50 cal., 2 DC rails w/8 Mk6/9 DC each, Y-gun w/10 Mk6/9 DC, two TT mounts removed. Area AA 1.7, Lt AA 0.3.",
+     "Jan 41: Armament changed to (1)4 4in, 6 20mm (Lt AA 1.5), 6 DC Proj w/4 300 lb DC each, 2 rails w/6 Mk7 or 8 Mk6/9DC each plus 24 Mk6/9 DC. 2 sets TT removed.",
+     "1942: Assume SL radar fitted to all, those with 3 inch guns have light AA fit of (1)5 20mm vice 4 .50 cal., Lt AA 1.3.",
+     "1942-43: Remaining Wickes class to Wickes/Clemson DE (see separate entry).",
+     "May 43 on: Atlantic units (DD 109, 113, 118, 128, 142, 144, 145, 152, 220, 223, 341) fitted with HF/DF, radar to SF, one Hedgehog w/7 salvoes. One 20mm removed, Lt AA 1.0."
+    ],
+    "special_damage_modifier_pct": -15,
+    "variant_notes": [
+     "AF A-19 prints Displacement 1160/1120, Crew 114/100 and two DP rows. The profile uses the Clemson (1120 t, crew 100, DP 78) values; the Wickes variant is 1160 t, crew 114, DP 0/20/40/60/72/80.",
+     "RS Form 10 p.346 (Edsall, Clemson, Dec 1941) is a single-hull cross-check: 1090 t, crew 153, DP 0/19/39/58/69/77, Gunnery Standard II, 2×1pdr. It is not used as the class card because the AF card is the class-level annex row; the discrepancy is registered.",
+     "RS Form 10 p.346 also prints 4in/50 COM short-range damage 14 (AF C-1 prints 13) and Mk8 torpedo 75 DP (AF F-1 prints 72). The ship follows the AF C-1/F-1 annex rows; the Form 10 values are registered but not used.",
+     "AF A-19/A-20 give no radar and no 20mm for the printed 1918 fit. The 1941 refit data is in dated_remarks."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-DECATUR",
+    "name": "迪凯特",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 35,
+    "dp": 78,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 20,
+      "knots": 26
+     },
+     {
+      "damage": 39,
+      "knots": 18
+     },
+     {
+      "damage": 59,
+      "knots": 9
+     },
+     {
+      "damage": 70,
+      "knots": 0
+     },
+     {
+      "damage": 78,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1918,
+    "gun": {
+     "name": "Mk9 4in/50 COM",
+     "caliber_mm": 102,
+     "shell": "COM",
+     "range_yd": [
+      4800,
+      9500,
+      12700,
+      15900
+     ],
+     "damage": [
+      13,
+      11,
+      10,
+      8
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 107,
+      "printed_page": "C-1",
+      "mount_row": "Mk9 4in/50"
+     }
+    },
+    "torpedo": {
+     "name": "Mk8",
+     "speed_knots": 36,
+     "range_yd": 16000,
+     "warhead": 72,
+     "warhead_kg": 211,
+     "diameter_mm": 533,
+     "tubes": 12,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk8"
+     }
+    },
+    "source_class": "usn_clemson_4in_dd_1918",
+    "period_label": "1918 class card; RS Form 10 Dec 1941 cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22,
+       23
+      ],
+      "printed_pages": [
+       "A-19",
+       "A-20"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       107
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "what": "主炮表 Mk9 4in/50"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk8"
+     },
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       346
+      ],
+      "printed_pages": [
+       "346"
+      ],
+      "what": "Clemson (Edsall, Dec 1941) Form 10（交叉核对）"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-MCDONOUGH",
+   "name": "麦克多诺",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "us_farragut_dd",
+   "catalog_class_recorded": "usn-4in-dd",
+   "catalog_class_note": "catalog legacy label usn-4in-dd is wrong; DD-351 is Farragut class (AF A-19, 5in/38).",
+   "class_profile": "us_farragut_dd",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    22
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     22,
+     108,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      108
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "what": "主炮表 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk15"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "catalog 的 usn-4in-dd 是错标签：DD-351 属 Farragut 级（AF 22/A-19，5in/38、8 管 Mk15），按实际舰级取 AF A-19 Farragut 卡。audit 的 4in DD form10 hits 全是索引；american 4/6 是索引，22 同时印有 Wickes/Clemson 与 Farragut 两卡，23 是 Wickes/Clemson 续页，24–25 是 DE 改装——只有 22 的 Farragut 行适用于本舰。Savo 的 us_farragut_dd 与 AF A-19 原页冲突（DP 36 vs 26、speed 26 vs 27、ASW w/6 vs w/7），按 AF 原页修正；详见 variant_notes/savo_cross_check。",
+   "profile": {
+    "class": "Farragut",
+    "catalog_class": "us_farragut_dd",
+    "catalog_label_recorded": "usn-4in-dd",
+    "catalog_label_note": "catalog legacy label usn-4in-dd is wrong for DD-351: the actual class is Farragut (AF A-19, 5in/38, 8 Mk15 tubes).",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      22
+     ],
+     "printed_pages": [
+      "A-19"
+     ]
+    },
+    "displacement_std_tons": 1365,
+    "in_class": "8",
+    "in_service": "1934",
+    "configuration": "1934-42 class card (AF A-19)",
+    "in_service_year": 1934,
+    "crew": 250,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     26,
+     53,
+     79,
+     95,
+     105
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_5in38_mk12_mk38",
+    "gun_mounts_verbatim": "2F/P&S/2A(1)5 Mk21 5in/38",
+    "secondary_verbatim": null,
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P&S(4)2 Mk11 533mm TT w/4 Mk15 torpedoes",
+    "torpedo_model": "us_mk15_tnt_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(1)5 Mk21 5in/38 (0.7)",
+    "light_aa_verbatim": "(1)4 .50 cal. (0.3)",
+    "sensors": "Early QC series",
+    "asw": "2 Mk3 DC rail w/7 Mk7 or 8 Mk6/9 DC",
+    "remarks_verbatim": "DD 348-355.",
+    "dated_remarks": [
+     "Late 41: DC fit 2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC, 4 Mk6 K-gun w/4 Mk6/9 DC. Total of 23 Mk7 & 16 Mk6 or 41 Mk6/9 DCs carried.",
+     "1942: P&S 5in removed, Light AA fit (1)8 20mm. Area AA 1.1, Lt AA 2.0.",
+     "End 42: SC, Mk4 radar added. Light AA fit (2)2 40mm, (1)5 20mm. Lt AA 2.3."
+    ],
+    "special_damage_modifier_pct": null,
+    "savo_cross_check": {
+     "file": "data/campaign/period/savo-island-1942.json",
+     "profile": "us_farragut_dd",
+     "differences": [
+      "Savo damage_points 0/36/53/79/95/105 vs AF A-19 0/26/53/79/95/105.",
+      "Savo speed_knots 36/26/18/9/0/0 vs AF A-19 36/27/18/9/0/0.",
+      "Savo asw '2 Mk3 DC rail w/6 Mk7 or 8 Mk6/9 DC' vs AF A-19 'w/7 Mk7 or 8 Mk6/9 DC'.",
+      "Savo runtime savo_dewey/savo_hull use size C / turn 300 yd / speed loss 1; AF A-19 and Savo's own profile print D/Small."
+     ],
+     "resolution": "按 AF A-19 原页取 DP 0/26/53/79/95/105、speed 36/27/18/9/0/0、asw w/7、size D / 200 yd / 1 kt；Savo 数值未采用。"
+    },
+    "variant_notes": [
+     "catalog 的 usn-4in-dd 是错标签；DD-351 是 Farragut 级，按 AF A-19 重建，不再使用 Clemson/Wickes 4in 卡。",
+     "Savo 的 us_farragut_dd 与 AF A-19 原页冲突（DP 36 vs 26、speed 26 vs 27、ASW w/6 vs w/7），本卡按 AF A-19 原页修正；详见 savo_cross_check。",
+     "Savo runtime savo_dewey/savo_hull 把 Farragut 标成 size C / turn 300；AF A-19 与 Savo 的 profile 都写 D/Small，本卡按 D / 200 yd / 1 kt。"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-MCDONOUGH",
+    "name": "麦克多诺",
+    "side": "allies",
+    "kind": "DD",
+    "size": "D",
+    "max_knots": 36,
+    "dp": 105,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 26,
+      "knots": 27
+     },
+     {
+      "damage": 53,
+      "knots": 18
+     },
+     {
+      "damage": 79,
+      "knots": 9
+     },
+     {
+      "damage": 95,
+      "knots": 0
+     },
+     {
+      "damage": 105,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1934,
+    "gun": {
+     "name": "Mk12/21/38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "shell": "SpCOM",
+     "range_yd": [
+      5500,
+      10900,
+      14600,
+      18200
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true,
+     "barrels": 5,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 108,
+      "printed_page": "C-2",
+      "mount_row": "Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38"
+     }
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "warhead_kg": 374,
+     "diameter_mm": 533,
+     "tubes": 8,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk15"
+     }
+    },
+    "source_class": "us_farragut_dd",
+    "period_label": "1934-42 class card (AF A-19); Savo cross-check",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       22
+      ],
+      "printed_pages": [
+       "A-19"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       108
+      ],
+      "printed_pages": [
+       "C-2"
+      ],
+      "what": "主炮表 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk15"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-RN-KASHMIR",
+   "name": "克什米尔",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "rn-j-class-dd",
+   "catalog_class_recorded": "rn-j-class-dd",
+   "catalog_class_note": null,
+   "class_profile": "rn_j_class_dd_1941_12",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    32
+   ],
+   "all_pages_used": {
+    "rising_sun_form10": [
+     32
+    ],
+    "home_fleet": [
+     122
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "home_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+     "pdf_pages": [
+      122
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 21in MkIX/IX*"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 5/13/19/32：5/13/19 是索引，32 才是 Jupiter 卡（J, K & N class, Dec 1941）。class 索引把 Jupiter 写成 33，但 33 是 Electra；name 索引写 32，已目视确认 32。audit home 13 是 Home Fleet 的 RAN J class submarines 行，不是 J 级驱逐舰卡；american 7/13 是战列舰/航母页。",
+   "profile": {
+    "class": "J, K & N class (Jupiter, Dec 1941)",
+    "catalog_class": "rn-j-class-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "rising_sun_form10",
+     "pdf_pages": [
+      32
+     ],
+     "printed_pages": [
+      "32"
+     ]
+    },
+    "displacement_std_tons": 1690,
+    "in_class": "8, 8, 8",
+    "in_service": "1939",
+    "in_service_year": 1939,
+    "crew": 183,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     30,
+     61,
+     91,
+     109,
+     121
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "gb_4_7in45_mkxii",
+    "gun_mounts_verbatim": "Fwd (2) MkXII 4.7in/45 ×2; Aft (2) MkXII 4.7in/45 ×1",
+    "secondary_verbatim": "Aft (1) MkV 4.0 in/45",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "Port & Stbd (5) 533mm TT w/5 MkIX torp",
+    "torpedo_model": "gb_mkix_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 MkXII 4.7in/45, (1)1 MkV 4in (1.1)",
+    "light_aa_verbatim": "4 2pdr, 2 20mm, 8 .50 cal. (2.0)",
+    "sensors": "Type 286M radar; Type 128 sonar",
+    "remarks_verbatim": "Total 4 DC carried.",
+    "configuration": "Dec 1941 (Jupiter Form 10 p.32)",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "The only J/K/N-class Form 10 in the checked source is Jupiter (Dec 1941). It is reused as the class profile for the five catalog identities; no per-hull 1942-43 fit is invented.",
+     "The RS class index (p.13) lists Jupiter as page 33, but the actual card is PDF page 32 (page 33 is Electra). The name index (p.19) correctly says 32."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-RN-KASHMIR",
+    "name": "克什米尔",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 36,
+    "dp": 121,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 30,
+      "knots": 27
+     },
+     {
+      "damage": 61,
+      "knots": 18
+     },
+     {
+      "damage": 91,
+      "knots": 9
+     },
+     {
+      "damage": 109,
+      "knots": 0
+     },
+     {
+      "damage": 121,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1939,
+    "gun": {
+     "name": "MkXII 4.7in/45 SAP",
+     "caliber_mm": 120,
+     "shell": "SAP",
+     "range_yd": [
+      5100,
+      10200,
+      13600,
+      17000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      2,
+      3
+     ],
+     "armor_piercing": true,
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 32,
+      "printed_page": "32",
+      "mount_row": "MkXII 4.7 in/45"
+     }
+    },
+    "torpedo": {
+     "name": "MkIX",
+     "speed_knots": 45,
+     "range_yd": 11000,
+     "warhead": 84,
+     "warhead_kg": 330,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "home_fleet",
+      "pdf_page": 122,
+      "printed_page": "F-1",
+      "mount_row": "21in MkIX/IX*"
+     }
+    },
+    "source_class": "rn_j_class_dd_1941_12",
+    "period_label": "Dec 1941",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       32
+      ],
+      "printed_pages": [
+       "32"
+      ]
+     },
+     {
+      "document": "home_fleet",
+      "pdf_pages": [
+       122
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 21in MkIX/IX*"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-RN-JUPITER",
+   "name": "朱庇特",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "rn-j-class-dd",
+   "catalog_class_recorded": "rn-j-class-dd",
+   "catalog_class_note": null,
+   "class_profile": "rn_j_class_dd_1941_12",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    32
+   ],
+   "all_pages_used": {
+    "rising_sun_form10": [
+     32
+    ],
+    "home_fleet": [
+     122
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "home_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+     "pdf_pages": [
+      122
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 21in MkIX/IX*"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 5/13/19/32：5/13/19 是索引，32 才是 Jupiter 卡（J, K & N class, Dec 1941）。class 索引把 Jupiter 写成 33，但 33 是 Electra；name 索引写 32，已目视确认 32。audit home 13 是 Home Fleet 的 RAN J class submarines 行，不是 J 级驱逐舰卡；american 7/13 是战列舰/航母页。",
+   "profile": {
+    "class": "J, K & N class (Jupiter, Dec 1941)",
+    "catalog_class": "rn-j-class-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "rising_sun_form10",
+     "pdf_pages": [
+      32
+     ],
+     "printed_pages": [
+      "32"
+     ]
+    },
+    "displacement_std_tons": 1690,
+    "in_class": "8, 8, 8",
+    "in_service": "1939",
+    "in_service_year": 1939,
+    "crew": 183,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     30,
+     61,
+     91,
+     109,
+     121
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "gb_4_7in45_mkxii",
+    "gun_mounts_verbatim": "Fwd (2) MkXII 4.7in/45 ×2; Aft (2) MkXII 4.7in/45 ×1",
+    "secondary_verbatim": "Aft (1) MkV 4.0 in/45",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "Port & Stbd (5) 533mm TT w/5 MkIX torp",
+    "torpedo_model": "gb_mkix_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 MkXII 4.7in/45, (1)1 MkV 4in (1.1)",
+    "light_aa_verbatim": "4 2pdr, 2 20mm, 8 .50 cal. (2.0)",
+    "sensors": "Type 286M radar; Type 128 sonar",
+    "remarks_verbatim": "Total 4 DC carried.",
+    "configuration": "Dec 1941 (Jupiter Form 10 p.32)",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "The only J/K/N-class Form 10 in the checked source is Jupiter (Dec 1941). It is reused as the class profile for the five catalog identities; no per-hull 1942-43 fit is invented.",
+     "The RS class index (p.13) lists Jupiter as page 33, but the actual card is PDF page 32 (page 33 is Electra). The name index (p.19) correctly says 32."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-RN-JUPITER",
+    "name": "朱庇特",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 36,
+    "dp": 121,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 30,
+      "knots": 27
+     },
+     {
+      "damage": 61,
+      "knots": 18
+     },
+     {
+      "damage": 91,
+      "knots": 9
+     },
+     {
+      "damage": 109,
+      "knots": 0
+     },
+     {
+      "damage": 121,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1939,
+    "gun": {
+     "name": "MkXII 4.7in/45 SAP",
+     "caliber_mm": 120,
+     "shell": "SAP",
+     "range_yd": [
+      5100,
+      10200,
+      13600,
+      17000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      2,
+      3
+     ],
+     "armor_piercing": true,
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 32,
+      "printed_page": "32",
+      "mount_row": "MkXII 4.7 in/45"
+     }
+    },
+    "torpedo": {
+     "name": "MkIX",
+     "speed_knots": 45,
+     "range_yd": 11000,
+     "warhead": 84,
+     "warhead_kg": 330,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "home_fleet",
+      "pdf_page": 122,
+      "printed_page": "F-1",
+      "mount_row": "21in MkIX/IX*"
+     }
+    },
+    "source_class": "rn_j_class_dd_1941_12",
+    "period_label": "Dec 1941",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       32
+      ],
+      "printed_pages": [
+       "32"
+      ]
+     },
+     {
+      "document": "home_fleet",
+      "pdf_pages": [
+       122
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 21in MkIX/IX*"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-RN-JAVELIN",
+   "name": "标枪",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "rn-j-class-dd",
+   "catalog_class_recorded": "rn-j-class-dd",
+   "catalog_class_note": null,
+   "class_profile": "rn_j_class_dd_1941_12",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    32
+   ],
+   "all_pages_used": {
+    "rising_sun_form10": [
+     32
+    ],
+    "home_fleet": [
+     122
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "home_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+     "pdf_pages": [
+      122
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 21in MkIX/IX*"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 5/13/19/32：5/13/19 是索引，32 才是 Jupiter 卡（J, K & N class, Dec 1941）。class 索引把 Jupiter 写成 33，但 33 是 Electra；name 索引写 32，已目视确认 32。audit home 13 是 Home Fleet 的 RAN J class submarines 行，不是 J 级驱逐舰卡；american 7/13 是战列舰/航母页。",
+   "profile": {
+    "class": "J, K & N class (Jupiter, Dec 1941)",
+    "catalog_class": "rn-j-class-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "rising_sun_form10",
+     "pdf_pages": [
+      32
+     ],
+     "printed_pages": [
+      "32"
+     ]
+    },
+    "displacement_std_tons": 1690,
+    "in_class": "8, 8, 8",
+    "in_service": "1939",
+    "in_service_year": 1939,
+    "crew": 183,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     30,
+     61,
+     91,
+     109,
+     121
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "gb_4_7in45_mkxii",
+    "gun_mounts_verbatim": "Fwd (2) MkXII 4.7in/45 ×2; Aft (2) MkXII 4.7in/45 ×1",
+    "secondary_verbatim": "Aft (1) MkV 4.0 in/45",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "Port & Stbd (5) 533mm TT w/5 MkIX torp",
+    "torpedo_model": "gb_mkix_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 MkXII 4.7in/45, (1)1 MkV 4in (1.1)",
+    "light_aa_verbatim": "4 2pdr, 2 20mm, 8 .50 cal. (2.0)",
+    "sensors": "Type 286M radar; Type 128 sonar",
+    "remarks_verbatim": "Total 4 DC carried.",
+    "configuration": "Dec 1941 (Jupiter Form 10 p.32)",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "The only J/K/N-class Form 10 in the checked source is Jupiter (Dec 1941). It is reused as the class profile for the five catalog identities; no per-hull 1942-43 fit is invented.",
+     "The RS class index (p.13) lists Jupiter as page 33, but the actual card is PDF page 32 (page 33 is Electra). The name index (p.19) correctly says 32."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-RN-JAVELIN",
+    "name": "标枪",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 36,
+    "dp": 121,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 30,
+      "knots": 27
+     },
+     {
+      "damage": 61,
+      "knots": 18
+     },
+     {
+      "damage": 91,
+      "knots": 9
+     },
+     {
+      "damage": 109,
+      "knots": 0
+     },
+     {
+      "damage": 121,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1939,
+    "gun": {
+     "name": "MkXII 4.7in/45 SAP",
+     "caliber_mm": 120,
+     "shell": "SAP",
+     "range_yd": [
+      5100,
+      10200,
+      13600,
+      17000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      2,
+      3
+     ],
+     "armor_piercing": true,
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 32,
+      "printed_page": "32",
+      "mount_row": "MkXII 4.7 in/45"
+     }
+    },
+    "torpedo": {
+     "name": "MkIX",
+     "speed_knots": 45,
+     "range_yd": 11000,
+     "warhead": 84,
+     "warhead_kg": 330,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "home_fleet",
+      "pdf_page": 122,
+      "printed_page": "F-1",
+      "mount_row": "21in MkIX/IX*"
+     }
+    },
+    "source_class": "rn_j_class_dd_1941_12",
+    "period_label": "Dec 1941",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       32
+      ],
+      "printed_pages": [
+       "32"
+      ]
+     },
+     {
+      "document": "home_fleet",
+      "pdf_pages": [
+       122
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 21in MkIX/IX*"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-RN-JERSEY",
+   "name": "泽西",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "rn-j-class-dd",
+   "catalog_class_recorded": "rn-j-class-dd",
+   "catalog_class_note": null,
+   "class_profile": "rn_j_class_dd_1941_12",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    32
+   ],
+   "all_pages_used": {
+    "rising_sun_form10": [
+     32
+    ],
+    "home_fleet": [
+     122
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "home_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+     "pdf_pages": [
+      122
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 21in MkIX/IX*"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 5/13/19/32：5/13/19 是索引，32 才是 Jupiter 卡（J, K & N class, Dec 1941）。class 索引把 Jupiter 写成 33，但 33 是 Electra；name 索引写 32，已目视确认 32。audit home 13 是 Home Fleet 的 RAN J class submarines 行，不是 J 级驱逐舰卡；american 7/13 是战列舰/航母页。",
+   "profile": {
+    "class": "J, K & N class (Jupiter, Dec 1941)",
+    "catalog_class": "rn-j-class-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "rising_sun_form10",
+     "pdf_pages": [
+      32
+     ],
+     "printed_pages": [
+      "32"
+     ]
+    },
+    "displacement_std_tons": 1690,
+    "in_class": "8, 8, 8",
+    "in_service": "1939",
+    "in_service_year": 1939,
+    "crew": 183,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     30,
+     61,
+     91,
+     109,
+     121
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "gb_4_7in45_mkxii",
+    "gun_mounts_verbatim": "Fwd (2) MkXII 4.7in/45 ×2; Aft (2) MkXII 4.7in/45 ×1",
+    "secondary_verbatim": "Aft (1) MkV 4.0 in/45",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "Port & Stbd (5) 533mm TT w/5 MkIX torp",
+    "torpedo_model": "gb_mkix_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 MkXII 4.7in/45, (1)1 MkV 4in (1.1)",
+    "light_aa_verbatim": "4 2pdr, 2 20mm, 8 .50 cal. (2.0)",
+    "sensors": "Type 286M radar; Type 128 sonar",
+    "remarks_verbatim": "Total 4 DC carried.",
+    "configuration": "Dec 1941 (Jupiter Form 10 p.32)",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "The only J/K/N-class Form 10 in the checked source is Jupiter (Dec 1941). It is reused as the class profile for the five catalog identities; no per-hull 1942-43 fit is invented.",
+     "The RS class index (p.13) lists Jupiter as page 33, but the actual card is PDF page 32 (page 33 is Electra). The name index (p.19) correctly says 32."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-RN-JERSEY",
+    "name": "泽西",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 36,
+    "dp": 121,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 30,
+      "knots": 27
+     },
+     {
+      "damage": 61,
+      "knots": 18
+     },
+     {
+      "damage": 91,
+      "knots": 9
+     },
+     {
+      "damage": 109,
+      "knots": 0
+     },
+     {
+      "damage": 121,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1939,
+    "gun": {
+     "name": "MkXII 4.7in/45 SAP",
+     "caliber_mm": 120,
+     "shell": "SAP",
+     "range_yd": [
+      5100,
+      10200,
+      13600,
+      17000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      2,
+      3
+     ],
+     "armor_piercing": true,
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 32,
+      "printed_page": "32",
+      "mount_row": "MkXII 4.7 in/45"
+     }
+    },
+    "torpedo": {
+     "name": "MkIX",
+     "speed_knots": 45,
+     "range_yd": 11000,
+     "warhead": 84,
+     "warhead_kg": 330,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "home_fleet",
+      "pdf_page": 122,
+      "printed_page": "F-1",
+      "mount_row": "21in MkIX/IX*"
+     }
+    },
+    "source_class": "rn_j_class_dd_1941_12",
+    "period_label": "Dec 1941",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       32
+      ],
+      "printed_pages": [
+       "32"
+      ]
+     },
+     {
+      "document": "home_fleet",
+      "pdf_pages": [
+       122
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 21in MkIX/IX*"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-RN-JACKAL",
+   "name": "豺",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": "rn-j-class-dd",
+   "catalog_class_recorded": "rn-j-class-dd",
+   "catalog_class_note": null,
+   "class_profile": "rn_j_class_dd_1941_12",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    32
+   ],
+   "all_pages_used": {
+    "rising_sun_form10": [
+     32
+    ],
+    "home_fleet": [
+     122
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "home_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+     "pdf_pages": [
+      122
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 21in MkIX/IX*"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit form10 5/13/19/32：5/13/19 是索引，32 才是 Jupiter 卡（J, K & N class, Dec 1941）。class 索引把 Jupiter 写成 33，但 33 是 Electra；name 索引写 32，已目视确认 32。audit home 13 是 Home Fleet 的 RAN J class submarines 行，不是 J 级驱逐舰卡；american 7/13 是战列舰/航母页。",
+   "profile": {
+    "class": "J, K & N class (Jupiter, Dec 1941)",
+    "catalog_class": "rn-j-class-dd",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "rising_sun_form10",
+     "pdf_pages": [
+      32
+     ],
+     "printed_pages": [
+      "32"
+     ]
+    },
+    "displacement_std_tons": 1690,
+    "in_class": "8, 8, 8",
+    "in_service": "1939",
+    "in_service_year": 1939,
+    "crew": 183,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     30,
+     61,
+     91,
+     109,
+     121
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "gb_4_7in45_mkxii",
+    "gun_mounts_verbatim": "Fwd (2) MkXII 4.7in/45 ×2; Aft (2) MkXII 4.7in/45 ×1",
+    "secondary_verbatim": "Aft (1) MkV 4.0 in/45",
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "Port & Stbd (5) 533mm TT w/5 MkIX torp",
+    "torpedo_model": "gb_mkix_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 MkXII 4.7in/45, (1)1 MkV 4in (1.1)",
+    "light_aa_verbatim": "4 2pdr, 2 20mm, 8 .50 cal. (2.0)",
+    "sensors": "Type 286M radar; Type 128 sonar",
+    "remarks_verbatim": "Total 4 DC carried.",
+    "configuration": "Dec 1941 (Jupiter Form 10 p.32)",
+    "dated_remarks": [],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "The only J/K/N-class Form 10 in the checked source is Jupiter (Dec 1941). It is reused as the class profile for the five catalog identities; no per-hull 1942-43 fit is invented.",
+     "The RS class index (p.13) lists Jupiter as page 33, but the actual card is PDF page 32 (page 33 is Electra). The name index (p.19) correctly says 32."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-RN-JACKAL",
+    "name": "豺",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 36,
+    "dp": 121,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 30,
+      "knots": 27
+     },
+     {
+      "damage": 61,
+      "knots": 18
+     },
+     {
+      "damage": 91,
+      "knots": 9
+     },
+     {
+      "damage": 109,
+      "knots": 0
+     },
+     {
+      "damage": 121,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1939,
+    "gun": {
+     "name": "MkXII 4.7in/45 SAP",
+     "caliber_mm": 120,
+     "shell": "SAP",
+     "range_yd": [
+      5100,
+      10200,
+      13600,
+      17000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      2,
+      3
+     ],
+     "armor_piercing": true,
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 32,
+      "printed_page": "32",
+      "mount_row": "MkXII 4.7 in/45"
+     }
+    },
+    "torpedo": {
+     "name": "MkIX",
+     "speed_knots": 45,
+     "range_yd": 11000,
+     "warhead": 84,
+     "warhead_kg": 330,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "home_fleet",
+      "pdf_page": 122,
+      "printed_page": "F-1",
+      "mount_row": "21in MkIX/IX*"
+     }
+    },
+    "source_class": "rn_j_class_dd_1941_12",
+    "period_label": "Dec 1941",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "pdf_pages": [
+       32
+      ],
+      "printed_pages": [
+       "32"
+      ]
+     },
+     {
+      "document": "home_fleet",
+      "pdf_pages": [
+       122
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 21in MkIX/IX*"
+     }
+    ]
+   },
+   "blocker": null
+  },
+  {
+   "identity": "IBS-U-USN-GEARING",
+   "name": "基林",
+   "side": "allies",
+   "type": "DD",
+   "catalog_class": null,
+   "catalog_class_recorded": null,
+   "catalog_class_note": null,
+   "class_profile": "usn_gearing_dd_1944",
+   "source_file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "source_pages": [
+    19,
+    20
+   ],
+   "all_pages_used": {
+    "american_fleets": [
+     19,
+     20,
+     108,
+     119
+    ]
+   },
+   "source_tables": [
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      108
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "what": "主炮表 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38"
+    },
+    {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_pages": [
+      119
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "what": "鱼雷表 Mk15"
+    }
+   ],
+   "also_sources": [],
+   "source_note": "audit american hits 4/19：4 是索引，19（A-16）是 Gearing 卡；20（A-17）开头是同一卡的损伤/速度表。",
+   "profile": {
+    "class": "Gearing",
+    "catalog_class": null,
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "american_fleets",
+     "pdf_pages": [
+      19,
+      20
+     ],
+     "printed_pages": [
+      "A-16",
+      "A-17"
+     ]
+    },
+    "displacement_std_tons": 2616,
+    "in_class": "98 + 7 + 47",
+    "in_service": "1944",
+    "configuration": "1944 (AF A-16/A-17)",
+    "in_service_year": 1944,
+    "crew": 350,
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     41,
+     81,
+     122,
+     146,
+     162
+    ],
+    "speed_knots": [
+     36,
+     27,
+     18,
+     9,
+     0,
+     0
+    ],
+    "main_gun": "us_5in38_mk38",
+    "gun_mounts_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk12/22",
+    "secondary_verbatim": null,
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+    "torpedo_model": "us_mk15_tnt_torpedo",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 Mk38 5in/38 (1.7)",
+    "light_aa_verbatim": "(4)2 40mm, (2)2 40mm, (1)10 20mm (5.5)",
+    "sensors": "QGA sonar; SC-2, SG radar",
+    "remarks_verbatim": "DD 710-719, 742, 743, 763-765, 782-790, 805-808, 817-853, 858-890 (only DD 710-713, 742, 743, 782-785, 805-808, 829-838, 858-860, 862-866, 873-885 commissioned during war). Lengthened Sumner class with increased fuel capacity. Stowage for 64 DCs.",
+    "dated_remarks": [
+     "1945 Anti-kamikaze modification: Aft TT mount removed. Lt AA to (4)3 40mm, (2)2 40mm, (2)9-10 20mm, Lt AA 8.5 or 9.0.",
+     "Radar Picket Conversion - DD 742, 743, 805-808, 823, 873-877 fitted with SR vice SC-2, SP radar added, TDY radar jammers, DBM (1st Gen ES), AA to (4)3 40mm (two have MK34 radars for blind-fire control), (2)2 40mm, (2)8 20mm, Lt AA 8.0. DD 742 and DD 743 had one TT mount; remainder have both mounts removed."
+    ],
+    "special_damage_modifier_pct": null,
+    "variant_notes": [
+     "AF F-1 prints Mk15 87 DP (TNT) for the 1935-42 rows and a 1943 Torpex 99 DP row. The ship uses the registered 87 DP TNT row; the Torpex alternative is registered but not used, because the card does not date Gearing's torpedo lot.",
+     "The damage table 0/41/81/122/146/162 and speed 36/27/18/9/0 are printed at the top of A-17 and belong to the Gearing card begun on A-16."
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-USN-GEARING",
+    "name": "基林",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 36,
+    "dp": 162,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 36
+     },
+     {
+      "damage": 41,
+      "knots": 27
+     },
+     {
+      "damage": 81,
+      "knots": 18
+     },
+     {
+      "damage": 122,
+      "knots": 9
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     },
+     {
+      "damage": 162,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1944,
+    "gun": {
+     "name": "Mk38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "shell": "SpCOM",
+     "range_yd": [
+      5500,
+      10900,
+      14600,
+      18200
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true,
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 108,
+      "printed_page": "C-2",
+      "mount_row": "Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38"
+     }
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "warhead_kg": 374,
+     "diameter_mm": 533,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "american_fleets",
+      "pdf_page": 119,
+      "printed_page": "F-1",
+      "mount_row": "Mk15"
+     }
+    },
+    "source_class": "usn_gearing_dd_1944",
+    "period_label": "1944",
+    "source": [
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       19,
+       20
+      ],
+      "printed_pages": [
+       "A-16",
+       "A-17"
+      ]
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       108
+      ],
+      "printed_pages": [
+       "C-2"
+      ],
+      "what": "主炮表 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38"
+     },
+     {
+      "document": "american_fleets",
+      "pdf_pages": [
+       119
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "what": "鱼雷表 Mk15"
+     }
+    ]
+   },
+   "blocker": null
+  }
+ ]
+}

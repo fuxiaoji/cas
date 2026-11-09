@@ -1,0 +1,56 @@
+﻿{
+    "source":  "cas-sim suggest, builtin profiles, tick 0, recorded before ai.rs evolution work",
+    "day6106":  {
+                    "1":  [
+                              {
+                                  "fleet":  1,
+                                  "mode":  "follow",
+                                  "op":  "route",
+                                  "points":  [
+                                                 {
+                                                     "x":  10591.423256311697,
+                                                     "y":  6218.776874783803
+                                                 }
+                                             ],
+                                  "speed":  26.0
+                              },
+                              {
+                                  "op":  "fire",
+                                  "ship":  1,
+                                  "target":  "C01",
+                                  "weapon":  "gun"
+                              },
+                              {
+                                  "op":  "fire",
+                                  "ship":  2,
+                                  "target":  "C01",
+                                  "weapon":  "gun"
+                              },
+                              {
+                                  "op":  "fire",
+                                  "ship":  3,
+                                  "target":  "C01",
+                                  "weapon":  "gun"
+                              }
+                          ]
+                },
+    "night6107":  {
+                      "1":  [
+                                {
+                                    "fleet":  1,
+                                    "mode":  "follow",
+                                    "op":  "route",
+                                    "points":  [
+                                                   {
+                                                       "x":  12639.119436210465,
+                                                       "y":  6220.322504215167
+                                                   }
+                                               ],
+                                    "speed":  26.0
+                                }
+                            ]
+                  },
+    "empress6106":  {
+
+                    }
+}

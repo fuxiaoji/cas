@@ -1,11 +1,17 @@
-"""Render the original CAS score from notes and synthesized instruments.
+"""Render the legacy original CAS score from notes and synthesized instruments.
 
 Build-time only. Requires NumPy and FFmpeg with libopus (imageio-ffmpeg is an
 optional source of the binary). No samples or external recording are read.
+
+The shipped score/ directory now contains the ledgered World of Warships OST
+cuts (score/ledger.json). Running this script would overwrite them, so it
+refuses unless --force-synthetic is passed. The old synthetic files are kept in
+artifacts/client/audio-archive/old-score/.
 """
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 
 import numpy as np
 
@@ -150,6 +156,8 @@ def ending(won):
 
 
 def main():
+    if "--force-synthetic" not in sys.argv:
+        raise SystemExit("score/ holds the ledgered World of Warships OST cuts; pass --force-synthetic to overwrite them with the legacy synthetic render")
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
         from imageio_ffmpeg import get_ffmpeg_exe

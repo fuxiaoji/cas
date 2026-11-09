@@ -1,0 +1,360 @@
+{
+  "cases": [
+    {
+      "enemy": "torpedo",
+      "fleet": 1,
+      "name": "day-6106-allies",
+      "orders": [
+        {
+          "fleet": 1,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 10591.423256311697,
+              "y": 6218.776874783803
+            }
+          ],
+          "speed": 25.0
+        },
+        {
+          "op": "fire",
+          "ship": 1,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 2,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 3,
+          "target": "C01",
+          "weapon": "gun"
+        }
+      ],
+      "profile": "gunnery",
+      "seed": 6106,
+      "side": 0,
+      "variant": ""
+    },
+    {
+      "enemy": "gunnery",
+      "fleet": 2,
+      "name": "day-6106-axis",
+      "orders": [
+        {
+          "fleet": 2,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 13826.423734265658,
+              "y": 5352.9613417586215
+            }
+          ],
+          "speed": 28.0
+        },
+        {
+          "op": "fire",
+          "ship": 6,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 7,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 8,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 9,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 10,
+          "target": "C01",
+          "weapon": "gun"
+        }
+      ],
+      "profile": "torpedo",
+      "seed": 6106,
+      "side": 1,
+      "variant": ""
+    },
+    {
+      "enemy": "torpedo",
+      "fleet": 1,
+      "name": "night-6107-allies",
+      "orders": [
+        {
+          "fleet": 1,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 12639.119436210465,
+              "y": 6220.322504215167
+            }
+          ],
+          "speed": 25.0
+        }
+      ],
+      "profile": "gunnery",
+      "seed": 6107,
+      "side": 0,
+      "variant": "night"
+    },
+    {
+      "enemy": "gunnery",
+      "fleet": 2,
+      "name": "night-6107-axis",
+      "orders": [
+        {
+          "fleet": 2,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 11352.375607974576,
+              "y": 7804.111765392855
+            }
+          ],
+          "speed": 28.0
+        }
+      ],
+      "profile": "torpedo",
+      "seed": 6107,
+      "side": 1,
+      "variant": "night"
+    },
+    {
+      "enemy": "coord",
+      "fleet": 1,
+      "name": "empress-6106-default",
+      "orders": [],
+      "profile": "coord",
+      "seed": 6106,
+      "side": 0,
+      "variant": "empress"
+    },
+    {
+      "enemy": "torpedo",
+      "fleet": 1,
+      "name": "day-6106-coord",
+      "orders": [
+        {
+          "fleet": 1,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 10591.423256311697,
+              "y": 6218.776874783803
+            }
+          ],
+          "speed": 26.0
+        },
+        {
+          "op": "fire",
+          "ship": 1,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 2,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 3,
+          "target": "C01",
+          "weapon": "gun"
+        }
+      ],
+      "profile": "coord",
+      "seed": 6106,
+      "side": 0,
+      "variant": ""
+    },
+    {
+      "enemy": "torpedo",
+      "fleet": 1,
+      "name": "night-6107-coord",
+      "orders": [
+        {
+          "fleet": 1,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 12639.119436210465,
+              "y": 6220.322504215167
+            }
+          ],
+          "speed": 26.0
+        }
+      ],
+      "profile": "coord",
+      "seed": 6107,
+      "side": 0,
+      "variant": "night"
+    },
+    {
+      "enemy": "gunnery",
+      "fleet": 1,
+      "name": "day-6106-torpedo",
+      "orders": [
+        {
+          "fleet": 1,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 10436.806883503354,
+              "y": 5113.949897153591
+            }
+          ],
+          "speed": 28.0
+        },
+        {
+          "op": "fire",
+          "ship": 1,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 2,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 3,
+          "target": "C01",
+          "weapon": "gun"
+        }
+      ],
+      "profile": "torpedo",
+      "seed": 6106,
+      "side": 0,
+      "variant": ""
+    },
+    {
+      "enemy": "torpedo",
+      "fleet": 2,
+      "name": "day-6106-gunnery-axis",
+      "orders": [
+        {
+          "fleet": 2,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 13518.299203260998,
+              "y": 6425.159153094331
+            }
+          ],
+          "speed": 25.0
+        },
+        {
+          "op": "fire",
+          "ship": 6,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 7,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 8,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 9,
+          "target": "C01",
+          "weapon": "gun"
+        },
+        {
+          "op": "fire",
+          "ship": 10,
+          "target": "C01",
+          "weapon": "gun"
+        }
+      ],
+      "profile": "gunnery",
+      "seed": 6106,
+      "side": 1,
+      "variant": ""
+    },
+    {
+      "enemy": "gunnery",
+      "fleet": 1,
+      "name": "night-6107-torpedo",
+      "orders": [
+        {
+          "fleet": 1,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 12639.119436210465,
+              "y": 6220.322504215167
+            }
+          ],
+          "speed": 28.0
+        }
+      ],
+      "profile": "torpedo",
+      "seed": 6107,
+      "side": 0,
+      "variant": "night"
+    },
+    {
+      "enemy": "torpedo",
+      "fleet": 2,
+      "name": "night-6107-gunnery-axis",
+      "orders": [
+        {
+          "fleet": 2,
+          "mode": "follow",
+          "op": "route",
+          "points": [
+            {
+              "x": 11352.375607974576,
+              "y": 7804.111765392855
+            }
+          ],
+          "speed": 25.0
+        }
+      ],
+      "profile": "gunnery",
+      "seed": 6107,
+      "side": 1,
+      "variant": "night"
+    }
+  ],
+  "format": "orders are the exact serde_json values emitted by suggestions()",
+  "source": "HEAD src/ai.rs in a detached worktree at 5fc981b; builtin tick-0 suggestions"
+}

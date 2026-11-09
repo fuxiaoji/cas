@@ -1,0 +1,772 @@
+{
+ "schema_version": 1,
+ "generated_by": "erma-record-image-transcription",
+ "scope": "Coverage/checks for data/ships/erma-source-cards-ijn.json",
+ "audit_file": "data/ships/non-scenario-source-audit.json",
+ "source_images": [
+  {
+   "document": "erma_ijn_ship_records",
+   "path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\resources\\originals\\extensions\\erma\\records\\erma-ijn-ship-records.png",
+   "sha256": "0a98a2b3421377144b25f842039868a706269269f8944701bf284808cedc5571",
+   "bytes": 734047,
+   "pixels": [
+    2449,
+    3242
+   ],
+   "role": "primary IJN record sheet: 3 BB + 2 CB + 2 CA + 1 CL + 4 DD cards"
+  },
+  {
+   "document": "erma_ship_records_overview",
+   "path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\resources\\originals\\extensions\\erma\\records\\erma-ship-records-overview.png",
+   "sha256": "03880d80621d8042fcb29333ada63a622eadf3d40950bc2feec074e3a87ab625",
+   "bytes": 1471195,
+   "pixels": [
+    2449,
+    6484
+   ],
+   "role": "overview sheet: IJN page 1, USN page 2; used to confirm pagination only"
+  }
+ ],
+ "counts": {
+  "requested_axis_erma": 11,
+  "transcribed": 11,
+  "ship_defs_structurally_complete": 8,
+  "profile_only_blocked": 3,
+  "class_profiles": 6,
+  "unresolved_items": 12
+ },
+ "checks": {
+  "all_axis_erma_covered": true,
+  "no_carriers": true,
+  "types_allowed": true,
+  "all_cards_have_source_image": true,
+  "all_cards_have_source_note": true,
+  "all_cards_have_profile": true,
+  "same_class_profiles_identical": true,
+  "all_ship_defs_structurally_complete": true,
+  "class_profile_map_matches_cards": true,
+  "blocked_cards_have_blockers": true,
+  "no_points_vp_cost_fields": true,
+  "generator_scope_data_ships_only": true
+ },
+ "points_like_keys_found": [],
+ "coverage": [
+  {
+   "identity": "IBS-U-IJN-ERMA-SHINANO",
+   "name": "信浓",
+   "name_en": "Shinano",
+   "side": "axis",
+   "type": "BB",
+   "class_profile": "erma_ijn_yamato_bb",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_class_base_table_proxy",
+   "conversion_confidence": "medium",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "BB-3",
+    "card_label_verbatim": "BB 信浓 Shinano",
+    "bbox_px": [
+     0,
+     816,
+     2449,
+     1063
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MUSASHI",
+   "name": "武藏",
+   "name_en": "Musashi",
+   "side": "axis",
+   "type": "BB",
+   "class_profile": "erma_ijn_yamato_bb",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_class_base_table",
+   "conversion_confidence": "high",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "BB-2",
+    "card_label_verbatim": "BB 武藏 Musashi",
+    "bbox_px": [
+     0,
+     569,
+     2449,
+     816
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-IBUKI",
+   "name": "伊吹",
+   "name_en": "Ibuki",
+   "side": "axis",
+   "type": "CA",
+   "class_profile": "erma_ijn_ibuki_ca",
+   "status": "profile_only_blocked",
+   "shipdef_status": "blocked",
+   "shipdef_missing": [
+    "displacement_std_tons",
+    "crew",
+    "damage_points",
+    "speed_knots",
+    "turn",
+    "armor_rating",
+    "main_gun.range_yd/damage/pen",
+    "gun_mounts.barrels",
+    "torpedo.tubes/reserve"
+   ],
+   "conversion_basis": "blocked_no_ca_base_table",
+   "conversion_confidence": "none",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "CA-1",
+    "card_label_verbatim": "CA 伊吹 Ibuki",
+    "bbox_px": [
+     0,
+     1557,
+     2449,
+     1804
+    ]
+   },
+   "has_ship_def": false,
+   "blocker_count": 4
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KURAMA",
+   "name": "鞍马",
+   "name_en": "Kurama",
+   "side": "axis",
+   "type": "CA",
+   "class_profile": "erma_ijn_ibuki_ca",
+   "status": "profile_only_blocked",
+   "shipdef_status": "blocked",
+   "shipdef_missing": [
+    "displacement_std_tons",
+    "crew",
+    "damage_points",
+    "speed_knots",
+    "turn",
+    "armor_rating",
+    "main_gun.range_yd/damage/pen",
+    "gun_mounts.barrels",
+    "torpedo.tubes/reserve"
+   ],
+   "conversion_basis": "blocked_no_ca_base_table",
+   "conversion_confidence": "none",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "CA-2",
+    "card_label_verbatim": "CA 鞍马 Kurama",
+    "bbox_px": [
+     0,
+     1804,
+     2449,
+     2051
+    ]
+   },
+   "has_ship_def": false,
+   "blocker_count": 4
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-AZUMA",
+   "name": "吾妻",
+   "name_en": "Azuma",
+   "side": "axis",
+   "type": "CB",
+   "class_profile": "erma_ijn_b64_cb",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_design_family_base_table_proxy",
+   "conversion_confidence": "medium",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "CB-1",
+    "card_label_verbatim": "CB 吾妻 Azuma",
+    "bbox_px": [
+     0,
+     1063,
+     2449,
+     1310
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-ISHIKARI",
+   "name": "石狩",
+   "name_en": "Ishikari",
+   "side": "axis",
+   "type": "CB",
+   "class_profile": "erma_ijn_b64_cb",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_design_family_base_table_proxy",
+   "conversion_confidence": "medium",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "CB-2",
+    "card_label_verbatim": "CB 石狩 Ishikari",
+    "bbox_px": [
+     0,
+     1310,
+     2449,
+     1557
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-GOKASE",
+   "name": "五濑",
+   "name_en": "Gokase",
+   "side": "axis",
+   "type": "CL",
+   "class_profile": "erma_ijn_gokase_cl",
+   "status": "profile_only_blocked",
+   "shipdef_status": "blocked",
+   "shipdef_missing": [
+    "base_table",
+    "displacement_std_tons",
+    "crew",
+    "damage_points",
+    "speed_knots",
+    "turn",
+    "armor_rating",
+    "main_gun.range_yd/damage/pen",
+    "gun_mounts.barrels",
+    "torpedo.tubes/reserve"
+   ],
+   "conversion_basis": "blocked_no_base_table",
+   "conversion_confidence": "none",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "CL-1",
+    "card_label_verbatim": "CL 五濑 Gokase",
+    "bbox_px": [
+     0,
+     2051,
+     2449,
+     2298
+    ]
+   },
+   "has_ship_def": false,
+   "blocker_count": 4
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+   "name": "卷波",
+   "name_en": "Makinami",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "erma_ijn_yugumo_dd",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_class_base_table",
+   "conversion_confidence": "high",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "DD-4",
+    "card_label_verbatim": "DD 卷波 Makinami",
+    "bbox_px": [
+     1224,
+     2545,
+     2449,
+     2792
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-SHIMAKAZE",
+   "name": "岛风",
+   "name_en": "Shimakaze",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "erma_ijn_shimakaze_dd",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_class_base_table",
+   "conversion_confidence": "high",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "DD-1",
+    "card_label_verbatim": "DD 岛风 Shimakaze",
+    "bbox_px": [
+     0,
+     2298,
+     1224,
+     2545
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+   "name": "长波",
+   "name_en": "Naganami",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "erma_ijn_yugumo_dd",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_class_base_table",
+   "conversion_confidence": "high",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "DD-3",
+    "card_label_verbatim": "DD 长波 Naganami",
+    "bbox_px": [
+     0,
+     2545,
+     1224,
+     2792
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+   "name": "风云",
+   "name_en": "Kazegumo",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "erma_ijn_yugumo_dd",
+   "status": "ship",
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "conversion_basis": "same_class_base_table",
+   "conversion_confidence": "high",
+   "source_image": {
+    "document": "erma_ijn_ship_records",
+    "card_row": "DD-2",
+    "card_label_verbatim": "DD 风云 Kazegumo",
+    "bbox_px": [
+     1224,
+     2298,
+     2449,
+     2545
+    ]
+   },
+   "has_ship_def": true,
+   "blocker_count": 0
+  }
+ ],
+ "class_profiles": [
+  {
+   "class_profile": "erma_ijn_yamato_bb",
+   "class": "Yamato",
+   "class_label_zh": "大和级",
+   "kind": "BB",
+   "profile_status": "complete",
+   "ships": [
+    "IBS-U-IJN-ERMA-SHINANO",
+    "IBS-U-IJN-ERMA-MUSASHI"
+   ],
+   "has_ship_defs": true,
+   "base_table": {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     7,
+     8
+    ],
+    "printed_pages": [
+     "A-4",
+     "A-5"
+    ],
+    "label": "Yamato class: 64000 std, 44/20/195, 1365 DP, 27/20/14/7/0, 2F/A(3)3 Type 94 46cm/45, dated 1944 refits",
+    "note": "A-4 条目与 DP/航速行；A-5 承接 1944 年改装与 Musashi 分舰备注。"
+   },
+   "differences_from_base": [
+    "ERMA 卡装甲带 16in；基础表 CAS 装甲评级 44（约 17.3in）。ShipDef 取基础表 44/20，卡面 24/6/16/18in 记录在案。",
+    "ERMA 卡未画 25mm 轻防空；基础表 1944-06 为 113x25mm（Yamato）/116x25mm（Musashi，Apr 44）。卡面 5in 高射炮对应 12.7cm/40。",
+    "ERMA 卡 hull rows 9/9/9 与速度轨道是游戏抽象；CAS DP 取基础表 1365。",
+    "ERMA 卡 VP 字段按任务要求未转录。"
+   ],
+   "blockers": []
+  },
+  {
+   "class_profile": "erma_ijn_b64_cb",
+   "class": "B64 (B-65 family, 30cm/50)",
+   "class_label_zh": "B-64（B-65 家族 30cm 型）",
+   "kind": "CB",
+   "profile_status": "complete",
+   "ships": [
+    "IBS-U-IJN-ERMA-AZUMA",
+    "IBS-U-IJN-ERMA-ISHIKARI"
+   ],
+   "has_ship_defs": true,
+   "base_table": {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     10
+    ],
+    "printed_pages": [
+     "A-7"
+    ],
+    "label": "B64: 31000 std, In Class 2, Size A/Large, Armor 22/13/105, DP 715, 33/25/16/8/0, 2F/A(3)3 ? 30cm/50, P/S(2)8 Type 98 10cm/65, P/S(4)2 610mm TT",
+    "note": "B65 为 36cm/45 型（DP 842），与 ERMA 卡 12.2in 不符，不采用；B64 是 30cm/50 型，书内注明 31cm/50 无数据，Annex C 以 304.8mm/50 岸防炮作 close surrogate。audit 的 Azuma/Kurama hits 是旧 Azuma/Inazuma/Azuma Maru/Kurama Maru 误命中，不是 B-65/B-64 卡；本批从 A-7 的 B64/B65 条目补查。"
+   },
+   "differences_from_base": [
+    "ERMA 卡标 CB / 位移带 F；基础表 B64 标 BC / Size A。按同一 B-65/B-64 设计族取 B64 30cm 型，类型标签差异登记。",
+    "ERMA Azuma 卡鱼雷 TT 0in；B64 基础表有 P/S(4)2 610mm TT。Azuma 的 ShipDef 不装鱼雷，按架空改型处理；Ishikari 保留 B64 雷装。",
+    "ERMA 卡装甲 13/2/8.3/8.3in；基础表 CAS 装甲评级 22/13（带/甲板）。ShipDef 取 22/13，卡面值记录在案。",
+    "ERMA 卡主炮 12.2in；基础表 B64 '? 30cm/50'，Annex C 以 304.8mm/50 岸防炮作代用行。口径按 305mm 转写，差异登记。",
+    "ERMA 卡 VP 字段按任务要求未转录。"
+   ],
+   "blockers": []
+  },
+  {
+   "class_profile": "erma_ijn_ibuki_ca",
+   "class": "Ibuki",
+   "class_label_zh": "伊吹级",
+   "kind": "CA",
+   "profile_status": "partial_blocked",
+   "ships": [
+    "IBS-U-IJN-ERMA-IBUKI",
+    "IBS-U-IJN-ERMA-KURAMA"
+   ],
+   "has_ship_defs": false,
+   "base_table": {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     13
+    ],
+    "printed_pages": [
+     "A-10"
+    ],
+    "label": "Ibuki CVL conversion: 12500 std, 29 kt, DP 459, Armor 8/6/90; remarks: two heavy cruisers laid down as Warships 300/301, hull 301 would have been named Kurama",
+    "note": "A-10 是 CVL 改装条目，不是 CA 配置；不能把 CVL 的 DP/航速/装甲当重巡用。Form 10 无 Ibuki/Kurama 卡。"
+   },
+   "differences_from_base": [
+    "A-10 只有 CVL 改装（12500 std、29kt、DP 459）；ERMA 卡是 8in 重巡配置，不能用 CVL 数据。",
+    "Mogami (1940) 是近亲但不同：Mogami 副炮 12.7cm/40、雷装 4x3、装甲 8/6；ERMA Ibuki 副炮 3.9in、装甲 1/0/4/4in、雷装布局不同。",
+    "ERMA 卡主炮/副炮/鱼雷的管数与备雷未印；只有发射器图标数与可发射雷数，不能直接转 CAS。",
+    "ERMA 卡 VP 字段按任务要求未转录。"
+   ],
+   "blockers": [
+    "无 Ibuki 级重巡基础表：A-10 只有 CVL 改装，Form 10 无 Ibuki/Kurama 卡。",
+    "DP、航速、转向、装甲评级、服役年、编制/载员均无 CA 配置来源；不编造。",
+    "主炮 5 座、副炮 4 座、鱼雷发射器的炮管/管数/备雷未印；barrels/tubes=null。",
+    "Kurama 的 5 发射器（含中轴）与 Ibuki 的 4 发射器不同；卡面为游戏抽象，未换算。"
+   ]
+  },
+  {
+   "class_profile": "erma_ijn_gokase_cl",
+   "class": "Gokase (paper CL)",
+   "class_label_zh": "五濑（架空轻巡）",
+   "kind": "CL",
+   "profile_status": "partial_blocked",
+   "ships": [
+    "IBS-U-IJN-ERMA-GOKASE"
+   ],
+   "has_ship_defs": false,
+   "base_table": null,
+   "differences_from_base": [
+    "Emperor's Fleet / Form 10 无 Gokase 条目，audit 的 hits 为空；Agano 只是近亲候选。",
+    "ERMA 卡 4 个 6in 主炮位、2 个 3in 副炮位、2 个 24in 发射器；Agano 为 3 座双联 15cm、2 座双联 8cm、2 座四联 610mm。",
+    "ERMA 卡装甲 1/0/2/2in；Agano CAS 装甲 4/2。",
+    "ERMA 卡 VP 字段按任务要求未转录。"
+   ],
+   "blockers": [
+    "无 Gokase 基础表；Emperor's Fleet/Form 10 均无该级条目。",
+    "DP、航速、转向、装甲评级、服役年、编制/载员、传感器均无来源；不编造。",
+    "6in/3in 炮行只有候选（41st Yr 15cm/50、Type 98 8cm/60），未与 Gokase 设计建立确证；炮管数未印。",
+    "2 个 24in 发射器的管数/备雷未印，未换算成 CAS 管数。"
+   ]
+  },
+  {
+   "class_profile": "erma_ijn_shimakaze_dd",
+   "class": "Shimakaze",
+   "class_label_zh": "岛风级",
+   "kind": "DD",
+   "profile_status": "complete",
+   "ships": [
+    "IBS-U-IJN-ERMA-SHIMAKAZE"
+   ],
+   "has_ship_defs": true,
+   "base_table": {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     26,
+     27
+    ],
+    "printed_pages": [
+     "A-23",
+     "A-24"
+    ],
+    "label": "Shimakaze: 2608 std, 267 crew, DP 161, 39/29/20/10/0, F/2A(2)3 12.7cm/50, P&S(5)3 610mm TT, Armor 0",
+    "note": "A-23 条目，DP/航速行在 A-24 顶部。"
+   },
+   "differences_from_base": [
+    "ERMA 卡鱼雷图标 3 个发射器 x3 雷、无备雷；基础表 3 座五联、15 管、无备雷。ShipDef 取基础表 15 管，卡面 9 雷为游戏抽象，差异登记。",
+    "ERMA 卡无装甲表；基础表 Armor 0，一致。",
+    "ERMA 卡 hull rows/速度轨道是游戏抽象；CAS DP 取基础表 161。",
+    "ERMA 卡 VP 字段按任务要求未转录。"
+   ],
+   "blockers": []
+  },
+  {
+   "class_profile": "erma_ijn_yugumo_dd",
+   "class": "Yugumo",
+   "class_label_zh": "夕云级",
+   "kind": "DD",
+   "profile_status": "complete",
+   "ships": [
+    "IBS-U-IJN-ERMA-MAKINAMI",
+    "IBS-U-IJN-ERMA-NAGANAMI",
+    "IBS-U-IJN-ERMA-KAZEGUMO"
+   ],
+   "has_ship_defs": true,
+   "base_table": {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     27,
+     28
+    ],
+    "printed_pages": [
+     "A-24",
+     "A-25"
+    ],
+    "label": "Yugumo: 2110 std, 228 crew, DP 140, 35/26/18/9/0, F/2A(2)3 12.7cm/50, P&S(4)2 610mm TT w/4 reserve/mount, Armor 0",
+    "note": "A-24 条目，DP/航速行在 A-25。"
+   },
+   "differences_from_base": [
+    "ERMA 卡鱼雷图标 2 个发射器 x2 雷；风云/长波外 2 备雷，卷波无备雷。基础表 2 座四联、4 备雷/座。ShipDef 取基础表 8 管 + 8 备雷，卡面 4 雷/卷波 0 备雷为游戏抽象，差异登记。",
+    "ERMA 卡无装甲表；基础表 Armor 0，一致。",
+    "ERMA 卡 hull rows/速度轨道是游戏抽象；CAS DP 取基础表 140。",
+    "ERMA 卡 VP 字段按任务要求未转录。"
+   ],
+   "blockers": []
+  }
+ ],
+ "ship_defs": [
+  {
+   "identity": "IBS-U-IJN-ERMA-SHINANO",
+   "name": "信浓",
+   "type": "BB",
+   "source_profile": "erma_ijn_yamato_bb",
+   "dp": 1365,
+   "max_knots": 27,
+   "armor_belt": 44,
+   "armor_deck": 20,
+   "main_gun": "九四式 46cm/45 APC",
+   "torpedo_tubes": 0,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MUSASHI",
+   "name": "武藏",
+   "type": "BB",
+   "source_profile": "erma_ijn_yamato_bb",
+   "dp": 1365,
+   "max_knots": 27,
+   "armor_belt": 44,
+   "armor_deck": 20,
+   "main_gun": "九四式 46cm/45 APC",
+   "torpedo_tubes": 0,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-AZUMA",
+   "name": "吾妻",
+   "type": "CB",
+   "source_profile": "erma_ijn_b64_cb",
+   "dp": 715,
+   "max_knots": 33,
+   "armor_belt": 22,
+   "armor_deck": 13,
+   "main_gun": "Type ? 30cm/50 APC（304.8mm/50 岸防炮代用行）",
+   "torpedo_tubes": 0,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-ISHIKARI",
+   "name": "石狩",
+   "type": "CB",
+   "source_profile": "erma_ijn_b64_cb",
+   "dp": 715,
+   "max_knots": 33,
+   "armor_belt": 22,
+   "armor_deck": 13,
+   "main_gun": "Type ? 30cm/50 APC（304.8mm/50 岸防炮代用行）",
+   "torpedo_tubes": 8,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+   "name": "卷波",
+   "type": "DD",
+   "source_profile": "erma_ijn_yugumo_dd",
+   "dp": 140,
+   "max_knots": 35,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "main_gun": "三年式 12.7cm/50 COM",
+   "torpedo_tubes": 8,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-SHIMAKAZE",
+   "name": "岛风",
+   "type": "DD",
+   "source_profile": "erma_ijn_shimakaze_dd",
+   "dp": 161,
+   "max_knots": 39,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "main_gun": "三年式 12.7cm/50 COM",
+   "torpedo_tubes": 15,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+   "name": "长波",
+   "type": "DD",
+   "source_profile": "erma_ijn_yugumo_dd",
+   "dp": 140,
+   "max_knots": 35,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "main_gun": "三年式 12.7cm/50 COM",
+   "torpedo_tubes": 8,
+   "structurally_complete": true
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+   "name": "风云",
+   "type": "DD",
+   "source_profile": "erma_ijn_yugumo_dd",
+   "dp": 140,
+   "max_knots": 35,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "main_gun": "三年式 12.7cm/50 COM",
+   "torpedo_tubes": 8,
+   "structurally_complete": true
+  }
+ ],
+ "blockers": [
+  {
+   "identity": "IBS-U-IJN-ERMA-IBUKI",
+   "name": "伊吹",
+   "class_profile": "erma_ijn_ibuki_ca",
+   "blockers": [
+    "无 Ibuki 级重巡基础表：A-10 只有 CVL 改装，Form 10 无 Ibuki/Kurama 卡。",
+    "DP、航速、转向、装甲评级、服役年、编制/载员均无 CA 配置来源；不编造。",
+    "主炮 5 座、副炮 4 座、鱼雷发射器的炮管/管数/备雷未印；barrels/tubes=null。",
+    "Kurama 的 5 发射器（含中轴）与 Ibuki 的 4 发射器不同；卡面为游戏抽象，未换算。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KURAMA",
+   "name": "鞍马",
+   "class_profile": "erma_ijn_ibuki_ca",
+   "blockers": [
+    "无 Ibuki 级重巡基础表：A-10 只有 CVL 改装，Form 10 无 Ibuki/Kurama 卡。",
+    "DP、航速、转向、装甲评级、服役年、编制/载员均无 CA 配置来源；不编造。",
+    "主炮 5 座、副炮 4 座、鱼雷发射器的炮管/管数/备雷未印；barrels/tubes=null。",
+    "Kurama 的 5 发射器（含中轴）与 Ibuki 的 4 发射器不同；卡面为游戏抽象，未换算。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-GOKASE",
+   "name": "五濑",
+   "class_profile": "erma_ijn_gokase_cl",
+   "blockers": [
+    "无 Gokase 基础表；Emperor's Fleet/Form 10 均无该级条目。",
+    "DP、航速、转向、装甲评级、服役年、编制/载员、传感器均无来源；不编造。",
+    "6in/3in 炮行只有候选（41st Yr 15cm/50、Type 98 8cm/60），未与 Gokase 设计建立确证；炮管数未印。",
+    "2 个 24in 发射器的管数/备雷未印，未换算成 CAS 管数。"
+   ]
+  }
+ ],
+ "unresolved": [
+  {
+   "id": "erma-vp-not-transcribed",
+   "status": "by_instruction",
+   "detail": "ERMA 卡面 VP 字段按任务要求不转录；输出中没有任何 points/vp/cost 字段。"
+  },
+  {
+   "id": "erma-hull-rows-are-game-abstraction",
+   "status": "recorded_not_converted",
+   "detail": "ERMA 卡的 hull rows 与速度轨道是扩展游戏的抽象；CAS DP/航速取基础同型表，未把卡面格数当 DP。"
+  },
+  {
+   "id": "erma-torpedo-icon-counts",
+   "status": "recorded_not_converted",
+   "detail": "卡面鱼雷发射器圆圈内横线=可发射雷数、外横线=备雷；岛风 3x3、夕云 2x2(+2)、B64/Ishikari 4x2 等与基础表管数不同。ShipDef 取基础表管数/备雷，卡面数只作记录。"
+  },
+  {
+   "id": "erma-makinami-no-reload-icons",
+   "status": "recorded_not_applied",
+   "detail": "卷波卡无备雷外圈；基础表夕云级 4 备雷/座。ShipDef 暂取基础表 8 备雷，未把卷波改成 0；如需按 ERMA 卡裁决，应单列改型。"
+  },
+  {
+   "id": "erma-yamato-12-7cm-mount-count",
+   "status": "recorded",
+   "detail": "Yamato 卡 12 个 5in 菱形（左右各 6）与基础表 1944-06 的 12 座双联 12.7cm/40（24 门）对应；卡面未印联装数，按基础表记 12 座双联。"
+  },
+  {
+   "id": "erma-azuma-ishikari-cb-vs-bc",
+   "status": "recorded",
+   "detail": "ERMA 卡与 catalog 标 CB；基础表 B64 标 BC/Size A。按 B-65/B-64 设计族的 30cm 子型取 B64 表，类型标签差异已登记。"
+  },
+  {
+   "id": "erma-b64-main-gun-surrogate",
+   "status": "recorded",
+   "detail": "基础表 B64 主炮行印 '? 30cm/50'，并注明 31cm/50 无数据、Annex C 以 304.8mm/50 岸防炮作 close surrogate；ShipDef 口径 305mm 沿用代用行，不是确证的 B-64 主炮。"
+  },
+  {
+   "id": "erma-shinano-bb-config",
+   "status": "recorded",
+   "detail": "基础表 A-7 只有 Shinano 的 CV 改装（62000 std、26/18/195、8x12.7cm/40）；ERMA 卡按 BB 记录。Shinano 的 ShipDef 借 Yamato 级 DP/航速/装甲，属架空 BB 配置。"
+  },
+  {
+   "id": "erma-ibuki-kurama-no-ca-base",
+   "status": "blocked",
+   "detail": "A-10 只有 Ibuki/Kurama 的 CVL 改装；Form 10 无 CA 卡。Mogami (1940) A-13 仅作 related_base；未生成 ShipDef。"
+  },
+  {
+   "id": "erma-gokase-no-base",
+   "status": "blocked",
+   "detail": "Emperor's Fleet/Form 10 无 Gokase 条目；Agano A-18 仅作 related_base，未生成 ShipDef。"
+  },
+  {
+   "id": "erma-card-armour-vs-cas-rating",
+   "status": "recorded",
+   "detail": "ERMA 卡装甲为英寸（主炮/副炮/舷侧/舰桥）；CAS 用 Armor Rating（带/甲板）。有基础表的舰取 CAS 评级，卡面四值另存；无基础表的舰不换算，armor_rating=null。"
+  },
+  {
+   "id": "erma-1944-refit-dates",
+   "status": "recorded",
+   "detail": "Yamato/Musashi 的 1944-06 状态取基础表 Feb-Jun 44 备注；Oct 44 的 150/130x25mm 不提前套用。Makinami 的 1944 雷达/ESM 日期未印，未套用同型日期。"
+  }
+ ],
+ "notes": [
+  "ERMA 记录是 1944-06-21 架空扩展；卡面是游戏记录，不是 CAS 舰卡。CAS 数值取基础同型表，卡面值逐项登记。",
+  "Yamato 卡（BB-1）在 11 舰之外，只用于同型核对；未输出 IBS-U-IJN-ERMA-YAMATO。",
+  "ShipDef 结构完整 8 艘：武藏、信浓、吾妻、石狩、岛风、风云、长波、卷波；其中信浓（BB 配置仅见 ERMA 卡）与吾妻/石狩（B64 同族代用）标 conversion_confidence=medium，其余 high；profile+blocker 3 艘：伊吹、鞍马、五濑。",
+  "同型共享：大和级输出 2 艘（Musashi/Shinano；Yamato 卡只作同型核对）、B64 2 艘、夕云级 3 艘；class profile 内容逐字一致。",
+  "卡面 VP 按任务要求未转录；damage_points 是 CAS 损伤点，不是胜利点。",
+  "audit 的 Azuma/Kurama/Ibuki hits 有旧舰/商船/索引误命中；本批另行核对 A-7 的 B64/B65 与 A-10 的 Ibuki CVL 备注，未把误命中当基础表。",
+  "未改 src/、server/catalog、portraits、audio、AI、ranked_fleets；未 git commit；生成器只写 data/ships/erma-source-cards-ijn.json 与 data/ships/erma-source-ijn-report.json。"
+ ]
+}

@@ -1,5 +1,107 @@
 # 验证记录
 
+## 2026-11-09｜evolved AI 商店上架、购买持久化与战斗接线
+
+- 结论：[shop-merge.json](data/ai/shop-merge.json) 的三条 provisional evolved 战术（evo-screen 800 / evo-torpedo 900 / evo-gunnery 1000 常驻征募券）已真正接入商店、账号与战斗，不再只是清单。舰船卡、portraits、audio、AI 训练/evolved 权重、challenge/ranked 点价均未改，未新增货币，未提交。
+- 服务端：[catalog.json](server/catalog.json) 的 `ai_profiles` 由 6 条增至 9 条，新增三条带 `currency:"recruit_ticket"`、`unlock:"campaign:CAMP-ALLIES-02/03/11"`、`provisional:true` 与中文描述；[import_catalog.py](server/import_catalog.py) 从 shop-merge 投影同样字段。[accounts.py](server/accounts.py) 的 `/shop/purchase` `kind:"ai"` 按服务端目录币种扣 `standard_tickets`，校验 `campaign_progress` 至少一胜（0 星不解锁），已拥有/重复购买 400，同一 request_id 幂等；资产写 SQLite，重开服务与重新登录均保留。新增 `test_evolved_ai_profiles_are_catalogued_and_purchased_with_tickets` 覆盖锁定拒绝、错误币种、800+900+1000 扣券、防重、幂等、重启与重登。
+- 客户端：[ai-shop.ts](client/src/ai-shop.ts) 提供三条商店投影与本地购买；[Harbor.tsx](client/src/Harbor.tsx) AI 战术室显示价格/解锁条件/provisional/征募券不足与未解锁原因，购买即时同步本机 `PortState.profiles`。[engine.ts](client/src/engine.ts) 把 evolved id 纳入 `Profile`/`profileNames`；战斗、演习设置、关前编成、特混与母港预设下拉按已拥有过滤，未拥有项禁用并标“（未拥有）”。联机 [OnlineSupply.tsx](client/src/OnlineSupply.tsx) 同步展示三条 evolved，价格走常驻征募券、解锁读 `/me` 的 campaign_progress，购买用返回 meta 刷新。
+- 战斗：本地演习经 `new` 传 `profile:evo-screen` 与 `profile:evo-torpedo`，战役经 `new_campaign` 传 `profile:evo-gunnery`，三次均进入真实海图并在 AI 面板选中；存档 JSON 的 `profile` 分别为 evo-screen / evo-gunnery，刷新重载后从进行中战局恢复仍保持。`Ai::validate` 未改。
+- 验收：
+  - `cargo test --release --locked` 121 passed / 0 failed（Rust 未改）。
+  - 服务端 34 项全部通过（`test_accounts` 9、`test_account_progression`、`test_battle_pve`、`test_fleets`、`test_ranked`、`test_duels`），`CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe`。
+  - `node node_modules/typescript/bin/tsc --noEmit -p .` 通过；`node node_modules/vite/bin/vite.js build` 通过（仅既有 chunk-size 警告）。
+  - 新增 `browser-ai-shop` 通过：母港 → 征募与补给 → AI 战术（3 卡、价格、provisional、关闭的 gunnery 未解锁原因），740×360 `overflow=false`；购买 evo-screen 扣 800 → 4200，刷新后仍在且不重复；通关 CAMP-ALLIES-11 后购买 evo-gunnery → 3200；母港预设选 evo-screen 出航，战斗 AI 面板选中且 evo-torpedo 选项禁用；存档重载保持 evo-screen；战役 CAMP-ALLIES-02 编成选 evo-gunnery 出航并通过 `new_campaign` 生效、重载保持；最后购买 evo-torpedo（→2300）并以它出航演习。凭证 [browser-receipt.json](client/artifacts/client/ai-shop/browser-receipt.json)，截图同目录，740 截图 `ai-shop-740.png`。
+  - 回归 `browser-lobby` 与 `browser-esperance` 通过（母港/战役大厅/编成屏/740 与 CAMP-ALLIES-02 决定性胜利）。
+- 边界：三条 evolved 仍标 provisional；联机 AI 商店已有页面与接口但本批浏览器凭证为离线本机商店（服务端购买由 unittest 覆盖）；排位/双席的 evolved AI 白名单未开放；未改 `server/rankings`、`data/ships`、portraits、audio、`src/ai.rs`/`ai_evolve.rs`，未 commit。
+
+## 2026-11-09｜AI 恢复：builtin-safe 基线 + 三条 evolved 风格
+
+- 结论：HEAD `src/ai.rs` 的内置 `coord`/`gunnery`/`torpedo` 出招路径原样保留；协同、交叉火力、T 头、屏护与雷击角色只走 `Style.evolved` 的 `suggestions_evolved` 路线。内置路径与 HEAD `5fc981b` 在 detached worktree 的五场 full-match hash 完全一致；`data/ai/baseline-orders.json` 的 coord tick-0 出招逐值复现（含数字文本一致，`serde_json` 非 bit-exact 解析只在 1 ULP 内且要求记录文本命中）。扩展快照 [builtin-orders.json](data/ai/builtin-orders.json) 由 HEAD 生成，覆盖三套内置风格的 day/night 共 11 例。
+- 训练：[ai-trainer.rs](src/bin/ai-trainer.rs) population 6、generations 3、rng_seed 6106；训练 2 seeds（6106 coord、6107 gunnery）、验证 3 seeds（6111 torpedo、6112 coord、6113 gunnery），席位 0/1 都跑，全部 fitness 来自 [ai_evolve.rs](src/ai_evolve.rs) 的真实 headless 对局，无脚本分数。
+- 产出：[evolved.json](data/ai/evolved.json) 三条 profile（evo-screen / evo-torpedo / evo-gunnery），验证均值 282.57 / 217.56 / 1692.16，对内置 coord 50.17 / torpedo 181.35 / gunnery 1094.89 均有真实优势；[training-log.json](data/ai/training-log.json) 记录 seeds、配置、history 和每场 match；[ai-report.json](data/ai/ai-report.json) 汇总基线、训练、测试、证据与边界；[shop-merge.json](data/ai/shop-merge.json) 给出 id/name/description/unlock/cost 合并清单（provisional，未改 catalog/Harbor）。
+- 验收：主工作区 `cargo test --release --locked` 121 passed / 0 failed；AI 专项 10/10；`cas-sim` host 协议实跑 evolved vs builtin 三场（evo-screen vs torpedo 5-1、evo-torpedo vs coord 5-4、evo-gunnery vs coord 5-2，均 replay 一致，见 [evidence](data/ai/evidence/)）；WASM 重建并跑 21 组原生/WASM parity（`nativeWasmCanonicalMatch=true`，[parity](data/ai/evidence/native-wasm-parity.json)）。
+- 边界：`friendly_margin` 保留在 schema/基因与单测里，但当前 evolved 火力基底沿用内置引擎保护，尚未用该基因扣分；`side_gun_plan`/`side_torp_plan` 保留为未接线原型；`spread` 只作为小权重的队形分散项；商店合并未接 catalog/Harbor/前端入口；旧 `builtin-baseline.json` 的 full-match hash 在 HEAD 上不可复现，已重录并把旧值留在 `previousHashes` 供审计。
+
+## 2026-11-08｜91 张已核验舰卡并入排位注册表（111 → 202 可出战）
+
+- 结论：210 个稳定身份中 202 可出战、8 收藏。新增 91 = pdf Form 10 逐舰卡 12 + APD 8 + 同型卡 13 + CAS 同盟源表卡 21 + CAS 轴心完整卡 10 + 历史轴心 7 + ERMA USN 12（8 艘用 C-3 炮表闭合成完整 ship）+ ERMA IJN 8。收藏 8 = 纸面/未建成 6（天城/赤城/尾张、伊吹/鞍马/五濑）+ Midway(CV) + 夕风（无 CAS 表）；不硬凑 208。
+- 数据：[merged-cards.json](data/ships/merged-cards.json) 91 条（identity/name/side/type/class_profile/source_file/source_kind/stat_verified/stat_source/conflicts/ship）。71 张直接复制源包里已登记的完整 ShipDef（APD/同型/同盟/轴心/ERMA 完整/历史轴心）；12 张 pdf 卡按 Form 10 个体页 profile 原样重建（炮座行、弹种行、损伤-航速行、装甲/转向/雷座）；8 艘 ERMA USN 只补 `data/rules/gun-rows-erma.json` 的 Mk7/Mk8/Mk16 exact 行与 CAS 5e p.23（印刷 3-2）未印运动默认行。生成器 [build-merged-cards.py](scripts/build-merged-cards.py) 可重跑；源卡未改。
+- 内核：`ranked_fleets` 改为 `profiles()` = 111 条手写 `LEGACY_PROFILES` + 91 条生成的 `MERGED_PROFILES`（[ranked_profiles_merged.inc](src/ranked_profiles_merged.inc)）；`data()` 增加 merged 解析路径并跳过 `stat_verified=false`；`card_ref` 增加 `cas-merged-cards-v1#<identity>`；`catalogue()`/`display_name()`/`class_for()` 全量 202；`roster()` 接受 CB/BC/AV（CB/AV 计巡洋位，BC 计主力位），仍拒绝全部收藏 id。`realtime.rs` 为 50 个新 class profile 登记炮座时序（沿用同炮族已有记录：16in 30/4、Yamato 40/2、8in 20/4、Des Moines 10/10、5in/38 4/28.7、12.7cm 12/6、12cm 12/8、14cm 8/10 等）。
+- 点表：[cas-competitive-points-v1.json](data/rules/cas-competitive-points-v1.json) 补 91 行，`profile_id = cas-merged-cards-v1#<identity>`，点值由现有 `point_value` 现算并全部标 provisional（平衡 agent 复核）。历史战役预算未动。
+- 身份元数据：[cards.json](data/ships/cards.json) 210 张更新为 202 playable / 8 collection；`cas_source_class` 与 202 个注册 Profile 的 class 一一对应；`playable_by_source` 记录 ranked-profile 202 / merged-card 91 / period-card 23；`gaps.identity_ids` 列出 8 个收藏 id；派生 [non-scenario-identities.json](data/ships/non-scenario-identities.json) 同步为 71 行（63 playable / 8 collection）。
+- 验收：
+  - `cargo test --release --locked` 103 项全过。新增 3 项：`every_merged_hull_has_a_realtime_gun_cadence`（91 张全部过 `init_realtime`）、`merged_destroyers_form_a_lawful_3000_point_duel`（6 艘 merged 驱逐舰 3000 分对局）、`registry_holds_202_playable_hulls_and_eight_collection_identities`（202/8、8 个收藏 id 被 roster 拒绝）；`frozen_manifest_matches_the_runtime_point_formula` 断言 `profiles().len()==202` 且 202 行点价/来源逐条一致。
+  - `CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_ranked` 12 项全过（含 4 项原生 sim 流程）；其余服务端 `test_accounts/test_account_progression/test_battle_pve/test_duels/test_fleets` 21 项全过。
+  - `node node_modules/typescript/bin/tsc --noEmit` 与 `node node_modules/vite/bin/vite.js build` 通过（仅既有 chunk-size 警告）。
+  - WASM 重建：`cargo build --target wasm32-unknown-unknown --release --locked --lib` → `client/public/cas_core.wasm`，SHA-256 `B07C44920FE1AD8E09BB698177F9C30C4575745870FD4FE6BB5F5517A8A68F27`（3,300,353 bytes）；`node scripts/build-parity.mjs` 21 组原生/WASM 对照 `nativeWasmCanonicalMatch=true`、`replayMatch=true`。
+  - 报告：[merge-report.json](data/ships/merge-report.json)（202/8 覆盖、每类新增数、来源哈希、排除名单、测试/WASM、仍缺）。
+- 边界：8 个收藏身份不合并；Hiei/Kirishima 的 12.7cm/40 DP 未并入单一 `secondary`（只收 15cm/50 舷炮，登记为未建模差额）；pdf 12 张与 ERMA 8 艘的 profile 未印 `torpedo_protection_dp`，ShipDef 记 0；Des Moines/Salem 1948 配置放进 1944 年 ERMA 架空想定，保留 source note；Walke p309 COM 极远段印 25.9 千码（SpCOM 14.7、同级正常 18.2），按原页保留并登记为印刷异常；CAS 5e p.23 运动默认行只用于原页未印转向/加速的 8 艘 ERMA USN；91 行点价待平衡复核。未改 `server/catalog`、立绘、音频、AI、`data/campaign`、portraits 与 8 个来源卡；未提交。
+
+## 2026-11-08｜23 张 period 逐舰卡接入排位注册表（88 → 111 可出战）
+
+- 结论：`playable-cards.json` 的 56 个 collection-only 中，28 个有 period 逐舰卡；5 艘 APD 维持收藏，其余 **23 艘战斗舰**按剧本包里的完整 ShipDef 接入排位。此前不可出战是排位只加载 stage0/序章 25 张类卡所致，不是缺舰表。
+- 数据：[period-cards.json](data/ships/period-cards.json) 23 条（identity/name/side/type/source_file/period_ship_id/period_profile/form10_page/stat_verified/stat_source/stat_conflicts/resolved_from/also_recorded/ship）。`ship` 原样取自 `savo-runtime.json`（16 条 ships 行）、`kula-runtime.json`（Honolulu，profiles.brooklyn_1）、`cape-runtime.json`（Uzuki）；Boise 与 Farenholt/Duncan/Laffey/McCalla 的 Cape Esperance 卡以 `profile_ref` 指向 Tassafaronga 包，按该包已编译运行时行（`tass_honolulu`、`tass_lardner`）取完整定义。生成器 [build-period-cards.py](scripts/build-period-cards.py) 可重跑；只手写稳定身份与中文名与下方 5 张的原页炮雷行，其余零改写。
+- 6 张源卡按**本舰 Form 10 个体页**重录炮座/雷管（Hull 无本舰页，按 AF A-19 class 行；class 表只作未印项兜底），不再沿用 runtime 把「座数×管数」算错的旧值；个体页与 class 行的差额逐条写进 `stat_conflicts`：
+  - 鸟海（Form 10 p.49，Aug 42）：20 管/4 座 → **9 管/5 座**（Fwd 单装 1＋Fwd 2＋P&S 2＋Aft 2＋Aft 2）；16 雷管/4 座 → **8 雷管/2 座×4**；DP 401 → **471**（0/118/236/353/424/471 → 33/25/16/8/0）。Takao/Atago 仍按 p.52 的 10 管/16 雷管。
+  - 威尔逊（Form 10 p.317，Dec 41）：8 管/2 座 → **4 门单装/4 座**；8 雷管 → **16 雷管/4 座×4**；DP/航速 124/35 → **118/38**（0/30/59/89/106/118 → 38/28/19/10/0）。
+  - 蒙森（Form 10 p.303，May 42）：8 管/2 座、无鱼雷 → **4 门单装/4 座、10 雷管/2 座×5**（Port & Stbd (5)×2，同型 Gwin p.301 口径；Mk15 同页表 6.0 kyds/45 kts/87 DP）；DP/航速 144/37 → **128/35**（0/32/64/96/115/128 → 35/26/18/9/0）。
+  - 布坎南（Form 10 p.292/p.293，Mar 42）：8 管/2 座 → **4 门单装/4 座**；8 雷管/2 座×4 → **10 雷管/2 座×5**（同型 Barton p.291 口径）。
+  - 圣胡安（Form 10 p.262，May 42）：10 管/5 座 → **16 管/8 座×2**（3F＋Port＋Stbd＋3A）；4 雷管/2 座×2 → **8 雷管/2 座×4**；DP 304/33 与 class 行一致。
+  - 赫尔(I)（AF A-19，Farragut；无本舰 Form 10）：size C→**D/Small**、turn 300→**200 码(1 节)**、损伤行 36/26→**26/27**（0/26/53/79/95/105 → 36/27/18/9/0）；5 门单装/8 雷管不变；A-19 的「1942 P&S 5in removed」与 ASW w/7 未落卡，登记在 `stat_conflicts`。与同盟 source card 的 us_farragut_dd 修正对齐。
+  - 23 张 `stat_verified` 全为 true，全部仍可出战，无 blocker。`data()` 会跳过 `stat_verified=false` 的 period 卡（`roster()` 也拒绝该 id），因此将来若发现无法重建的卡，不会带着错值可出战。
+- 来源：10 条有已核 Form 10 页（Boise 265、Farenholt 296、Duncan 295、Laffey 297、McCalla 299、Honolulu 267、Uzuki 183、San Juan 262、Tenryu 81、Yubari 75），13 条源包登记为未核（null），不补默认值。Buchanan/Honolulu 的第二张 period 卡记入 `also_recorded`；Boise/Honolulu/Uzuki 源页无鱼雷行，`torpedo` 保持 null（蒙森原为 null，本轮按 p.303 的 Mk15 单座 5 管补齐）。
+- 内核：`ranked_fleets::data()` 解析 `include_str!("../data/ships/period-cards.json")` 并入 ships；`PROFILES` 增至 111（新增 23 条 `source = "period exact · <file> · <form10>"`、`source_class = period profile`）；`src/realtime.rs` 为 15 个 period profile 登记 `timings`（沿用同型已核炮座节奏，仅 v10 生效）。88 个既有 Profile 的 id/source_class、历史战役预算、`campaign/live.rs` 均未动。
+- 点表：[cas-competitive-points-v1.json](data/rules/cas-competitive-points-v1.json) 补 23 行（`profile_id = cas-period-cards-v1#<period_ship_id>`，行内标 provisional 待平衡复核）。数值由现有 `point_value` 从完整 ShipDef 现算；修正后重算：鸟海 1800→**1375**、威尔逊 500→**475**、蒙森 475→**425**、布坎南 500→**425**、圣胡安 850→**1025**、赫尔(I) 425 不变；其余 Australia/Canberra 1250、Boise/Honolulu 1050、Yubari 550、Bristol 四舰 525、Bagley 级 500、Uzuki 250 不变。
+- 验收：
+  - `cargo test --release --locked` 100 项全过，含新增 `period_cards_carry_complete_hulls_into_a_ranked_duel`（6 艘 period 驱逐舰组成合法 3000 分编队并进入 ranked 世界）、`period_card_stats_follow_the_printed_hull_pages`（逐张断言 5 张的管数/座数/DP/航速/雷管）与 `every_period_hull_has_a_realtime_gun_cadence`（23 艘全部通过 `init_realtime`）；`frozen_manifest_matches_the_runtime_point_formula` 断言 PROFILES=111、111 张全部上场且点价/来源逐条一致。
+  - `server.test_ranked` 12 项全过（`CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe`，含 4 项双席流程）；点表 111 行全部落在 `server/catalog.json` 身份内。顺手修正两处只在原生 sim 下才执行的过期断言：免费编队 1875→1375、budgets [3000]→[3000,10000]。
+  - 其余服务端 5 套件 21 项全过；`tsc --noEmit`、`vite build` 通过（仅既有 chunk-size 警告）。
+  - 报告：[period-cards-report.json](data/ships/period-cards-report.json)（23 条来源/哈希/完整性 + 111/99 覆盖 + 测试结果 + 缺口名单）。
+- 边界：WASM 未重建（仅 ranked 注册表数据与炮座时序，未改剧本/裁决；ranked 由原生服务端权威执行）。收藏侧仍 99 = 28 张无 period 卡 + 5 艘 APD（望月/三日月/长月/皋月/夕凪）+ 66 个不在当前 11 剧本交叉表内的 identity。未改 `server/catalog`、立绘、音频、AI、`data/ships/runtime-identities`；未提交。
+
+## 2026-11-08｜特混编成（自定义任务编队）
+
+- 镜头前的规则：历史编制仍是星级与史实编成的唯一口径；新增独立“特混编成”页签。位置数 = 剧本已有玩家编队数（埃斯佩兰斯角 1、皇后湾 3）；最多一位置一个编队，可少派、空位置、单舰，总点价不超历史玩家兵力；锚点/航向/航速/领舰取运行时历史玩家 fleet，不新增坐标。
+- 内核：新增 `campaign::live::GroupPick` 与 `Start.groups`；`campaign_fleet` 返回 `positions`/`taskForceSupported`；`campaign::fleet::spawn_groups` 校验位置唯一、非空编队、同阵营、点到点价预算，并按剧本列距（500 码）在锚点后列队；Esperance/Empress 的 `fill` 跳过历史玩家编队后调用；敌方编制、阵位、目标不动。`fleet::options` 暴露玩家锚点。
+- 前端：关前编成新增“历史编制 / 特混编成”页签；特混页为初设位置卡 + 编队卡 + 舰船选择 + 点价/校验/出航；空位显示“空置”，可只派一个编队；单舰北卡罗来纳可独立出航。
+- 不计历史星级：`CampaignLaunch.groups/taskForce` 透传 `new_campaign`；客户端 `campaignTaskForce` 跳过 `recordCampaignResult`、跳过历史结尾演出与星级奖励；结果页显示“特混编成 · 不计历史星级”。
+- 范围：本批只接入 `CAMP-ALLIES/AXIS-02`（1 位置 / 6,850）与 `CAMP-ALLIES/AXIS-11`（3 位置 / 7,500）。其余关卡 `taskForceSupported=false`，页签禁用，不伪造位置。规则登记见 [docs/rules/task-force.md](docs/rules/task-force.md)。
+- 验收：
+  - 引擎全量 91 项通过，含 7 项舰队测试：单编队锚点、单舰战列舰、空位置、重复位置拒绝、超预算拒绝、未接入关卡拒绝、位置/支持标志。
+  - WAsm 重建并复制到 `client/public/cas_core.wasm`；浏览器使用同一内核。
+  - 新增 `browser-taskforce` 通过：皇后湾 3 位置、第 1 位北卡罗来纳、第 2 位空置、第 3 位弗莱彻；出航观察 2 舰/2 编队，首舰落在 39,374.25/25,181.66，第二舰落在 36,071.65/17,521.64。凭证 `artifacts/client/taskforce/receipt.json`。
+  - 新增 `browser-taskforce-esperance` 通过：1 位置、单舰北卡罗来纳；观察 1 舰/1 编队，锚点 32,187.546/12,954.984。凭证 `artifacts/client/taskforce-esperance/receipt.json`。
+  - 历史回归：`browser-esperance`（故事 9 舰/决定性）、`browser-deployment`（换舰/预设/草稿/参谋）、`browser-campaign-modes`（史料馆/标准直出）、`browser-lobby` 全部继续通过。
+  - `tsc --noEmit` 与 `vite build` 通过（仅既有 chunk-size 警告）。
+- 边界：
+  - 圣乔治角（2 编队 / 2,375）、塔萨法隆格（3 / 9,300）、库拉湾（1 / 5,100）与萨沃岛（多编队）未接入；不得在前端或数据层伪造初设位置。
+  - 历史舰位候选使用剧本 class card；战斗舰名可能显示舰级名（如“弗莱彻级”），身份级舰名需要扩展 `GroupPick` 舰名载荷，另批处理。
+  - 特混结果页的浏览器断言尚未补；引擎/页面已跳过历史星级与结尾演出。
+  - 单舰 6,000 分不在现有点表：北卡罗来纳 3,000、大和 4,000；本批按现有点价执行，不新增舰卡或点价。
+  - 未提交；工作区仍有 `src/campaign/savo.rs` 的既有改动，本批未触碰。
+
+## 2026-11-08｜P1 战役大厅与关卡前编成
+
+- 新增 `client/src/screens/campaign/CampaignLobby.tsx`：三栏战役大厅（年份关卡列表 / 战区海图 / 关卡详情）。默认全战线，可切铁底湾等战区；主列表只列可出击关卡，未开放档案折叠进「档案整理中」。
+- 新增 `client/src/screens/formation/DeploymentScreen.tsx`：故事难度历史舰位编成。9 个历史舰位不可增减，逐位换同阵营已登记舰卡；候选面板显示立绘、舰种、点价与 delta，超预算禁用并给原因；右栏点价预算、校验、战术、预设、出航。
+- 草稿与预设存 `cas.deployment.v1:<profileId>` / `cas.fleetPresets.v1:<profileId>`；刷新后草稿恢复。出航仍由 `src/campaign/fleet.rs` 二次校验。
+- 新领域组件 `client/src/widgets/{ship-thumb,formation}.tsx` 与 tokens `client/src/ui/tokens.css`；`shipPortraits.ts` 增加按中文舰名查立绘，覆盖历史舰卡在 ledger 中没有 CAS class 映射的情况。
+- `CampaignLaunch` 增加 `profile`；`main.tsx` 的 `new_campaign` 透传出击编成选择的战术风格。标准/挑战难度不进编成屏，仍按历史编制直接出击。
+- 旧 `CampaignArchive` 保留为「史料馆」全屏视图；原来源/核验路径可进入，不再占据主出击流程。
+- 移动端收尾：编成屏在 ≤900px 改为“底部指挥条 + 参谋抽屉”。底部条固定显示点价/预算状态、参谋、出航；参谋抽屉内放预算、校验、战术、预设，正文可滚，出航常驻。740×360 下舰位列表可显示 4–5 行，主按钮不再占用列表高度。
+- 验收：
+  - `node node_modules/typescript/bin/tsc --noEmit` 通过；`node node_modules/vite/bin/vite.js build` 通过（仅既有 chunk-size 警告）。
+  - `node tests/browser-esperance.mjs`（`CAS_BROWSER_PATH` 指向 Edge）通过：新大厅 → 编成 → 出航 9 舰/1 编队/夜战 10% → 决定性胜利。
+  - 新增 `node tests/browser-deployment.mjs` 通过：9 舰位、6,850 预算；第 1 舰位换拉姆森后 6,825；保存预设 → 按历史编制恢复 → 载入预设再恢复拉姆森；刷新后草稿保留；740×360 打开参谋抽屉并关闭；出航观察 `CAMP-ALLIES-02`、9 舰、首舰拉姆森。凭证 `artifacts/client/deployment/receipt.json`，截图 `deployment-1360/740/740-staff/swapped/launch.png`。
+  - 新增 `node tests/browser-campaign-modes.mjs` 通过：史料馆 11 行档案；未开放关卡按钮禁用且文案“档案整理中”；标准难度不经过编成屏直接出航，观察 `CAMP-ALLIES-02`、`standard`、9 舰。
+  - `node tests/browser-lobby.mjs` 通过：母港 4 入口、新大厅 11 关/0-33 星、编成屏、剧情模式与序章；740×360 大厅无横向滚动，截图 `campaign-lobby-740.png`。
+- 边界：
+  - 未改 `src/` 内核、CAS 舰卡、点表、历史阵位/航向/航速；`src/campaign/savo.rs` 的既有改动未触碰。
+  - `campaignStars` 的 0/2/3 语义仍保留：把 1 星定义为“完成作战”会把败局也算首通，需内核提供胜负/完成标记后再改；当前 1 星奖励实际由战术胜利起承接，是已知语义债，单批处理。
+  - `client/tests/browser-campaign.mjs` 是旧 `.archive-list` 版本，早于当前 `.war-*` 档案页，本批未修；当前战役验收走 `browser-esperance` / `browser-deployment` / `browser-campaign-modes` / `browser-lobby`。
+  - 740×360 参谋抽屉的战术/预设位于抽屉下半部，需要滚动；这是短屏取舍，主按钮始终可见。
+  - `vite.config.ts` 的 `server.watch.ignored` 是防止 harness 临时目录触发 chokidar EBUSY 的开发稳定性修复。
+
 ## 2026-11-08｜卫星实拍海图底层与海岸线重制
 
 - 用户反馈岛屿轮廓粗糙（旧投影每岛仅 36 点且地理错位约 25 km）。重写 `scripts/refine-basemap-coastlines.py`：numpy 分类水体/植被（蓝≥绿为水），形态学闭运算弥合岛内阴影，scipy 标记连通块并按角度排序轮廓，Douglas-Peucker 220 m 简化——Guadalcanal 503 点、Florida 314 点、Savo 12 点。

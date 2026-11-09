@@ -1,0 +1,649 @@
+{
+ "schema_version": 1,
+ "source": "data/ships/cards.json",
+ "scope": "210 个 catalog identity 中不在当前 11 剧本 scenario_ids 内的 71 个",
+ "total": 71,
+ "ranked_only": 63,
+ "collection": 8,
+ "rows": [
+  {
+   "identity": "IBS-U-IJN-AKAGI",
+   "name": "赤城",
+   "side": "axis",
+   "type": "BC",
+   "class": "天城级",
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-07/IBS-S-FM-01），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-AKIZUKI",
+   "name": "秋月",
+   "side": "axis",
+   "type": "DD",
+   "class": "秋月级",
+   "playable": true,
+   "reason": "ranked_profile：首发时期包／日本舰表 A-24、C-1、F-1；不在 11 剧本 139 个 resolved 身份内，仅个人对局可用"
+  },
+  {
+   "identity": "IBS-U-IJN-AMAGI",
+   "name": "天城",
+   "side": "axis",
+   "type": "BC",
+   "class": "天城级",
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-07/IBS-S-FM-01），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "name": "朝风",
+   "side": "axis",
+   "type": "DD",
+   "class": "神风级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_kamikaze_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "name": "千岁",
+   "side": "axis",
+   "type": "AV",
+   "class": "千岁级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_chitose_av（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-AZUMA",
+   "name": "吾妻",
+   "side": "axis",
+   "type": "CB",
+   "class": "B-64（B-65 家族 30cm 型）",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_b64_cb（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-GOKASE",
+   "name": "五濑",
+   "side": "axis",
+   "type": "CL",
+   "class": "erma-ijn-gokase-cl",
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-EM-01），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-IBUKI",
+   "name": "伊吹",
+   "side": "axis",
+   "type": "CA",
+   "class": "erma-ijn-ibuki-ca",
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-EM-01），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-ISHIKARI",
+   "name": "石狩",
+   "side": "axis",
+   "type": "CB",
+   "class": "B-64（B-65 家族 30cm 型）",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_b64_cb（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+   "name": "风云",
+   "side": "axis",
+   "type": "DD",
+   "class": "夕云级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yugumo_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KURAMA",
+   "name": "鞍马",
+   "side": "axis",
+   "type": "CA",
+   "class": "erma-ijn-kurama-ca",
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-EM-01），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+   "name": "卷波",
+   "side": "axis",
+   "type": "DD",
+   "class": "夕云级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yugumo_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MUSASHI",
+   "name": "武藏",
+   "side": "axis",
+   "type": "BB",
+   "class": "大和级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yamato_bb（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+   "name": "长波",
+   "side": "axis",
+   "type": "DD",
+   "class": "夕云级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yugumo_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-SHIMAKAZE",
+   "name": "岛风",
+   "side": "axis",
+   "type": "DD",
+   "class": "岛风级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_shimakaze_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-SHINANO",
+   "name": "信浓",
+   "side": "axis",
+   "type": "BB",
+   "class": "大和级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yamato_bb（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-YAMATO",
+   "name": "大和",
+   "side": "axis",
+   "type": "BB",
+   "class": "大和级",
+   "playable": true,
+   "reason": "ranked_profile：序章时期包／日本舰表 PDF 7、98；不在 11 剧本 139 个 resolved 身份内，仅个人对局可用"
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "name": "神风",
+   "side": "axis",
+   "type": "DD",
+   "class": "神风级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_kamikaze_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-MURAKUMO",
+   "name": "丛云",
+   "side": "axis",
+   "type": "DD",
+   "class": "吹雪级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_fubuki_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSU",
+   "name": "陆奥",
+   "side": "axis",
+   "type": "BB",
+   "class": "长门级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_nagato_1936_bb（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSUKI",
+   "name": "睦月",
+   "side": "axis",
+   "type": "DD",
+   "class": "睦月级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_mutsuki_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-NACHI",
+   "name": "那智",
+   "side": "axis",
+   "type": "CA",
+   "class": "妙高级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_myoko_1935_ca（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATO",
+   "name": "长门",
+   "side": "axis",
+   "type": "BB",
+   "class": "长门级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_nagato_1936_bb（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-NATSUGUMO",
+   "name": "夏云",
+   "side": "axis",
+   "type": "DD",
+   "class": "朝潮级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_asashio_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-NISSHIN",
+   "name": "日进",
+   "side": "axis",
+   "type": "AV",
+   "class": "日进级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_nisshin_av（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "name": "追风",
+   "side": "axis",
+   "type": "DD",
+   "class": "神风级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/historical-axis-cards.json · ijn_kamikaze_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-OWARI",
+   "name": "尾张",
+   "side": "axis",
+   "type": "BC",
+   "class": "纪伊级",
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-07/IBS-S-FM-01），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-TATSUTA",
+   "name": "龙田",
+   "side": "axis",
+   "type": "CL",
+   "class": "天龙级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_tenryu_cl（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-UZUKI-2",
+   "name": "卯月(II)",
+   "side": "axis",
+   "type": "APD",
+   "class": "睦月级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_mutsuki_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-IJN-XIFENG",
+   "name": "夕风",
+   "side": "axis",
+   "type": "DD",
+   "class": null,
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 IBS-S-08/IBS-S-10），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-IJN-YAMAGUMO",
+   "name": "山云",
+   "side": "axis",
+   "type": "DD",
+   "class": "朝潮级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · ijn_asashio_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-KM-HANS-LODY",
+   "name": "汉斯·洛迪",
+   "side": "axis",
+   "type": "DD",
+   "class": "1934A 型驱逐舰",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · km_type_1934a_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-KM-KARL-GALSTER",
+   "name": "卡尔加尔斯特",
+   "side": "axis",
+   "type": "DD",
+   "class": "1936 型驱逐舰",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · km_type_1936_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-KM-RICHARD-BEITZEN",
+   "name": "里夏德·拜茨恩",
+   "side": "axis",
+   "type": "DD",
+   "class": "1934A 型驱逐舰",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-axis.json · km_type_1934a_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-RN-JACKAL",
+   "name": "豺",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-RN-JAVELIN",
+   "name": "标枪",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-RN-JERSEY",
+   "name": "泽西",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-RN-JUPITER",
+   "name": "朱庇特",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-RN-KASHMIR",
+   "name": "克什米尔",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-BAINBRIDGE",
+   "name": "班布里奇",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-COLORADO",
+   "name": "科罗拉多",
+   "side": "allies",
+   "type": "BB",
+   "class": "usn-colorado-bb",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_colorado_bb_1929（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-DAHLGREN",
+   "name": "达尔格伦",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-DECATUR",
+   "name": "迪凯特",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALASKA",
+   "name": "阿拉斯加",
+   "side": "allies",
+   "type": "CB",
+   "class": "阿拉斯加级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_alaska_cb_1944（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "name": "艾伦·M·萨姆纳",
+   "side": "allies",
+   "type": "DD",
+   "class": "艾伦·M·萨姆纳级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_sumner_dd_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-COOPER",
+   "name": "库珀",
+   "side": "allies",
+   "type": "DD",
+   "class": "艾伦·M·萨姆纳级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_sumner_dd_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-DES-MOINES",
+   "name": "得梅因",
+   "side": "allies",
+   "type": "CA",
+   "class": "得梅因级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_des_moines_ca_1948（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-GUAM",
+   "name": "关岛",
+   "side": "allies",
+   "type": "CB",
+   "class": "阿拉斯加级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_alaska_cb_1944（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-INGRAHAM",
+   "name": "英格拉罕",
+   "side": "allies",
+   "type": "DD",
+   "class": "艾伦·M·萨姆纳级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_sumner_dd_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-IOWA",
+   "name": "衣阿华",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-MISSOURI",
+   "name": "密苏里",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+   "name": "新泽西",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-SALEM",
+   "name": "塞勒姆",
+   "side": "allies",
+   "type": "CA",
+   "class": "得梅因级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_des_moines_ca_1948（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WISCONSIN",
+   "name": "威斯康星",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WORCESTER",
+   "name": "伍斯特",
+   "side": "allies",
+   "type": "CL",
+   "class": "伍斯特级",
+   "playable": true,
+   "reason": "playable · exact · data/ships/erma-source-cards-usn.json · us_worcester_cl_1948（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-FOX",
+   "name": "福克斯",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-GEARING",
+   "name": "基林",
+   "side": "allies",
+   "type": "DD",
+   "class": null,
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_gearing_dd_1944（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-MCDONOUGH",
+   "name": "麦克多诺",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · us_farragut_dd（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-MIDWAY",
+   "name": "中途岛",
+   "side": "allies",
+   "type": "CV",
+   "class": null,
+   "playable": false,
+   "reason": "collection-only：不在 11 剧本 139 个 resolved 身份内（crosswalk 剧本 无），无当前剧本级已核 CAS 同型卡"
+  },
+  {
+   "identity": "IBS-U-USN-OMAHA",
+   "name": "奥马哈",
+   "side": "allies",
+   "type": "CL",
+   "class": "usn-omaha-cl",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_omaha_cl_1923（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-PERRY",
+   "name": "佩里",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-TRUXTON",
+   "name": "特鲁斯顿",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R03",
+   "name": "北卡罗来纳",
+   "side": "allies",
+   "type": "BB",
+   "class": "北卡罗来纳",
+   "playable": true,
+   "reason": "ranked_profile：序章时期包／美国舰表 PDF 8、109；不在 11 剧本 139 个 resolved 身份内，仅个人对局可用"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R06",
+   "name": "列克星敦",
+   "side": "allies",
+   "type": "BC",
+   "class": "列克星敦",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_lexington_bc_1924（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R07",
+   "name": "合众国",
+   "side": "allies",
+   "type": "BC",
+   "class": "列克星敦",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_lexington_bc_1924（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R08",
+   "name": "宪法",
+   "side": "allies",
+   "type": "BC",
+   "class": "列克星敦",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_lexington_bc_1924（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R13",
+   "name": "休斯顿",
+   "side": "allies",
+   "type": "CA",
+   "class": "北安普顿",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_northampton_ca_1942_02（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R22",
+   "name": "孟菲斯",
+   "side": "allies",
+   "type": "CL",
+   "class": "奥马哈",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_omaha_cl_1923（见 data/ships/merged-cards.json）"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R51",
+   "name": "邓拉普",
+   "side": "allies",
+   "type": "DD",
+   "class": "马汉级",
+   "playable": true,
+   "reason": "ranked_profile：马汉级同型卡／帕金斯 Form 10（1942 年配置）；不在 11 剧本 139 个 resolved 身份内，仅个人对局可用"
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R52",
+   "name": "格里德利",
+   "side": "allies",
+   "type": "DD",
+   "class": "格里德利级",
+   "playable": true,
+   "reason": "ranked_profile：格里德利级同型卡／莫里 Form 10（1942 年配置）；不在 11 剧本 139 个 resolved 身份内，仅个人对局可用"
+  },
+  {
+   "identity": "IBS-U-USN-WEST-VIRGINIA",
+   "name": "西弗吉尼亚",
+   "side": "allies",
+   "type": "BB",
+   "class": "usn-colorado-bb",
+   "playable": true,
+   "reason": "playable · exact · data/ships/cas-source-cards-allies.json · usn_colorado_bb_1944（见 data/ships/merged-cards.json）"
+  }
+ ]
+}

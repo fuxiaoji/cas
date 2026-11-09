@@ -4,7 +4,8 @@ import { BattleMap } from './BattleMap';
 import { alertKind, ShipSchematic } from './BattlePresentation';
 import { Harbor } from './Harbor';
 import type { HarborTab } from './Harbor';
-import { CampaignArchive, CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
+import { CampaignMissionBrief, CampaignResultSummary, CampaignRewardActions } from './CampaignArchive';
+import { CampaignLobby } from './screens/campaign/CampaignLobby';
 import { CampaignEndingGate } from './campaign-ending/CampaignEndingScene';
 import { claimCampaignRewards, recordCampaignResult } from './campaign-progress';
 import type { CampaignLaunch } from './campaign-progress';
@@ -33,11 +34,12 @@ import type { OnlineBattle, OnlineBattleClaim, OnlineBattleSummary, OnlineDuel, 
 import { OnlineSupply } from './OnlineSupply';
 import { OnlineFleetEditor } from './OnlineFleetEditor';
 import { OnlineDuelLobby } from './OnlineDuelLobby';
-import { ask, clock, closeSession, maneuverNames, profileNames, sideNames } from './engine';
+import { ask, clock, closeSession, isProfile, maneuverNames, profileNames, sideNames } from './engine';
 import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, TorpedoSettings, Weapon } from './engine';
 import { grantPrologue, hulls, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
 import type { Hull, Lesson, PortLaunch } from './port';
 import './style.css';
+import './ui/tokens.css';
 
 const SAVE_KEY = 'cas.exercise.autosave.v1';
 const options = [1, 2, 4, 8, 20] as const;
@@ -52,6 +54,9 @@ const descriptions: Record<Profile, string> = {
   coord: '保持编队，在火力与机动之间取平衡。',
   gunnery: '争取射界和火力距离，集中炮击。',
   torpedo: '优先抢占侧向发射位置，寻找雷击机会。',
+  'evo-screen': '屏护协同：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。',
+  'evo-torpedo': '雷击突击：分队绕向敌纵队侧翼，压缩距离后按侧舷角放雷。',
+  'evo-gunnery': '炮战纵队：保持远距射界，抢 T 头并以交叉火力分散敌指挥。',
 };
 const errorText = (error: unknown) => error instanceof Error ? error.message : String(error);
 
@@ -151,6 +156,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   const savedExercise = useRef<unknown>(undefined);
   const challengeId = useRef<string | undefined>(undefined);
   const campaignId = useRef<string | undefined>(undefined);
+  const campaignTaskForce = useRef(false);
   const [presetActive, setPresetActive] = useState(false);
   const inFlight = useRef(false);
   const initialized = useRef(false);
@@ -234,7 +240,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       const now = Date.now();
       setPort((state) => recordChallengeClear(state, id, now));
     }
-    if (live && !courseLive.current && campaignId.current && observation.campaign && observation.result?.grade) {
+    if (live && !courseLive.current && campaignId.current && observation.campaign && observation.result?.grade
+      && !campaignTaskForce.current) {
       const campaign = observation.campaign;
       const outcome = observation.result;
       setPort(state => recordCampaignResult(state, campaign, outcome));
@@ -258,11 +265,12 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     if (courseLive.current || storyLive.current || cloud.current) return;
     const id = challengeId.current;
     const localCampaignId = campaignId.current;
+    const localTaskForce = campaignTaskForce.current;
     try {
       const data = await ask<Record<string, unknown>>({ op: 'save' });
       localStorage.setItem(accountSaveKey, JSON.stringify(id && data.variant === 'challenge'
         ? { ...data, localChallengeId: id }
-        : localCampaignId && data.campaign ? { ...data, localCampaignId } : data));
+        : localCampaignId && data.campaign ? { ...data, localCampaignId, localCampaignTaskForce: localTaskForce } : data));
       lastSave.current = typeof data.tick === 'number' ? data.tick : clockTick.current;
       if (toast) hint('演习已保存，下次打开可继续。');
     } catch (error) { if (toast) warn('保存失败：' + errorText(error)); }
@@ -276,13 +284,15 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         try {
           const saved = localStorage.getItem(accountSaveKey);
           if (saved) {
-            const { localChallengeId, localCampaignId, ...save } = JSON.parse(saved);
+            const { localChallengeId, localCampaignId, localCampaignTaskForce, ...save } = JSON.parse(saved);
             const observation = await ask<Observation>({ op: 'load', save });
             if (observation.variant === 'challenge' && typeof localChallengeId === 'string' && /^[0-9a-f-]{36}$/i.test(localChallengeId)) {
               challengeId.current = localChallengeId;
             }
+            campaignTaskForce.current = false;
             if (observation.campaign && typeof localCampaignId === 'string' && /^[0-9a-f-]{36}$/i.test(localCampaignId)) {
               campaignId.current = localCampaignId;
+              campaignTaskForce.current = localCampaignTaskForce === true;
             }
             lastSave.current = observation.tick; update(observation); return;
           }
@@ -306,6 +316,15 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       err => { if (live) setCloudError(errorText(err)); });
     return () => { live = false; };
   }, [cloudToken]);
+  // Server-purchased AI profiles become selectable in battle without a second
+  // local purchase; the local harbor keeps its own save for offline play.
+  useEffect(() => {
+    if (!cloudMeta) return;
+    const owned = cloudMeta.ai_profiles.filter(isProfile);
+    if (!owned.length) return;
+    setPort(state => owned.every(id => state.profiles.includes(id)) ? state
+      : { ...state, profiles: [...state.profiles, ...owned.filter(id => !state.profiles.includes(id))] });
+  }, [cloudMeta]);
   function syncBattle(next: OnlineBattle | OnlineDuel, open = false) {
     const old = cloud.current;
     if (!open && (!old || onlineBattlePath(old) !== onlineBattlePath(next) || old.revision > next.revision
@@ -469,8 +488,12 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   }
   function changeAi(config: AiConfig) {
     if (!fleet) return;
+    const wasAuto = fleet.ai.mode === 'auto';
+    const nowAuto = config.mode === 'auto';
     setSuggestion(undefined);
-    void command({ op: 'ai', fleet: fleet.id, ...config });
+    void command({ op: 'ai', fleet: fleet.id, ...config }, () => {
+      if (wasAuto !== nowAuto) radio.announce('autopilot', nowAuto ? 'on' : 'off');
+    });
   }
   async function askAi() {
     if (!fleet) return;
@@ -493,6 +516,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       const next = await ask<Observation>({ op: 'new', ...fixed });
       challengeId.current = undefined;
       campaignId.current = undefined;
+      campaignTaskForce.current = false;
       await persist();
       resetPanel(); update(next); setDialog(false); setTraining(false); setPresetActive(false);
     } catch (error) { warn(errorText(error)); }
@@ -659,16 +683,18 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
       clearCloud();
       challengeId.current = options.variant === 'challenge' ? crypto.randomUUID() : undefined;
       campaignId.current = undefined;
+      campaignTaskForce.current = false;
       await persist();
       resetPanel(); update(next); setPortOpen(false); setTraining(!!isTraining); setPresetActive(!isTraining && launch.variant !== 'night');
     } catch (error) { setPortError(errorText(error)); }
     finally { setBusy(false); }
   }
-  async function launchCampaign({stageId, difficulty, fleet}: CampaignLaunch) {
+  async function launchCampaign({stageId, difficulty, fleet, groups, profile: battleProfile}: CampaignLaunch) {
     if (busy) return;
     setBusy(true); setPortError(undefined); setRunning(false);
     try {
       if (cloudToken) {
+        if (groups?.length) throw new Error('联机战役暂不支持特混编成');
         const previous = cloudLaunch.current;
         const id = previous?.stageId === stageId && previous.difficulty === difficulty ? previous.id : crypto.randomUUID();
         cloudLaunch.current = { stageId, difficulty, id };
@@ -683,8 +709,11 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         resetPanel(); syncBattle(next, true); setPortOpen(false); setTraining(false); setPresetActive(false);
         return;
       }
-      const next = await ask<Observation>({ op: 'new_campaign', id: stageId, difficulty, seed: defaultSetup.seed, profile: port.preset.profile,
-        ...(fleet?.length ? { fleet } : {}) });
+      campaignTaskForce.current = !!groups?.length;
+      const next = await ask<Observation>({ op: 'new_campaign', id: stageId, difficulty, seed: defaultSetup.seed,
+        profile: battleProfile ?? port.preset.profile,
+        ...(fleet?.length ? { fleet } : {}),
+        ...(groups?.length ? { groups } : {}) });
       challengeId.current = undefined;
       campaignId.current = crypto.randomUUID();
       await persist();
@@ -763,6 +792,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     if (weapon === 'gun') record('gunOrdered');
     else record('torpedoAimed', 'torpedoOrdered', ...(heading === undefined ? [] : ['torpedoAdjusted' as const]));
     void command({ op: 'fire', ship, weapon, target, heading, ...torpedo }, () => {
+      if (weapon === 'gun') radio.announce('manual_fire');
       hint(weapon === 'gun' && o?.realtimeGunnery ? '已下达炮击命令，炮座转向并装填完成后各自发射。' :
         '已下达' + aimAction[weapon] + '命令，执行进度见战情。');
       if (weapon === 'gun' || heading !== undefined) learn(weapon);
@@ -793,8 +823,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
     if (section === 'mail') return <Mailbox token={cloudToken} state={port} change={setPort}
       onMeta={meta => {setCloudMeta(meta);setCloudError(undefined);}} onBack={() => setSection(undefined)}
       onRecruit={() => setSection('recruit')} />;
-    if (section === 'archive') return <CampaignArchive busy={busy || !o} progress={cloudToken ? undefined : port.campaignProgress}
-      onCampaign={(options) => void launchCampaign(options)} online={!!cloudToken} onReturn={() => setSection(undefined)}
+    if (section === 'archive') return <CampaignLobby busy={busy || !o} progress={cloudToken ? undefined : port.campaignProgress}
+      online={!!cloudToken} profileId={profile.id} profiles={port.profiles} defaultProfile={port.preset.profile}
+      error={portError}
+      onCampaign={(options) => void launchCampaign(options)} onReturn={() => setSection(undefined)}
       onStory={() => setStoryMenu(true)} onReview={() => setSection('training')}
       onClaim={(stageId) => setPort(current => claimCampaignRewards(current, stageId))}
       onNight={() => startCourse('night')} />;
@@ -924,10 +956,16 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             </div>
           </div>
         </div> : <CampaignEndingGate key={endingKey} observation={o}
-          seen={seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}>{reopen => <div className="result-screen">
+          seen={campaignTaskForce.current || seenCampaignEndings.has(endingKey)} onContinue={() => setSeenCampaignEndings(seen => new Set([...seen, endingKey]))}>{reopen => <div className="result-screen">
           <div className="result-card">
-            <p>{onlineDuel ? (onlineDuel.mode === 'ranked' ? '排位战果' : '线上约战结束') : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '少舰迎击 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : o.variant === 'empress' ? '奥古斯塔皇后湾 · 演习结束' : '昼间水面演习结束'}</p>
-            {o.campaign && result ? <CampaignResultSummary campaign={o.campaign} result={result} /> :
+            <p>{onlineDuel ? (onlineDuel.mode === 'ranked' ? '排位战果' : '线上约战结束') : o.campaign ? o.campaign.missionLabel : o.variant === 'challenge' ? '越级挑战 · 挑战结束' : o.variant === 'night' ? '夜航接敌 · 演习结束' : o.variant === 'empress' ? '奥古斯塔皇后湾 · 演习结束' : '昼间水面演习结束'}</p>
+            {o.campaign && result ? (campaignTaskForce.current
+              ? <div className="campaign-debrief" data-task-force="true">
+                <div><span>特混编成 · 不计历史星级</span>
+                  <strong>{result.grade === 'decisive' ? '决定胜利' : result.grade === 'tactical' ? '战术胜利' : '完成作战'}</strong></div>
+                <p>本局按特混编成记录，不计入战役星级与史实编成。</p>
+              </div>
+              : <CampaignResultSummary campaign={o.campaign} result={result} />) :
               <h2>{o.variant === 'challenge' ? (result?.primary ? '挑战目标达成' : '挑战目标未达成') : winner}</h2>}
             <div className="score"><span>同盟 {result?.allies}</span><span>轴心 {result?.axis}</span></div>
             {onlineDuel?.end_reason === 'surrender' && <p>一方投降</p>}
@@ -940,7 +978,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             </div>}
             {cloudBattle && result?.grade && result.grade !== 'none' && <button type="button" className="primary" disabled={busy || cloudClaimed}
               onClick={() => void claimCloud()}>{cloudClaimed ? '本局已结算' : '领取联机战役奖励'}</button>}
-            {o.campaign && !cloudBattle && campaignId.current && <CampaignRewardActions stageId={o.campaign.stageId} progress={port.campaignProgress} busy={busy}
+            {o.campaign && !cloudBattle && campaignId.current && !campaignTaskForce.current && <CampaignRewardActions stageId={o.campaign.stageId} progress={port.campaignProgress} busy={busy}
               onClaim={() => { const id = o.campaign!.stageId; setPort(state => claimCampaignRewards(state, id)); }} />}
             <div className="actions">{!cloudBattle && <button type="button" className="primary" onClick={() => void startReplay()}>重演战局</button>}
               {reopen && <button type="button" onClick={reopen}>回看结局</button>}
@@ -978,6 +1016,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
             {lightPreview?.error && <p className="field-note">{lightPreview.error}</p>}
             <button type="button" disabled={busy || finished || !selected || !lightPreview?.valid}
               onClick={() => selected && void command({ op: 'illuminate', ship: selected.id, target: nightTarget }, () => {
+                radio.announce('exposed');
                 setLightPreview(undefined); record('lightAccepted'); hint('照明弹已下令；等待火力窗口。');
               })}>下达照明弹{lightPreview?.valid && lightPreview.mount !== undefined ? ' · 炮座 ' + (lightPreview.mount + 1) : ''}</button>
           </section>}
@@ -993,7 +1032,10 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
                 {o.contacts.map(c => <option key={c.id} value={c.id}>{c.name ? c.name + ' · ' : ''}{c.id}</option>)}
               </select></label>
               <button type="button" disabled={busy || !nightTarget}
-                onClick={() => void command({ op: 'searchlight', ship: selected.id, on: true, target: nightTarget }, () => hint('探照灯已开启——光柱也会把你的位置送给敌人。'))}>开启探照灯</button>
+                onClick={() => void command({ op: 'searchlight', ship: selected.id, on: true, target: nightTarget }, () => {
+                  radio.announce('exposed');
+                  hint('探照灯已开启——光柱也会把你的位置送给敌人。');
+                })}>开启探照灯</button>
             </>}
           </section>}
           {v10Family && !replay && !finished && selected?.kind === 'dd' && <section className="night-tools" aria-label="烟幕">
@@ -1093,9 +1135,11 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
               <p className="field-note">指挥权限固定为手动，战术建议仅供参考，需本人确认下令。</p>
             </> : <>
               <label>AI 风格 <select value={fleet.ai.profile} disabled={!!replay || finished} onChange={(event) => changeAi({ ...fleet.ai, profile: event.target.value as Profile })}>
-                {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) => <option key={id} value={id} disabled={presetActive && !port.profiles.includes(id)}>{name}</option>)}
+                {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) =>
+                  <option key={id} value={id} disabled={!port.profiles.includes(id)}>{name}{port.profiles.includes(id) ? '' : '（未拥有）'}</option>)}
               </select></label>
               <p className="field-note">{descriptions[fleet.ai.profile]}</p>
+              <p className="field-note">未拥有的风格须先在母港「AI 战术室」解锁；已解锁的 evolved 战术可直接选用。</p>
               <label>指挥权限 <select value={fleet.ai.mode} disabled={!!replay || finished} onChange={(event) => {
                 const mode = event.target.value as AiConfig['mode'];
                 changeAi(mode === 'auto' && !fleet.ai.move && !fleet.ai.gun && !fleet.ai.torpedo ? { ...fleet.ai, mode, move: true, gun: true, torpedo: true } : { ...fleet.ai, mode });
@@ -1157,7 +1201,8 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
           <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
         </select></label>
         {setup.variant !== 'empress' && <label>对手 AI <select value={setup.enemy} onChange={(event) => setSetup({ ...setup, enemy: event.target.value as Profile })}>
-          {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) => <option key={id} value={id}>{name}</option>)}
+          {(Object.entries(profileNames) as [Profile, string][]).map(([id, name]) =>
+            <option key={id} value={id} disabled={!port.profiles.includes(id)}>{name}{port.profiles.includes(id) ? '' : '（未拥有）'}</option>)}
         </select></label>}
         {setup.variant !== 'empress' && <label>演习编号 <input type="number" min={0} max={4294967295} value={setup.seed} onChange={(event) => setSetup({ ...setup, seed: Math.max(0, Math.min(4294967295, Math.trunc(Number(event.target.value)))) })} /></label>}
         {radio.available && <label>电台音量 <input type="range" min={0} max={1} step={0.05} value={radio.volume}

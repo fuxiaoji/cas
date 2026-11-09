@@ -14,7 +14,8 @@ type Catalog = {
   ships: RecruitShip[];
   recruit_pools: RecruitPool[];
   ship_bundles: { id: string; name: string; description?: string; credits: number; ship_ids: string[] }[];
-  ai_profiles: { id: string; name: string; cost?: number }[];
+  ai_profiles: { id: string; name: string; description?: string; cost?: number; currency?: 'credits' | 'recruit_ticket';
+    unlock?: string; provisional?: boolean }[];
 };
 type Mail = { id: string; title: string; body: string; sender: string; claimed_at: string | null;
   attachments: { up_tickets: number; standard_tickets: number } };
@@ -88,6 +89,17 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
   const buy = (kind: string, item_id: string, currency = 'credits', extra = {}) =>
     void act('/shop/purchase', { kind, item_id, currency, ...extra },
       kind === 'ship_bundle' ? '礼包已入账，重复舰船转为勋章。' : '兑换已入账。');
+  // Evolved AI profiles unlock after a real campaign clear on this account and
+  // cost standard recruit tickets; the amounts come from server/catalog.json.
+  const aiUnlockStage = (a: { unlock?: string }) => a.unlock?.startsWith('campaign:') ? a.unlock.slice(9) : '';
+  const aiUnlocked = (a: { unlock?: string }) => {
+    const stage = aiUnlockStage(a);
+    if (!stage) return true;
+    const best = meta?.campaign_progress?.[stage]?.best ?? {};
+    return Object.values(best).some(stars => typeof stars === 'number' && stars > 0);
+  };
+  const aiBalance = (a: { currency?: string }) => a.currency === 'recruit_ticket' ?
+    wallet?.standard_tickets ?? 0 : wallet?.credits ?? 0;
 
   return <main className="online-supply">
     <header><button onClick={onBack}>‹ 返回母港</button><div><p>联机免费内测</p><h1>征募与补给</h1></div>
@@ -124,8 +136,23 @@ export function OnlineSupply({ token, meta, onMeta, onBack, initialTab, onFleetE
       <article><h3>每周实战补给</h3><p>{weekly ? `权威战役达成 ${weekly.count} / ${weekly.target}` : '等待战绩同步'}</p>
         <button disabled={busy || !weekly?.eligible || weekly.claimed}
           onClick={() => void act('/missions/weekly-pve/claim', {}, '周任务奖励已入账。')}>{weekly?.claimed ? '已领取' : '领取周任务奖励'}</button></article>
-      {catalog?.ai_profiles.filter(a => a.cost).map(a => <article key={a.id}><h3>{a.name}</h3><p>解锁保存在联机账号。</p>
-        <button disabled={busy || (wallet?.credits ?? 0) < a.cost! || meta?.ai_profiles.includes(a.id)} onClick={() => buy('ai', a.id)}>{a.cost} 补给币</button></article>)}
+      {catalog?.ai_profiles.filter(a => a.cost).map(a => {
+        const owned = meta?.ai_profiles.includes(a.id) ?? false;
+        const unlocked = aiUnlocked(a);
+        const price = a.currency === 'recruit_ticket' ? `${a.cost} 常驻征募券` : `${a.cost} 补给币`;
+        const scarce = aiBalance(a) < (a.cost ?? 0);
+        return <article key={a.id} data-ai-profile={a.id}>
+          <h3>{a.name}{a.provisional && <small className="ai-shop-provisional"> 暂定强度</small>}</h3>
+          <p>{a.description ?? '解锁保存在联机账号。'}</p>
+          <p className="field-note">解锁：{aiUnlockStage(a) ? `通关战役 ${aiUnlockStage(a)}` : '账号已开放'} · 价格 {price}</p>
+          <button disabled={busy || owned || !unlocked || scarce}
+            onClick={() => buy('ai', a.id, a.currency ?? 'credits')}>
+            {owned ? '已拥有' : !unlocked ? '未解锁' : scarce ? '资源不足' : `购买 · ${price}`}
+          </button>
+          {!owned && !unlocked && <p className="inline-warning">请先通关战役 {aiUnlockStage(a)}。</p>}
+          {!owned && unlocked && scarce && <p className="inline-warning">还差 {a.cost! - aiBalance(a)} 张常驻征募券。</p>}
+        </article>;
+      })}
     </div></section>}
     {(tab === 'fleet' || tab === 'shop') && catalog && <section>
       <h2>{tab === 'fleet' ? '联机收藏 · ' + (meta?.owned_ships.length ?? 0) : '舰船兑换'}</h2>

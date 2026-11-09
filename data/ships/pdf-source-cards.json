@@ -1,0 +1,2982 @@
+{
+  "schema_version": 1,
+  "generated_by": "pdf-form10-transcription",
+  "generated_from": "Rising Sun Form 10s PDF, pages listed per card",
+  "scope": "Twelve named hulls that have printed Form 10 cards but no digitized full ShipDef in the current eleven-scenario set.",
+  "policy": "Transcribe printed Form 10 values page by page; same-class cards share one identical class profile where the task requires it. Hiei is a documented individual-profile exception: its card uses p39 (4 x 12.7cm, Area AA 0.8), while Kirishima keeps p40 (8 x 12.7cm, Area AA 1.6); p40 is a comparison only for Hiei. Printed conflicts and ambiguous fields are recorded in unresolved rather than guessed. No Rust ShipDef, campaign period profile, catalog, or source PDF was modified.",
+  "source_pdfs": [
+    {
+      "document": "rising_sun_form10",
+      "path": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "sha256": "9c54d934670f1065097de33f7092d15cebf73dcdf6143f693d43e1e95a599fb4",
+      "bytes": 9952081,
+      "pdf_pages": 380,
+      "role": "primary Form 10 transcription source"
+    },
+    {
+      "document": "emperors_fleet",
+      "path": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+      "bytes": 2292047,
+      "pdf_pages": 121,
+      "role": "cross-check: Kongo/Nagara/Asashio/Hatsuharu/Akatsuki class entries"
+    },
+    {
+      "document": "american_fleets",
+      "path": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+      "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+      "bytes": 3404342,
+      "pdf_pages": 139,
+      "role": "cross-check: South Dakota/Portland/Sims class entries"
+    },
+    {
+      "document": "home_fleet",
+      "path": "CAS带翻译/CAS带翻译/船表/Home_Fleet_2012_Standard.pdf",
+      "sha256": "6d8201644e30d01e48a7d814743115b0c809edb365fcdb4a86dd943e704c9c77",
+      "bytes": 1508077,
+      "pdf_pages": 140,
+      "role": "cross-check: Leander class entry"
+    }
+  ],
+  "cards": [
+    {
+      "identity": "IBS-U-USN-SOUTH-DAKOTA",
+      "name": "南达科塔",
+      "name_en": "South Dakota",
+      "side": "allies",
+      "type": "BB",
+      "class_profile": "south_dakota_1942_09",
+      "class_name": "South Dakota",
+      "class_label_zh": "南达科他级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            234
+          ],
+          "printed_pages": [
+            234
+          ],
+          "label": "S. Dakota BB - Sep 1942 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            234
+          ],
+          "printed_pages": [
+            234
+          ],
+          "label": "S. Dakota BB - Sep 1942 Modification"
+        },
+        "class_related": [],
+        "crosscheck": [
+          {
+            "document": "american_fleets",
+            "pdf_pages": [
+              7,
+              8
+            ],
+            "printed_pages": [
+              "A-4",
+              "A-5"
+            ],
+            "label": "South Dakota class entry and dated light-AA/radar remarks; agrees with Form 10.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "south_dakota_1942_09",
+        "class": "South Dakota",
+        "class_label_zh": "南达科他级",
+        "side": "allies",
+        "kind": "BB",
+        "size_class_en": "A/Large",
+        "configuration_date": "1942-09",
+        "configuration_label": "Sep 1942 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            234
+          ],
+          "printed_pages": [
+            234
+          ],
+          "label": "S. Dakota BB - Sep 1942 Modification"
+        },
+        "displacement_std_tons": 35412,
+        "in_class": 4,
+        "in_service": "1942",
+        "in_service_year": 1942,
+        "crew": 2257,
+        "propulsion": "Steam",
+        "signature": "Large/Loud",
+        "armor_rating": "44/18",
+        "armor_rating_verbatim": "44/18/210",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          230,
+          460,
+          690,
+          828,
+          920
+        ],
+        "speed_knots": [
+          28,
+          21,
+          14,
+          7,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 28
+          },
+          {
+            "damage": 230,
+            "knots": 21
+          },
+          {
+            "damage": 460,
+            "knots": 14
+          },
+          {
+            "damage": 690,
+            "knots": 7
+          },
+          {
+            "damage": 828,
+            "knots": 0
+          },
+          {
+            "damage": 920,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/28, 230/21, 460/14, 690/7, 828/0, 920/Sunk",
+        "turn": {
+          "standard_rudder_yards": 400,
+          "standard_speed_loss_knots": 2,
+          "hard_rudder_yards": 300,
+          "hard_speed_loss_knots": 3,
+          "accel_knots_per_turn": 6,
+          "accel_high_knots_per_turn": 3,
+          "decel_knots_per_turn": 9
+        },
+        "main_gun": "us_16in45_mk6",
+        "main_gun_model_status": "descriptive_slug_pending_annex_row",
+        "main_gun_verbatim": "3 Fwd Mk6 16 in/45//1 Fwd Main Battery Director Mk3; 3 Fwd Mk6 16 in/45//; 3 Aft Mk6 16 in/45//1 Fwd Main Battery Director Mk3",
+        "gun_mounts_verbatim": [
+          "3 Fwd Mk6 16 in/45//1 Fwd Main Battery Director □ Mk3 □",
+          "3 Fwd Mk6 16 in/45//",
+          "3 Aft Mk6 16 in/45//1 Fwd Main Battery Director □ Mk3 □"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 3,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "F",
+            "barrels": 3,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 3,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Third row is printed '3 Aft' but carries the 'Fwd Main Battery Director' label (printed label swap); recorded F,F,A.",
+        "main_gun_shells_verbatim": {
+          "APC": "0 - 72 47; 7.7 - 51 37; 19.1 - 36/12 32; 30.5 - 28/23 28",
+          "HC": "7.6 7 46; 19.0 5 39; 30.4 3/2 34; 38.0 3/4 30"
+        },
+        "secondary_verbatim": "Port (2) Mk28 5 in/38 x4 rows; Stbd (2) Mk28 5 in/38 x4 rows (four twin mounts per side)",
+        "secondary_mounts_verbatim": [
+          "2 Port Mk28 5 in/38//1 Port Secondary Battery Director □ Mk4 □",
+          "2 Port Mk28 5 in/38//",
+          "2 Port Mk28 5 in/38//",
+          "2 Port Mk28 5 in/38//",
+          "2 Stbd Mk28 5 in/38//1 Stbd Secondary Battery Director □ Mk4 □",
+          "2 Stbd Mk28 5 in/38//",
+          "2 Stbd Mk28 5 in/38//",
+          "2 Stbd Mk28 5 in/38//"
+        ],
+        "secondary_mounts": [
+          {
+            "position": "P",
+            "barrels": 2,
+            "mounts": 4
+          },
+          {
+            "position": "S",
+            "barrels": 2,
+            "mounts": 4
+          }
+        ],
+        "secondary_shells_verbatim": {
+          "SpCOM": "0 - 7 18; 5.6 - 4 13; 11.0 - 3/1 12; 14.7 - 2/2 10",
+          "COM": "5.5 5 18; 10.9 3 14; 14.6 2/1 13; 18.2 2/2 11"
+        },
+        "area_aa_verbatim": "(2)8 Mk28 5 in/38 (4.5) to 3.0 nm/11339m",
+        "light_aa_verbatim": "16 40mm, 20 1.1, 36+ 20mm (14.6)",
+        "torpedoes_verbatim": null,
+        "torpedo_model": null,
+        "torpedo_model_status": null,
+        "torpedo_tubes_total": 0,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [],
+        "torpedo_range_rows_verbatim": [],
+        "sensors": "SC-2; SG; 2 Mk3 (FC); 2 Mk4 (FD)",
+        "sensor_details": [
+          {
+            "name": "SC-2",
+            "function": "AS",
+            "notes": "2nd Gen"
+          },
+          {
+            "name": "SG",
+            "function": "AS",
+            "notes": "1st Gen"
+          },
+          {
+            "name": "2 Mk3 (FC)",
+            "function": "SS, FC",
+            "notes": "1st Gen, +2 FC Mod"
+          },
+          {
+            "name": "2 Mk4 (FD)",
+            "function": "AS, FC",
+            "notes": "1st Gen"
+          }
+        ],
+        "sonar": "None.",
+        "aircraft": "2 Aft catapult, OS2U-3 Kingfisher",
+        "asw": null,
+        "remarks_verbatim": "Total of four Mk4s with Fwd/Port/Stbd/Aft arcs.",
+        "source_notes": [
+          "Form 10 p234 (Sep 1942 Modification).",
+          "American Fleets p7-8 (A-4/A-5) agrees on 35412 std, 2257 crew, 44/18/210, 920 DP, 28/21/14/7/0, 9x16in/45, 16x5in/38, and Sep 42 light AA 14.6.",
+          "Form 10 prints 16 40mm, 20 1.1in, 36+ 20mm; p8 prints (4)4 40mm, (4)5 1.1in, 36+ 20mm, same totals."
+        ]
+      }
+    },
+    {
+      "identity": "IBS-U-USN-WALKE",
+      "name": "沃克",
+      "name_en": "Walke",
+      "side": "allies",
+      "type": "DD",
+      "class_profile": "sims_1942_08",
+      "class_name": "Sims",
+      "class_label_zh": "西姆斯级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            309
+          ],
+          "printed_pages": [
+            309
+          ],
+          "label": "Walke DD - Aug-Oct 42 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            309
+          ],
+          "printed_pages": [
+            309
+          ],
+          "label": "Walke DD - Aug-Oct 42 Modification"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              304,
+              305,
+              306,
+              307,
+              308
+            ],
+            "printed_pages": [
+              304,
+              305,
+              306,
+              307,
+              308
+            ],
+            "label": "Other Sims-class pages in the requested range",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "american_fleets",
+            "pdf_pages": [
+              21
+            ],
+            "printed_pages": [
+              "A-18"
+            ],
+            "label": "Sims class entry; 1941 remark removes the P&S 5in gun, giving the four-gun Aug-Oct 42 fit.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "sims_1942_08",
+        "class": "Sims",
+        "class_label_zh": "西姆斯级",
+        "side": "allies",
+        "kind": "DD",
+        "size_class_en": "C/Small",
+        "configuration_date": "1942-08",
+        "configuration_label": "Aug-Oct 42 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            309
+          ],
+          "printed_pages": [
+            309
+          ],
+          "label": "Walke DD - Aug-Oct 42 Modification"
+        },
+        "displacement_std_tons": 1764,
+        "in_class": 12,
+        "in_service": "1939",
+        "in_service_year": 1939,
+        "crew": 250,
+        "propulsion": "Steam",
+        "signature": "Small/Noisy",
+        "armor_rating": "0",
+        "armor_rating_verbatim": "0",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          31,
+          62,
+          93,
+          112,
+          124
+        ],
+        "speed_knots": [
+          35,
+          26,
+          18,
+          9,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 35
+          },
+          {
+            "damage": 31,
+            "knots": 26
+          },
+          {
+            "damage": 62,
+            "knots": 18
+          },
+          {
+            "damage": 93,
+            "knots": 9
+          },
+          {
+            "damage": 112,
+            "knots": 0
+          },
+          {
+            "damage": 124,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/35, 31/26, 62/18, 93/9, 112/0, 124/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "us_mk30_5in38",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (1) Mk30 5 in/38//1 Fwd Main Battery Director Mk4; Fwd (1) Mk30 5 in/38//; Aft (1) Mk30 5 in/38//; Aft (1) Mk30 5 in/38//",
+        "gun_mounts_verbatim": [
+          "Fwd (1) Mk30 5 in/38//1 Fwd Main Battery Director □ Mk4 □",
+          "Fwd (1) Mk30 5 in/38//",
+          "Aft (1) Mk30 5 in/38//",
+          "Aft (1) Mk30 5 in/38//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 1,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "F",
+            "barrels": 1,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 1,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 1,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Four single 5in/38 mounts on this Aug-Oct 42 fit; the class entry's fifth 5in gun had been replaced by 4 .50 cal in 1941 (American Fleets A-18).",
+        "main_gun_shells_verbatim": {
+          "SpCOM": "0 - 7 18; 5.6 - 4 13; 11.0 - 3/1 12; 14.7 - 2/2 10",
+          "COM": "5.5 5 18; 10.9 3 14; 14.6 2/1 13; 25.9 2/2 11"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": "(1)4 Mk30 5 in/38 (1.1) to 3.0 nm/11339m",
+        "light_aa_verbatim": "6 20mm (1.5)",
+        "torpedoes_verbatim": "Port & Stbd (4) Mk12 533mm TT w/4 Mk15 torp (two quad mounts)",
+        "torpedo_model": "us_mk15_tnt_torpedo",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 8,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [
+          "Port & Stbd (4) Mk12 533mm TT w/4 Mk15 torp □□□□□",
+          "Port & Stbd (4) Mk12 533mm TT w/4 Mk15 torp □□□□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "6.0 kyds, 45 kts, 87 DP",
+          "10.0 kyds, 34 kts",
+          "15.0 kyds, 27 kts"
+        ],
+        "sensors": "SC (CXBD); Mk4 (FD)",
+        "sensor_details": [
+          {
+            "name": "SC (CXBD)",
+            "function": "AS",
+            "notes": "1st Gen"
+          },
+          {
+            "name": "Mk4 (FD)",
+            "function": "AS, FC",
+            "notes": "1st Gen"
+          }
+        ],
+        "sonar": "Early QC Series",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "2 Mk3 DC rails w/8 DC",
+          "depth_charge_launchers": "4 Mk6 K-gun w/4 DC",
+          "dc_patterns": "3, 5, 7, 9, 10, 11"
+        },
+        "remarks_verbatim": "Search and GFCS radars added as new types available.",
+        "source_notes": [
+          "Form 10 p309 (Walke, Aug-Oct 42 Modification).",
+          "American Fleets p21 (A-18) class entry prints 2F/P&S/2A(1)5 Mk30 5in/38, then 1941: P&S arc 5in gun replaced by 4 .50 cal; this fit has four 5in guns.",
+          "The printed COM extreme row is 25.9 kyds, 2/2, 11 DP; retained verbatim as printed (see unresolved sims-extreme-range)."
+        ]
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-ASAGUMO",
+      "name": "朝云",
+      "name_en": "Asagumo",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "asashio_1942_10",
+      "class_name": "Asashio",
+      "class_label_zh": "朝潮级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            116
+          ],
+          "printed_pages": [
+            116
+          ],
+          "label": "Asagumo DD - Oct-Nov 42 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            116
+          ],
+          "printed_pages": [
+            116
+          ],
+          "label": "Asagumo DD - Oct-Nov 42 Modification"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              117
+            ],
+            "printed_pages": [
+              117
+            ],
+            "label": "Asagumo - Apr-May 42 Modification (alternative)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              118
+            ],
+            "printed_pages": [
+              118
+            ],
+            "label": "Asagumo - Dec 1941 (alternative)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              115
+            ],
+            "printed_pages": [
+              115
+            ],
+            "label": "Arashio - Dec 1941 (class comparison)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              28
+            ],
+            "printed_pages": [
+              "A-25"
+            ],
+            "label": "Asashio class entry; Asagumo DC refit dated Apr-May 42; class prints three twin 12.7cm mounts.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "asashio_1942_10",
+        "class": "Asashio",
+        "class_label_zh": "朝潮级",
+        "side": "axis",
+        "kind": "DD",
+        "size_class_en": "C/Small",
+        "configuration_date": "1942-10",
+        "configuration_label": "Oct-Nov 42 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            116
+          ],
+          "printed_pages": [
+            116
+          ],
+          "label": "Asagumo DD - Oct-Nov 42 Modification"
+        },
+        "displacement_std_tons": 1992,
+        "in_class": 10,
+        "in_service": "1937",
+        "in_service_year": 1937,
+        "crew": 200,
+        "propulsion": "Steam Turbine",
+        "signature": "Small/Noisy",
+        "armor_rating": "0",
+        "armor_rating_verbatim": "0",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          34,
+          68,
+          101,
+          122,
+          135
+        ],
+        "speed_knots": [
+          35,
+          26,
+          18,
+          9,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 35
+          },
+          {
+            "damage": 34,
+            "knots": 26
+          },
+          {
+            "damage": 68,
+            "knots": 18
+          },
+          {
+            "damage": 101,
+            "knots": 9
+          },
+          {
+            "damage": 122,
+            "knots": 0
+          },
+          {
+            "damage": 135,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/35, 34/26, 68/18, 101/9, 122/0, 135/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "jp_3rd_yr_127mm50",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director; Aft (2) 3rd Yr Type 12.7cm/50//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director □",
+          "Aft (2) 3rd Yr Type 12.7cm/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Page 116 prints only two twin 12.7cm mounts (4 guns), not the three twin mounts printed on the other Asashio pages; retained as page-specific Oct-Nov 42 fit.",
+        "main_gun_shells_verbatim": {
+          "COM": "0 - 5 16; 6.1 - 3 13; 12.1 - 2/1 11; 16.1 - 2/2 10",
+          "HE": "6.0 2 18; 12.0 1 14; 16.0 1/1 13; 20.0 1/1 11"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": "(2)2 3rd Yr Type 12.7cm/50 (0.4) to 5.0 nm/9000m",
+        "light_aa_verbatim": "10 25mm (1.2)",
+        "torpedoes_verbatim": "Port & Stbd (4) 610mm TT w/4 Type 93 torp; Reload; 4 reload torp per mount, quick reload in 6 minutes",
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 8,
+        "torpedo_reserve_total": 8,
+        "torpedo_mounts_verbatim": [
+          "Port & Stbd (4) 610mm TT w/4 Type 93 torp □□□□  Reload □□□□",
+          "Port & Stbd (4) 610mm TT w/4 Type 93 torp □□□□  Reload □□□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "22.0 kyds, 49 kts, 95 DP",
+          "35.0 kyds, 41 kts",
+          "43.8 kyds, 37 kts"
+        ],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive); Type 93 Model 1 (active)",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "2 DC rails w/6 DC",
+          "depth_charge_launchers": "2 Type 94 Y-gun w/6 DC",
+          "dc_patterns": "3, 5, 7, 9"
+        },
+        "remarks_verbatim": "4 reload torp per mount, for quick reload in 6 minutes.",
+        "source_notes": [
+          "Form 10 p116 (Asagumo, Oct-Nov 42 Modification).",
+          "This page is the Asagumo-specific 1942 fit; p117 (Apr-May 42) and p118 (Dec 1941) print three twin 12.7cm mounts and 4 25mm, while p116 prints two twin mounts and 10 25mm.",
+          "Emperor's Fleet p28 (A-25) gives the class DC refit date Asagumo Apr-May 42 but does not list a 1942 turret removal; p116's fit is retained verbatim."
+        ]
+      },
+      "profile_variant_note": "Page 116 prints a two-twin 12.7cm fit and 10 25mm; p117/p118 print three twin mounts and 4 25mm. The page-specific Oct-Nov 42 fit is retained."
+    },
+    {
+      "identity": "IBS-U-IJN-KIRISHIMA",
+      "name": "雾岛",
+      "name_en": "Kirishima",
+      "side": "axis",
+      "type": "BB",
+      "class_profile": "kongo_1941_12",
+      "class_name": "Kongo",
+      "class_label_zh": "金刚级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            40
+          ],
+          "printed_pages": [
+            40
+          ],
+          "label": "Kirishima BB - Dec 1941",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            40
+          ],
+          "printed_pages": [
+            40
+          ],
+          "label": "Kirishima BB - Dec 1941 (individual profile)"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              39
+            ],
+            "printed_pages": [
+              39
+            ],
+            "label": "Hiei - Dec 1941 (separate individual profile; 4-gun 12.7cm fit)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              41
+            ],
+            "printed_pages": [
+              41
+            ],
+            "label": "Kongo - Aug 1942 (not used for this class profile)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              37,
+              38
+            ],
+            "printed_pages": [
+              37,
+              38
+            ],
+            "label": "Haruna - Oct 1942 / Dec 1941 (not used for this class profile)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              8
+            ],
+            "printed_pages": [
+              "A-5"
+            ],
+            "label": "Kongo (1934) class entry; confirms class four twin 12.7cm mounts and Hiei's 4-gun exception.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "kongo_1941_12",
+        "class": "Kongo",
+        "class_label_zh": "金刚级",
+        "side": "axis",
+        "kind": "BB",
+        "size_class_en": "A/Large",
+        "configuration_date": "1941-12",
+        "configuration_label": "Dec 1941",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            40
+          ],
+          "printed_pages": [
+            40
+          ],
+          "label": "Kirishima BB - Dec 1941 (individual profile)"
+        },
+        "displacement_std_tons": 32156,
+        "in_class": 4,
+        "in_service": "1913",
+        "in_service_year": 1913,
+        "crew": 1437,
+        "propulsion": "Steam Turbine",
+        "signature": "Large/Loud",
+        "armor_rating": "18/10",
+        "armor_rating_verbatim": "18/10/135",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          183,
+          367,
+          550,
+          660,
+          733
+        ],
+        "speed_knots": [
+          30,
+          23,
+          15,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 30
+          },
+          {
+            "damage": 183,
+            "knots": 23
+          },
+          {
+            "damage": 367,
+            "knots": 15
+          },
+          {
+            "damage": 550,
+            "knots": 8
+          },
+          {
+            "damage": 660,
+            "knots": 0
+          },
+          {
+            "damage": 733,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/30, 183/23, 367/15, 550/8, 660/0, 733/Sunk",
+        "turn": {
+          "standard_rudder_yards": 400,
+          "standard_speed_loss_knots": 2,
+          "hard_rudder_yards": 300,
+          "hard_speed_loss_knots": 3,
+          "accel_knots_per_turn": 6,
+          "accel_high_knots_per_turn": 3,
+          "decel_knots_per_turn": 9
+        },
+        "main_gun": "jp_14in45_mka_type36",
+        "main_gun_model_status": "descriptive_slug_pending_annex_row",
+        "main_gun_verbatim": "Fwd (2) 41st Yr Type 36cm/45//1 Fwd Main Battery Director; Fwd (2) 41st Yr Type 36cm/45//; Aft (2) 41st Yr Type 36cm/45//1 Aft Main Battery Director; Aft (2) 41st Yr Type 36cm/45//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) 41st Yr Type 36cm/45//1 Fwd Main Battery Director □",
+          "Fwd (2) 41st Yr Type 36cm/45//",
+          "Aft (2) 41st Yr Type 36cm/45//1 Aft Main Battery Director □",
+          "Aft (2) 41st Yr Type 36cm/45//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Kirishima p40 and Hiei p39 both print four twin 14in/45 mounts. p39 names the gun Vickers Pattern 'A' 14in/45; p40 names it 41st Yr Type 36cm/45. Shell rows are identical.",
+        "main_gun_shells_verbatim": {
+          "APC": "0 - 62 39; 7.7 - 44 31; 19.1 - 31/10 27; 30.5 - 24/20 23",
+          "HE": "7.6 6 43; 19.0 4 36; 30.4 3/2 32; 38.0 2/4 29"
+        },
+        "secondary_verbatim": "Port Casemate (7) 41st Yr Type 15cm/50; Stbd Casemate (7) 41st Yr Type 15cm/50; Port (2) Type 89 12.7cm/40 x2 rows; Stbd (2) Type 89 12.7cm/40 x2 rows",
+        "secondary_mounts_verbatim": [
+          "Port Casemate (7) 41st Yr Type 15cm/50//1 Port Secondary Battery Director □",
+          "Stbd Casemate (7) 41st Yr Type 15cm/50//1 Stbd Secondary Battery Director □",
+          "Port (2) Type 89 12.7cm/40//1 Port Secondary Battery Director □",
+          "Port (2) Type 89 12.7cm/40//",
+          "Stbd (2) Type 89 12.7cm/40//1 Stbd Secondary Battery Director □",
+          "Stbd (2) Type 89 12.7cm/40//"
+        ],
+        "secondary_mounts": [
+          {
+            "position": "P",
+            "barrels": 1,
+            "mounts": 7,
+            "kind": "casemate",
+            "caliber": "15cm/50"
+          },
+          {
+            "position": "S",
+            "barrels": 1,
+            "mounts": 7,
+            "kind": "casemate",
+            "caliber": "15cm/50"
+          },
+          {
+            "position": "P",
+            "barrels": 2,
+            "mounts": 2,
+            "kind": "DP",
+            "caliber": "12.7cm/40"
+          },
+          {
+            "position": "S",
+            "barrels": 2,
+            "mounts": 2,
+            "kind": "DP",
+            "caliber": "12.7cm/40"
+          }
+        ],
+        "secondary_shells_verbatim": {
+          "15cm/50 COM": "0 - 6 20; 5.9 - 4 16; 12.1 - 3/1 14; 19.3 - 2/3 12",
+          "15cm/50 HE": "5.8 2 22; 12.0 1 18; 19.2 1/1 16; 24.0 1/1 14",
+          "12.7cm/40 COM": "0 - 4 16; 4.9 - 2 13; 9.7 - 2/1 12; 12.9 - 1/2 10",
+          "12.7cm/40 HE": "4.8 1 19; 9.6 1 15; 12.8 1/0 14; 16.0 0/1 12"
+        },
+        "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6) to 4.0 nm/9440m",
+        "light_aa_verbatim": "(1)4 Vickers 40mm, 8 25mm, 8 13.2mm (2.2)",
+        "torpedoes_verbatim": null,
+        "torpedo_model": null,
+        "torpedo_model_status": null,
+        "torpedo_tubes_total": 0,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [],
+        "torpedo_range_rows_verbatim": [],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive)",
+        "aircraft": "Midship catapult, E8N Dave",
+        "asw": null,
+        "remarks_verbatim": "Catapult in aft arc for #3 14 in turret, clear for #4. Laid down before 1925, special damage modifier of -15%.",
+        "source_notes": [
+          "Form 10 p40 (Kirishima, Dec 1941) is the individual Kirishima profile source.",
+          "Hiei p39 is a separate individual profile: it prints only one port and one starboard twin 12.7cm/40 mount, (2)2 / Area AA 0.8, while Kirishima p40 prints four twin mounts, (2)4 / Area AA 1.6. The two are not shared.",
+          "Emperor's Fleet p8 (A-5) confirms the class data and explicitly says Hiei received only (2)2 Type 89 12.7cm guns, Area AA 0.8.",
+          "Emperor's Fleet p8 lists Light AA as (2)2 25mm, (4)2 13.2mm, 1.0; Form 10 p39/p40 print (1)4 Vickers 40mm, 8 25mm, 8 13.2mm, 2.2. Form 10 is retained.",
+          "No dedicated 1942 Hiei/Kirishima page exists in the requested range; p37/p38 are Haruna and p41 is Kongo Aug 42, so they are not used for this profile."
+        ]
+      },
+      "profile_variant_note": "Kirishima uses the p40 fit: 8 x 12.7cm/40 (4 twin mounts, Area AA 1.6). Hiei p39 is a separate individual profile with 4 x 12.7cm/40 (Area AA 0.8)."
+    },
+    {
+      "identity": "IBS-U-IJN-HIEI",
+      "name": "比叡",
+      "name_en": "Hiei",
+      "side": "axis",
+      "type": "BB",
+      "class_profile": "hiei_1941_12",
+      "class_name": "Kongo",
+      "class_label_zh": "金刚级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            39
+          ],
+          "printed_pages": [
+            39
+          ],
+          "label": "Hiei BB - Dec 1941",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            39
+          ],
+          "printed_pages": [
+            39
+          ],
+          "label": "Hiei BB - Dec 1941 (individual profile)"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              40
+            ],
+            "printed_pages": [
+              40
+            ],
+            "label": "Kirishima - Dec 1941 (same-class comparison only; 8-gun 12.7cm fit)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              41
+            ],
+            "printed_pages": [
+              41
+            ],
+            "label": "Kongo - Aug 1942 (not used for this individual profile)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              37,
+              38
+            ],
+            "printed_pages": [
+              37,
+              38
+            ],
+            "label": "Haruna - Oct 1942 / Dec 1941 (not used for this individual profile)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              8
+            ],
+            "printed_pages": [
+              "A-5"
+            ],
+            "label": "Kongo (1934) class entry; explicitly says Hiei received only (2)2 Type 89 12.7cm guns, Area AA 0.8.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "hiei_1941_12",
+        "class": "Kongo",
+        "class_label_zh": "金刚级",
+        "side": "axis",
+        "kind": "BB",
+        "size_class_en": "A/Large",
+        "configuration_date": "1941-12",
+        "configuration_label": "Dec 1941",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            39
+          ],
+          "printed_pages": [
+            39
+          ],
+          "label": "Hiei BB - Dec 1941 (individual profile)"
+        },
+        "displacement_std_tons": 32156,
+        "in_class": 4,
+        "in_service": "1913",
+        "in_service_year": 1913,
+        "crew": 1437,
+        "propulsion": "Steam Turbine",
+        "signature": "Large/Loud",
+        "armor_rating": "18/10",
+        "armor_rating_verbatim": "18/10/135",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          183,
+          367,
+          550,
+          660,
+          733
+        ],
+        "speed_knots": [
+          30,
+          23,
+          15,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 30
+          },
+          {
+            "damage": 183,
+            "knots": 23
+          },
+          {
+            "damage": 367,
+            "knots": 15
+          },
+          {
+            "damage": 550,
+            "knots": 8
+          },
+          {
+            "damage": 660,
+            "knots": 0
+          },
+          {
+            "damage": 733,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/30, 183/23, 367/15, 550/8, 660/0, 733/Sunk",
+        "turn": {
+          "standard_rudder_yards": 400,
+          "standard_speed_loss_knots": 2,
+          "hard_rudder_yards": 300,
+          "hard_speed_loss_knots": 3,
+          "accel_knots_per_turn": 6,
+          "accel_high_knots_per_turn": 3,
+          "decel_knots_per_turn": 9
+        },
+        "main_gun": "jp_14in45_vickers_mka",
+        "main_gun_model_status": "descriptive_slug_pending_annex_row",
+        "main_gun_verbatim": "Fwd (2) Vickers Pattern 'A' 14 in/45//1 Fwd Main Battery Director; Fwd (2) Vickers Pattern 'A' 14 in/45//; Aft (2) Vickers Pattern 'A' 14 in/45//1 Aft Main Battery Director; Aft (2) Vickers Pattern 'A' 14 in/45//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) Vickers Pattern 'A' 14 in/45//1 Fwd Main Battery Director □",
+          "Fwd (2) Vickers Pattern 'A' 14 in/45//",
+          "Aft (2) Vickers Pattern 'A' 14 in/45//1 Aft Main Battery Director □",
+          "Aft (2) Vickers Pattern 'A' 14 in/45//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Hiei p39 prints four twin 14in/45 mounts, but only one port and one starboard twin Type 89 12.7cm/40 mount; the 12.7cm battery is half the Kirishima fit.",
+        "main_gun_shells_verbatim": {
+          "APC": "0 - 62 39; 7.7 - 44 31; 19.1 - 31/10 27; 30.5 - 24/20 23",
+          "HE": "7.6 6 43; 19.0 4 36; 30.4 3/2 32; 38.0 2/4 29"
+        },
+        "secondary_verbatim": "Port Casemate (7) 41st Yr Type 15cm/50; Stbd Casemate (7) 41st Yr Type 15cm/50; Port (2) Type 89 12.7cm/40; Stbd (2) Type 89 12.7cm/40",
+        "secondary_mounts_verbatim": [
+          "Port Casemate (7) 41st Yr Type 15cm/50//1 Port Secondary Battery Director □",
+          "Stbd Casemate (7) 41st Yr Type 15cm/50//1 Stbd Secondary Battery Director □",
+          "Port (2) Type 89 12.7cm/40//1 Port Secondary Battery Director □",
+          "Stbd (2) Type 89 12.7cm/40//1 Stbd Secondary Battery Director □"
+        ],
+        "secondary_mounts": [
+          {
+            "position": "P",
+            "barrels": 1,
+            "mounts": 7,
+            "kind": "casemate",
+            "caliber": "15cm/50"
+          },
+          {
+            "position": "S",
+            "barrels": 1,
+            "mounts": 7,
+            "kind": "casemate",
+            "caliber": "15cm/50"
+          },
+          {
+            "position": "P",
+            "barrels": 2,
+            "mounts": 1,
+            "kind": "DP",
+            "caliber": "12.7cm/40"
+          },
+          {
+            "position": "S",
+            "barrels": 2,
+            "mounts": 1,
+            "kind": "DP",
+            "caliber": "12.7cm/40"
+          }
+        ],
+        "secondary_shells_verbatim": {
+          "15cm/50 COM": "0 - 6 20; 5.9 - 4 16; 12.1 - 3/1 14; 19.3 - 2/3 12",
+          "15cm/50 HE": "5.8 2 22; 12.0 1 18; 19.2 1/1 16; 24.0 1/1 14",
+          "12.7cm/40 COM": "0 - 4 16; 4.9 - 2 13; 9.7 - 2/1 12; 12.9 - 1/2 10",
+          "12.7cm/40 HE": "4.8 1 19; 9.6 1 15; 12.8 1/0 14; 16.0 0/1 12"
+        },
+        "area_aa_verbatim": "(2)2 Type 89 12.7cm/40 (0.8) to 4.0 nm/9440m",
+        "light_aa_verbatim": "(1)4 Vickers 40mm, 8 25mm, 8 13.2mm (2.2)",
+        "torpedoes_verbatim": null,
+        "torpedo_model": null,
+        "torpedo_model_status": null,
+        "torpedo_tubes_total": 0,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [],
+        "torpedo_range_rows_verbatim": [],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive)",
+        "aircraft": "Midship catapult, E8N Dave",
+        "asw": null,
+        "remarks_verbatim": "Catapult in aft arc for #3 14 in turret, clear for #4. Laid down before 1925, special damage modifier of -15%.",
+        "source_notes": [
+          "Form 10 p39 (Hiei, Dec 1941) is the individual profile source.",
+          "p40 (Kirishima, Dec 1941) is retained only as the same-class comparison: it prints four twin 12.7cm/40 mounts, Area AA (2)4 / 1.6, while Hiei p39 prints two twin mounts, Area AA (2)2 / 0.8.",
+          "Emperor's Fleet p8 (A-5) confirms the class data and explicitly says Hiei received only (2)2 Type 89 12.7cm guns, Area AA 0.8.",
+          "p39 names the main gun Vickers Pattern 'A' 14in/45; p40 names it 41st Yr Type 36cm/45. The shell rows are identical, and Hiei's p39 designation is retained.",
+          "Emperor's Fleet p8 lists Light AA as (2)2 25mm, (4)2 13.2mm, 1.0; Form 10 p39 prints (1)4 Vickers 40mm, 8 25mm, 8 13.2mm, 2.2. Form 10 is retained.",
+          "No dedicated 1942 Hiei page exists in the requested range; p37/p38 are Haruna and p41 is Kongo Aug 42."
+        ]
+      },
+      "profile_variant_note": "Hiei uses the individual p39 fit: 4 x 12.7cm/40 (2 twin mounts, Area AA 0.8). Kirishima p40 (8 x 12.7cm/40, Area AA 1.6) is kept only as the same-class comparison."
+    },
+    {
+      "identity": "IBS-U-IJN-NAGARA",
+      "name": "长良",
+      "name_en": "Nagara",
+      "side": "axis",
+      "type": "CL",
+      "class_profile": "nagara_1941_12",
+      "class_name": "Nagara",
+      "class_label_zh": "长良级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            77
+          ],
+          "printed_pages": [
+            77
+          ],
+          "label": "Nagara CL - Dec 1941",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            77
+          ],
+          "printed_pages": [
+            77
+          ],
+          "label": "Nagara CL - Dec 1941"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              76
+            ],
+            "printed_pages": [
+              76
+            ],
+            "label": "Abukuma - Dec 42-Jan 43 (not used)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              78
+            ],
+            "printed_pages": [
+              78
+            ],
+            "label": "Natori - Dec 1941 (class comparison)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              22
+            ],
+            "printed_pages": [
+              "A-19"
+            ],
+            "label": "Nagara class entry; prints Gunnery Standard III and an 8cm/40 secondary, while Form 10 p77 prints IV and no 8cm row.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "nagara_1941_12",
+        "class": "Nagara",
+        "class_label_zh": "长良级",
+        "side": "axis",
+        "kind": "CL",
+        "size_class_en": "C/Small",
+        "configuration_date": "1941-12",
+        "configuration_label": "Dec 1941",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            77
+          ],
+          "printed_pages": [
+            77
+          ],
+          "label": "Nagara CL - Dec 1941"
+        },
+        "displacement_std_tons": 5170,
+        "in_class": 6,
+        "in_service": "1922",
+        "in_service_year": 1922,
+        "crew": 438,
+        "propulsion": "Steam Turbine",
+        "signature": "Small/Loud",
+        "armor_rating": "4/2",
+        "armor_rating_verbatim": "4/2",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          54,
+          109,
+          163,
+          195,
+          217
+        ],
+        "speed_knots": [
+          36,
+          27,
+          18,
+          9,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 36
+          },
+          {
+            "damage": 54,
+            "knots": 27
+          },
+          {
+            "damage": 109,
+            "knots": 18
+          },
+          {
+            "damage": 163,
+            "knots": 9
+          },
+          {
+            "damage": 195,
+            "knots": 0
+          },
+          {
+            "damage": 217,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/36, 54/27, 109/18, 163/9, 195/0, 217/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "jp_3rd_yr_type_14cm50",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (1); Port & Stbd (1); Port Wing (1); Stbd Wing (1); Port & Stbd (1); Port & Stbd (1); Aft (1) - 3rd Yr Type 14cm/50, seven single mounts",
+        "gun_mounts_verbatim": [
+          "Fwd (1) 3rd Yr Type 14cm/50//1 Fwd Main Battery Director □",
+          "Port & Stbd (1) 3rd Yr Type 14cm/50//",
+          "Port Wing (1) 3rd Yr Type 14cm/50//",
+          "Stbd Wing (1) 3rd Yr Type 14cm/50//",
+          "Port & Stbd (1) 3rd Yr Type 14cm/50//",
+          "Port & Stbd (1) 3rd Yr Type 14cm/50//",
+          "Aft (1) 3rd Yr Type 14cm/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 1,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "P&S",
+            "barrels": 1,
+            "position_verbatim": "Port & Stbd"
+          },
+          {
+            "position": "PW",
+            "barrels": 1,
+            "position_verbatim": "Port Wing"
+          },
+          {
+            "position": "SW",
+            "barrels": 1,
+            "position_verbatim": "Stbd Wing"
+          },
+          {
+            "position": "P&S",
+            "barrels": 1,
+            "position_verbatim": "Port & Stbd"
+          },
+          {
+            "position": "P&S",
+            "barrels": 1,
+            "position_verbatim": "Port & Stbd"
+          },
+          {
+            "position": "A",
+            "barrels": 1,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Seven single 14cm/50 mounts are printed across seven rows. The rows phrased 'Port & Stbd (1)' are kept as single mounts with both-side arcs, not doubled.",
+        "main_gun_shells_verbatim": {
+          "SpCOM": "0 - 9 17; 6.7 - 5 13; 13.3 - 4/1 12; 17.7 - 3/2 10",
+          "COM": "6.6 6 18; 13.2 3 14; 17.6 3/1 13; 22.0 2/2 11",
+          "HE": "2 20; 1 16; 1/1 15; 1/1 13"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": null,
+        "light_aa_verbatim": "4 25mm, 4 13.2mm, 2 7.7mm (0.8)",
+        "torpedoes_verbatim": "Port (2) 610mm TT w/2 8th Yr Type No.2 torp (two port twin mounts); Stbd (2) (two starboard twin mounts); Reload; 2 reload torp per mount, quick reload in 15 minutes",
+        "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 8,
+        "torpedo_reserve_total": 8,
+        "torpedo_mounts_verbatim": [
+          "Port (2) 610mm TT w/2 8th Yr Type No.2 torp □□ Reload □□",
+          "Port (2) 610mm TT w/2 8th Yr Type No.2 torp □□ Reload □□",
+          "Stbd (2) 610mm TT w/2 8th Yr Type No.2 torp □□ Reload □□",
+          "Stbd (2) 610mm TT w/2 8th Yr Type No.2 torp □□ Reload □□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "10.9 kyds, 38 kts, 87 DP",
+          "16.4 kyds, 32 kts",
+          "21.9 kyds, 28 kts"
+        ],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "None.",
+        "aircraft": "Midship catapult, E7K2 Alf",
+        "asw": null,
+        "remarks_verbatim": "Laid down before 1925, special damage modifier of -15%. 2 reload torp per mount, for quick reload in 15 minutes.",
+        "source_notes": [
+          "Form 10 p77 (Nagara, Dec 1941).",
+          "Emperor's Fleet p22 (A-19) prints Gunnery Standard III and a P/S(1)2 3rd Yr Type 8cm/40 secondary; Form 10 p77 prints Gunnery Standard IV and no 8cm row. The annex's own 1932-37 note says the 8cm guns were replaced, so the Dec 41 Form 10 fit is retained.",
+          "Form 10 light AA is 4 25mm, 4 13.2mm, 2 7.7mm, 0.8; annex p22 summarizes the 1939-40 fit as 2x2 25mm, 0.8."
+        ]
+      },
+      "profile_variant_note": "Form 10 p77 is retained over the annex's summarized class entry; the differences are recorded in unresolved nagara-gs-secondary."
+    },
+    {
+      "identity": "IBS-U-IJN-INAZUMA",
+      "name": "电",
+      "name_en": "Inazuma",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "akatsuki_1942_07",
+      "class_name": "Akatsuki",
+      "class_label_zh": "晓级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            150
+          ],
+          "printed_pages": [
+            150
+          ],
+          "label": "Inazuma DD - Apr-May 42 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              146
+            ],
+            "printed_pages": [
+              146
+            ],
+            "label": "Akatsuki - Jul-Aug 42 (class-profile source)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              148
+            ],
+            "printed_pages": [
+              148
+            ],
+            "label": "Ikazuchi - Apr-May 42",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              151
+            ],
+            "printed_pages": [
+              151
+            ],
+            "label": "Inazuma - Dec 1941 (earlier DC fit)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              30
+            ],
+            "printed_pages": [
+              "A-27"
+            ],
+            "label": "Akatsuki class entry; base 1706 std / 197 crew / GS III, with 1935-37 rebuild note to 1980 / 221 / GS IV.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "akatsuki_1942_07",
+        "class": "Akatsuki",
+        "class_label_zh": "晓级",
+        "side": "axis",
+        "kind": "DD",
+        "size_class_en": "C/Small",
+        "configuration_date": "1942-07",
+        "configuration_label": "Jul-Aug 42 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+        },
+        "displacement_std_tons": 1980,
+        "in_class": 4,
+        "in_service": "1932",
+        "in_service_year": 1932,
+        "crew": 221,
+        "propulsion": "Steam Turbine",
+        "signature": "Small/Noisy",
+        "armor_rating": "0",
+        "armor_rating_verbatim": "0",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          29,
+          57,
+          86,
+          103,
+          114
+        ],
+        "speed_knots": [
+          34,
+          26,
+          17,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 34
+          },
+          {
+            "damage": 29,
+            "knots": 26
+          },
+          {
+            "damage": 57,
+            "knots": 17
+          },
+          {
+            "damage": 86,
+            "knots": 8
+          },
+          {
+            "damage": 103,
+            "knots": 0
+          },
+          {
+            "damage": 114,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/34, 29/26, 57/17, 86/8, 103/0, 114/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "jp_3rd_yr_127mm50",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director; Aft (2) 3rd Yr Type 12.7cm/50//; Aft (2) 3rd Yr Type 12.7cm/50//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director □",
+          "Aft (2) 3rd Yr Type 12.7cm/50//",
+          "Aft (2) 3rd Yr Type 12.7cm/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Three twin 12.7cm/50 mounts, six guns.",
+        "main_gun_shells_verbatim": {
+          "COM": "0 - 5 16; 6.1 - 3 13; 12.1 - 2/1 11; 16.1 - 2/2 10",
+          "HE": "6.0 2 18; 12.0 1 14; 16.0 1/1 13; 20.0 1/1 11"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.3) to 5.0 nm/9000m",
+        "light_aa_verbatim": "2 13.2mm (0.1)",
+        "torpedoes_verbatim": "Port & Stbd (3) 610mm TT w/3 Type 93 torp (three triple mounts, nine tubes)",
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 9,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "22.0 kyds, 49 kts, 95 DP",
+          "35.0 kyds, 41 kts",
+          "43.8 kyds, 37 kts"
+        ],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive); Type 93 Model 1 (active)",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "2 DC rails w/6 DC",
+          "depth_charge_launchers": "2 Type 94 Y-gun w/6 DC",
+          "dc_patterns": "3, 5, 7, 9"
+        },
+        "remarks_verbatim": "Duraluminum extensively used in bridge construction. Light metal superstructure, special damage modifier of -15%.",
+        "source_notes": [
+          "Form 10 p146 (Akatsuki, Jul-Aug 42 Modification) used as the shared Akatsuki class profile.",
+          "p148 (Ikazuchi, Apr-May 42) and p150 (Inazuma, Apr-May 42) are stat-identical except for the date label; p151 (Inazuma, Dec 1941) has the earlier DC fit.",
+          "Emperor's Fleet p30 (A-27) prints the pre-refit 1706 std / 197 crew / Gunnery Standard III entry and notes the 1935-37 rebuild to 1980 tons, 221 crew, Gunnery Standard IV; the rebuilt Form 10 values are retained."
+        ]
+      },
+      "profile_variant_note": "Inazuma p150 is stat-identical to the shared p146 profile except the date label; p151 is the earlier Dec 41 DC fit."
+    },
+    {
+      "identity": "IBS-U-IJN-AKATSUKI",
+      "name": "晓",
+      "name_en": "Akatsuki",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "akatsuki_1942_07",
+      "class_name": "Akatsuki",
+      "class_label_zh": "晓级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              148
+            ],
+            "printed_pages": [
+              148
+            ],
+            "label": "Ikazuchi - Apr-May 42",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              150
+            ],
+            "printed_pages": [
+              150
+            ],
+            "label": "Inazuma - Apr-May 42",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              151
+            ],
+            "printed_pages": [
+              151
+            ],
+            "label": "Inazuma - Dec 1941 (earlier DC fit)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              30
+            ],
+            "printed_pages": [
+              "A-27"
+            ],
+            "label": "Akatsuki class entry; confirms class data and 1935-37 rebuild note.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "akatsuki_1942_07",
+        "class": "Akatsuki",
+        "class_label_zh": "晓级",
+        "side": "axis",
+        "kind": "DD",
+        "size_class_en": "C/Small",
+        "configuration_date": "1942-07",
+        "configuration_label": "Jul-Aug 42 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+        },
+        "displacement_std_tons": 1980,
+        "in_class": 4,
+        "in_service": "1932",
+        "in_service_year": 1932,
+        "crew": 221,
+        "propulsion": "Steam Turbine",
+        "signature": "Small/Noisy",
+        "armor_rating": "0",
+        "armor_rating_verbatim": "0",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          29,
+          57,
+          86,
+          103,
+          114
+        ],
+        "speed_knots": [
+          34,
+          26,
+          17,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 34
+          },
+          {
+            "damage": 29,
+            "knots": 26
+          },
+          {
+            "damage": 57,
+            "knots": 17
+          },
+          {
+            "damage": 86,
+            "knots": 8
+          },
+          {
+            "damage": 103,
+            "knots": 0
+          },
+          {
+            "damage": 114,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/34, 29/26, 57/17, 86/8, 103/0, 114/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "jp_3rd_yr_127mm50",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director; Aft (2) 3rd Yr Type 12.7cm/50//; Aft (2) 3rd Yr Type 12.7cm/50//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director □",
+          "Aft (2) 3rd Yr Type 12.7cm/50//",
+          "Aft (2) 3rd Yr Type 12.7cm/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Three twin 12.7cm/50 mounts, six guns.",
+        "main_gun_shells_verbatim": {
+          "COM": "0 - 5 16; 6.1 - 3 13; 12.1 - 2/1 11; 16.1 - 2/2 10",
+          "HE": "6.0 2 18; 12.0 1 14; 16.0 1/1 13; 20.0 1/1 11"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.3) to 5.0 nm/9000m",
+        "light_aa_verbatim": "2 13.2mm (0.1)",
+        "torpedoes_verbatim": "Port & Stbd (3) 610mm TT w/3 Type 93 torp (three triple mounts, nine tubes)",
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 9,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "22.0 kyds, 49 kts, 95 DP",
+          "35.0 kyds, 41 kts",
+          "43.8 kyds, 37 kts"
+        ],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive); Type 93 Model 1 (active)",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "2 DC rails w/6 DC",
+          "depth_charge_launchers": "2 Type 94 Y-gun w/6 DC",
+          "dc_patterns": "3, 5, 7, 9"
+        },
+        "remarks_verbatim": "Duraluminum extensively used in bridge construction. Light metal superstructure, special damage modifier of -15%.",
+        "source_notes": [
+          "Form 10 p146 (Akatsuki, Jul-Aug 42 Modification) used as the shared Akatsuki class profile.",
+          "p148 (Ikazuchi, Apr-May 42) and p150 (Inazuma, Apr-May 42) are stat-identical except for the date label; p151 (Inazuma, Dec 1941) has the earlier DC fit.",
+          "Emperor's Fleet p30 (A-27) prints the pre-refit 1706 std / 197 crew / Gunnery Standard III entry and notes the 1935-37 rebuild to 1980 tons, 221 crew, Gunnery Standard IV; the rebuilt Form 10 values are retained."
+        ]
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-IKAZUCHI",
+      "name": "雷",
+      "name_en": "Ikazuchi",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "akatsuki_1942_07",
+      "class_name": "Akatsuki",
+      "class_label_zh": "晓级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            148
+          ],
+          "printed_pages": [
+            148
+          ],
+          "label": "Ikazuchi DD - Apr-May 42 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              146
+            ],
+            "printed_pages": [
+              146
+            ],
+            "label": "Akatsuki - Jul-Aug 42 (class-profile source)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              150
+            ],
+            "printed_pages": [
+              150
+            ],
+            "label": "Inazuma - Apr-May 42",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              151
+            ],
+            "printed_pages": [
+              151
+            ],
+            "label": "Inazuma - Dec 1941 (earlier DC fit)",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              30
+            ],
+            "printed_pages": [
+              "A-27"
+            ],
+            "label": "Akatsuki class entry; DC refit dates Ikazuchi and Inazuma Apr-May 42, Akatsuki Jul-Aug 42.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "akatsuki_1942_07",
+        "class": "Akatsuki",
+        "class_label_zh": "晓级",
+        "side": "axis",
+        "kind": "DD",
+        "size_class_en": "C/Small",
+        "configuration_date": "1942-07",
+        "configuration_label": "Jul-Aug 42 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            146
+          ],
+          "printed_pages": [
+            146
+          ],
+          "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+        },
+        "displacement_std_tons": 1980,
+        "in_class": 4,
+        "in_service": "1932",
+        "in_service_year": 1932,
+        "crew": 221,
+        "propulsion": "Steam Turbine",
+        "signature": "Small/Noisy",
+        "armor_rating": "0",
+        "armor_rating_verbatim": "0",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          29,
+          57,
+          86,
+          103,
+          114
+        ],
+        "speed_knots": [
+          34,
+          26,
+          17,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 34
+          },
+          {
+            "damage": 29,
+            "knots": 26
+          },
+          {
+            "damage": 57,
+            "knots": 17
+          },
+          {
+            "damage": 86,
+            "knots": 8
+          },
+          {
+            "damage": 103,
+            "knots": 0
+          },
+          {
+            "damage": 114,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/34, 29/26, 57/17, 86/8, 103/0, 114/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "jp_3rd_yr_127mm50",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director; Aft (2) 3rd Yr Type 12.7cm/50//; Aft (2) 3rd Yr Type 12.7cm/50//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director □",
+          "Aft (2) 3rd Yr Type 12.7cm/50//",
+          "Aft (2) 3rd Yr Type 12.7cm/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Three twin 12.7cm/50 mounts, six guns.",
+        "main_gun_shells_verbatim": {
+          "COM": "0 - 5 16; 6.1 - 3 13; 12.1 - 2/1 11; 16.1 - 2/2 10",
+          "HE": "6.0 2 18; 12.0 1 14; 16.0 1/1 13; 20.0 1/1 11"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.3) to 5.0 nm/9000m",
+        "light_aa_verbatim": "2 13.2mm (0.1)",
+        "torpedoes_verbatim": "Port & Stbd (3) 610mm TT w/3 Type 93 torp (three triple mounts, nine tubes)",
+        "torpedo_model": "jp_type93_m1_mod1_2",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 9,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 93 torp □□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "22.0 kyds, 49 kts, 95 DP",
+          "35.0 kyds, 41 kts",
+          "43.8 kyds, 37 kts"
+        ],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive); Type 93 Model 1 (active)",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "2 DC rails w/6 DC",
+          "depth_charge_launchers": "2 Type 94 Y-gun w/6 DC",
+          "dc_patterns": "3, 5, 7, 9"
+        },
+        "remarks_verbatim": "Duraluminum extensively used in bridge construction. Light metal superstructure, special damage modifier of -15%.",
+        "source_notes": [
+          "Form 10 p146 (Akatsuki, Jul-Aug 42 Modification) used as the shared Akatsuki class profile.",
+          "p148 (Ikazuchi, Apr-May 42) and p150 (Inazuma, Apr-May 42) are stat-identical except for the date label; p151 (Inazuma, Dec 1941) has the earlier DC fit.",
+          "Emperor's Fleet p30 (A-27) prints the pre-refit 1706 std / 197 crew / Gunnery Standard III entry and notes the 1935-37 rebuild to 1980 tons, 221 crew, Gunnery Standard IV; the rebuilt Form 10 values are retained."
+        ]
+      },
+      "profile_variant_note": "Ikazuchi p148 is stat-identical to the shared p146 profile except the date label."
+    },
+    {
+      "identity": "IBS-U-RN-UNNAMED-T05-R01",
+      "name": "利安德",
+      "name_en": "Leander",
+      "side": "allies",
+      "type": "CL",
+      "class_profile": "leander_1943",
+      "class_name": "Leander",
+      "class_label_zh": "利安德级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            233
+          ],
+          "printed_pages": [
+            233
+          ],
+          "label": "Leander CL - 1943 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            233
+          ],
+          "printed_pages": [
+            233
+          ],
+          "label": "Leander CL - 1943 Modification"
+        },
+        "class_related": [],
+        "crosscheck": [
+          {
+            "document": "home_fleet",
+            "pdf_pages": [
+              32,
+              33
+            ],
+            "printed_pages": [
+              "A-28",
+              "A-29"
+            ],
+            "label": "Leander class entry and dated 1943/1944 remarks; confirms 7270 std, 570 crew, 320 DP, 8x6in, 8x4in, 8 TT.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "leander_1943",
+        "class": "Leander",
+        "class_label_zh": "利安德级",
+        "side": "allies",
+        "kind": "CL",
+        "size_class_en": "B/Medium",
+        "configuration_date": "1943",
+        "configuration_label": "1943 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            233
+          ],
+          "printed_pages": [
+            233
+          ],
+          "label": "Leander CL - 1943 Modification"
+        },
+        "displacement_std_tons": 7270,
+        "in_class": 5,
+        "in_service": "1933",
+        "in_service_year": 1933,
+        "crew": 570,
+        "propulsion": "Steam Turbine",
+        "signature": "Medium/Noisy",
+        "armor_rating": "6/3",
+        "armor_rating_verbatim": "6/3",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          80,
+          160,
+          240,
+          288,
+          320
+        ],
+        "speed_knots": [
+          32,
+          24,
+          16,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 32
+          },
+          {
+            "damage": 80,
+            "knots": 24
+          },
+          {
+            "damage": 160,
+            "knots": 16
+          },
+          {
+            "damage": 240,
+            "knots": 8
+          },
+          {
+            "damage": 288,
+            "knots": 0
+          },
+          {
+            "damage": 320,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/32, 80/24, 160/16, 240/8, 288/0, 320/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 2,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 3,
+          "accel_knots_per_turn": 10,
+          "accel_high_knots_per_turn": 5,
+          "decel_knots_per_turn": 12
+        },
+        "main_gun": "gb_6in50_mkxxiii",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (2) MkXXIII 6 in/50//1 Fwd Main Battery Director; Fwd (2) MkXXIII 6 in/50//; Aft (2) MkXXIII 6 in/50//1 Aft Main Battery Director; Aft (2) MkXXIII 6 in/50//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) MkXXIII 6 in/50//1 Fwd Main Battery Director □",
+          "Fwd (2) MkXXIII 6 in/50//",
+          "Aft (2) MkXXIII 6 in/50//1 Aft Main Battery Director □",
+          "Aft (2) MkXXIII 6 in/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "main_gun_shells_verbatim": {
+          "APC": "0 - 21 20; 6.1 - 13 15; 12.7 - 9/3 13; 20.3 - 7/6 11",
+          "HE": "6.0 2 22; 12.6 1 18; 20.2 1/1 16; 25.2 1/1 14"
+        },
+        "secondary_verbatim": "Port (2) MkXVI 4 in/45 (two twin mounts); Stbd (2) MkXVI 4 in/45 (two twin mounts)",
+        "secondary_mounts_verbatim": [
+          "Port (2) MkXVI 4 in/45//1 Port Secondary Battery Director □",
+          "Port (2) MkXVI 4 in/45//",
+          "Stbd (2) MkXVI 4 in/45//1 Stbd Secondary Battery Director □",
+          "Stbd (2) MkXVI 4 in/45//"
+        ],
+        "secondary_mounts": [
+          {
+            "position": "P",
+            "barrels": 2,
+            "mounts": 2
+          },
+          {
+            "position": "S",
+            "barrels": 2,
+            "mounts": 2
+          }
+        ],
+        "secondary_shells_verbatim": {
+          "HE": "0 - 1 17; 6.1 - 1 14; 12.1 - 1/0 12; 16.1 - 0/1 11",
+          "SAP": "6.0 7 15; 12.0 4 12; 16.0 3/1 11; 20.0 2/3 9"
+        },
+        "area_aa_verbatim": "(2)4 MkXVI 4 in/45 (1.7) to 5.0 nm/11890m",
+        "light_aa_verbatim": "9 20mm, 12 .50 cal (3.5)",
+        "torpedoes_verbatim": "Port (4) 533mm TT w/4 MkIX torp; Stbd (4) 533mm TT w/4 MkIX torp",
+        "torpedo_model": "gb_mkix_torpedo",
+        "torpedo_model_status": "existing_model_id_reused",
+        "torpedo_tubes_total": 8,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [
+          "Port (4) 533mm TT w/4 MkIX torp □□□□",
+          "Stbd (4) 533mm TT w/4 MkIX torp □□□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "11.0 kyds, 41 kts, 84 DP",
+          "15.0 kyds, 35 kts"
+        ],
+        "sensors": "Type 291; Type 273Q; Type 128 sonar",
+        "sensor_details": [
+          {
+            "name": "Type 291",
+            "function": "AS",
+            "notes": "1st Gen"
+          },
+          {
+            "name": "Type 273Q",
+            "function": "SS",
+            "notes": "2nd Gen"
+          }
+        ],
+        "sonar": "Type 128",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "1 DC rail w/3 MkVII DC",
+          "dc_patterns": "3"
+        },
+        "remarks_verbatim": "Has HF/DF.",
+        "source_notes": [
+          "Form 10 p233 (Leander, 1943 Modification).",
+          "Home Fleet p32-33 (A-28/A-29) confirms 7270 std, 570 crew, 6/3 armor, 320 DP, 8x6in/50, 8x4in/45, 8 torpedo tubes, and the 1943 removal of aircraft/catapult.",
+          "Form 10 prints 9 20mm and 12 .50 cal, Lt AA 3.5; annex's 1943 note summarizes (1)4 20mm and Lt AA 3.5. Form 10 is retained verbatim.",
+          "The crosswalk label '哈津斯级' is a Hawkins-class label; the Form 10 and Home Fleet both identify this hull as Leander class."
+        ]
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-YUGURE",
+      "name": "夕暮",
+      "name_en": "Yugure",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "hatsuharu_1942_03",
+      "class_name": "Hatsuharu",
+      "class_label_zh": "初春级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            145
+          ],
+          "printed_pages": [
+            145
+          ],
+          "label": "Yugure DD - Mar-Apr 42 Modification",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            145
+          ],
+          "printed_pages": [
+            145
+          ],
+          "label": "Yugure DD - Mar-Apr 42 Modification"
+        },
+        "class_related": [
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              144
+            ],
+            "printed_pages": [
+              144
+            ],
+            "label": "Yugure - Jun 43 Modification (later alternative; not used here)",
+            "role": "related"
+          },
+          {
+            "document": "rising_sun_form10",
+            "pdf_pages": [
+              142,
+              143
+            ],
+            "printed_pages": [
+              142,
+              143
+            ],
+            "label": "Hatsuharu / Wakaba - other class pages",
+            "role": "related"
+          }
+        ],
+        "crosscheck": [
+          {
+            "document": "emperors_fleet",
+            "pdf_pages": [
+              30
+            ],
+            "printed_pages": [
+              "A-27"
+            ],
+            "label": "Hatsuharu class entry; confirms 1513 std, 200 crew, 4x12.7cm, 6 TT, 3 reloads; Jun 43 adds 2 25mm.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "hatsuharu_1942_03",
+        "class": "Hatsuharu",
+        "class_label_zh": "初春级",
+        "side": "axis",
+        "kind": "DD",
+        "size_class_en": "C/Small",
+        "configuration_date": "1942-03",
+        "configuration_label": "Mar-Apr 42 Modification",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            145
+          ],
+          "printed_pages": [
+            145
+          ],
+          "label": "Yugure DD - Mar-Apr 42 Modification"
+        },
+        "displacement_std_tons": 1513,
+        "in_class": 6,
+        "in_service": "1933",
+        "in_service_year": 1933,
+        "crew": 200,
+        "propulsion": "Steam Turbine",
+        "signature": "Small/Noisy",
+        "armor_rating": "0",
+        "armor_rating_verbatim": "0",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          28,
+          56,
+          84,
+          101,
+          112
+        ],
+        "speed_knots": [
+          33,
+          25,
+          16,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 33
+          },
+          {
+            "damage": 28,
+            "knots": 25
+          },
+          {
+            "damage": 56,
+            "knots": 16
+          },
+          {
+            "damage": 84,
+            "knots": 8
+          },
+          {
+            "damage": 101,
+            "knots": 0
+          },
+          {
+            "damage": 112,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/33, 28/25, 56/16, 84/8, 101/0, 112/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 1,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 2,
+          "accel_knots_per_turn": 12,
+          "accel_high_knots_per_turn": 6,
+          "decel_knots_per_turn": 15
+        },
+        "main_gun": "jp_3rd_yr_127mm50",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director; Port & Stbd (1) 3rd Yr Type 12.7cm/50//; Aft (2) 3rd Yr Type 12.7cm/50//",
+        "gun_mounts_verbatim": [
+          "Fwd (2) 3rd Yr Type 12.7cm/50//1 Fwd Main Battery Director □",
+          "Port & Stbd (1) 3rd Yr Type 12.7cm/50//",
+          "Aft (2) 3rd Yr Type 12.7cm/50//"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 2,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "P&S",
+            "barrels": 1,
+            "position_verbatim": "Port & Stbd"
+          },
+          {
+            "position": "A",
+            "barrels": 2,
+            "position_verbatim": "Aft"
+          }
+        ],
+        "gun_mounts_note": "Mar-Apr 42 p145 prints an additional single Port & Stbd 12.7cm/50 mount, five guns total. Jun 43 p144 removes that single mount, leaving four guns and adding 25mm.",
+        "main_gun_shells_verbatim": {
+          "COM": "0 - 5 16; 6.1 - 3 13; 12.1 - 2/1 11; 16.1 - 2/2 10",
+          "HE": "6.0 2 18; 12.0 1 14; 16.0 1/1 13; 20.0 1/1 11"
+        },
+        "secondary_verbatim": null,
+        "secondary_mounts_verbatim": [],
+        "secondary_mounts": [],
+        "secondary_shells_verbatim": null,
+        "area_aa_verbatim": "(2)2, (1)1 3rd Yr Type 12.7cm/50 (0.6) to 5.0 nm/9000m",
+        "light_aa_verbatim": "2 13mm (0.1)",
+        "torpedoes_verbatim": "Port & Stbd (3) 610mm TT w/3 Type 90 torp (two triple mounts); 3 reload torp for fwd mount, quick reload in 15 minutes",
+        "torpedo_model": "jp_type90_torpedo",
+        "torpedo_model_status": "descriptive_slug_pending_annex_row",
+        "torpedo_tubes_total": 6,
+        "torpedo_reserve_total": 3,
+        "torpedo_mounts_verbatim": [
+          "Port & Stbd (3) 610mm TT w/3 Type 90 torp □□□ Reload □□□",
+          "Port & Stbd (3) 610mm TT w/3 Type 90 torp □□□"
+        ],
+        "torpedo_range_rows_verbatim": [
+          "7.7 kyds, 46 kts, 87 DP",
+          "10.9 kyds, 43 kts",
+          "16.4 kyds, 35 kts"
+        ],
+        "sensors": "None.",
+        "sensor_details": [],
+        "sonar": "Type 93 (passive); Type 93 Model 1 (active)",
+        "aircraft": null,
+        "asw": {
+          "depth_charge_rails": "2 DC rails w/6 DC",
+          "depth_charge_launchers": "2 Type 94 Y-gun w/6 DC",
+          "dc_patterns": "3, 5, 7"
+        },
+        "remarks_verbatim": "3 reload torp for fwd mount, for quick reload in 15 minutes.",
+        "source_notes": [
+          "Form 10 p145 (Yugure, Mar-Apr 42 Modification) selected for the November 1942 Guadalcanal I use.",
+          "p145 prints five 12.7cm/50 guns: Fwd (2), Port & Stbd (1), Aft (2); Area AA (2)2, (1)1 / 0.6; and 2 x 13mm, 0.1.",
+          "p144 (Yugure, Jun 43 Modification) prints four 12.7cm/50 guns: Fwd (2), Aft (2); Area AA (2)2 / 0.4; and 4 x 25mm + 2 x 13mm, 0.6. It is retained as a later alternative, not used here.",
+          "Emperor's Fleet p30 (A-27) confirms the class baseline 1513 std, 200 crew, 4 x 12.7cm/50, 6 torpedo tubes, 3 reloads for the forward mount; the p145 extra single mount is a dated individual fit."
+        ]
+      },
+      "profile_variant_note": "Mar-Apr 42 p145 selected for November 1942. It prints 5 x 12.7cm/50 (Fwd 2, P&S 1, Aft 2) and 2 x 13mm; the Jun 43 p144 fit prints 4 x 12.7cm/50 and 4 x 25mm + 2 x 13mm. The dated difference is recorded, not blended."
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R20",
+      "name": "波特兰",
+      "name_en": "Portland",
+      "side": "allies",
+      "type": "CA",
+      "class_profile": "portland_1942_05",
+      "class_name": "Portland",
+      "class_label_zh": "波特兰级",
+      "hull_number": null,
+      "hull_number_note": "Form 10 page does not print a hull number; not inferred.",
+      "source_pages": {
+        "identity": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            247
+          ],
+          "printed_pages": [
+            247
+          ],
+          "label": "Portland CA - May 42 Modifications",
+          "role": "identity"
+        },
+        "profile": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            247
+          ],
+          "printed_pages": [
+            247
+          ],
+          "label": "Portland CA - May 42 Modifications"
+        },
+        "class_related": [],
+        "crosscheck": [
+          {
+            "document": "american_fleets",
+            "pdf_pages": [
+              16
+            ],
+            "printed_pages": [
+              "A-13"
+            ],
+            "label": "Portland class entry; agrees on 9800 std, 1382 crew, 9/4, 390 DP, 9x8in/55, 8x5in/25; prints GS III with 1936 note GS IV.",
+            "role": "crosscheck"
+          }
+        ]
+      },
+      "profile": {
+        "profile_id": "portland_1942_05",
+        "class": "Portland",
+        "class_label_zh": "波特兰级",
+        "side": "allies",
+        "kind": "CA",
+        "size_class_en": "B/Medium",
+        "configuration_date": "1942-05",
+        "configuration_label": "May 42 Modifications",
+        "source": {
+          "document": "rising_sun_form10",
+          "pdf_pages": [
+            247
+          ],
+          "printed_pages": [
+            247
+          ],
+          "label": "Portland CA - May 42 Modifications"
+        },
+        "displacement_std_tons": 9800,
+        "in_class": 2,
+        "in_service": "1932",
+        "in_service_year": 1932,
+        "crew": 1382,
+        "propulsion": "Steam",
+        "signature": "Medium/Noisy",
+        "armor_rating": "9/4",
+        "armor_rating_verbatim": "9/4",
+        "gunnery_standard": "IV",
+        "damage_points": [
+          0,
+          98,
+          195,
+          293,
+          351,
+          390
+        ],
+        "speed_knots": [
+          32,
+          24,
+          16,
+          8,
+          0,
+          0
+        ],
+        "damage_speed_rows": [
+          {
+            "damage": 0,
+            "knots": 32
+          },
+          {
+            "damage": 98,
+            "knots": 24
+          },
+          {
+            "damage": 195,
+            "knots": 16
+          },
+          {
+            "damage": 293,
+            "knots": 8
+          },
+          {
+            "damage": 351,
+            "knots": 0
+          },
+          {
+            "damage": 390,
+            "knots": 0
+          }
+        ],
+        "damage_speed_rows_verbatim": "0/32, 98/24, 195/16, 293/8, 351/0, 390/Sunk",
+        "turn": {
+          "standard_rudder_yards": 300,
+          "standard_speed_loss_knots": 2,
+          "hard_rudder_yards": 200,
+          "hard_speed_loss_knots": 3,
+          "accel_knots_per_turn": 10,
+          "accel_high_knots_per_turn": 5,
+          "decel_knots_per_turn": 12
+        },
+        "main_gun": "us_8in55_mk9_10_11_13_14",
+        "main_gun_model_status": "existing_model_id_reused",
+        "main_gun_verbatim": "Fwd (3) Mk14 8 in/55//1 Fwd Main Battery Director Mk3; Fwd (3) Mk14 8 in/55//; Fwd (3) Mk14 8 in/55//1 Aft Main Battery Director Mk3",
+        "gun_mounts_verbatim": [
+          "Fwd (3) Mk14 8 in/55//1 Fwd Main Battery Director □ Mk3 □",
+          "Fwd (3) Mk14 8 in/55//",
+          "Fwd (3) Mk14 8 in/55//1 Aft Main Battery Director □ Mk3 □"
+        ],
+        "gun_mounts": [
+          {
+            "position": "F",
+            "barrels": 3,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "F",
+            "barrels": 3,
+            "position_verbatim": "Fwd"
+          },
+          {
+            "position": "A",
+            "barrels": 3,
+            "position_verbatim": "Fwd (printed)"
+          }
+        ],
+        "gun_mounts_note": "The third 8in/55 row is printed 'Fwd (3)' but carries the 'Aft Main Battery Director'. The ship has two forward and one aft triple turret; mounts are recorded F,F,A and the printed label is retained in gun_mounts_verbatim.",
+        "main_gun_shells_verbatim": {
+          "APC": "0 - 33 25; 7.1 - 22 19; 16.1 - 15/5 16; 25.6 - 12/10 14",
+          "SpCOM": "7.0 15 23; 16.0 10 18; 25.5 7/2 16; 31.9 5/4 14",
+          "HC": "3 26; 2 22; 2/1 19; 1/2 17"
+        },
+        "secondary_verbatim": "Port (1) Mk13 5 in/25 (four single mounts); Stbd (1) Mk13 5 in/25 (four single mounts)",
+        "secondary_mounts_verbatim": [
+          "Port (1) Mk13 5 in/25//1 Port Secondary Battery Director □ Mk4 □",
+          "Port (1) Mk13 5 in/25//",
+          "Port (1) Mk13 5 in/25//",
+          "Port (1) Mk13 5 in/25//",
+          "Stbd (1) Mk13 5 in/25//1 Stbd Secondary Battery Director □ Mk4 □",
+          "Stbd (1) Mk13 5 in/25//",
+          "Stbd (1) Mk13 5 in/25//",
+          "Stbd (1) Mk13 5 in/25//"
+        ],
+        "secondary_mounts": [
+          {
+            "position": "P",
+            "barrels": 1,
+            "mounts": 4
+          },
+          {
+            "position": "S",
+            "barrels": 1,
+            "mounts": 4
+          }
+        ],
+        "secondary_shells_verbatim": {
+          "COM": "0 - 3 16; 4.5 - 2 13; 8.8 - 2/1 12; 11.7 - 1/1 10",
+          "HC": "4.4 1 19; 8.7 1 15; 11.6 1/0 14; 14.5 0/1 12"
+        },
+        "area_aa_verbatim": "(1)8 Mk13 5 in/25 (1.7) to 2.5 nm/8352m",
+        "light_aa_verbatim": "16 1.1 in, 8 .50 cal (1.8)",
+        "torpedoes_verbatim": null,
+        "torpedo_model": null,
+        "torpedo_model_status": null,
+        "torpedo_tubes_total": 0,
+        "torpedo_reserve_total": 0,
+        "torpedo_mounts_verbatim": [],
+        "torpedo_range_rows_verbatim": [],
+        "sensors": "SC (CXBD); SG; Mk3 (FC); Mk4 (FD)",
+        "sensor_details": [
+          {
+            "name": "SC (CXBD)",
+            "function": "AS",
+            "notes": "1st Gen"
+          },
+          {
+            "name": "SG",
+            "function": "SS",
+            "notes": "1st Gen"
+          },
+          {
+            "name": "Mk3 (FC)",
+            "function": "SS, FC",
+            "notes": "1st Gen, +2 FC Mod"
+          },
+          {
+            "name": "Mk4 (FD)",
+            "function": "AS, FC",
+            "notes": "1st Gen"
+          }
+        ],
+        "sonar": "None.",
+        "aircraft": "2 Midship catapult, OS2U-3 Kingfisher",
+        "asw": null,
+        "remarks_verbatim": "Search and GFCS radars updated as types become available.",
+        "source_notes": [
+          "Form 10 p247 (Portland, May 42 Modifications).",
+          "American Fleets p16 (A-13) prints Gunnery Standard III and a 1936 note 'Gunnery Standard IV'; the May 42 Form 10 prints IV, which is retained.",
+          "The third 8in/55 row is printed 'Fwd (3)' but carries the Aft director; mount reading is recorded explicitly."
+        ]
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "crosscheck-hints-emperors-merchant-pages",
+      "severity": "info",
+      "status": "source_page_hint_mismatch",
+      "detail": "The supplied Emperor's Fleet hints 52-54, 61 and 58 resolve to merchant/auxiliary entries, not the target warships: p52-54 = A-49 Ukishima Maru, A-50 Fujisan Maru, A-51 Ashizuri; p61 = A-58 Nagara Maru; p58 = A-55 Akatsuki Maru. Actual class pages used: p8 (A-5) Kongo, p22 (A-19) Nagara, p28 (A-25) Asashio, p30 (A-27) Hatsuharu/Akatsuki. No merchant data was used."
+    },
+    {
+      "id": "crosscheck-hint-american-p10",
+      "severity": "info",
+      "status": "source_page_hint_mismatch",
+      "detail": "American Fleets p10 (A-7) is the canceled 1920s South Dakota (BB-49) class, not the 1942 South Dakota class. The 1942 class is on p7-8 (A-4/A-5), which was used."
+    },
+    {
+      "id": "hiei-kirishima-127mm-fit",
+      "severity": "medium",
+      "status": "individual_profiles_separated",
+      "detail": "Hiei is now a separate individual profile from Form 10 p39: 2 twin Type 89 12.7cm/40 mounts (4 guns), Area AA (2)2 / 0.8. Kirishima remains on p40: 4 twin mounts (8 guns), Area AA (2)4 / 1.6. Emperor's Fleet p8 also says Hiei received only (2)2, Area AA 0.8. This deliberately does not share Kongo-class 12.7cm stats between the two cards; p40 is retained only as the same-class comparison."
+    },
+    {
+      "id": "kongo-light-aa-and-gun-mark",
+      "severity": "medium",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p39/p40 print Light AA (1)4 Vickers 40mm, 8 25mm, 8 13.2mm, 2.2; Emperor's Fleet p8 prints (2)2 25mm, (4)2 13.2mm, 1.0. Form 10 is retained. The two Kongo cards now keep their own main-gun marks: Hiei p39 Vickers Pattern 'A' 14in/45, Kirishima p40 41st Yr Type 36cm/45; the shell rows are identical."
+    },
+    {
+      "id": "asagumo-oct-nov-42-fit",
+      "severity": "medium",
+      "status": "page_specific_variant_retained",
+      "detail": "Asagumo p116 (Oct-Nov 42) prints two twin 12.7cm/50 mounts (4 guns), Area AA (2)2 / 0.4, and 10 25mm. p117 (Apr-May 42), p118 (Dec 1941) and Emperor's Fleet p28 print three twin mounts (6 guns) and 4 25mm. The p116 fit is retained for this card; no attempt is made to reconcile why Asagumo alone lost a turret in the Oct-Nov 42 page."
+    },
+    {
+      "id": "nagara-gs-secondary",
+      "severity": "medium",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p77 prints Gunnery Standard IV and no 8cm/40 secondary row; Emperor's Fleet p22 prints Gunnery Standard III and P/S(1)2 3rd Yr Type 8cm/40. The annex's own 1932-37 note says the 8cm guns were replaced, so the Dec 41 Form 10 fit is retained. Form 10 light AA is 4 25mm + 4 13.2mm + 2 7.7mm, 0.8; annex summarizes 2x2 25mm, 0.8."
+    },
+    {
+      "id": "portland-gs",
+      "severity": "low",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p247 prints Gunnery Standard IV; American Fleets p16 prints III with a 1936 note 'Gunnery Standard IV'. The May 42 Form 10 IV is retained."
+    },
+    {
+      "id": "portland-mount-label",
+      "severity": "low",
+      "status": "printed_typo_interpreted",
+      "detail": "Portland p247's third 8in/55 row is printed 'Fwd (3) ... //1 Aft Main Battery Director'. The third turret is aft. gun_mounts records F,F,A and gun_mounts_verbatim retains the printed 'Fwd' label; no other stat was changed."
+    },
+    {
+      "id": "sims-extreme-range",
+      "severity": "low",
+      "status": "printed_anomaly_retained",
+      "detail": "Walke p309 prints the 5in/38 COM extreme row as 25.9 kyds, 2/2, 11 DP, while SpCOM extreme is 14.7 kyds and the class's normal 5in/38 extreme is about 18 kyds. The value is retained verbatim as printed; no correction was made."
+    },
+    {
+      "id": "leander-1943-light-aa",
+      "severity": "medium",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p233 prints 9 20mm and 12 .50 cal, Lt AA 3.5 for the 1943 fit. Home Fleet p32's 1943 remark says aircraft/catapult removed, (1)4 20mm added, Type 273 fitted, Lt AA 3.5. The Form 10 battery is retained verbatim."
+    },
+    {
+      "id": "yugure-date-choice",
+      "severity": "medium",
+      "status": "dated_profile_selected",
+      "detail": "Yugure uses the Mar-Apr 42 page p145 for the November 1942 Guadalcanal I use, not the Jun 43 page p144. The two pages conflict: p145 prints 5 x 12.7cm/50 (Fwd 2, P&S 1, Aft 2), Area AA (2)2, (1)1 / 0.6, and 2 x 13mm / 0.1; p144 prints 4 x 12.7cm/50 (Fwd 2, Aft 2), Area AA (2)2 / 0.4, and 4 x 25mm + 2 x 13mm / 0.6. p145 is used verbatim; p144 remains the later alternative."
+    },
+    {
+      "id": "kongo-date-choice",
+      "severity": "medium",
+      "status": "dated_profile_selected",
+      "detail": "No dedicated 1942 Hiei/Kirishima Form 10 exists in the requested range; p39/p40 are both Dec 1941. p37/p38 are Haruna and p41 is Kongo Aug 42, so they were not used. Hiei and Kirishima now have separate Dec 1941 profiles (p39 and p40 respectively), with their printed 12.7cm difference preserved."
+    },
+    {
+      "id": "hull-numbers-not-printed",
+      "severity": "info",
+      "status": "missing_source_field",
+      "detail": "The Form 10 pages do not print hull numbers. All twelve cards keep hull_number null; no hull number was inferred from external knowledge."
+    },
+    {
+      "id": "leander-crosswalk-class-label",
+      "severity": "low",
+      "status": "metadata_conflict_retained",
+      "detail": "data/ships/playable-cards.json records the Leander identity's class_label as '哈津斯级' (Hawkins). Form 10 p233 and Home Fleet p32 identify the hull as Leander class. This package uses Leander; the crosswalk label is left untouched."
+    }
+  ]
+}

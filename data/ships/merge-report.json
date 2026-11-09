@@ -1,0 +1,246 @@
+{
+ "schema_version": 1,
+ "as_of": "2026-11-08",
+ "generated_by": "scripts/build-merged-cards.py",
+ "target": {
+  "ranked_profiles": 202,
+  "collection_only": 8
+ },
+ "merged_cards": 91,
+ "by_source": {
+  "pdf-source-cards.json": 12,
+  "class-proxy-cards.json": 13,
+  "historical-axis-cards.json": 7,
+  "erma-source-cards-ijn.json": 8,
+  "apd-source-cards.json": 8,
+  "cas-source-cards-axis.json": 10,
+  "cas-source-cards-allies.json": 21,
+  "erma-source-cards-usn.json": 12
+ },
+ "excluded": [
+  {
+   "identity": "IBS-U-IJN-AMAGI",
+   "reason": "paper_battlecruiser",
+   "detail": "天城级纸面舰；A-48 无转向/加速值，Form 10 无该舰页"
+  },
+  {
+   "identity": "IBS-U-IJN-AKAGI",
+   "reason": "paper_battlecruiser",
+   "detail": "赤城级纸面舰；A-48/A-49 无转向/加速值，Form 10 无该舰页"
+  },
+  {
+   "identity": "IBS-U-IJN-OWARI",
+   "reason": "paper_battleship",
+   "detail": "纪伊级纸面舰；A-49 无转向/加速值，Form 10 无该舰页"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-IBUKI",
+   "reason": "no_base_class_table",
+   "detail": "伊吹无重巡基础表：A-10 只有 CVL 改装，Form 10 无 Ibuki 卡"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KURAMA",
+   "reason": "no_base_class_table",
+   "detail": "鞍马无重巡基础表：A-10 只有 CVL 改装，Form 10 无 Kurama 卡"
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-GOKASE",
+   "reason": "no_base_class_table",
+   "detail": "五濑无基础表：Emperor's Fleet/Form 10 均无该级条目"
+  }
+ ],
+ "collection_only": [
+  "IBS-U-IJN-AMAGI",
+  "IBS-U-IJN-AKAGI",
+  "IBS-U-IJN-OWARI",
+  "IBS-U-IJN-ERMA-IBUKI",
+  "IBS-U-IJN-ERMA-KURAMA",
+  "IBS-U-IJN-ERMA-GOKASE",
+  "IBS-U-USN-MIDWAY",
+  "IBS-U-IJN-XIFENG"
+ ],
+ "checks": {
+  "cards_unique": true,
+  "all_side": true,
+  "all_stat_verified": true,
+  "all_have_complete_ship": true
+ },
+ "coverage": {
+  "identities_total": 210,
+  "ranked_profiles_before": 111,
+  "ranked_profiles_after": 202,
+  "merged_this_batch": 91,
+  "collection_only": 8,
+  "playable_percent": 96.19,
+  "by_source": {
+   "pdf-source-cards.json": 12,
+   "class-proxy-cards.json": 13,
+   "historical-axis-cards.json": 7,
+   "erma-source-cards-ijn.json": 8,
+   "apd-source-cards.json": 8,
+   "cas-source-cards-axis.json": 10,
+   "cas-source-cards-allies.json": 21,
+   "erma-source-cards-usn.json": 12
+  },
+  "collection_identities": [
+   "IBS-U-IJN-AMAGI",
+   "IBS-U-IJN-AKAGI",
+   "IBS-U-IJN-OWARI",
+   "IBS-U-IJN-ERMA-IBUKI",
+   "IBS-U-IJN-ERMA-KURAMA",
+   "IBS-U-IJN-ERMA-GOKASE",
+   "IBS-U-USN-MIDWAY",
+   "IBS-U-IJN-XIFENG"
+  ]
+ },
+ "outputs": {
+  "merged_cards": "data/ships/merged-cards.json",
+  "rust_profiles": "src/ranked_profiles_merged.inc",
+  "point_manifest": "data/rules/cas-competitive-points-v1.json (202 rows, all new rows provisional)",
+  "identity_cards": "data/ships/cards.json (210 identities, 202 playable / 8 collection)",
+  "non_scenario_index": "data/ships/non-scenario-identities.json (71 rows, 63 playable / 8 collection)",
+  "wasm": "client/public/cas_core.wasm"
+ },
+ "tests": {
+  "cargo_test_release_locked": {
+   "command": "cargo test --release --locked",
+   "passed": 103,
+   "failed": 0,
+   "new_ranked_tests": [
+    "every_merged_hull_has_a_realtime_gun_cadence",
+    "merged_destroyers_form_a_lawful_3000_point_duel",
+    "registry_holds_202_playable_hulls_and_eight_collection_identities"
+   ]
+  },
+  "server_test_ranked": {
+   "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_ranked",
+   "passed": 12,
+   "skipped": 0,
+   "native_sim": "target/release/cas-sim.exe"
+  },
+  "other_server_suites": {
+   "command": "python -m unittest server.test_accounts server.test_account_progression server.test_battle_pve server.test_duels server.test_fleets",
+   "passed": 21,
+   "failed": 0
+  },
+  "typescript": {
+   "command": "node node_modules/typescript/bin/tsc --noEmit",
+   "result": "pass"
+  },
+  "vite": {
+   "command": "node node_modules/vite/bin/vite.js build",
+   "result": "pass",
+   "note": "existing chunk-size warning only"
+  }
+ },
+ "wasm": {
+  "build": "cargo build --target wasm32-unknown-unknown --release --locked --lib",
+  "target": "wasm32-unknown-unknown",
+  "bytes": 3300353,
+  "sha256": "b07c44920fe1ad8e09bb698177f9c30c4575745870fd4fe6bb5f5517a8a68f27",
+  "copied_to": "client/public/cas_core.wasm"
+ },
+ "parity": {
+  "command": "node scripts/build-parity.mjs target/release/cas-sim.exe target/wasm32-unknown-unknown/release/cas_core.wasm",
+  "runs": 21,
+  "native_wasm_canonical_match": true,
+  "replay_match": true,
+  "result": "pass"
+ },
+ "browser_smoke": "not run; the native/WASM parity gate was chosen for this batch (ranked runs on the native authoritative server).",
+ "still_missing": [
+  "8 collection-only identities: 6 paper/unbuilt (Amagi, Akagi, Owari, Ibuki, Kurama, Gokase), Midway (CV) and Xifeng (no CAS table).",
+  "Hiei/Kirishima 12.7cm/40 DP mounts are not folded into the single surface `secondary` GunDef (only 14x 15cm/50 casemates); recorded as an unmodelled delta.",
+  "The 12 pdf and 8 ERMA USN profiles print no torpedo_protection_dp; the ShipDef keeps 0 (same convention as Colorado) and the gap is recorded here.",
+  "Des Moines/Salem keep their 1948 fit inside the 1944 ERMA fictional scenario; the source note and conflict row are retained.",
+  "Walke p309 COM extreme range prints 25.9 kyds (SpCOM 14.7, class normal 18.2); retained verbatim and flagged as a printed anomaly.",
+  "ERMA USN hulls use the single global CAS 5e p.23 (printed 3-2) Warship movement row because their source pages do not print turn/acceleration values.",
+  "The 91 new point rows are provisional; balance review is still pending. No historical campaign budget was changed.",
+  "The 4in/45 secondary of Leander is modelled from the printed SAP row; light AA/secondary DP batteries remain outside the surface `secondary` model for all cards."
+ ],
+ "boundaries": {
+  "not_merged": [
+   "IBS-U-IJN-AMAGI",
+   "IBS-U-IJN-AKAGI",
+   "IBS-U-IJN-OWARI",
+   "IBS-U-IJN-ERMA-IBUKI",
+   "IBS-U-IJN-ERMA-KURAMA",
+   "IBS-U-IJN-ERMA-GOKASE",
+   "IBS-U-USN-MIDWAY",
+   "IBS-U-IJN-XIFENG"
+  ],
+  "not_touched": [
+   "server/catalog.json",
+   "data/ships/pdf-source-cards.json",
+   "data/ships/apd-source-cards.json",
+   "data/ships/class-proxy-cards.json",
+   "data/ships/cas-source-cards-allies.json",
+   "data/ships/cas-source-cards-axis.json",
+   "data/ships/erma-source-cards-usn.json",
+   "data/ships/erma-source-cards-ijn.json",
+   "data/ships/historical-axis-cards.json",
+   "data/ships/period-cards.json",
+   "data/ships/playable-cards.json",
+   "client/src/assets/portraits",
+   "client/src/audio",
+   "data/ai",
+   "data/campaign"
+  ],
+  "git_commit": "none (user instruction)"
+ },
+ "sources": [
+  {
+   "path": "data/ships/pdf-source-cards.json",
+   "sha256": "d2761c35fd045e797cd0f9cd8cf72c5e28dacfebe28c18d0adaeeab909748d50",
+   "cards_in_source": 12,
+   "cards_used": 12
+  },
+  {
+   "path": "data/ships/apd-source-cards.json",
+   "sha256": "2f779fc859d6a297750a36c158a3c614ea472cfd072502ee194ae0dfbba98e87",
+   "cards_in_source": 8,
+   "cards_used": 8
+  },
+  {
+   "path": "data/ships/class-proxy-cards.json",
+   "sha256": "7669f1a9b45052802298be24a678bcbd261c0d5ebd01f03fbc810122ac20dba8",
+   "cards_in_source": 13,
+   "cards_used": 13
+  },
+  {
+   "path": "data/ships/cas-source-cards-allies.json",
+   "sha256": "277556b0021696e32e6f1bced289a8e675bab75f6a2d53b7a86a89fa977f0b8b",
+   "cards_in_source": 21,
+   "cards_used": 21
+  },
+  {
+   "path": "data/ships/cas-source-cards-axis.json",
+   "sha256": "448c6c86fd34dd2f5c48ac48871c4fb9dbd51281a469e9238816530751a2cf55",
+   "cards_in_source": 20,
+   "cards_used": 10
+  },
+  {
+   "path": "data/ships/erma-source-cards-usn.json",
+   "sha256": "9a92d50d3bb3ecba0b76697f13528012c48548b6bd5c88e66198ca4165eedf89",
+   "cards_in_source": 12,
+   "cards_used": 12
+  },
+  {
+   "path": "data/ships/erma-source-cards-ijn.json",
+   "sha256": "9e34a8bc8be407269d9c99d7444ba7c5c94ebadc4f5685ea3f04a7e4dea5b336",
+   "cards_in_source": 11,
+   "cards_used": 8
+  },
+  {
+   "path": "data/ships/historical-axis-cards.json",
+   "sha256": "4402dec24732b717c11fd5aba61f210b181a002c5640257345cbb8d00e3f28c6",
+   "cards_in_source": 7,
+   "cards_used": 7
+  },
+  {
+   "path": "data/rules/gun-rows-erma.json",
+   "sha256": "553891eaefbbc40afb45f7b0d495ec753e9914925bba3753c6dc8e30826932a6",
+   "note": "Mk7/Mk8/Mk16 exact Annex C-3 rows used by the 8 ERMA USN hulls"
+  }
+ ]
+}

@@ -87,7 +87,18 @@ def _read_meta(encoded: str) -> dict:
     state = json.loads(encoded)
     for key in DEDICATED_TICKETS:
         state["wallet"].setdefault(key, 0)
+    state.setdefault("campaign_progress", {})
     return state
+
+
+def _campaign_unlocked(state: dict, unlock: str | None) -> bool:
+    """Evolved AI shop entries unlock only after a real campaign clear."""
+    if not isinstance(unlock, str) or not unlock.startswith("campaign:"):
+        return True
+    stage = unlock.split(":", 1)[1]
+    progress = state.get("campaign_progress", {}).get(stage, {})
+    best = progress.get("best", {}) if isinstance(progress, dict) else {}
+    return any(type(stars) is int and stars > 0 for stars in best.values())
 
 
 def _spend_recruit_tickets(wallet: dict, pool_id: str | None, count: int) -> None:
@@ -167,7 +178,7 @@ class Recruit(Mutation):
 class Purchase(Mutation):
     kind: Literal["ship", "ai", "weekly_ticket", "pool_ship", "ship_bundle"]
     item_id: str = Field(default="", max_length=100)
-    currency: Literal["credits", "medals", "exchange_points"] = "credits"
+    currency: Literal["credits", "medals", "exchange_points", "recruit_ticket"] = "credits"
     pool_id: str | None = Field(default=None, max_length=80)
 
 
@@ -598,11 +609,19 @@ class AccountService:
                 currency, price, title = "credits", 500, "每周补给征募券"
             elif data.kind == "ai":
                 ai = next((a for a in self.catalog["ai_profiles"] if a["id"] == data.item_id), None)
-                if not ai or data.currency != "credits" or not ai.get("cost"):
+                if not ai or not isinstance(ai.get("cost"), int) or ai["cost"] <= 0:
                     deny("该战术不能通过此商品购买。")
+                paid_with = ai.get("currency", "credits")
+                if paid_with not in ("credits", "recruit_ticket") or data.currency != paid_with:
+                    deny("该战术使用指定的征募资源，不能更改货币。")
                 if ai["id"] in state["ai_profiles"]:
                     deny("已拥有该战术。")
-                currency, price, title = "credits", ai["cost"], "解锁战术：" + ai["name"]
+                if not _campaign_unlocked(state, ai.get("unlock")):
+                    stage = str(ai.get("unlock", "")).split(":", 1)[-1]
+                    deny(f"该战术尚未解锁：请先通关战役 {stage}。", 403)
+                currency = "standard_tickets" if paid_with == "recruit_ticket" else "credits"
+                price = ai["cost"]
+                title = "解锁战术：" + ai["name"]
             else:
                 ship = next((s for s in self.catalog["ships"] if s["id"] == data.item_id), None)
                 if not ship:

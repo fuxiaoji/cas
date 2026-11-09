@@ -1,5 +1,6 @@
 // Calendar and reward amounts from 铁底湾 mobile/src/meta/store.ts (3ba9c5b).
 import type { PortState } from '../port';
+import { completePendingChallenge } from './challenge';
 
 export function beijingWeek(now = Date.now()): { key: string; start: number; end: number } {
   const dayMs = 86400000, offset = 8 * 3600000, day = Math.floor((now + offset) / dayMs), monday = day - ((day + 3) % 7);
@@ -11,10 +12,13 @@ export const CHALLENGE_WEEKLY_TICKETS = 2;
 export const WEEKLY_TICKET_PRICE = 500;
 
 export function recordChallengeClear(state: PortState, id?: string, now = Date.now()): PortState {
-  if (!id) return state.challengeClear ? state : { ...state, challengeClear: true };
-  if (Object.hasOwn(state.challengeReceipts, id)) return state;
-  return { ...state, challengeClear: true, challengeReceipts: {
-    ...state.challengeReceipts, [id]: { time: now, first: !state.challengeClear, claimed: false },
+  // The stage ladder commits only on a real primary-objective win; replaying a
+  // cleared stage or resuming an old single-challenge save stays idempotent.
+  const next = completePendingChallenge(state);
+  if (!id) return next.challengeClear ? next : { ...next, challengeClear: true };
+  if (Object.hasOwn(next.challengeReceipts, id)) return next;
+  return { ...next, challengeClear: true, challengeReceipts: {
+    ...next.challengeReceipts, [id]: { time: now, first: !next.challengeClear, claimed: false },
   } };
 }
 export function weeklyStatus(state: PortState, now = Date.now()) {

@@ -88,7 +88,20 @@ fn heading_step(heading: f64, distance: f64) -> (f64, f64) {
 pub(crate) fn fill(w: &mut World) -> E<()> {
     w.field = FIELD;
     let player = w.player;
+    let groups = w.campaign.as_ref().and_then(|start| start.groups.clone());
+    let mut anchors = Vec::new();
     for column in columns() {
+        if column.side == player && groups.is_some() {
+            anchors.push(crate::campaign::fleet::GroupAnchor {
+                fleet: column.fleet,
+                name: column.name.into(),
+                p: P { x: column.x, y: column.y },
+                h: column.heading,
+                speed: column.speed,
+                spacing: column.spacing,
+            });
+            continue;
+        }
         let mut members = Vec::new();
         for (index, (class, name)) in column.ships.iter().enumerate() {
             let def = w
@@ -130,6 +143,15 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
             tactic: Tactic::Search,
         });
     }
+    if let Some(groups) = groups {
+        let budget = crate::campaign::fleet::historical_budget(
+            w,
+            columns().iter()
+                .filter(|column| column.side == player)
+                .flat_map(|column| column.ships.iter().map(|(class, _)| *class)),
+        );
+        crate::campaign::fleet::spawn_groups(w, &anchors, &groups, budget)?;
+    }
     // Haguro had been bombed at 0130; her speed is capped at 30 knots.
     if let Some(id) = w.ships.iter().find(|s| s.name == "羽黑").map(|s| s.id) {
         w.ship_mut(id).unwrap().speed_cap = Some(30.);
@@ -160,6 +182,10 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
     w.enable_realtime()?;
     // A course for every column so the battle closes without player input.
     for column in columns() {
+        // An empty task-force position has no fleet to route.
+        if w.fleet(column.fleet).is_none() {
+            continue;
+        }
         let (dx, dy) = heading_step(column.heading, 6_000.);
         let x = (column.x + dx).clamp(1_000., 23_000.);
         let y = (column.y + dy).clamp(1_000., 13_000.);

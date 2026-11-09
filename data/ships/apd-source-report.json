@@ -1,0 +1,1838 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-apd-source-cards-v1",
+ "as_of": "2026-11-08",
+ "generated_by": "scripts/build-apd-source-cards.py",
+ "source": {
+  "identity_index": "data/ships/playable-cards.json#cards[].period_cards",
+  "period_packages": [
+   "data/campaign/period/kula-runtime.json",
+   "data/campaign/period/savo-runtime.json"
+  ],
+  "period_metadata_format_reference": "data/campaign/period/savo-island-1942.json#profiles",
+  "cas_tables": [
+   "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf"
+  ],
+  "class_refit_notes": {
+   "mutsuki": {
+    "Mochizuki": [
+     "Jan 42: 2 13.2mm added, Lt AA 0.2.",
+     "Jul - Aug 42: DC refit.",
+     "Jan - Feb 43: 2 25mm added, Lt AA 0.5.",
+     "Aug - Sep 43: Aft 12cm replaced by 8 25mm, E-17 Kai 3, Model 3 ESM added, Lt AA 1.4."
+    ],
+    "Mikazuki": [
+     "Dec 42 - Jan 43: Type 93 Model 1 replaced by Type 3 model 2 sonar. DC refit.",
+     "Mar - Jun 43: Aft, P&S 12cm, aft TT and reserve torps, 7.7mm replaced by 2 13.2mm, 3 25mm, Area AA 0.1, Lt AA 0.5."
+    ],
+    "Nagatsuki": [
+     "Sep - Oct 42: Type 93 Model 1 replaced by Type 3 model 2 sonar, DC refit."
+    ],
+    "Satsuki": [
+     "Oct - Nov 42: Type 93 Model 1 replaced by Type 3 model 2 sonar, DC refit.",
+     "Aug 43: Aft 12cm, E-17 Kai 3, Model 3 ESM, 8 25mm added. Area AA 0.2, Light AA 1.1."
+    ],
+    "Minazuki": [
+     "Aug - Sep 42: Type 93 Model 1 replaced by Type 3 model 2 sonar. DC refit.",
+     "Feb 43: 7.7mm replaced by 2 13.2mm, 2 25mm, Lt AA 0.4.",
+     "Aug - Sep 43: Aft 12cm, E-17 Kai 3, Model 3 ESM, 6 25mm added. Area AA 0.2, Light AA 1.1."
+    ],
+    "Fumizuki": [
+     "Jul - Aug 42: Type 93 Model 1 replaced by Type 3 model 2 sonar, DC refit.",
+     "May - Aug 43: P&S 12cm, aft TT, 7.7mm replaced by 2 13.2mm, 3 25mm. Area AA 0.1, Light AA 0.5."
+    ],
+    "Uzuki": [
+     "May - Jun 42: DC refit."
+    ],
+    "Yuzuki": [
+     "May - Jun 42: DC refit."
+    ]
+   },
+   "kamikaze": {
+    "Yunagi": [
+     "Dec 1941 编成（Form 10 p.176）。",
+     "Jan 44: 2 Type 22 radars added.",
+     "Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted."
+    ],
+    "Matsukaze": [
+     "Dec 1941 编成（Form 10 p.175）。",
+     "Jan 44: 2 Type 22 radars added.",
+     "Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted."
+    ]
+   }
+  },
+  "policy": "5 艘有自有 period 卡：直接复制原 profile/ship（kula profiles.mutsuki、mutsuki_mikazuki；savo ships[savo_yunagi]）。3 艘无自有卡：只取同型 Mutsuki（profiles.mutsuki）/ Kamikaze（savo_yunagi = jp_kamikaze_1941_dd）级表登记值，注明「同型/按表」，不跨到其它级。不写 points，不改表值。"
+ },
+ "coverage": {
+  "apd_identities_in_catalog": 8,
+  "cards_written": 8,
+  "own_period_card": 5,
+  "sistership_class_table": 3,
+  "carriers": "按用户口径只排除航母；本批 8 条均为 APD，无航母混入",
+  "scenarios": {
+   "cas-rs-kula-gulf": [
+    "IBS-U-IJN-MONCHIZUKI",
+    "IBS-U-IJN-MIKAZUKI",
+    "IBS-U-IJN-NAGATSUKI",
+    "IBS-U-IJN-SATSUKI"
+   ],
+   "cas-rs-kolombangara": [
+    "IBS-U-IJN-MIKAZUKI",
+    "IBS-U-IJN-SATSUKI",
+    "IBS-U-IJN-YUNAGI",
+    "IBS-U-IJN-MINAZUKI",
+    "IBS-U-IJN-MATSU-KAZE"
+   ],
+   "cas-rs-savo-island": [
+    "IBS-U-IJN-YUNAGI"
+   ],
+   "cas-rs-vella-lavella": [
+    "IBS-U-IJN-YUNAGI",
+    "IBS-U-IJN-MATSU-KAZE",
+    "IBS-U-IJN-FUMIZUKI"
+   ]
+  }
+ },
+ "cards": [
+  {
+   "identity": "IBS-U-IJN-MONCHIZUKI",
+   "name": "望月",
+   "name_en": "Mochizuki",
+   "type": "APD",
+   "class_label": "睦月级",
+   "crosswalk_class_label": "睦月级",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "period_ship_id": "kula-mochizuki",
+   "period_profile": "mutsuki",
+   "resolved_from": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+   "form10_page": 180,
+   "form10_page_source": "playable-cards.json#cards[].period_cards[].form10_page（本批按渲染页复核）",
+   "form10_modification": "Jan-Feb 43",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": true,
+   "size": "D",
+   "turn_advance_yards": 200,
+   "dp": 88,
+   "max_knots": 33,
+   "barrels": 4,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": []
+  },
+  {
+   "identity": "IBS-U-IJN-MIKAZUKI",
+   "name": "三日月",
+   "name_en": "Mikazuki",
+   "type": "APD",
+   "class_label": "睦月级",
+   "crosswalk_class_label": "睦月级",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "period_ship_id": "kula-mikazuki",
+   "period_profile": "mutsuki_mikazuki",
+   "resolved_from": "data/campaign/period/kula-runtime.json#profiles.mutsuki_mikazuki",
+   "form10_page": 178,
+   "form10_page_source": "playable-cards.json#cards[].period_cards[].form10_page（本批按渲染页复核）",
+   "form10_modification": "Mar-Jun 43",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": true,
+   "size": "D",
+   "turn_advance_yards": 200,
+   "dp": 88,
+   "max_knots": 33,
+   "barrels": 2,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": []
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATSUKI",
+   "name": "长月",
+   "name_en": "Nagatsuki",
+   "type": "APD",
+   "class_label": "睦月级",
+   "crosswalk_class_label": "睦月级",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "period_ship_id": "kula-nagatsuki",
+   "period_profile": "mutsuki",
+   "resolved_from": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+   "form10_page": 181,
+   "form10_page_source": "playable-cards.json#cards[].period_cards[].form10_page（本批按渲染页复核）",
+   "form10_modification": "Sep-Oct 42",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": true,
+   "size": "D",
+   "turn_advance_yards": 200,
+   "dp": 88,
+   "max_knots": 33,
+   "barrels": 4,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": []
+  },
+  {
+   "identity": "IBS-U-IJN-SATSUKI",
+   "name": "皋月",
+   "name_en": "Satsuki",
+   "type": "APD",
+   "class_label": "睦月级",
+   "crosswalk_class_label": "睦月级",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "period_ship_id": "kula-satsuki",
+   "period_profile": "mutsuki",
+   "resolved_from": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+   "form10_page": 182,
+   "form10_page_source": "playable-cards.json#cards[].period_cards[].form10_page（本批按渲染页复核）",
+   "form10_modification": "Oct-Nov 42",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": true,
+   "size": "D",
+   "turn_advance_yards": 200,
+   "dp": 88,
+   "max_knots": 33,
+   "barrels": 4,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": []
+  },
+  {
+   "identity": "IBS-U-IJN-YUNAGI",
+   "name": "夕凪",
+   "name_en": "Yunagi",
+   "type": "APD",
+   "class_label": "神风级",
+   "crosswalk_class_label": "神风级",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "period_ship_id": "savo_yunagi",
+   "period_profile": "jp_kamikaze_1941_dd",
+   "resolved_from": "data/campaign/period/savo-runtime.json#ships[savo_yunagi]",
+   "form10_page": 176,
+   "form10_page_source": "savo-island-1942.json#instances.savo-yunagi.form10.pdf_page（playable-cards 该条为 null，本批按渲染页复核）",
+   "form10_modification": "Dec 1941",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": false,
+   "size": "C",
+   "turn_advance_yards": 300,
+   "dp": 92,
+   "max_knots": 35,
+   "barrels": 3,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": false,
+    "damage_speed": true,
+    "size_class": false,
+    "turn_advance_yards": false
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": [
+    {
+     "field": "torpedo_tubes",
+     "label": "鱼雷发射管数"
+    },
+    {
+     "field": "size_class",
+     "label": "尺寸级别"
+    },
+    {
+     "field": "turn_advance_yards",
+     "label": "45° 转向提前量"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MINAZUKI",
+   "name": "水无月",
+   "name_en": "Minazuki",
+   "type": "APD",
+   "class_label": "睦月级",
+   "crosswalk_class_label": "睦月级",
+   "source_kind": "sistership_class_table",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "period_ship_id": null,
+   "period_profile": "mutsuki",
+   "resolved_from": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+   "form10_page": 179,
+   "form10_page_source": "无 period 卡；本批按渲染页直接核页",
+   "form10_modification": "Feb 43",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": true,
+   "size": "D",
+   "turn_advance_yards": 200,
+   "dp": 88,
+   "max_knots": 33,
+   "barrels": 4,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": []
+  },
+  {
+   "identity": "IBS-U-IJN-MATSU-KAZE",
+   "name": "松风",
+   "name_en": "Matsukaze",
+   "type": "APD",
+   "class_label": "神风级",
+   "crosswalk_class_label": null,
+   "source_kind": "sistership_class_table",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "period_ship_id": null,
+   "period_profile": "jp_kamikaze_1941_dd",
+   "resolved_from": "data/campaign/period/savo-runtime.json#ships[savo_yunagi]",
+   "form10_page": 175,
+   "form10_page_source": "无 period 卡；本批按渲染页直接核页",
+   "form10_modification": "Dec 1941",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": false,
+   "size": "C",
+   "turn_advance_yards": 300,
+   "dp": 92,
+   "max_knots": 35,
+   "barrels": 3,
+   "shipdef_match": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": false,
+    "damage_speed": true,
+    "size_class": false,
+    "turn_advance_yards": false
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": [
+    {
+     "field": "torpedo_tubes",
+     "label": "鱼雷发射管数"
+    },
+    {
+     "field": "size_class",
+     "label": "尺寸级别"
+    },
+    {
+     "field": "turn_advance_yards",
+     "label": "45° 转向提前量"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-FUMIZUKI",
+   "name": "文月",
+   "name_en": "Fumizuki",
+   "type": "APD",
+   "class_label": "睦月级",
+   "crosswalk_class_label": "睦月级",
+   "source_kind": "sistership_class_table",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "period_ship_id": null,
+   "period_profile": "mutsuki",
+   "resolved_from": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+   "form10_page": 177,
+   "form10_page_source": "无 period 卡；本批按渲染页直接核页",
+   "form10_modification": "May-Aug 43",
+   "complete": true,
+   "missing_fields": [],
+   "torpedo_registered": true,
+   "size": "D",
+   "turn_advance_yards": 200,
+   "dp": 88,
+   "max_knots": 33,
+   "barrels": 4,
+   "shipdef_match": {
+    "single_gun_mounts": false,
+    "torpedo_tubes": false,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "weapon_table_match": {
+    "gun.range_yd": true,
+    "gun.damage": true,
+    "gun.pen_belt": true,
+    "gun.pen_deck": true,
+    "torpedo": true
+   },
+   "shipdef_mismatches": [
+    {
+     "field": "single_gun_mounts",
+     "label": "炮座数"
+    },
+    {
+     "field": "torpedo_tubes",
+     "label": "鱼雷发射管数"
+    }
+   ]
+  }
+ ],
+ "checks": {
+  "cards_expected": 8,
+  "cards_written": 8,
+  "count_ok": true,
+  "identities_match_task_list": true,
+  "unique_identities": true,
+  "all_type_apd": true,
+  "all_side_axis": true,
+  "carriers_excluded": true,
+  "side_matches_catalog": true,
+  "apd_role_kind_mapping": {
+   "IBS-U-IJN-MONCHIZUKI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-MIKAZUKI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-NAGATSUKI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-SATSUKI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-YUNAGI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-MINAZUKI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-MATSU-KAZE": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   },
+   "IBS-U-IJN-FUMIZUKI": {
+    "catalog_type": "APD",
+    "ship_kind": "DD",
+    "ok": true
+   }
+  },
+  "apd_role_kind_mapping_ok": true,
+  "source_pages_present_all": true,
+  "source_pages_page_verified_all": true,
+  "page_verifications": [
+   {
+    "identity": "IBS-U-IJN-MONCHIZUKI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 180,
+     "hull": "Mochizuki DD",
+     "class_printed": true,
+     "damage_row": "0 22 44 66 79",
+     "speed_row": "33 25 16 8 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-MIKAZUKI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 178,
+     "hull": "Mikazuki DD",
+     "class_printed": true,
+     "damage_row": "0 22 44 66 79",
+     "speed_row": "33 25 16 8 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-NAGATSUKI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 181,
+     "hull": "Nagatsuki DD",
+     "class_printed": true,
+     "damage_row": "0 22 44 66 79",
+     "speed_row": "33 25 16 8 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-SATSUKI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 182,
+     "hull": "Satsuki DD",
+     "class_printed": true,
+     "damage_row": "0 22 44 66 79",
+     "speed_row": "33 25 16 8 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-YUNAGI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 176,
+     "hull": "Yunagi DD",
+     "class_printed": true,
+     "damage_row": "0 23 46 69 83",
+     "speed_row": "35 26 18 9 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-MINAZUKI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 179,
+     "hull": "Minazuki DD",
+     "class_printed": true,
+     "damage_row": "0 22 44 66 79",
+     "speed_row": "33 25 16 8 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-MATSU-KAZE",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 175,
+     "hull": "Matsukaze DD",
+     "class_printed": true,
+     "damage_row": "0 23 46 69 83",
+     "speed_row": "35 26 18 9 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   },
+   {
+    "identity": "IBS-U-IJN-FUMIZUKI",
+    "form10": {
+     "document": "rising_sun_form10s",
+     "pdf_page": 177,
+     "hull": "Fumizuki DD",
+     "class_printed": true,
+     "damage_row": "0 22 44 66 79",
+     "speed_row": "33 25 16 8 0",
+     "verified": true
+    },
+    "class_table": {
+     "document": "emperors_fleet",
+     "verified": true,
+     "class_block": true,
+     "remarks": true,
+     "dp_row": true
+    }
+   }
+  ],
+  "form10_page_verified_all": true,
+  "form10_vs_shipdef": {
+   "IBS-U-IJN-MONCHIZUKI": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "IBS-U-IJN-MIKAZUKI": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "IBS-U-IJN-NAGATSUKI": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "IBS-U-IJN-SATSUKI": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "IBS-U-IJN-YUNAGI": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": false,
+    "damage_speed": true,
+    "size_class": false,
+    "turn_advance_yards": false
+   },
+   "IBS-U-IJN-MINAZUKI": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": true,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   },
+   "IBS-U-IJN-MATSU-KAZE": {
+    "single_gun_mounts": true,
+    "torpedo_tubes": false,
+    "damage_speed": true,
+    "size_class": false,
+    "turn_advance_yards": false
+   },
+   "IBS-U-IJN-FUMIZUKI": {
+    "single_gun_mounts": false,
+    "torpedo_tubes": false,
+    "damage_speed": true,
+    "size_class": true,
+    "turn_advance_yards": true
+   }
+  },
+  "form10_vs_shipdef_mismatches": [
+   {
+    "identity": "IBS-U-IJN-YUNAGI",
+    "field": "torpedo_tubes",
+    "label": "鱼雷发射管数",
+    "printed": 4,
+    "shipdef": null
+   },
+   {
+    "identity": "IBS-U-IJN-YUNAGI",
+    "field": "size_class",
+    "label": "尺寸级别",
+    "printed": "D",
+    "shipdef": "C"
+   },
+   {
+    "identity": "IBS-U-IJN-YUNAGI",
+    "field": "turn_advance_yards",
+    "label": "45° 转向提前量",
+    "printed": 200,
+    "shipdef": 300
+   },
+   {
+    "identity": "IBS-U-IJN-MATSU-KAZE",
+    "field": "torpedo_tubes",
+    "label": "鱼雷发射管数",
+    "printed": 4,
+    "shipdef": null
+   },
+   {
+    "identity": "IBS-U-IJN-MATSU-KAZE",
+    "field": "size_class",
+    "label": "尺寸级别",
+    "printed": "D",
+    "shipdef": "C"
+   },
+   {
+    "identity": "IBS-U-IJN-MATSU-KAZE",
+    "field": "turn_advance_yards",
+    "label": "45° 转向提前量",
+    "printed": 200,
+    "shipdef": 300
+   },
+   {
+    "identity": "IBS-U-IJN-FUMIZUKI",
+    "field": "single_gun_mounts",
+    "label": "炮座数",
+    "printed": 3,
+    "shipdef": 4
+   },
+   {
+    "identity": "IBS-U-IJN-FUMIZUKI",
+    "field": "torpedo_tubes",
+    "label": "鱼雷发射管数",
+    "printed": 3,
+    "shipdef": 6
+   }
+  ],
+  "shipdef_mismatches_are_registered_conflicts": true,
+  "registered_conflict_fields": [
+   "IBS-U-IJN-FUMIZUKI:single_gun_mounts",
+   "IBS-U-IJN-FUMIZUKI:torpedo_tubes",
+   "IBS-U-IJN-MATSU-KAZE:size_class",
+   "IBS-U-IJN-MATSU-KAZE:torpedo_tubes",
+   "IBS-U-IJN-MATSU-KAZE:turn_advance_yards",
+   "IBS-U-IJN-YUNAGI:size_class",
+   "IBS-U-IJN-YUNAGI:torpedo_tubes",
+   "IBS-U-IJN-YUNAGI:turn_advance_yards"
+  ],
+  "weapon_tables_vs_shipdef": {
+   "IBS-U-IJN-MONCHIZUKI": {
+    "gun.range_yd": {
+     "table": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "shipdef": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "shipdef": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "match": true
+    }
+   },
+   "IBS-U-IJN-MIKAZUKI": {
+    "gun.range_yd": {
+     "table": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "shipdef": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "shipdef": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "match": true
+    }
+   },
+   "IBS-U-IJN-NAGATSUKI": {
+    "gun.range_yd": {
+     "table": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "shipdef": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "shipdef": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "match": true
+    }
+   },
+   "IBS-U-IJN-SATSUKI": {
+    "gun.range_yd": {
+     "table": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "shipdef": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "shipdef": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "match": true
+    }
+   },
+   "IBS-U-IJN-YUNAGI": {
+    "gun.range_yd": {
+     "table": [
+      5300.0,
+      10600.0,
+      14100.0,
+      17600.0
+     ],
+     "shipdef": [
+      5300.0,
+      10600.0,
+      14100.0,
+      17600.0
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": null,
+     "shipdef": false,
+     "match": true
+    }
+   },
+   "IBS-U-IJN-MINAZUKI": {
+    "gun.range_yd": {
+     "table": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "shipdef": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "shipdef": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "match": true
+    }
+   },
+   "IBS-U-IJN-MATSU-KAZE": {
+    "gun.range_yd": {
+     "table": [
+      5300.0,
+      10600.0,
+      14100.0,
+      17600.0
+     ],
+     "shipdef": [
+      5300.0,
+      10600.0,
+      14100.0,
+      17600.0
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": null,
+     "shipdef": false,
+     "match": true
+    }
+   },
+   "IBS-U-IJN-FUMIZUKI": {
+    "gun.range_yd": {
+     "table": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "shipdef": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "match": true
+    },
+    "gun.damage": {
+     "table": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "shipdef": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "match": true
+    },
+    "gun.pen_belt": {
+     "table": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "shipdef": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "match": true
+    },
+    "gun.pen_deck": {
+     "table": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "shipdef": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "match": true
+    },
+    "torpedo": {
+     "table": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "shipdef": {
+      "damage": 87,
+      "range_yd": 10900,
+      "speed_knots": 38
+     },
+     "match": true
+    }
+   }
+  },
+  "weapon_tables_match_shipdef_ok": true,
+  "same_class_consistency": {
+   "mutsuki": {
+    "identities": [
+     "IBS-U-IJN-MONCHIZUKI",
+     "IBS-U-IJN-NAGATSUKI",
+     "IBS-U-IJN-SATSUKI",
+     "IBS-U-IJN-MINAZUKI",
+     "IBS-U-IJN-FUMIZUKI"
+    ],
+    "fields_compared": [
+     "accel_high_knots_per_turn",
+     "accel_knots_per_turn",
+     "armor_belt",
+     "armor_deck",
+     "brake_knots_per_turn",
+     "damage_speed",
+     "dp",
+     "gun",
+     "in_service_year",
+     "kind",
+     "max_knots",
+     "side",
+     "size",
+     "source_profile",
+     "speed_loss_knots",
+     "torpedo",
+     "turn_advance_yards"
+    ],
+    "identical": true,
+    "mismatches": []
+   },
+   "mutsuki_mikazuki": {
+    "identities": [
+     "IBS-U-IJN-MIKAZUKI"
+    ],
+    "fields_compared": [
+     "accel_high_knots_per_turn",
+     "accel_knots_per_turn",
+     "armor_belt",
+     "armor_deck",
+     "brake_knots_per_turn",
+     "damage_speed",
+     "dp",
+     "gun",
+     "in_service_year",
+     "kind",
+     "max_knots",
+     "side",
+     "size",
+     "source_profile",
+     "speed_loss_knots",
+     "torpedo",
+     "turn_advance_yards"
+    ],
+    "identical": true,
+    "mismatches": []
+   },
+   "jp_kamikaze_1941_dd": {
+    "identities": [
+     "IBS-U-IJN-YUNAGI",
+     "IBS-U-IJN-MATSU-KAZE"
+    ],
+    "fields_compared": [
+     "accel_high_knots_per_turn",
+     "accel_knots_per_turn",
+     "armor_belt",
+     "armor_deck",
+     "brake_knots_per_turn",
+     "damage_speed",
+     "dp",
+     "gun",
+     "in_service_year",
+     "kind",
+     "max_knots",
+     "side",
+     "size",
+     "source_profile",
+     "speed_loss_knots",
+     "torpedo",
+     "turn_advance_yards"
+    ],
+    "identical": true,
+    "mismatches": []
+   }
+  },
+  "same_class_consistency_ok": true,
+  "class_table_vs_runtime": {
+   "mutsuki": {
+    "table": {
+     "dp": 88,
+     "max_knots": 33,
+     "damage_speed": {
+      "damage": [
+       0,
+       22,
+       44,
+       66,
+       79,
+       88
+      ],
+      "knots": [
+       33,
+       25,
+       16,
+       8,
+       0,
+       0
+      ]
+     },
+     "barrels": 4,
+     "torpedo_tubes": 6,
+     "turn_advance_yards": 200,
+     "size": "D",
+     "displacement_std_tons": 1336,
+     "crew": 150,
+     "in_service_year": 1925
+    },
+    "runtime": {
+     "dp": 88,
+     "max_knots": 33,
+     "size": "D",
+     "turn_advance_yards": 200,
+     "gun_barrels": 4,
+     "torpedo_tubes": 6
+    },
+    "deviations": [],
+    "matches_except_registered_deviations": true
+   },
+   "kamikaze": {
+    "table": {
+     "dp": 92,
+     "max_knots": 35,
+     "damage_speed": {
+      "damage": [
+       0,
+       23,
+       46,
+       69,
+       83,
+       92
+      ],
+      "knots": [
+       35,
+       26,
+       18,
+       9,
+       0,
+       0
+      ]
+     },
+     "barrels": 3,
+     "torpedo_tubes": 4,
+     "turn_advance_yards": 200,
+     "size": "D",
+     "displacement_std_tons": 1422,
+     "crew": 148,
+     "in_service_year": 1925
+    },
+    "runtime": {
+     "dp": 92,
+     "max_knots": 35,
+     "size": "C",
+     "turn_advance_yards": 300,
+     "gun_barrels": 3,
+     "torpedo_tubes": null
+    },
+    "deviations": [
+     {
+      "field": "size",
+      "table": "D",
+      "runtime": "C",
+      "note": "savo 的 APD 卡用 C（辅助转向表口径），Form 10/级表印 D/Small"
+     },
+     {
+      "field": "turn_advance_yards",
+      "table": 200,
+      "runtime": 300,
+      "note": "APD 用辅助转向表 300 yd；Form 10 级表印 200 yd"
+     },
+     {
+      "field": "torpedo.tubes",
+      "table": 4,
+      "runtime": null,
+      "note": "Kamikaze 级 Type 96 在 Annex F 无弹行，登记卡保持 torpedo=null（不替代）"
+     }
+    ],
+    "matches_except_registered_deviations": true
+   }
+  },
+  "class_table_deviations_registered": true,
+  "ship_def_complete_all": true,
+  "no_points_fields": true,
+  "own_period_card_count": 5,
+  "sistership_class_table_count": 3,
+  "all_checks_pass": true
+ },
+ "page_resolution": {
+  "unresolved": [],
+  "note": "8 条的逐舰 Form 10 页全部在本批按渲染页确认（页眉舰名 + 舰级 + DP/航速行），级表页同样逐页确认；没有需要标 unresolved 的页码。",
+  "index": [
+   {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     27
+    ],
+    "printed_pages": [
+     "A-24"
+    ],
+    "role": "Kamikaze (1941) 级表",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-YUNAGI",
+     "IBS-U-IJN-MATSU-KAZE"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     30,
+     31
+    ],
+    "printed_pages": [
+     "A-27",
+     "A-28"
+    ],
+    "role": "Mutsuki 级表",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-MONCHIZUKI",
+     "IBS-U-IJN-MIKAZUKI",
+     "IBS-U-IJN-NAGATSUKI",
+     "IBS-U-IJN-SATSUKI",
+     "IBS-U-IJN-MINAZUKI",
+     "IBS-U-IJN-FUMIZUKI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     175
+    ],
+    "printed_pages": [
+     175
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-MATSU-KAZE"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     176
+    ],
+    "printed_pages": [
+     176
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-YUNAGI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     177
+    ],
+    "printed_pages": [
+     177
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-FUMIZUKI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     178
+    ],
+    "printed_pages": [
+     178
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-MIKAZUKI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     179
+    ],
+    "printed_pages": [
+     179
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-MINAZUKI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     180
+    ],
+    "printed_pages": [
+     180
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-MONCHIZUKI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     181
+    ],
+    "printed_pages": [
+     181
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-NAGATSUKI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10s",
+    "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "pdf_pages": [
+     182
+    ],
+    "printed_pages": [
+     182
+    ],
+    "role": "本舰 Form 10（逐舰卡）",
+    "verified": "page_render",
+    "cards": [
+     "IBS-U-IJN-SATSUKI"
+    ]
+   }
+  ]
+ },
+ "conflicts": [
+  {
+   "id": "U-APD-MUTSUKI-TORPEDO",
+   "severity": "high",
+   "issue": "级表 A-27 印 P&S(3)2 610mm TT w/3 8th Yr Type No. 2；Mutsuki 各舰 1942-43 Form 10 印 Type 93 Model 1 Mod 1/2（22.0/35.0/43.8 kyds）",
+   "identities": [
+    "IBS-U-IJN-MONCHIZUKI",
+    "IBS-U-IJN-MIKAZUKI",
+    "IBS-U-IJN-NAGATSUKI",
+    "IBS-U-IJN-SATSUKI",
+    "IBS-U-IJN-MINAZUKI",
+    "IBS-U-IJN-FUMIZUKI"
+   ],
+   "evidence": "kula-runtime profiles.mutsuki torpedo.name=八年式二号；Form 10 p.177-182 印 Type 93；cape-st-george-1943.json conflicts.uzuki-torpedo-model 已登记同一矛盾（未裁决）",
+   "action": "本批沿用登记卡（8th Yr Type No.2），不替换、不改表值；待裁决后再动"
+  },
+  {
+   "id": "U-APD-FUMIZUKI-FIT",
+   "severity": "high",
+   "issue": "Fumizuki Form 10 p.177（May-Aug 43）印 Fwd/P&S/Aft 三座 12cm，但 Area AA 只印 (1)2；A-28 注记称 P&S 12cm 与后部雷管已拆（→2 炮/1 雷管座）",
+   "identities": [
+    "IBS-U-IJN-FUMIZUKI"
+   ],
+   "evidence": "Form 10 p.177 vs Emperor's Fleet A-28 refit note",
+   "action": "本批按「同型/按表」用 mutsuki 级表 4 炮/6 管；舰页差异已登记，未自行改为 2 炮"
+  },
+  {
+   "id": "U-APD-KAMIKAZE-SIZE-TURN",
+   "severity": "medium",
+   "issue": "savo_yunagi 登记 size=C、turn_advance=300；Form 10 p.176 与 A-24 均印 D/Small、Standard Rudder 200 yds",
+   "identities": [
+    "IBS-U-IJN-YUNAGI",
+    "IBS-U-IJN-MATSU-KAZE"
+   ],
+   "evidence": "savo-runtime ships[savo_yunagi]；savo-island-1942.json metadata.restrictions（APD 用辅助转向表）",
+   "action": "自有卡原样保留；Matsukaze 复制同型卡保持同级一致；差额登记待裁决"
+  },
+  {
+   "id": "U-APD-MUTSUKI-APD-TURN",
+   "severity": "medium",
+   "issue": "同为 APD：kula 的 4 艘 Mutsuki 用级表 200 yd，savo 的 Yunagi 用辅助表 300 yd",
+   "identities": [
+    "IBS-U-IJN-MONCHIZUKI",
+    "IBS-U-IJN-MIKAZUKI",
+    "IBS-U-IJN-NAGATSUKI",
+    "IBS-U-IJN-SATSUKI",
+    "IBS-U-IJN-YUNAGI"
+   ],
+   "evidence": "kula-runtime profiles.mutsuki/mutsuki_mikazuki vs savo-runtime ships[savo_yunagi]",
+   "action": "两包口径并存；本批不统一、不换算"
+  },
+  {
+   "id": "U-APD-KAMIKAZE-LIGHTAA",
+   "severity": "low",
+   "issue": "Kamikaze 级轻防空：A-24 印 10 Type 96 25mm (1.2)；Yunagi/Matsukaze Form 10（Dec 1941）印 2 13mm (0.1)",
+   "identities": [
+    "IBS-U-IJN-YUNAGI",
+    "IBS-U-IJN-MATSU-KAZE"
+   ],
+   "evidence": "The Emperor's Fleet A-24 vs Form 10 p.175/176",
+   "action": "ShipDef 无轻防空字段（原卡即无），两种印值都登记在 profile.ship_form10，不下裁定"
+  }
+ ],
+ "unresolved": [
+  {
+   "id": "U-APD-NO-PERIOD-CARD",
+   "severity": "high",
+   "issue": "Minazuki / Matsukaze / Fumizuki 在 scenario 包里没有逐舰 period 卡（只有 Form 10 与级表）",
+   "identities": [
+    "IBS-U-IJN-MINAZUKI",
+    "IBS-U-IJN-MATSU-KAZE",
+    "IBS-U-IJN-FUMIZUKI"
+   ],
+   "evidence": "playable-cards.json 三条无 period_cards；kula/savo runtime 无对应 instance",
+   "action": "按同型级表出卡；若要舰页精确值需先裁决 U-APD-FUMIZUKI-FIT 与 Kamikaze 辅助表口径"
+  },
+  {
+   "id": "U-APD-NOT-IN-CATALOG-COMBAT",
+   "severity": "medium",
+   "issue": "8 条 catalog 仍是 APD/combat_ready=false，本批只出数据，未改 catalog、未登记 points/ranked",
+   "identities": [
+    "IBS-U-IJN-MONCHIZUKI",
+    "IBS-U-IJN-MIKAZUKI",
+    "IBS-U-IJN-NAGATSUKI",
+    "IBS-U-IJN-SATSUKI",
+    "IBS-U-IJN-YUNAGI",
+    "IBS-U-IJN-MINAZUKI",
+    "IBS-U-IJN-MATSU-KAZE",
+    "IBS-U-IJN-FUMIZUKI"
+   ],
+   "evidence": "server/catalog.json type=APD, combat_ready=false",
+   "action": "接线（catalog/ranked_fleets）由后续批次处理，本批按约束未动"
+  }
+ ],
+ "blockers": [
+  "3 艘无 period 卡（Minazuki/Matsukaze/Fumizuki）：数据靠同型级表，舰页精确值待裁决",
+  "Fumizuki 舰页炮座数与级表不一致（U-APD-FUMIZUKI-FIT）",
+  "Mutsuki 级鱼雷型号级表 vs Form 10 矛盾未裁决（U-APD-MUTSUKI-TORPEDO）",
+  "本批只写 data/ships/，catalog/ranked_fleets 接线不在本批范围"
+ ]
+}

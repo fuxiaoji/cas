@@ -1,0 +1,351 @@
+{
+  "schema_version": 2,
+  "version": "cas-challenge-v2",
+  "kind": "fictional",
+  "source": "架空挑战梯度。舰卡取自已登记的 202 张 CAS 可出战舰卡与冻结排位点表；不引用任何历史战役的舰队、阵位、航速、胜负条件或史实预算，不计历史星级，不进入战役目录。",
+  "engine": {
+    "variant": "challenge",
+    "rules_version": "cas-realtime-v9",
+    "field": {"width": 24000, "height": 14000, "limit": 2700},
+    "notes": [
+      "挑战想定冻结在 v9 时序（src/realtime.rs），避免 v10 射击纪律改写已验收的手工调平；新的逐关编制由 data/challenge/stages.json 参数化，不再固定 3 对 5。",
+      "每关给出两套本席编成（同盟/轴心）和两套敌编成；引擎按本席阵营取本席编成、按对方阵营取敌编成。",
+      "点价由 src/ranked_fleets.rs 的 point_value 从完整 ShipDef 现算；关卡预算只约束本席编成，敌编成允许越级（挑战主旨）。",
+      "前三关只用驱逐舰/轻巡洋舰并沿用 24,000×14,000 码轻编队海图；第四、五关出现战列舰，海图扩到 60,000×36,000 码、时限 60 分钟。",
+      "本批五关全部接入引擎；没有 blocked 关位，也不把 3 对 5 固定局冒充战列舰关。"
+    ]
+  },
+  "rewards": {
+    "policy": "沿用现有挑战首通与周复战规则；关卡梯度只记录通关进度，不新增货币或掉落。",
+    "first_clear": "首个主目标达成：雷击 AI 与 2 张常驻券（既有 receiveChallenge）",
+    "repeat": "每周最多 3 次，每次 2 张常驻券（既有 claimRepeat）",
+    "basis": "首通/复战数额沿用铁底湾手游挑战奖励口径；本批不改经济，只把五关的通关进度接入同一奖励入口。"
+  },
+  "stages": [
+    {
+      "id": "challenge-01",
+      "order": 1,
+      "name": "哨戒接触",
+      "tier": "DD/CL",
+      "status": "playable",
+      "brief": "以两艘驱逐舰和一艘轻巡洋舰前出哨戒，在敌方展开前打掉其前锋。",
+      "objective": "击沉至少 2 艘敌舰，并保留至少 1 艘己舰。",
+      "unlock_after": null,
+      "source": "架空；沿用已验收的 3 舰 1875 分轻编队与 24,000×14,000 码海图，不映射历史战斗。",
+      "profile": "gunnery",
+      "seed": 6100,
+      "enemy_profile": "gunnery",
+      "budget": 2000,
+      "required_enemy_losses": 2,
+      "spacing": 450,
+      "field": {"width": 24000, "height": 14000, "limit": 2700},
+      "player": {
+        "allies": {
+          "name": "哨戒分队",
+          "ships": ["IBS-U-USN-FLETCHER", "IBS-U-USN-UNNAMED-T01-R26", "IBS-U-USN-CHEVALIER"],
+          "kinds": ["DD", "CL", "DD"],
+          "points": 1875,
+          "leader_slot": 1,
+          "x": 4200, "y": 6550, "heading": 90, "speed": 26
+        },
+        "axis": {
+          "name": "哨戒分队",
+          "ships": ["IBS-U-IJN-KAGERO", "IBS-U-IJN-SENDAI", "IBS-U-IJN-YUGUMO"],
+          "kinds": ["DD", "CL", "DD"],
+          "points": 1625,
+          "leader_slot": 1,
+          "x": 4200, "y": 6550, "heading": 90, "speed": 26
+        }
+      },
+      "enemy": {
+        "allies": {
+          "name": "敌方前卫",
+          "ships": ["IBS-U-USN-BAINBRIDGE", "IBS-U-USN-OMAHA", "IBS-U-USN-DAHLGREN", "IBS-U-USN-DECATUR", "IBS-U-USN-FOX"],
+          "kinds": ["DD", "CL", "DD", "DD", "DD"],
+          "points": 2300,
+          "leader_slot": 0,
+          "x": 19800, "y": 7650, "heading": 270, "speed": 26
+        },
+        "axis": {
+          "name": "敌方前卫",
+          "ships": ["IBS-U-IJN-KAGERO", "IBS-U-IJN-SENDAI", "IBS-U-IJN-AKIGUMO", "IBS-U-IJN-HAMAKAZE", "IBS-U-IJN-HATSU-KAZE"],
+          "kinds": ["DD", "CL", "DD", "DD", "DD"],
+          "points": 2575,
+          "leader_slot": 0,
+          "x": 19800, "y": 7650, "heading": 270, "speed": 26
+        }
+      },
+      "reward": {
+        "first_clear": "首个主目标：雷击 AI + 2 张常驻券（既有首通口径）",
+        "repeat": "每周最多 3 次，每次 2 张常驻券",
+        "basis": "沿用既有挑战奖励；本关只记录通关进度。"
+      },
+      "evidence": {
+        "seed": 6100,
+        "enemy_profile": "gunnery",
+        "result": {"allies": 5, "axis": 0, "primary": true},
+        "note": "本席与敌方均由 auto AI 操作，步进至时限；结果为敌我损失数。"
+      }
+    },
+    {
+      "id": "challenge-02",
+      "order": 2,
+      "name": "轻巡拦阻",
+      "tier": "DD/CL",
+      "status": "playable",
+      "brief": "由轻巡洋舰压住队尾，诱使敌方驱逐舰进入两舷火力夹角。",
+      "objective": "击沉至少 2 艘敌舰，并保留至少 1 艘己舰。",
+      "unlock_after": "challenge-01",
+      "source": "架空；本关换用亚特兰大级/阿贺野级轻巡与 1943 年驱逐舰卡，仍为 2000 分轻编队。",
+      "profile": "gunnery",
+      "seed": 6102,
+      "enemy_profile": "gunnery",
+      "budget": 2000,
+      "required_enemy_losses": 2,
+      "spacing": 450,
+      "field": {"width": 24000, "height": 14000, "limit": 2700},
+      "player": {
+        "allies": {
+          "name": "拦阻分队",
+          "ships": ["IBS-U-USN-BUCHANAN", "IBS-U-USN-UNNAMED-T01-R23", "IBS-U-USN-DAHLGREN"],
+          "kinds": ["DD", "CL", "DD"],
+          "points": 1800,
+          "leader_slot": 1,
+          "x": 4000, "y": 6200, "heading": 90, "speed": 26
+        },
+        "axis": {
+          "name": "拦阻分队",
+          "ships": ["IBS-U-IJN-KAGERO", "IBS-U-IJN-AGANO", "IBS-U-IJN-YUGUMO"],
+          "kinds": ["DD", "CL", "DD"],
+          "points": 1750,
+          "leader_slot": 1,
+          "x": 4000, "y": 6200, "heading": 90, "speed": 26
+        }
+      },
+      "enemy": {
+        "allies": {
+          "name": "敌方巡洋队",
+          "ships": ["IBS-U-USN-FLETCHER", "IBS-U-USN-OMAHA", "IBS-U-USN-BAINBRIDGE", "IBS-U-USN-PERRY", "IBS-U-USN-TRUXTON"],
+          "kinds": ["DD", "CL", "DD", "DD", "DD"],
+          "points": 2425,
+          "leader_slot": 0,
+          "x": 20000, "y": 8000, "heading": 270, "speed": 26
+        },
+        "axis": {
+          "name": "敌方巡洋队",
+          "ships": ["IBS-U-IJN-KAGERO", "IBS-U-IJN-SENDAI", "IBS-U-IJN-AKIGUMO", "IBS-U-IJN-YUGUMO", "IBS-U-IJN-AKIZUKI"],
+          "kinds": ["DD", "CL", "DD", "DD", "DD"],
+          "points": 2600,
+          "leader_slot": 0,
+          "x": 20000, "y": 8000, "heading": 270, "speed": 26
+        }
+      },
+      "reward": {
+        "first_clear": "既有首通口径；本关不单独发货币",
+        "repeat": "每周最多 3 次，每次 2 张常驻券",
+        "basis": "沿用既有挑战奖励；本关只记录通关进度。"
+      },
+      "evidence": {
+        "seed": 6102,
+        "enemy_profile": "gunnery",
+        "result": {"allies": 5, "axis": 0, "primary": true},
+        "note": "本席与敌方均由 auto AI 操作，步进至时限；结果为敌我损失数。"
+      }
+    },
+    {
+      "id": "challenge-03",
+      "order": 3,
+      "name": "雷击追击",
+      "tier": "DD/CL",
+      "status": "playable",
+      "brief": "放弃炮战距离，以四艘驱逐舰贴近后集中鱼雷解决残余敌舰。",
+      "objective": "击沉至少 2 艘敌舰，并保留至少 1 艘己舰。",
+      "unlock_after": "challenge-02",
+      "source": "架空；四艘 1942–43 年驱逐舰卡，本席 1850/1875 分，敌编成 2425/2700 分。",
+      "profile": "torpedo",
+      "seed": 6124,
+      "enemy_profile": "torpedo",
+      "budget": 2000,
+      "required_enemy_losses": 2,
+      "spacing": 400,
+      "field": {"width": 24000, "height": 14000, "limit": 2700},
+      "player": {
+        "allies": {
+          "name": "雷击分队",
+          "ships": ["IBS-U-USN-BENHAM", "IBS-U-USN-STERETT", "IBS-U-USN-LA-VALLETTE", "IBS-U-USN-AARON-WARD"],
+          "kinds": ["DD", "DD", "DD", "DD"],
+          "points": 1850,
+          "leader_slot": 0,
+          "x": 3800, "y": 6000, "heading": 90, "speed": 28
+        },
+        "axis": {
+          "name": "雷击分队",
+          "ships": ["IBS-U-IJN-KAGERO", "IBS-U-IJN-SENDAI", "IBS-U-IJN-YUGUMO", "IBS-U-IJN-UZUKI"],
+          "kinds": ["DD", "CL", "DD", "DD"],
+          "points": 1875,
+          "leader_slot": 0,
+          "x": 3800, "y": 6000, "heading": 90, "speed": 28
+        }
+      },
+      "enemy": {
+        "allies": {
+          "name": "敌方追击队",
+          "ships": ["IBS-U-USN-FLETCHER", "IBS-U-USN-UNNAMED-T01-R26", "IBS-U-USN-CHEVALIER", "IBS-U-USN-NICHOLAS", "IBS-U-USN-BAINBRIDGE"],
+          "kinds": ["DD", "CL", "DD", "DD", "DD"],
+          "points": 2700,
+          "leader_slot": 0,
+          "x": 20200, "y": 8200, "heading": 270, "speed": 27
+        },
+        "axis": {
+          "name": "敌方追击队",
+          "ships": ["IBS-U-IJN-KAGERO", "IBS-U-IJN-SENDAI", "IBS-U-IJN-AKIGUMO", "IBS-U-IJN-HAMAKAZE", "IBS-U-IJN-MUTSUKI"],
+          "kinds": ["DD", "CL", "DD", "DD", "DD"],
+          "points": 2425,
+          "leader_slot": 0,
+          "x": 20200, "y": 8200, "heading": 270, "speed": 27
+        }
+      },
+      "reward": {
+        "first_clear": "既有首通口径；本关不单独发货币",
+        "repeat": "每周最多 3 次，每次 2 张常驻券",
+        "basis": "沿用既有挑战奖励；本关只记录通关进度。"
+      },
+      "evidence": {
+        "seed": 6124,
+        "enemy_profile": "torpedo",
+        "result": {"allies": 5, "axis": 3, "primary": true},
+        "note": "本席与敌方均由 auto AI 操作；雷击 AI 与种子共同决定战果。"
+      }
+    },
+    {
+      "id": "challenge-04",
+      "order": 4,
+      "name": "战列舰拦截",
+      "tier": "BB/DD",
+      "status": "playable",
+      "brief": "以一艘战列舰和三艘驱逐舰拦截敌方水面编队；战列舰提供远距火力，驱逐舰负责近距雷击。",
+      "objective": "击沉至少 2 艘敌舰，并保留至少 1 艘己舰。",
+      "unlock_after": "challenge-03",
+      "source": "架空；科罗拉多级/金刚级 1941–44 卡，本席 3425/3625 分，敌编成 3425/3625 分，双方均为 1 艘战列舰 + 4 艘驱逐舰。海图扩到 60,000×36,000 码。",
+      "profile": "gunnery",
+      "seed": 6212,
+      "enemy_profile": "gunnery",
+      "budget": 3700,
+      "required_enemy_losses": 2,
+      "spacing": 950,
+      "field": {"width": 60000, "height": 36000, "limit": 3600},
+      "player": {
+        "allies": {
+          "name": "拦截编队",
+          "ships": ["IBS-U-USN-COLORADO", "IBS-U-USN-BAINBRIDGE", "IBS-U-USN-DAHLGREN", "IBS-U-USN-DECATUR", "IBS-U-USN-FOX"],
+          "kinds": ["BB", "DD", "DD", "DD", "DD"],
+          "points": 3425,
+          "leader_slot": 0,
+          "x": 12000, "y": 15500, "heading": 90, "speed": 24
+        },
+        "axis": {
+          "name": "拦截编队",
+          "ships": ["IBS-U-IJN-HIEI", "IBS-U-IJN-KAGERO", "IBS-U-IJN-MUTSUKI", "IBS-U-IJN-UZUKI", "IBS-U-IJN-ASAKAZE"],
+          "kinds": ["BB", "DD", "DD", "DD", "DD"],
+          "points": 3625,
+          "leader_slot": 0,
+          "x": 12000, "y": 15500, "heading": 90, "speed": 24
+        }
+      },
+      "enemy": {
+        "allies": {
+          "name": "敌方主力",
+          "ships": ["IBS-U-USN-COLORADO", "IBS-U-USN-BAINBRIDGE", "IBS-U-USN-DAHLGREN", "IBS-U-USN-DECATUR", "IBS-U-USN-FOX"],
+          "kinds": ["BB", "DD", "DD", "DD", "DD"],
+          "points": 3425,
+          "leader_slot": 0,
+          "x": 48000, "y": 20500, "heading": 270, "speed": 24
+        },
+        "axis": {
+          "name": "敌方主力",
+          "ships": ["IBS-U-IJN-HIEI", "IBS-U-IJN-KAGERO", "IBS-U-IJN-MUTSUKI", "IBS-U-IJN-UZUKI", "IBS-U-IJN-ASAKAZE"],
+          "kinds": ["BB", "DD", "DD", "DD", "DD"],
+          "points": 3625,
+          "leader_slot": 0,
+          "x": 48000, "y": 20500, "heading": 270, "speed": 24
+        }
+      },
+      "reward": {
+        "first_clear": "既有首通口径；本关不单独发货币",
+        "repeat": "每周最多 3 次，每次 2 张常驻券",
+        "basis": "沿用既有挑战奖励；战列舰关不提高单次奖励，避免与排位/战役经济串线。"
+      },
+      "evidence": {
+        "seed": 6212,
+        "enemy_profile": "gunnery",
+        "result": {"allies": 2, "axis": 1, "primary": true},
+        "note": "本席与敌方均由 auto AI 操作，60 分钟时限内结算；敌我损失数来自镜像 5 舰编队实跑。"
+      }
+    },
+    {
+      "id": "challenge-05",
+      "order": 5,
+      "name": "主力决战",
+      "tier": "BB/DD",
+      "status": "playable",
+      "brief": "以两艘战列舰和三艘驱逐舰进行主力决战；需要更大的海图与更长的接敌时间。",
+      "objective": "击沉至少 2 艘敌舰，并保留至少 1 艘己舰。",
+      "unlock_after": "challenge-04",
+      "source": "架空；两艘科罗拉多级/两艘金刚级 1941–44 卡，本席 5700/5875 分（2 战列舰 + 4 驱逐舰），敌编成 5225/5550 分（2 战列舰 + 3 驱逐舰）。",
+      "profile": "coord",
+      "seed": 6133,
+      "enemy_profile": "coord",
+      "budget": 5900,
+      "required_enemy_losses": 2,
+      "spacing": 950,
+      "field": {"width": 60000, "height": 36000, "limit": 3600},
+      "player": {
+        "allies": {
+          "name": "主力编队",
+          "ships": ["IBS-U-USN-COLORADO", "IBS-U-USN-WEST-VIRGINIA", "IBS-U-USN-FLETCHER", "IBS-U-USN-CHEVALIER", "IBS-U-USN-BAINBRIDGE", "IBS-U-USN-DAHLGREN"],
+          "kinds": ["BB", "BB", "DD", "DD", "DD", "DD"],
+          "points": 5700,
+          "leader_slot": 0,
+          "x": 12000, "y": 15500, "heading": 90, "speed": 24
+        },
+        "axis": {
+          "name": "主力编队",
+          "ships": ["IBS-U-IJN-HIEI", "IBS-U-IJN-KIRISHIMA", "IBS-U-IJN-KAGERO", "IBS-U-IJN-MUTSUKI", "IBS-U-IJN-UZUKI", "IBS-U-IJN-ASAKAZE"],
+          "kinds": ["BB", "BB", "DD", "DD", "DD", "DD"],
+          "points": 5875,
+          "leader_slot": 0,
+          "x": 12000, "y": 15500, "heading": 90, "speed": 24
+        }
+      },
+      "enemy": {
+        "allies": {
+          "name": "敌方主力",
+          "ships": ["IBS-U-USN-COLORADO", "IBS-U-USN-WEST-VIRGINIA", "IBS-U-USN-FLETCHER", "IBS-U-USN-BAINBRIDGE", "IBS-U-USN-DAHLGREN"],
+          "kinds": ["BB", "BB", "DD", "DD", "DD"],
+          "points": 5225,
+          "leader_slot": 0,
+          "x": 48000, "y": 20500, "heading": 270, "speed": 24
+        },
+        "axis": {
+          "name": "敌方主力",
+          "ships": ["IBS-U-IJN-HIEI", "IBS-U-IJN-KIRISHIMA", "IBS-U-IJN-KAGERO", "IBS-U-IJN-MUTSUKI", "IBS-U-IJN-UZUKI"],
+          "kinds": ["BB", "BB", "DD", "DD", "DD"],
+          "points": 5550,
+          "leader_slot": 0,
+          "x": 48000, "y": 20500, "heading": 270, "speed": 24
+        }
+      },
+      "reward": {
+        "first_clear": "既有首通口径；本关不单独发货币",
+        "repeat": "每周最多 3 次，每次 2 张常驻券",
+        "basis": "沿用既有挑战奖励；五关共用首通/复战入口，避免重复计奖。"
+      },
+      "evidence": {
+        "seed": 6133,
+        "enemy_profile": "coord",
+        "result": {"allies": 5, "axis": 0, "primary": true},
+        "note": "本席与敌方均由 auto AI 操作，60 分钟时限内结算；敌我损失数来自镜像 6 舰编队实跑。"
+      }
+    }
+  ]
+}

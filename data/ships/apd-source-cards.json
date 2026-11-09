@@ -1,0 +1,2584 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-apd-source-cards-v1",
+ "as_of": "2026-11-08",
+ "generated_by": "scripts/build-apd-source-cards.py",
+ "scope": "当前 11 剧本内 8 艘 IJN APD；按用户口径「有数据都录入，只排除航母」出卡",
+ "format": {
+  "identity": "IBS-U-* 稳定身份（server/catalog.json）",
+  "name_en": "剧本/船表英文舰名，用于与 Form 10 页眉对读",
+  "class_label": "本批核定的舰级中文名（睦月级 / 神风级）",
+  "source_kind": {
+   "own_period_card": "该 identity 在 period 运行包里有自己的逐舰卡，ShipDef 原样复制",
+   "sistership_class_table": "该 identity 无逐舰 period 卡，ShipDef 原样复制同型 Mutsuki/Kamikaze 级表登记卡"
+  },
+  "source_file": "ShipDef 来源数据文件（period 运行包），不是 PDF",
+  "source_pages": "证据页：本舰 Form 10 + 级表；pdf_pages 与 printed_pages 分开记",
+  "profile": "级表元数据（savo-island-1942.json profiles 格式）+ 本舰 Form 10 逐项印值",
+  "ship": "完整 ShipDef（与 period 运行包同一 schema；只改写 id/name，加 source_profile）"
+ },
+ "source": {
+  "identity_index": "data/ships/playable-cards.json#cards[].period_cards",
+  "period_packages": [
+   "data/campaign/period/kula-runtime.json",
+   "data/campaign/period/savo-runtime.json"
+  ],
+  "cas_tables": [
+   "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf"
+  ],
+  "policy": "逐舰 period 卡原样复制：不换算、不补默认值、不跨级套用。5 艘有自有卡者直接取原 profile/ship；3 艘无自有卡者只取同型 Mutsuki/Kamikaze 级表登记卡（mutsuki / jp_kamikaze_1941_dd），逐舰 Form 10 差异只登记不改值。不写 points。"
+ },
+ "cards": [
+  {
+   "identity": "IBS-U-IJN-MONCHIZUKI",
+   "name": "望月",
+   "name_en": "Mochizuki",
+   "class_label": "睦月级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      180
+     ],
+     "printed_pages": [
+      180
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Mochizuki DD",
+      "class_printed": true,
+      "damage_row": "0 22 44 66 79",
+      "speed_row": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "period 卡自有：data/campaign/period/kula-runtime.json#kula-mochizuki（profile mutsuki）。Form 10 p.180（Jan-Feb 43）逐页目视核对；级表 A-27/A-28。该页印值与所用 ShipDef 一致，未改表值。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Mutsuki",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ]
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "crew": 150,
+    "armor_rating": 0,
+    "gunnery_standard": "III（编制块）；1935-36 改装后 IV（Form 10 与运行卡均用 IV）",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/cape-st-george-1943.json#weapon_models.jp_3rd_yr_120mm45",
+     "torpedo_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_8th_yr_type_no2_torpedo",
+     "note": "同一 Annex C-1/F-1 行在各 period 包用不同 id（另见 jp_3rd_11th_yr_type_12cm45、jp_8th_yr_type_no2）；此处按定义包登记，ShipDef 数值不改。"
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)（编制块；逐舰改装见 ship_form10）",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2（每座 2 备雷，15 分钟装填）",
+    "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+    "asw": "2 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "remarks_verbatim": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Mochizuki": [
+      "Jan 42: 2 13.2mm added, Lt AA 0.2.",
+      "Jul - Aug 42: DC refit.",
+      "Jan - Feb 43: 2 25mm added, Lt AA 0.5.",
+      "Aug - Sep 43: Aft 12cm replaced by 8 25mm, E-17 Kai 3, Model 3 ESM added, Lt AA 1.4."
+     ]
+    },
+    "id": "mutsuki",
+    "registered_row": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 180,
+     "printed_page": 180,
+     "modification": "Jan-Feb 43",
+     "class_key": "mutsuki",
+     "guns_verbatim": "Fwd (1)、P&S (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（4 座）",
+     "area_aa_verbatim": "Area AA: (1)4 3rd Yr Type 12cm/45 (0.1) to 2.9 nm/10000m",
+     "torpedoes_verbatim": "P&S(3) 610mm TT w/3 Type 93 torp ×2（各 Reload ××）",
+     "light_aa_verbatim": "2 7.7mm, 2 13mm, 2 25mm (0.5)",
+     "printed": {
+      "single_gun_mounts": 4,
+      "torpedo_tubes": 6,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 4,
+       "shipdef_barrels": 4,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 6,
+       "shipdef_tubes": 6,
+       "match": true
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79,
+         88
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "D",
+       "match": true
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 200,
+       "match": true
+      }
+     }
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ]
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 6,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-MONCHIZUKI",
+    "name": "望月",
+    "source_profile": "mutsuki"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-MIKAZUKI",
+   "name": "三日月",
+   "name_en": "Mikazuki",
+   "class_label": "睦月级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      178
+     ],
+     "printed_pages": [
+      178
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Mikazuki DD",
+      "class_printed": true,
+      "damage_row": "0 22 44 66 79",
+      "speed_row": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "period 卡自有：data/campaign/period/kula-runtime.json#kula-mikazuki（profile mutsuki_mikazuki）。Form 10 p.178（Mar-Jun 43）逐页目视核对；级表 A-27/A-28。该页印值与所用 ShipDef 一致，未改表值。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Mutsuki",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ]
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "crew": 150,
+    "armor_rating": 0,
+    "gunnery_standard": "III（编制块）；1935-36 改装后 IV（Form 10 与运行卡均用 IV）",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/cape-st-george-1943.json#weapon_models.jp_3rd_yr_120mm45",
+     "torpedo_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_8th_yr_type_no2_torpedo",
+     "note": "同一 Annex C-1/F-1 行在各 period 包用不同 id（另见 jp_3rd_11th_yr_type_12cm45、jp_8th_yr_type_no2）；此处按定义包登记，ShipDef 数值不改。"
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)（编制块；逐舰改装见 ship_form10）",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2（每座 2 备雷，15 分钟装填）",
+    "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+    "asw": "2 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "remarks_verbatim": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Mikazuki": [
+      "Dec 42 - Jan 43: Type 93 Model 1 replaced by Type 3 model 2 sonar. DC refit.",
+      "Mar - Jun 43: Aft, P&S 12cm, aft TT and reserve torps, 7.7mm replaced by 2 13.2mm, 3 25mm, Area AA 0.1, Lt AA 0.5."
+     ]
+    },
+    "id": "mutsuki_mikazuki",
+    "registered_row": "data/campaign/period/kula-runtime.json#profiles.mutsuki_mikazuki",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 178,
+     "printed_page": 178,
+     "modification": "Mar-Jun 43",
+     "class_key": "mutsuki",
+     "guns_verbatim": "Fwd (1)、P&S (1) 3rd Yr Type 12cm/45（2 座）",
+     "area_aa_verbatim": "Area AA: (1)2 3rd Yr Type 12cm/45 (0.1) to 2.9 nm/10000m",
+     "torpedoes_verbatim": "P&S(3) 610mm TT w/3 Type 93 torp ×1",
+     "light_aa_verbatim": "2 13mm, 3 25mm (0.5)",
+     "printed": {
+      "single_gun_mounts": 2,
+      "torpedo_tubes": 3,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 2,
+       "shipdef_barrels": 2,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 3,
+       "shipdef_tubes": 3,
+       "match": true
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79,
+         88
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "D",
+       "match": true
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 200,
+       "match": true
+      }
+     }
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 2,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 3,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-MIKAZUKI",
+    "name": "三日月",
+    "source_profile": "mutsuki_mikazuki"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATSUKI",
+   "name": "长月",
+   "name_en": "Nagatsuki",
+   "class_label": "睦月级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      181
+     ],
+     "printed_pages": [
+      181
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Nagatsuki DD",
+      "class_printed": true,
+      "damage_row": "0 22 44 66 79",
+      "speed_row": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "period 卡自有：data/campaign/period/kula-runtime.json#kula-nagatsuki（profile mutsuki）。Form 10 p.181（Sep-Oct 42）逐页目视核对；级表 A-27/A-28。该页印值与所用 ShipDef 一致，未改表值。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Mutsuki",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ]
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "crew": 150,
+    "armor_rating": 0,
+    "gunnery_standard": "III（编制块）；1935-36 改装后 IV（Form 10 与运行卡均用 IV）",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/cape-st-george-1943.json#weapon_models.jp_3rd_yr_120mm45",
+     "torpedo_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_8th_yr_type_no2_torpedo",
+     "note": "同一 Annex C-1/F-1 行在各 period 包用不同 id（另见 jp_3rd_11th_yr_type_12cm45、jp_8th_yr_type_no2）；此处按定义包登记，ShipDef 数值不改。"
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)（编制块；逐舰改装见 ship_form10）",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2（每座 2 备雷，15 分钟装填）",
+    "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+    "asw": "2 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "remarks_verbatim": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Nagatsuki": [
+      "Sep - Oct 42: Type 93 Model 1 replaced by Type 3 model 2 sonar, DC refit."
+     ]
+    },
+    "id": "mutsuki",
+    "registered_row": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 181,
+     "printed_page": 181,
+     "modification": "Sep-Oct 42",
+     "class_key": "mutsuki",
+     "guns_verbatim": "Fwd (1)、P&S (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（4 座）",
+     "area_aa_verbatim": "Area AA: (1)4 3rd Yr Type 12cm/45 (0.1) to 2.9 nm/10000m",
+     "torpedoes_verbatim": "P&S(3) 610mm TT w/3 Type 93 torp ×2（各 Reload ××）",
+     "light_aa_verbatim": "2 7.7mm (0.1)",
+     "printed": {
+      "single_gun_mounts": 4,
+      "torpedo_tubes": 6,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 4,
+       "shipdef_barrels": 4,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 6,
+       "shipdef_tubes": 6,
+       "match": true
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79,
+         88
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "D",
+       "match": true
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 200,
+       "match": true
+      }
+     }
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ]
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 6,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-NAGATSUKI",
+    "name": "长月",
+    "source_profile": "mutsuki"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-SATSUKI",
+   "name": "皋月",
+   "name_en": "Satsuki",
+   "class_label": "睦月级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      182
+     ],
+     "printed_pages": [
+      182
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Satsuki DD",
+      "class_printed": true,
+      "damage_row": "0 22 44 66 79",
+      "speed_row": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "period 卡自有：data/campaign/period/kula-runtime.json#kula-satsuki（profile mutsuki）。Form 10 p.182（Oct-Nov 42）逐页目视核对；级表 A-27/A-28。该页印值与所用 ShipDef 一致，未改表值。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Mutsuki",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ]
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "crew": 150,
+    "armor_rating": 0,
+    "gunnery_standard": "III（编制块）；1935-36 改装后 IV（Form 10 与运行卡均用 IV）",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/cape-st-george-1943.json#weapon_models.jp_3rd_yr_120mm45",
+     "torpedo_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_8th_yr_type_no2_torpedo",
+     "note": "同一 Annex C-1/F-1 行在各 period 包用不同 id（另见 jp_3rd_11th_yr_type_12cm45、jp_8th_yr_type_no2）；此处按定义包登记，ShipDef 数值不改。"
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)（编制块；逐舰改装见 ship_form10）",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2（每座 2 备雷，15 分钟装填）",
+    "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+    "asw": "2 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "remarks_verbatim": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Satsuki": [
+      "Oct - Nov 42: Type 93 Model 1 replaced by Type 3 model 2 sonar, DC refit.",
+      "Aug 43: Aft 12cm, E-17 Kai 3, Model 3 ESM, 8 25mm added. Area AA 0.2, Light AA 1.1."
+     ]
+    },
+    "id": "mutsuki",
+    "registered_row": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 182,
+     "printed_page": 182,
+     "modification": "Oct-Nov 42",
+     "class_key": "mutsuki",
+     "guns_verbatim": "Fwd (1)、P&S (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（4 座）",
+     "area_aa_verbatim": "Area AA: (1)4 3rd Yr Type 12cm/45 (0.1) to 2.9 nm/10000m",
+     "torpedoes_verbatim": "P&S(3) 610mm TT w/3 Type 93 torp ×2（各 Reload ××）",
+     "light_aa_verbatim": "2 7.7mm (0.1)",
+     "printed": {
+      "single_gun_mounts": 4,
+      "torpedo_tubes": 6,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 4,
+       "shipdef_barrels": 4,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 6,
+       "shipdef_tubes": 6,
+       "match": true
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79,
+         88
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "D",
+       "match": true
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 200,
+       "match": true
+      }
+     }
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ]
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 6,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-SATSUKI",
+    "name": "皋月",
+    "source_profile": "mutsuki"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-YUNAGI",
+   "name": "夕凪",
+   "name_en": "Yunagi",
+   "class_label": "神风级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "own_period_card",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      176
+     ],
+     "printed_pages": [
+      176
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Yunagi DD",
+      "class_printed": true,
+      "damage_row": "0 23 46 69 83",
+      "speed_row": "35 26 18 9 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "period 卡自有：data/campaign/period/savo-runtime.json#savo_yunagi（profile jp_kamikaze_1941_dd）。Form 10 p.176（Dec 1941）逐页目视核对；级表 A-24。该页印值与所用 ShipDef 在 鱼雷发射管数、尺寸级别、45° 转向提前量 上不一致，已登记 conflict，未自行裁定。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Kamikaze (1941)",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ]
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "crew": 148,
+    "armor_rating": 0,
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0
+    ],
+    "main_gun": "jp_3rd_11th_yr_type_12cm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_3rd_11th_yr_type_12cm45",
+     "torpedo_registered_in": null,
+     "note": "Type 96 533mm 在 Annex F-1 无弹行，登记卡 torpedo=null，不替代。"
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "area_aa_verbatim": "未印 Area AA 行（12cm/45 为 LA 座）",
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "asw": "(2)2 Type 94 Y-gun w/4 DC；6 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "remarks_verbatim": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Yunagi": [
+      "Dec 1941 编成（Form 10 p.176）。",
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted."
+     ]
+    },
+    "id": "jp_kamikaze_1941_dd",
+    "registered_row": "data/campaign/period/savo-runtime.json#ships[savo_yunagi]",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 176,
+     "printed_page": 176,
+     "modification": "Dec 1941",
+     "class_key": "kamikaze",
+     "guns_verbatim": "Fwd (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（3 座）",
+     "area_aa_verbatim": "未印 Area AA 行",
+     "torpedoes_verbatim": "P&S(2) 533mm TT w/2 Type 96 torp ×2",
+     "light_aa_verbatim": "2 13mm (0.1)",
+     "printed": {
+      "single_gun_mounts": 3,
+      "torpedo_tubes": 4,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 3,
+       "shipdef_barrels": 3,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 4,
+       "shipdef_tubes": null,
+       "match": false
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         23,
+         46,
+         69,
+         83,
+         92
+        ],
+        "knots": [
+         35,
+         26,
+         18,
+         9,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         23,
+         46,
+         69,
+         83,
+         92
+        ],
+        "knots": [
+         35,
+         26,
+         18,
+         9,
+         0,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "C",
+       "match": false
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 300,
+       "match": false
+      }
+     }
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-YUNAGI",
+    "name": "夕凪",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 35,
+    "dp": 92,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1925,
+    "gun": {
+     "name": "三年/十一年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "range_yd": [
+      5300.0,
+      10600.0,
+      14100.0,
+      17600.0
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "gs": 4,
+     "barrels": 3,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false
+    },
+    "torpedo": null,
+    "source_profile": "jp_kamikaze_1941_dd"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-MINAZUKI",
+   "name": "水无月",
+   "name_en": "Minazuki",
+   "class_label": "睦月级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "sistership_class_table",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      179
+     ],
+     "printed_pages": [
+      179
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Minazuki DD",
+      "class_printed": true,
+      "damage_row": "0 22 44 66 79",
+      "speed_row": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "无自有 period 卡；ShipDef 按「同型/按表」复制自 Mutsuki 级同型表（Emperor's Fleet A-27/A-28），取自 data/campaign/period/kula-runtime.json#profiles.mutsuki，未跨到其它舰级。Form 10 p.179（Feb 43）逐页目视核对；级表 A-27/A-28。该页印值与所用 ShipDef 一致，未改表值。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Mutsuki",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ]
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "crew": 150,
+    "armor_rating": 0,
+    "gunnery_standard": "III（编制块）；1935-36 改装后 IV（Form 10 与运行卡均用 IV）",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/cape-st-george-1943.json#weapon_models.jp_3rd_yr_120mm45",
+     "torpedo_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_8th_yr_type_no2_torpedo",
+     "note": "同一 Annex C-1/F-1 行在各 period 包用不同 id（另见 jp_3rd_11th_yr_type_12cm45、jp_8th_yr_type_no2）；此处按定义包登记，ShipDef 数值不改。"
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)（编制块；逐舰改装见 ship_form10）",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2（每座 2 备雷，15 分钟装填）",
+    "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+    "asw": "2 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "remarks_verbatim": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Minazuki": [
+      "Aug - Sep 42: Type 93 Model 1 replaced by Type 3 model 2 sonar. DC refit.",
+      "Feb 43: 7.7mm replaced by 2 13.2mm, 2 25mm, Lt AA 0.4.",
+      "Aug - Sep 43: Aft 12cm, E-17 Kai 3, Model 3 ESM, 6 25mm added. Area AA 0.2, Light AA 1.1."
+     ]
+    },
+    "id": "mutsuki",
+    "registered_row": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 179,
+     "printed_page": 179,
+     "modification": "Feb 43",
+     "class_key": "mutsuki",
+     "guns_verbatim": "Fwd (1)、P&S (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（4 座）",
+     "area_aa_verbatim": "Area AA: (1)4 3rd Yr Type 12cm/45 (0.1) to 2.9 nm/10000m",
+     "torpedoes_verbatim": "P&S(3) 610mm TT w/3 Type 93 torp ×2（各 Reload ××）",
+     "light_aa_verbatim": "2 13mm, 2 25mm (0.4)",
+     "printed": {
+      "single_gun_mounts": 4,
+      "torpedo_tubes": 6,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 4,
+       "shipdef_barrels": 4,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 6,
+       "shipdef_tubes": 6,
+       "match": true
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79,
+         88
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "D",
+       "match": true
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 200,
+       "match": true
+      }
+     }
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ]
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 6,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-MINAZUKI",
+    "name": "水无月",
+    "source_profile": "mutsuki"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-MATSU-KAZE",
+   "name": "松风",
+   "name_en": "Matsukaze",
+   "class_label": "神风级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "sistership_class_table",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      175
+     ],
+     "printed_pages": [
+      175
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Matsukaze DD",
+      "class_printed": true,
+      "damage_row": "0 23 46 69 83",
+      "speed_row": "35 26 18 9 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "无自有 period 卡；ShipDef 按「同型/按表」复制自 Kamikaze 级同型舰 savo_yunagi（Emperor's Fleet A-24 Kamikaze (1941)），取自 data/campaign/period/savo-runtime.json#ships[savo_yunagi]，未跨到其它舰级。Form 10 p.175（Dec 1941）逐页目视核对；级表 A-24。该页印值与所用 ShipDef 在 鱼雷发射管数、尺寸级别、45° 转向提前量 上不一致，已登记 conflict，未自行裁定。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Kamikaze (1941)",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ]
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "crew": 148,
+    "armor_rating": 0,
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0
+    ],
+    "main_gun": "jp_3rd_11th_yr_type_12cm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_3rd_11th_yr_type_12cm45",
+     "torpedo_registered_in": null,
+     "note": "Type 96 533mm 在 Annex F-1 无弹行，登记卡 torpedo=null，不替代。"
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "area_aa_verbatim": "未印 Area AA 行（12cm/45 为 LA 座）",
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "asw": "(2)2 Type 94 Y-gun w/4 DC；6 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "remarks_verbatim": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Matsukaze": [
+      "Dec 1941 编成（Form 10 p.175）。",
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted."
+     ]
+    },
+    "id": "jp_kamikaze_1941_dd",
+    "registered_row": "data/campaign/period/savo-runtime.json#ships[savo_yunagi]",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 175,
+     "printed_page": 175,
+     "modification": "Dec 1941",
+     "class_key": "kamikaze",
+     "guns_verbatim": "Fwd (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（3 座）",
+     "area_aa_verbatim": "未印 Area AA 行",
+     "torpedoes_verbatim": "P&S(2) 533mm TT w/2 Type 96 torp ×2",
+     "light_aa_verbatim": "2 13mm (0.1)",
+     "printed": {
+      "single_gun_mounts": 3,
+      "torpedo_tubes": 4,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 3,
+       "shipdef_barrels": 3,
+       "match": true
+      },
+      "torpedo_tubes": {
+       "printed": 4,
+       "shipdef_tubes": null,
+       "match": false
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         23,
+         46,
+         69,
+         83,
+         92
+        ],
+        "knots": [
+         35,
+         26,
+         18,
+         9,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         23,
+         46,
+         69,
+         83,
+         92
+        ],
+        "knots": [
+         35,
+         26,
+         18,
+         9,
+         0,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "C",
+       "match": false
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 300,
+       "match": false
+      }
+     }
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-MATSU-KAZE",
+    "name": "松风",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 35,
+    "dp": 92,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1925,
+    "gun": {
+     "name": "三年/十一年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "range_yd": [
+      5300.0,
+      10600.0,
+      14100.0,
+      17600.0
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "gs": 4,
+     "barrels": 3,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false
+    },
+    "torpedo": null,
+    "source_profile": "jp_kamikaze_1941_dd"
+   }
+  },
+  {
+   "identity": "IBS-U-IJN-FUMIZUKI",
+   "name": "文月",
+   "name_en": "Fumizuki",
+   "class_label": "睦月级",
+   "side": "axis",
+   "type": "APD",
+   "source_kind": "sistership_class_table",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10s",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      177
+     ],
+     "printed_pages": [
+      177
+     ],
+     "role": "本舰 Form 10（逐舰卡）",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Fumizuki DD",
+      "class_printed": true,
+      "damage_row": "0 22 44 66 79",
+      "speed_row": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki 级表",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "remarks": true,
+      "dp_row": true
+     }
+    }
+   ],
+   "source_note": "无自有 period 卡；ShipDef 按「同型/按表」复制自 Mutsuki 级同型表（Emperor's Fleet A-27/A-28），取自 data/campaign/period/kula-runtime.json#profiles.mutsuki，未跨到其它舰级。Form 10 p.177（May-Aug 43）逐页目视核对；级表 A-27/A-28。该页印值与所用 ShipDef 在 炮座数、鱼雷发射管数 上不一致，已登记 conflict，未自行裁定。catalog 记 APD（输送角色），舰表与 ShipDef 的舰种仍为 DD。不写 points、不做换算。",
+   "profile": {
+    "class": "Mutsuki",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ]
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "crew": 150,
+    "armor_rating": 0,
+    "gunnery_standard": "III（编制块）；1935-36 改装后 IV（Form 10 与运行卡均用 IV）",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "model_ids": {
+     "main_gun_registered_in": "data/campaign/period/cape-st-george-1943.json#weapon_models.jp_3rd_yr_120mm45",
+     "torpedo_registered_in": "data/campaign/period/savo-island-1942.json#weapon_models.jp_8th_yr_type_no2_torpedo",
+     "note": "同一 Annex C-1/F-1 行在各 period 包用不同 id（另见 jp_3rd_11th_yr_type_12cm45、jp_8th_yr_type_no2）；此处按定义包登记，ShipDef 数值不改。"
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)（编制块；逐舰改装见 ship_form10）",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2（每座 2 备雷，15 分钟装填）",
+    "torpedo_model": "jp_8th_yr_type_no2_torpedo",
+    "asw": "2 DC racks w/1 DC, 18 DC carried",
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "remarks_verbatim": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%.",
+    "turn_verbatim": "Standard Rudder 200 yds (1) / Hard Rudder 100 yds (2)",
+    "refit_notes": {
+     "Fumizuki": [
+      "Jul - Aug 42: Type 93 Model 1 replaced by Type 3 model 2 sonar, DC refit.",
+      "May - Aug 43: P&S 12cm, aft TT, 7.7mm replaced by 2 13.2mm, 3 25mm. Area AA 0.1, Light AA 0.5."
+     ]
+    },
+    "id": "mutsuki",
+    "registered_row": "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+    "verbatim_fields_note": "gun_mounts_verbatim / area_aa_verbatim / torpedoes_verbatim / light_aa_verbatim 为级表编制块；本舰改装后的实际装配见 ship_form10。",
+    "ship_form10": {
+     "pdf_page": 177,
+     "printed_page": 177,
+     "modification": "May-Aug 43",
+     "class_key": "mutsuki",
+     "guns_verbatim": "Fwd (1)、P&S (1)、Aft (1) 3rd Yr Type 12cm/45（3 行），但 Area AA 只印 (1)2 —— 与级表 4 座/6 管不一致",
+     "area_aa_verbatim": "Area AA: (1)2 3rd Yr Type 12cm/45 (0.1) to 2.9 nm/10000m",
+     "torpedoes_verbatim": "P&S(3) 610mm TT w/3 Type 93 torp ×1",
+     "light_aa_verbatim": "2 13mm, 3 25mm (0.5)",
+     "printed": {
+      "single_gun_mounts": 3,
+      "torpedo_tubes": 3,
+      "size_class": "D"
+     },
+     "pdf_document": "rising_sun_form10s",
+     "pdf_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "shipdef_match": {
+      "single_gun_mounts": {
+       "printed": 3,
+       "shipdef_barrels": 4,
+       "match": false
+      },
+      "torpedo_tubes": {
+       "printed": 3,
+       "shipdef_tubes": 6,
+       "match": false
+      },
+      "damage_speed": {
+       "printed": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79,
+         88
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0,
+         0
+        ]
+       },
+       "shipdef": {
+        "damage": [
+         0,
+         22,
+         44,
+         66,
+         79
+        ],
+        "knots": [
+         33,
+         25,
+         16,
+         8,
+         0
+        ]
+       },
+       "match": true
+      },
+      "size_class": {
+       "printed": "D",
+       "shipdef": "D",
+       "match": true
+      },
+      "turn_advance_yards": {
+       "printed": 200,
+       "shipdef": 200,
+       "match": true
+      }
+     }
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ]
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 6,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ]
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-FUMIZUKI",
+    "name": "文月",
+    "source_profile": "mutsuki"
+   }
+  }
+ ]
+}

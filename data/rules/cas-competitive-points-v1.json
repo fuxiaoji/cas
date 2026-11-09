@@ -6,80 +6,975 @@
  "rules_version": "cas-realtime-v10",
  "schema_version": 1,
  "ships": {
-  "IBS-U-IJN-ERMA-YAMATO": {
-   "points": 4000,
-   "profile_id": "cas-prologue-runtime-v1#yamato",
-   "source": "序章时期包／日本舰表 PDF 7、98"
+  "IBS-U-IJN-AGANO": {
+   "points": 800,
+   "profile_id": "cas-prologue-runtime-v1#agano",
+   "source": "provisional（待平衡复核）class_proxy：阿贺野级类卡（JP A-17/C-1）；period 逐舰卡：empress-augusta-bay-1943.json agano/agano_1943（Form 10 p.68）"
   },
-  "IBS-U-IJN-KAGERO": {
+  "IBS-U-IJN-AKATSUKI": {
+   "points": 450,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-AKATSUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · akatsuki_1942_07"
+  },
+  "IBS-U-IJN-AKIGUMO": {
    "points": 475,
    "profile_id": "cas-prologue-runtime-v1#kagero",
-   "source": "首发时期包／日本舰表 PDF 28、97、108"
-  },
-  "IBS-U-IJN-SENDAI": {
-   "points": 675,
-   "profile_id": "cas-prologue-runtime-v1#sendai",
-   "source": "首发时期包／日本舰表 PDF 21–22、97、108"
-  },
-  "IBS-U-USN-DRAYTON": {
-   "points": 425,
-   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-DRAYTON",
-   "source": "序章时期包／马汉级与德雷顿 Form 10"
-  },
-  "IBS-U-USN-FLETCHER": {
-   "points": 475,
-   "profile_id": "cas-prologue-runtime-v1#fletcher",
-   "source": "序章时期包／弗莱彻舰表与具名 Form 10"
-  },
-  "IBS-U-USN-LAMSON": {
-   "points": 450,
-   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-LAMSON",
-   "source": "序章时期包／马汉级与拉姆森 Form 10"
-  },
-  "IBS-U-USN-MAURY": {
-   "points": 475,
-   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
-   "source": "序章时期包／格里德利级与莫里 Form 10"
-  },
-  "IBS-U-USN-PERKINS": {
-   "points": 425,
-   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
-   "source": "序章时期包／马汉级与帕金斯 Form 10"
-  },
-  "IBS-U-USN-UNNAMED-T01-R03": {
-   "points": 3000,
-   "profile_id": "cas-prologue-runtime-v1#north-carolina",
-   "source": "序章时期包／美国舰表 PDF 8、109"
-  },
-  "IBS-U-USN-WASHINGTON": {
-   "points": 3000,
-   "profile_id": "cas-prologue-runtime-v1#north-carolina",
-   "source": "序章时期包／美国舰表 PDF 8、109"
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）"
   },
   "IBS-U-IJN-AKIZUKI": {
    "points": 500,
    "profile_id": "cas-prologue-runtime-v1#akizuki",
    "source": "首发时期包／日本舰表 A-24、C-1、F-1"
   },
+  "IBS-U-IJN-AMAGIRI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：绫波级不在映射表；Cape 运行时把天雾/夕雾绑定到 fubuki_1936_refit（Form 10 153/171），Horaniu 把涟绑定到 fubuki_1936_horaniu（p.162）；按 CAS 现行吹雪级（特型 II 型）卡归类，非跨级；period 逐舰卡：kula-runtime.json kula-amagiri/fubuki_1936（Form 10 p.154）"
+  },
+  "IBS-U-IJN-AMATSU-KAZE": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-AMATSU-KAZE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · kagero_1943"
+  },
+  "IBS-U-IJN-AOBA": {
+   "points": 1100,
+   "profile_id": "cas-prologue-runtime-v1#aoba_1938",
+   "source": "provisional（待平衡复核）class_proxy：青叶级（1938 改装）类卡（JP A-14/C-1）；period 逐舰卡：cape-esperance-1942.json aoba/aoba_1938（Form 10 p.46）"
+  },
+  "IBS-U-IJN-ASAGUMO": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ASAGUMO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · asashio_1942_10"
+  },
+  "IBS-U-IJN-ASAKAZE": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ASAKAZE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_kamikaze_dd"
+  },
+  "IBS-U-IJN-ATAGO": {
+   "points": 1500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ATAGO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · jp_takao_1939_ca"
+  },
+  "IBS-U-IJN-AYANAMI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：绫波级不在映射表；Cape 运行时把天雾/夕雾绑定到 fubuki_1936_refit（Form 10 153/171），Horaniu 把涟绑定到 fubuki_1936_horaniu（p.162）；按 CAS 现行吹雪级（特型 II 型）卡归类，非跨级"
+  },
+  "IBS-U-IJN-CHITOSE": {
+   "points": 725,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-CHITOSE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_chitose_av"
+  },
+  "IBS-U-IJN-CHOKAI": {
+   "points": 1375,
+   "profile_id": "cas-period-cards-v1#savo_chokai",
+   "source": "period exact · savo-island-1942.json jp_takao_1939_ca · Form 10 p.49 个体页（9 管/5 座、8 雷管、471 DP）· 点数 provisional，待平衡复核"
+  },
+  "IBS-U-IJN-ERMA-AZUMA": {
+   "points": 1875,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-AZUMA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_b64_cb"
+  },
+  "IBS-U-IJN-ERMA-ISHIKARI": {
+   "points": 1975,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-ISHIKARI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_b64_cb"
+  },
+  "IBS-U-IJN-ERMA-KAZEGUMO": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-KAZEGUMO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yugumo_dd"
+  },
+  "IBS-U-IJN-ERMA-MAKINAMI": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-MAKINAMI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yugumo_dd"
+  },
+  "IBS-U-IJN-ERMA-MUSASHI": {
+   "points": 3800,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-MUSASHI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yamato_bb"
+  },
+  "IBS-U-IJN-ERMA-NAGANAMI": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-NAGANAMI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yugumo_dd"
+  },
+  "IBS-U-IJN-ERMA-SHIMAKAZE": {
+   "points": 575,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-SHIMAKAZE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_shimakaze_dd"
+  },
+  "IBS-U-IJN-ERMA-SHINANO": {
+   "points": 3800,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-ERMA-SHINANO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-ijn.json · erma_ijn_yamato_bb"
+  },
+  "IBS-U-IJN-ERMA-YAMATO": {
+   "points": 4000,
+   "profile_id": "cas-prologue-runtime-v1#yamato",
+   "source": "序章时期包／日本舰表 PDF 7、98"
+  },
   "IBS-U-IJN-FUBUKI": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
    "source": "首发时期包／改装吹雪级 A-27、C-1、F-1"
+  },
+  "IBS-U-IJN-FUMIZUKI": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-FUMIZUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · mutsuki"
+  },
+  "IBS-U-IJN-FURUTAKA": {
+   "points": 1075,
+   "profile_id": "cas-prologue-runtime-v1#furutaka_1937",
+   "source": "provisional（待平衡复核）class_proxy：古鹰级（1937 改装）类卡（JP A-14/C-1）；period 逐舰卡：cape-esperance-1942.json furutaka/furutaka_1937（Form 10 p.53）"
+  },
+  "IBS-U-IJN-HAGURO": {
+   "points": 1425,
+   "profile_id": "cas-prologue-runtime-v1#myoko",
+   "source": "provisional（待平衡复核）class_proxy：妙高级类卡（JP A-12/C-1）；period 逐舰卡：empress-augusta-bay-1943.json haguro/myoko_1940（Form 10 p.62）"
+  },
+  "IBS-U-IJN-HAMAKAZE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）；period 逐舰卡：kula-runtime.json kula-hamakaze/kagero（Form 10 p.101）"
+  },
+  "IBS-U-IJN-HARUSAME": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）"
+  },
+  "IBS-U-IJN-HATSU-KAZE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）；crosswalk 未登记舰级，舰级由 period 档案确认；period 逐舰卡：empress-augusta-bay-1943.json hatsukaze/kagero_1943（Form 10 p.102）"
   },
   "IBS-U-IJN-HATSUYUKI": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
    "source": "首发时期包／改装吹雪级 A-27、C-1、F-1"
   },
+  "IBS-U-IJN-HIEI": {
+   "points": 2250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-HIEI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · hiei_1941_12"
+  },
+  "IBS-U-IJN-IKAZUCHI": {
+   "points": 450,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-IKAZUCHI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · akatsuki_1942_07"
+  },
+  "IBS-U-IJN-INAZUMA": {
+   "points": 450,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-INAZUMA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · akatsuki_1942_07"
+  },
+  "IBS-U-IJN-ISOKAZE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）；period 逐舰卡：horaniu-1943.json isokaze/kagero_1943_horaniu（Form 10 p.104）"
+  },
+  "IBS-U-IJN-JINTSU-I": {
+   "points": 675,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-JINTSU-I",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · sendai"
+  },
+  "IBS-U-IJN-KAGERO": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "首发时期包／日本舰表 PDF 28、97、108"
+  },
+  "IBS-U-IJN-KAKO-I": {
+   "points": 1075,
+   "profile_id": "cas-prologue-runtime-v1#furutaka_1937",
+   "source": "provisional（待平衡复核）class_proxy：古鹰级（1937 改装）类卡（JP A-14/C-1）；舰级由 period 档案确认（crosswalk 标签为 slug「ijn-kako-ca」）；period 逐舰卡：savo-runtime.json savo_kako/jp_furutaka_1937_ca"
+  },
+  "IBS-U-IJN-KAMIKAZE": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-KAMIKAZE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_kamikaze_dd"
+  },
+  "IBS-U-IJN-KAWAKAZE": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）；period 逐舰卡：tassafaronga-runtime.json tass_kawakaze/shiratsuyu_1942"
+  },
+  "IBS-U-IJN-KAZEKUMO": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "provisional（待平衡复核）class_proxy：夕云级类卡（JP A-24/C-1）"
+  },
+  "IBS-U-IJN-KINUGASA": {
+   "points": 1100,
+   "profile_id": "cas-prologue-runtime-v1#kinugasa_1938",
+   "source": "provisional（待平衡复核）exact：同名具名卡（stage0）；period 逐舰卡：cape-esperance-1942.json kinugasa/aoba_1938（Form 10 p.47）"
+  },
+  "IBS-U-IJN-KIRISHIMA": {
+   "points": 2250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-KIRISHIMA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · kongo_1941_12"
+  },
+  "IBS-U-IJN-KIYONAMI": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "provisional（待平衡复核）class_proxy：夕云级类卡（JP A-24/C-1）"
+  },
+  "IBS-U-IJN-KUROSHIO": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）；period 逐舰卡：tassafaronga-runtime.json tass_kuroshio/kagero_1942_base"
+  },
+  "IBS-U-IJN-MAKINAMI": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "provisional（待平衡复核）class_proxy：夕云级类卡（JP A-24/C-1）；period 逐舰卡：cape-runtime.json makinami/yugumo_1943_asw（Form 10 p.89）"
+  },
+  "IBS-U-IJN-MATSU-KAZE": {
+   "points": 275,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MATSU-KAZE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · jp_kamikaze_1941_dd"
+  },
+  "IBS-U-IJN-MIKAZUKI": {
+   "points": 275,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MIKAZUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · mutsuki_mikazuki"
+  },
+  "IBS-U-IJN-MINAZUKI": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MINAZUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · mutsuki"
+  },
+  "IBS-U-IJN-MONCHIZUKI": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MONCHIZUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · mutsuki"
+  },
+  "IBS-U-IJN-MURAKUMO": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MURAKUMO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_fubuki_dd"
+  },
+  "IBS-U-IJN-MURASAME": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）"
+  },
+  "IBS-U-IJN-MUTSU": {
+   "points": 2750,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MUTSU",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_nagato_1936_bb"
+  },
+  "IBS-U-IJN-MUTSUKI": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-MUTSUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_mutsuki_dd"
+  },
+  "IBS-U-IJN-MYOKO": {
+   "points": 1425,
+   "profile_id": "cas-prologue-runtime-v1#myoko",
+   "source": "provisional（待平衡复核）class_proxy：妙高级类卡（JP A-12/C-1）；period 逐舰卡：empress-augusta-bay-1943.json myoko/myoko_1940（Form 10 p.61）"
+  },
+  "IBS-U-IJN-NACHI": {
+   "points": 1425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-NACHI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_myoko_1935_ca"
+  },
+  "IBS-U-IJN-NAGANAMI": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "provisional（待平衡复核）class_proxy：夕云级类卡（JP A-24/C-1）；period 逐舰卡：empress-augusta-bay-1943.json naganami/yugumo_1943（Form 10 p.91）"
+  },
+  "IBS-U-IJN-NAGARA": {
+   "points": 675,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-NAGARA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · nagara_1941_12"
+  },
+  "IBS-U-IJN-NAGATO": {
+   "points": 2750,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-NAGATO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_nagato_1936_bb"
+  },
+  "IBS-U-IJN-NAGATSUKI": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-NAGATSUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · mutsuki"
+  },
+  "IBS-U-IJN-NATSUGUMO": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-NATSUGUMO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_asashio_dd"
+  },
+  "IBS-U-IJN-NIIZUKI": {
+   "points": 500,
+   "profile_id": "cas-prologue-runtime-v1#akizuki",
+   "source": "provisional（待平衡复核）class_proxy：秋月级类卡（JP A-53/C-1）；period 逐舰卡：kula-runtime.json kula-niizuki/akizuki（Form 10 p.83）"
+  },
+  "IBS-U-IJN-NISSHIN": {
+   "points": 775,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-NISSHIN",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_nisshin_av"
+  },
+  "IBS-U-IJN-OITE": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-OITE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/historical-axis-cards.json · ijn_kamikaze_dd"
+  },
+  "IBS-U-IJN-ONAMI": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "provisional（待平衡复核）class_proxy：夕云级类卡（JP A-24/C-1）；period 逐舰卡：cape-runtime.json onami/yugumo_1943_asw（Form 10 p.93）"
+  },
+  "IBS-U-IJN-OYASHIO": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）；period 逐舰卡：tassafaronga-runtime.json tass_oyashio/kagero_1942_base"
+  },
+  "IBS-U-IJN-SAMIDARE": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）；period 逐舰卡：empress-augusta-bay-1943.json samidare/shiratsuyu_1943（Form 10 p.131）"
+  },
+  "IBS-U-IJN-SATSUKI": {
+   "points": 325,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-SATSUKI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · mutsuki"
+  },
+  "IBS-U-IJN-SAZANAMI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：绫波级不在映射表；Cape 运行时把天雾/夕雾绑定到 fubuki_1936_refit（Form 10 153/171），Horaniu 把涟绑定到 fubuki_1936_horaniu（p.162）；按 CAS 现行吹雪级（特型 II 型）卡归类，非跨级；period 逐舰卡：horaniu-1943.json sazanami/fubuki_1936_horaniu（Form 10 p.162）"
+  },
+  "IBS-U-IJN-SENDAI": {
+   "points": 675,
+   "profile_id": "cas-prologue-runtime-v1#sendai",
+   "source": "首发时期包／日本舰表 PDF 21–22、97、108"
+  },
+  "IBS-U-IJN-SHIGURE": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）；period 逐舰卡：empress-augusta-bay-1943.json shigure/shiratsuyu_1943（Form 10 p.133）"
+  },
+  "IBS-U-IJN-SHIKINAMI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：绫波级不在映射表；Cape 运行时把天雾/夕雾绑定到 fubuki_1936_refit（Form 10 153/171），Horaniu 把涟绑定到 fubuki_1936_horaniu（p.162）；按 CAS 现行吹雪级（特型 II 型）卡归类，非跨级"
+  },
   "IBS-U-IJN-SHIRATSUYU": {
    "points": 425,
    "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
    "source": "首发时期包／日本舰表 A-25–A-26、C-1、F-1"
   },
+  "IBS-U-IJN-SHIRAYUKI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：吹雪级（1936 改装）类卡（JP A-27/C-1）"
+  },
+  "IBS-U-IJN-SUZUKAZE": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）；period 逐舰卡：kula-runtime.json kula-suzukaze/shiratsuyu（Form 10 p.137）"
+  },
+  "IBS-U-IJN-TAKANAMI": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#yugumo",
+   "source": "provisional（待平衡复核）class_proxy：夕云级类卡（JP A-24/C-1）；period 逐舰卡：tassafaronga-runtime.json tass_takanami/yugumo_1942"
+  },
+  "IBS-U-IJN-TAKAO": {
+   "points": 1500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-TAKAO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · jp_takao_1939_ca"
+  },
+  "IBS-U-IJN-TANIKAZE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）；period 逐舰卡：kula-runtime.json kula-tanikaze/kagero（Form 10 p.110）"
+  },
+  "IBS-U-IJN-TATSUTA": {
+   "points": 500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-TATSUTA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_tenryu_cl"
+  },
+  "IBS-U-IJN-TENRYU": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_tenryu",
+   "source": "period exact · savo-runtime.json savo_tenryu · Form 10 p.81（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-IJN-TERUZUKI": {
+   "points": 500,
+   "profile_id": "cas-prologue-runtime-v1#akizuki",
+   "source": "provisional（待平衡复核）class_proxy：秋月级类卡（JP A-53/C-1）"
+  },
+  "IBS-U-IJN-URANAMI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：吹雪级（1936 改装）类卡（JP A-27/C-1）"
+  },
+  "IBS-U-IJN-UZUKI": {
+   "points": 250,
+   "profile_id": "cas-period-cards-v1#uzuki",
+   "source": "period exact · cape-runtime.json uzuki · Form 10 p.183（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-IJN-UZUKI-2": {
+   "points": 300,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-UZUKI-2",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_mutsuki_dd"
+  },
+  "IBS-U-IJN-WAKATSUKI": {
+   "points": 500,
+   "profile_id": "cas-prologue-runtime-v1#akizuki",
+   "source": "provisional（待平衡复核）class_proxy：秋月级类卡（JP A-53/C-1）；period 逐舰卡：empress-augusta-bay-1943.json wakatsuki/akizuki_1943（Form 10 p.85）"
+  },
+  "IBS-U-IJN-YAMAGUMO": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-YAMAGUMO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · ijn_asashio_dd"
+  },
+  "IBS-U-IJN-YUBARI": {
+   "points": 550,
+   "profile_id": "cas-period-cards-v1#savo_yubari",
+   "source": "period exact · savo-runtime.json savo_yubari · Form 10 p.75（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-IJN-YUDACHI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#shiratsuyu",
+   "source": "provisional（待平衡复核）class_proxy：白露级类卡（JP A-22/C-1）"
+  },
+  "IBS-U-IJN-YUGIRI": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#fubuki_1936_refit",
+   "source": "provisional（待平衡复核）class_proxy：绫波级不在映射表；Cape 运行时把天雾/夕雾绑定到 fubuki_1936_refit（Form 10 153/171），Horaniu 把涟绑定到 fubuki_1936_horaniu（p.162）；按 CAS 现行吹雪级（特型 II 型）卡归类，非跨级；period 逐舰卡：cape-runtime.json yugiri/fubuki_1936_refit（Form 10 p.171）"
+  },
   "IBS-U-IJN-YUGUMO": {
    "points": 475,
    "profile_id": "cas-prologue-runtime-v1#yugumo",
    "source": "首发时期包／日本舰表 A-24、C-1、F-1"
+  },
+  "IBS-U-IJN-YUGURE": {
+   "points": 400,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-YUGURE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · hatsuharu_1942_03"
+  },
+  "IBS-U-IJN-YUKIKAZE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#kagero",
+   "source": "provisional（待平衡复核）class_proxy：阳炎级类卡（JP A-9/C-1）"
+  },
+  "IBS-U-IJN-YUNAGI": {
+   "points": 275,
+   "profile_id": "cas-merged-cards-v1#IBS-U-IJN-YUNAGI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/apd-source-cards.json · jp_kamikaze_1941_dd"
+  },
+  "IBS-U-KM-HANS-LODY": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-KM-HANS-LODY",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · km_type_1934a_dd"
+  },
+  "IBS-U-KM-KARL-GALSTER": {
+   "points": 500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-KM-KARL-GALSTER",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · km_type_1936_dd"
+  },
+  "IBS-U-KM-RICHARD-BEITZEN": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-KM-RICHARD-BEITZEN",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-axis.json · km_type_1934a_dd"
+  },
+  "IBS-U-RAN-AUSTRALIA": {
+   "points": 1250,
+   "profile_id": "cas-period-cards-v1#savo_australia",
+   "source": "period exact · savo-runtime.json savo_australia · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-RAN-CANBERRA": {
+   "points": 1250,
+   "profile_id": "cas-period-cards-v1#savo_canberra",
+   "source": "period exact · savo-runtime.json savo_canberra · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-RN-JACKAL": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-RN-JACKAL",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12"
+  },
+  "IBS-U-RN-JAVELIN": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-RN-JAVELIN",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12"
+  },
+  "IBS-U-RN-JERSEY": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-RN-JERSEY",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12"
+  },
+  "IBS-U-RN-JUPITER": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-RN-JUPITER",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12"
+  },
+  "IBS-U-RN-KASHMIR": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-RN-KASHMIR",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · rn_j_class_dd_1941_12"
+  },
+  "IBS-U-RN-UNNAMED-T05-R01": {
+   "points": 850,
+   "profile_id": "cas-merged-cards-v1#IBS-U-RN-UNNAMED-T05-R01",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · leander_1943"
+  },
+  "IBS-U-USN-AARON-WARD": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-AARON-WARD",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_bristol_dd"
+  },
+  "IBS-U-USN-ASTORIA": {
+   "points": 1200,
+   "profile_id": "cas-prologue-runtime-v1#new_orleans_1942",
+   "source": "provisional（待平衡复核）class_proxy：新奥尔良级类卡（Form 10 245 等）；period 逐舰卡：savo-runtime.json savo_astoria/us_new_orleans_ca"
+  },
+  "IBS-U-USN-BAGLEY": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_bagley",
+   "source": "period exact · savo-runtime.json savo_bagley · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-BAINBRIDGE": {
+   "points": 350,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-BAINBRIDGE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918"
+  },
+  "IBS-U-USN-BARTON": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-BARTON",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_bristol_dd"
+  },
+  "IBS-U-USN-BENHAM": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-BENHAM",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_benham_dd"
+  },
+  "IBS-U-USN-BOISE": {
+   "points": 1050,
+   "profile_id": "cas-period-cards-v1#boise",
+   "source": "period exact · cape-esperance-1942.json boise · Form 10 p.265（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-BUCHANAN": {
+   "points": 425,
+   "profile_id": "cas-period-cards-v1#savo_buchanan",
+   "source": "period exact · savo-runtime.json savo_buchanan/us_bristol_dd · Form 10 p.292/p.293 个体页（4 门单装、10 雷管、118 DP/37 节）· 点数 provisional，待平衡复核"
+  },
+  "IBS-U-USN-CF-AUSBURNE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；crosswalk 未登记舰级，舰级由 period 档案确认；period 逐舰卡：cape-runtime.json ausburne/fletcher_1943（Form 10 p.270）"
+  },
+  "IBS-U-USN-CHEVALIER": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；crosswalk 未登记舰级，舰级由 period 档案确认；period 逐舰卡：horaniu-1943.json chevalier/fletcher_1943（Form 10 p.271）"
+  },
+  "IBS-U-USN-CLAXTON": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：cape-runtime.json claxton/fletcher_1943（Form 10 p.272）"
+  },
+  "IBS-U-USN-COLORADO": {
+   "points": 2025,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-COLORADO",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_colorado_bb_1929"
+  },
+  "IBS-U-USN-CONVERSE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：cape-runtime.json converse/fletcher_1943（Form 10 p.273）"
+  },
+  "IBS-U-USN-CUSHING": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
+   "source": "provisional（待平衡复核）period_named：马汉级无类卡，借时期包帕金斯 Form 10（1942-01/02，p.332）"
+  },
+  "IBS-U-USN-DAHLGREN": {
+   "points": 350,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-DAHLGREN",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918"
+  },
+  "IBS-U-USN-DECATUR": {
+   "points": 350,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-DECATUR",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918"
+  },
+  "IBS-U-USN-DRAYTON": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-DRAYTON",
+   "source": "序章时期包／马汉级与德雷顿 Form 10"
+  },
+  "IBS-U-USN-DUNCAN": {
+   "points": 525,
+   "profile_id": "cas-period-cards-v1#duncan",
+   "source": "period exact · cape-esperance-1942.json duncan · Form 10 p.295（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-DYSON": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：cape-runtime.json dyson/fletcher_1943（Form 10 p.276）"
+  },
+  "IBS-U-USN-ERMA-ALASKA": {
+   "points": 2075,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-ALASKA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_alaska_cb_1944"
+  },
+  "IBS-U-USN-ERMA-ALLEN-M-SUMNER": {
+   "points": 500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_sumner_dd_1943"
+  },
+  "IBS-U-USN-ERMA-COOPER": {
+   "points": 500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-COOPER",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_sumner_dd_1943"
+  },
+  "IBS-U-USN-ERMA-DES-MOINES": {
+   "points": 1600,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-DES-MOINES",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_des_moines_ca_1948"
+  },
+  "IBS-U-USN-ERMA-GUAM": {
+   "points": 2075,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-GUAM",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_alaska_cb_1944"
+  },
+  "IBS-U-USN-ERMA-INGRAHAM": {
+   "points": 500,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-INGRAHAM",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_sumner_dd_1943"
+  },
+  "IBS-U-USN-ERMA-IOWA": {
+   "points": 3250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-IOWA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943"
+  },
+  "IBS-U-USN-ERMA-MISSOURI": {
+   "points": 3250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-MISSOURI",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943"
+  },
+  "IBS-U-USN-ERMA-NEW-JERSEY": {
+   "points": 3250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-NEW-JERSEY",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943"
+  },
+  "IBS-U-USN-ERMA-SALEM": {
+   "points": 1600,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-SALEM",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_des_moines_ca_1948"
+  },
+  "IBS-U-USN-ERMA-WISCONSIN": {
+   "points": 3250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-WISCONSIN",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_iowa_bb_1943"
+  },
+  "IBS-U-USN-ERMA-WORCESTER": {
+   "points": 1250,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-ERMA-WORCESTER",
+   "source": "provisional（待平衡复核）merged exact · data/ships/erma-source-cards-usn.json · us_worcester_cl_1948"
+  },
+  "IBS-U-USN-FARENHOLT": {
+   "points": 525,
+   "profile_id": "cas-period-cards-v1#farenholt",
+   "source": "period exact · cape-esperance-1942.json farenholt · Form 10 p.296（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-FLETCHER": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "序章时期包／弗莱彻舰表与具名 Form 10"
+  },
+  "IBS-U-USN-FOOTE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；crosswalk 未登记舰级，舰级由 period 档案确认；period 逐舰卡：empress-augusta-bay-1943.json foote/fletcher_1943（Form 10 p.278）"
+  },
+  "IBS-U-USN-FOX": {
+   "points": 350,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-FOX",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918"
+  },
+  "IBS-U-USN-GEARING": {
+   "points": 525,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-GEARING",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_gearing_dd_1944"
+  },
+  "IBS-U-USN-GWIN": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-GWIN",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_benson_dd"
+  },
+  "IBS-U-USN-HELENA": {
+   "points": 1075,
+   "profile_id": "cas-prologue-runtime-v1#brooklyn_second_group_1942",
+   "source": "provisional（待平衡复核）class_proxy：圣路易斯级不在映射表；period 档案 A-16 明确该卡为 Brooklyn second group (St. Louis, Helena)，Esperance 运行时把海伦娜绑定到该 profile（Form 10 263），Kula 运行时把海伦娜/圣路易斯绑定到 brooklyn_2；period 逐舰卡：kula-runtime.json kula-helena/brooklyn_2（Form 10 p.263）"
+  },
+  "IBS-U-USN-HELM": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_helm",
+   "source": "period exact · savo-runtime.json savo_helm · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-HONOLULU": {
+   "points": 1050,
+   "profile_id": "cas-period-cards-v1#kula-honolulu",
+   "source": "period exact · kula-runtime.json kula-honolulu · Form 10 p.267（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-HULL-I": {
+   "points": 425,
+   "profile_id": "cas-period-cards-v1#savo_hull",
+   "source": "period exact · savo-runtime.json savo_hull/us_farragut_dd · AF A-19（5 门单装、8 雷管、D/Small 200/1、105 DP/36 节）· 点数 provisional，待平衡复核"
+  },
+  "IBS-U-USN-JARVIS": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_jarvis",
+   "source": "period exact · savo-runtime.json savo_jarvis · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-JENKINS": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：kula-runtime.json kula-jenkins/fletcher（Form 10 p.279）"
+  },
+  "IBS-U-USN-LA-VALLETTE": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-LA-VALLETTE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · fletcher_1943"
+  },
+  "IBS-U-USN-LAFFEY": {
+   "points": 525,
+   "profile_id": "cas-period-cards-v1#laffey",
+   "source": "period exact · cape-esperance-1942.json laffey · Form 10 p.297（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-LAMSON": {
+   "points": 450,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-LAMSON",
+   "source": "序章时期包／马汉级与拉姆森 Form 10"
+  },
+  "IBS-U-USN-LARDNER": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：tassafaronga-runtime.json tass_lardner/bristol_1942"
+  },
+  "IBS-U-USN-MAURY": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
+   "source": "序章时期包／格里德利级与莫里 Form 10"
+  },
+  "IBS-U-USN-MCCALLA": {
+   "points": 525,
+   "profile_id": "cas-period-cards-v1#mccalla",
+   "source": "period exact · cape-esperance-1942.json mccalla · Form 10 p.299（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-MCDONOUGH": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-MCDONOUGH",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · us_farragut_dd"
+  },
+  "IBS-U-USN-MINNEAPOLIS": {
+   "points": 1200,
+   "profile_id": "cas-prologue-runtime-v1#new_orleans_1942",
+   "source": "provisional（待平衡复核）class_proxy：新奥尔良级类卡（Form 10 245 等）；period 逐舰卡：tassafaronga-runtime.json tass_minneapolis/new_orleans_1942"
+  },
+  "IBS-U-USN-MONSSEN": {
+   "points": 425,
+   "profile_id": "cas-period-cards-v1#savo_monssen",
+   "source": "period exact · savo-runtime.json savo_monssen/us_benson_dd · Form 10 p.303 个体页（4 门单装、10 雷管、128 DP/35 节）· 点数 provisional，待平衡复核"
+  },
+  "IBS-U-USN-NEW-ORLEANS": {
+   "points": 1200,
+   "profile_id": "cas-prologue-runtime-v1#new_orleans_1942",
+   "source": "provisional（待平衡复核）class_proxy：新奥尔良级类卡（Form 10 245 等）；period 逐舰卡：tassafaronga-runtime.json tass_new_orleans/new_orleans_1942"
+  },
+  "IBS-U-USN-NICHOLAS": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：kula-runtime.json kula-nicholas/fletcher（Form 10 p.281）"
+  },
+  "IBS-U-USN-NORTHAMPTON": {
+   "points": 1100,
+   "profile_id": "cas-prologue-runtime-v1#northampton_1942",
+   "source": "provisional（待平衡复核）class_proxy：北安普敦级类卡（Form 10 249 组）；period 逐舰卡：tassafaronga-runtime.json tass_northampton/northampton_1942"
+  },
+  "IBS-U-USN-OBANNON": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：kula-runtime.json kula-obannon/fletcher（Form 10 p.282）"
+  },
+  "IBS-U-USN-OMAHA": {
+   "points": 900,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-OMAHA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_omaha_cl_1923"
+  },
+  "IBS-U-USN-PATTERSON": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_patterson",
+   "source": "period exact · savo-runtime.json savo_patterson · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-PENSACOLA": {
+   "points": 1100,
+   "profile_id": "cas-prologue-runtime-v1#salt_lake_city_1942",
+   "source": "provisional（待平衡复核）period_named：彭萨科拉级无类卡；stage0 盐湖城卡即本级 1942 装填（Esperance pensacola_1942，Form 10 254：372 DP、32 节、10×8in/55）；period 逐舰卡：tassafaronga-runtime.json tass_pensacola/pensacola_1942"
+  },
+  "IBS-U-USN-PERKINS": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
+   "source": "序章时期包／马汉级与帕金斯 Form 10"
+  },
+  "IBS-U-USN-PERRY": {
+   "points": 350,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-PERRY",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918"
+  },
+  "IBS-U-USN-PRESTON": {
+   "points": 425,
+   "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-PERKINS",
+   "source": "provisional（待平衡复核）period_named：马汉级无类卡，借时期包帕金斯 Form 10（1942-01/02，p.332）"
+  },
+  "IBS-U-USN-QUINCY": {
+   "points": 1200,
+   "profile_id": "cas-prologue-runtime-v1#new_orleans_1942",
+   "source": "provisional（待平衡复核）class_proxy：新奥尔良级类卡（Form 10 245 等）；period 逐舰卡：savo-runtime.json savo_quincy/us_new_orleans_ca"
+  },
+  "IBS-U-USN-RADFORD": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：kula-runtime.json kula-radford/fletcher（Form 10 p.283）"
+  },
+  "IBS-U-USN-RALPH-TALBOT": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_ralph_talbot",
+   "source": "period exact · savo-runtime.json savo_ralph_talbot · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-SALT-LAKE-CITY": {
+   "points": 1100,
+   "profile_id": "cas-prologue-runtime-v1#salt_lake_city_1942",
+   "source": "provisional（待平衡复核）exact：同名具名卡（stage0）；period 档案 Form 10 p.254；period 逐舰卡：cape-esperance-1942.json salt_lake_city/pensacola_1942（Form 10 p.254）"
+  },
+  "IBS-U-USN-SAN-FRANCISCO": {
+   "points": 1200,
+   "profile_id": "cas-prologue-runtime-v1#new_orleans_1942",
+   "source": "provisional（待平衡复核）class_proxy：新奥尔良级类卡（Form 10 245 等）；period 逐舰卡：cape-esperance-1942.json san_francisco/new_orleans_1942（Form 10 p.245）"
+  },
+  "IBS-U-USN-SELFRIDGE": {
+   "points": 500,
+   "profile_id": "cas-period-cards-v1#savo_selfridge",
+   "source": "period exact · savo-runtime.json savo_selfridge · Form 10 未核（点数 provisional，待平衡复核）"
+  },
+  "IBS-U-USN-SOUTH-DAKOTA": {
+   "points": 2975,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-SOUTH-DAKOTA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · south_dakota_1942_09"
+  },
+  "IBS-U-USN-SPENCE": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：cape-runtime.json spence/fletcher_1943（Form 10 p.284）"
+  },
+  "IBS-U-USN-ST-LOUIS": {
+   "points": 1075,
+   "profile_id": "cas-prologue-runtime-v1#brooklyn_second_group_1942",
+   "source": "provisional（待平衡复核）class_proxy：圣路易斯级不在映射表；period 档案 A-16 明确该卡为 Brooklyn second group (St. Louis, Helena)，Esperance 运行时把海伦娜绑定到该 profile（Form 10 263），Kula 运行时把海伦娜/圣路易斯绑定到 brooklyn_2；period 逐舰卡：kula-runtime.json kula-st-louis/brooklyn_2（Form 10 p.264）"
+  },
+  "IBS-U-USN-STANLY": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：empress-augusta-bay-1943.json stanly/fletcher_1943（Form 10 p.285）"
+  },
+  "IBS-U-USN-STERETT": {
+   "points": 475,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-STERETT",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_benham_dd"
+  },
+  "IBS-U-USN-TAYLOR": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：horaniu-1943.json taylor/fletcher_1943（Form 10 p.286）"
+  },
+  "IBS-U-USN-THATCHER": {
+   "points": 475,
+   "profile_id": "cas-prologue-runtime-v1#fletcher",
+   "source": "provisional（待平衡复核）class_proxy：弗莱彻级类卡（stage0；炮 US C-2；1942 配置）；period 逐舰卡：empress-augusta-bay-1943.json thatcher/fletcher_1943（Form 10 p.287）"
+  },
+  "IBS-U-USN-TRUXTON": {
+   "points": 350,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-TRUXTON",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_clemson_4in_dd_1918"
+  },
+  "IBS-U-USN-UNNAMED-T01-R03": {
+   "points": 3000,
+   "profile_id": "cas-prologue-runtime-v1#north-carolina",
+   "source": "序章时期包／美国舰表 PDF 8、109"
+  },
+  "IBS-U-USN-UNNAMED-T01-R06": {
+   "points": 2000,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R06",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_lexington_bc_1924"
+  },
+  "IBS-U-USN-UNNAMED-T01-R07": {
+   "points": 2000,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R07",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_lexington_bc_1924"
+  },
+  "IBS-U-USN-UNNAMED-T01-R08": {
+   "points": 2000,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R08",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_lexington_bc_1924"
+  },
+  "IBS-U-USN-UNNAMED-T01-R12": {
+   "points": 1100,
+   "profile_id": "cas-prologue-runtime-v1#northampton_1942",
+   "source": "provisional（待平衡复核）class_proxy：北安普敦级类卡（Form 10 249 组）；period 逐舰卡：savo-runtime.json savo_chicago/us_northampton_ca"
+  },
+  "IBS-U-USN-UNNAMED-T01-R13": {
+   "points": 1200,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R13",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_northampton_ca_1942_02"
+  },
+  "IBS-U-USN-UNNAMED-T01-R20": {
+   "points": 1150,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R20",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · portland_1942_05"
+  },
+  "IBS-U-USN-UNNAMED-T01-R22": {
+   "points": 900,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R22",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_omaha_cl_1923"
+  },
+  "IBS-U-USN-UNNAMED-T01-R23": {
+   "points": 1025,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R23",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_atlanta_cl"
+  },
+  "IBS-U-USN-UNNAMED-T01-R24": {
+   "points": 1025,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-UNNAMED-T01-R24",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_atlanta_cl"
+  },
+  "IBS-U-USN-UNNAMED-T01-R25": {
+   "points": 1025,
+   "profile_id": "cas-period-cards-v1#savo_san_juan",
+   "source": "period exact · savo-runtime.json savo_san_juan/us_atlanta_cl · Form 10 p.262 个体页（8 座双联 16 管、8 雷管、304 DP）· 点数 provisional，待平衡复核"
+  },
+  "IBS-U-USN-UNNAMED-T01-R26": {
+   "points": 925,
+   "profile_id": "cas-prologue-runtime-v1#cleveland_empress",
+   "source": "provisional（待平衡复核）class_proxy：皇后湾 1943-11 期克利夫兰级卡（与 cleveland 同源 US A-15/C-2；Empress 期按 cleveland_empress 登记）；period 逐舰卡：empress-augusta-bay-1943.json cleveland/cleveland_1943（Form 10 p.255）"
+  },
+  "IBS-U-USN-UNNAMED-T01-R27": {
+   "points": 925,
+   "profile_id": "cas-prologue-runtime-v1#cleveland_empress",
+   "source": "provisional（待平衡复核）class_proxy：皇后湾 1943-11 期克利夫兰级卡（与 cleveland 同源 US A-15/C-2；Empress 期按 cleveland_empress 登记）；period 逐舰卡：empress-augusta-bay-1943.json columbia/cleveland_1943（Form 10 p.257）"
+  },
+  "IBS-U-USN-UNNAMED-T01-R28": {
+   "points": 925,
+   "profile_id": "cas-prologue-runtime-v1#cleveland_empress",
+   "source": "provisional（待平衡复核）class_proxy：皇后湾 1943-11 期克利夫兰级卡（与 cleveland 同源 US A-15/C-2；Empress 期按 cleveland_empress 登记）；period 逐舰卡：empress-augusta-bay-1943.json montpelier/cleveland_1943（Form 10 p.259）"
+  },
+  "IBS-U-USN-UNNAMED-T01-R29": {
+   "points": 925,
+   "profile_id": "cas-prologue-runtime-v1#cleveland_empress",
+   "source": "provisional（待平衡复核）class_proxy：皇后湾 1943-11 期克利夫兰级卡（与 cleveland 同源 US A-15/C-2；Empress 期按 cleveland_empress 登记）；period 逐舰卡：empress-augusta-bay-1943.json denver/cleveland_1943（Form 10 p.258）"
   },
   "IBS-U-USN-UNNAMED-T01-R51": {
    "points": 425,
@@ -90,6 +985,36 @@
    "points": 475,
    "profile_id": "cas-prologue-runtime-v1#IBS-U-USN-MAURY",
    "source": "格里德利级同型卡／莫里 Form 10（1942 年配置）"
+  },
+  "IBS-U-USN-VINCENNES": {
+   "points": 1200,
+   "profile_id": "cas-prologue-runtime-v1#new_orleans_1942",
+   "source": "provisional（待平衡复核）class_proxy：新奥尔良级类卡（Form 10 245 等）；period 逐舰卡：savo-runtime.json savo_vincennes/us_new_orleans_ca"
+  },
+  "IBS-U-USN-WALKE": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-WALKE",
+   "source": "provisional（待平衡复核）merged exact · data/ships/pdf-source-cards.json · sims_1942_08"
+  },
+  "IBS-U-USN-WASHINGTON": {
+   "points": 3000,
+   "profile_id": "cas-prologue-runtime-v1#north-carolina",
+   "source": "序章时期包／美国舰表 PDF 8、109"
+  },
+  "IBS-U-USN-WEST-VIRGINIA": {
+   "points": 2025,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-WEST-VIRGINIA",
+   "source": "provisional（待平衡复核）merged exact · data/ships/cas-source-cards-allies.json · usn_colorado_bb_1944"
+  },
+  "IBS-U-USN-WILSON": {
+   "points": 475,
+   "profile_id": "cas-period-cards-v1#savo_wilson",
+   "source": "period exact · savo-runtime.json savo_wilson/us_benham_dd · Form 10 p.317 个体页（4 门单装、16 雷管、118 DP/38 节）· 点数 provisional，待平衡复核"
+  },
+  "IBS-U-USN-WOODWORTH": {
+   "points": 425,
+   "profile_id": "cas-merged-cards-v1#IBS-U-USN-WOODWORTH",
+   "source": "provisional（待平衡复核）merged exact · data/ships/class-proxy-cards.json · us_bristol_dd"
   }
  },
  "version": "cas-points-surface-v1"

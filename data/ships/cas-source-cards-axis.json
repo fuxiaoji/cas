@@ -1,0 +1,7028 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-source-cards-axis-v1",
+ "as_of": "2026-11-08",
+ "generated_by": "session subagent (CAS axis source cards)",
+ "scope": "66 个非当前剧本身份中 side=axis 且 audit status=cas_source_table 的 20 条；排除 CV，包含 APD/AV/BB/BC/CA/CL/DD",
+ "format": {
+  "identity": "IBS-U-* 稳定身份",
+  "class_profile": "class_profiles 的 key；同型舰共用（Nagato/Mutsu、Amagi/Akagi、Fubuki 等）",
+  "profile": "CAS 舰卡转录，字段对齐 data/campaign/period/savo-island-1942.json#profiles；保留原页值/日期注记/冲突",
+  "source_pages": "证据页；pdf_pages 为 1-based PDF 页（与 printed_pages 分开），runtime 条目无页码时用 label",
+  "shipdef_source": "ship 的来源（Form 10 或已登记 runtime ShipDef）；profile-only 时为 null",
+  "ship": "完整 ShipDef（prologue-runtime schema）；只在 Form 10 或已登记 runtime 能直接转录时给出，否则 null",
+  "blocker": "profile-only 时说明缺哪些字段/为何不能无推断转成 ShipDef；有 ship 时为 null",
+  "audit": "non-scenario-source-audit.json 的 status/terms/hits 原样保留，并注明哪些 hit 是索引/非数据页",
+  "points_policy": "本文件不写 points/ranked/成长数值"
+ },
+ "policy": "只转录 CAS 船表与已登记 period ShipDef；同型舰共用一个 class profile，不把索引页当数据页。能直接给出完整 ShipDef 的给 ship；缺转向/加速值、纸面舰未建成、或来源互相冲突的只给 profile + blocker，不用其他舰/尺级默认值补。未写 points，未改 src/、server/catalog、portraits、audio、AI、ranked_fleets，未 git commit。",
+ "source_pdfs": [
+  {
+   "document": "emperors_fleet",
+   "path": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+   "bytes": 2292047,
+   "pdf_pages": 121,
+   "role": "primary IJN class cards, Annex C guns, Annex F torpedoes"
+  },
+  {
+   "document": "rising_sun_form10",
+   "path": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "sha256": "9c54d934670f1065097de33f7092d15cebf73dcdf6143f693d43e1e95a599fb4",
+   "bytes": 9952081,
+   "pdf_pages": 380,
+   "role": "per-ship Form 10 movement/fit transcription"
+  },
+  {
+   "document": "gruppe_nord",
+   "path": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "sha256": "afc7979a51b966b98e58f73276855982e5e87330978597e71bc19a82ae013d3a",
+   "bytes": 6005340,
+   "pdf_pages": 142,
+   "role": "German destroyer class cards (Annex A), C guns, F torpedoes"
+  }
+ ],
+ "source_files": [
+  {
+   "document": "kula_runtime",
+   "path": "data/campaign/period/kula-runtime.json",
+   "sha256": null,
+   "bytes": null,
+   "pdf_pages": 0,
+   "role": "registered period runtime"
+  },
+  {
+   "document": "channel_runtime",
+   "path": "data/campaign/period/channel-runtime.json",
+   "sha256": null,
+   "bytes": null,
+   "pdf_pages": 0,
+   "role": "registered period runtime"
+  }
+ ],
+ "class_profiles": {
+  "ijn_nagato_1936_bb": {
+   "profile_id": "ijn_nagato_1936_bb",
+   "class": "Nagato (1936)",
+   "class_label_zh": "长门级",
+   "side": "axis",
+   "kind": "BB",
+   "size_class_en": "A/Large",
+   "configuration": "1933-36 reconstruction configuration (Nagato 1933-Jan 36 / Mutsu 1934-Sep 36)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     8
+    ],
+    "printed_pages": [
+     "A-5"
+    ],
+    "label": "Nagato (1936) class card"
+   },
+   "displacement_std_tons": 39130,
+   "in_class": 2,
+   "in_service": "1936 (1920)",
+   "in_service_year": 1920,
+   "crew": 1368,
+   "propulsion": "Steam Turbine",
+   "signature": "Large/Loud",
+   "armor_rating": "31/14/165",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    209,
+    418,
+    627,
+    752,
+    836
+   ],
+   "speed_knots": [
+    25,
+    19,
+    13,
+    6,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 25
+    },
+    {
+     "damage": 209,
+     "knots": 19
+    },
+    {
+     "damage": 418,
+     "knots": 13
+    },
+    {
+     "damage": 627,
+     "knots": 6
+    },
+    {
+     "damage": 752,
+     "knots": 0
+    },
+    {
+     "damage": 836,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_type_41cm45",
+   "main_gun_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+   "secondary_verbatim": "P/S(1)18 3rd Yr Type 14cm/50",
+   "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+   "light_aa_verbatim": "20 Type 96 25mm (2.4)",
+   "torpedoes_verbatim": null,
+   "torpedo_model": null,
+   "aircraft": "1 Midships catapult, 3 E8N1",
+   "sensors": "Type 93 (passive)",
+   "special_damage_modifier_pct": -15,
+   "remarks_summary": "Nagato (1933 - Jan 36), Mutsu (1934 - Sep 36). Configuration after the 1933-36 reconstruction: bulges added, horizontal protection improved, hull lengthened, new propulsion plant, main battery elevation increased to 43 deg, secondary battery to 35 deg, (2)4 12.7cm replaced the 8cm, 20 Type 96 25mm added, all TT removed, catapult added. Laid down before 1925, special damage modifier of -15%.",
+   "dated_remarks": {
+    "Nagato": [
+     "May 43: Type 21 radar and 25mm added, Lt AA 2.6.",
+     "Jun 43: Mutsu lost to a probable magazine explosion.",
+     "Jan 44: 2 Type 22 radars added.",
+     "Apr 44: 3 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted.",
+     "Jun 44: 2 Type 22, 2 Type 13 radars, 2 14cm guns removed, 68 25mm, Lt AA 8.2.",
+     "Oct 44: Type 3 Model 1 sonar replaced Type 93 (passive) sonar; 98 25mm, Lt AA 11.8."
+    ],
+    "Mutsu": [
+     "1934 - Sep 36: reconstructed to the class configuration.",
+     "8 Jun 43: lost to a probable magazine explosion; the 1943-44 radar/AA refits did not apply."
+    ]
+   },
+   "gun_mounts_verbatim": "F/A(2)4 3rd Yr Type 41cm/45"
+  },
+  "ijn_amagi_bc": {
+   "profile_id": "ijn_amagi_bc",
+   "class": "Amagi",
+   "class_label_zh": "天城级",
+   "side": "axis",
+   "kind": "BC",
+   "size_class_en": "A/Large",
+   "configuration": "Amagi-class battlecruiser design card (never completed)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     10
+    ],
+    "printed_pages": [
+     "A-7"
+    ],
+    "label": "Amagi class card"
+   },
+   "displacement_std_tons": 40000,
+   "in_class": "0 + 4",
+   "in_service": "1924",
+   "in_service_year": 1924,
+   "crew": 1600,
+   "propulsion": "Steam turbine",
+   "signature": "Large/Loud",
+   "armor_rating": "23/9/135",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    212,
+    424,
+    636,
+    763,
+    848
+   ],
+   "speed_knots": [
+    30,
+    23,
+    15,
+    8,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 30
+    },
+    {
+     "damage": 212,
+     "knots": 23
+    },
+    {
+     "damage": 424,
+     "knots": 15
+    },
+    {
+     "damage": 636,
+     "knots": 8
+    },
+    {
+     "damage": 763,
+     "knots": 0
+    },
+    {
+     "damage": 848,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_type_41cm45",
+   "main_gun_verbatim": "2F/P&S/2A(2)5 3rd Yr Type 41cm/45",
+   "secondary_verbatim": "Casemate(1)16 3rd Yr Type 14cm/50",
+   "area_aa_verbatim": "(1)4 3rd Yr Type 8cm/40 (0.5)",
+   "light_aa_verbatim": null,
+   "torpedoes_verbatim": "P/S(4)2 610mm TT w/4 8th Yr Type No.2 torps",
+   "torpedo_model": "jp_8th_yr_type_no2",
+   "aircraft": null,
+   "sensors": null,
+   "special_damage_modifier_pct": -15,
+   "remarks_summary": "Amagi, Akagi, Atago, Takao. Battlecruisers cancelled by the Washington Treaty. Amagi and Akagi converted to CV. Amagi irreparably damaged in the 1923 Kanto earthquake. Laid down before 1925, special damage modifier of -15%.",
+   "dated_remarks": {},
+   "gun_mounts_verbatim": "2F/P&S/2A(2)5 3rd Yr Type 41cm/45"
+  },
+  "ijn_kii_bc": {
+   "profile_id": "ijn_kii_bc",
+   "class": "Kii",
+   "class_label_zh": "纪伊级",
+   "side": "axis",
+   "kind": "BC",
+   "size_class_en": "A/Large",
+   "configuration": "Kii-class fast battleship design card (never completed)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     9
+    ],
+    "printed_pages": [
+     "A-6"
+    ],
+    "label": "Kii class card"
+   },
+   "displacement_std_tons": 41400,
+   "displacement_note": "Card prints 41400 n (normal), not standard; recorded as printed.",
+   "in_class": 4,
+   "in_service": "1926",
+   "in_service_year": 1926,
+   "crew": null,
+   "crew_note": "Card prints Crew: ?",
+   "propulsion": "Steam Turbine",
+   "signature": "Large/Loud",
+   "armor_rating": "29/12/135",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    217,
+    434,
+    651,
+    781,
+    868
+   ],
+   "speed_knots": [
+    30,
+    23,
+    15,
+    8,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 30
+    },
+    {
+     "damage": 217,
+     "knots": 23
+    },
+    {
+     "damage": 434,
+     "knots": 15
+    },
+    {
+     "damage": 651,
+     "knots": 8
+    },
+    {
+     "damage": 781,
+     "knots": 0
+    },
+    {
+     "damage": 868,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_type_41cm45",
+   "main_gun_verbatim": "2F/P&S/2A (2)5 3rd Yr Type 41cm/45",
+   "secondary_verbatim": "Casemate (1)20 3rd Yr Type 14cm/50",
+   "area_aa_verbatim": "(1)4 3rd Yr Type 8cm/40 (0.5)",
+   "light_aa_verbatim": null,
+   "torpedoes_verbatim": "P/S (4)2 610mm TT/w 4 8th Yr Type No. 2 torps",
+   "torpedo_model": "jp_8th_yr_type_no2",
+   "aircraft": null,
+   "sensors": null,
+   "special_damage_modifier_pct": -15,
+   "card_type_verbatim": "BB",
+   "remarks_summary": "Kii, Owari, No.13 (Mito?), No. 14. Fast battleships. Canceled by the Washington Treaty. Designed before 1925, special damage modifier of -15%.",
+   "dated_remarks": {},
+   "gun_mounts_verbatim": "2F/P&S/2A (2)5 3rd Yr Type 41cm/45"
+  },
+  "ijn_chitose_av": {
+   "profile_id": "ijn_chitose_av",
+   "class": "Chitose",
+   "class_label_zh": "千岁级",
+   "side": "axis",
+   "kind": "AV",
+   "size_class_en": "B/Medium",
+   "configuration": "Seaplane tender (AV) card; 1943 CVL conversion is listed separately and excluded",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     56
+    ],
+    "printed_pages": [
+     "A-53"
+    ],
+    "label": "Chitose AV card"
+   },
+   "displacement_std_tons": 11023,
+   "in_class": 2,
+   "in_service": "1938 - 43",
+   "crew": null,
+   "crew_note": "Card leaves Crew blank.",
+   "propulsion": "Steam turbine",
+   "signature": "Medium/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    79,
+    159,
+    238,
+    285,
+    317
+   ],
+   "speed_knots": [
+    29,
+    22,
+    15,
+    7,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 29
+    },
+    {
+     "damage": 79,
+     "knots": 22
+    },
+    {
+     "damage": 159,
+     "knots": 15
+    },
+    {
+     "damage": 238,
+     "knots": 7
+    },
+    {
+     "damage": 285,
+     "knots": 0
+    },
+    {
+     "damage": 317,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_type89_12_7cm40",
+   "main_gun_verbatim": "F(2)2 Type 89 12.7cm/40",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": "(2)2 Type 89 12.7cm/40 (1.6)",
+   "light_aa_verbatim": "12 Type 96 25mm (1.4)",
+   "torpedoes_verbatim": null,
+   "torpedo_model": null,
+   "aircraft": "4 Midships catapults, 1 Elevator, 24 Floatplanes",
+   "sensors": null,
+   "special_damage_modifier_pct": -25,
+   "remarks_summary": "Seaplane tender. Auxiliary, special damage modifier of -25%. 1941: modified with midget-submarine transports, 12 aircraft and 12 46-ton Type A midget subs; subs launched through stern doors, two at a time in 17 minutes while underway. 1942 - 43: Both units converted to light aircraft carriers, listed separately.",
+   "dated_remarks": {},
+   "gun_mounts_verbatim": "F(2)2 Type 89 12.7cm/40"
+  },
+  "ijn_nisshin_av": {
+   "profile_id": "ijn_nisshin_av",
+   "class": "Nisshin",
+   "class_label_zh": "日进级",
+   "side": "axis",
+   "kind": "AV",
+   "size_class_en": "B/Medium",
+   "configuration": "Nisshin AVM seaplane tender / minelayer card",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     57
+    ],
+    "printed_pages": [
+     "A-54"
+    ],
+    "label": "Nisshin AVM card"
+   },
+   "displacement_std_tons": 11317,
+   "in_class": 1,
+   "in_service": "1942",
+   "in_service_year": 1942,
+   "crew": 948,
+   "propulsion": "Diesel",
+   "signature": "Medium/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    81,
+    161,
+    242,
+    290,
+    322
+   ],
+   "speed_knots": [
+    28,
+    21,
+    14,
+    7,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 28
+    },
+    {
+     "damage": 81,
+     "knots": 21
+    },
+    {
+     "damage": 161,
+     "knots": 14
+    },
+    {
+     "damage": 242,
+     "knots": 7
+    },
+    {
+     "damage": 290,
+     "knots": 0
+    },
+    {
+     "damage": 322,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_type_14cm50",
+   "main_gun_verbatim": "2F/P&S(2)3 3rd Yr Type 14cm/50",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": null,
+   "light_aa_verbatim": "18 Type 96 25mm (2.2)",
+   "torpedoes_verbatim": null,
+   "torpedo_model": null,
+   "aircraft": "4 Midships catapults, 24 Floatplanes",
+   "sensors": null,
+   "special_damage_modifier_pct": -25,
+   "card_type_verbatim": "AVM",
+   "remarks_summary": "Can carry 24 floatplanes, or 12 floatplanes and 700 mines. Mine-laying doors in the stern. Auxiliary, special damage modifier of -25%. 1942: modified to carry 12 Type A midget subs and 12 floatplanes. Operated as a troop transport during the Bougainville operations. 22 Jul 43: sunk by US aircraft.",
+   "dated_remarks": {},
+   "gun_mounts_verbatim": "2F/P&S(2)3 3rd Yr Type 14cm/50"
+  },
+  "ijn_myoko_1935_ca": {
+   "profile_id": "ijn_myoko_1935_ca",
+   "class": "Myoko (1935)",
+   "class_label_zh": "妙高级",
+   "side": "axis",
+   "kind": "CA",
+   "size_class_en": "B/Medium",
+   "configuration": "1935 class configuration (Myoko Nov 34-Mar 35, Nachi Feb 35-Jun 35, Haguro Feb 35-36, Ashigara Nov 34-Nov 36)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     18
+    ],
+    "printed_pages": [
+     "A-15"
+    ],
+    "label": "Myoko (1935) class card"
+   },
+   "displacement_std_tons": 13000,
+   "in_class": 4,
+   "in_service": "1935 (1929)",
+   "in_service_year": 1929,
+   "crew": 832,
+   "propulsion": "Steam Turbine",
+   "signature": "Medium/Noisy",
+   "armor_rating": "7/5",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    118,
+    236,
+    353,
+    424,
+    471
+   ],
+   "speed_knots": [
+    33,
+    25,
+    16,
+    8,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 118,
+     "knots": 25
+    },
+    {
+     "damage": 236,
+     "knots": 16
+    },
+    {
+     "damage": 353,
+     "knots": 8
+    },
+    {
+     "damage": 424,
+     "knots": 0
+    },
+    {
+     "damage": 471,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_type_no2_20cm50",
+   "main_gun_verbatim": "2F/P&S/2A(2)5 3rd Yr Type No.2 20cm/50",
+   "secondary_verbatim": "P/S(2)4 Type 89 12.7cm/40",
+   "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+   "light_aa_verbatim": "(2)4 Type 93 13.2mm, 2 Type 92 7.7mm (0.6)",
+   "torpedoes_verbatim": "P/S(4)2 610mm TT w/8 Type 93 torps (4 reserve torp/mount for quick reload in 6 minutes)",
+   "torpedo_model": "jp_type93_m1_mod1_2",
+   "aircraft": "2 Midships Catapult, 2 E8N1 Dave",
+   "sensors": "None (Dec 1941 Form 10); Type 21 from Jun 43 per A-13",
+   "special_damage_modifier_pct": 0,
+   "remarks_summary": "Reconstructed. Fixed TT replaced by two trainable quad mounts (four planned but only two installed), 12cm/45 replaced by twin 12.7cm/40, single catapult replaced by two, bulged to compensate for increased weight. 1936: one E7K2 Alf added to the aircraft complement. 1938: Type 93 torpedoes replaced the Type 90s.",
+   "dated_remarks": {
+    "Nachi": [
+     "27 Mar 43: damaged by gunfire in the Battle of Komandorski Islands.",
+     "3 Apr - 11 May 43: repaired; Type 21 radar, (2)4 25mm added, (2)2 13.2mm removed, Lt AA 1.9.",
+     "22 Nov 43 - 22 Jan 44: Type 22 radar, (1)8 25mm added, Lt AA 2.9.",
+     "Sep 44: Type 13 radar, Model 3 and E-27 Kai 3 ESM, (2)2 (1)20 25mm added, Lt AA 5.8; aft TT removed.",
+     "29 Oct 44: sunk in Manila Bay by aircraft attack."
+    ]
+   },
+   "gun_mounts_verbatim": "2F/P&S/2A(2)5 3rd Yr Type No.2 20cm/50"
+  },
+  "ijn_tenryu_cl": {
+   "profile_id": "ijn_tenryu_cl",
+   "class": "Tenryu",
+   "class_label_zh": "天龙级",
+   "side": "axis",
+   "kind": "CL",
+   "size_class_en": "C/Small",
+   "configuration": "1930s-1942 light cruiser configuration",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     23
+    ],
+    "printed_pages": [
+     "A-20"
+    ],
+    "label": "Tenryu class card"
+   },
+   "displacement_std_tons": 3230,
+   "in_class": 2,
+   "in_service": "1919",
+   "in_service_year": 1919,
+   "crew": 337,
+   "propulsion": "Steam Turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "4/2",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    40,
+    79,
+    119,
+    142,
+    158
+   ],
+   "speed_knots": [
+    33,
+    25,
+    16,
+    8,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 40,
+     "knots": 25
+    },
+    {
+     "damage": 79,
+     "knots": 16
+    },
+    {
+     "damage": 119,
+     "knots": 8
+    },
+    {
+     "damage": 142,
+     "knots": 0
+    },
+    {
+     "damage": 158,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_type_14cm50",
+   "main_gun_verbatim": "F/2P&S/A(1)4 3rd Yr Type 14cm/50",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": "(1)1 3rd Yr Type 8cm/40 (0.1)",
+   "light_aa_verbatim": "2 Type 93 13.2mm (0.1)",
+   "torpedoes_verbatim": "P&S(3)2 533mm TT w/3 6th Yr Type torp",
+   "torpedo_model": "jp_6th_yr_type",
+   "aircraft": null,
+   "sensors": "None",
+   "special_damage_modifier_pct": -15,
+   "remarks_summary": "Tenryu, Tatsuta. Laid down before 1925, special damage modifier of -15%. Early 1930s: Gunnery Standard III. 1932: 2 Type 93 13.2mm added, Lt AA 0.2. Feb 42: (2)2 25mm added, Lt AA 1.0. 18 Dec 42: Tenryu torpedoed and sunk by USS Albacore. 13 Mar 43: Tatsuta torpedoed and sunk by USS Sand Lance.",
+   "dated_remarks": {
+    "Tatsuta": [
+     "Feb 42: (2)2 25mm added, Lt AA 1.0.",
+     "Aug - Sep 43: Type 21 and Type 22 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted; (2)1 25mm added, Lt AA 1.2.",
+     "13 Mar 43: torpedoed and sunk by USS Sand Lance."
+    ]
+   },
+   "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 14cm/50"
+  },
+  "ijn_mutsuki_dd": {
+   "profile_id": "ijn_mutsuki_dd",
+   "class": "Mutsuki",
+   "class_label_zh": "睦月级",
+   "side": "axis",
+   "kind": "DD",
+   "size_class_en": "D/Small",
+   "configuration": "Class card baseline (1935-36 refit; 1941-42 destroyer configuration)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     30,
+     31
+    ],
+    "printed_pages": [
+     "A-27",
+     "A-28"
+    ],
+    "label": "Mutsuki class card and Uzuki remarks"
+   },
+   "displacement_std_tons": 1336,
+   "in_class": 12,
+   "in_service": "1925",
+   "in_service_year": 1925,
+   "crew": 150,
+   "propulsion": "Steam Turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    22,
+    44,
+    66,
+    79,
+    88
+   ],
+   "speed_knots": [
+    33,
+    25,
+    16,
+    8,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 22,
+     "knots": 25
+    },
+    {
+     "damage": 44,
+     "knots": 16
+    },
+    {
+     "damage": 66,
+     "knots": 8
+    },
+    {
+     "damage": 79,
+     "knots": 0
+    },
+    {
+     "damage": 88,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_120mm45",
+   "main_gun_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+   "light_aa_verbatim": "2 Vickers 7.7mm (0.1)",
+   "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2 (2 reserve torp/mount, reload in 15 minutes)",
+   "torpedo_model": "jp_8th_yr_type_no2",
+   "aircraft": null,
+   "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+   "special_damage_modifier_pct": -15,
+   "remarks_summary": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%. 1935-36 refit improved stability. Type 93 (passive) and Type 93 Model 1 (active) sonars fitted; (2)1 Type 94 Y-gun added. 11 Dec 41: Kisaragi sunk during the invasion of Wake Island. DC refit: 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, 36 DC total; Uzuki/Yuzuki May-Jun 42, Mikazuki Jun 42, Mutsuki/Mochizuki Jul-Aug 42.",
+   "dated_remarks": {
+    "Mutsuki": [
+     "Jan 42: 2 13.2mm added, Lt AA 0.2.",
+     "Jul - Aug 42: DC refit."
+    ],
+    "Uzuki": [
+     "May - Jun 42: DC refit.",
+     "Sep - Dec 42: stern modified to launch/recover landing barges (APD role).",
+     "Oct 43: P&S 12cm and 7.7mm replaced by 2 13.2mm and 7 25mm, Area AA 0.1, Lt AA 1.0.",
+     "Mar 44: 2 25mm added, Lt AA 1.2.",
+     "Sep 44: Type 13 radar, 5 25mm added, Lt AA 1.7."
+    ]
+   },
+   "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45"
+  },
+  "ijn_fubuki_dd": {
+   "profile_id": "ijn_fubuki_dd",
+   "class": "Fubuki",
+   "class_label_zh": "吹雪级",
+   "side": "axis",
+   "kind": "DD",
+   "size_class_en": "C/Small",
+   "configuration": "Class card baseline (1928 special-type destroyer)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     30
+    ],
+    "printed_pages": [
+     "A-27"
+    ],
+    "label": "Fubuki class card"
+   },
+   "displacement_std_tons": 1778,
+   "in_class": "10/10",
+   "in_service": "1928",
+   "in_service_year": 1928,
+   "crew": 197,
+   "propulsion": "Steam Turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "III",
+   "damage_points": [
+    0,
+    27,
+    53,
+    80,
+    95,
+    106
+   ],
+   "speed_knots": [
+    38,
+    29,
+    19,
+    10,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 38
+    },
+    {
+     "damage": 27,
+     "knots": 29
+    },
+    {
+     "damage": 53,
+     "knots": 19
+    },
+    {
+     "damage": 80,
+     "knots": 10
+    },
+    {
+     "damage": 95,
+     "knots": 0
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_127mm50",
+   "main_gun_verbatim": "F/A(2)3 3rd Yr Type 12.7cm/50",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.3)",
+   "light_aa_verbatim": "2 Type 92 7.7mm (Group I), 2 Type 93 13.2mm (Group II) (0.1)",
+   "torpedoes_verbatim": "P&S(3)3 610mm TT w/3 8th Yr Type torp (3 reserve torp/mount for reload in 15 minutes)",
+   "torpedo_model": "jp_8th_yr_type_no1",
+   "aircraft": null,
+   "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+   "special_damage_modifier_pct": -15,
+   "remarks_summary": "Special Type destroyer. First ten units (Group I) main battery max elevation 40 deg, surface fire only. Second ten units (Group II) max elevation 75 deg, AA capable, but no HA director, local control only. Duralumin extensively used in bridge construction. Light metal superstructure, special damage modifier of -15%. Mines can be replaced by an additional 18 DC. 1935-36: class refitted to improve stability, listed separately.",
+   "dated_remarks": {},
+   "gun_mounts_verbatim": "F/A(2)3 3rd Yr Type 12.7cm/50"
+  },
+  "ijn_asashio_dd": {
+   "profile_id": "ijn_asashio_dd",
+   "class": "Asashio",
+   "class_label_zh": "朝潮级",
+   "side": "axis",
+   "kind": "DD",
+   "size_class_en": "C/Small",
+   "configuration": "Class card baseline (1937 destroyer configuration)",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     28
+    ],
+    "printed_pages": [
+     "A-25"
+    ],
+    "label": "Asashio class card"
+   },
+   "displacement_std_tons": 1992,
+   "in_class": 10,
+   "in_service": "1937",
+   "in_service_year": 1937,
+   "crew": 200,
+   "crew_note": "A-25 prints Crew: 2290, evidently a typo for 229; Form 10 p.123 prints 200. Profile uses 200 and records the printed typo.",
+   "propulsion": "Steam Turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    34,
+    68,
+    101,
+    122,
+    135
+   ],
+   "speed_knots": [
+    35,
+    26,
+    18,
+    9,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 35
+    },
+    {
+     "damage": 34,
+     "knots": 26
+    },
+    {
+     "damage": 68,
+     "knots": 18
+    },
+    {
+     "damage": 101,
+     "knots": 9
+    },
+    {
+     "damage": 122,
+     "knots": 0
+    },
+    {
+     "damage": 135,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_127mm50",
+   "main_gun_verbatim": "F/2A(2)3 3rd Yr Type 12.7cm/50 LA",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.7)",
+   "light_aa_verbatim": "(2)2 Type 96 25mm (0.5)",
+   "torpedoes_verbatim": "P&S(4)2 610mm TT w/8 Type 90 torp (4 reserve torp/mount for quick reload in 6 minutes)",
+   "torpedo_model": "jp_type90",
+   "aircraft": null,
+   "sensors": "Type 93 (passive), Type 93 Model 1",
+   "special_damage_modifier_pct": 0,
+   "remarks_summary": "DC refit: DC fit altered to 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, total 36 Type 95 or Type 2 DC carried. Asashio Jul-Oct 42; Arashio Apr-May 42; Arare and Kasumi Apr-May 42; Michishio Apr-Oct 42; Yamagumo Apr-Sep 42; Oshio Apr-Dec 42; Arashio Jun-Nov 42; Kasumi Aug 42; Minegumo Oct 42-Feb 43. Aft AA refit: aft X 12.7cm replaced by 6 25mm, Area AA 0.4, Lt AA 1.2 (Asagumo and Kasumi Oct-Nov 43; Yamagumo Feb 44). Jan 44: Type 22 radar. Apr 44: Type 13 radar, E-27 Kai 3 and Model 3 ESM (Gen 0). Jun 44: reload torpedoes removed; Lt AA increased to 28 25mm and 4 13.2mm, Lt AA 3.6.",
+   "dated_remarks": {
+    "Natsugumo": [
+     "Dec 1941 configuration; DC refit not yet applied."
+    ],
+    "Yamagumo": [
+     "Apr - Sep 42: DC refit to 2 rails w/6 DC + (2)2 Type 94 Y-guns w/6 DC, 36 DC.",
+     "Feb 44: aft X 12.7cm replaced by 6 25mm, Area AA 0.4, Lt AA 1.2.",
+     "Jan 44: Type 22 radar. Apr 44: Type 13 radar, E-27 Kai 3/Model 3 ESM.",
+     "Jun 44: reload torpedoes removed; 28 25mm and 4 13.2mm, Lt AA 3.6."
+    ]
+   },
+   "gun_mounts_verbatim": "F/2A(2)3 3rd Yr Type 12.7cm/50 LA"
+  },
+  "ijn_kamikaze_dd": {
+   "profile_id": "ijn_kamikaze_dd",
+   "class": "Kamikaze (1941)",
+   "class_label_zh": "神风级",
+   "side": "axis",
+   "kind": "DD",
+   "size_class_en": "D/Small",
+   "configuration": "1941 class configuration",
+   "source": {
+    "document": "emperors_fleet",
+    "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "pdf_pages": [
+     27
+    ],
+    "printed_pages": [
+     "A-24"
+    ],
+    "label": "Kamikaze (1941) class card"
+   },
+   "displacement_std_tons": 1422,
+   "in_class": 9,
+   "in_service": "1941 (1925)",
+   "in_service_year": 1925,
+   "crew": 148,
+   "propulsion": "Steam turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    23,
+    46,
+    69,
+    83,
+    92
+   ],
+   "speed_knots": [
+    35,
+    26,
+    18,
+    9,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 35
+    },
+    {
+     "damage": 23,
+     "knots": 26
+    },
+    {
+     "damage": 46,
+     "knots": 18
+    },
+    {
+     "damage": 69,
+     "knots": 9
+    },
+    {
+     "damage": 83,
+     "knots": 0
+    },
+    {
+     "damage": 92,
+     "knots": 0
+    }
+   ],
+   "main_gun": "jp_3rd_yr_120mm45",
+   "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": null,
+   "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+   "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+   "torpedo_model": null,
+   "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+   "aircraft": null,
+   "sensors": "Type 93 (passive), Type 93 Model 1",
+   "special_damage_modifier_pct": -15,
+   "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+   "dated_remarks": {
+    "Asakaze": [
+     "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+    ],
+    "Kamikaze": [
+     "Jan 44: 2 Type 22 radars added.",
+     "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+    ],
+    "Oite": [
+     "No individual Form 10 card; class card only."
+    ]
+   },
+   "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA"
+  },
+  "km_type_1934a_dd": {
+   "profile_id": "km_type_1934a_dd",
+   "class": "1934A (Maas)",
+   "class_label_zh": "1934A 型驱逐舰",
+   "side": "axis",
+   "kind": "DD",
+   "size_class_en": "C/Small",
+   "configuration": "Type 1934A class card (Z1-Z16)",
+   "source": {
+    "document": "gruppe_nord",
+    "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+    "pdf_pages": [
+     66
+    ],
+    "printed_pages": [
+     "A-11"
+    ],
+    "label": "1934 type (Maas) class card"
+   },
+   "displacement_std_tons": 2232,
+   "in_class": 16,
+   "in_service": "1937",
+   "in_service_year": 1937,
+   "crew": 315,
+   "propulsion": "Steam turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    37,
+    73,
+    110,
+    131,
+    146
+   ],
+   "speed_knots": [
+    38,
+    29,
+    19,
+    10,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 38
+    },
+    {
+     "damage": 37,
+     "knots": 29
+    },
+    {
+     "damage": 73,
+     "knots": 19
+    },
+    {
+     "damage": 110,
+     "knots": 10
+    },
+    {
+     "damage": 131,
+     "knots": 0
+    },
+    {
+     "damage": 146,
+     "knots": 0
+    }
+   ],
+   "main_gun": "km_12_7cm_skc34",
+   "main_gun_verbatim": "2F/P&S/2A(1)5 12.7cm SKC/34",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": null,
+   "light_aa_verbatim": "(2)2 3.7cm SKC/30, (4)2 2cm Flak 30 (0.8)",
+   "torpedoes_verbatim": "P&S(4)2 53.3cm TT w/4 G7a torp",
+   "torpedo_model": "km_g7a",
+   "aircraft": null,
+   "sensors": "FuMO 21 Seetakt; SB (Bug S); GHG (64 elements)",
+   "special_damage_modifier_pct": 0,
+   "remarks_summary": "Z1-Z16. Can carry 60 mines. Each torpedo tube has one reload; two mounts can be reloaded in 15 minutes. 32 DC, later 64. 1944: Z5/Z6 light AA changed to (1)4 3.7cm Flak 28, (4)2 2cm Flak 38 and (2)2 2cm Flak 38, Lt AA 4.8. 1944: Z5/Z10/Z14/Z15 added FuMO 61 Hohentwiel; Z4/Z5/Z6/Z10/Z14/Z15 had FuMO 21 replaced by FuMO 25. 1944-45: Z10 refit with (2)6 3.7cm Flak M42, Lt AA 4.0; Z15 refit with (2)7 3.7cm Flak M42 and (1)4 2cm Flak 38, Lt AA 5.5.",
+   "dated_remarks": {
+    "Hans Lody": [
+     "1944: FuMO 61 Hohentwiel added; FuMO 21 replaced by FuMO 25.",
+     "1944-45: (2)6 3.7cm Flak M42, Lt AA 4.0."
+    ],
+    "Richard Beitzen": [
+     "1944: FuMO 61 Hohentwiel added; FuMO 21 replaced by FuMO 25.",
+     "1944-45: no Z14-specific refit printed beyond the class notes."
+    ]
+   },
+   "gun_mounts_verbatim": "2F/P&S/2A(1)5 12.7cm SKC/34"
+  },
+  "km_type_1936_dd": {
+   "profile_id": "km_type_1936_dd",
+   "class": "1936",
+   "class_label_zh": "1936 型驱逐舰",
+   "side": "axis",
+   "kind": "DD",
+   "size_class_en": "C/Small",
+   "configuration": "Type 1936 class card (Z17-Z22)",
+   "source": {
+    "document": "gruppe_nord",
+    "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+    "pdf_pages": [
+     66
+    ],
+    "printed_pages": [
+     "A-11"
+    ],
+    "label": "1936 type class card"
+   },
+   "displacement_std_tons": 2411,
+   "in_class": 6,
+   "in_service": "1938",
+   "in_service_year": 1938,
+   "crew": 313,
+   "propulsion": "Steam turbine",
+   "signature": "Small/Noisy",
+   "armor_rating": "0",
+   "gunnery_standard": "IV",
+   "damage_points": [
+    0,
+    38,
+    77,
+    115,
+    138,
+    153
+   ],
+   "speed_knots": [
+    38,
+    29,
+    19,
+    10,
+    0,
+    0
+   ],
+   "damage_speed_rows": [
+    {
+     "damage": 0,
+     "knots": 38
+    },
+    {
+     "damage": 38,
+     "knots": 29
+    },
+    {
+     "damage": 77,
+     "knots": 19
+    },
+    {
+     "damage": 115,
+     "knots": 10
+    },
+    {
+     "damage": 138,
+     "knots": 0
+    },
+    {
+     "damage": 153,
+     "knots": 0
+    }
+   ],
+   "main_gun": "km_12_7cm_skc34",
+   "main_gun_verbatim": "2座双联装12.7厘米SKC/34火炮（前甲板/左右舷/2座单装）",
+   "main_gun_note": "Printed mount text is ambiguous (2 twin mounts plus 2 single mounts). The channel-runtime ShipDef transcribes 5 single barrels; retained as registered and flagged.",
+   "secondary_verbatim": null,
+   "area_aa_verbatim": null,
+   "light_aa_verbatim": "(2)2 3.7cm SKC/30, 7 2cm Flak 30 (1.3)",
+   "torpedoes_verbatim": "左右舷4座双联装53.3厘米鱼雷发射管，配备4枚G7a鱼雷",
+   "torpedo_model": "km_g7a",
+   "aircraft": null,
+   "sensors": "FuMO 21 Seetakt; SB (Bug S); GHG (64 elements)",
+   "special_damage_modifier_pct": 0,
+   "remarks_summary": "Z17-Z22. Can carry 60 mines. Similar to the 1934A but with a longer hull. Each torpedo tube has one reload; 32 DC, later 64. Z20 was the only survivor after 1940. Apr 1940: five of the class lost in the first and second battles of Narvik. 1944: Z20 light AA increased to 4 3.7cm Flak M42 and 12 2cm Flak 38, Lt AA 5.4; FuMO 61 Hohentwiel added, FuMO 21 replaced by FuMO 25.",
+   "dated_remarks": {
+    "Karl Galster": [
+     "1944: 4 3.7cm Flak M42, 12 2cm Flak 38, Lt AA 5.4; FuMO 61, FuMO 25."
+    ]
+   },
+   "gun_mounts_verbatim": "2座双联装12.7厘米SKC/34火炮（前甲板/左右舷/2座单装）"
+  }
+ },
+ "cards": [
+  {
+   "identity": "IBS-U-IJN-UZUKI-2",
+   "name": "卯月(II)",
+   "name_en": "Uzuki (II)",
+   "side": "axis",
+   "type": "APD",
+   "class_profile": "ijn_mutsuki_dd",
+   "class_name": "Mutsuki",
+   "class_label_zh": "睦月级",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      183
+     ],
+     "printed_pages": [
+      183
+     ],
+     "role": "Uzuki DD - Oct 1943 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Uzuki DD",
+      "class_printed": "Mutsuki class IJN",
+      "dp": "88",
+      "speed": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki class card + Uzuki remarks",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "uzuki_remarks": true
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12cm/45 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "catalog type APD（输送角色）；舰表与 Form 10 舰种仍为 DD。Form 10 p.183（Oct 1943）逐页目视核对：2 座 12cm、2×3 九三式鱼雷、7×25mm+2×13mm+2×7.7mm、DP 88、33 节、转向 200/1。A-28 记 Uzuki Sep-Dec 42 改造艉部收放登陆艇，Mar 44/Sep 44 改装不在本卡。不写 points。",
+   "profile": {
+    "profile_id": "ijn_mutsuki_dd",
+    "class": "Mutsuki",
+    "class_label_zh": "睦月级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "Class card baseline (1935-36 refit; 1941-42 destroyer configuration)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "label": "Mutsuki class card and Uzuki remarks"
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "in_service_year": 1925,
+    "crew": 150,
+    "propulsion": "Steam Turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     },
+     {
+      "damage": 88,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2 (2 reserve torp/mount, reload in 15 minutes)",
+    "torpedo_model": "jp_8th_yr_type_no2",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%. 1935-36 refit improved stability. Type 93 (passive) and Type 93 Model 1 (active) sonars fitted; (2)1 Type 94 Y-gun added. 11 Dec 41: Kisaragi sunk during the invasion of Wake Island. DC refit: 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, 36 DC total; Uzuki/Yuzuki May-Jun 42, Mikazuki Jun 42, Mutsuki/Mochizuki Jul-Aug 42.",
+    "dated_remarks": {
+     "Mutsuki": [
+      "Jan 42: 2 13.2mm added, Lt AA 0.2.",
+      "Jul - Aug 42: DC refit."
+     ],
+     "Uzuki": [
+      "May - Jun 42: DC refit.",
+      "Sep - Dec 42: stern modified to launch/recover landing barges (APD role).",
+      "Oct 43: P&S 12cm and 7.7mm replaced by 2 13.2mm and 7 25mm, Area AA 0.1, Lt AA 1.0.",
+      "Mar 44: 2 25mm added, Lt AA 1.2.",
+      "Sep 44: Type 13 radar, 5 25mm added, Lt AA 1.7."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "ship_specific": "Uzuki (II) catalog type APD; CAS card/Form 10 print DD. Sep-Dec 42 stern landing-barge modification is the APD role; Oct 43 fit used.",
+    "conflicts": [
+     "A-27/A-28 级表记 4 座 12cm、8th Yr Type No.2 鱼雷；Form 10 p.183（Oct 43）记 2 座 12cm、九三式鱼雷。ShipDef 取 Form 10 Oct 43（APD 役态）。",
+     "catalog/identity 为 APD，CAS 卡为 DD；未改 type。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 200,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": "rising_sun_form10",
+     "pdf_page": 183,
+     "period_label": "Oct 1943 (Form 10 p.183; APD role)"
+    },
+    "catalog_type": "APD",
+    "card_type": "DD"
+   },
+   "ship": {
+    "id": "IBS-U-IJN-UZUKI-2",
+    "name": "卯月(II)",
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "turn_size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     },
+     {
+      "damage": 88,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "annex_special_damage_modifier_pct": -15,
+    "catalog_type": "APD",
+    "card_type": "DD",
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 2,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2（Long Lance）",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "warhead_kg": 490,
+     "contact_fuze": true,
+     "tubes": 6,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 2
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 2
+      }
+     ],
+     "reload_seconds": 900,
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     },
+     "speed_options": [
+      {
+       "speed_knots": 49,
+       "range_yd": 22000
+      },
+      {
+       "speed_knots": 41,
+       "range_yd": 35000
+      },
+      {
+       "speed_knots": 37,
+       "range_yd": 43800
+      }
+     ]
+    },
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       183
+      ],
+      "printed_pages": [
+       183
+      ],
+      "label": "Uzuki DD - Oct 1943"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       30,
+       31
+      ],
+      "printed_pages": [
+       "A-27",
+       "A-28"
+      ],
+      "label": "Mutsuki class card and Uzuki remarks"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       97
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "label": "12cm/45 gun table"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       105
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "label": "Type 93 torpedo table"
+     }
+    ],
+    "source_profile": "ijn_mutsuki_dd",
+    "period_label": "Oct 1943 (Form 10 p.183; APD role)"
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Mutsuki"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      7,
+      14,
+      18,
+      20,
+      21
+     ],
+     "emperor": [
+      5,
+      30,
+      31
+     ]
+    },
+    "hit_review": "audit emperor hits 5/30/31 是索引/A-27/A-28；Form 10 hits 4/7/14/18/20/21 全为索引页，实际逐舰页为 p.183。索引页未当数据页。"
+   },
+   "conflicts": [
+    "A-27/A-28 级表记 4 座 12cm、8th Yr Type No.2 鱼雷；Form 10 p.183（Oct 43）记 2 座 12cm、九三式鱼雷。ShipDef 取 Form 10 Oct 43（APD 役态）。",
+    "catalog/identity 为 APD，CAS 卡为 DD；未改 type。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "name": "千岁",
+   "name_en": "Chitose",
+   "side": "axis",
+   "type": "AV",
+   "class_profile": "ijn_chitose_av",
+   "class_name": "Chitose",
+   "class_label_zh": "千岁级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      56
+     ],
+     "printed_pages": [
+      "A-53"
+     ],
+     "role": "Chitose AV card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true
+     }
+    }
+   ],
+   "source_note": "A-53 舰卡逐页目视核对：AV 水上机母舰，11023 std，DP 0/79/159/238/285/317，29/22/15/7/0，4 弹射器/24 机，12×25mm。Crew 原页留空；1943 CVL 改装列在 A-10（type CVL），按 identity type AV 不入本卡。",
+   "profile": {
+    "profile_id": "ijn_chitose_av",
+    "class": "Chitose",
+    "class_label_zh": "千岁级",
+    "side": "axis",
+    "kind": "AV",
+    "size_class_en": "B/Medium",
+    "configuration": "Seaplane tender (AV) card; 1943 CVL conversion is listed separately and excluded",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      56
+     ],
+     "printed_pages": [
+      "A-53"
+     ],
+     "label": "Chitose AV card"
+    },
+    "displacement_std_tons": 11023,
+    "in_class": 2,
+    "in_service": "1938 - 43",
+    "crew": null,
+    "crew_note": "Card leaves Crew blank.",
+    "propulsion": "Steam turbine",
+    "signature": "Medium/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     79,
+     159,
+     238,
+     285,
+     317
+    ],
+    "speed_knots": [
+     29,
+     22,
+     15,
+     7,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 29
+     },
+     {
+      "damage": 79,
+      "knots": 22
+     },
+     {
+      "damage": 159,
+      "knots": 15
+     },
+     {
+      "damage": 238,
+      "knots": 7
+     },
+     {
+      "damage": 285,
+      "knots": 0
+     },
+     {
+      "damage": 317,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_type89_12_7cm40",
+    "main_gun_verbatim": "F(2)2 Type 89 12.7cm/40",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(2)2 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "12 Type 96 25mm (1.4)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "4 Midships catapults, 1 Elevator, 24 Floatplanes",
+    "sensors": null,
+    "special_damage_modifier_pct": -25,
+    "remarks_summary": "Seaplane tender. Auxiliary, special damage modifier of -25%. 1941: modified with midget-submarine transports, 12 aircraft and 12 46-ton Type A midget subs; subs launched through stern doors, two at a time in 17 minutes while underway. 1942 - 43: Both units converted to light aircraft carriers, listed separately.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "F(2)2 Type 89 12.7cm/40",
+    "ship_specific": "Chitose AV configuration; the 1943 CVL conversion (A-10) is a different type and is not used.",
+    "conflicts": [
+     "Crew 原页留空。",
+     "1943 CVL 改装卡 A-10 与 identity type AV 不同，未用于本卡。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-53 只给舰卡（DP/航速/武备/航空队），未给 Advance per 45°、Accel/Decel 与 crew；辅助舰 -25% 也不足以补这些量。按规范不采用其他舰/尺级默认值。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "crew"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Chitose"
+    ],
+    "hits": {
+     "emperor": [
+      4,
+      13,
+      56
+     ]
+    },
+    "hit_review": "audit emperor 4/13/56：4 索引、13 是 A-10 (Chitose 1943 CVL)、56 是 A-53 AV 卡；AV 卡用 p.56，CVL 页未用。"
+   },
+   "conflicts": [
+    "Crew 原页留空。",
+    "1943 CVL 改装卡 A-10 与 identity type AV 不同，未用于本卡。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NISSHIN",
+   "name": "日进",
+   "name_en": "Nisshin",
+   "side": "axis",
+   "type": "AV",
+   "class_profile": "ijn_nisshin_av",
+   "class_name": "Nisshin",
+   "class_label_zh": "日进级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      57
+     ],
+     "printed_pages": [
+      "A-54"
+     ],
+     "role": "Nisshin AVM card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true,
+      "type_printed": "AVM"
+     }
+    }
+   ],
+   "source_note": "A-54 舰卡逐页目视核对：card type AVM（水上机母舰/布雷舰），11317 std，DP 0/81/161/242/290/322，28/21/14/7/0，2F/P&S(2)3 14cm/50，4 弹射器/24 机，18×25mm。按任务要求 profile.kind 标 AV，card_type_verbatim 保留 AVM。",
+   "profile": {
+    "profile_id": "ijn_nisshin_av",
+    "class": "Nisshin",
+    "class_label_zh": "日进级",
+    "side": "axis",
+    "kind": "AV",
+    "size_class_en": "B/Medium",
+    "configuration": "Nisshin AVM seaplane tender / minelayer card",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      57
+     ],
+     "printed_pages": [
+      "A-54"
+     ],
+     "label": "Nisshin AVM card"
+    },
+    "displacement_std_tons": 11317,
+    "in_class": 1,
+    "in_service": "1942",
+    "in_service_year": 1942,
+    "crew": 948,
+    "propulsion": "Diesel",
+    "signature": "Medium/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     81,
+     161,
+     242,
+     290,
+     322
+    ],
+    "speed_knots": [
+     28,
+     21,
+     14,
+     7,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 28
+     },
+     {
+      "damage": 81,
+      "knots": 21
+     },
+     {
+      "damage": 161,
+      "knots": 14
+     },
+     {
+      "damage": 242,
+      "knots": 7
+     },
+     {
+      "damage": 290,
+      "knots": 0
+     },
+     {
+      "damage": 322,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_14cm50",
+    "main_gun_verbatim": "2F/P&S(2)3 3rd Yr Type 14cm/50",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "18 Type 96 25mm (2.2)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "4 Midships catapults, 24 Floatplanes",
+    "sensors": null,
+    "special_damage_modifier_pct": -25,
+    "card_type_verbatim": "AVM",
+    "remarks_summary": "Can carry 24 floatplanes, or 12 floatplanes and 700 mines. Mine-laying doors in the stern. Auxiliary, special damage modifier of -25%. 1942: modified to carry 12 Type A midget subs and 12 floatplanes. Operated as a troop transport during the Bougainville operations. 22 Jul 43: sunk by US aircraft.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "2F/P&S(2)3 3rd Yr Type 14cm/50",
+    "ship_specific": "Nisshin is printed AVM; recorded as AV per task, with card_type_verbatim AVM.",
+    "conflicts": [
+     "原页类型 AVM；identity/catalog 与任务口径为 AV，profile.kind=AV，card_type_verbatim=AVM。",
+     "Area AA 原页未印；无装甲。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-54 未给 Advance per 45°、Accel/Decel；Armor Rating 0、Area AA 行未印。无法无推断转成完整 ShipDef。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "armor_belt",
+     "armor_deck"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Nisshin"
+    ],
+    "hits": {
+     "emperor": [
+      5,
+      19,
+      57
+     ]
+    },
+    "hit_review": "audit emperor 5/19/57：5 索引、19 为 Asama/A-16 邻页、57 是 A-54 AVM 卡；用 p.57。"
+   },
+   "conflicts": [
+    "原页类型 AVM；identity/catalog 与任务口径为 AV，profile.kind=AV，card_type_verbatim=AVM。",
+    "Area AA 原页未印；无装甲。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATO",
+   "name": "长门",
+   "name_en": "Nagato",
+   "side": "axis",
+   "type": "BB",
+   "class_profile": "ijn_nagato_1936_bb",
+   "class_name": "Nagato (1936)",
+   "class_label_zh": "长门级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "role": "Nagato (1936) class card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true
+     }
+    }
+   ],
+   "source_note": "A-5 舰卡逐页目视核对：Nagato (1936)，39130 std，DP 0/209/418/627/752/836，25/19/13/6/0，31/14/165，F/A(2)4 41cm/45，20×25mm。Mutsu 在同卡 Remarks；1943-44 改装为日期注记，不是另一张卡。",
+   "profile": {
+    "profile_id": "ijn_nagato_1936_bb",
+    "class": "Nagato (1936)",
+    "class_label_zh": "长门级",
+    "side": "axis",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "configuration": "1933-36 reconstruction configuration (Nagato 1933-Jan 36 / Mutsu 1934-Sep 36)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "label": "Nagato (1936) class card"
+    },
+    "displacement_std_tons": 39130,
+    "in_class": 2,
+    "in_service": "1936 (1920)",
+    "in_service_year": 1920,
+    "crew": 1368,
+    "propulsion": "Steam Turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "31/14/165",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     209,
+     418,
+     627,
+     752,
+     836
+    ],
+    "speed_knots": [
+     25,
+     19,
+     13,
+     6,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 25
+     },
+     {
+      "damage": 209,
+      "knots": 19
+     },
+     {
+      "damage": 418,
+      "knots": 13
+     },
+     {
+      "damage": 627,
+      "knots": 6
+     },
+     {
+      "damage": 752,
+      "knots": 0
+     },
+     {
+      "damage": 836,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "P/S(1)18 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "20 Type 96 25mm (2.4)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "1 Midships catapult, 3 E8N1",
+    "sensors": "Type 93 (passive)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Nagato (1933 - Jan 36), Mutsu (1934 - Sep 36). Configuration after the 1933-36 reconstruction: bulges added, horizontal protection improved, hull lengthened, new propulsion plant, main battery elevation increased to 43 deg, secondary battery to 35 deg, (2)4 12.7cm replaced the 8cm, 20 Type 96 25mm added, all TT removed, catapult added. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": {
+     "Nagato": [
+      "May 43: Type 21 radar and 25mm added, Lt AA 2.6.",
+      "Jun 43: Mutsu lost to a probable magazine explosion.",
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 3 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted.",
+      "Jun 44: 2 Type 22, 2 Type 13 radars, 2 14cm guns removed, 68 25mm, Lt AA 8.2.",
+      "Oct 44: Type 3 Model 1 sonar replaced Type 93 (passive) sonar; 98 25mm, Lt AA 11.8."
+     ],
+     "Mutsu": [
+      "1934 - Sep 36: reconstructed to the class configuration.",
+      "8 Jun 43: lost to a probable magazine explosion; the 1943-44 radar/AA refits did not apply."
+     ]
+    },
+    "gun_mounts_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "ship_specific": "Nagato 1936 reconstruction configuration; later 1943-44 refits are dated remarks only.",
+    "conflicts": [
+     "Mutsu 与 Nagato 共用 A-5 级表；Mutsu 1943-06-08 爆沉，1943-44 改装不适用。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-5 未给 Advance per 45°、Accel/Decel，Form 10 也没有 Nagato/Mutsu 逐舰卡；不能把其他尺级或 Yamato 的转向值套到本舰。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Nagato"
+    ],
+    "hits": {
+     "emperor": [
+      5,
+      8,
+      9
+     ]
+    },
+    "hit_review": "audit emperor 5/8/9：5 索引、8 是 A-5 Nagato 卡、9 是 A-6 Kii/Tosa 页；用 p.8。"
+   },
+   "conflicts": [
+    "Mutsu 与 Nagato 共用 A-5 级表；Mutsu 1943-06-08 爆沉，1943-44 改装不适用。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSU",
+   "name": "陆奥",
+   "name_en": "Mutsu",
+   "side": "axis",
+   "type": "BB",
+   "class_profile": "ijn_nagato_1936_bb",
+   "class_name": "Nagato (1936)",
+   "class_label_zh": "长门级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "role": "Nagato (1936) class card / Mutsu remarks",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "mutsu_remark": true
+     }
+    }
+   ],
+   "source_note": "与 Nagato 共用 A-5 级表；Mutsu 1934-Sep 36 重建，8 Jun 43 爆沉。A-5 的 1943-44 日期注记不适用于 Mutsu。",
+   "profile": {
+    "profile_id": "ijn_nagato_1936_bb",
+    "class": "Nagato (1936)",
+    "class_label_zh": "长门级",
+    "side": "axis",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "configuration": "1933-36 reconstruction configuration (Nagato 1933-Jan 36 / Mutsu 1934-Sep 36)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "label": "Nagato (1936) class card"
+    },
+    "displacement_std_tons": 39130,
+    "in_class": 2,
+    "in_service": "1936 (1920)",
+    "in_service_year": 1920,
+    "crew": 1368,
+    "propulsion": "Steam Turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "31/14/165",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     209,
+     418,
+     627,
+     752,
+     836
+    ],
+    "speed_knots": [
+     25,
+     19,
+     13,
+     6,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 25
+     },
+     {
+      "damage": 209,
+      "knots": 19
+     },
+     {
+      "damage": 418,
+      "knots": 13
+     },
+     {
+      "damage": 627,
+      "knots": 6
+     },
+     {
+      "damage": 752,
+      "knots": 0
+     },
+     {
+      "damage": 836,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "P/S(1)18 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "20 Type 96 25mm (2.4)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "1 Midships catapult, 3 E8N1",
+    "sensors": "Type 93 (passive)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Nagato (1933 - Jan 36), Mutsu (1934 - Sep 36). Configuration after the 1933-36 reconstruction: bulges added, horizontal protection improved, hull lengthened, new propulsion plant, main battery elevation increased to 43 deg, secondary battery to 35 deg, (2)4 12.7cm replaced the 8cm, 20 Type 96 25mm added, all TT removed, catapult added. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": {
+     "Nagato": [
+      "May 43: Type 21 radar and 25mm added, Lt AA 2.6.",
+      "Jun 43: Mutsu lost to a probable magazine explosion.",
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 3 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted.",
+      "Jun 44: 2 Type 22, 2 Type 13 radars, 2 14cm guns removed, 68 25mm, Lt AA 8.2.",
+      "Oct 44: Type 3 Model 1 sonar replaced Type 93 (passive) sonar; 98 25mm, Lt AA 11.8."
+     ],
+     "Mutsu": [
+      "1934 - Sep 36: reconstructed to the class configuration.",
+      "8 Jun 43: lost to a probable magazine explosion; the 1943-44 radar/AA refits did not apply."
+     ]
+    },
+    "gun_mounts_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "ship_specific": "Mutsu 1934-36 reconstruction; sunk 8 Jun 43, so later refits do not apply.",
+    "conflicts": [
+     "Mutsu 爆沉于 1943-06-08；级表 1943-44 改装注记不适用。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-5 未给转向/加速值；无 Mutsu 逐舰 Form 10；不套用同尺级默认值。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Nagato"
+    ],
+    "hits": {
+     "emperor": [
+      5,
+      8,
+      9
+     ]
+    },
+    "hit_review": "同 Nagato：用 A-5 p.8；Mutsu 只在 Remarks。"
+   },
+   "conflicts": [
+    "Mutsu 爆沉于 1943-06-08；级表 1943-44 改装注记不适用。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-AMAGI",
+   "name": "天城",
+   "name_en": "Amagi",
+   "side": "axis",
+   "type": "BC",
+   "class_profile": "ijn_amagi_bc",
+   "class_name": "Amagi",
+   "class_label_zh": "天城级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      "A-7"
+     ],
+     "role": "Amagi BC class card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true
+     }
+    }
+   ],
+   "source_note": "A-7 页内 Amagi BC 卡逐页目视核对：40000 std，DP 0/212/424/636/763/848，30/23/15/8/0，23/9/135，5×2 41cm/45，16×14cm/50，4×8cm/40，8 条 610mm 鱼雷。A-7 同页还有 B64/B65/Taiho/Shinano 等，勿混读。",
+   "profile": {
+    "profile_id": "ijn_amagi_bc",
+    "class": "Amagi",
+    "class_label_zh": "天城级",
+    "side": "axis",
+    "kind": "BC",
+    "size_class_en": "A/Large",
+    "configuration": "Amagi-class battlecruiser design card (never completed)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      "A-7"
+     ],
+     "label": "Amagi class card"
+    },
+    "displacement_std_tons": 40000,
+    "in_class": "0 + 4",
+    "in_service": "1924",
+    "in_service_year": 1924,
+    "crew": 1600,
+    "propulsion": "Steam turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "23/9/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     212,
+     424,
+     636,
+     763,
+     848
+    ],
+    "speed_knots": [
+     30,
+     23,
+     15,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 30
+     },
+     {
+      "damage": 212,
+      "knots": 23
+     },
+     {
+      "damage": 424,
+      "knots": 15
+     },
+     {
+      "damage": 636,
+      "knots": 8
+     },
+     {
+      "damage": 763,
+      "knots": 0
+     },
+     {
+      "damage": 848,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "2F/P&S/2A(2)5 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "Casemate(1)16 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 8cm/40 (0.5)",
+    "light_aa_verbatim": null,
+    "torpedoes_verbatim": "P/S(4)2 610mm TT w/4 8th Yr Type No.2 torps",
+    "torpedo_model": "jp_8th_yr_type_no2",
+    "aircraft": null,
+    "sensors": null,
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Amagi, Akagi, Atago, Takao. Battlecruisers cancelled by the Washington Treaty. Amagi and Akagi converted to CV. Amagi irreparably damaged in the 1923 Kanto earthquake. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "2F/P&S/2A(2)5 3rd Yr Type 41cm/45",
+    "ship_specific": "Amagi BC design; never completed. Akagi is a sister in the same card remarks.",
+    "conflicts": [
+     "A-9 的 Akagi CV 与 A-8 的 Amagi CV 同页/邻页；identity type BC，CV 卡按任务排除。",
+     "A-7 的 Amagi BC 卡没有 light AA、aircraft、sensors 行。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values_paper_ship",
+    "detail": "Amagi 级 BC 未建成；A-7 无 Advance per 45°、Accel/Decel，Form 10 也没有 Amagi BC 卡。不能把其他战巡/战列舰的转向值套到纸面设计。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "light_aa",
+     "aircraft",
+     "sensors"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Amagi"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      7,
+      13,
+      17,
+      153,
+      154
+     ],
+     "emperor": [
+      4,
+      9,
+      10,
+      11,
+      12,
+      29
+     ]
+    },
+    "hit_review": "audit emperor 4/9/10/11/12/29：10 = A-7 Amagi BC 卡；11 = A-8 Amagi/Unryu CV，12 = A-9 Akagi CV，按 type 排除；4/9/29 为索引/邻页。用 p.10。"
+   },
+   "conflicts": [
+    "A-9 的 Akagi CV 与 A-8 的 Amagi CV 同页/邻页；identity type BC，CV 卡按任务排除。",
+    "A-7 的 Amagi BC 卡没有 light AA、aircraft、sensors 行。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-OWARI",
+   "name": "尾张",
+   "name_en": "Owari",
+   "side": "axis",
+   "type": "BC",
+   "class_profile": "ijn_kii_bc",
+   "class_name": "Kii",
+   "class_label_zh": "纪伊级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      9
+     ],
+     "printed_pages": [
+      "A-6"
+     ],
+     "role": "Kii class card (Owari in remarks)",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "owari_in_remarks": true
+     }
+    }
+   ],
+   "source_note": "A-6 页 Kii 级卡逐页目视核对：41400 n，DP 0/217/434/651/781/868，30/23/15/8/0，29/12/135，5×2 41cm/45，20×14cm/50，8 条 610mm 鱼雷；Remarks 列 Kii、Owari、No.13、No.14，并记华盛顿条约取消。audit 的 american/home/german Kii hits 未用于本卡；本卡只取 Emperor A-6 的 Kii 级卡。",
+   "profile": {
+    "profile_id": "ijn_kii_bc",
+    "class": "Kii",
+    "class_label_zh": "纪伊级",
+    "side": "axis",
+    "kind": "BC",
+    "size_class_en": "A/Large",
+    "configuration": "Kii-class fast battleship design card (never completed)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      9
+     ],
+     "printed_pages": [
+      "A-6"
+     ],
+     "label": "Kii class card"
+    },
+    "displacement_std_tons": 41400,
+    "displacement_note": "Card prints 41400 n (normal), not standard; recorded as printed.",
+    "in_class": 4,
+    "in_service": "1926",
+    "in_service_year": 1926,
+    "crew": null,
+    "crew_note": "Card prints Crew: ?",
+    "propulsion": "Steam Turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "29/12/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     217,
+     434,
+     651,
+     781,
+     868
+    ],
+    "speed_knots": [
+     30,
+     23,
+     15,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 30
+     },
+     {
+      "damage": 217,
+      "knots": 23
+     },
+     {
+      "damage": 434,
+      "knots": 15
+     },
+     {
+      "damage": 651,
+      "knots": 8
+     },
+     {
+      "damage": 781,
+      "knots": 0
+     },
+     {
+      "damage": 868,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "2F/P&S/2A (2)5 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "Casemate (1)20 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 8cm/40 (0.5)",
+    "light_aa_verbatim": null,
+    "torpedoes_verbatim": "P/S (4)2 610mm TT/w 4 8th Yr Type No. 2 torps",
+    "torpedo_model": "jp_8th_yr_type_no2",
+    "aircraft": null,
+    "sensors": null,
+    "special_damage_modifier_pct": -15,
+    "card_type_verbatim": "BB",
+    "remarks_summary": "Kii, Owari, No.13 (Mito?), No. 14. Fast battleships. Canceled by the Washington Treaty. Designed before 1925, special damage modifier of -15%.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "2F/P&S/2A (2)5 3rd Yr Type 41cm/45",
+    "ship_specific": "Owari is the second Kii-class unit, named only in the Kii card remarks; no separate card.",
+    "conflicts": [
+     "A-6 标题行为 Kii 级，Owari 只在 Remarks；无单舰卡。",
+     "Crew 原页 '?'；Displacement 原页 '41400 n'（normal），profile 保留原值并注明。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values_paper_ship",
+    "detail": "Kii/Owari 未建成；A-6 无 Advance per 45°、Accel/Decel，Form 10 无 Kii 级卡；Crew 原页为 '?'。不套用其他尺级默认值。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "crew"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kii"
+    ],
+    "hits": {
+     "form10": [
+      32,
+      33,
+      34
+     ],
+     "american": [
+      109,
+      126,
+      127
+     ],
+     "emperor": [
+      5,
+      9
+     ],
+     "home": [
+      9,
+      10,
+      11,
+      15,
+      16,
+      17
+     ],
+     "german": [
+      75,
+      76,
+      77,
+      78,
+      79,
+      80
+     ]
+    },
+    "hit_review": "audit emperor 5/9：9 = A-6 Kii 卡；5 索引。form10/american/home/german 的 Kii hits 未用于本卡；本卡只取 Emperor A-6。"
+   },
+   "conflicts": [
+    "A-6 标题行为 Kii 级，Owari 只在 Remarks；无单舰卡。",
+    "Crew 原页 '?'；Displacement 原页 '41400 n'（normal），profile 保留原值并注明。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-AKAGI",
+   "name": "赤城",
+   "name_en": "Akagi",
+   "side": "axis",
+   "type": "BC",
+   "class_profile": "ijn_amagi_bc",
+   "class_name": "Amagi",
+   "class_label_zh": "天城级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      "A-7"
+     ],
+     "role": "Amagi BC class card (Akagi is a sister in remarks)",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "akagi_in_remarks": true
+     }
+    }
+   ],
+   "source_note": "identity type BC；A-7 Amagi BC 卡 Remarks 明确列 Amagi、Akagi、Atago、Takao，并记 Amagi/Akagi 改航母。A-9 Akagi (1938) 与 A-9 Akagi 为 CV，按任务排除。Akagi BC 无单独成军卡，按同型级表复用。",
+   "profile": {
+    "profile_id": "ijn_amagi_bc",
+    "class": "Amagi",
+    "class_label_zh": "天城级",
+    "side": "axis",
+    "kind": "BC",
+    "size_class_en": "A/Large",
+    "configuration": "Amagi-class battlecruiser design card (never completed)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      "A-7"
+     ],
+     "label": "Amagi class card"
+    },
+    "displacement_std_tons": 40000,
+    "in_class": "0 + 4",
+    "in_service": "1924",
+    "in_service_year": 1924,
+    "crew": 1600,
+    "propulsion": "Steam turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "23/9/135",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     212,
+     424,
+     636,
+     763,
+     848
+    ],
+    "speed_knots": [
+     30,
+     23,
+     15,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 30
+     },
+     {
+      "damage": 212,
+      "knots": 23
+     },
+     {
+      "damage": 424,
+      "knots": 15
+     },
+     {
+      "damage": 636,
+      "knots": 8
+     },
+     {
+      "damage": 763,
+      "knots": 0
+     },
+     {
+      "damage": 848,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "2F/P&S/2A(2)5 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "Casemate(1)16 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(1)4 3rd Yr Type 8cm/40 (0.5)",
+    "light_aa_verbatim": null,
+    "torpedoes_verbatim": "P/S(4)2 610mm TT w/4 8th Yr Type No.2 torps",
+    "torpedo_model": "jp_8th_yr_type_no2",
+    "aircraft": null,
+    "sensors": null,
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Amagi, Akagi, Atago, Takao. Battlecruisers cancelled by the Washington Treaty. Amagi and Akagi converted to CV. Amagi irreparably damaged in the 1923 Kanto earthquake. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "2F/P&S/2A(2)5 3rd Yr Type 41cm/45",
+    "ship_specific": "Akagi BC design; the completed Akagi was a CV (A-9) and is excluded by type.",
+    "conflicts": [
+     "A-9 Akagi CV (1938) 按 type CV 排除，未用于本卡。",
+     "Akagi BC 无单独卡；与 Amagi 共用 A-7 级表。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_turn_or_accel_values_paper_ship",
+    "detail": "Akagi BC 从未建成，A-7 只有 Amagi 级设计卡，无 Advance per 45°、Accel/Decel；Form 10 只有 Akagi CV 卡（p.44），不能当 BC 用。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "light_aa",
+     "aircraft",
+     "sensors"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Amagi"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      7,
+      13,
+      17,
+      153,
+      154
+     ],
+     "emperor": [
+      4,
+      9,
+      10,
+      11,
+      12,
+      29
+     ]
+    },
+    "hit_review": "同 Amagi；A-9 Akagi CV 卡不用于 BC 身份。用 A-7 p.10。"
+   },
+   "conflicts": [
+    "A-9 Akagi CV (1938) 按 type CV 排除，未用于本卡。",
+    "Akagi BC 无单独卡；与 Amagi 共用 A-7 级表。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NACHI",
+   "name": "那智",
+   "name_en": "Nachi",
+   "side": "axis",
+   "type": "CA",
+   "class_profile": "ijn_myoko_1935_ca",
+   "class_name": "Myoko (1935)",
+   "class_label_zh": "妙高级",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      67
+     ],
+     "printed_pages": [
+      67
+     ],
+     "role": "Nachi CA - Dec 1941 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Nachi CA",
+      "class_printed": "Myoko class IJN",
+      "dp": "471",
+      "speed": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      18
+     ],
+     "printed_pages": [
+      "A-15"
+     ],
+     "role": "Myoko (1935) class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      16
+     ],
+     "printed_pages": [
+      "A-13"
+     ],
+     "role": "Myoko/Nachi dated remarks",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      98
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "20cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "Form 10 p.67（Dec 1941）逐页目视核对：DP 471、33/25/16/8/0、5×2 20cm/50、8 条九三式、7/5、转 300/2、加速 10/5、减速 12。A-15 级表 1935 配置与 p.67 一致；A-13 的 Nachi 1943-44 改装为日期注记。",
+   "profile": {
+    "profile_id": "ijn_myoko_1935_ca",
+    "class": "Myoko (1935)",
+    "class_label_zh": "妙高级",
+    "side": "axis",
+    "kind": "CA",
+    "size_class_en": "B/Medium",
+    "configuration": "1935 class configuration (Myoko Nov 34-Mar 35, Nachi Feb 35-Jun 35, Haguro Feb 35-36, Ashigara Nov 34-Nov 36)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      18
+     ],
+     "printed_pages": [
+      "A-15"
+     ],
+     "label": "Myoko (1935) class card"
+    },
+    "displacement_std_tons": 13000,
+    "in_class": 4,
+    "in_service": "1935 (1929)",
+    "in_service_year": 1929,
+    "crew": 832,
+    "propulsion": "Steam Turbine",
+    "signature": "Medium/Noisy",
+    "armor_rating": "7/5",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     118,
+     236,
+     353,
+     424,
+     471
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 118,
+      "knots": 25
+     },
+     {
+      "damage": 236,
+      "knots": 16
+     },
+     {
+      "damage": 353,
+      "knots": 8
+     },
+     {
+      "damage": 424,
+      "knots": 0
+     },
+     {
+      "damage": 471,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_no2_20cm50",
+    "main_gun_verbatim": "2F/P&S/2A(2)5 3rd Yr Type No.2 20cm/50",
+    "secondary_verbatim": "P/S(2)4 Type 89 12.7cm/40",
+    "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "(2)4 Type 93 13.2mm, 2 Type 92 7.7mm (0.6)",
+    "torpedoes_verbatim": "P/S(4)2 610mm TT w/8 Type 93 torps (4 reserve torp/mount for quick reload in 6 minutes)",
+    "torpedo_model": "jp_type93_m1_mod1_2",
+    "aircraft": "2 Midships Catapult, 2 E8N1 Dave",
+    "sensors": "None (Dec 1941 Form 10); Type 21 from Jun 43 per A-13",
+    "special_damage_modifier_pct": 0,
+    "remarks_summary": "Reconstructed. Fixed TT replaced by two trainable quad mounts (four planned but only two installed), 12cm/45 replaced by twin 12.7cm/40, single catapult replaced by two, bulged to compensate for increased weight. 1936: one E7K2 Alf added to the aircraft complement. 1938: Type 93 torpedoes replaced the Type 90s.",
+    "dated_remarks": {
+     "Nachi": [
+      "27 Mar 43: damaged by gunfire in the Battle of Komandorski Islands.",
+      "3 Apr - 11 May 43: repaired; Type 21 radar, (2)4 25mm added, (2)2 13.2mm removed, Lt AA 1.9.",
+      "22 Nov 43 - 22 Jan 44: Type 22 radar, (1)8 25mm added, Lt AA 2.9.",
+      "Sep 44: Type 13 radar, Model 3 and E-27 Kai 3 ESM, (2)2 (1)20 25mm added, Lt AA 5.8; aft TT removed.",
+      "29 Oct 44: sunk in Manila Bay by aircraft attack."
+     ]
+    },
+    "gun_mounts_verbatim": "2F/P&S/2A(2)5 3rd Yr Type No.2 20cm/50",
+    "ship_specific": "Nachi 1935 class configuration; Dec 1941 Form 10 used for the ShipDef.",
+    "conflicts": [
+     "A-13 记 Nachi 1943-03 后加 Type 21、1944 加 Type 22/13；Form 10 p.67（Dec 41）无雷达。ShipDef 取 Dec 41。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 2,
+     "accel_knots_per_turn": 10,
+     "accel_high_knots_per_turn": 5,
+     "decel_knots_per_turn": 12
+    },
+    "form10": {
+     "document": "rising_sun_form10",
+     "pdf_page": 67,
+     "period_label": "Dec 1941 (Form 10 p.67)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-NACHI",
+    "name": "那智",
+    "side": "axis",
+    "kind": "CA",
+    "size": "B",
+    "turn_size": "B",
+    "in_service_year": 1929,
+    "max_knots": 33,
+    "dp": 471,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 118,
+      "knots": 25
+     },
+     {
+      "damage": 236,
+      "knots": 16
+     },
+     {
+      "damage": 353,
+      "knots": 8
+     },
+     {
+      "damage": 424,
+      "knots": 0
+     },
+     {
+      "damage": 471,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 7,
+    "armor_deck": 5,
+    "annex_special_damage_modifier_pct": 0,
+    "gun": {
+     "name": "三年式二号 20cm/50 APC",
+     "caliber_mm": 200,
+     "shell": "APC",
+     "armor_piercing": true,
+     "range_yd": [
+      7000,
+      16000,
+      25600,
+      32000
+     ],
+     "damage": [
+      26,
+      20,
+      17,
+      15
+     ],
+     "pen_belt": [
+      34,
+      23,
+      16,
+      12
+     ],
+     "pen_deck": [
+      null,
+      null,
+      5,
+      10
+     ],
+     "barrels": 10,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 98,
+      "printed_page": "C-2"
+     }
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2（Long Lance）",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "warhead_kg": 490,
+     "contact_fuze": true,
+     "tubes": 8,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 4
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 4
+      }
+     ],
+     "reload_seconds": 360,
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     },
+     "speed_options": [
+      {
+       "speed_knots": 49,
+       "range_yd": 22000
+      },
+      {
+       "speed_knots": 41,
+       "range_yd": 35000
+      },
+      {
+       "speed_knots": 37,
+       "range_yd": 43800
+      }
+     ]
+    },
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       67
+      ],
+      "printed_pages": [
+       67
+      ],
+      "label": "Nachi CA - Dec 1941"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       18
+      ],
+      "printed_pages": [
+       "A-15"
+      ],
+      "label": "Myoko (1935) class card"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       98
+      ],
+      "printed_pages": [
+       "C-2"
+      ],
+      "label": "20cm/50 gun table"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       105
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "label": "Type 93 torpedo table"
+     }
+    ],
+    "source_profile": "ijn_myoko_1935_ca",
+    "period_label": "Dec 1941 (Form 10 p.67)"
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Myoko"
+    ],
+    "hits": {
+     "form10": [
+      5,
+      14,
+      17,
+      18,
+      20,
+      61
+     ],
+     "emperor": [
+      5,
+      15,
+      16,
+      18,
+      121
+     ]
+    },
+    "hit_review": "audit emperor 5/15/16/18/121：18 = A-15 Myoko 卡，16 = A-13 Nachi 日期注记；5/15/121 为索引/邻页。form10 的 5/14/17/18/20/61 为索引页，逐舰页 p.67。"
+   },
+   "conflicts": [
+    "A-13 记 Nachi 1943-03 后加 Type 21、1944 加 Type 22/13；Form 10 p.67（Dec 41）无雷达。ShipDef 取 Dec 41。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-TATSUTA",
+   "name": "龙田",
+   "name_en": "Tatsuta",
+   "side": "axis",
+   "type": "CL",
+   "class_profile": "ijn_tenryu_cl",
+   "class_name": "Tenryu",
+   "class_label_zh": "天龙级",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      80
+     ],
+     "printed_pages": [
+      80
+     ],
+     "role": "Tatsuta CL - Feb 42 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Tatsuta CL",
+      "class_printed": "Tenryu class IJN",
+      "dp": "158",
+      "speed": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "A-20"
+     ],
+     "role": "Tenryu class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "14cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "6th Yr Type torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "Form 10 p.80（Feb 42）逐页目视核对：DP 158、33/25/16/8/0、4×14cm/50、2×3 533mm 六年式、4/2、转 300/1、加速 12/6、减速 15。A-20 级表 6th Yr Type 鱼雷与本卡一致；未复用 savo_runtime 的 Tenryu（其鱼雷行为 8th Yr No.2，与本级表冲突）。",
+   "profile": {
+    "profile_id": "ijn_tenryu_cl",
+    "class": "Tenryu",
+    "class_label_zh": "天龙级",
+    "side": "axis",
+    "kind": "CL",
+    "size_class_en": "C/Small",
+    "configuration": "1930s-1942 light cruiser configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "A-20"
+     ],
+     "label": "Tenryu class card"
+    },
+    "displacement_std_tons": 3230,
+    "in_class": 2,
+    "in_service": "1919",
+    "in_service_year": 1919,
+    "crew": 337,
+    "propulsion": "Steam Turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "4/2",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     40,
+     79,
+     119,
+     142,
+     158
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 40,
+      "knots": 25
+     },
+     {
+      "damage": 79,
+      "knots": 16
+     },
+     {
+      "damage": 119,
+      "knots": 8
+     },
+     {
+      "damage": 142,
+      "knots": 0
+     },
+     {
+      "damage": 158,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_14cm50",
+    "main_gun_verbatim": "F/2P&S/A(1)4 3rd Yr Type 14cm/50",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(1)1 3rd Yr Type 8cm/40 (0.1)",
+    "light_aa_verbatim": "2 Type 93 13.2mm (0.1)",
+    "torpedoes_verbatim": "P&S(3)2 533mm TT w/3 6th Yr Type torp",
+    "torpedo_model": "jp_6th_yr_type",
+    "aircraft": null,
+    "sensors": "None",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Tenryu, Tatsuta. Laid down before 1925, special damage modifier of -15%. Early 1930s: Gunnery Standard III. 1932: 2 Type 93 13.2mm added, Lt AA 0.2. Feb 42: (2)2 25mm added, Lt AA 1.0. 18 Dec 42: Tenryu torpedoed and sunk by USS Albacore. 13 Mar 43: Tatsuta torpedoed and sunk by USS Sand Lance.",
+    "dated_remarks": {
+     "Tatsuta": [
+      "Feb 42: (2)2 25mm added, Lt AA 1.0.",
+      "Aug - Sep 43: Type 21 and Type 22 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted; (2)1 25mm added, Lt AA 1.2.",
+      "13 Mar 43: torpedoed and sunk by USS Sand Lance."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 14cm/50",
+    "ship_specific": "Tatsuta Feb 42 configuration; Tenryu class card used for the profile.",
+    "conflicts": [
+     "A-20 级表 Light AA 2×13.2mm (0.1)；Form 10 p.80 印 4×25mm + 4×13mm (1.0)。ShipDef 采用 Form 10 Feb 42 舰页值，级表差异保留。",
+     "savo-runtime savo_tenryu 的鱼雷是 8th Yr No.2；A-20/Form 10 均印 6th Yr Type，本卡不沿用 savo 值。",
+     "A-20 在 Tatsuta 名下同时印 Aug-Sep 43 雷达改装与 13 Mar 43 沉没；日期矛盾，原样保留，未用于 ShipDef（ShipDef 取 Feb 42）。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": "rising_sun_form10",
+     "pdf_page": 80,
+     "period_label": "Feb 1942 (Form 10 p.80)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-TATSUTA",
+    "name": "龙田",
+    "side": "axis",
+    "kind": "CL",
+    "size": "C",
+    "turn_size": "C",
+    "in_service_year": 1919,
+    "max_knots": 33,
+    "dp": 158,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 40,
+      "knots": 25
+     },
+     {
+      "damage": 79,
+      "knots": 16
+     },
+     {
+      "damage": 119,
+      "knots": 8
+     },
+     {
+      "damage": 142,
+      "knots": 0
+     },
+     {
+      "damage": 158,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 4,
+    "armor_deck": 2,
+    "annex_special_damage_modifier_pct": -15,
+    "gun": {
+     "name": "三年式 14cm/50 SpCOM",
+     "caliber_mm": 140,
+     "shell": "SpCOM",
+     "armor_piercing": false,
+     "range_yd": [
+      6600,
+      13200,
+      17600,
+      22000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 4,
+     "gs": 3,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "六年式 533mm",
+     "speed_knots": 36,
+     "range_yd": 7700,
+     "warhead": 73,
+     "warhead_kg": 200,
+     "contact_fuze": true,
+     "tubes": 6,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null,
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     },
+     "speed_options": [
+      {
+       "speed_knots": 36,
+       "range_yd": 7700
+      },
+      {
+       "speed_knots": 32,
+       "range_yd": 10900
+      },
+      {
+       "speed_knots": 26,
+       "range_yd": 16400
+      }
+     ]
+    },
+    "torpedo_speed_options_note": "F-1 prints only 7.7 kyd/36 kt for the 6th Yr Type; the 10.9 kyd/32 kt and 16.4 kyd/26 kt settings are printed on Form 10 p.80.",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       80
+      ],
+      "printed_pages": [
+       80
+      ],
+      "label": "Tatsuta CL - Feb 42"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "A-20"
+      ],
+      "label": "Tenryu class card"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       97
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "label": "14cm/50 gun table"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       105
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "label": "6th Yr Type torpedo table"
+     }
+    ],
+    "source_profile": "ijn_tenryu_cl",
+    "period_label": "Feb 1942 (Form 10 p.80)"
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Tenryu"
+    ],
+    "hits": {
+     "form10": [
+      5,
+      16,
+      21,
+      80,
+      81
+     ],
+     "emperor": [
+      6,
+      23
+     ]
+    },
+    "hit_review": "audit emperor 6/23：23 = A-20 Tenryu 卡；form10 5/16/21/80/81：80 = Tatsuta 页，其余索引。用 p.80。"
+   },
+   "conflicts": [
+    "A-20 级表 Light AA 2×13.2mm (0.1)；Form 10 p.80 印 4×25mm + 4×13mm (1.0)。ShipDef 采用 Form 10 Feb 42 舰页值，级表差异保留。",
+    "savo-runtime savo_tenryu 的鱼雷是 8th Yr No.2；A-20/Form 10 均印 6th Yr Type，本卡不沿用 savo 值。",
+    "A-20 在 Tatsuta 名下同时印 Aug-Sep 43 雷达改装与 13 Mar 43 沉没；日期矛盾，原样保留，未用于 ShipDef（ShipDef 取 Feb 42）。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MURAKUMO",
+   "name": "丛云",
+   "name_en": "Murakumo",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_fubuki_dd",
+   "class_name": "Fubuki",
+   "class_label_zh": "吹雪级",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      160
+     ],
+     "printed_pages": [
+      160
+     ],
+     "role": "Murakumo DD - Apr-May 42 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Murakumo DD",
+      "class_printed": "Fubuki class IJN",
+      "dp": "139",
+      "speed": "34 26 17 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30
+     ],
+     "printed_pages": [
+      "A-27"
+     ],
+     "role": "Fubuki class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12.7cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "Form 10 p.160（Apr-May 42）逐页目视核对：DP 139、34/26/17/8/0、3×2 12.7cm/50、3×3 九三式、2×13mm、转 300/1。A-27 级表（1928 配置）记 1778 std / DP 106 / 38 节 / 8th Yr Type；两者为不同时期配置，本卡 ShipDef 取 Form 10 1942 舰页。",
+   "profile": {
+    "profile_id": "ijn_fubuki_dd",
+    "class": "Fubuki",
+    "class_label_zh": "吹雪级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "configuration": "Class card baseline (1928 special-type destroyer)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30
+     ],
+     "printed_pages": [
+      "A-27"
+     ],
+     "label": "Fubuki class card"
+    },
+    "displacement_std_tons": 1778,
+    "in_class": "10/10",
+    "in_service": "1928",
+    "in_service_year": 1928,
+    "crew": 197,
+    "propulsion": "Steam Turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     27,
+     53,
+     80,
+     95,
+     106
+    ],
+    "speed_knots": [
+     38,
+     29,
+     19,
+     10,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 27,
+      "knots": 29
+     },
+     {
+      "damage": 53,
+      "knots": 19
+     },
+     {
+      "damage": 80,
+      "knots": 10
+     },
+     {
+      "damage": 95,
+      "knots": 0
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_127mm50",
+    "main_gun_verbatim": "F/A(2)3 3rd Yr Type 12.7cm/50",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.3)",
+    "light_aa_verbatim": "2 Type 92 7.7mm (Group I), 2 Type 93 13.2mm (Group II) (0.1)",
+    "torpedoes_verbatim": "P&S(3)3 610mm TT w/3 8th Yr Type torp (3 reserve torp/mount for reload in 15 minutes)",
+    "torpedo_model": "jp_8th_yr_type_no1",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Special Type destroyer. First ten units (Group I) main battery max elevation 40 deg, surface fire only. Second ten units (Group II) max elevation 75 deg, AA capable, but no HA director, local control only. Duralumin extensively used in bridge construction. Light metal superstructure, special damage modifier of -15%. Mines can be replaced by an additional 18 DC. 1935-36: class refitted to improve stability, listed separately.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "F/A(2)3 3rd Yr Type 12.7cm/50",
+    "ship_specific": "Murakumo Apr-May 42 configuration; class card 1928 baseline recorded separately.",
+    "conflicts": [
+     "A-27 级表 1778 std、crew 197、DP 106、38 节、8th Yr Type；Form 10 p.160 2090 std、crew 221、DP 139、34 节、Type 93。profile 记级表，ShipDef 取 Form 10 Apr-May 42。",
+     "Form 10 p.159（Dec 1941）与 p.160（Apr-May 42）两页均存在；ShipDef 取较晚的 p.160。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": "rising_sun_form10",
+     "pdf_page": 160,
+     "period_label": "Apr-May 1942 (Form 10 p.160)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-MURAKUMO",
+    "name": "丛云",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "turn_size": "C",
+    "in_service_year": 1928,
+    "max_knots": 34,
+    "dp": 139,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 34
+     },
+     {
+      "damage": 35,
+      "knots": 26
+     },
+     {
+      "damage": 70,
+      "knots": 17
+     },
+     {
+      "damage": 104,
+      "knots": 8
+     },
+     {
+      "damage": 125,
+      "knots": 0
+     },
+     {
+      "damage": 139,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "annex_special_damage_modifier_pct": -15,
+    "gun": {
+     "name": "三年式 12.7cm/50 COM",
+     "caliber_mm": 127,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      6000,
+      12000,
+      16000,
+      20000
+     ],
+     "damage": [
+      16,
+      13,
+      11,
+      10
+     ],
+     "pen_belt": [
+      5,
+      3,
+      2,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2（Long Lance）",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "warhead_kg": 490,
+     "contact_fuze": true,
+     "tubes": 9,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 3
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 3
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 3
+      }
+     ],
+     "reload_seconds": 900,
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     },
+     "speed_options": [
+      {
+       "speed_knots": 49,
+       "range_yd": 22000
+      },
+      {
+       "speed_knots": 41,
+       "range_yd": 35000
+      },
+      {
+       "speed_knots": 37,
+       "range_yd": 43800
+      }
+     ]
+    },
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       160
+      ],
+      "printed_pages": [
+       160
+      ],
+      "label": "Murakumo DD - Apr-May 42"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       30
+      ],
+      "printed_pages": [
+       "A-27"
+      ],
+      "label": "Fubuki class card"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       97
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "label": "12.7cm/50 gun table"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       105
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "label": "Type 93 torpedo table"
+     }
+    ],
+    "source_profile": "ijn_fubuki_dd",
+    "period_label": "Apr-May 1942 (Form 10 p.160)"
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Fubuki"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      7,
+      13,
+      17,
+      18,
+      20
+     ],
+     "emperor": [
+      4,
+      29,
+      30
+     ]
+    },
+    "hit_review": "audit emperor 4/29/30：30 = A-27 Fubuki 卡；29 = A-26 Fubuki (1936)。form10 3/6/12/19/159/160：160 = Murakumo 页，其余索引。用 p.160。"
+   },
+   "conflicts": [
+    "A-27 级表 1778 std、crew 197、DP 106、38 节、8th Yr Type；Form 10 p.160 2090 std、crew 221、DP 139、34 节、Type 93。profile 记级表，ShipDef 取 Form 10 Apr-May 42。",
+    "Form 10 p.159（Dec 1941）与 p.160（Apr-May 42）两页均存在；ShipDef 取较晚的 p.160。"
+   ]
+  },
+  {
+   "identity": "IBS-U-KM-KARL-GALSTER",
+   "name": "卡尔加尔斯特",
+   "name_en": "Karl Galster",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "km_type_1936_dd",
+   "class_name": "1936",
+   "class_label_zh": "1936 型驱逐舰",
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "shipdef_source": "data/campaign/period/channel-runtime.json",
+   "source_pages": [
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "role": "1936 type class card (Z17-Z22; Z20 Karl Galster)",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      120
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "12.7cm SKC/34 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      124
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "G7a torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "ShipDef 原样复制 data/campaign/period/channel-runtime.json#ships[IBS-U-KM-KARL-GALSTER]；只改写 id/name/source_profile 并加 source/period_label。Gruppe Nord A-11 1936 型卡（Z17-Z22，Z20 为 Karl Galster）交叉核对：DP 153、38 节、5×12.7cm、8 条 G7a、转 300/1。",
+   "profile": {
+    "profile_id": "km_type_1936_dd",
+    "class": "1936",
+    "class_label_zh": "1936 型驱逐舰",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "configuration": "Type 1936 class card (Z17-Z22)",
+    "source": {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "label": "1936 type class card"
+    },
+    "displacement_std_tons": 2411,
+    "in_class": 6,
+    "in_service": "1938",
+    "in_service_year": 1938,
+    "crew": 313,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     38,
+     77,
+     115,
+     138,
+     153
+    ],
+    "speed_knots": [
+     38,
+     29,
+     19,
+     10,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 38,
+      "knots": 29
+     },
+     {
+      "damage": 77,
+      "knots": 19
+     },
+     {
+      "damage": 115,
+      "knots": 10
+     },
+     {
+      "damage": 138,
+      "knots": 0
+     },
+     {
+      "damage": 153,
+      "knots": 0
+     }
+    ],
+    "main_gun": "km_12_7cm_skc34",
+    "main_gun_verbatim": "2座双联装12.7厘米SKC/34火炮（前甲板/左右舷/2座单装）",
+    "main_gun_note": "Printed mount text is ambiguous (2 twin mounts plus 2 single mounts). The channel-runtime ShipDef transcribes 5 single barrels; retained as registered and flagged.",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "(2)2 3.7cm SKC/30, 7 2cm Flak 30 (1.3)",
+    "torpedoes_verbatim": "左右舷4座双联装53.3厘米鱼雷发射管，配备4枚G7a鱼雷",
+    "torpedo_model": "km_g7a",
+    "aircraft": null,
+    "sensors": "FuMO 21 Seetakt; SB (Bug S); GHG (64 elements)",
+    "special_damage_modifier_pct": 0,
+    "remarks_summary": "Z17-Z22. Can carry 60 mines. Similar to the 1934A but with a longer hull. Each torpedo tube has one reload; 32 DC, later 64. Z20 was the only survivor after 1940. Apr 1940: five of the class lost in the first and second battles of Narvik. 1944: Z20 light AA increased to 4 3.7cm Flak M42 and 12 2cm Flak 38, Lt AA 5.4; FuMO 61 Hohentwiel added, FuMO 21 replaced by FuMO 25.",
+    "dated_remarks": {
+     "Karl Galster": [
+      "1944: 4 3.7cm Flak M42, 12 2cm Flak 38, Lt AA 5.4; FuMO 61, FuMO 25."
+     ]
+    },
+    "gun_mounts_verbatim": "2座双联装12.7厘米SKC/34火炮（前甲板/左右舷/2座单装）",
+    "ship_specific": "Type 1936 (Z20); channel-runtime ShipDef copied verbatim.",
+    "conflicts": [
+     "A-11 1936 型卡主炮行 '2座双联装…（前甲板/左右舷/2座单装）' 与鱼雷行 '左右舷4座双联装' 文字含糊；channel-runtime 登记 5 门单装/8 管，原样保留并标注。",
+     "1936 型卡记 1944 年 Z20 轻防空 4×3.7cm+12×2cm (5.4)、FuMO 61/25；ShipDef 未含该后期改装。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": null,
+     "pdf_page": null,
+     "period_label": "Type 1934A/1936 registered ShipDef (channel-runtime)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-KM-KARL-GALSTER",
+    "name": "卡尔加尔斯特",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 38,
+    "dp": 153,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 38,
+      "knots": 29
+     },
+     {
+      "damage": 77,
+      "knots": 19
+     },
+     {
+      "damage": 115,
+      "knots": 10
+     },
+     {
+      "damage": 138,
+      "knots": 0
+     },
+     {
+      "damage": 153,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1938,
+    "gun": {
+     "name": "12.7cm/45 SK C/34 HE",
+     "caliber_mm": 127,
+     "range_yd": [
+      5700,
+      11400,
+      15200,
+      19000
+     ],
+     "damage": [
+      19,
+      16,
+      14,
+      13
+     ],
+     "barrels": 5,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      2,
+      1,
+      1,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      0,
+      1
+     ],
+     "armor_piercing": false,
+     "source": {
+      "document": "gruppe_nord",
+      "pdf_page": 120,
+      "printed_page": "C-2"
+     }
+    },
+    "torpedo": {
+     "name": "G7a (T-I)",
+     "speed_knots": 44,
+     "range_yd": 6500,
+     "warhead": 88,
+     "tubes": 8,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      }
+     ],
+     "source": {
+      "document": "gruppe_nord",
+      "pdf_page": 124,
+      "printed_page": "F-1"
+     }
+    },
+    "source_profile": "channel-runtime#ships.IBS-U-KM-KARL-GALSTER",
+    "source": [
+     {
+      "document": "gruppe_nord",
+      "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+      "pdf_pages": [
+       66
+      ],
+      "printed_pages": [
+       "A-11"
+      ],
+      "label": "1934/1936 type class card"
+     },
+     {
+      "document": "channel_runtime",
+      "file": "data/campaign/period/channel-runtime.json",
+      "pdf_pages": [],
+      "printed_pages": [],
+      "label": "ships[IBS-U-KM-KARL-GALSTER] (registered ShipDef, copied verbatim)"
+     }
+    ],
+    "period_label": "Type 1934A/1936 registered ShipDef (channel-runtime)",
+    "annex_special_damage_modifier_pct": 0
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Karl Galster",
+     "Hans Lody",
+     "Richard Beitzen",
+     "German destroyer"
+    ],
+    "hits": {
+     "german": [
+      3,
+      18
+     ]
+    },
+    "hit_review": "audit german 3/18：3 = 目录，18 = 剧本页；不是 A-11 舰卡。A-11 p.66 为逐页目视核对的 1936 型卡。"
+   },
+   "conflicts": [
+    "A-11 1936 型卡主炮行 '2座双联装…（前甲板/左右舷/2座单装）' 与鱼雷行 '左右舷4座双联装' 文字含糊；channel-runtime 登记 5 门单装/8 管，原样保留并标注。",
+    "1936 型卡记 1944 年 Z20 轻防空 4×3.7cm+12×2cm (5.4)、FuMO 61/25；ShipDef 未含该后期改装。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NATSUGUMO",
+   "name": "夏云",
+   "name_en": "Natsugumo",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_asashio_dd",
+   "class_name": "Asashio",
+   "class_label_zh": "朝潮级",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      123
+     ],
+     "printed_pages": [
+      123
+     ],
+     "role": "Natsugumo DD - Dec 1941 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Natsugumo DD",
+      "class_printed": "Asashio class IJN",
+      "dp": "135",
+      "speed": "35 26 18 9 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      28
+     ],
+     "printed_pages": [
+      "A-25"
+     ],
+     "role": "Asashio class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12.7cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "Form 10 p.123（Dec 1941）逐页目视核对：DP 135、35/26/18/9/0、3×2 12.7cm/50、2×4 九三式、4×25mm、转 300/1。A-25 级表记 Type 90 鱼雷；Form 10 记 Type 93，ShipDef 取 Form 10 Dec 41。",
+   "profile": {
+    "profile_id": "ijn_asashio_dd",
+    "class": "Asashio",
+    "class_label_zh": "朝潮级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "configuration": "Class card baseline (1937 destroyer configuration)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      28
+     ],
+     "printed_pages": [
+      "A-25"
+     ],
+     "label": "Asashio class card"
+    },
+    "displacement_std_tons": 1992,
+    "in_class": 10,
+    "in_service": "1937",
+    "in_service_year": 1937,
+    "crew": 200,
+    "crew_note": "A-25 prints Crew: 2290, evidently a typo for 229; Form 10 p.123 prints 200. Profile uses 200 and records the printed typo.",
+    "propulsion": "Steam Turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     34,
+     68,
+     101,
+     122,
+     135
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 34,
+      "knots": 26
+     },
+     {
+      "damage": 68,
+      "knots": 18
+     },
+     {
+      "damage": 101,
+      "knots": 9
+     },
+     {
+      "damage": 122,
+      "knots": 0
+     },
+     {
+      "damage": 135,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_127mm50",
+    "main_gun_verbatim": "F/2A(2)3 3rd Yr Type 12.7cm/50 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.7)",
+    "light_aa_verbatim": "(2)2 Type 96 25mm (0.5)",
+    "torpedoes_verbatim": "P&S(4)2 610mm TT w/8 Type 90 torp (4 reserve torp/mount for quick reload in 6 minutes)",
+    "torpedo_model": "jp_type90",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": 0,
+    "remarks_summary": "DC refit: DC fit altered to 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, total 36 Type 95 or Type 2 DC carried. Asashio Jul-Oct 42; Arashio Apr-May 42; Arare and Kasumi Apr-May 42; Michishio Apr-Oct 42; Yamagumo Apr-Sep 42; Oshio Apr-Dec 42; Arashio Jun-Nov 42; Kasumi Aug 42; Minegumo Oct 42-Feb 43. Aft AA refit: aft X 12.7cm replaced by 6 25mm, Area AA 0.4, Lt AA 1.2 (Asagumo and Kasumi Oct-Nov 43; Yamagumo Feb 44). Jan 44: Type 22 radar. Apr 44: Type 13 radar, E-27 Kai 3 and Model 3 ESM (Gen 0). Jun 44: reload torpedoes removed; Lt AA increased to 28 25mm and 4 13.2mm, Lt AA 3.6.",
+    "dated_remarks": {
+     "Natsugumo": [
+      "Dec 1941 configuration; DC refit not yet applied."
+     ],
+     "Yamagumo": [
+      "Apr - Sep 42: DC refit to 2 rails w/6 DC + (2)2 Type 94 Y-guns w/6 DC, 36 DC.",
+      "Feb 44: aft X 12.7cm replaced by 6 25mm, Area AA 0.4, Lt AA 1.2.",
+      "Jan 44: Type 22 radar. Apr 44: Type 13 radar, E-27 Kai 3/Model 3 ESM.",
+      "Jun 44: reload torpedoes removed; 28 25mm and 4 13.2mm, Lt AA 3.6."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2A(2)3 3rd Yr Type 12.7cm/50 LA",
+    "ship_specific": "Natsugumo Dec 1941 configuration; Asashio class card baseline recorded separately.",
+    "conflicts": [
+     "A-25 级表 Type 90 鱼雷、crew 2290（显为 229 的排版误植）；Form 10 p.123 Type 93、crew 200。profile 采用 200 并注明原页。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": "rising_sun_form10",
+     "pdf_page": 123,
+     "period_label": "Dec 1941 (Form 10 p.123)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-NATSUGUMO",
+    "name": "夏云",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "turn_size": "C",
+    "in_service_year": 1937,
+    "max_knots": 35,
+    "dp": 135,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 34,
+      "knots": 26
+     },
+     {
+      "damage": 68,
+      "knots": 18
+     },
+     {
+      "damage": 101,
+      "knots": 9
+     },
+     {
+      "damage": 122,
+      "knots": 0
+     },
+     {
+      "damage": 135,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "annex_special_damage_modifier_pct": 0,
+    "gun": {
+     "name": "三年式 12.7cm/50 COM",
+     "caliber_mm": 127,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      6000,
+      12000,
+      16000,
+      20000
+     ],
+     "damage": [
+      16,
+      13,
+      11,
+      10
+     ],
+     "pen_belt": [
+      5,
+      3,
+      2,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2（Long Lance）",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "warhead_kg": 490,
+     "contact_fuze": true,
+     "tubes": 8,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 4
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 4
+      }
+     ],
+     "reload_seconds": 360,
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     },
+     "speed_options": [
+      {
+       "speed_knots": 49,
+       "range_yd": 22000
+      },
+      {
+       "speed_knots": 41,
+       "range_yd": 35000
+      },
+      {
+       "speed_knots": 37,
+       "range_yd": 43800
+      }
+     ]
+    },
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       123
+      ],
+      "printed_pages": [
+       123
+      ],
+      "label": "Natsugumo DD - Dec 1941"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       28
+      ],
+      "printed_pages": [
+       "A-25"
+      ],
+      "label": "Asashio class card"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       97
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "label": "12.7cm/50 gun table"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       105
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "label": "Type 93 torpedo table"
+     }
+    ],
+    "source_profile": "ijn_asashio_dd",
+    "period_label": "Dec 1941 (Form 10 p.123)"
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Asashio"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      6,
+      11,
+      17,
+      20,
+      22
+     ],
+     "emperor": [
+      4,
+      28
+     ]
+    },
+    "hit_review": "audit emperor 4/28：28 = A-25 Asashio 卡。form10 5/10/19/22/23/122 为索引页；逐页复核后数据页为 1-based p.123，索引页未用。"
+   },
+   "conflicts": [
+    "A-25 级表 Type 90 鱼雷、crew 2290（显为 229 的排版误植）；Form 10 p.123 Type 93、crew 200。profile 采用 200 并注明原页。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-YAMAGUMO",
+   "name": "山云",
+   "name_en": "Yamagumo",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_asashio_dd",
+   "class_name": "Asashio",
+   "class_label_zh": "朝潮级",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      125
+     ],
+     "printed_pages": [
+      125
+     ],
+     "role": "Yamagumo DD - Apr-Sep 42 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Yamagumo DD",
+      "class_printed": "Asashio class IJN",
+      "dp": "135",
+      "speed": "35 26 18 9 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      28
+     ],
+     "printed_pages": [
+      "A-25"
+     ],
+     "role": "Asashio class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12.7cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "Form 10 p.125（Apr-Sep 42）逐页目视核对：DP 135、35/26/18/9/0、3×2 12.7cm/50、2×4 九三式、DC 轨/Type 94 Y-gun、转 300/1。A-25 记 Yamagumo Apr-Sep 42 DC 改装与 Feb 44 后部 12.7cm 换 6×25mm。",
+   "profile": {
+    "profile_id": "ijn_asashio_dd",
+    "class": "Asashio",
+    "class_label_zh": "朝潮级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "configuration": "Class card baseline (1937 destroyer configuration)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      28
+     ],
+     "printed_pages": [
+      "A-25"
+     ],
+     "label": "Asashio class card"
+    },
+    "displacement_std_tons": 1992,
+    "in_class": 10,
+    "in_service": "1937",
+    "in_service_year": 1937,
+    "crew": 200,
+    "crew_note": "A-25 prints Crew: 2290, evidently a typo for 229; Form 10 p.123 prints 200. Profile uses 200 and records the printed typo.",
+    "propulsion": "Steam Turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     34,
+     68,
+     101,
+     122,
+     135
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 34,
+      "knots": 26
+     },
+     {
+      "damage": 68,
+      "knots": 18
+     },
+     {
+      "damage": 101,
+      "knots": 9
+     },
+     {
+      "damage": 122,
+      "knots": 0
+     },
+     {
+      "damage": 135,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_127mm50",
+    "main_gun_verbatim": "F/2A(2)3 3rd Yr Type 12.7cm/50 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(2)3 3rd Yr Type 12.7cm/50 (0.7)",
+    "light_aa_verbatim": "(2)2 Type 96 25mm (0.5)",
+    "torpedoes_verbatim": "P&S(4)2 610mm TT w/8 Type 90 torp (4 reserve torp/mount for quick reload in 6 minutes)",
+    "torpedo_model": "jp_type90",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": 0,
+    "remarks_summary": "DC refit: DC fit altered to 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, total 36 Type 95 or Type 2 DC carried. Asashio Jul-Oct 42; Arashio Apr-May 42; Arare and Kasumi Apr-May 42; Michishio Apr-Oct 42; Yamagumo Apr-Sep 42; Oshio Apr-Dec 42; Arashio Jun-Nov 42; Kasumi Aug 42; Minegumo Oct 42-Feb 43. Aft AA refit: aft X 12.7cm replaced by 6 25mm, Area AA 0.4, Lt AA 1.2 (Asagumo and Kasumi Oct-Nov 43; Yamagumo Feb 44). Jan 44: Type 22 radar. Apr 44: Type 13 radar, E-27 Kai 3 and Model 3 ESM (Gen 0). Jun 44: reload torpedoes removed; Lt AA increased to 28 25mm and 4 13.2mm, Lt AA 3.6.",
+    "dated_remarks": {
+     "Natsugumo": [
+      "Dec 1941 configuration; DC refit not yet applied."
+     ],
+     "Yamagumo": [
+      "Apr - Sep 42: DC refit to 2 rails w/6 DC + (2)2 Type 94 Y-guns w/6 DC, 36 DC.",
+      "Feb 44: aft X 12.7cm replaced by 6 25mm, Area AA 0.4, Lt AA 1.2.",
+      "Jan 44: Type 22 radar. Apr 44: Type 13 radar, E-27 Kai 3/Model 3 ESM.",
+      "Jun 44: reload torpedoes removed; 28 25mm and 4 13.2mm, Lt AA 3.6."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2A(2)3 3rd Yr Type 12.7cm/50 LA",
+    "ship_specific": "Yamagumo Apr-Sep 42 configuration; Asashio class card baseline recorded separately.",
+    "conflicts": [
+     "A-25 级表 Type 90 鱼雷；Form 10 p.125 Type 93。ShipDef 取 Form 10 Apr-Sep 42。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": "rising_sun_form10",
+     "pdf_page": 125,
+     "period_label": "Apr-Sep 1942 (Form 10 p.125)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-IJN-YAMAGUMO",
+    "name": "山云",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "turn_size": "C",
+    "in_service_year": 1937,
+    "max_knots": 35,
+    "dp": 135,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 34,
+      "knots": 26
+     },
+     {
+      "damage": 68,
+      "knots": 18
+     },
+     {
+      "damage": 101,
+      "knots": 9
+     },
+     {
+      "damage": 122,
+      "knots": 0
+     },
+     {
+      "damage": 135,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "annex_special_damage_modifier_pct": 0,
+    "gun": {
+     "name": "三年式 12.7cm/50 COM",
+     "caliber_mm": 127,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      6000,
+      12000,
+      16000,
+      20000
+     ],
+     "damage": [
+      16,
+      13,
+      11,
+      10
+     ],
+     "pen_belt": [
+      5,
+      3,
+      2,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2（Long Lance）",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "warhead_kg": 490,
+     "contact_fuze": true,
+     "tubes": 8,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 4
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 4
+      }
+     ],
+     "reload_seconds": 360,
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     },
+     "speed_options": [
+      {
+       "speed_knots": 49,
+       "range_yd": 22000
+      },
+      {
+       "speed_knots": 41,
+       "range_yd": 35000
+      },
+      {
+       "speed_knots": 37,
+       "range_yd": 43800
+      }
+     ]
+    },
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       125
+      ],
+      "printed_pages": [
+       125
+      ],
+      "label": "Yamagumo DD - Apr-Sep 42"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       28
+      ],
+      "printed_pages": [
+       "A-25"
+      ],
+      "label": "Asashio class card"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       97
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "label": "12.7cm/50 gun table"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       105
+      ],
+      "printed_pages": [
+       "F-1"
+      ],
+      "label": "Type 93 torpedo table"
+     }
+    ],
+    "source_profile": "ijn_asashio_dd",
+    "period_label": "Apr-Sep 1942 (Form 10 p.125)"
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Asashio"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      6,
+      11,
+      17,
+      20,
+      22
+     ],
+     "emperor": [
+      4,
+      28
+     ]
+    },
+    "hit_review": "audit emperor 4/28：A-25；form10 5/10/21/124 为索引页，数据页为 1-based p.125。"
+   },
+   "conflicts": [
+    "A-25 级表 Type 90 鱼雷；Form 10 p.125 Type 93。ShipDef 取 Form 10 Apr-Sep 42。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "name": "朝风",
+   "name_en": "Asakaze",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "class_name": "Kamikaze (1941)",
+   "class_label_zh": "神风级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      172
+     ],
+     "printed_pages": [
+      172
+     ],
+     "role": "Asakaze DD - Dec 1941 (fit comparison)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Asakaze DD",
+      "class_printed": "Kamikaze class IJN",
+      "dp": "92",
+      "speed": "35 26 18 9 0"
+     }
+    }
+   ],
+   "source_note": "A-24 Kamikaze (1941) 级表：3 门 12cm、4 条 533mm、10×25mm。Form 10 p.172（Dec 1941）印 4 门 12cm、2×13mm；两页炮座数/轻防空冲突。另有 Type 96 533mm 鱼雷在 F-1 无弹行，无法组完整 ShipDef。",
+   "profile": {
+    "profile_id": "ijn_kamikaze_dd",
+    "class": "Kamikaze (1941)",
+    "class_label_zh": "神风级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "1941 class configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card"
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "in_service_year": 1925,
+    "crew": 148,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+    "dated_remarks": {
+     "Asakaze": [
+      "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+     ],
+     "Kamikaze": [
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+     ],
+     "Oite": [
+      "No individual Form 10 card; class card only."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "ship_specific": "Asakaze Dec 1941 Form 10 conflicts with the Kamikaze (1941) class card; profile only until adjudicated.",
+    "conflicts": [
+     "A-24: F/2P&S(1)3（3 门 12cm），10 Type 96 25mm (1.2)。",
+     "Form 10 p.172: Fwd/P&S/P&S/Aft 4 门 12cm，2 13mm (0.1)，DP 92，35/26/18/9/0，转 200/1。",
+     "Type 96 533mm 在 F-1 无行；不替代、不编造。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "fit_conflict_and_missing_torpedo_model",
+    "detail": "A-24 与 Form 10 p.172 对主炮座数（3 vs 4）和轻防空（10×25mm vs 2×13mm）互相冲突；Type 96 533mm 在 Annex F-1 无弹行（F-2 的 Type 96 为潜艇/袖珍潜艇用）。未裁决前不出 ShipDef。",
+    "missing_fields": [
+     "torpedo",
+     "single_gun_mount_count_adjudication",
+     "light_aa_adjudication"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kamikaze"
+    ],
+    "hits": {
+     "form10": [
+      7,
+      14,
+      17,
+      18,
+      19,
+      22
+     ],
+     "american": [
+      7,
+      8,
+      10,
+      11,
+      12,
+      17
+     ],
+     "emperor": [
+      5,
+      27,
+      31,
+      77
+     ]
+    },
+    "hit_review": "audit emperor 5/27/31/77：27 = A-24 Kamikaze 卡；31 = A-28，77 = B-6 飞机页；form10 7/14/17/18/19/22 为索引，逐舰页 p.172。"
+   },
+   "conflicts": [
+    "A-24: F/2P&S(1)3（3 门 12cm），10 Type 96 25mm (1.2)。",
+    "Form 10 p.172: Fwd/P&S/P&S/Aft 4 门 12cm，2 13mm (0.1)，DP 92，35/26/18/9/0，转 200/1。",
+    "Type 96 533mm 在 F-1 无行；不替代、不编造。"
+   ]
+  },
+  {
+   "identity": "IBS-U-KM-HANS-LODY",
+   "name": "汉斯·洛迪",
+   "name_en": "Hans Lody",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "km_type_1934a_dd",
+   "class_name": "1934A (Maas)",
+   "class_label_zh": "1934A 型驱逐舰",
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "shipdef_source": "data/campaign/period/channel-runtime.json",
+   "source_pages": [
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "role": "1934 type (Maas) class card (Z1-Z16; Z10 Hans Lody)",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      120
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "12.7cm SKC/34 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      124
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "G7a torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "ShipDef 原样复制 channel-runtime#ships[IBS-U-KM-HANS-LODY]；Gruppe Nord A-11 1934 型卡（Z1-Z16）交叉核对：DP 146、38 节、5×12.7cm、8 条 G7a、转 300/1。Z10 属 1934A。",
+   "profile": {
+    "profile_id": "km_type_1934a_dd",
+    "class": "1934A (Maas)",
+    "class_label_zh": "1934A 型驱逐舰",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "configuration": "Type 1934A class card (Z1-Z16)",
+    "source": {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "label": "1934 type (Maas) class card"
+    },
+    "displacement_std_tons": 2232,
+    "in_class": 16,
+    "in_service": "1937",
+    "in_service_year": 1937,
+    "crew": 315,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     37,
+     73,
+     110,
+     131,
+     146
+    ],
+    "speed_knots": [
+     38,
+     29,
+     19,
+     10,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 37,
+      "knots": 29
+     },
+     {
+      "damage": 73,
+      "knots": 19
+     },
+     {
+      "damage": 110,
+      "knots": 10
+     },
+     {
+      "damage": 131,
+      "knots": 0
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     }
+    ],
+    "main_gun": "km_12_7cm_skc34",
+    "main_gun_verbatim": "2F/P&S/2A(1)5 12.7cm SKC/34",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "(2)2 3.7cm SKC/30, (4)2 2cm Flak 30 (0.8)",
+    "torpedoes_verbatim": "P&S(4)2 53.3cm TT w/4 G7a torp",
+    "torpedo_model": "km_g7a",
+    "aircraft": null,
+    "sensors": "FuMO 21 Seetakt; SB (Bug S); GHG (64 elements)",
+    "special_damage_modifier_pct": 0,
+    "remarks_summary": "Z1-Z16. Can carry 60 mines. Each torpedo tube has one reload; two mounts can be reloaded in 15 minutes. 32 DC, later 64. 1944: Z5/Z6 light AA changed to (1)4 3.7cm Flak 28, (4)2 2cm Flak 38 and (2)2 2cm Flak 38, Lt AA 4.8. 1944: Z5/Z10/Z14/Z15 added FuMO 61 Hohentwiel; Z4/Z5/Z6/Z10/Z14/Z15 had FuMO 21 replaced by FuMO 25. 1944-45: Z10 refit with (2)6 3.7cm Flak M42, Lt AA 4.0; Z15 refit with (2)7 3.7cm Flak M42 and (1)4 2cm Flak 38, Lt AA 5.5.",
+    "dated_remarks": {
+     "Hans Lody": [
+      "1944: FuMO 61 Hohentwiel added; FuMO 21 replaced by FuMO 25.",
+      "1944-45: (2)6 3.7cm Flak M42, Lt AA 4.0."
+     ],
+     "Richard Beitzen": [
+      "1944: FuMO 61 Hohentwiel added; FuMO 21 replaced by FuMO 25.",
+      "1944-45: no Z14-specific refit printed beyond the class notes."
+     ]
+    },
+    "gun_mounts_verbatim": "2F/P&S/2A(1)5 12.7cm SKC/34",
+    "ship_specific": "Type 1934A (Z10); channel-runtime ShipDef copied verbatim.",
+    "conflicts": [
+     "A-11 1934 型卡记 1944-45 Z10 改 (2)6 3.7cm Flak M42、Lt AA 4.0；ShipDef 未含该后期改装。",
+     "A-11 1934 型卡速度行 38/29/19/10/0；channel-runtime ShipDef 为 38/28/19/10/0（第一损伤段）。ShipDef 原样复制，级表值保留在 profile。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": null,
+     "pdf_page": null,
+     "period_label": "Type 1934A/1936 registered ShipDef (channel-runtime)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-KM-HANS-LODY",
+    "name": "汉斯·洛迪",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 38,
+    "dp": 146,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 37,
+      "knots": 28
+     },
+     {
+      "damage": 73,
+      "knots": 19
+     },
+     {
+      "damage": 110,
+      "knots": 10
+     },
+     {
+      "damage": 131,
+      "knots": 0
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1937,
+    "gun": {
+     "name": "12.7cm/45 SK C/34 HE",
+     "caliber_mm": 127,
+     "range_yd": [
+      5700,
+      11400,
+      15200,
+      19000
+     ],
+     "damage": [
+      19,
+      16,
+      14,
+      13
+     ],
+     "barrels": 5,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      2,
+      1,
+      1,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      0,
+      1
+     ],
+     "armor_piercing": false,
+     "source": {
+      "document": "gruppe_nord",
+      "pdf_page": 120,
+      "printed_page": "C-2"
+     }
+    },
+    "torpedo": {
+     "name": "G7a (T-I)",
+     "speed_knots": 44,
+     "range_yd": 6500,
+     "warhead": 88,
+     "tubes": 8,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      }
+     ],
+     "source": {
+      "document": "gruppe_nord",
+      "pdf_page": 124,
+      "printed_page": "F-1"
+     }
+    },
+    "source_profile": "channel-runtime#ships.IBS-U-KM-HANS-LODY",
+    "source": [
+     {
+      "document": "gruppe_nord",
+      "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+      "pdf_pages": [
+       66
+      ],
+      "printed_pages": [
+       "A-11"
+      ],
+      "label": "1934/1936 type class card"
+     },
+     {
+      "document": "channel_runtime",
+      "file": "data/campaign/period/channel-runtime.json",
+      "pdf_pages": [],
+      "printed_pages": [],
+      "label": "ships[IBS-U-KM-HANS-LODY] (registered ShipDef, copied verbatim)"
+     }
+    ],
+    "period_label": "Type 1934A/1936 registered ShipDef (channel-runtime)",
+    "annex_special_damage_modifier_pct": 0
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Karl Galster",
+     "Hans Lody",
+     "Richard Beitzen",
+     "German destroyer"
+    ],
+    "hits": {
+     "german": [
+      3,
+      18
+     ]
+    },
+    "hit_review": "audit german 3/18：3 目录、18 剧本页；1934 型卡在 A-11 p.66。"
+   },
+   "conflicts": [
+    "A-11 1934 型卡记 1944-45 Z10 改 (2)6 3.7cm Flak M42、Lt AA 4.0；ShipDef 未含该后期改装。",
+    "A-11 1934 型卡速度行 38/29/19/10/0；channel-runtime ShipDef 为 38/28/19/10/0（第一损伤段）。ShipDef 原样复制，级表值保留在 profile。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSUKI",
+   "name": "睦月",
+   "name_en": "Mutsuki",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_mutsuki_dd",
+   "class_name": "Mutsuki",
+   "class_label_zh": "睦月级",
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "data/campaign/period/kula-runtime.json",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki class card and remarks",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "ShipDef 原样复制 data/campaign/period/kula-runtime.json#profiles.mutsuki（已登记 Mutsuki 级卡），只改写 id/name 并加 source_profile；A-27/A-28 级表与 Uzuki 备注交叉核对。没有 Mutsuki 本舰 Form 10 卡（Form 10 只有 Fumizuki/Uzuki 等同型舰页）。",
+   "profile": {
+    "profile_id": "ijn_mutsuki_dd",
+    "class": "Mutsuki",
+    "class_label_zh": "睦月级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "Class card baseline (1935-36 refit; 1941-42 destroyer configuration)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "label": "Mutsuki class card and Uzuki remarks"
+    },
+    "displacement_std_tons": 1336,
+    "in_class": 12,
+    "in_service": "1925",
+    "in_service_year": 1925,
+    "crew": 150,
+    "propulsion": "Steam Turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "III",
+    "damage_points": [
+     0,
+     22,
+     44,
+     66,
+     79,
+     88
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     },
+     {
+      "damage": 88,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(1)4 3rd Yr Type 12cm/45 (0.1)",
+    "light_aa_verbatim": "2 Vickers 7.7mm (0.1)",
+    "torpedoes_verbatim": "P&S(3)2 610mm TT w/3 8th Yr Type No. 2 (2 reserve torp/mount, reload in 15 minutes)",
+    "torpedo_model": "jp_8th_yr_type_no2",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1 (active)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Kamikaze design. Laid down before 1925, special damage modifier of -15%. 1935-36 refit improved stability. Type 93 (passive) and Type 93 Model 1 (active) sonars fitted; (2)1 Type 94 Y-gun added. 11 Dec 41: Kisaragi sunk during the invasion of Wake Island. DC refit: 2 DC rails w/6 DC and (2)2 Type 94 Y-guns w/6 DC, 36 DC total; Uzuki/Yuzuki May-Jun 42, Mikazuki Jun 42, Mutsuki/Mochizuki Jul-Aug 42.",
+    "dated_remarks": {
+     "Mutsuki": [
+      "Jan 42: 2 13.2mm added, Lt AA 0.2.",
+      "Jul - Aug 42: DC refit."
+     ],
+     "Uzuki": [
+      "May - Jun 42: DC refit.",
+      "Sep - Dec 42: stern modified to launch/recover landing barges (APD role).",
+      "Oct 43: P&S 12cm and 7.7mm replaced by 2 13.2mm and 7 25mm, Area AA 0.1, Lt AA 1.0.",
+      "Mar 44: 2 25mm added, Lt AA 1.2.",
+      "Sep 44: Type 13 radar, 5 25mm added, Lt AA 1.7."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S/A(1)4 3rd Yr Type 12cm/45",
+    "ship_specific": "Mutsuki-class registered ShipDef copied from kula-runtime; no individual Form 10 card for Mutsuki.",
+    "conflicts": [
+     "kula-runtime profiles.mutsuki 的 damage_speed 只有 5 行（0/33 至 79/0），未印 88/Sunk 行；原样保留，不补。",
+     "A-27 级表 8th Yr Type No.2；Form 10 同型舰页多为 Type 93。ShipDef 沿用登记卡。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 200,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": null,
+     "pdf_page": null,
+     "period_label": "1942-43 Mutsuki class registered ShipDef"
+    }
+   },
+   "ship": {
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "in_service_year": 1925,
+    "max_knots": 33,
+    "dp": 88,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 22,
+      "knots": 25
+     },
+     {
+      "damage": 44,
+      "knots": 16
+     },
+     {
+      "damage": 66,
+      "knots": 8
+     },
+     {
+      "damage": 79,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "gs": 4,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": false,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "八年式二号",
+     "speed_knots": 38,
+     "range_yd": 10900,
+     "warhead": 87,
+     "tubes": 6,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      },
+      {
+       "tubes": 3,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": [
+        30,
+        150
+       ]
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 105,
+      "printed_page": "F-1"
+     }
+    },
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "id": "IBS-U-IJN-MUTSUKI",
+    "name": "睦月",
+    "source_profile": "mutsuki",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       30,
+       31
+      ],
+      "printed_pages": [
+       "A-27",
+       "A-28"
+      ],
+      "label": "Mutsuki class card and remarks"
+     },
+     {
+      "document": "kula_runtime",
+      "file": "data/campaign/period/kula-runtime.json",
+      "pdf_pages": [],
+      "printed_pages": [],
+      "label": "profiles.mutsuki (registered ShipDef, copied verbatim)"
+     }
+    ],
+    "period_label": "1942-43 Mutsuki class registered ShipDef",
+    "annex_special_damage_modifier_pct": -15
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Mutsuki"
+    ],
+    "hits": {
+     "form10": [
+      4,
+      7,
+      14,
+      18,
+      20,
+      21
+     ],
+     "emperor": [
+      5,
+      30,
+      31
+     ]
+    },
+    "hit_review": "audit emperor 5/30/31：A-27/A-28；form10 4/7/14/18/20/21 全为索引，Mutsuki 本舰无逐舰页。ShipDef 取 kula 登记卡。"
+   },
+   "conflicts": [
+    "kula-runtime profiles.mutsuki 的 damage_speed 只有 5 行（0/33 至 79/0），未印 88/Sunk 行；原样保留，不补。",
+    "A-27 级表 8th Yr Type No.2；Form 10 同型舰页多为 Type 93。ShipDef 沿用登记卡。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "name": "神风",
+   "name_en": "Kamikaze",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "class_name": "Kamikaze (1941)",
+   "class_label_zh": "神风级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) class card",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "A-24 Kamikaze (1941) 级表；本舰无逐舰 Form 10 卡（Form 10 只有 Asakaze/Harukaze/Hatakaze/Matsukaze/Yunagi）。级表无转向/加速值；Type 96 533mm 鱼雷在 F-1 无行。",
+   "profile": {
+    "profile_id": "ijn_kamikaze_dd",
+    "class": "Kamikaze (1941)",
+    "class_label_zh": "神风级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "1941 class configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card"
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "in_service_year": 1925,
+    "crew": 148,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+    "dated_remarks": {
+     "Asakaze": [
+      "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+     ],
+     "Kamikaze": [
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+     ],
+     "Oite": [
+      "No individual Form 10 card; class card only."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "ship_specific": "Kamikaze class card only; no individual Form 10 card.",
+    "conflicts": [
+     "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突（见 ASAKAZE 卡）。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_individual_form10_and_missing_torpedo_model",
+    "detail": "无 Kamikaze 本舰 Form 10；级表缺 Advance per 45°/Accel/Decel；Type 96 533mm 无 F-1 弹行。Asakaze 的 Form 10 与级表炮座数冲突，不能直接套用。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "torpedo"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kamikaze"
+    ],
+    "hits": {
+     "form10": [
+      7,
+      14,
+      17,
+      18,
+      19,
+      22
+     ],
+     "american": [
+      7,
+      8,
+      10,
+      11,
+      12,
+      17
+     ],
+     "emperor": [
+      5,
+      27,
+      31,
+      77
+     ]
+    },
+    "hit_review": "audit 27 = A-24；31/77 为非本级页；form10 6/13/16/17/18/21 为索引，无本舰逐舰页。"
+   },
+   "conflicts": [
+    "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突（见 ASAKAZE 卡）。"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "name": "追风",
+   "name_en": "Oite",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "class_name": "Kamikaze (1941)",
+   "class_label_zh": "神风级",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) class card",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "A-24 同型级表；无 Oite 逐舰 Form 10 卡。级表无转向/加速值；Type 96 533mm 鱼雷无 F-1 弹行。",
+   "profile": {
+    "profile_id": "ijn_kamikaze_dd",
+    "class": "Kamikaze (1941)",
+    "class_label_zh": "神风级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "1941 class configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card"
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "in_service_year": 1925,
+    "crew": 148,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+    "dated_remarks": {
+     "Asakaze": [
+      "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+     ],
+     "Kamikaze": [
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+     ],
+     "Oite": [
+      "No individual Form 10 card; class card only."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "ship_specific": "Kamikaze class card only; no individual Form 10 card.",
+    "conflicts": [
+     "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突。"
+    ]
+   },
+   "ship": null,
+   "blocker": {
+    "code": "no_individual_form10_and_missing_torpedo_model",
+    "detail": "无 Oite 本舰 Form 10；级表缺转向/加速值；Type 96 533mm 无 F-1 弹行。不套用 Asakaze 页的冲突配置。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "torpedo"
+    ]
+   },
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kamikaze"
+    ],
+    "hits": {
+     "form10": [
+      7,
+      14,
+      17,
+      18,
+      19,
+      22
+     ],
+     "american": [
+      7,
+      8,
+      10,
+      11,
+      12,
+      17
+     ],
+     "emperor": [
+      5,
+      27,
+      31,
+      77
+     ]
+    },
+    "hit_review": "audit 27 = A-24；31/77 非本级；form10 索引页无 Oite 逐舰页。"
+   },
+   "conflicts": [
+    "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突。"
+   ]
+  },
+  {
+   "identity": "IBS-U-KM-RICHARD-BEITZEN",
+   "name": "里夏德·拜茨恩",
+   "name_en": "Richard Beitzen",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "km_type_1934a_dd",
+   "class_name": "1934A (Maas)",
+   "class_label_zh": "1934A 型驱逐舰",
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "shipdef_source": "data/campaign/period/channel-runtime.json",
+   "source_pages": [
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "role": "1934 type (Maas) class card (Z1-Z16; Z14 Richard Beitzen)",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      120
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "12.7cm SKC/34 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      124
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "G7a torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "source_note": "ShipDef 原样复制 channel-runtime#ships[IBS-U-KM-RICHARD-BEITZEN]；Gruppe Nord A-11 1934 型卡交叉核对：DP 146、38 节、5×12.7cm、8 条 G7a、转 300/1。Z14 属 1934A。",
+   "profile": {
+    "profile_id": "km_type_1934a_dd",
+    "class": "1934A (Maas)",
+    "class_label_zh": "1934A 型驱逐舰",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "configuration": "Type 1934A class card (Z1-Z16)",
+    "source": {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "label": "1934 type (Maas) class card"
+    },
+    "displacement_std_tons": 2232,
+    "in_class": 16,
+    "in_service": "1937",
+    "in_service_year": 1937,
+    "crew": 315,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     37,
+     73,
+     110,
+     131,
+     146
+    ],
+    "speed_knots": [
+     38,
+     29,
+     19,
+     10,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 37,
+      "knots": 29
+     },
+     {
+      "damage": 73,
+      "knots": 19
+     },
+     {
+      "damage": 110,
+      "knots": 10
+     },
+     {
+      "damage": 131,
+      "knots": 0
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     }
+    ],
+    "main_gun": "km_12_7cm_skc34",
+    "main_gun_verbatim": "2F/P&S/2A(1)5 12.7cm SKC/34",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "(2)2 3.7cm SKC/30, (4)2 2cm Flak 30 (0.8)",
+    "torpedoes_verbatim": "P&S(4)2 53.3cm TT w/4 G7a torp",
+    "torpedo_model": "km_g7a",
+    "aircraft": null,
+    "sensors": "FuMO 21 Seetakt; SB (Bug S); GHG (64 elements)",
+    "special_damage_modifier_pct": 0,
+    "remarks_summary": "Z1-Z16. Can carry 60 mines. Each torpedo tube has one reload; two mounts can be reloaded in 15 minutes. 32 DC, later 64. 1944: Z5/Z6 light AA changed to (1)4 3.7cm Flak 28, (4)2 2cm Flak 38 and (2)2 2cm Flak 38, Lt AA 4.8. 1944: Z5/Z10/Z14/Z15 added FuMO 61 Hohentwiel; Z4/Z5/Z6/Z10/Z14/Z15 had FuMO 21 replaced by FuMO 25. 1944-45: Z10 refit with (2)6 3.7cm Flak M42, Lt AA 4.0; Z15 refit with (2)7 3.7cm Flak M42 and (1)4 2cm Flak 38, Lt AA 5.5.",
+    "dated_remarks": {
+     "Hans Lody": [
+      "1944: FuMO 61 Hohentwiel added; FuMO 21 replaced by FuMO 25.",
+      "1944-45: (2)6 3.7cm Flak M42, Lt AA 4.0."
+     ],
+     "Richard Beitzen": [
+      "1944: FuMO 61 Hohentwiel added; FuMO 21 replaced by FuMO 25.",
+      "1944-45: no Z14-specific refit printed beyond the class notes."
+     ]
+    },
+    "gun_mounts_verbatim": "2F/P&S/2A(1)5 12.7cm SKC/34",
+    "ship_specific": "Type 1934A (Z14); channel-runtime ShipDef copied verbatim.",
+    "conflicts": [
+     "A-11 1934 型卡记 1944 年 Z14 加 FuMO 61、FuMO 21 换 FuMO 25；ShipDef 未含雷达/后期轻防空。",
+     "A-11 1934 型卡速度行 38/29/19/10/0；channel-runtime ShipDef 为 38/28/19/10/0（第一损伤段）。ShipDef 原样复制，级表值保留在 profile。"
+    ],
+    "turn": {
+     "standard_rudder_yards": 300,
+     "standard_speed_loss_knots": 1,
+     "accel_knots_per_turn": 12,
+     "accel_high_knots_per_turn": 6,
+     "decel_knots_per_turn": 15
+    },
+    "form10": {
+     "document": null,
+     "pdf_page": null,
+     "period_label": "Type 1934A/1936 registered ShipDef (channel-runtime)"
+    }
+   },
+   "ship": {
+    "id": "IBS-U-KM-RICHARD-BEITZEN",
+    "name": "里夏德·拜茨恩",
+    "side": "axis",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 38,
+    "dp": 146,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 37,
+      "knots": 28
+     },
+     {
+      "damage": 73,
+      "knots": 19
+     },
+     {
+      "damage": 110,
+      "knots": 10
+     },
+     {
+      "damage": 131,
+      "knots": 0
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1937,
+    "gun": {
+     "name": "12.7cm/45 SK C/34 HE",
+     "caliber_mm": 127,
+     "range_yd": [
+      5700,
+      11400,
+      15200,
+      19000
+     ],
+     "damage": [
+      19,
+      16,
+      14,
+      13
+     ],
+     "barrels": 5,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      2,
+      1,
+      1,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      0,
+      1
+     ],
+     "armor_piercing": false,
+     "source": {
+      "document": "gruppe_nord",
+      "pdf_page": 120,
+      "printed_page": "C-2"
+     }
+    },
+    "torpedo": {
+     "name": "G7a (T-I)",
+     "speed_knots": 44,
+     "range_yd": 6500,
+     "warhead": 88,
+     "tubes": 8,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      }
+     ],
+     "source": {
+      "document": "gruppe_nord",
+      "pdf_page": 124,
+      "printed_page": "F-1"
+     }
+    },
+    "source_profile": "channel-runtime#ships.IBS-U-KM-RICHARD-BEITZEN",
+    "source": [
+     {
+      "document": "gruppe_nord",
+      "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+      "pdf_pages": [
+       66
+      ],
+      "printed_pages": [
+       "A-11"
+      ],
+      "label": "1934/1936 type class card"
+     },
+     {
+      "document": "channel_runtime",
+      "file": "data/campaign/period/channel-runtime.json",
+      "pdf_pages": [],
+      "printed_pages": [],
+      "label": "ships[IBS-U-KM-RICHARD-BEITZEN] (registered ShipDef, copied verbatim)"
+     }
+    ],
+    "period_label": "Type 1934A/1936 registered ShipDef (channel-runtime)",
+    "annex_special_damage_modifier_pct": 0
+   },
+   "blocker": null,
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Karl Galster",
+     "Hans Lody",
+     "Richard Beitzen",
+     "German destroyer"
+    ],
+    "hits": {
+     "german": [
+      3,
+      18
+     ]
+    },
+    "hit_review": "audit german 3/18：3 目录、18 剧本页；1934 型卡在 A-11 p.66。"
+   },
+   "conflicts": [
+    "A-11 1934 型卡记 1944 年 Z14 加 FuMO 61、FuMO 21 换 FuMO 25；ShipDef 未含雷达/后期轻防空。",
+    "A-11 1934 型卡速度行 38/29/19/10/0；channel-runtime ShipDef 为 38/28/19/10/0（第一损伤段）。ShipDef 原样复制，级表值保留在 profile。"
+   ]
+  }
+ ],
+ "excluded": {
+  "cv": [],
+  "not_found_axis": [
+   "IBS-U-IJN-XIFENG"
+  ],
+  "erma_record_image_axis": [
+   "IBS-U-IJN-ERMA-SHINANO",
+   "IBS-U-IJN-ERMA-MUSASHI",
+   "IBS-U-IJN-ERMA-IBUKI",
+   "IBS-U-IJN-ERMA-KURAMA",
+   "IBS-U-IJN-ERMA-AZUMA",
+   "IBS-U-IJN-ERMA-ISHIKARI",
+   "IBS-U-IJN-ERMA-GOKASE",
+   "IBS-U-IJN-ERMA-MAKINAMI",
+   "IBS-U-IJN-ERMA-SHIMAKAZE",
+   "IBS-U-IJN-ERMA-NAGANAMI",
+   "IBS-U-IJN-ERMA-KAZEGUMO"
+  ],
+  "note": "axis 的 20 条 cas_source_table 中没有 CV；AKAGI/AMAGI 的身份 type 是 BC，其 CV 卡（A-9/A-8）未用。XIFENG 为 not_found，不在本批。"
+ },
+ "checks": {
+  "axis_cas_identities_in_audit": 20,
+  "cards_written": 20,
+  "cards_expected": 20,
+  "count_ok": true,
+  "identities_match_audit": true,
+  "unique_identities": true,
+  "all_side_axis": true,
+  "all_type_not_cv": true,
+  "all_have_class_profile_ref": true,
+  "all_have_profile": true,
+  "all_have_source_pages": true,
+  "profile_required_fields": {
+   "class": true,
+   "side": true,
+   "kind": true,
+   "size_class_en": true,
+   "source": true,
+   "displacement_std_tons": true,
+   "in_class": true,
+   "in_service": true,
+   "crew": true,
+   "armor_rating": true,
+   "gunnery_standard": true,
+   "damage_points": true,
+   "speed_knots": true,
+   "main_gun": true,
+   "gun_mounts_verbatim": true,
+   "area_aa_verbatim": true,
+   "light_aa_verbatim": true,
+   "torpedoes_verbatim": true,
+   "sensors": true,
+   "remarks_summary": true
+  },
+  "ship_written": 10,
+  "profile_only": 10,
+  "ship_required_fields": {
+   "id": true,
+   "name": true,
+   "side": true,
+   "kind": true,
+   "size": true,
+   "max_knots": true,
+   "dp": true,
+   "damage_speed": true,
+   "turn_advance_yards": true,
+   "speed_loss_knots": true,
+   "accel_knots_per_turn": true,
+   "accel_high_knots_per_turn": true,
+   "brake_knots_per_turn": true,
+   "gun": true,
+   "armor_belt": true,
+   "armor_deck": true,
+   "in_service_year": true
+  },
+  "ships_unique_ids": true,
+  "blockers_present_for_profile_only": true,
+  "blockers_absent_for_ship": true,
+  "cv_excluded": [],
+  "no_points_field": true,
+  "source_pdfs_hashed": true,
+  "source_pages_docs_known": true,
+  "source_pages_pdf_ranges_ok": true,
+  "source_files_exist": true,
+  "profile_required_fields_ok": true,
+  "ship_required_fields_ok": true,
+  "all_checks_ok": true
+ },
+ "unresolved": []
+}

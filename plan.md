@@ -9,6 +9,50 @@ CAS 独立建仓、发包、存档和账本。二次元成长沿用铁底湾手�
 
 本批四路并行：资料核页、内核/AI、客户端、运行和包。阶段验收须以同一 Rust 内核、真实界面和实际交火为依据。范围逐项见 havedone.md 和规则台账。
 
+## 当前批：evolved AI 商店上架与战斗接线（2026-11-09）
+
+0. **口径**：[evolved.json](data/ai/evolved.json) 的三条真实 fitness 战术（evo-screen / evo-torpedo / evo-gunnery）保持 provisional；只把它们接到既有免费经济，不改舰船卡、立绘、音频、AI 训练、evolved 基因/权重、challenge/ranked 点价，也不新增货币。
+1. **服务端**：[catalog.json](server/catalog.json) 投影三条 `{cost, currency:"recruit_ticket", unlock:"campaign:CAMP-ALLIES-XX", provisional:true}`；[import_catalog.py](server/import_catalog.py) 从 [shop-merge.json](data/ai/shop-merge.json) 生成同一投影。`/shop/purchase` 的 `kind:"ai"` 按目录币种扣常驻征募券、校验战役通关解锁、拒绝重复购买；同一 request_id 幂等，资产落 SQLite，重登可读。
+2. **客户端**：[Harbor.tsx](client/src/Harbor.tsx) 的 AI 战术室展示三卡（价格/解锁条件/provisional/禁用原因），本地购买扣常驻券并写入 `PortState.profiles`；联机侧 [OnlineSupply.tsx](client/src/OnlineSupply.tsx) 走服务端目录与 `/shop/purchase`，购买后用返回 meta 刷新。战斗内、演习设置、关前编成/特混/母港预设的 AI 风格下拉统一按已拥有过滤，未拥有选项禁用并标注原因。
+3. **战斗**：`new` / `new_campaign` / exercise 的 `profile` 透传 evolved id；`Ai::validate` 既有支持；本地存档保存 `profile` 并在重载后恢复。
+4. **验收**：`cargo test --release --locked` 121 全过；服务端 34 项（含 `test_accounts` 9 项）；`tsc --noEmit -p client`、`vite build`；`node tests/browser-ai-shop.mjs` 通过购买、重载、演习与战役进战斗、740×360 overflow=0。
+5. **边界**：evolved 仍是 provisional 强度；服务端/客户端的在线 AI 商店浏览器购买未单列脚本（服务端购买由 unittest 覆盖）；未接排位/双席 AI 的 evolved 白名单。
+
+## 当前批：91 张已核验舰卡并入排位注册表（111 → 202 可出战，2026-11-08）
+
+0. **口径**：210 个稳定身份里，111 张已在排位注册表；本批把 `data/ships` 下 8 个来源包中已核验的 91 张并入：pdf Form 10 逐舰卡 12、APD 8、同型卡 13、CAS 同盟源表卡 21、CAS 轴心完整卡 10 + 历史轴心 7、ERMA USN 12（8 艘用 C-3 exact 炮表行闭合）、ERMA IJN 8。6 艘纸面/未建成（天城/赤城/尾张、伊吹/鞍马/五濑）、Midway(CV) 与夕风（无 CAS 表）保持收藏，**202/210**，不硬凑 208。
+1. **数据**：新增 `data/ships/merged-cards.json`（91 条 `{identity,name,side,type,class_profile,source_file,source_kind,stat_verified,stat_source,conflicts,ship}`）。71 张直接复制源包里已登记的完整 ShipDef；12 张 pdf 卡按 Form 10 个体页 profile 的炮座/弹种/损伤-航速行重建；8 艘 ERMA USN 只补 `data/rules/gun-rows-erma.json` 的 Mk7/Mk8/Mk16 exact 行与 CAS 5e p.23（印刷 3-2）未印运动默认行。生成器 `scripts/build-merged-cards.py` 可重跑；源卡不改。
+2. **内核**：`ranked_fleets` 的 `profiles()` 由 111 条手写 `LEGACY_PROFILES` + 91 条生成的 `MERGED_PROFILES`（`src/ranked_profiles_merged.inc`）组成，`PROFILES` 语义保持单一注册表；`data()` 新增 merged 解析路径并跳过 `stat_verified=false`；`card_ref` 增加 `cas-merged-cards-v1#<identity>`；`roster()` 接受 CB/BC/AV 并拒绝全部 8 个收藏 id。`realtime.rs` 为 50 个新 class profile 登记炮座时序（沿用同炮族已有记录）。
+3. **点表**：`cas-competitive-points-v1.json` 补 91 行（`profile_id = cas-merged-cards-v1#<identity>`，全部标 provisional 待平衡复核），点值由现有 `point_value` 现算。历史战役预算不动。
+4. **验收**：引擎 103 项全过（新增 3 项：91 张 merged 全部过 `init_realtime`、6 艘 merged 驱逐舰 3000 分对局、202/8 与收藏 id 拒绝）；`server.test_ranked` 12 项全过（含 4 项原生 sim 流程）；其余服务端 21 项全过；`tsc --noEmit`、`vite build` 通过；WASM 重建并跑 21 组原生/WASM parity（`nativeWasmCanonicalMatch=true`）。覆盖、来源、排除名单与缺口见 `data/ships/merge-report.json`。
+5. **边界**：8 个收藏身份不合并；Hiei/Kirishima 的 12.7cm/40 DP 未并入单一 `secondary`、pdf/ERMA 未印 `torpedo_protection_dp`、Des Moines/Salem 1948 配置放进 1944 架空想定、Walke p309 极远段 25.9 千码印刷异常均逐条登记；91 行点价待平衡复核；未改 `server/catalog`、立绘、音频、AI、`data/campaign` 与源卡，未提交。
+
+## 当前批：23 张 period 逐舰卡接入排位注册表（2026-11-08）
+
+0. **口径**：`data/ships/playable-cards.json` 的 56 个 collection-only 身份里，28 个带 period 逐舰卡；其中 5 艘 APD/运输按非战斗保持收藏，**23 艘战斗舰**接入排位。它们原先不可出战，原因是排位注册表只加载 stage0/序章 25 张类卡，而不是没有舰表。排名注册表 88 → 111。
+1. **数据**：新增 `data/ships/period-cards.json`（23 条，逐条 `{identity,name,side,type,source_file,period_ship_id,period_profile,form10_page,stat_verified,stat_source,stat_conflicts,resolved_from,also_recorded,ship}`）。`ship` 是 period 包里的完整 ShipDef，原样复制后可战，只手写 id/name 为稳定身份与中文名；不换算、不补默认值、不跨级。生成器 `scripts/build-period-cards.py`。Cape Esperance 包以 `profile_ref` 指向 Tassafaronga 包时按该包已编译运行时卡取完整定义（与 `build_esperance_cards.py` 同一解析路径）；Buchanan/Honolulu 各两张 period 卡，取剧本运行时逐舰卡（`us_bristol_dd` / `brooklyn_1`），另一张记入 `also_recorded`。**修正轮**：鸟海（p.49）9 管/5 座、8 雷管、471 DP；威尔逊（p.317）4 门单装、16 雷管、118/38；蒙森（p.303）4 门单装、10 雷管/2 座、128/35；布坎南（p.292/293）4 门单装、10 雷管/2 座；圣胡安（p.262）8 座双联 16 管、8 雷管；赫尔(I)（AF A-19）size D/Small、200 码/1 节、损伤行 26/27。差额与冲突逐条写 `stat_conflicts`。
+2. **内核**：`ranked_fleets::data()` 解析 `include_str!("../data/ships/period-cards.json")` 并把 23 条完整 ShipDef 并入 ships；`PROFILES` 增加 23 个 Profile（`source = "period exact · <file> · <form10>"`，`source_class = period profile`）。`src/realtime.rs` 为 15 个 period profile 登记 `timings`（沿用同型已核炮座节奏）。`stat_verified=false` 的 period 卡不会上场（`data()` 跳过、`roster()` 拒绝）。不依赖 prologue 类卡，不改 88 个既有 Profile 的 id/source_class。
+3. **点表**：`data/rules/cas-competitive-points-v1.json` 补 23 行，用现有 `point_value` 由完整 ShipDef 计算（修正后：鸟海 1375、蒙森/布坎南 425、威尔逊 475、圣胡安 1025、赫尔(I) 425、Boise/Honolulu 1050、Australia/Canberra 1250、Uzuki 250 等），`profile_id = cas-period-cards-v1#<period_ship_id>`，行内标 provisional 待平衡复核。历史战役预算不动。
+4. **验收**：引擎 100 项（新增 3 项 ranked 测试，含逐张断言 6 张修正卡）；`server.test_ranked` 12 项全过（含原生 sim 的 4 项流程）；`tsc --noEmit`、`vite build` 通过。来源、哈希、完整性与缺口见 `data/ships/period-cards-report.json`。
+5. **边界**：WASM 未重建（只增 ranked 数据与炮座时序，未改剧本/裁决；ranked 由原生服务端权威执行）。剩余收藏 99 = 28 张无 period 卡 + 5 艘 APD + 66 个不在当前 11 剧本交叉表内的身份；`server/catalog`、立绘、音频、AI、`runtime-identities`、`campaign/live.rs` 未动。
+
+## 当前批：特混编成（自定义任务编队，2026-11-08）
+
+0. **规则口径**：历史编制仍是战役星级与史实编成的唯一口径；新增“特混编成”作为独立架空部署模式。位置数 = 剧本已有的玩家编队数（1–3），最多一位置一个编队，可少派、可空置、可单舰，总点价不超历史玩家兵力。锚点、航向、航速取运行时历史玩家 fleet，不新增坐标；列距沿用剧本 500 码默认值。登记见 [特混编成](docs/rules/task-force.md)。
+1. **内核**：`Start.groups` / `GroupPick`；`campaign_fleet` 返回 `positions` / `taskForceSupported`；`fleet::spawn_groups` 校验位置、空编队、同阵营与点价，并在 Esperance/Empress 的 `fill` 中替换玩家历史编队；敌方编制与目标不动。特混不计历史星级，客户端跳过 `recordCampaignResult`。
+2. **前端**：关前编成增加“历史编制 / 特混编成”页签；特混页为初设位置卡 + 编队卡 + 舰船选择 + 点价/校验/出航；空位置显示“空置”；特混出航按钮明确“不计历史星级”。
+3. **范围**：本批只接入埃斯佩兰斯角（1 位置 / 6,850）与奥古斯塔皇后湾（3 位置 / 7,500）。圣乔治角、塔萨法隆格、库拉湾、萨沃岛继续历史编制，`taskForceSupported=false`，前端禁用页签，不伪造位置。
+4. 验收：引擎 91 项（含 7 项特混舰队测试）；WASM 重建；`browser-taskforce`（皇后湾 3 位置/2 编队/空位/双锚点）与 `browser-taskforce-esperance`（1 位置/单舰）通过；历史四项浏览器验收继续通过；`tsc` 与 `vite build` 通过。
+5. 边界：历史舰位候选使用 class card，战斗舰名可能显示舰级名，身份级舰名载荷另批；特混结果页的浏览器断言待补。
+
+## 当前批：P1 战役大厅与关卡前编成（2026-11-08）
+
+0. **新战役大厅**：`CampaignLobby` 三栏（关卡列表 / 战区海图 / 关卡详情）；主路径只显示可出击与已完成关卡，资料核验与未开放档案收进「史料馆」（保留原 `CampaignArchive` 全屏视图，旧验收可回退）。
+1. **关卡前编成**：故事难度新增 `DeploymentScreen`；历史舰位逐位换同阵营已登记舰卡，点价不超历史兵力；候选面板、预算条、校验、战术风格、草稿与预设。标准/挑战仍按历史编制直接出击。
+2. **按出击选战术风格**：`CampaignLaunch` 增加 `profile`，战役出航可用编成屏选择的协同/炮战/雷击，不再强制沿用母港预设。
+3. **实现边界**：不改 `src/` 内核、CAS 舰卡、点表与历史阵位；新样式只挂 `.campaign-lobby` / `.deployment-screen`；740×360 无横向滚动。
+4. 验收：`npm run build`；`browser-esperance`（故事编成出航）、`browser-deployment`（换舰/预设/草稿/740 参谋抽屉）、`browser-campaign-modes`（史料馆/未开放禁用/标准直出）、`browser-lobby`（大厅/剧情/740 无横向滚动）；证据写入 `artifacts/client/{deployment,campaign-modes,lobby}/` 与 `havedone.md`。
+
 ## 当前批：删第 15 关、UP 战列舰、活动邮箱、周本分档与基础难度编队（2026-11-08）
 
 0. **剧本清理**：第 15 关（菲律宾海舰载机追击）从战役目录、席位、奖励和星数中移除；保留 11 个水面 CAS 想定，当前可出航 6 关（新增 05 塔萨法隆格、10 萨沃岛）。其余 7 关仍是资料层：塔萨法隆格缺补给点/卸载计分，萨沃缺海图与运输/照明裁决，霍腊纽有几何与艇型冲突，瓜达卡纳尔一/二、科隆班加拉、韦拉拉韦拉缺时期舰卡与海图。按规范不得用近似坐标或默认值填空。

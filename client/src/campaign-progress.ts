@@ -1,9 +1,14 @@
+import type { Profile } from './engine';
 import type { PortState } from './port';
 
 export const campaignDifficulties = { story: '故事', standard: '标准', challenge: '挑战' } as const;
 export type CampaignDifficulty = keyof typeof campaignDifficulties;
 export type CampaignGrade = 'none' | 'tactical' | 'decisive';
-export interface CampaignLaunch { stageId: string; difficulty: CampaignDifficulty; fleet?: string[] }
+export type GroupPick = { position: number; ships: string[] };
+export interface CampaignLaunch {
+  stageId: string; difficulty: CampaignDifficulty; fleet?: string[]; groups?: GroupPick[];
+  taskForce?: boolean; profile?: Profile;
+}
 export interface CampaignMission extends CampaignLaunch {
   missionLabel: string;
   objectives: string;

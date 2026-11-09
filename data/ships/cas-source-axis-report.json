@@ -1,0 +1,1971 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-source-axis-report-v1",
+ "as_of": "2026-11-08",
+ "generated_by": "session subagent (CAS axis source cards)",
+ "source": {
+  "identity_index": "data/ships/non-scenario-identities.json",
+  "audit": "data/ships/non-scenario-source-audit.json",
+  "profile_format_reference": "data/campaign/period/savo-island-1942.json#profiles",
+  "shipdef_format_reference": "data/campaign/period/prologue-runtime.json#ships",
+  "cas_tables": [
+   "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf"
+  ],
+  "registered_shipdefs_used": [
+   "data/campaign/period/kula-runtime.json#profiles.mutsuki",
+   "data/campaign/period/channel-runtime.json#ships[German DDs]"
+  ],
+  "source_pdfs": [
+   {
+    "document": "emperors_fleet",
+    "path": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+    "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+    "bytes": 2292047,
+    "pdf_pages": 121,
+    "role": "primary IJN class cards, Annex C guns, Annex F torpedoes"
+   },
+   {
+    "document": "rising_sun_form10",
+    "path": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+    "sha256": "9c54d934670f1065097de33f7092d15cebf73dcdf6143f693d43e1e95a599fb4",
+    "bytes": 9952081,
+    "pdf_pages": 380,
+    "role": "per-ship Form 10 movement/fit transcription"
+   },
+   {
+    "document": "gruppe_nord",
+    "path": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+    "sha256": "afc7979a51b966b98e58f73276855982e5e87330978597e71bc19a82ae013d3a",
+    "bytes": 6005340,
+    "pdf_pages": 142,
+    "role": "German destroyer class cards (Annex A), C guns, F torpedoes"
+   }
+  ],
+  "source_files": [
+   {
+    "document": "kula_runtime",
+    "path": "data/campaign/period/kula-runtime.json",
+    "sha256": null,
+    "bytes": null,
+    "pdf_pages": 0,
+    "role": "registered period runtime"
+   },
+   {
+    "document": "channel_runtime",
+    "path": "data/campaign/period/channel-runtime.json",
+    "sha256": null,
+    "bytes": null,
+    "pdf_pages": 0,
+    "role": "registered period runtime"
+   }
+  ]
+ },
+ "coverage": {
+  "axis_identities_in_audit": 32,
+  "axis_cas_source_table": 20,
+  "cards_written": 20,
+  "ship_written": 10,
+  "profile_only": 10,
+  "cv_excluded": 0,
+  "erma_record_image_axis_excluded": 11,
+  "not_found_axis": 1,
+  "by_type": {
+   "APD": 1,
+   "AV": 2,
+   "BB": 2,
+   "BC": 3,
+   "CA": 1,
+   "CL": 1,
+   "DD": 10
+  },
+  "by_ship_type": {
+   "APD": 1,
+   "AV": 0,
+   "BB": 0,
+   "BC": 0,
+   "CA": 1,
+   "CL": 1,
+   "DD": 7
+  },
+  "class_profile_reuse": {
+   "ijn_nagato_1936_bb": [
+    "IBS-U-IJN-NAGATO",
+    "IBS-U-IJN-MUTSU"
+   ],
+   "ijn_amagi_bc": [
+    "IBS-U-IJN-AMAGI",
+    "IBS-U-IJN-AKAGI"
+   ],
+   "ijn_asashio_dd": [
+    "IBS-U-IJN-NATSUGUMO",
+    "IBS-U-IJN-YAMAGUMO"
+   ],
+   "ijn_kamikaze_dd": [
+    "IBS-U-IJN-ASAKAZE",
+    "IBS-U-IJN-KAMIKAZE",
+    "IBS-U-IJN-OITE"
+   ],
+   "km_type_1934a_dd": [
+    "IBS-U-KM-HANS-LODY",
+    "IBS-U-KM-RICHARD-BEITZEN"
+   ]
+  }
+ },
+ "cards": [
+  {
+   "identity": "IBS-U-IJN-UZUKI-2",
+   "name": "卯月(II)",
+   "type": "APD",
+   "class_profile": "ijn_mutsuki_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "data_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      183
+     ],
+     "printed_pages": [
+      183
+     ],
+     "role": "Uzuki DD - Oct 1943 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Uzuki DD",
+      "class_printed": "Mutsuki class IJN",
+      "dp": "88",
+      "speed": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki class card + Uzuki remarks",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "uzuki_remarks": true
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12cm/45 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "name": "千岁",
+   "type": "AV",
+   "class_profile": "ijn_chitose_av",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      56
+     ],
+     "printed_pages": [
+      "A-53"
+     ],
+     "role": "Chitose AV card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true
+     }
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-NISSHIN",
+   "name": "日进",
+   "type": "AV",
+   "class_profile": "ijn_nisshin_av",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      57
+     ],
+     "printed_pages": [
+      "A-54"
+     ],
+     "role": "Nisshin AVM card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true,
+      "type_printed": "AVM"
+     }
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATO",
+   "name": "长门",
+   "type": "BB",
+   "class_profile": "ijn_nagato_1936_bb",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "role": "Nagato (1936) class card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true
+     }
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSU",
+   "name": "陆奥",
+   "type": "BB",
+   "class_profile": "ijn_nagato_1936_bb",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "role": "Nagato (1936) class card / Mutsu remarks",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "mutsu_remark": true
+     }
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-IJN-AMAGI",
+   "name": "天城",
+   "type": "BC",
+   "class_profile": "ijn_amagi_bc",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values_paper_ship",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      "A-7"
+     ],
+     "role": "Amagi BC class card",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "dp_row": true,
+      "speed_row": true
+     }
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-OWARI",
+   "name": "尾张",
+   "type": "BC",
+   "class_profile": "ijn_kii_bc",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values_paper_ship",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      9
+     ],
+     "printed_pages": [
+      "A-6"
+     ],
+     "role": "Kii class card (Owari in remarks)",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "owari_in_remarks": true
+     }
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-AKAGI",
+   "name": "赤城",
+   "type": "BC",
+   "class_profile": "ijn_amagi_bc",
+   "ship_written": false,
+   "blocker_code": "no_turn_or_accel_values_paper_ship",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      "A-7"
+     ],
+     "role": "Amagi BC class card (Akagi is a sister in remarks)",
+     "verified": "page_render",
+     "checked": {
+      "class_block": true,
+      "akagi_in_remarks": true
+     }
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-NACHI",
+   "name": "那智",
+   "type": "CA",
+   "class_profile": "ijn_myoko_1935_ca",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "data_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      67
+     ],
+     "printed_pages": [
+      67
+     ],
+     "role": "Nachi CA - Dec 1941 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Nachi CA",
+      "class_printed": "Myoko class IJN",
+      "dp": "471",
+      "speed": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      18
+     ],
+     "printed_pages": [
+      "A-15"
+     ],
+     "role": "Myoko (1935) class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      16
+     ],
+     "printed_pages": [
+      "A-13"
+     ],
+     "role": "Myoko/Nachi dated remarks",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      98
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "20cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-IJN-TATSUTA",
+   "name": "龙田",
+   "type": "CL",
+   "class_profile": "ijn_tenryu_cl",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "data_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      80
+     ],
+     "printed_pages": [
+      80
+     ],
+     "role": "Tatsuta CL - Feb 42 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Tatsuta CL",
+      "class_printed": "Tenryu class IJN",
+      "dp": "158",
+      "speed": "33 25 16 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "A-20"
+     ],
+     "role": "Tenryu class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "14cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "6th Yr Type torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 3
+  },
+  {
+   "identity": "IBS-U-IJN-MURAKUMO",
+   "name": "丛云",
+   "type": "DD",
+   "class_profile": "ijn_fubuki_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "data_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      160
+     ],
+     "printed_pages": [
+      160
+     ],
+     "role": "Murakumo DD - Apr-May 42 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Murakumo DD",
+      "class_printed": "Fubuki class IJN",
+      "dp": "139",
+      "speed": "34 26 17 8 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30
+     ],
+     "printed_pages": [
+      "A-27"
+     ],
+     "role": "Fubuki class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12.7cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-KM-KARL-GALSTER",
+   "name": "卡尔加尔斯特",
+   "type": "DD",
+   "class_profile": "km_type_1936_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "shipdef_source": "data/campaign/period/channel-runtime.json",
+   "data_pages": [
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "role": "1936 type class card (Z17-Z22; Z20 Karl Galster)",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      120
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "12.7cm SKC/34 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      124
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "G7a torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-NATSUGUMO",
+   "name": "夏云",
+   "type": "DD",
+   "class_profile": "ijn_asashio_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "data_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      123
+     ],
+     "printed_pages": [
+      123
+     ],
+     "role": "Natsugumo DD - Dec 1941 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Natsugumo DD",
+      "class_printed": "Asashio class IJN",
+      "dp": "135",
+      "speed": "35 26 18 9 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      28
+     ],
+     "printed_pages": [
+      "A-25"
+     ],
+     "role": "Asashio class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12.7cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-IJN-YAMAGUMO",
+   "name": "山云",
+   "type": "DD",
+   "class_profile": "ijn_asashio_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "shipdef_source": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "data_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      125
+     ],
+     "printed_pages": [
+      125
+     ],
+     "role": "Yamagumo DD - Apr-Sep 42 (identity page)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Yamagumo DD",
+      "class_printed": "Asashio class IJN",
+      "dp": "135",
+      "speed": "35 26 18 9 0"
+     }
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      28
+     ],
+     "printed_pages": [
+      "A-25"
+     ],
+     "role": "Asashio class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "role": "12.7cm/50 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      105
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "Type 93 torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "name": "朝风",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "ship_written": false,
+   "blocker_code": "fit_conflict_and_missing_torpedo_model",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) class card",
+     "verified": "page_render"
+    },
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      172
+     ],
+     "printed_pages": [
+      172
+     ],
+     "role": "Asakaze DD - Dec 1941 (fit comparison)",
+     "verified": "page_render",
+     "checked": {
+      "hull": "Asakaze DD",
+      "class_printed": "Kamikaze class IJN",
+      "dp": "92",
+      "speed": "35 26 18 9 0"
+     }
+    }
+   ],
+   "conflict_count": 3
+  },
+  {
+   "identity": "IBS-U-KM-HANS-LODY",
+   "name": "汉斯·洛迪",
+   "type": "DD",
+   "class_profile": "km_type_1934a_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "shipdef_source": "data/campaign/period/channel-runtime.json",
+   "data_pages": [
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "role": "1934 type (Maas) class card (Z1-Z16; Z10 Hans Lody)",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      120
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "12.7cm SKC/34 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      124
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "G7a torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSUKI",
+   "name": "睦月",
+   "type": "DD",
+   "class_profile": "ijn_mutsuki_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "data/campaign/period/kula-runtime.json",
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      30,
+      31
+     ],
+     "printed_pages": [
+      "A-27",
+      "A-28"
+     ],
+     "role": "Mutsuki class card and remarks",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 2
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "name": "神风",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "ship_written": false,
+   "blocker_code": "no_individual_form10_and_missing_torpedo_model",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) class card",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "name": "追风",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "ship_written": false,
+   "blocker_code": "no_individual_form10_and_missing_torpedo_model",
+   "source_kind": "class_table_profile",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": null,
+   "data_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "role": "Kamikaze (1941) class card",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 1
+  },
+  {
+   "identity": "IBS-U-KM-RICHARD-BEITZEN",
+   "name": "里夏德·拜茨恩",
+   "type": "DD",
+   "class_profile": "km_type_1934a_dd",
+   "ship_written": true,
+   "blocker_code": null,
+   "source_kind": "registered_runtime_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+   "shipdef_source": "data/campaign/period/channel-runtime.json",
+   "data_pages": [
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      66
+     ],
+     "printed_pages": [
+      "A-11"
+     ],
+     "role": "1934 type (Maas) class card (Z1-Z16; Z14 Richard Beitzen)",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      120
+     ],
+     "printed_pages": [
+      "C-2"
+     ],
+     "role": "12.7cm SKC/34 gun table",
+     "verified": "page_render"
+    },
+    {
+     "document": "gruppe_nord",
+     "file": "CAS带翻译/CAS带翻译/剧本/（德国海军）Gruppe_Nord_2012_Standard-onlyTrans.pdf",
+     "pdf_pages": [
+      124
+     ],
+     "printed_pages": [
+      "F-1"
+     ],
+     "role": "G7a torpedo table",
+     "verified": "page_render"
+    }
+   ],
+   "conflict_count": 2
+  }
+ ],
+ "checks": {
+  "axis_cas_identities_in_audit": 20,
+  "cards_written": 20,
+  "cards_expected": 20,
+  "count_ok": true,
+  "identities_match_audit": true,
+  "unique_identities": true,
+  "all_side_axis": true,
+  "all_type_not_cv": true,
+  "all_have_class_profile_ref": true,
+  "all_have_profile": true,
+  "all_have_source_pages": true,
+  "profile_required_fields": {
+   "class": true,
+   "side": true,
+   "kind": true,
+   "size_class_en": true,
+   "source": true,
+   "displacement_std_tons": true,
+   "in_class": true,
+   "in_service": true,
+   "crew": true,
+   "armor_rating": true,
+   "gunnery_standard": true,
+   "damage_points": true,
+   "speed_knots": true,
+   "main_gun": true,
+   "gun_mounts_verbatim": true,
+   "area_aa_verbatim": true,
+   "light_aa_verbatim": true,
+   "torpedoes_verbatim": true,
+   "sensors": true,
+   "remarks_summary": true
+  },
+  "ship_written": 10,
+  "profile_only": 10,
+  "ship_required_fields": {
+   "id": true,
+   "name": true,
+   "side": true,
+   "kind": true,
+   "size": true,
+   "max_knots": true,
+   "dp": true,
+   "damage_speed": true,
+   "turn_advance_yards": true,
+   "speed_loss_knots": true,
+   "accel_knots_per_turn": true,
+   "accel_high_knots_per_turn": true,
+   "brake_knots_per_turn": true,
+   "gun": true,
+   "armor_belt": true,
+   "armor_deck": true,
+   "in_service_year": true
+  },
+  "ships_unique_ids": true,
+  "blockers_present_for_profile_only": true,
+  "blockers_absent_for_ship": true,
+  "cv_excluded": [],
+  "no_points_field": true,
+  "source_pdfs_hashed": true,
+  "source_pages_docs_known": true,
+  "source_pages_pdf_ranges_ok": true,
+  "source_files_exist": true,
+  "profile_required_fields_ok": true,
+  "ship_required_fields_ok": true,
+  "all_checks_ok": true
+ },
+ "page_resolution": {
+  "note": "所有 data page 均以 pymupdf 渲染到 PNG 后目视核对（舰名/舰级/DP/航速/武备行）；索引页只用于定位，未用于取值。",
+  "data_pages": [
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     8
+    ],
+    "printed_pages": [
+     "A-5"
+    ],
+    "role": "Nagato/Mutsu",
+    "cards": [
+     "IBS-U-IJN-NAGATO",
+     "IBS-U-IJN-MUTSU"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     9
+    ],
+    "printed_pages": [
+     "A-6"
+    ],
+    "role": "Kii/Owari",
+    "cards": [
+     "IBS-U-IJN-OWARI"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     10
+    ],
+    "printed_pages": [
+     "A-7"
+    ],
+    "role": "Amagi/Akagi BC",
+    "cards": [
+     "IBS-U-IJN-AMAGI",
+     "IBS-U-IJN-AKAGI"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     16,
+     18
+    ],
+    "printed_pages": [
+     "A-13",
+     "A-15"
+    ],
+    "role": "Myoko/Nachi",
+    "cards": [
+     "IBS-U-IJN-NACHI"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     23
+    ],
+    "printed_pages": [
+     "A-20"
+    ],
+    "role": "Tenryu/Tatsuta",
+    "cards": [
+     "IBS-U-IJN-TATSUTA"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     27
+    ],
+    "printed_pages": [
+     "A-24"
+    ],
+    "role": "Kamikaze (1941)",
+    "cards": [
+     "IBS-U-IJN-ASAKAZE",
+     "IBS-U-IJN-KAMIKAZE",
+     "IBS-U-IJN-OITE"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     28
+    ],
+    "printed_pages": [
+     "A-25"
+    ],
+    "role": "Asashio",
+    "cards": [
+     "IBS-U-IJN-NATSUGUMO",
+     "IBS-U-IJN-YAMAGUMO"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     30,
+     31
+    ],
+    "printed_pages": [
+     "A-27",
+     "A-28"
+    ],
+    "role": "Fubuki/Mutsuki",
+    "cards": [
+     "IBS-U-IJN-MURAKUMO",
+     "IBS-U-IJN-MUTSUKI",
+     "IBS-U-IJN-UZUKI-2"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     56
+    ],
+    "printed_pages": [
+     "A-53"
+    ],
+    "role": "Chitose",
+    "cards": [
+     "IBS-U-IJN-CHITOSE"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     57
+    ],
+    "printed_pages": [
+     "A-54"
+    ],
+    "role": "Nisshin",
+    "cards": [
+     "IBS-U-IJN-NISSHIN"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     97
+    ],
+    "printed_pages": [
+     "C-1"
+    ],
+    "role": "surface guns",
+    "cards": [
+     "IBS-U-IJN-TATSUTA",
+     "IBS-U-IJN-NATSUGUMO",
+     "IBS-U-IJN-YAMAGUMO",
+     "IBS-U-IJN-MURAKUMO",
+     "IBS-U-IJN-UZUKI-2"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     98
+    ],
+    "printed_pages": [
+     "C-2"
+    ],
+    "role": "20cm/50 gun",
+    "cards": [
+     "IBS-U-IJN-NACHI"
+    ]
+   },
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     105
+    ],
+    "printed_pages": [
+     "F-1"
+    ],
+    "role": "torpedoes",
+    "cards": [
+     "IBS-U-IJN-NACHI",
+     "IBS-U-IJN-TATSUTA",
+     "IBS-U-IJN-NATSUGUMO",
+     "IBS-U-IJN-YAMAGUMO",
+     "IBS-U-IJN-MURAKUMO",
+     "IBS-U-IJN-UZUKI-2"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     67
+    ],
+    "printed_pages": [
+     67
+    ],
+    "role": "Nachi",
+    "cards": [
+     "IBS-U-IJN-NACHI"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     80
+    ],
+    "printed_pages": [
+     80
+    ],
+    "role": "Tatsuta",
+    "cards": [
+     "IBS-U-IJN-TATSUTA"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     123
+    ],
+    "printed_pages": [
+     123
+    ],
+    "role": "Natsugumo",
+    "cards": [
+     "IBS-U-IJN-NATSUGUMO"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     125
+    ],
+    "printed_pages": [
+     125
+    ],
+    "role": "Yamagumo",
+    "cards": [
+     "IBS-U-IJN-YAMAGUMO"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     160
+    ],
+    "printed_pages": [
+     160
+    ],
+    "role": "Murakumo",
+    "cards": [
+     "IBS-U-IJN-MURAKUMO"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     172
+    ],
+    "printed_pages": [
+     172
+    ],
+    "role": "Asakaze (comparison; not used for ShipDef)",
+    "cards": [
+     "IBS-U-IJN-ASAKAZE"
+    ]
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     183
+    ],
+    "printed_pages": [
+     183
+    ],
+    "role": "Uzuki",
+    "cards": [
+     "IBS-U-IJN-UZUKI-2"
+    ]
+   },
+   {
+    "document": "gruppe_nord",
+    "pdf_pages": [
+     66
+    ],
+    "printed_pages": [
+     "A-11"
+    ],
+    "role": "1934/1936 type cards",
+    "cards": [
+     "IBS-U-KM-KARL-GALSTER",
+     "IBS-U-KM-HANS-LODY",
+     "IBS-U-KM-RICHARD-BEITZEN"
+    ]
+   },
+   {
+    "document": "gruppe_nord",
+    "pdf_pages": [
+     120
+    ],
+    "printed_pages": [
+     "C-2"
+    ],
+    "role": "12.7cm SKC/34 gun table",
+    "cards": [
+     "IBS-U-KM-KARL-GALSTER",
+     "IBS-U-KM-HANS-LODY",
+     "IBS-U-KM-RICHARD-BEITZEN"
+    ]
+   },
+   {
+    "document": "gruppe_nord",
+    "pdf_pages": [
+     124
+    ],
+    "printed_pages": [
+     "F-1"
+    ],
+    "role": "G7a torpedo table",
+    "cards": [
+     "IBS-U-KM-KARL-GALSTER",
+     "IBS-U-KM-HANS-LODY",
+     "IBS-U-KM-RICHARD-BEITZEN"
+    ]
+   }
+  ],
+  "index_pages_rejected": [
+   {
+    "document": "emperors_fleet",
+    "pdf_pages": [
+     4,
+     5,
+     6
+    ],
+    "printed_pages": [
+     "A-1",
+     "A-2",
+     "A-3"
+    ],
+    "role": "ship-class index; not data"
+   },
+   {
+    "document": "rising_sun_form10",
+    "pdf_pages": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21
+    ],
+    "printed_pages": [
+     "iv",
+     "v",
+     "vi",
+     "vii",
+     "viii",
+     "ix",
+     "x",
+     "xi",
+     "xii",
+     "xiii",
+     "xiv",
+     "xv",
+     "xvi",
+     "xvii",
+     "xviii",
+     "xix",
+     "xx",
+     "xxi"
+    ],
+    "role": "ship index; not data"
+   }
+  ],
+  "unresolved": []
+ },
+ "conflicts": [
+  {
+   "id": "C-IJN-UZUKI-2-1",
+   "identity": "IBS-U-IJN-UZUKI-2",
+   "severity": "medium",
+   "detail": "A-27/A-28 级表记 4 座 12cm、8th Yr Type No.2 鱼雷；Form 10 p.183（Oct 43）记 2 座 12cm、九三式鱼雷。ShipDef 取 Form 10 Oct 43（APD 役态）。"
+  },
+  {
+   "id": "C-IJN-UZUKI-2-2",
+   "identity": "IBS-U-IJN-UZUKI-2",
+   "severity": "medium",
+   "detail": "catalog/identity 为 APD，CAS 卡为 DD；未改 type。"
+  },
+  {
+   "id": "C-IJN-CHITOSE-1",
+   "identity": "IBS-U-IJN-CHITOSE",
+   "severity": "high",
+   "detail": "Crew 原页留空。"
+  },
+  {
+   "id": "C-IJN-CHITOSE-2",
+   "identity": "IBS-U-IJN-CHITOSE",
+   "severity": "high",
+   "detail": "1943 CVL 改装卡 A-10 与 identity type AV 不同，未用于本卡。"
+  },
+  {
+   "id": "C-IJN-NISSHIN-1",
+   "identity": "IBS-U-IJN-NISSHIN",
+   "severity": "high",
+   "detail": "原页类型 AVM；identity/catalog 与任务口径为 AV，profile.kind=AV，card_type_verbatim=AVM。"
+  },
+  {
+   "id": "C-IJN-NISSHIN-2",
+   "identity": "IBS-U-IJN-NISSHIN",
+   "severity": "high",
+   "detail": "Area AA 原页未印；无装甲。"
+  },
+  {
+   "id": "C-IJN-NAGATO-1",
+   "identity": "IBS-U-IJN-NAGATO",
+   "severity": "high",
+   "detail": "Mutsu 与 Nagato 共用 A-5 级表；Mutsu 1943-06-08 爆沉，1943-44 改装不适用。"
+  },
+  {
+   "id": "C-IJN-MUTSU-1",
+   "identity": "IBS-U-IJN-MUTSU",
+   "severity": "high",
+   "detail": "Mutsu 爆沉于 1943-06-08；级表 1943-44 改装注记不适用。"
+  },
+  {
+   "id": "C-IJN-AMAGI-1",
+   "identity": "IBS-U-IJN-AMAGI",
+   "severity": "high",
+   "detail": "A-9 的 Akagi CV 与 A-8 的 Amagi CV 同页/邻页；identity type BC，CV 卡按任务排除。"
+  },
+  {
+   "id": "C-IJN-AMAGI-2",
+   "identity": "IBS-U-IJN-AMAGI",
+   "severity": "high",
+   "detail": "A-7 的 Amagi BC 卡没有 light AA、aircraft、sensors 行。"
+  },
+  {
+   "id": "C-IJN-OWARI-1",
+   "identity": "IBS-U-IJN-OWARI",
+   "severity": "high",
+   "detail": "A-6 标题行为 Kii 级，Owari 只在 Remarks；无单舰卡。"
+  },
+  {
+   "id": "C-IJN-OWARI-2",
+   "identity": "IBS-U-IJN-OWARI",
+   "severity": "high",
+   "detail": "Crew 原页 '?'；Displacement 原页 '41400 n'（normal），profile 保留原值并注明。"
+  },
+  {
+   "id": "C-IJN-AKAGI-1",
+   "identity": "IBS-U-IJN-AKAGI",
+   "severity": "high",
+   "detail": "A-9 Akagi CV (1938) 按 type CV 排除，未用于本卡。"
+  },
+  {
+   "id": "C-IJN-AKAGI-2",
+   "identity": "IBS-U-IJN-AKAGI",
+   "severity": "high",
+   "detail": "Akagi BC 无单独卡；与 Amagi 共用 A-7 级表。"
+  },
+  {
+   "id": "C-IJN-NACHI-1",
+   "identity": "IBS-U-IJN-NACHI",
+   "severity": "medium",
+   "detail": "A-13 记 Nachi 1943-03 后加 Type 21、1944 加 Type 22/13；Form 10 p.67（Dec 41）无雷达。ShipDef 取 Dec 41。"
+  },
+  {
+   "id": "C-IJN-TATSUTA-1",
+   "identity": "IBS-U-IJN-TATSUTA",
+   "severity": "medium",
+   "detail": "A-20 级表 Light AA 2×13.2mm (0.1)；Form 10 p.80 印 4×25mm + 4×13mm (1.0)。ShipDef 采用 Form 10 Feb 42 舰页值，级表差异保留。"
+  },
+  {
+   "id": "C-IJN-TATSUTA-2",
+   "identity": "IBS-U-IJN-TATSUTA",
+   "severity": "medium",
+   "detail": "savo-runtime savo_tenryu 的鱼雷是 8th Yr No.2；A-20/Form 10 均印 6th Yr Type，本卡不沿用 savo 值。"
+  },
+  {
+   "id": "C-IJN-TATSUTA-3",
+   "identity": "IBS-U-IJN-TATSUTA",
+   "severity": "medium",
+   "detail": "A-20 在 Tatsuta 名下同时印 Aug-Sep 43 雷达改装与 13 Mar 43 沉没；日期矛盾，原样保留，未用于 ShipDef（ShipDef 取 Feb 42）。"
+  },
+  {
+   "id": "C-IJN-MURAKUMO-1",
+   "identity": "IBS-U-IJN-MURAKUMO",
+   "severity": "medium",
+   "detail": "A-27 级表 1778 std、crew 197、DP 106、38 节、8th Yr Type；Form 10 p.160 2090 std、crew 221、DP 139、34 节、Type 93。profile 记级表，ShipDef 取 Form 10 Apr-May 42。"
+  },
+  {
+   "id": "C-IJN-MURAKUMO-2",
+   "identity": "IBS-U-IJN-MURAKUMO",
+   "severity": "medium",
+   "detail": "Form 10 p.159（Dec 1941）与 p.160（Apr-May 42）两页均存在；ShipDef 取较晚的 p.160。"
+  },
+  {
+   "id": "C-KM-KARL-GALSTER-1",
+   "identity": "IBS-U-KM-KARL-GALSTER",
+   "severity": "medium",
+   "detail": "A-11 1936 型卡主炮行 '2座双联装…（前甲板/左右舷/2座单装）' 与鱼雷行 '左右舷4座双联装' 文字含糊；channel-runtime 登记 5 门单装/8 管，原样保留并标注。"
+  },
+  {
+   "id": "C-KM-KARL-GALSTER-2",
+   "identity": "IBS-U-KM-KARL-GALSTER",
+   "severity": "medium",
+   "detail": "1936 型卡记 1944 年 Z20 轻防空 4×3.7cm+12×2cm (5.4)、FuMO 61/25；ShipDef 未含该后期改装。"
+  },
+  {
+   "id": "C-IJN-NATSUGUMO-1",
+   "identity": "IBS-U-IJN-NATSUGUMO",
+   "severity": "medium",
+   "detail": "A-25 级表 Type 90 鱼雷、crew 2290（显为 229 的排版误植）；Form 10 p.123 Type 93、crew 200。profile 采用 200 并注明原页。"
+  },
+  {
+   "id": "C-IJN-YAMAGUMO-1",
+   "identity": "IBS-U-IJN-YAMAGUMO",
+   "severity": "medium",
+   "detail": "A-25 级表 Type 90 鱼雷；Form 10 p.125 Type 93。ShipDef 取 Form 10 Apr-Sep 42。"
+  },
+  {
+   "id": "C-IJN-ASAKAZE-1",
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "severity": "high",
+   "detail": "A-24: F/2P&S(1)3（3 门 12cm），10 Type 96 25mm (1.2)。"
+  },
+  {
+   "id": "C-IJN-ASAKAZE-2",
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "severity": "high",
+   "detail": "Form 10 p.172: Fwd/P&S/P&S/Aft 4 门 12cm，2 13mm (0.1)，DP 92，35/26/18/9/0，转 200/1。"
+  },
+  {
+   "id": "C-IJN-ASAKAZE-3",
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "severity": "high",
+   "detail": "Type 96 533mm 在 F-1 无行；不替代、不编造。"
+  },
+  {
+   "id": "C-KM-HANS-LODY-1",
+   "identity": "IBS-U-KM-HANS-LODY",
+   "severity": "medium",
+   "detail": "A-11 1934 型卡记 1944-45 Z10 改 (2)6 3.7cm Flak M42、Lt AA 4.0；ShipDef 未含该后期改装。"
+  },
+  {
+   "id": "C-KM-HANS-LODY-2",
+   "identity": "IBS-U-KM-HANS-LODY",
+   "severity": "medium",
+   "detail": "A-11 1934 型卡速度行 38/29/19/10/0；channel-runtime ShipDef 为 38/28/19/10/0（第一损伤段）。ShipDef 原样复制，级表值保留在 profile。"
+  },
+  {
+   "id": "C-IJN-MUTSUKI-1",
+   "identity": "IBS-U-IJN-MUTSUKI",
+   "severity": "medium",
+   "detail": "kula-runtime profiles.mutsuki 的 damage_speed 只有 5 行（0/33 至 79/0），未印 88/Sunk 行；原样保留，不补。"
+  },
+  {
+   "id": "C-IJN-MUTSUKI-2",
+   "identity": "IBS-U-IJN-MUTSUKI",
+   "severity": "medium",
+   "detail": "A-27 级表 8th Yr Type No.2；Form 10 同型舰页多为 Type 93。ShipDef 沿用登记卡。"
+  },
+  {
+   "id": "C-IJN-KAMIKAZE-1",
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "severity": "high",
+   "detail": "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突（见 ASAKAZE 卡）。"
+  },
+  {
+   "id": "C-IJN-OITE-1",
+   "identity": "IBS-U-IJN-OITE",
+   "severity": "high",
+   "detail": "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突。"
+  },
+  {
+   "id": "C-KM-RICHARD-BEITZEN-1",
+   "identity": "IBS-U-KM-RICHARD-BEITZEN",
+   "severity": "medium",
+   "detail": "A-11 1934 型卡记 1944 年 Z14 加 FuMO 61、FuMO 21 换 FuMO 25；ShipDef 未含雷达/后期轻防空。"
+  },
+  {
+   "id": "C-KM-RICHARD-BEITZEN-2",
+   "identity": "IBS-U-KM-RICHARD-BEITZEN",
+   "severity": "medium",
+   "detail": "A-11 1934 型卡速度行 38/29/19/10/0；channel-runtime ShipDef 为 38/28/19/10/0（第一损伤段）。ShipDef 原样复制，级表值保留在 profile。"
+  }
+ ],
+ "unresolved": [
+  {
+   "id": "U-AXIS-AUDIT-HITS-ARE-SEARCH-HITS",
+   "severity": "info",
+   "status": "page_resolution",
+   "detail": "non-scenario-source-audit.json 的 hits 是 1-based PDF 搜索命中，不全是数据页；许多命中落在索引页（Emperor A-1..A-3、Form 10 索引页）。本批逐条按渲染页复核，只把真实舰卡/表页写入 source_pages。每条的 hit_review 列在 cards[].audit.hit_review。",
+   "action": "索引页不用于取值；如后续再用 audit hits，请先按本文件 page_resolution 映射。"
+  },
+  {
+   "id": "U-AXIS-ASAKAZE-FIT",
+   "severity": "high",
+   "status": "printed_conflict_retained",
+   "detail": "Asakaze：A-24 Kamikaze (1941) 级表印 3 门 12cm、10×25mm；Form 10 p.172（Dec 1941）印 4 门 12cm、2×13mm。两页的炮座数/轻防空互斥。Type 96 533mm 鱼雷在 Annex F-1 无弹行（F-2 的 Type 96 为潜艇/袖珍潜艇用），所以也不能靠舰页单独组 ShipDef。",
+   "identities": [
+    "IBS-U-IJN-ASAKAZE",
+    "IBS-U-IJN-KAMIKAZE",
+    "IBS-U-IJN-OITE"
+   ],
+   "action": "不出 ShipDef；保留 profile + blocker，等待裁决 3 vs 4 炮座和轻防空。"
+  },
+  {
+   "id": "U-AXIS-KAMIKAZE-NO-FORM10",
+   "severity": "medium",
+   "status": "no_individual_form10",
+   "detail": "Form 10 的 Kamikaze 级逐舰页只有 Asakaze/Harukaze/Hatakaze/Matsukaze/Yunagi；Kamikaze 与 Oite 没有逐舰页。级表 A-24 无 Advance per 45°/Accel/Decel。",
+   "identities": [
+    "IBS-U-IJN-KAMIKAZE",
+    "IBS-U-IJN-OITE"
+   ],
+   "action": "profile only；不套用 Asakaze 页或同尺级默认值。"
+  },
+  {
+   "id": "U-AXIS-MUTSUKI-TORPEDO-AND-5-ROW-DP",
+   "severity": "medium",
+   "status": "registered_shipdef_copied",
+   "detail": "Mutsuki：kula-runtime profiles.mutsuki 的 damage_speed 只有 5 行（0/33 至 79/0，DP 88），没有 88/Sunk 行；A-27 级表鱼雷为 8th Yr Type No.2，同型 Form 10 页多为 Type 93。ShipDef 原样复制，不补行、不改鱼雷。",
+   "identities": [
+    "IBS-U-IJN-MUTSUKI"
+   ],
+   "action": "保留登记卡；若要 6 行 DP 或 Type 93，需先裁决并改登记卡。"
+  },
+  {
+   "id": "U-AXIS-FUBUKI-CONFIG",
+   "severity": "medium",
+   "status": "printed_conflict_retained",
+   "detail": "Murakumo：A-27 级表 1778 std / crew 197 / DP 106 / 38 节 / 8th Yr Type；Form 10 p.160（Apr-May 42）2090 std / crew 221 / DP 139 / 34 节 / Type 93。profile 记 1928 级表，ShipDef 取 Form 10 1942 舰页。",
+   "identities": [
+    "IBS-U-IJN-MURAKUMO"
+   ],
+   "action": "两个配置并列登记；未把二者混成一个。"
+  },
+  {
+   "id": "U-AXIS-NAGATO-MUTSU-NO-TURN",
+   "severity": "high",
+   "status": "blocked_missing_turn_data",
+   "detail": "Nagato/Mutsu：A-5 与 Form 10 均无 Advance per 45°/Accel/Decel。不能用 Yamato 的 size A 转向值代替。",
+   "identities": [
+    "IBS-U-IJN-NAGATO",
+    "IBS-U-IJN-MUTSU"
+   ],
+   "action": "profile + blocker。"
+  },
+  {
+   "id": "U-AXIS-PAPER-SHIPS-NO-TURN",
+   "severity": "high",
+   "status": "blocked_missing_turn_data",
+   "detail": "Amagi/Akagi BC、Owari：纸面设计，A-7/A-6 无转向/加速值；Owari 的 crew 原页为 '?'。",
+   "identities": [
+    "IBS-U-IJN-AMAGI",
+    "IBS-U-IJN-AKAGI",
+    "IBS-U-IJN-OWARI"
+   ],
+   "action": "profile + blocker；不套用其他尺级默认值。"
+  },
+  {
+   "id": "U-AXIS-AKAGI-AMAGI-CV-CARDS",
+   "severity": "info",
+   "status": "cv_excluded",
+   "detail": "AKAGI/AMAGI 的 catalog identity type=BC；A-9 Akagi (1938)/Akagi CV、A-8 Amagi/Unryu CV 均为 CV 卡，按任务排除，未用于 BC profile。",
+   "identities": [
+    "IBS-U-IJN-AKAGI",
+    "IBS-U-IJN-AMAGI"
+   ],
+   "action": "CV 卡未用；BC 卡共用 A-7 Amagi 级设计卡。"
+  },
+  {
+   "id": "U-AXIS-GERMAN-CARD-TEXT",
+   "severity": "medium",
+   "status": "printed_conflict_retained",
+   "detail": "Gruppe Nord A-11 1936 型卡主炮行 '2座双联装12.7厘米SKC/34火炮（前甲板/左右舷/2座单装）' 与鱼雷行 '左右舷4座双联装53.3厘米鱼雷发射管' 文字含糊；channel-runtime 登记为 5 门单装/8 管，原样复制并标注。",
+   "identities": [
+    "IBS-U-KM-KARL-GALSTER"
+   ],
+   "action": "ShipDef 原样保留；如需逐座核对，按 A-11 图面再裁决。"
+  },
+  {
+   "id": "U-AXIS-NO-CATALOG-WIRING",
+   "severity": "info",
+   "status": "out_of_scope",
+   "detail": "本批只写 data/ships/；未改 server/catalog、portraits、audio、AI、ranked_fleets，未写 points/ranked，未 git commit。",
+   "identities": [
+    "IBS-U-IJN-UZUKI-2",
+    "IBS-U-IJN-CHITOSE",
+    "IBS-U-IJN-NISSHIN",
+    "IBS-U-IJN-NAGATO",
+    "IBS-U-IJN-MUTSU",
+    "IBS-U-IJN-AMAGI",
+    "IBS-U-IJN-OWARI",
+    "IBS-U-IJN-AKAGI",
+    "IBS-U-IJN-NACHI",
+    "IBS-U-IJN-TATSUTA",
+    "IBS-U-IJN-MURAKUMO",
+    "IBS-U-KM-KARL-GALSTER",
+    "IBS-U-IJN-NATSUGUMO",
+    "IBS-U-IJN-YAMAGUMO",
+    "IBS-U-IJN-ASAKAZE",
+    "IBS-U-KM-HANS-LODY",
+    "IBS-U-IJN-MUTSUKI",
+    "IBS-U-IJN-KAMIKAZE",
+    "IBS-U-IJN-OITE",
+    "IBS-U-KM-RICHARD-BEITZEN"
+   ],
+   "action": "接线/评分由后续批次处理。"
+  }
+ ],
+ "blockers": [
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "name": "千岁",
+   "code": "no_turn_or_accel_values",
+   "detail": "A-53 只给舰卡（DP/航速/武备/航空队），未给 Advance per 45°、Accel/Decel 与 crew；辅助舰 -25% 也不足以补这些量。按规范不采用其他舰/尺级默认值。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "crew"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NISSHIN",
+   "name": "日进",
+   "code": "no_turn_or_accel_values",
+   "detail": "A-54 未给 Advance per 45°、Accel/Decel；Armor Rating 0、Area AA 行未印。无法无推断转成完整 ShipDef。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "armor_belt",
+    "armor_deck"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATO",
+   "name": "长门",
+   "code": "no_turn_or_accel_values",
+   "detail": "A-5 未给 Advance per 45°、Accel/Decel，Form 10 也没有 Nagato/Mutsu 逐舰卡；不能把其他尺级或 Yamato 的转向值套到本舰。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSU",
+   "name": "陆奥",
+   "code": "no_turn_or_accel_values",
+   "detail": "A-5 未给转向/加速值；无 Mutsu 逐舰 Form 10；不套用同尺级默认值。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-AMAGI",
+   "name": "天城",
+   "code": "no_turn_or_accel_values_paper_ship",
+   "detail": "Amagi 级 BC 未建成；A-7 无 Advance per 45°、Accel/Decel，Form 10 也没有 Amagi BC 卡。不能把其他战巡/战列舰的转向值套到纸面设计。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "light_aa",
+    "aircraft",
+    "sensors"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-OWARI",
+   "name": "尾张",
+   "code": "no_turn_or_accel_values_paper_ship",
+   "detail": "Kii/Owari 未建成；A-6 无 Advance per 45°、Accel/Decel，Form 10 无 Kii 级卡；Crew 原页为 '?'。不套用其他尺级默认值。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "crew"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-AKAGI",
+   "name": "赤城",
+   "code": "no_turn_or_accel_values_paper_ship",
+   "detail": "Akagi BC 从未建成，A-7 只有 Amagi 级设计卡，无 Advance per 45°、Accel/Decel；Form 10 只有 Akagi CV 卡（p.44），不能当 BC 用。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "light_aa",
+    "aircraft",
+    "sensors"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "name": "朝风",
+   "code": "fit_conflict_and_missing_torpedo_model",
+   "detail": "A-24 与 Form 10 p.172 对主炮座数（3 vs 4）和轻防空（10×25mm vs 2×13mm）互相冲突；Type 96 533mm 在 Annex F-1 无弹行（F-2 的 Type 96 为潜艇/袖珍潜艇用）。未裁决前不出 ShipDef。",
+   "missing_fields": [
+    "torpedo",
+    "single_gun_mount_count_adjudication",
+    "light_aa_adjudication"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "name": "神风",
+   "code": "no_individual_form10_and_missing_torpedo_model",
+   "detail": "无 Kamikaze 本舰 Form 10；级表缺 Advance per 45°/Accel/Decel；Type 96 533mm 无 F-1 弹行。Asakaze 的 Form 10 与级表炮座数冲突，不能直接套用。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "torpedo"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "name": "追风",
+   "code": "no_individual_form10_and_missing_torpedo_model",
+   "detail": "无 Oite 本舰 Form 10；级表缺转向/加速值；Type 96 533mm 无 F-1 弹行。不套用 Asakaze 页的冲突配置。",
+   "missing_fields": [
+    "turn_advance_yards",
+    "speed_loss_knots",
+    "accel_knots_per_turn",
+    "accel_high_knots_per_turn",
+    "brake_knots_per_turn",
+    "torpedo"
+   ]
+  }
+ ]
+}

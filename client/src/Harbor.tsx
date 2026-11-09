@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { CampaignArchive } from './CampaignArchive';
 import { claimCampaignRewards } from './campaign-progress';
 import type { CampaignLaunch } from './campaign-progress';
+import { AI_SHOP, aiShopBlockReason, aiShopOwned, aiShopStars, aiShopUnlocked, buyAiShopEntry } from './ai-shop';
 import { RecruitArrival } from './RecruitArrival';
 import { LocalRecruitDesk } from './LocalRecruitDesk';
 import { buyWeeklyTicket, CHALLENGE_WEEKLY_LIMIT, CHALLENGE_WEEKLY_TICKETS, claimRepeat, claimWeeklySupply, WEEKLY_TICKET_PRICE, weeklyStatus } from './activities/week';
-import { profileNames, sideNames } from './engine';
+import { profileNames } from './engine';
 import type { Profile, Side } from './engine';
 import { drawRecruit, getGunnery, hulls, lessons, meetsRoster, receiveChallenge, receiveStarter, recruitReceipt, rosters } from './port';
 import type { Hull, PortLaunch, PortState } from './port';
+import { ChallengeLadder } from './activities/ChallengeLadder';
 import './harbor.css';
 
 export type HarborTab = 'training' | 'fleet' | 'recruit' | 'challenge' | 'archive';
@@ -44,12 +46,15 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
   const [starterSide, setStarterSide] = useState<Side>(state.preset.side);
   const [pool, setPool] = useState<'standard' | 'up'>('standard');
   const [economy, setEconomy] = useState<'recruit' | 'supply' | 'ai'>('recruit');
+  const [aiNotice, setAiNotice] = useState('');
   const [arrival, setArrival] = useState<{ id: number; replay: boolean }>();
   const week = weeklyStatus(state);
   const nextLesson = lessons.find(({ id }) => !state.lessons.includes(id));
   const { preset } = state;
   const canDeploy = state.starter && meetsRoster(state, preset.side);
-  const canChallenge = state.starter && meetsRoster(state, preset.side, true);
+  // The staged challenge lends its roster from the 202-card registry, so the
+  // local dock only has to be unlocked; no own-hull quota applies.
+  const canChallenge = state.starter;
   const arrivalReceipts = arrival ? recruitReceipt(state.history, arrival.id) : [];
   function setSide(side: Side) { change((s) => ({ ...s, preset: { ...s.preset, side, leaderSlot: 0 } })); }
   function recruit(count: 1 | 10) {
@@ -136,21 +141,41 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
               onClick={() => change(s => claimWeeklySupply(s))}>{week.supply ? '本周已领取' : '领取每周实战补给'}</button></div>
           </>}
           {economy === 'ai' && <>
-            <div className="harbor-title"><h3>AI 战术室</h3><span>拥有 {state.profiles.length} / 3</span></div>
-            <p className="harbor-fine">协同随账号开放。炮战可兑换；雷击通过越级挑战首通解锁。</p>
+            <div className="harbor-title"><h3>AI 战术室</h3><span>已解锁 {AI_SHOP.filter(entry => aiShopUnlocked(entry, state.campaignProgress)).length} / {AI_SHOP.length}</span></div>
+            <p className="harbor-fine">三条 evolved 战术为内测暂定强度（provisional），统一消耗常驻征募券；购买记录随本机账号保存，出航或战斗内可在「AI 风格」选用。</p>
+            {aiNotice && <p className="harbor-fine" role="status" data-ai-shop-notice>{aiNotice}</p>}
+            <div className="ai-shop-grid">
+              {AI_SHOP.map(entry => {
+                const owned = aiShopOwned(state, entry);
+                const unlocked = aiShopUnlocked(entry, state.campaignProgress);
+                const reason = aiShopBlockReason(state, entry);
+                return <article key={entry.id} className="ai-shop-card" data-ai-profile={entry.id} data-owned={owned} data-unlocked={unlocked}>
+                  <header><h4>{entry.name}</h4>{entry.provisional && <span className="ai-shop-provisional">暂定强度</span>}</header>
+                  <p className="ai-shop-description">{entry.description}</p>
+                  <p className="ai-shop-unlock">解锁：通关「{entry.stageName}」{unlocked ? '（已达成）' : `（当前 ${aiShopStars(entry, state.campaignProgress)} 星）`}</p>
+                  <div className="ai-shop-buy">
+                    <span>{entry.cost} 常驻征募券</span>
+                    <button type="button" className={owned ? '' : 'primary'} disabled={busy || !!reason}
+                      onClick={() => {
+                        change(current => buyAiShopEntry(current, entry));
+                        setAiNotice(`已购入「${entry.name}」，可在出航编队或战斗内选用。`);
+                      }}>{owned ? '已拥有' : !unlocked ? '未解锁' : reason ? '征募券不足' : '购买'}</button>
+                  </div>
+                  {reason && <p className="ai-shop-reason">{reason}</p>}
+                </article>;
+              })}
+            </div>
+            <div className="harbor-title"><h3>既有战术</h3><span>舰队勋章</span></div>
             <div className="harbor-action"><button type="button" disabled={state.marks < 6 || state.profiles.includes('gunnery')}
               onClick={() => change(getGunnery)}>{state.profiles.includes('gunnery') ? '已拥有炮战 AI' : '6 勋章兑换炮战 AI'}</button></div>
           </>}
         </section>}
         {tab === 'challenge' && <section className="harbor-section">
-          <div className="harbor-title"><h3>少舰迎击</h3><span>3 对 5</span></div>
-          <p className="harbor-fine">带领 2 艘驱逐舰和 1 艘轻巡作战。击沉至少 2 艘敌舰，且至少保留 1 艘己方舰艇，即达成挑战目标。</p>
-          <p className="harbor-fine">{sideNames[preset.side]} · 三舰沿用预设前 3 舰位；若预设领舰不在前三位，由第一舰位接任。</p>
-          <div className="harbor-action"><button type="button" className="primary" disabled={busy || !canChallenge}
-            onClick={() => onLaunch({ ...preset, leaderSlot: preset.leaderSlot < 3 ? preset.leaderSlot : 0, variant: 'challenge' })}>出航挑战</button>
-            <button type="button" disabled={!state.challengeClear || state.challengeClaim} onClick={() => change(receiveChallenge)}>
-              {state.challengeClaim ? '已领取挑战奖励' : '领取挑战奖励'}</button></div>
-          <p className="harbor-fine">首通奖励：雷击 AI 与 2 张常驻券。</p>
+          <ChallengeLadder state={state} change={change} onLaunch={onLaunch} busy={busy} ready={canChallenge} />
+          <div className="harbor-title"><h3>挑战奖励</h3><span>首通</span></div>
+          <p className="harbor-fine">首通奖励：雷击 AI 与 2 张常驻券。关卡梯度只记录通关，不改变既有奖励口径。</p>
+          <div className="harbor-action"><button type="button" disabled={!state.challengeClear || state.challengeClaim} onClick={() => change(receiveChallenge)}>
+            {state.challengeClaim ? '已领取挑战奖励' : '领取挑战奖励'}</button></div>
           <div className="harbor-title"><h3>复战周奖励</h3><span>{week.claimed} / {CHALLENGE_WEEKLY_LIMIT}</span></div>
           <p className="harbor-fine">首通后每次达成主目标可领 {CHALLENGE_WEEKLY_TICKETS} 张常驻券，每周最多 {CHALLENGE_WEEKLY_LIMIT} 次。周一北京时间 00:00 刷新。</p>
           <div className="harbor-action"><button type="button" disabled={!week.pending.length || week.claimed >= CHALLENGE_WEEKLY_LIMIT}

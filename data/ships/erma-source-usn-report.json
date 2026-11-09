@@ -1,0 +1,1603 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-erma-source-usn-report-v1",
+ "as_of": "2026-11-08",
+ "task": "66 个非当前剧本身份中 status=erma_record_image 且 side=allies 的非航母舰落成数据；写入 data/ships/erma-source-cards-usn.json。",
+ "inputs": {
+  "audit": {
+   "path": "data/ships/non-scenario-source-audit.json",
+   "sha256": "122183f3a4b77383c95c1be87acce36d53698cd8eff7bbd2bd37f2e36a54ff1c",
+   "filter": "status=erma_record_image AND side=allies AND type!=CV",
+   "matched": 12
+  },
+  "images": {
+   "usn_records": {
+    "path": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+    "sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+    "pixel_size": [
+     2449,
+     3242
+    ]
+   },
+   "overview": {
+    "path": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+    "sha256": "03880d80621d8042fcb29333ada63a622eadf3d40950bc2feec074e3a87ab625",
+    "pixel_size": [
+     2449,
+     6484
+    ]
+   }
+  },
+  "base_table": {
+   "path": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b"
+  }
+ },
+ "readability": {
+  "source_px": [
+   2449,
+   3242
+  ],
+  "method": "read_image 全图 + 逐行裁切 1.4x 放大（artifacts/erma/*.png，scratch）；右栏口径/装甲/VP 逐格核对。",
+  "unreadable": [],
+  "unreadable_note": "所有印刷数字、舰体字母、英寸值与 VPs 均可读；未读清项 0。",
+  "unresolved_semantics": "主炮/副炮 GF、鱼雷圆圈、M/R、航速档已按 IBS IV 规则 §1.2/§4F 解读；GF/耐久/航速是游戏抽象，未换算成 CAS。仅同型 VP 差异、1948 配置用于 1944 等保留在 unresolved。"
+ },
+ "coverage": {
+  "audit_all_erma_total": 23,
+  "audit_allies_erma_total": 12,
+  "audit_axis_erma_total": 11,
+  "carrier_skipped": [],
+  "carrier_rule": "allies ERMA 子集无 CV；未跳过任何条目",
+  "covered": 12,
+  "missing": [],
+  "extra": [],
+  "carriers_excluded": 0,
+  "by_type": {
+   "BB": 4,
+   "CB": 2,
+   "CA": 2,
+   "CL": 1,
+   "DD": 3
+  },
+  "by_class_profile": {
+   "us_iowa_bb_1943": 4,
+   "us_alaska_cb_1944": 2,
+   "us_des_moines_ca_1948": 2,
+   "us_worcester_cl_1948": 1,
+   "us_sumner_dd_1943": 3
+  },
+  "shipdef_complete": [
+   "IBS-U-USN-ERMA-WORCESTER",
+   "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "IBS-U-USN-ERMA-INGRAHAM",
+   "IBS-U-USN-ERMA-COOPER"
+  ],
+  "profile_plus_blocker": [
+   "IBS-U-USN-ERMA-IOWA",
+   "IBS-U-USN-ERMA-NEW-JERSEY",
+   "IBS-U-USN-ERMA-MISSOURI",
+   "IBS-U-USN-ERMA-WISCONSIN",
+   "IBS-U-USN-ERMA-ALASKA",
+   "IBS-U-USN-ERMA-GUAM",
+   "IBS-U-USN-ERMA-DES-MOINES",
+   "IBS-U-USN-ERMA-SALEM"
+  ]
+ },
+ "class_profiles": {
+  "us_iowa_bb_1943": {
+   "status": "blocked",
+   "shared_by": [
+    "IBS-U-USN-ERMA-IOWA",
+    "IBS-U-USN-ERMA-NEW-JERSEY",
+    "IBS-U-USN-ERMA-MISSOURI",
+    "IBS-U-USN-ERMA-WISCONSIN"
+   ],
+   "source": {
+    "document": "american_fleets",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "pdf_page": 7,
+    "printed_page": "A-4",
+    "entry": "Iowa"
+   },
+   "missing_fields": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "blockers": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ]
+  },
+  "us_alaska_cb_1944": {
+   "status": "blocked",
+   "shared_by": [
+    "IBS-U-USN-ERMA-ALASKA",
+    "IBS-U-USN-ERMA-GUAM"
+   ],
+   "source": {
+    "document": "american_fleets",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "pdf_page": 15,
+    "printed_page": "A-12",
+    "entry": "Alaska"
+   },
+   "missing_fields": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "blockers": [
+    "CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ]
+  },
+  "us_des_moines_ca_1948": {
+   "status": "blocked",
+   "shared_by": [
+    "IBS-U-USN-ERMA-DES-MOINES",
+    "IBS-U-USN-ERMA-SALEM"
+   ],
+   "source": {
+    "document": "american_fleets",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "pdf_page": 15,
+    "printed_page": "A-12",
+    "entry": "Des Moines"
+   },
+   "missing_fields": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "blockers": [
+    "CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。",
+    "本级 1948 年才服役；ERMA 扩想定把 1948 配置放进 1944 年，属架空，不能当作 1944 年历史舰卡。"
+   ]
+  },
+  "us_worcester_cl_1948": {
+   "status": "complete",
+   "shared_by": [
+    "IBS-U-USN-ERMA-WORCESTER"
+   ],
+   "source": {
+    "document": "american_fleets",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "pdf_page": 17,
+    "printed_page": "A-14",
+    "entry": "Worcester"
+   },
+   "missing_fields": [],
+   "blockers": []
+  },
+  "us_sumner_dd_1943": {
+   "status": "complete",
+   "shared_by": [
+    "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+    "IBS-U-USN-ERMA-INGRAHAM",
+    "IBS-U-USN-ERMA-COOPER"
+   ],
+   "source": {
+    "document": "american_fleets",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "pdf_page": 20,
+    "printed_page": "A-17",
+    "entry": "Allen M. Sumner"
+   },
+   "missing_fields": [],
+   "blockers": []
+  }
+ },
+ "ships": [
+  {
+   "identity": "IBS-U-USN-ERMA-IOWA",
+   "name": "衣阿华",
+   "type": "BB",
+   "class_profile": "us_iowa_bb_1943",
+   "shipdef_status": "blocked",
+   "source_image_row": "BB-1",
+   "source_image_bbox_px": [
+    0,
+    320,
+    2449,
+    568
+   ],
+   "vps": 44,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 1,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+   "name": "新泽西",
+   "type": "BB",
+   "class_profile": "us_iowa_bb_1943",
+   "shipdef_status": "blocked",
+   "source_image_row": "BB-2",
+   "source_image_bbox_px": [
+    0,
+    568,
+    2449,
+    815
+   ],
+   "vps": 43,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 1,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-MISSOURI",
+   "name": "密苏里",
+   "type": "BB",
+   "class_profile": "us_iowa_bb_1943",
+   "shipdef_status": "blocked",
+   "source_image_row": "BB-3",
+   "source_image_bbox_px": [
+    0,
+    815,
+    2449,
+    1062
+   ],
+   "vps": 43,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 1,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WISCONSIN",
+   "name": "威斯康星",
+   "type": "BB",
+   "class_profile": "us_iowa_bb_1943",
+   "shipdef_status": "blocked",
+   "source_image_row": "BB-4",
+   "source_image_bbox_px": [
+    0,
+    1062,
+    2449,
+    1309
+   ],
+   "vps": 43,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 1,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALASKA",
+   "name": "阿拉斯加",
+   "type": "CB",
+   "class_profile": "us_alaska_cb_1944",
+   "shipdef_status": "blocked",
+   "source_image_row": "CB-1",
+   "source_image_bbox_px": [
+    0,
+    1309,
+    2449,
+    1556
+   ],
+   "vps": 30,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 1,
+   "unresolved_count": 0
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-GUAM",
+   "name": "关岛",
+   "type": "CB",
+   "class_profile": "us_alaska_cb_1944",
+   "shipdef_status": "blocked",
+   "source_image_row": "CB-2",
+   "source_image_bbox_px": [
+    0,
+    1556,
+    2449,
+    1803
+   ],
+   "vps": 30,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 1,
+   "unresolved_count": 0
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-DES-MOINES",
+   "name": "得梅因",
+   "type": "CA",
+   "class_profile": "us_des_moines_ca_1948",
+   "shipdef_status": "blocked",
+   "source_image_row": "CA-1",
+   "source_image_bbox_px": [
+    0,
+    1803,
+    2449,
+    2050
+   ],
+   "vps": 16,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 2,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-SALEM",
+   "name": "塞勒姆",
+   "type": "CA",
+   "class_profile": "us_des_moines_ca_1948",
+   "shipdef_status": "blocked",
+   "source_image_row": "CA-2",
+   "source_image_bbox_px": [
+    0,
+    2050,
+    2449,
+    2297
+   ],
+   "vps": 16,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 2,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WORCESTER",
+   "name": "伍斯特",
+   "type": "CL",
+   "class_profile": "us_worcester_cl_1948",
+   "shipdef_status": "complete",
+   "source_image_row": "CL-1",
+   "source_image_bbox_px": [
+    0,
+    2297,
+    2449,
+    2544
+   ],
+   "vps": 12,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 0,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "name": "艾伦·M·萨姆纳",
+   "type": "DD",
+   "class_profile": "us_sumner_dd_1943",
+   "shipdef_status": "complete",
+   "source_image_row": "DD-1",
+   "source_image_bbox_px": [
+    0,
+    2544,
+    1225,
+    2791
+   ],
+   "vps": 3,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 0,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-INGRAHAM",
+   "name": "英格拉罕",
+   "type": "DD",
+   "class_profile": "us_sumner_dd_1943",
+   "shipdef_status": "complete",
+   "source_image_row": "DD-2",
+   "source_image_bbox_px": [
+    1225,
+    2544,
+    2449,
+    2791
+   ],
+   "vps": 3,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 0,
+   "unresolved_count": 1
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-COOPER",
+   "name": "库珀",
+   "type": "DD",
+   "class_profile": "us_sumner_dd_1943",
+   "shipdef_status": "complete",
+   "source_image_row": "DD-3",
+   "source_image_bbox_px": [
+    0,
+    2791,
+    2449,
+    3038
+   ],
+   "vps": 3,
+   "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG",
+   "blocker_count": 0,
+   "unresolved_count": 1
+  }
+ ],
+ "unresolved": [
+  {
+   "identity": "IBS-U-USN-ERMA-IOWA",
+   "items": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+   "items": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-MISSOURI",
+   "items": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WISCONSIN",
+   "items": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-DES-MOINES",
+   "items": [
+    "本级 1948 年服役，ERMA 扩想定用于 1944 年（第二次马里亚纳海战），属架空；1944 年计划配置未核。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-SALEM",
+   "items": [
+    "本级 1948 年服役，ERMA 扩想定用于 1944 年（第二次马里亚纳海战），属架空；1944 年计划配置未核。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WORCESTER",
+   "items": [
+    "本级 1948 年服役，ERMA 扩想定用于 1944 年（第二次马里亚纳海战），属架空；1944 年计划配置未核。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "items": [
+    "ERMA 记录未印鱼雷型号/战雷头；ShipDef 采用项目已登记的 Mk15 TNT 行，Torpex 变体未写入。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-INGRAHAM",
+   "items": [
+    "ERMA 记录未印鱼雷型号/战雷头；ShipDef 采用项目已登记的 Mk15 TNT 行，Torpex 变体未写入。"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-COOPER",
+   "items": [
+    "ERMA 记录未印鱼雷型号/战雷头；ShipDef 采用项目已登记的 Mk15 TNT 行，Torpex 变体未写入。"
+   ]
+  }
+ ],
+ "blockers": [
+  {
+   "class_profile": "us_iowa_bb_1943",
+   "identities": [
+    "IBS-U-USN-ERMA-IOWA",
+    "IBS-U-USN-ERMA-NEW-JERSEY",
+    "IBS-U-USN-ERMA-MISSOURI",
+    "IBS-U-USN-ERMA-WISCONSIN"
+   ],
+   "missing_fields": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "reasons": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ]
+  },
+  {
+   "class_profile": "us_alaska_cb_1944",
+   "identities": [
+    "IBS-U-USN-ERMA-ALASKA",
+    "IBS-U-USN-ERMA-GUAM"
+   ],
+   "missing_fields": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "reasons": [
+    "CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ]
+  },
+  {
+   "class_profile": "us_des_moines_ca_1948",
+   "identities": [
+    "IBS-U-USN-ERMA-DES-MOINES",
+    "IBS-U-USN-ERMA-SALEM"
+   ],
+   "missing_fields": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "reasons": [
+    "CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。",
+    "本级 1948 年才服役；ERMA 扩想定把 1948 配置放进 1944 年，属架空，不能当作 1944 年历史舰卡。"
+   ]
+  }
+ ],
+ "differences": [
+  {
+   "identity": "IBS-U-USN-ERMA-IOWA",
+   "class_profile": "us_iowa_bb_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "44 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+   "class_profile": "us_iowa_bb_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "43 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-MISSOURI",
+   "class_profile": "us_iowa_bb_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "43 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WISCONSIN",
+   "class_profile": "us_iowa_bb_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "43 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALASKA",
+   "class_profile": "us_alaska_cb_1944",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 12\"",
+     "base_table": "2F/A(3)3 Mk8 12in/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 13\" / Sec 1\" / Belt 9.5\" / Bridge 9\"（分项英寸）",
+     "base_table": "Armor Rating 28/13/105（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)14 40mm, 34 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SG, SK",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "F",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 24/24；Stern 24",
+     "base_table": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 3；下 3 3；尾 2",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "30 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 820",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-GUAM",
+   "class_profile": "us_alaska_cb_1944",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 12\"",
+     "base_table": "2F/A(3)3 Mk8 12in/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 13\" / Sec 1\" / Belt 9.5\" / Bridge 9\"（分项英寸）",
+     "base_table": "Armor Rating 28/13/105（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)14 40mm, 34 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SG, SK",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "F",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 24/24；Stern 24",
+     "base_table": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 3；下 3 3；尾 2",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "30 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 820",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-DES-MOINES",
+   "class_profile": "us_des_moines_ca_1948",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 8\"",
+     "base_table": "2F/A(3)3 Mk16 8in/55 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "高射炮",
+     "erma_record": "Ter 3\"",
+     "base_table": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50 (12×2) + PA/SA(1)2",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 8\" / Sec 1\" / Belt 6\" / Bridge 6.5\"（分项英寸）",
+     "base_table": "Armor Rating 16/9（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "仅 Ter 3\"；无 20mm",
+     "base_table": "(2)10 20mm",
+     "status": "partial_missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SR-3, SG-5",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "D",
+     "base_table": "B/Medium",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 20/20；Stern 20",
+     "base_table": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 2 2 3；下 3 2 2 3；尾 2 2",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22；2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "16 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 627",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-SALEM",
+   "class_profile": "us_des_moines_ca_1948",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 8\"",
+     "base_table": "2F/A(3)3 Mk16 8in/55 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "高射炮",
+     "erma_record": "Ter 3\"",
+     "base_table": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50 (12×2) + PA/SA(1)2",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 8\" / Sec 1\" / Belt 6\" / Bridge 6.5\"（分项英寸）",
+     "base_table": "Armor Rating 16/9（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "仅 Ter 3\"；无 20mm",
+     "base_table": "(2)10 20mm",
+     "status": "partial_missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SR-3, SG-5",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "D",
+     "base_table": "B/Medium",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 20/20；Stern 20",
+     "base_table": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 2 2 3；下 3 2 2 3；尾 2 2",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22；2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "16 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 627",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WORCESTER",
+   "class_profile": "us_worcester_cl_1948",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 6\"",
+     "base_table": "F/A(2)6 Mk16 6in/47 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 3\"",
+     "base_table": "F/5P/5S(2)11 Mk27 3in/50 + PA/SA(1)2",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 5\" / Sec 0\" / Belt 5\" / Bridge 5\"（分项英寸）",
+     "base_table": "Armor Rating 13/9（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "仅 Sec 3\"；无 20mm",
+     "base_table": "(1)6 20mm (Worcester)",
+     "status": "partial_missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SR-2, SR-6, SG-6, SP",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 SC-1 Seahawk",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "D",
+     "base_table": "B/Medium",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 5/5/5；Stern 5/5/5",
+     "base_table": "F/A(2)6 Mk16 6in/47//2 Mk13 (surf) & 4 Mk37 (air)",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 1；上 2 1 2；下 2 1 2；尾 1",
+     "base_table": "F/5P/5S(2)11 Mk27 3in/50//4 Mk35；PA/SA(1)2 Mk27 3in/50//4 Mk35",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "12 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 573",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "class_profile": "us_sumner_dd_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 5\"",
+     "base_table": "2F/A(2)3 Mk38 5in/38 (3×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 21\"",
+     "base_table": "P&S(5)2 Mk14/Mk15 533mm TT w/5 Mk15",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "无装甲栏",
+     "base_table": "Armor Rating 0",
+     "status": "match_no_armor"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)2 40mm, (2)2 40mm, (1)11 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "反潜",
+     "erma_record": "未印",
+     "base_table": "2 Mk9 DC rail; 6 Mk6 K-gun",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达/声呐",
+     "erma_record": "未印",
+     "base_table": "QCL/QCJ sonar; SC-2, SG",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "A",
+     "base_table": "C/Small",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 3/3；Stern 3",
+     "base_table": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡鱼雷发射器",
+     "erma_record": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "base_table": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-6-5",
+     "base_table": "CAS 最高 34 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "3 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 162",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-INGRAHAM",
+   "class_profile": "us_sumner_dd_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 5\"",
+     "base_table": "2F/A(2)3 Mk38 5in/38 (3×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 21\"",
+     "base_table": "P&S(5)2 Mk14/Mk15 533mm TT w/5 Mk15",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "无装甲栏",
+     "base_table": "Armor Rating 0",
+     "status": "match_no_armor"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)2 40mm, (2)2 40mm, (1)11 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "反潜",
+     "erma_record": "未印",
+     "base_table": "2 Mk9 DC rail; 6 Mk6 K-gun",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达/声呐",
+     "erma_record": "未印",
+     "base_table": "QCL/QCJ sonar; SC-2, SG",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "A",
+     "base_table": "C/Small",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 3/3；Stern 3",
+     "base_table": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡鱼雷发射器",
+     "erma_record": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "base_table": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-6-5",
+     "base_table": "CAS 最高 34 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "3 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 162",
+     "status": "record_only_different_scale"
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-COOPER",
+   "class_profile": "us_sumner_dd_1943",
+   "items": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 5\"",
+     "base_table": "2F/A(2)3 Mk38 5in/38 (3×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 21\"",
+     "base_table": "P&S(5)2 Mk14/Mk15 533mm TT w/5 Mk15",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "无装甲栏",
+     "base_table": "Armor Rating 0",
+     "status": "match_no_armor"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)2 40mm, (2)2 40mm, (1)11 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "反潜",
+     "erma_record": "未印",
+     "base_table": "2 Mk9 DC rail; 6 Mk6 K-gun",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达/声呐",
+     "erma_record": "未印",
+     "base_table": "QCL/QCJ sonar; SC-2, SG",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "A",
+     "base_table": "C/Small",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 3/3；Stern 3",
+     "base_table": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡鱼雷发射器",
+     "erma_record": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "base_table": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-6-5",
+     "base_table": "CAS 最高 34 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "3 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 162",
+     "status": "record_only_different_scale"
+    }
+   ]
+  }
+ ],
+ "self_check": {
+  "audit_allies_erma_identities": [
+   "IBS-U-USN-ERMA-WISCONSIN",
+   "IBS-U-USN-ERMA-MISSOURI",
+   "IBS-U-USN-ERMA-NEW-JERSEY",
+   "IBS-U-USN-ERMA-IOWA",
+   "IBS-U-USN-ERMA-SALEM",
+   "IBS-U-USN-ERMA-DES-MOINES",
+   "IBS-U-USN-ERMA-GUAM",
+   "IBS-U-USN-ERMA-ALASKA",
+   "IBS-U-USN-ERMA-WORCESTER",
+   "IBS-U-USN-ERMA-COOPER",
+   "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "IBS-U-USN-ERMA-INGRAHAM"
+  ],
+  "covered_identities": [
+   "IBS-U-USN-ERMA-IOWA",
+   "IBS-U-USN-ERMA-NEW-JERSEY",
+   "IBS-U-USN-ERMA-MISSOURI",
+   "IBS-U-USN-ERMA-WISCONSIN",
+   "IBS-U-USN-ERMA-ALASKA",
+   "IBS-U-USN-ERMA-GUAM",
+   "IBS-U-USN-ERMA-DES-MOINES",
+   "IBS-U-USN-ERMA-SALEM",
+   "IBS-U-USN-ERMA-WORCESTER",
+   "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "IBS-U-USN-ERMA-INGRAHAM",
+   "IBS-U-USN-ERMA-COOPER"
+  ],
+  "order_note": "audit list 为 audit 文件顺序；covered list 为 ERMA 图行顺序（BB-1..DD-3）；按集合相等校验。",
+  "all_covered": true,
+  "all_have_profile": true,
+  "all_have_class_profile": true,
+  "all_have_source_image": true,
+  "all_have_shipdef_or_blocker": true,
+  "shipdef_complete_count": 4,
+  "profile_plus_blocker_count": 8,
+  "unreadable_count": 0,
+  "points_written": false,
+  "points_note": "未写任何 CAS 点价/points 字段；ERMA 记录卡 VPs 仅作记录卡胜利分转录（vps 字段）。",
+  "prohibited_paths_modified": [],
+  "json_valid": true
+ },
+ "notes": [
+  "ERMA 记录卡是 Iron Bottom Sound IV 扩展想定「第二次马里亚纳海战」的舰表记录卡；其装甲为按部位英寸值、VP 为记录卡胜利分，均未换算成 CAS。",
+  "ERMA 记录卡的主炮/副炮 GF、鱼雷圆圈、M/R、航速档按 IBS IV 规则 §1.2/§4F 解读；它们是游戏抽象值，未冒充 CAS 航速、射程或炮座数。",
+  "Des Moines/Worcester 1948 年才服役，ERMA 扩想定用于 1944 年，属架空；数据保留但登记为架空。",
+  "本批未改 src/、server/catalog、portraits、audio、AI、ranked_fleets，未 git commit。"
+ ]
+}

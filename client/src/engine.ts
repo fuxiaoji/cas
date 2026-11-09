@@ -1,7 +1,9 @@
 import type { CampaignGrade, CampaignMission } from './campaign-progress';
 
 export type Side = 'allies' | 'axis';
-export type Profile = 'coord' | 'gunnery' | 'torpedo';
+/** Builtin CAS doctrines plus the three evolved profiles sold in the harbor. */
+export type EvolvedProfile = 'evo-screen' | 'evo-torpedo' | 'evo-gunnery';
+export type Profile = 'coord' | 'gunnery' | 'torpedo' | EvolvedProfile;
 export type Maneuver = 'follow' | 'sync';
 export type Weapon = 'gun' | 'torpedo';
 export type TorpedoSettings = { depth?: 'shallow' | 'deep'; count?: number };
@@ -74,7 +76,15 @@ export interface Suggestion { orders: Request[]; text: string }
 export type Request = { op: string; [key: string]: unknown };
 type Message = { id: number; response: { ok: true; data: unknown } | { ok: false; error: string } };
 
-export const profileNames: Record<Profile, string> = { coord: '协同', gunnery: '炮战', torpedo: '雷击' };
+export const profileNames: Record<Profile, string> = {
+  coord: '协同', gunnery: '炮战', torpedo: '雷击',
+  'evo-screen': '帷幄 · 屏护协同', 'evo-torpedo': '夜潮 · 雷击突击', 'evo-gunnery': '铁幕 · 炮战纵队',
+};
+export const profileIds = Object.keys(profileNames) as Profile[];
+export const evolvedProfileIds: EvolvedProfile[] = ['evo-screen', 'evo-torpedo', 'evo-gunnery'];
+export function isProfile(value: unknown): value is Profile {
+  return typeof value === 'string' && profileIds.includes(value as Profile);
+}
 export const sideNames: Record<Side, string> = { allies: '同盟舰队', axis: '轴心舰队' };
 export const maneuverNames: Record<Maneuver, string> = { follow: '领舰移动', sync: '同步移动' };
 

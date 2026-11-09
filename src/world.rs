@@ -59,6 +59,12 @@ pub struct World {
     /// cas-realtime-v10: smoke-screen puffs (5.4.5). Rebuilt deterministically
     /// from the command log, so saves need no extra fields.
     pub smoke: Vec<crate::model::SmokeCloud>,
+    /// Fictional challenge ladder: the stage table names the enemy-loss target
+    /// and the stage id. Both are rebuilt from `data/challenge/stages.json` on
+    /// load, so only the stage id is persisted.
+    pub(crate) challenge_goal: Option<u32>,
+    pub(crate) challenge_stage: Option<String>,
+    pub(crate) challenge_label: Option<String>,
 }
 impl World {
     pub(crate) fn exercise_data() -> E<&'static Data> {
@@ -117,15 +123,23 @@ impl World {
             surface_damage: vec![Default::default(); 10],
             surface_critical_rng: (seed as u64) ^ 0x6271_09f5_29a3_084d,
             smoke: vec![],
+            challenge_goal: None,
+            challenge_stage: None,
+            challenge_label: None,
         }
     }
 
     pub fn new(seed: u32, player: usize, enemy: &str, variant: &str, profile: &str, leader_slot: usize) -> E<Self> {
-        if !matches!(variant, "" | "challenge" | "night" | RADAR_DRILL | crate::illumination::TRAINING | crate::illumination::RADAR_TRAINING | crate::prologue::VARIANT | crate::empress::VARIANT) {
+        if !matches!(variant, "" | crate::challenge::VARIANT | "night" | RADAR_DRILL | crate::illumination::TRAINING | crate::illumination::RADAR_TRAINING | crate::prologue::VARIANT | crate::empress::VARIANT) {
             return Err("未知演习想定".into());
         }
         Ai::new(profile, "manual").validate()?;
-        if leader_slot >= if variant == "challenge" { 3 } else { 5 } {
+        if variant == crate::challenge::VARIANT {
+            // The staged ladder owns its rosters; `new` keeps the first stage as
+            // the backwards-compatible default.
+            return Self::new_challenge(seed, player, enemy, profile, leader_slot, "challenge-01");
+        }
+        if leader_slot >= 5 {
             return Err("领舰未在当前舰队内".into());
         }
         Ai::new(enemy, "auto").validate()?;
@@ -244,6 +258,32 @@ impl World {
         );
         w.detect(true);
         w.radar_detect();
+        Ok(w)
+    }
+
+    /// Fictional challenge ladder. The stage table supplies both rosters, the
+    /// map, the point ceiling and the objective; the enemy AI style comes from
+    /// the stage, not from the client's exercise setup.
+    pub(crate) fn new_challenge(
+        seed: u32,
+        player: usize,
+        _enemy: &str,
+        profile: &str,
+        leader_slot: usize,
+        stage: &str,
+    ) -> E<Self> {
+        Ai::new(profile, "manual").validate()?;
+        let data = crate::challenge::data()?;
+        let mut w = Self::blank(
+            data,
+            seed,
+            player,
+            "coord",
+            crate::challenge::VARIANT,
+            profile,
+            leader_slot,
+        );
+        crate::challenge::open(&mut w, stage, leader_slot)?;
         Ok(w)
     }
 
@@ -382,6 +422,15 @@ impl World {
                 return Err("战役存档阵营或编制不符".into());
             }
             Self::new_campaign(s.seed, start, profile)?
+        } else if s.variant == crate::challenge::VARIANT {
+            Self::new_challenge(
+                s.seed,
+                side(&s.side)?,
+                &s.enemy,
+                profile,
+                s.leader_slot,
+                s.challenge_stage.as_deref().unwrap_or("challenge-01"),
+            )?
         } else { Self::new(
             s.seed,
             side(&s.side)?,
@@ -433,6 +482,7 @@ impl World {
             commands: self.commands.clone(),
             duel: self.host_duel,
             ranked: self.ranked_duel.clone(),
+            challenge_stage: self.challenge_stage.clone(),
         }
     }
     pub fn ship(&self, id: u32) -> Option<&Ship> {
@@ -697,7 +747,7 @@ impl World {
             .filter(|cloud| self.ships.iter().any(|s| s.side == owner && s.alive() && s.p.dist(cloud.p) <= 40_000.))
             .map(|cloud| json!({"x": cloud.p.x, "y": cloud.p.y, "expires": cloud.expires})).collect();
         let mut view = json!({"tick":self.tick,"limit":self.field.limit,"width":self.field.width,"height":self.field.height,"side":side_name(owner),
-            "scenario":match self.variant.as_str(){"challenge"=>"少舰迎击 · 3 对 5 挑战","night"=>"夜航接敌 · 5 对 5 演习",crate::empress::VARIANT=>crate::empress::LABEL,crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,"smoke":smoke_view,
+            "scenario":match self.variant.as_str(){"challenge"=>self.challenge_label.as_deref().unwrap_or("越级挑战"),"night"=>"夜航接敌 · 5 对 5 演习",crate::empress::VARIANT=>crate::empress::LABEL,crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,"smoke":smoke_view,
             "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
         if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
         if self.radar_enabled() {
@@ -1001,8 +1051,9 @@ impl World {
             } else {
                 "draw"
             };
-            let primary = (self.variant == "challenge")
-                .then(|| lost[1 - self.player] >= 2 && !wiped(self.player));
+            let primary = (self.variant == crate::challenge::VARIANT).then(|| {
+                lost[1 - self.player] >= self.challenge_goal.unwrap_or(2) && !wiped(self.player)
+            });
             self.result = Some(Outcome {
                 winner: winner.into(),
                 allies: a,

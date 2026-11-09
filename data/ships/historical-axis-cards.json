@@ -1,0 +1,3687 @@
+{
+ "schema_version": 1,
+ "content_version": "historical-axis-cards-v1",
+ "as_of": "2026-11-08",
+ "generated_by": "session subagent (7 historical axis ShipDefs)",
+ "scope": "7 艘历史 axis 舰的完整 ShipDef：长门/陆奥（BB）、千岁/日进（AV）、朝风/神风/追风（DD）。不含 3 艘纸面舰（天城/赤城/尾张）和 3 艘 ERMA IJN（Ibuki/Kurama/Gokase）。",
+ "format": {
+  "identity": "IBS-U-* 稳定身份",
+  "class_profile": "class_profiles（cas-source-cards-axis.json）中的同型 key",
+  "source_pages": "证据页；pdf_pages 为 1-based PDF 页，printed_pages 为原页页码",
+  "movement": "CAS 转向/加速/减速依据：standard rudder 距离、每 45° 掉速、0-75%/76-100% 加速、任意速度减速",
+  "field_basis": "逐字段 value + source；profile.crew 也列出（ShipDef 本身无 crew 字段）",
+  "profile": "从 cas-source-cards-axis.json 原样复制的 CAS 舰卡转录；未改已核值",
+  "ship": "完整 ShipDef（prologue/runtime schema）；可直接并入舰表",
+  "playable": "ShipDef 必需字段是否齐全；不等同于已接入 playable-cards/排名注册表",
+  "residual_gaps": "仍缺的 profile 字段（不阻塞 ShipDef）",
+  "non_shipdef_gaps": "无 ShipDef 字段可承载的开放项（如轻防空裁决）",
+  "points_policy": "本文件不写 points/ranked/稀有度"
+ },
+ "policy": "只做数据。转向/加速优先取本舰 Form 10 印刷值；无本舰 Form 10 时取 CAS 5e p.23（printed 3-2）同 size class 行，并与同型已核 Form 10/已登记 ShipDef 交叉核对。不从不同级套值，不猜、不补默认值。IBS-IV 记录手册只作身份/在场与 GF/MF 记号核对，不作为 CAS ShipDef 数值源。未改 src/、server/catalog、portraits、audio、AI、ranked_fleets；未 git commit；未写 points。",
+ "key_finding": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf 是 Iron Bottom Sound IV《舰船记录手册》1.1-zh：封面 + 想定 1-14 舰船记录卡 + 空白移动/攻击记录表，共 28 页；卡上使用 GF/MF/M/R 记号，没有 CAS 的 Standard Rudder / Advance per 45° / Accel / Decel 字段。Rising Sun Form 10s 中，Kamikaze 级只有 Asakaze/Harukaze/Hatakaze/Matsukaze/Yunagi 五页（p.172-176），本舰 Kamikaze/Oite 无页；Nagato/Mutsu 也无本舰 Form 10（p.177-185 是 Mutsuki 级）。7 艘中只有朝风有本舰 Form 10（p.172）；其余 6 艘的 CAS 转向/加速值来自 CAS 5e p.23（printed 3-2）同 size class 行。",
+ "source_pdfs": [
+  {
+   "document": "emperors_fleet",
+   "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "role": "IJN class cards A-5/A-24/A-53/A-54 and Annex C1 surface gun tables C-1/C-2",
+   "pdf_pages": 121,
+   "bytes": 2292047,
+   "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53"
+  },
+  {
+   "document": "rising_sun_form10",
+   "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "role": "per-ship Command at Sea Form 10 record sheets (Asakaze DD p.172)",
+   "pdf_pages": 380,
+   "bytes": 9952081,
+   "sha256": "9c54d934670f1065097de33f7092d15cebf73dcdf6143f693d43e1e95a599fb4"
+  },
+  {
+   "document": "cas5e",
+   "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+   "role": "Command at Sea 5th edition rules; p.23 = printed 3-2 Ship Turning Distance and Ship Acceleration/Deceleration Rates",
+   "pdf_pages": 125,
+   "bytes": 8450777,
+   "sha256": "caf6390ab8a0237c9c721b88998ef7eccb9aa961e7a7da4820fb6d7a3593e9d0"
+  },
+  {
+   "document": "ship_record_manual",
+   "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+   "role": "Iron Bottom Sound IV 舰船记录手册 1.1-zh (scenario ship cards and blank logs; NOT CAS Form 10; no Standard Rudder/Accel values)",
+   "pdf_pages": 28,
+   "bytes": 53104132,
+   "sha256": "eeff020db4a7f491def219335404996d4b204035923be2b5bd925f65dfdac210"
+  }
+ ],
+ "ibs_record_manual_check": {
+  "document": "ship-record-manual-1.1-zh.pdf",
+  "pages_total": 28,
+  "content": "封面 + 想定 1-14 的 IJN/USN/RN 舰船记录卡 + 空白移动/攻击记录表（p.24-28）；卡上字段为 GF（每炮位火力强度）、MF（速度档 3 个数）、M（主火控）、R（雷达）、VP，没有 CAS Standard Rudder / Advance per 45° / Accel / Decel / Crew。手册也没有 MR 字段；M 是主火控、R 是雷达，不是 CAS 的 Maneuver Rating。",
+  "cards_found": [
+   {
+    "identity": "IBS-U-IJN-CHITOSE",
+    "page": 2,
+    "card": "AV Chitose(2), 想定1 增援",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-NISSHIN",
+    "page": 2,
+    "card": "AV Nisshin(2), 想定1 增援",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-ASAKAZE",
+    "page": 10,
+    "card": "DD 朝风, 想定7",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-KAMIKAZE",
+    "page": 10,
+    "card": "DD 神风, 想定7",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-KAMIKAZE",
+    "page": 20,
+    "card": "DD 神风, 想定12",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-OITE",
+    "page": 10,
+    "card": "DD 追风, 想定7",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-OITE",
+    "page": 20,
+    "card": "DD 追风, 想定12",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-NAGATO",
+    "page": 20,
+    "card": "BB 长门, 想定12",
+    "cas_movement_fields": "none"
+   },
+   {
+    "identity": "IBS-U-IJN-MUTSU",
+    "page": 20,
+    "card": "BB 陆奥, 想定12",
+    "cas_movement_fields": "none"
+   }
+  ],
+  "conclusion": "该手册确认 7 艘均在 IBS-IV 想定中出现并有 GF/MF 记录卡，但没有任何 CAS ShipDef 的转向/加速/crew 数值；因此只作身份/在场与记号核对，CAS movement 取 Form 10 或 CAS 5e 3-2。"
+ },
+ "form10_check": {
+  "kamikaze_class_pages": {
+   "172": "Asakaze (used)",
+   "173": "Harukaze",
+   "174": "Hatakaze",
+   "175": "Matsukaze",
+   "176": "Yunagi"
+  },
+  "kamikaze_absent": "Kamikaze 无本舰页；Oite 无本舰页。",
+  "nagato_mutsu_absent": "Nagato/Mutsu 无本舰页；Form 10 p.177-185 为 Mutsuki 级（Fumizuki 等），不是 Mutsu。",
+  "chitose_nisshin_absent": "Chitose/Nisshin 无本舰页。",
+  "used": {
+   "IBS-U-IJN-ASAKAZE": 172
+  }
+ },
+ "movement_cross_checks": [
+  {
+   "class": "Warship A (BB)",
+   "registered_examples": [
+    "prologue-runtime#yamato 400/2/6/3/9",
+    "prologue-runtime#north-carolina 400/2/6/3/9",
+    "cas-source-cards-allies.json#IBS-U-USN-COLORADO 400/2/6/3/9"
+   ],
+   "result": "Nagato/Mutsu 400/2/6/3/9 matches the registered A-class convention and CAS 5e Fast A row. Nagato's 25 kt is not <25 kt, so Fast A, not Slow A."
+  },
+  {
+   "class": "Warship D (DD)",
+   "registered_examples": [
+    "data/campaign/period/*.json: the registered D/Small convention is 200/1/12/6/15 (25 ships; one 36-kt outlier uses 250/4)",
+    "Rising Sun Form 10 p.172 Asakaze 200/1/12/6/15"
+   ],
+   "result": "Asakaze/Kamikaze/Oite 200/1/12/6/15 matches the registered D-class convention and the class Form 10."
+  },
+  {
+   "class": "Kamikaze class registered exception",
+   "registered_example": "data/campaign/period/savo-runtime.json#savo_yunagi size C / turn 300 / speed loss 1",
+   "result": "CONFLICT: savo_yunagi uses C/300, but A-24 class card and Asakaze Form 10 both print D/Small and 200/1. This batch follows A-24 + Form 10 and does NOT copy the registered C/300 value. The pre-existing savo_yunagi record is left untouched (out of scope) and recorded here as a cross-check discrepancy."
+  },
+  {
+   "class": "Auxiliary B (AV/AVM)",
+   "registered_examples": [
+    "no AV ShipDef with turn values in data/ships or data/campaign/period",
+    "Rising Sun Form 10 p.210 Kinugasa Maru AVM B/Medium 300/200, 6/3/10"
+   ],
+   "result": "Chitose/Nisshin 300/3/6/3/10 matches CAS 5e Merchant & Auxiliaries B/C row and the AVM Form 10 example."
+  }
+ ],
+ "cards": [
+  {
+   "identity": "IBS-U-IJN-NAGATO",
+   "name": "长门",
+   "name_en": "Nagato",
+   "side": "axis",
+   "type": "BB",
+   "class_profile": "ijn_nagato_1936_bb",
+   "class_name": "Nagato (1936)",
+   "source_kind": "class_table_plus_rule_table",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "CAS 5e p.23 (printed 3-2) movement tables + The Emperor's Fleet class card",
+   "stat_verified": true,
+   "verification_basis": "class_plus_rule_table",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "role": "Nagato (1936) class card (DP/speed/armor/crew/main gun)",
+     "label": "Nagato (1936) class card (DP/speed/armor/crew/main gun)"
+    },
+    {
+     "document": "cas5e",
+     "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "3-2"
+     ],
+     "role": "CAS 5e Ship Turning Distance / Acceleration table, Warship A row",
+     "label": "Ship Turning Distance / Acceleration table, Warship A row"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      20
+     ],
+     "printed_pages": [
+      20
+     ],
+     "role": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)",
+     "label": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)"
+    }
+   ],
+   "movement": {
+    "size_class": "A/Large",
+    "category": "warship",
+    "slow_fast": "Fast A (undamaged max 25 kts; Slow A is defined as <25 kts)",
+    "standard_rudder_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "basis": "CAS 5e p.23 (printed 3-2): Warship Size A / Fast A. Standard Rudder 400 yds, speed loss 2 kts; Accel 6 kts (0-75%) and 3 kts (76-100%); Decel 9 kts."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 400,
+     "source": "CAS 5e p.23 (3-2) Warship A Standard Rudder"
+    },
+    "speed_loss_knots": {
+     "value": 2,
+     "source": "CAS 5e p.23 (3-2) Warship A speed loss per 45 deg"
+    },
+    "accel_knots_per_turn": {
+     "value": 6,
+     "source": "CAS 5e p.23 (3-2) Warship Fast A accel from 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 3,
+     "source": "CAS 5e p.23 (3-2) Warship Fast A accel from 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 9,
+     "source": "CAS 5e p.23 (3-2) Warship Fast A decel"
+    },
+    "gun": {
+     "source": "The Emperor's Fleet A-5 'F/A(2)4 3rd Yr Type 41cm/45'; 8 barrels / 4 twin mounts; C-2 3rd Yr Type 41cm/45 APC row"
+    },
+    "profile.crew": {
+     "source": "The Emperor's Fleet A-5 Crew: 1368",
+     "value": 1368
+    },
+    "armor_belt": {
+     "value": 31,
+     "source": "The Emperor's Fleet A-5 Armor Rating 31/14/165"
+    },
+    "armor_deck": {
+     "value": 14,
+     "source": "The Emperor's Fleet A-5 Armor Rating 31/14/165"
+    },
+    "dp": {
+     "value": 836,
+     "source": "The Emperor's Fleet A-5 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 25,
+     "source": "The Emperor's Fleet A-5 Surf Speed row"
+    },
+    "in_service_year": {
+     "value": 1920,
+     "source": "The Emperor's Fleet A-5 In Svc: 1936 (1920)"
+    },
+    "secondary": {
+     "source": "The Emperor's Fleet A-5 'P/S(1)18 3rd Yr Type 14cm/50'; 18 single casemates; C-1 3rd Yr Type 14cm/50 SpCOM row"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_nagato_1936_bb",
+    "class": "Nagato (1936)",
+    "class_label_zh": "长门级",
+    "side": "axis",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "configuration": "1933-36 reconstruction configuration (Nagato 1933-Jan 36 / Mutsu 1934-Sep 36)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "label": "Nagato (1936) class card"
+    },
+    "displacement_std_tons": 39130,
+    "in_class": 2,
+    "in_service": "1936 (1920)",
+    "in_service_year": 1920,
+    "crew": 1368,
+    "propulsion": "Steam Turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "31/14/165",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     209,
+     418,
+     627,
+     752,
+     836
+    ],
+    "speed_knots": [
+     25,
+     19,
+     13,
+     6,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 25
+     },
+     {
+      "damage": 209,
+      "knots": 19
+     },
+     {
+      "damage": 418,
+      "knots": 13
+     },
+     {
+      "damage": 627,
+      "knots": 6
+     },
+     {
+      "damage": 752,
+      "knots": 0
+     },
+     {
+      "damage": 836,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "P/S(1)18 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "20 Type 96 25mm (2.4)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "1 Midships catapult, 3 E8N1",
+    "sensors": "Type 93 (passive)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Nagato (1933 - Jan 36), Mutsu (1934 - Sep 36). Configuration after the 1933-36 reconstruction: bulges added, horizontal protection improved, hull lengthened, new propulsion plant, main battery elevation increased to 43 deg, secondary battery to 35 deg, (2)4 12.7cm replaced the 8cm, 20 Type 96 25mm added, all TT removed, catapult added. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": {
+     "Nagato": [
+      "May 43: Type 21 radar and 25mm added, Lt AA 2.6.",
+      "Jun 43: Mutsu lost to a probable magazine explosion.",
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 3 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted.",
+      "Jun 44: 2 Type 22, 2 Type 13 radars, 2 14cm guns removed, 68 25mm, Lt AA 8.2.",
+      "Oct 44: Type 3 Model 1 sonar replaced Type 93 (passive) sonar; 98 25mm, Lt AA 11.8."
+     ],
+     "Mutsu": [
+      "1934 - Sep 36: reconstructed to the class configuration.",
+      "8 Jun 43: lost to a probable magazine explosion; the 1943-44 radar/AA refits did not apply."
+     ]
+    },
+    "gun_mounts_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "ship_specific": "Nagato 1936 reconstruction configuration; later 1943-44 refits are dated remarks only.",
+    "conflicts": [
+     "Mutsu 与 Nagato 共用 A-5 级表；Mutsu 1943-06-08 爆沉，1943-44 改装不适用。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-5 未给 Advance per 45°、Accel/Decel，Form 10 也没有 Nagato/Mutsu 逐舰卡；不能把其他尺级或 Yamato 的转向值套到本舰。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-NAGATO",
+    "name": "长门",
+    "side": "axis",
+    "kind": "BB",
+    "size": "A",
+    "turn_size": "A",
+    "in_service_year": 1920,
+    "max_knots": 25,
+    "dp": 836,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 25
+     },
+     {
+      "damage": 209,
+      "knots": 19
+     },
+     {
+      "damage": 418,
+      "knots": 13
+     },
+     {
+      "damage": 627,
+      "knots": 6
+     },
+     {
+      "damage": 752,
+      "knots": 0
+     },
+     {
+      "damage": 836,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 31,
+    "armor_deck": 14,
+    "gun": {
+     "name": "三年式 41cm/45 APC",
+     "caliber_mm": 410,
+     "shell": "APC",
+     "armor_piercing": true,
+     "range_yd": [
+      8400,
+      21000,
+      33600,
+      42000
+     ],
+     "damage": [
+      45,
+      36,
+      31,
+      27
+     ],
+     "pen_belt": [
+      75,
+      53,
+      38,
+      29
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      24
+     ],
+     "barrels": 8,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 98,
+      "printed_page": "C-2"
+     }
+    },
+    "torpedo": null,
+    "source_profile": "ijn_nagato_1936_bb",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       8
+      ],
+      "printed_pages": [
+       "A-5"
+      ],
+      "role": "Nagato (1936) class card (DP/speed/armor/crew/main gun)",
+      "label": "Nagato (1936) class card (DP/speed/armor/crew/main gun)"
+     },
+     {
+      "document": "cas5e",
+      "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "3-2"
+      ],
+      "role": "CAS 5e Ship Turning Distance / Acceleration table, Warship A row",
+      "label": "Ship Turning Distance / Acceleration table, Warship A row"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       20
+      ],
+      "printed_pages": [
+       20
+      ],
+      "role": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)",
+      "label": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)"
+     }
+    ],
+    "period_label": "1933 - Jan 36 reconstruction (A-5); movement per CAS 5e 3-2 Warship A row",
+    "annex_special_damage_modifier_pct": -15,
+    "torpedo_protection_dp": 165,
+    "secondary": {
+     "name": "三年式 14cm/50 SpCOM (casemate)",
+     "caliber_mm": 140,
+     "shell": "SpCOM",
+     "armor_piercing": false,
+     "range_yd": [
+      6600,
+      13200,
+      17600,
+      22000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 18,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    }
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: all required fields present. Main gun object rebuilt from A-5 mount row + C-2 APC table; secondary 18x 14cm/50 from A-5 mount row + C-1 SpCOM table; no torpedo (removed in 1933-36 refit). Movement is the CAS 5e Warship A (Fast A) rule value; there is no individual Nagato Form 10.",
+   "conflicts": [
+    "No Nagato individual Form 10 in Rising Sun Form 10s; movement is the CAS 5e p.23 Warship A rule value, not a ship-specific printed figure.",
+    "A-5 card is the 1933-36 reconstruction configuration; 1943-44 refits are dated remarks only."
+   ],
+   "residual_gaps": [],
+   "non_shipdef_gaps": [],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Nagato"
+    ],
+    "hits": {
+     "emperor": [
+      5,
+      8,
+      9
+     ]
+    },
+    "hit_review": "audit emperor 5/8/9：5 索引、8 是 A-5 Nagato 卡、9 是 A-6 Kii/Tosa 页；用 p.8。"
+   },
+   "blocker": null,
+   "source_note": "A-5 舰卡给 DP 836、航速 25/19/13/6/0、装甲 31/14/165、crew 1368、8×41cm/45 与 18×14cm/50。A-5 无转向/加速值，Form 10 也无本舰页；五个 movement 字段取 CAS 5e p.23（printed 3-2）Warship A 行：25kt 不小于 25kt，按 Fast A 记 400/2/6/3/9。"
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSU",
+   "name": "陆奥",
+   "name_en": "Mutsu",
+   "side": "axis",
+   "type": "BB",
+   "class_profile": "ijn_nagato_1936_bb",
+   "class_name": "Nagato (1936)",
+   "source_kind": "class_table_plus_rule_table",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "CAS 5e p.23 (printed 3-2) movement tables + The Emperor's Fleet class card",
+   "stat_verified": true,
+   "verification_basis": "class_plus_rule_table",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "role": "Nagato (1936) class card (DP/speed/armor/crew/main gun)",
+     "label": "Nagato (1936) class card / Mutsu remarks"
+    },
+    {
+     "document": "cas5e",
+     "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "3-2"
+     ],
+     "role": "CAS 5e Ship Turning Distance / Acceleration table, Warship A row",
+     "label": "Ship Turning Distance / Acceleration table, Warship A row"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      20
+     ],
+     "printed_pages": [
+      20
+     ],
+     "role": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)",
+     "label": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)"
+    }
+   ],
+   "movement": {
+    "size_class": "A/Large",
+    "category": "warship",
+    "slow_fast": "Fast A (undamaged max 25 kts; Slow A is defined as <25 kts)",
+    "standard_rudder_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "basis": "CAS 5e p.23 (printed 3-2): Warship Size A / Fast A. Standard Rudder 400 yds, speed loss 2 kts; Accel 6 kts (0-75%) and 3 kts (76-100%); Decel 9 kts."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 400,
+     "source": "CAS 5e p.23 (3-2) Warship A Standard Rudder"
+    },
+    "speed_loss_knots": {
+     "value": 2,
+     "source": "CAS 5e p.23 (3-2) Warship A speed loss per 45 deg"
+    },
+    "accel_knots_per_turn": {
+     "value": 6,
+     "source": "CAS 5e p.23 (3-2) Warship Fast A accel from 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 3,
+     "source": "CAS 5e p.23 (3-2) Warship Fast A accel from 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 9,
+     "source": "CAS 5e p.23 (3-2) Warship Fast A decel"
+    },
+    "gun": {
+     "source": "The Emperor's Fleet A-5 'F/A(2)4 3rd Yr Type 41cm/45'; 8 barrels / 4 twin mounts; C-2 3rd Yr Type 41cm/45 APC row"
+    },
+    "profile.crew": {
+     "source": "The Emperor's Fleet A-5 Crew: 1368",
+     "value": 1368
+    },
+    "armor_belt": {
+     "value": 31,
+     "source": "The Emperor's Fleet A-5 Armor Rating 31/14/165"
+    },
+    "armor_deck": {
+     "value": 14,
+     "source": "The Emperor's Fleet A-5 Armor Rating 31/14/165"
+    },
+    "dp": {
+     "value": 836,
+     "source": "The Emperor's Fleet A-5 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 25,
+     "source": "The Emperor's Fleet A-5 Surf Speed row"
+    },
+    "in_service_year": {
+     "value": 1920,
+     "source": "The Emperor's Fleet A-5 In Svc: 1936 (1920)"
+    },
+    "secondary": {
+     "source": "The Emperor's Fleet A-5 'P/S(1)18 3rd Yr Type 14cm/50'; 18 single casemates; C-1 3rd Yr Type 14cm/50 SpCOM row"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_nagato_1936_bb",
+    "class": "Nagato (1936)",
+    "class_label_zh": "长门级",
+    "side": "axis",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "configuration": "1933-36 reconstruction configuration (Nagato 1933-Jan 36 / Mutsu 1934-Sep 36)",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      8
+     ],
+     "printed_pages": [
+      "A-5"
+     ],
+     "label": "Nagato (1936) class card"
+    },
+    "displacement_std_tons": 39130,
+    "in_class": 2,
+    "in_service": "1936 (1920)",
+    "in_service_year": 1920,
+    "crew": 1368,
+    "propulsion": "Steam Turbine",
+    "signature": "Large/Loud",
+    "armor_rating": "31/14/165",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     209,
+     418,
+     627,
+     752,
+     836
+    ],
+    "speed_knots": [
+     25,
+     19,
+     13,
+     6,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 25
+     },
+     {
+      "damage": 209,
+      "knots": 19
+     },
+     {
+      "damage": 418,
+      "knots": 13
+     },
+     {
+      "damage": 627,
+      "knots": 6
+     },
+     {
+      "damage": 752,
+      "knots": 0
+     },
+     {
+      "damage": 836,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_41cm45",
+    "main_gun_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "secondary_verbatim": "P/S(1)18 3rd Yr Type 14cm/50",
+    "area_aa_verbatim": "(2)4 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "20 Type 96 25mm (2.4)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "1 Midships catapult, 3 E8N1",
+    "sensors": "Type 93 (passive)",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Nagato (1933 - Jan 36), Mutsu (1934 - Sep 36). Configuration after the 1933-36 reconstruction: bulges added, horizontal protection improved, hull lengthened, new propulsion plant, main battery elevation increased to 43 deg, secondary battery to 35 deg, (2)4 12.7cm replaced the 8cm, 20 Type 96 25mm added, all TT removed, catapult added. Laid down before 1925, special damage modifier of -15%.",
+    "dated_remarks": {
+     "Nagato": [
+      "May 43: Type 21 radar and 25mm added, Lt AA 2.6.",
+      "Jun 43: Mutsu lost to a probable magazine explosion.",
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 3 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted.",
+      "Jun 44: 2 Type 22, 2 Type 13 radars, 2 14cm guns removed, 68 25mm, Lt AA 8.2.",
+      "Oct 44: Type 3 Model 1 sonar replaced Type 93 (passive) sonar; 98 25mm, Lt AA 11.8."
+     ],
+     "Mutsu": [
+      "1934 - Sep 36: reconstructed to the class configuration.",
+      "8 Jun 43: lost to a probable magazine explosion; the 1943-44 radar/AA refits did not apply."
+     ]
+    },
+    "gun_mounts_verbatim": "F/A(2)4 3rd Yr Type 41cm/45",
+    "ship_specific": "Mutsu 1934-36 reconstruction; sunk 8 Jun 43, so later refits do not apply.",
+    "conflicts": [
+     "Mutsu 爆沉于 1943-06-08；级表 1943-44 改装注记不适用。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-5 未给转向/加速值；无 Mutsu 逐舰 Form 10；不套用同尺级默认值。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-MUTSU",
+    "name": "陆奥",
+    "side": "axis",
+    "kind": "BB",
+    "size": "A",
+    "turn_size": "A",
+    "in_service_year": 1920,
+    "max_knots": 25,
+    "dp": 836,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 25
+     },
+     {
+      "damage": 209,
+      "knots": 19
+     },
+     {
+      "damage": 418,
+      "knots": 13
+     },
+     {
+      "damage": 627,
+      "knots": 6
+     },
+     {
+      "damage": 752,
+      "knots": 0
+     },
+     {
+      "damage": 836,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 400,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 9,
+    "armor_belt": 31,
+    "armor_deck": 14,
+    "gun": {
+     "name": "三年式 41cm/45 APC",
+     "caliber_mm": 410,
+     "shell": "APC",
+     "armor_piercing": true,
+     "range_yd": [
+      8400,
+      21000,
+      33600,
+      42000
+     ],
+     "damage": [
+      45,
+      36,
+      31,
+      27
+     ],
+     "pen_belt": [
+      75,
+      53,
+      38,
+      29
+     ],
+     "pen_deck": [
+      null,
+      null,
+      13,
+      24
+     ],
+     "barrels": 8,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 98,
+      "printed_page": "C-2"
+     }
+    },
+    "torpedo": null,
+    "source_profile": "ijn_nagato_1936_bb",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       8
+      ],
+      "printed_pages": [
+       "A-5"
+      ],
+      "role": "Nagato (1936) class card (DP/speed/armor/crew/main gun)",
+      "label": "Nagato (1936) class card / Mutsu remarks"
+     },
+     {
+      "document": "cas5e",
+      "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "3-2"
+      ],
+      "role": "CAS 5e Ship Turning Distance / Acceleration table, Warship A row",
+      "label": "Ship Turning Distance / Acceleration table, Warship A row"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       20
+      ],
+      "printed_pages": [
+       20
+      ],
+      "role": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)",
+      "label": "IBS-IV scenario 12 card (identity/presence cross-check only; no CAS movement fields)"
+     }
+    ],
+    "period_label": "1934 - Sep 36 reconstruction (A-5); sunk 8 Jun 43; movement per CAS 5e 3-2 Warship A row",
+    "annex_special_damage_modifier_pct": -15,
+    "torpedo_protection_dp": 165,
+    "secondary": {
+     "name": "三年式 14cm/50 SpCOM (casemate)",
+     "caliber_mm": 140,
+     "shell": "SpCOM",
+     "armor_piercing": false,
+     "range_yd": [
+      6600,
+      13200,
+      17600,
+      22000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 18,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    }
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: same class data as Nagato, all required fields present. Main gun 8x 41cm/45, secondary 18x 14cm/50, no torpedo. Movement is the CAS 5e Warship A (Fast A) rule value; no individual Mutsu Form 10.",
+   "conflicts": [
+    "No Mutsu individual Form 10 in Rising Sun Form 10s; movement is the CAS 5e p.23 Warship A rule value.",
+    "Mutsu was lost 8 Jun 43 (probable magazine explosion); 1943-44 refits in A-5 remarks do not apply."
+   ],
+   "residual_gaps": [],
+   "non_shipdef_gaps": [],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Nagato"
+    ],
+    "hits": {
+     "emperor": [
+      5,
+      8,
+      9
+     ]
+    },
+    "hit_review": "同 Nagato：用 A-5 p.8；Mutsu 只在 Remarks。"
+   },
+   "blocker": null,
+   "source_note": "与长门共用 A-5 级卡；DP/航速/装甲/crew/炮同卡。无本舰 Form 10；movement 取 CAS 5e p.23 Warship A（Fast A）400/2/6/3/9。1943-06-08 爆沉，A-5 的 1943-44 改装注记不适用。"
+  },
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "name": "千岁",
+   "name_en": "Chitose",
+   "side": "axis",
+   "type": "AV",
+   "class_profile": "ijn_chitose_av",
+   "class_name": "Chitose",
+   "source_kind": "class_table_plus_rule_table",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "CAS 5e p.23 (printed 3-2) movement tables + The Emperor's Fleet class card",
+   "stat_verified": true,
+   "verification_basis": "class_plus_rule_table",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      56
+     ],
+     "printed_pages": [
+      "A-53"
+     ],
+     "label": "Chitose AV card (DP/speed/armor/aircraft/crew blank)"
+    },
+    {
+     "document": "cas5e",
+     "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "3-2"
+     ],
+     "label": "Ship Turning Distance / Acceleration table, Merchant & Auxiliaries B/C row"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      2
+     ],
+     "printed_pages": [
+      2
+     ],
+     "label": "IBS-IV scenario 1 card, Chitose(2) (identity/presence cross-check only; no CAS movement fields)"
+    }
+   ],
+   "movement": {
+    "size_class": "B/Medium",
+    "category": "auxiliary",
+    "slow_fast": "n/a",
+    "standard_rudder_yards": 300,
+    "speed_loss_knots": 3,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 10,
+    "basis": "CAS 5e p.23 (printed 3-2): Merchant & Auxiliaries Size B/C. Standard Rudder 300 yds, speed loss 3 kts; Accel 6 kts (0-75%) and 3 kts (76-100%); Decel 10 kts. A-53 prints 'Auxiliary, special damage modifier -25%'."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 300,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B/C Standard Rudder"
+    },
+    "speed_loss_knots": {
+     "value": 3,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B/C speed loss per 45 deg"
+    },
+    "accel_knots_per_turn": {
+     "value": 6,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B accel from 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 3,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B accel from 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 10,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B decel"
+    },
+    "gun": {
+     "source": "The Emperor's Fleet A-53 'F(2)2 Type 89 12.7cm/40'; 4 barrels / 2 twin mounts; C-1 Type 89 12.7cm/40 COM row"
+    },
+    "profile.crew": {
+     "source": "The Emperor's Fleet A-53 Crew: blank",
+     "note": "A-53 leaves Crew blank. A-10 is the 1943 CVL conversion and prints Crew 800; CVL data is excluded for this AV identity, so crew remains null and is recorded as a profile gap, not guessed or back-filled from CVL."
+    },
+    "armor_belt": {
+     "value": 0,
+     "source": "The Emperor's Fleet A-53 Armor Rating 0"
+    },
+    "armor_deck": {
+     "value": 0,
+     "source": "The Emperor's Fleet A-53 Armor Rating 0"
+    },
+    "dp": {
+     "value": 317,
+     "source": "The Emperor's Fleet A-53 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 29,
+     "source": "The Emperor's Fleet A-53 Surf Speed row"
+    },
+    "in_service_year": {
+     "value": 1938,
+     "source": "The Emperor's Fleet A-53 In Svc: 1938 - 43"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_chitose_av",
+    "class": "Chitose",
+    "class_label_zh": "千岁级",
+    "side": "axis",
+    "kind": "AV",
+    "size_class_en": "B/Medium",
+    "configuration": "Seaplane tender (AV) card; 1943 CVL conversion is listed separately and excluded",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      56
+     ],
+     "printed_pages": [
+      "A-53"
+     ],
+     "label": "Chitose AV card"
+    },
+    "displacement_std_tons": 11023,
+    "in_class": 2,
+    "in_service": "1938 - 43",
+    "crew": null,
+    "crew_note": "Card leaves Crew blank.",
+    "propulsion": "Steam turbine",
+    "signature": "Medium/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     79,
+     159,
+     238,
+     285,
+     317
+    ],
+    "speed_knots": [
+     29,
+     22,
+     15,
+     7,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 29
+     },
+     {
+      "damage": 79,
+      "knots": 22
+     },
+     {
+      "damage": 159,
+      "knots": 15
+     },
+     {
+      "damage": 238,
+      "knots": 7
+     },
+     {
+      "damage": 285,
+      "knots": 0
+     },
+     {
+      "damage": 317,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_type89_12_7cm40",
+    "main_gun_verbatim": "F(2)2 Type 89 12.7cm/40",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": "(2)2 Type 89 12.7cm/40 (1.6)",
+    "light_aa_verbatim": "12 Type 96 25mm (1.4)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "4 Midships catapults, 1 Elevator, 24 Floatplanes",
+    "sensors": null,
+    "special_damage_modifier_pct": -25,
+    "remarks_summary": "Seaplane tender. Auxiliary, special damage modifier of -25%. 1941: modified with midget-submarine transports, 12 aircraft and 12 46-ton Type A midget subs; subs launched through stern doors, two at a time in 17 minutes while underway. 1942 - 43: Both units converted to light aircraft carriers, listed separately.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "F(2)2 Type 89 12.7cm/40",
+    "ship_specific": "Chitose AV configuration; the 1943 CVL conversion (A-10) is a different type and is not used.",
+    "conflicts": [
+     "Crew 原页留空。",
+     "1943 CVL 改装卡 A-10 与 identity type AV 不同，未用于本卡。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-53 只给舰卡（DP/航速/武备/航空队），未给 Advance per 45°、Accel/Decel 与 crew；辅助舰 -25% 也不足以补这些量。按规范不采用其他舰/尺级默认值。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "crew"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-CHITOSE",
+    "name": "千岁",
+    "side": "axis",
+    "kind": "AV",
+    "size": "B",
+    "turn_size": "B",
+    "in_service_year": 1938,
+    "max_knots": 29,
+    "dp": 317,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 29
+     },
+     {
+      "damage": 79,
+      "knots": 22
+     },
+     {
+      "damage": 159,
+      "knots": 15
+     },
+     {
+      "damage": 238,
+      "knots": 7
+     },
+     {
+      "damage": 285,
+      "knots": 0
+     },
+     {
+      "damage": 317,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 3,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 10,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "gun": {
+     "name": "八九式 12.7cm/40 COM",
+     "caliber_mm": 127,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      4800,
+      9600,
+      12800,
+      16000
+     ],
+     "damage": [
+      16,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      4,
+      2,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": null,
+    "source_profile": "ijn_chitose_av",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       56
+      ],
+      "printed_pages": [
+       "A-53"
+      ],
+      "label": "Chitose AV card (DP/speed/armor/aircraft/crew blank)"
+     },
+     {
+      "document": "cas5e",
+      "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "3-2"
+      ],
+      "label": "Ship Turning Distance / Acceleration table, Merchant & Auxiliaries B/C row"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       2
+      ],
+      "printed_pages": [
+       2
+      ],
+      "label": "IBS-IV scenario 1 card, Chitose(2) (identity/presence cross-check only; no CAS movement fields)"
+     }
+    ],
+    "period_label": "AV seaplane tender (A-53); 1943 CVL conversion (A-10) excluded; movement per CAS 5e 3-2 Auxiliary B row",
+    "annex_special_damage_modifier_pct": -25
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: all required fields present (AV auxiliary movement row). Profile crew remains blank because A-53 prints none and the A-10 CVL value is not an AV value; this does not remove any ShipDef field.",
+   "conflicts": [
+    "A-53 leaves Crew blank. A-10 (Chitose 1943 CVL) prints Crew 800 but is a different type and is not adopted.",
+    "A-10 CVL gun/AA/damage rows are not used for this AV identity."
+   ],
+   "residual_gaps": [
+    "profile.crew"
+   ],
+   "non_shipdef_gaps": [
+    "No individual Chitose Form 10; movement is the CAS 5e p.23 Merchant & Auxiliaries B/C rule value."
+   ],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Chitose"
+    ],
+    "hits": {
+     "emperor": [
+      4,
+      13,
+      56
+     ]
+    },
+    "hit_review": "audit emperor 4/13/56：4 索引、13 是 A-10 (Chitose 1943 CVL)、56 是 A-53 AV 卡；AV 卡用 p.56，CVL 页未用。"
+   },
+   "blocker": null,
+   "source_note": "A-53 AV 卡给 DP 317、航速 29/22/15/7/0、Armor 0、4×12.7cm/40、24 架；Crew 原页空白。无本舰 Form 10；按卡面 Auxiliary 用 CAS 5e p.23 Merchant & Auxiliaries B 行 300/3/6/3/10。1943 CVL 改装 A-10 的 Crew 800 不套用。"
+  },
+  {
+   "identity": "IBS-U-IJN-NISSHIN",
+   "name": "日进",
+   "name_en": "Nisshin",
+   "side": "axis",
+   "type": "AV",
+   "class_profile": "ijn_nisshin_av",
+   "class_name": "Nisshin",
+   "source_kind": "class_table_plus_rule_table",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "CAS 5e p.23 (printed 3-2) movement tables + The Emperor's Fleet class card",
+   "stat_verified": true,
+   "verification_basis": "class_plus_rule_table",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      57
+     ],
+     "printed_pages": [
+      "A-54"
+     ],
+     "label": "Nisshin AVM card (DP/speed/armor/crew/main gun)"
+    },
+    {
+     "document": "cas5e",
+     "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "3-2"
+     ],
+     "label": "Ship Turning Distance / Acceleration table, Merchant & Auxiliaries B/C row"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      2
+     ],
+     "printed_pages": [
+      2
+     ],
+     "label": "IBS-IV scenario 1 card, Nisshin(2) (identity/presence cross-check only; no CAS movement fields)"
+    }
+   ],
+   "movement": {
+    "size_class": "B/Medium",
+    "category": "auxiliary",
+    "slow_fast": "n/a",
+    "standard_rudder_yards": 300,
+    "speed_loss_knots": 3,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 10,
+    "basis": "CAS 5e p.23 (printed 3-2): Merchant & Auxiliaries Size B/C. Standard Rudder 300 yds, speed loss 3 kts; Accel 6 kts (0-75%) and 3 kts (76-100%); Decel 10 kts. A-53 prints 'Auxiliary, special damage modifier -25%'."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 300,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B/C Standard Rudder"
+    },
+    "speed_loss_knots": {
+     "value": 3,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B/C speed loss per 45 deg"
+    },
+    "accel_knots_per_turn": {
+     "value": 6,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B accel from 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 3,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B accel from 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 10,
+     "source": "CAS 5e p.23 (3-2) Merchant & Auxiliaries B decel"
+    },
+    "gun": {
+     "source": "The Emperor's Fleet A-54 '2F/P&S(2)3 3rd Yr Type 14cm/50'; 6 barrels / 3 twin mounts; C-1 3rd Yr Type 14cm/50 SpCOM row"
+    },
+    "profile.crew": {
+     "source": "The Emperor's Fleet A-54 Crew: 948",
+     "value": 948
+    },
+    "armor_belt": {
+     "value": 0,
+     "source": "The Emperor's Fleet A-54 Armor Rating 0"
+    },
+    "armor_deck": {
+     "value": 0,
+     "source": "The Emperor's Fleet A-54 Armor Rating 0"
+    },
+    "dp": {
+     "value": 322,
+     "source": "The Emperor's Fleet A-54 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 28,
+     "source": "The Emperor's Fleet A-54 Surf Speed row"
+    },
+    "in_service_year": {
+     "value": 1942,
+     "source": "The Emperor's Fleet A-54 In Svc: 1942"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_nisshin_av",
+    "class": "Nisshin",
+    "class_label_zh": "日进级",
+    "side": "axis",
+    "kind": "AV",
+    "size_class_en": "B/Medium",
+    "configuration": "Nisshin AVM seaplane tender / minelayer card",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      57
+     ],
+     "printed_pages": [
+      "A-54"
+     ],
+     "label": "Nisshin AVM card"
+    },
+    "displacement_std_tons": 11317,
+    "in_class": 1,
+    "in_service": "1942",
+    "in_service_year": 1942,
+    "crew": 948,
+    "propulsion": "Diesel",
+    "signature": "Medium/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     81,
+     161,
+     242,
+     290,
+     322
+    ],
+    "speed_knots": [
+     28,
+     21,
+     14,
+     7,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 28
+     },
+     {
+      "damage": 81,
+      "knots": 21
+     },
+     {
+      "damage": 161,
+      "knots": 14
+     },
+     {
+      "damage": 242,
+      "knots": 7
+     },
+     {
+      "damage": 290,
+      "knots": 0
+     },
+     {
+      "damage": 322,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_type_14cm50",
+    "main_gun_verbatim": "2F/P&S(2)3 3rd Yr Type 14cm/50",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "18 Type 96 25mm (2.2)",
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "4 Midships catapults, 24 Floatplanes",
+    "sensors": null,
+    "special_damage_modifier_pct": -25,
+    "card_type_verbatim": "AVM",
+    "remarks_summary": "Can carry 24 floatplanes, or 12 floatplanes and 700 mines. Mine-laying doors in the stern. Auxiliary, special damage modifier of -25%. 1942: modified to carry 12 Type A midget subs and 12 floatplanes. Operated as a troop transport during the Bougainville operations. 22 Jul 43: sunk by US aircraft.",
+    "dated_remarks": {},
+    "gun_mounts_verbatim": "2F/P&S(2)3 3rd Yr Type 14cm/50",
+    "ship_specific": "Nisshin is printed AVM; recorded as AV per task, with card_type_verbatim AVM.",
+    "conflicts": [
+     "原页类型 AVM；identity/catalog 与任务口径为 AV，profile.kind=AV，card_type_verbatim=AVM。",
+     "Area AA 原页未印；无装甲。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "no_turn_or_accel_values",
+    "detail": "A-54 未给 Advance per 45°、Accel/Decel；Armor Rating 0、Area AA 行未印。无法无推断转成完整 ShipDef。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "armor_belt",
+     "armor_deck"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-NISSHIN",
+    "name": "日进",
+    "side": "axis",
+    "kind": "AV",
+    "size": "B",
+    "turn_size": "B",
+    "in_service_year": 1942,
+    "max_knots": 28,
+    "dp": 322,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 28
+     },
+     {
+      "damage": 81,
+      "knots": 21
+     },
+     {
+      "damage": 161,
+      "knots": 14
+     },
+     {
+      "damage": 242,
+      "knots": 7
+     },
+     {
+      "damage": 290,
+      "knots": 0
+     },
+     {
+      "damage": 322,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 3,
+    "accel_knots_per_turn": 6,
+    "accel_high_knots_per_turn": 3,
+    "brake_knots_per_turn": 10,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "gun": {
+     "name": "三年式 14cm/50 SpCOM",
+     "caliber_mm": 140,
+     "shell": "SpCOM",
+     "armor_piercing": false,
+     "range_yd": [
+      6600,
+      13200,
+      17600,
+      22000
+     ],
+     "damage": [
+      17,
+      13,
+      12,
+      10
+     ],
+     "pen_belt": [
+      9,
+      5,
+      4,
+      3
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 6,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": null,
+    "source_profile": "ijn_nisshin_av",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       57
+      ],
+      "printed_pages": [
+       "A-54"
+      ],
+      "label": "Nisshin AVM card (DP/speed/armor/crew/main gun)"
+     },
+     {
+      "document": "cas5e",
+      "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "3-2"
+      ],
+      "label": "Ship Turning Distance / Acceleration table, Merchant & Auxiliaries B/C row"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       2
+      ],
+      "printed_pages": [
+       2
+      ],
+      "label": "IBS-IV scenario 1 card, Nisshin(2) (identity/presence cross-check only; no CAS movement fields)"
+     }
+    ],
+    "period_label": "AVM seaplane tender/minelayer printed; recorded as AV per identity (A-54); movement per CAS 5e 3-2 Auxiliary B row",
+    "annex_special_damage_modifier_pct": -25
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: all required fields present (AV/AVM auxiliary movement row). Card type is AVM; identity remains AV per task and catalog, with card_type_verbatim AVM retained in the profile.",
+   "conflicts": [
+    "A-54 prints type AVM; identity/catalog/task use AV. Profile keeps kind=AV and card_type_verbatim=AVM.",
+    "No individual Nisshin Form 10; movement is the CAS 5e p.23 Merchant & Auxiliaries B/C rule value."
+   ],
+   "residual_gaps": [],
+   "non_shipdef_gaps": [],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Nisshin"
+    ],
+    "hits": {
+     "emperor": [
+      5,
+      19,
+      57
+     ]
+    },
+    "hit_review": "audit emperor 5/19/57：5 索引、19 为 Asama/A-16 邻页、57 是 A-54 AVM 卡；用 p.57。"
+   },
+   "blocker": null,
+   "source_note": "A-54 卡面 type AVM，identity 按任务/catalog 记 AV；DP 322、航速 28/21/14/7/0、Armor 0、crew 948、6×14cm/50、24 架。无本舰 Form 10；按 Auxiliary 用 CAS 5e p.23 Merchant & Auxiliaries B 行 300/3/6/3/10。"
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "name": "朝风",
+   "name_en": "Asakaze",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "class_name": "Kamikaze (1941)",
+   "source_kind": "form10_shipdef",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "Rising Sun Form 10 p.172",
+   "stat_verified": true,
+   "verification_basis": "form10",
+   "source_pages": [
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      172
+     ],
+     "printed_pages": [
+      172
+     ],
+     "label": "Asakaze DD - Dec 1941 Form 10 (movement, fit, Type 96 torpedo)"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card (class fit; 3-gun / 10x25mm conflict)"
+    },
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      97
+     ],
+     "printed_pages": [
+      "C-1"
+     ],
+     "label": "3rd Yr Type 12cm/45 gun table"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      10
+     ],
+     "printed_pages": [
+      10
+     ],
+     "label": "IBS-IV scenario 7 card, Asakaze (identity/presence cross-check only)"
+    }
+   ],
+   "movement": {
+    "size_class": "D/Small",
+    "category": "warship",
+    "slow_fast": "n/a",
+    "standard_rudder_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "basis": "Rising Sun Form 10 p.172 (Dec 1941): Size Class D/Small; Standard Rudder 200 yds, Speed Loss (1); Hard Rudder 100 yds, (2); Accel 12 kts (0-75%) and 6 kts (76-100%); Decel 15 kts."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 200,
+     "source": "Rising Sun Form 10 p.172 Standard Rudder 200 yds"
+    },
+    "speed_loss_knots": {
+     "value": 1,
+     "source": "Rising Sun Form 10 p.172 Standard Rudder speed loss (1)"
+    },
+    "accel_knots_per_turn": {
+     "value": 12,
+     "source": "Rising Sun Form 10 p.172 Accel 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 6,
+     "source": "Rising Sun Form 10 p.172 Accel 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 15,
+     "source": "Rising Sun Form 10 p.172 Decel from any speed"
+    },
+    "gun": {
+     "source": "Form 10 p.172 'Fwd / Port & Stbd / Port & Stbd / Aft (1) 3rd Yr Type 12cm/45' = 4 single mounts; C-1 3rd Yr Type 12cm/45 COM row"
+    },
+    "torpedo": {
+     "source": "Form 10 p.172: Port & Stbd (2) 533mm TT w/2 Type 96 torp (2 mounts x 2 tubes); printed Type 96 block: Range 4.9 kyds, 49 kts, 89 DP. Annex F-1 has no Type 96 row."
+    },
+    "profile.crew": {
+     "source": "Form 10 p.172 Crew: 148",
+     "value": 148
+    },
+    "armor_belt": {
+     "value": 0,
+     "source": "Form 10 p.172 Armor: 0; A-24 Armor Rating 0"
+    },
+    "armor_deck": {
+     "value": 0,
+     "source": "Form 10 p.172 Armor: 0; A-24 Armor Rating 0"
+    },
+    "dp": {
+     "value": 92,
+     "source": "Form 10 p.172 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 35,
+     "source": "Form 10 p.172 Max Speed row"
+    },
+    "in_service_year": {
+     "value": 1925,
+     "source": "Form 10 p.172 In Service: 1925; A-24 In Svc: 1941 (1925)"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_kamikaze_dd",
+    "class": "Kamikaze (1941)",
+    "class_label_zh": "神风级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "1941 class configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card"
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "in_service_year": 1925,
+    "crew": 148,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+    "dated_remarks": {
+     "Asakaze": [
+      "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+     ],
+     "Kamikaze": [
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+     ],
+     "Oite": [
+      "No individual Form 10 card; class card only."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "ship_specific": "Asakaze Dec 1941 Form 10 conflicts with the Kamikaze (1941) class card; profile only until adjudicated.",
+    "conflicts": [
+     "A-24: F/2P&S(1)3（3 门 12cm），10 Type 96 25mm (1.2)。",
+     "Form 10 p.172: Fwd/P&S/P&S/Aft 4 门 12cm，2 13mm (0.1)，DP 92，35/26/18/9/0，转 200/1。",
+     "Type 96 533mm 在 F-1 无行；不替代、不编造。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "fit_conflict_and_missing_torpedo_model",
+    "detail": "A-24 与 Form 10 p.172 对主炮座数（3 vs 4）和轻防空（10×25mm vs 2×13mm）互相冲突；Type 96 533mm 在 Annex F-1 无弹行（F-2 的 Type 96 为潜艇/袖珍潜艇用）。未裁决前不出 ShipDef。",
+    "missing_fields": [
+     "torpedo",
+     "single_gun_mount_count_adjudication",
+     "light_aa_adjudication"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-ASAKAZE",
+    "name": "朝风",
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "turn_size": "D",
+    "in_service_year": 1925,
+    "max_knots": 35,
+    "dp": 92,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 4,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九六式 533mm 鱼雷 (Type 96)",
+     "speed_knots": 49,
+     "range_yd": 4900,
+     "warhead": 89,
+     "tubes": 4,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 172,
+      "printed_page": 172,
+      "note": "Type 96 torpedo block printed on Asakaze Form 10 p.172: Range 4.9 kyds, 49 kts, 89 DP. No Annex F-1 row; F-2 Type 96 is the submarine/midget model and is not substituted."
+     }
+    },
+    "source_profile": "ijn_kamikaze_dd",
+    "source": [
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       172
+      ],
+      "printed_pages": [
+       172
+      ],
+      "label": "Asakaze DD - Dec 1941 Form 10 (movement, fit, Type 96 torpedo)"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       27
+      ],
+      "printed_pages": [
+       "A-24"
+      ],
+      "label": "Kamikaze (1941) class card (class fit; 3-gun / 10x25mm conflict)"
+     },
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       97
+      ],
+      "printed_pages": [
+       "C-1"
+      ],
+      "label": "3rd Yr Type 12cm/45 gun table"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       10
+      ],
+      "printed_pages": [
+       10
+      ],
+      "label": "IBS-IV scenario 7 card, Asakaze (identity/presence cross-check only)"
+     }
+    ],
+    "period_label": "Dec 1941 (Form 10 p.172); 4 single 12cm mounts per Form 10, class card prints 3",
+    "annex_special_damage_modifier_pct": -15
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: all required fields present, using the individual Asakaze Form 10 p.172 (Dec 1941) fit: 4 single 12cm mounts and 4 Type 96 torpedo tubes. Registered conflicts: A-24 class card prints 3 single mounts and 10x25mm light AA, while Form 10 prints 4 mounts and 2x13mm; Form 10 is used for this ship and both pages are preserved in the card.",
+   "conflicts": [
+    "Gun mount count: Form 10 p.172 = 4 single 12cm mounts (Fwd / P&S / P&S / Aft); A-24 class card = F/2P&S(1)3 (3 mounts). Form 10 used for this ship; conflict registered.",
+    "Light AA: Form 10 p.172 = 2x13mm (0.1); A-24 = 10 Type 96 25mm (1.2). No ShipDef field; conflict registered, not silently resolved.",
+    "Torpedo: Type 96 533mm has no Annex F-1 row; Form 10 p.172 prints Range 4.9 kyds / 49 kts / 89 DP and is used. F-2's Type 96 is the submarine/midget model and is not substituted."
+   ],
+   "residual_gaps": [],
+   "non_shipdef_gaps": [
+    "Light AA adjudication (2x13mm vs 10x25mm) remains open but has no ShipDef field.",
+    "Type 96 torpedo lacks an Annex F-1 row; per-ship Form 10 block is the adopted source."
+   ],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kamikaze"
+    ],
+    "hits": {
+     "form10": [
+      7,
+      14,
+      17,
+      18,
+      19,
+      22
+     ],
+     "american": [
+      7,
+      8,
+      10,
+      11,
+      12,
+      17
+     ],
+     "emperor": [
+      5,
+      27,
+      31,
+      77
+     ]
+    },
+    "hit_review": "audit emperor 5/27/31/77：27 = A-24 Kamikaze 卡；31 = A-28，77 = B-6 飞机页；form10 7/14/17/18/19/22 为索引，逐舰页 p.172。"
+   },
+   "blocker": null,
+   "source_note": "本舰 Form 10 p.172（Dec 1941）：D/Small、DP 92、35/26/18/9/0、Crew 148、4 门单装 12cm、2×2 533mm Type 96、Standard 200/1、Hard 100/2、Accel 12/6、Decel 15。A-24 级表 3 门单装、10×25mm 与 Form 10 冲突，保留原页并登记；ShipDef 取 Form 10。"
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "name": "神风",
+   "name_en": "Kamikaze",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "class_name": "Kamikaze (1941)",
+   "source_kind": "class_table_plus_rule_table",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "CAS 5e p.23 (printed 3-2) movement tables + The Emperor's Fleet class card",
+   "stat_verified": true,
+   "verification_basis": "class_plus_rule_table",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card (size/DP/speed/crew/fit)"
+    },
+    {
+     "document": "cas5e",
+     "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "3-2"
+     ],
+     "label": "Ship Turning Distance / Acceleration table, Warship D/E row"
+    },
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      172
+     ],
+     "printed_pages": [
+      172
+     ],
+     "label": "sister Asakaze Form 10 - D/Small row and Type 96 torpedo block (cross-check only; no individual Kamikaze sheet)"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      10,
+      20
+     ],
+     "printed_pages": [
+      10,
+      20
+     ],
+     "label": "IBS-IV scenario 7/12 cards, Kamikaze (identity/presence cross-check only)"
+    }
+   ],
+   "movement": {
+    "size_class": "D/Small",
+    "category": "warship",
+    "slow_fast": "n/a",
+    "standard_rudder_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "basis": "No individual Form 10. Kamikaze (1941) class card A-24 prints Size Class D/Small; CAS 5e p.23 (printed 3-2) Warship D/E row: Standard Rudder 200 yds, speed loss 1 kt; Accel 12 kts (0-75%) and 6 kts (76-100%); Decel 15 kts. Cross-check: sister Asakaze Form 10 p.172 prints exactly these values for the same class/size."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 200,
+     "source": "CAS 5e p.23 (3-2) Warship D/E Standard Rudder"
+    },
+    "speed_loss_knots": {
+     "value": 1,
+     "source": "CAS 5e p.23 (3-2) Warship D/E speed loss per 45 deg"
+    },
+    "accel_knots_per_turn": {
+     "value": 12,
+     "source": "CAS 5e p.23 (3-2) Warship D/E accel from 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 6,
+     "source": "CAS 5e p.23 (3-2) Warship D/E accel from 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 15,
+     "source": "CAS 5e p.23 (3-2) Warship D/E decel"
+    },
+    "gun": {
+     "source": "A-24 'F/2P&S(1)3 3rd Yr Type 12cm/45 LA' = 3 single mounts; C-1 3rd Yr Type 12cm/45 COM row"
+    },
+    "torpedo": {
+     "source": "A-24 'P&S(2)2 533mm TT w/2 Type 96 torp'; no individual Form 10, so the same Type 96 torpedo block printed on Asakaze Form 10 p.172 is used (Range 4.9 kyds, 49 kts, 89 DP). Annex F-1 has no Type 96 row."
+    },
+    "profile.crew": {
+     "source": "A-24 Crew: 148",
+     "value": 148
+    },
+    "armor_belt": {
+     "value": 0,
+     "source": "A-24 Armor Rating 0"
+    },
+    "armor_deck": {
+     "value": 0,
+     "source": "A-24 Armor Rating 0"
+    },
+    "dp": {
+     "value": 92,
+     "source": "A-24 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 35,
+     "source": "A-24 Surf Speed row"
+    },
+    "in_service_year": {
+     "value": 1925,
+     "source": "A-24 In Svc: 1941 (1925)"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_kamikaze_dd",
+    "class": "Kamikaze (1941)",
+    "class_label_zh": "神风级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "1941 class configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card"
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "in_service_year": 1925,
+    "crew": 148,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+    "dated_remarks": {
+     "Asakaze": [
+      "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+     ],
+     "Kamikaze": [
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+     ],
+     "Oite": [
+      "No individual Form 10 card; class card only."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "ship_specific": "Kamikaze class card only; no individual Form 10 card.",
+    "conflicts": [
+     "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突（见 ASAKAZE 卡）。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "no_individual_form10_and_missing_torpedo_model",
+    "detail": "无 Kamikaze 本舰 Form 10；级表缺 Advance per 45°/Accel/Decel；Type 96 533mm 无 F-1 弹行。Asakaze 的 Form 10 与级表炮座数冲突，不能直接套用。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "torpedo"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-KAMIKAZE",
+    "name": "神风",
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "turn_size": "D",
+    "in_service_year": 1925,
+    "max_knots": 35,
+    "dp": 92,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 3,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九六式 533mm 鱼雷 (Type 96)",
+     "speed_knots": 49,
+     "range_yd": 4900,
+     "warhead": 89,
+     "tubes": 4,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 172,
+      "printed_page": 172,
+      "note": "Type 96 torpedo block printed on Asakaze Form 10 p.172: Range 4.9 kyds, 49 kts, 89 DP. No Annex F-1 row; F-2 Type 96 is the submarine/midget model and is not substituted."
+     }
+    },
+    "source_profile": "ijn_kamikaze_dd",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       27
+      ],
+      "printed_pages": [
+       "A-24"
+      ],
+      "label": "Kamikaze (1941) class card (size/DP/speed/crew/fit)"
+     },
+     {
+      "document": "cas5e",
+      "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "3-2"
+      ],
+      "label": "Ship Turning Distance / Acceleration table, Warship D/E row"
+     },
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       172
+      ],
+      "printed_pages": [
+       172
+      ],
+      "label": "sister Asakaze Form 10 - D/Small row and Type 96 torpedo block (cross-check only; no individual Kamikaze sheet)"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       10,
+       20
+      ],
+      "printed_pages": [
+       10,
+       20
+      ],
+      "label": "IBS-IV scenario 7/12 cards, Kamikaze (identity/presence cross-check only)"
+     }
+    ],
+    "period_label": "Kamikaze (1941) class card A-24; no individual Form 10; movement per CAS 5e 3-2 D/E row cross-checked to Asakaze p.172",
+    "annex_special_damage_modifier_pct": -15
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: all required fields present. No individual Kamikaze Form 10; class card A-24 supplies size D/Small, 3 single 12cm mounts, DP/speed/crew, and the CAS 5e 3-2 D/E row supplies the movement values (cross-checked to sister Asakaze Form 10 p.172).",
+   "conflicts": [
+    "No individual Kamikaze Form 10 in Rising Sun Form 10s; movement is the CAS 5e p.23 Warship D/E rule value, cross-checked to Asakaze p.172.",
+    "Class card A-24 prints 3 single 12cm mounts; sister Asakaze Form 10 p.172 prints 4. Kamikaze uses the class card's 3-mount fit because it has no individual sheet; the class conflict is registered, not hidden.",
+    "Torpedo Type 96 lacks an Annex F-1 row; the same-model Form 10 p.172 block is used."
+   ],
+   "residual_gaps": [],
+   "non_shipdef_gaps": [
+    "No individual Kamikaze Form 10 (class+rule-table basis).",
+    "Class card 3-gun vs Asakaze Form 10 4-gun conflict registered."
+   ],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kamikaze"
+    ],
+    "hits": {
+     "form10": [
+      7,
+      14,
+      17,
+      18,
+      19,
+      22
+     ],
+     "american": [
+      7,
+      8,
+      10,
+      11,
+      12,
+      17
+     ],
+     "emperor": [
+      5,
+      27,
+      31,
+      77
+     ]
+    },
+    "hit_review": "audit 27 = A-24；31/77 为非本级页；form10 6/13/16/17/18/21 为索引，无本舰逐舰页。"
+   },
+   "blocker": null,
+   "source_note": "无本舰 Form 10；A-24 级卡给 D/Small、DP 92、35/26/18/9/0、Crew 148、3 门单装 12cm、2×2 533mm Type 96。movement 取 CAS 5e p.23 Warship D/E 行 200/1/12/6/15，并以同型朝风 Form 10 p.172 交叉核对。"
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "name": "追风",
+   "name_en": "Oite",
+   "side": "axis",
+   "type": "DD",
+   "class_profile": "ijn_kamikaze_dd",
+   "class_name": "Kamikaze (1941)",
+   "source_kind": "class_table_plus_rule_table",
+   "source_file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+   "shipdef_source": "CAS 5e p.23 (printed 3-2) movement tables + The Emperor's Fleet class card",
+   "stat_verified": true,
+   "verification_basis": "class_plus_rule_table",
+   "source_pages": [
+    {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card (size/DP/speed/crew/fit)"
+    },
+    {
+     "document": "cas5e",
+     "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+     "pdf_pages": [
+      23
+     ],
+     "printed_pages": [
+      "3-2"
+     ],
+     "label": "Ship Turning Distance / Acceleration table, Warship D/E row"
+    },
+    {
+     "document": "rising_sun_form10",
+     "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+     "pdf_pages": [
+      172
+     ],
+     "printed_pages": [
+      172
+     ],
+     "label": "sister Asakaze Form 10 - D/Small row and Type 96 torpedo block (cross-check only; no individual Oite sheet)"
+    },
+    {
+     "document": "ship_record_manual",
+     "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+     "pdf_pages": [
+      10,
+      20
+     ],
+     "printed_pages": [
+      10,
+      20
+     ],
+     "label": "IBS-IV scenario 7/12 cards, Oite (identity/presence cross-check only)"
+    }
+   ],
+   "movement": {
+    "size_class": "D/Small",
+    "category": "warship",
+    "slow_fast": "n/a",
+    "standard_rudder_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "basis": "No individual Form 10. Kamikaze (1941) class card A-24 prints Size Class D/Small; CAS 5e p.23 (printed 3-2) Warship D/E row: Standard Rudder 200 yds, speed loss 1 kt; Accel 12 kts (0-75%) and 6 kts (76-100%); Decel 15 kts. Cross-check: sister Asakaze Form 10 p.172 prints exactly these values for the same class/size."
+   },
+   "field_basis": {
+    "turn_advance_yards": {
+     "value": 200,
+     "source": "CAS 5e p.23 (3-2) Warship D/E Standard Rudder"
+    },
+    "speed_loss_knots": {
+     "value": 1,
+     "source": "CAS 5e p.23 (3-2) Warship D/E speed loss per 45 deg"
+    },
+    "accel_knots_per_turn": {
+     "value": 12,
+     "source": "CAS 5e p.23 (3-2) Warship D/E accel from 0-75%"
+    },
+    "accel_high_knots_per_turn": {
+     "value": 6,
+     "source": "CAS 5e p.23 (3-2) Warship D/E accel from 76-100%"
+    },
+    "brake_knots_per_turn": {
+     "value": 15,
+     "source": "CAS 5e p.23 (3-2) Warship D/E decel"
+    },
+    "gun": {
+     "source": "A-24 'F/2P&S(1)3 3rd Yr Type 12cm/45 LA' = 3 single mounts; C-1 3rd Yr Type 12cm/45 COM row"
+    },
+    "torpedo": {
+     "source": "A-24 'P&S(2)2 533mm TT w/2 Type 96 torp'; no individual Form 10, so the same Type 96 torpedo block printed on Asakaze Form 10 p.172 is used (Range 4.9 kyds, 49 kts, 89 DP). Annex F-1 has no Type 96 row."
+    },
+    "profile.crew": {
+     "source": "A-24 Crew: 148",
+     "value": 148
+    },
+    "armor_belt": {
+     "value": 0,
+     "source": "A-24 Armor Rating 0"
+    },
+    "armor_deck": {
+     "value": 0,
+     "source": "A-24 Armor Rating 0"
+    },
+    "dp": {
+     "value": 92,
+     "source": "A-24 Damage & Speed Breakdown"
+    },
+    "max_knots": {
+     "value": 35,
+     "source": "A-24 Surf Speed row"
+    },
+    "in_service_year": {
+     "value": 1925,
+     "source": "A-24 In Svc: 1941 (1925)"
+    }
+   },
+   "profile": {
+    "profile_id": "ijn_kamikaze_dd",
+    "class": "Kamikaze (1941)",
+    "class_label_zh": "神风级",
+    "side": "axis",
+    "kind": "DD",
+    "size_class_en": "D/Small",
+    "configuration": "1941 class configuration",
+    "source": {
+     "document": "emperors_fleet",
+     "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+     "pdf_pages": [
+      27
+     ],
+     "printed_pages": [
+      "A-24"
+     ],
+     "label": "Kamikaze (1941) class card"
+    },
+    "displacement_std_tons": 1422,
+    "in_class": 9,
+    "in_service": "1941 (1925)",
+    "in_service_year": 1925,
+    "crew": 148,
+    "propulsion": "Steam turbine",
+    "signature": "Small/Noisy",
+    "armor_rating": "0",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     23,
+     46,
+     69,
+     83,
+     92
+    ],
+    "speed_knots": [
+     35,
+     26,
+     18,
+     9,
+     0,
+     0
+    ],
+    "damage_speed_rows": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "main_gun": "jp_3rd_yr_120mm45",
+    "main_gun_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "secondary_verbatim": null,
+    "area_aa_verbatim": null,
+    "light_aa_verbatim": "10 Type 96 25mm (1.2)",
+    "torpedoes_verbatim": "P&S(2)2 533mm TT w/2 Type 96 torp",
+    "torpedo_model": null,
+    "torpedo_model_note": "Type 96 533 mm has no row in Annex F-1; F-2 lists a submarine/midget Type 96 (8.2 kyd/49 kt/533 mm) but no registered surface-ship torpedo model. Not substituted.",
+    "aircraft": null,
+    "sensors": "Type 93 (passive), Type 93 Model 1",
+    "special_damage_modifier_pct": -15,
+    "remarks_summary": "Improved Minekaze class. Laid down before 1925, special damage modifier of -15%. Jan 44: 2 Type 22 radars added. Apr 44: 2 Type 13 radars, E-27 Kai 3 and Model 3 ESM (Gen 0) fitted. Jun 44: survivors carried 13 to 20 25mm and 4 13.2mm, Lt AA 1.8 - 2.6.",
+    "dated_remarks": {
+     "Asakaze": [
+      "Dec 1941 Form 10 fit: 4 single 12cm mounts, 2 13mm; conflicts with the class card's 3 mounts / 10 25mm."
+     ],
+     "Kamikaze": [
+      "Jan 44: 2 Type 22 radars added.",
+      "Apr 44: 2 Type 13 radars, E-27 Kai 3/Model 3 ESM."
+     ],
+     "Oite": [
+      "No individual Form 10 card; class card only."
+     ]
+    },
+    "gun_mounts_verbatim": "F/2P&S(1)3 3rd Yr Type 12cm/45 LA",
+    "ship_specific": "Kamikaze class card only; no individual Form 10 card.",
+    "conflicts": [
+     "Asakaze Form 10 p.172 与 A-24 级表炮座数/轻防空冲突。"
+    ]
+   },
+   "profile_note": "profile 从 cas-source-cards-axis.json 原样复制，未改已核值；旧 blocker 仅保存在 supersedes_old_blocker，本卡以完整 ship 取代其 ShipDef 缺口。",
+   "supersedes_old_blocker": {
+    "code": "no_individual_form10_and_missing_torpedo_model",
+    "detail": "无 Oite 本舰 Form 10；级表缺转向/加速值；Type 96 533mm 无 F-1 弹行。不套用 Asakaze 页的冲突配置。",
+    "missing_fields": [
+     "turn_advance_yards",
+     "speed_loss_knots",
+     "accel_knots_per_turn",
+     "accel_high_knots_per_turn",
+     "brake_knots_per_turn",
+     "torpedo"
+    ]
+   },
+   "ship": {
+    "id": "IBS-U-IJN-OITE",
+    "name": "追风",
+    "side": "axis",
+    "kind": "DD",
+    "size": "D",
+    "turn_size": "D",
+    "in_service_year": 1925,
+    "max_knots": 35,
+    "dp": 92,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 23,
+      "knots": 26
+     },
+     {
+      "damage": 46,
+      "knots": 18
+     },
+     {
+      "damage": 69,
+      "knots": 9
+     },
+     {
+      "damage": 83,
+      "knots": 0
+     },
+     {
+      "damage": 92,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 200,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "gun": {
+     "name": "三年式 12cm/45 COM",
+     "caliber_mm": 120,
+     "shell": "COM",
+     "armor_piercing": false,
+     "range_yd": [
+      5300,
+      10600,
+      14100,
+      17600
+     ],
+     "damage": [
+      14,
+      11,
+      10,
+      9
+     ],
+     "pen_belt": [
+      4,
+      3,
+      2,
+      1
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "barrels": 3,
+     "gs": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "source": {
+      "document": "emperors_fleet",
+      "pdf_page": 97,
+      "printed_page": "C-1"
+     }
+    },
+    "torpedo": {
+     "name": "九六式 533mm 鱼雷 (Type 96)",
+     "speed_knots": 49,
+     "range_yd": 4900,
+     "warhead": 89,
+     "tubes": 4,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "source": {
+      "document": "rising_sun_form10",
+      "pdf_page": 172,
+      "printed_page": 172,
+      "note": "Type 96 torpedo block printed on Asakaze Form 10 p.172: Range 4.9 kyds, 49 kts, 89 DP. No Annex F-1 row; F-2 Type 96 is the submarine/midget model and is not substituted."
+     }
+    },
+    "source_profile": "ijn_kamikaze_dd",
+    "source": [
+     {
+      "document": "emperors_fleet",
+      "file": "CAS带翻译/CAS带翻译/船表/The_Emperor_s_Fleet.pdf",
+      "pdf_pages": [
+       27
+      ],
+      "printed_pages": [
+       "A-24"
+      ],
+      "label": "Kamikaze (1941) class card (size/DP/speed/crew/fit)"
+     },
+     {
+      "document": "cas5e",
+      "file": "CAS带翻译/CAS带翻译/Command_at_Sea_5th_edition.pdf",
+      "pdf_pages": [
+       23
+      ],
+      "printed_pages": [
+       "3-2"
+      ],
+      "label": "Ship Turning Distance / Acceleration table, Warship D/E row"
+     },
+     {
+      "document": "rising_sun_form10",
+      "file": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+      "pdf_pages": [
+       172
+      ],
+      "printed_pages": [
+       172
+      ],
+      "label": "sister Asakaze Form 10 - D/Small row and Type 96 torpedo block (cross-check only; no individual Oite sheet)"
+     },
+     {
+      "document": "ship_record_manual",
+      "file": "target/campaign-pages/ibs-pin/resources/originals/records/ship-record-manual-1.1-zh.pdf",
+      "pdf_pages": [
+       10,
+       20
+      ],
+      "printed_pages": [
+       10,
+       20
+      ],
+      "label": "IBS-IV scenario 7/12 cards, Oite (identity/presence cross-check only)"
+     }
+    ],
+    "period_label": "Kamikaze (1941) class card A-24; no individual Form 10; movement per CAS 5e 3-2 D/E row cross-checked to Asakaze p.172",
+    "annex_special_damage_modifier_pct": -15
+   },
+   "playable": true,
+   "playable_note": "Full ShipDef: all required fields present. No individual Oite Form 10; class card A-24 supplies size D/Small, 3 single 12cm mounts, DP/speed/crew, and the CAS 5e 3-2 D/E row supplies the movement values (cross-checked to sister Asakaze Form 10 p.172).",
+   "conflicts": [
+    "No individual Oite Form 10 in Rising Sun Form 10s; movement is the CAS 5e p.23 Warship D/E rule value, cross-checked to Asakaze p.172.",
+    "Class card A-24 prints 3 single 12cm mounts; sister Asakaze Form 10 p.172 prints 4. Oite uses the class card's 3-mount fit because it has no individual sheet; the class conflict is registered.",
+    "Torpedo Type 96 lacks an Annex F-1 row; the same-model Form 10 p.172 block is used."
+   ],
+   "residual_gaps": [],
+   "non_shipdef_gaps": [
+    "No individual Oite Form 10 (class+rule-table basis).",
+    "Class card 3-gun vs Asakaze Form 10 4-gun conflict registered."
+   ],
+   "audit": {
+    "status": "cas_source_table",
+    "terms": [
+     "Kamikaze"
+    ],
+    "hits": {
+     "form10": [
+      7,
+      14,
+      17,
+      18,
+      19,
+      22
+     ],
+     "american": [
+      7,
+      8,
+      10,
+      11,
+      12,
+      17
+     ],
+     "emperor": [
+      5,
+      27,
+      31,
+      77
+     ]
+    },
+    "hit_review": "audit 27 = A-24；31/77 非本级；form10 索引页无 Oite 逐舰页。"
+   },
+   "blocker": null,
+   "source_note": "无本舰 Form 10；A-24 级卡给 D/Small、DP 92、35/26/18/9/0、Crew 148、3 门单装 12cm、2×2 533mm Type 96。movement 取 CAS 5e p.23 Warship D/E 行 200/1/12/6/15，并以同型朝风 Form 10 p.172 交叉核对。"
+  }
+ ],
+ "checks": {
+  "cards_written": 7,
+  "shipdefs_written": 7,
+  "playable": 7,
+  "blocked": 0,
+  "unique_identities": true,
+  "all_side_axis": true,
+  "all_type_expected": true,
+  "required_shipdef_fields_present": {
+   "IBS-U-IJN-NAGATO": true,
+   "IBS-U-IJN-MUTSU": true,
+   "IBS-U-IJN-CHITOSE": true,
+   "IBS-U-IJN-NISSHIN": true,
+   "IBS-U-IJN-ASAKAZE": true,
+   "IBS-U-IJN-KAMIKAZE": true,
+   "IBS-U-IJN-OITE": true
+  },
+  "movement_fields_complete": {
+   "IBS-U-IJN-NAGATO": true,
+   "IBS-U-IJN-MUTSU": true,
+   "IBS-U-IJN-CHITOSE": true,
+   "IBS-U-IJN-NISSHIN": true,
+   "IBS-U-IJN-ASAKAZE": true,
+   "IBS-U-IJN-KAMIKAZE": true,
+   "IBS-U-IJN-OITE": true
+  },
+  "gun_barrels_match_mounts": {
+   "IBS-U-IJN-NAGATO": true,
+   "IBS-U-IJN-MUTSU": true,
+   "IBS-U-IJN-CHITOSE": true,
+   "IBS-U-IJN-NISSHIN": true,
+   "IBS-U-IJN-ASAKAZE": true,
+   "IBS-U-IJN-KAMIKAZE": true,
+   "IBS-U-IJN-OITE": true
+  },
+  "secondary_barrels_match_mounts": {
+   "IBS-U-IJN-NAGATO": true,
+   "IBS-U-IJN-MUTSU": true,
+   "IBS-U-IJN-CHITOSE": null,
+   "IBS-U-IJN-NISSHIN": null,
+   "IBS-U-IJN-ASAKAZE": null,
+   "IBS-U-IJN-KAMIKAZE": null,
+   "IBS-U-IJN-OITE": null
+  },
+  "torpedo_tubes_match_mounts": {
+   "IBS-U-IJN-NAGATO": null,
+   "IBS-U-IJN-MUTSU": null,
+   "IBS-U-IJN-CHITOSE": null,
+   "IBS-U-IJN-NISSHIN": null,
+   "IBS-U-IJN-ASAKAZE": true,
+   "IBS-U-IJN-KAMIKAZE": true,
+   "IBS-U-IJN-OITE": true
+  },
+  "no_points": true,
+  "no_ranked": true,
+  "paper_ships_untouched": true,
+  "erma_untouched": true,
+  "all_checks_ok": true
+ },
+ "unresolved": [
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "field": "profile.crew",
+   "status": "missing_source",
+   "detail": "A-53 Crew 空白；A-10 的 800 是 1943 CVL 改装值，按任务口径不套用于 AV，故保留 null。ShipDef 无 crew 字段，不阻塞 playable。"
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "field": "light_aa / gun_mount_count",
+   "status": "registered_conflict",
+   "detail": "A-24 级表 3 门单装、10×25mm；Form 10 p.172 4 门单装、2×13mm。ShipDef 采用 Form 10 的 4 门；轻防空无 ShipDef 字段，冲突保留原页并登记。"
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "field": "individual_form10",
+   "status": "not_present",
+   "detail": "无本舰 Form 10；size/DP/航速/crew/3 门炮取 A-24，转向/加速取 CAS 5e 3-2 D/E 行并以朝风 p.172 同型值交叉核对。"
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "field": "individual_form10",
+   "status": "not_present",
+   "detail": "无本舰 Form 10；size/DP/航速/crew/3 门炮取 A-24，转向/加速取 CAS 5e 3-2 D/E 行并以朝风 p.172 同型值交叉核对。"
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE|IBS-U-IJN-KAMIKAZE|IBS-U-IJN-OITE",
+   "field": "torpedo_model",
+   "status": "annex_f1_gap_resolved_from_form10",
+   "detail": "Type 96 533mm 在 Annex F-1 无行；F-2 的 Type 96 是潜艇/袖珍潜艇用，不替代。朝风 Form 10 p.172 印 Range 4.9 kyds / 49 kts / 89 DP，同型神风/追风沿用同一鱼雷型号数据。"
+  }
+ ],
+ "not_touched": {
+  "paper_ships": [
+   "IBS-U-IJN-AMAGI",
+   "IBS-U-IJN-AKAGI",
+   "IBS-U-IJN-OWARI"
+  ],
+  "erma_ijn": [
+   "IBS-U-IJN-ERMA-IBUKI",
+   "IBS-U-IJN-ERMA-KURAMA",
+   "IBS-U-IJN-ERMA-GOKASE"
+  ],
+  "paths": [
+   "src/",
+   "server/catalog",
+   "portraits",
+   "audio",
+   "AI",
+   "ranked_fleets"
+  ],
+  "git_commit": false,
+  "points_written": false
+ }
+}

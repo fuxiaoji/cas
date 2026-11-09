@@ -1,0 +1,568 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-erma-gun-rows-v1",
+ "status": "source_transcribed_not_active",
+ "as_of": "2026-11-08",
+ "consumer_note": "只提供 CAS 炮表行；未写 ShipDef、未写 points、未改现有舰卡。消费方自行选择 APC/HC 并填入 gun.range_yd / gun.damage / gun.pen_belt / gun.pen_deck。",
+ "scope": {
+  "scenario": "ERMA（铁底湾 ERMA 扩展；ERMA 记录卡为 1944-06-21 架空）",
+  "requested_guns": 3,
+  "ships": 8,
+  "ships_by_gun": {
+   "Mk7 16in/50": [
+    "IBS-U-USN-ERMA-IOWA",
+    "IBS-U-USN-ERMA-NEW-JERSEY",
+    "IBS-U-USN-ERMA-MISSOURI",
+    "IBS-U-USN-ERMA-WISCONSIN"
+   ],
+   "Mk8 12in/50": [
+    "IBS-U-USN-ERMA-ALASKA",
+    "IBS-U-USN-ERMA-GUAM"
+   ],
+   "Mk16 8in/55": [
+    "IBS-U-USN-ERMA-DES-MOINES",
+    "IBS-U-USN-ERMA-SALEM"
+   ]
+  }
+ },
+ "units": {
+  "range": "yard",
+  "range_printed": "kyd (thousand yards)",
+  "penetration": "CAS armour rating point",
+  "damage": "damage point (DP)",
+  "field_aliases": {
+   "belt_pen": "pen / armour（对装甲带穿透，CAS 表 Belt Pen）",
+   "deck_pen": "pen_deck（对甲板穿透，CAS 表 Deck Pen；Short/Medium 空白）",
+   "damage_dp": "damage（CAS 表 Shell Dam）"
+  },
+  "null_deck_pen": "Deck Pen column is blank at Short/Medium on the printed table; stored as null, not 0."
+ },
+ "table_columns": [
+  "Short Range (kyds)",
+  "Short Belt Pen",
+  "Short Shell Dam",
+  "Medium Range (kyds)",
+  "Medium Belt Pen",
+  "Medium Shell Dam",
+  "Long Range (kyds)",
+  "Long Belt Pen",
+  "Long Deck Pen",
+  "Long Shell Dam",
+  "Extreme Range (kyds)",
+  "Extreme Belt Pen",
+  "Extreme Deck Pen",
+  "Extreme Shell Dam"
+ ],
+ "source": {
+  "document": "american_fleets_2012_standard",
+  "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+  "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+  "pdf_page": 109,
+  "printed_page": "C-3",
+  "page_header": "C-3",
+  "table": "Annex C1 & C2 - Surface Naval & Coast Defense Guns",
+  "pdf_page_convention": "1-based PDF page index; printed page is the page header",
+  "verification": "pypdf 6.20.1 text extraction plus PyMuPDF 1.28.2 200 dpi full-page render and 300 dpi row-crop visual check"
+ },
+ "guns": {
+  "us_16in50_mk7": {
+   "gun_mark": "Mk7",
+   "bore_calibre": "16in/50",
+   "bore_calibre_metric": "406.4mm/50",
+   "bore_calibre_metric_note": "16in = 406.4mm；A-4 舰卡印 406mm/50。军械行以 16in/50 为键。",
+   "requested_label": "Mk7 16in/50",
+   "exact": true,
+   "match": "exact",
+   "row_mount_text": "Mk7 16in/50",
+   "range_bands": [
+    {
+     "band": "short",
+     "range_kyd": [
+      0,
+      8.5
+     ],
+     "range_yd": [
+      0,
+      8500
+     ]
+    },
+    {
+     "band": "medium",
+     "range_kyd": [
+      8.6,
+      21.2
+     ],
+     "range_yd": [
+      8600,
+      21200
+     ]
+    },
+    {
+     "band": "long",
+     "range_kyd": [
+      21.3,
+      33.8
+     ],
+     "range_yd": [
+      21300,
+      33800
+     ]
+    },
+    {
+     "band": "extreme",
+     "range_kyd": [
+      33.9,
+      42.3
+     ],
+     "range_yd": [
+      33900,
+      42300
+     ]
+    }
+   ],
+   "shells": {
+    "APC": {
+     "belt_pen": [
+      75,
+      53,
+      38,
+      29
+     ],
+     "deck_pen": [
+      null,
+      null,
+      13,
+      24
+     ],
+     "damage_dp": [
+      45,
+      35,
+      30,
+      26
+     ]
+    },
+    "HC": {
+     "belt_pen": [
+      8,
+      5,
+      4,
+      3
+     ],
+     "deck_pen": [
+      null,
+      null,
+      3,
+      5
+     ],
+     "damage_dp": [
+      46,
+      39,
+      34,
+      30
+     ]
+    }
+   },
+   "printed_rows": {
+    "APC": "USA Mk7 16in/50 APC 0 - 8.5 75 45 8.6 - 21.2 53 35 21.3 - 33.8 38 13 30 33.9 - 42.3 29 24 26",
+    "HC": "HC 0 - 8.5 8 46 8.6 - 21.2 5 39 21.3 - 33.8 4 3 34 33.9 - 42.3 3 5 30"
+   },
+   "used_by_classes": [
+    "Iowa"
+   ],
+   "used_by": [
+    "IBS-U-USN-ERMA-IOWA",
+    "IBS-U-USN-ERMA-NEW-JERSEY",
+    "IBS-U-USN-ERMA-MISSOURI",
+    "IBS-U-USN-ERMA-WISCONSIN"
+   ],
+   "notes": [
+    "C-3 是 Surface Naval & Coast Defense Guns 混合表；本行位于 16in/45、16in/50 舰炮组内，不是岸防行。",
+    "同页岸防 16in 另有 M1895 DC 1912 16in 与 MkIIMI 16 inch carriage M1919M1，已列入排除项。",
+    "5e 主规则 PDF 61 的示例印有 A U.S. 16\"/50 short range 8,500 yards，与本行 Short 0-8.5 千码旁证一致；示例不是表值来源。",
+    "APC 与 HC 共用同一组射程段；本行未印 SpCOM / Com。Deck Pen 只在 Long/Extreme 段印刷，Short/Medium 空白，JSON 记 null。"
+   ],
+   "exclusions": [
+    {
+     "row": "Mk2, 3 16in/50",
+     "same_page": true,
+     "kind": "different_mark",
+     "why": "同口径 16in/50，但为 Mk2/3 行；不得用其 82/46、78/43 等值替代 Mk7。"
+    },
+    {
+     "row": "Mk6 16in/45",
+     "same_page": true,
+     "kind": "different_mark_and_calibre_length",
+     "why": "Mk6 16in/45，不是 Mk7 16in/50。"
+    },
+    {
+     "row": "Mk1 16in/45",
+     "same_page": true,
+     "kind": "different_mark_and_calibre_length",
+     "why": "Mk1 16in/45，不是 Mk7 16in/50。"
+    },
+    {
+     "row": "Mk5, 8 16in/45",
+     "same_page": true,
+     "kind": "different_mark_and_calibre_length",
+     "why": "Mk5/8 16in/45，不是 Mk7 16in/50。"
+    },
+    {
+     "row": "M1895 DC 1912 16in",
+     "same_page": true,
+     "kind": "coast_defense",
+     "why": "岸防 16in（DC 1912），不是舰炮 Mk7。"
+    },
+    {
+     "row": "MkIIMI 16 inch carriage M1919M1",
+     "same_page": true,
+     "kind": "coast_defense",
+     "why": "岸防 16-inch carriage M1919M1，只有 HE 行，不是舰炮 Mk7。"
+    }
+   ],
+   "source": {
+    "document": "american_fleets_2012_standard",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+    "pdf_page": 109,
+    "printed_page": "C-3",
+    "page_header": "C-3",
+    "table": "Annex C1 & C2 - Surface Naval & Coast Defense Guns",
+    "pdf_page_convention": "1-based PDF page index; printed page is the page header",
+    "verification": "pypdf 6.20.1 text extraction plus PyMuPDF 1.28.2 200 dpi full-page render and 300 dpi row-crop visual check"
+   },
+   "extracted_rows_verbatim": {
+    "APC": "USA Mk7 16in/50 APC 0 - 8.5 75 45 8.6 - 21 .2 53 35 21 .3 - 33.8 38 13 30 33.9 - 42.3 29 24 26",
+    "HC": "HC 0 - 8.5 8 46 8.6 - 21 .2 5 39 21 .3 - 33.8 4 3 34 33.9 - 42.3 3 5 30"
+   }
+  },
+  "us_12in50_mk8": {
+   "gun_mark": "Mk8",
+   "bore_calibre": "12in/50",
+   "bore_calibre_metric": "304.8mm/50",
+   "bore_calibre_metric_note": "12in = 304.8mm；A-12 舰卡印 12in/50。军械行以 12in/50 为键。",
+   "requested_label": "Mk8 12in/50",
+   "exact": true,
+   "match": "exact",
+   "row_mount_text": "Mk8 12in/50",
+   "range_bands": [
+    {
+     "band": "short",
+     "range_kyd": [
+      0,
+      7.7
+     ],
+     "range_yd": [
+      0,
+      7700
+     ]
+    },
+    {
+     "band": "medium",
+     "range_kyd": [
+      7.8,
+      19.3
+     ],
+     "range_yd": [
+      7800,
+      19300
+     ]
+    },
+    {
+     "band": "long",
+     "range_kyd": [
+      19.4,
+      30.8
+     ],
+     "range_yd": [
+      19400,
+      30800
+     ]
+    },
+    {
+     "band": "extreme",
+     "range_kyd": [
+      30.9,
+      38.5
+     ],
+     "range_yd": [
+      30900,
+      38500
+     ]
+    }
+   ],
+   "shells": {
+    "APC": {
+     "belt_pen": [
+      52,
+      37,
+      26,
+      20
+     ],
+     "deck_pen": [
+      null,
+      null,
+      9,
+      17
+     ],
+     "damage_dp": [
+      36,
+      28,
+      24,
+      20
+     ]
+    },
+    "HC": {
+     "belt_pen": [
+      5,
+      4,
+      3,
+      2
+     ],
+     "deck_pen": [
+      null,
+      null,
+      2,
+      3
+     ],
+     "damage_dp": [
+      39,
+      33,
+      29,
+      26
+     ]
+    }
+   },
+   "printed_rows": {
+    "APC": "USA Mk8 12in/50 APC 0 - 7.7 52 36 7.8 - 19.3 37 28 19.4 - 30.8 26 9 24 30.9 - 38.5 20 17 20",
+    "HC": "HC 0 - 7.7 5 39 7.8 - 19.3 4 33 19.4 - 30.8 3 2 29 30.9 - 38.5 2 3 26"
+   },
+   "used_by_classes": [
+    "Alaska"
+   ],
+   "used_by": [
+    "IBS-U-USN-ERMA-ALASKA",
+    "IBS-U-USN-ERMA-GUAM"
+   ],
+   "notes": [
+    "Mk8 12in/50 是 Alaska 级舰炮行；同页 Mk7 12in/50 是 Wyoming 级舰炮，不是 Alaska 的 Mk8，已列入排除项。",
+    "Alaska 卡面 '//2 Mk8' 的 Mk8 是火控雷达，不是本行的 12in/50 炮；本行按 12in/50 Mk8 炮匹配。",
+    "同页 M1912 12 in Mortar（700 lb / 1026 lb 弹）是岸防 12in 迫击炮，不是舰炮，已列入排除项。",
+    "APC 与 HC 共用同一组射程段；本行未印 SpCOM / Com。Deck Pen 只在 Long/Extreme 段印刷，Short/Medium 空白，JSON 记 null。"
+   ],
+   "exclusions": [
+    {
+     "row": "Mk7 12in/50",
+     "same_page": true,
+     "kind": "different_mark",
+     "why": "Mk7 12in/50（Wyoming 级）不是 Alaska 的 Mk8；即使口径相同也不得替代。"
+    },
+    {
+     "row": "M1912 12 in Mortar w/700 lb shell",
+     "same_page": true,
+     "kind": "coast_defense",
+     "why": "岸防 12in 迫击炮（DP 行），不是舰炮 Mk8。"
+    },
+    {
+     "row": "M1912 12 in Mortar w/1026 lb shell",
+     "same_page": true,
+     "kind": "coast_defense",
+     "why": "岸防 12in 迫击炮（DP 行），不是舰炮 Mk8。"
+    }
+   ],
+   "source": {
+    "document": "american_fleets_2012_standard",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+    "pdf_page": 109,
+    "printed_page": "C-3",
+    "page_header": "C-3",
+    "table": "Annex C1 & C2 - Surface Naval & Coast Defense Guns",
+    "pdf_page_convention": "1-based PDF page index; printed page is the page header",
+    "verification": "pypdf 6.20.1 text extraction plus PyMuPDF 1.28.2 200 dpi full-page render and 300 dpi row-crop visual check"
+   },
+   "extracted_rows_verbatim": {
+    "APC": "USA Mk8 12in/50 APC 0 - 7 .7 52 36 7 .8 - 19.3 37 28 19.4 - 30.8 26 9 24 30.9 - 38.5 20 17 20",
+    "HC": "HC 0 - 7 .7 5 39 7 .8 - 19.3 4 33 19.4 - 30.8 3 2 29 30.9 - 38.5 2 3 26"
+   }
+  },
+  "us_8in55_mk16": {
+   "gun_mark": "Mk16",
+   "bore_calibre": "8in/55",
+   "bore_calibre_metric": "203.2mm/55",
+   "bore_calibre_metric_note": "8in = 203.2mm；A-12 舰卡印 8in/55。军械行以 8in/55 为键。",
+   "requested_label": "Mk16 8in/55",
+   "exact": true,
+   "match": "exact",
+   "row_mount_text": "Mk16 8in/55",
+   "range_bands": [
+    {
+     "band": "short",
+     "range_kyd": [
+      0,
+      6.6
+     ],
+     "range_yd": [
+      0,
+      6600
+     ]
+    },
+    {
+     "band": "medium",
+     "range_kyd": [
+      6.7,
+      15
+     ],
+     "range_yd": [
+      6700,
+      15000
+     ]
+    },
+    {
+     "band": "long",
+     "range_kyd": [
+      15.1,
+      24
+     ],
+     "range_yd": [
+      15100,
+      24000
+     ]
+    },
+    {
+     "band": "extreme",
+     "range_kyd": [
+      24.1,
+      30
+     ],
+     "range_yd": [
+      24100,
+      30000
+     ]
+    }
+   ],
+   "shells": {
+    "APC": {
+     "belt_pen": [
+      30,
+      20,
+      14,
+      11
+     ],
+     "deck_pen": [
+      null,
+      null,
+      5,
+      9
+     ],
+     "damage_dp": [
+      28,
+      22,
+      18,
+      16
+     ]
+    },
+    "HC": {
+     "belt_pen": [
+      3,
+      2,
+      1,
+      1
+     ],
+     "deck_pen": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "damage_dp": [
+      30,
+      25,
+      22,
+      20
+     ]
+    }
+   },
+   "printed_rows": {
+    "APC": "USA Mk16 8in/55 APC 0 - 6.6 30 28 6.7 - 15 20 22 15.1 - 24 14 5 18 24.1 - 30 11 9 16",
+    "HC": "HC 0 - 6.6 3 30 6.7 - 15 2 25 15.1 - 24 1 1 22 24.1 - 30 1 2 20"
+   },
+   "used_by_classes": [
+    "Des Moines"
+   ],
+   "used_by": [
+    "IBS-U-USN-ERMA-DES-MOINES",
+    "IBS-U-USN-ERMA-SALEM"
+   ],
+   "notes": [
+    "Mk16 8in/55 是 Des Moines 级自动装填 8in 舰炮行；与同页 Mk9/10/11/13/14 8in/55、C-2 的 Mk12/15 8in/55 是不同 Mark。",
+    "不要把本行与 Mk16 6in/47（Worcester 级）混用：Mark 号相同但口径/倍径不同，且 C-2 的 us_6in47_mk16 是 6in 炮。",
+    "C-2 的 M1888M1 8in AP Shot / Railway Gun 是岸防/铁道 8in 行，不是 Mk16。",
+    "APC 与 HC 共用同一组射程段；本行未印 SpCOM / Com。Deck Pen 只在 Long/Extreme 段印刷，Short/Medium 空白，JSON 记 null。"
+   ],
+   "exclusions": [
+    {
+     "row": "Mk9, 10, 11, 13, 14 8in/55",
+     "same_page": true,
+     "kind": "different_mark",
+     "why": "前型重巡的 8in/55 行，不是 Des Moines 的 Mk16。"
+    },
+    {
+     "row": "Mk12, 15 8in/55",
+     "same_page": false,
+     "kind": "different_mark",
+     "why": "C-2 的另一 8in/55 行，不是 Mk16。"
+    },
+    {
+     "row": "M1888M1 8in AP Shot / Railway Gun",
+     "same_page": false,
+     "kind": "coast_defense_or_railway",
+     "why": "C-2 的岸防/铁道 8in 行，不是舰炮 Mk16。"
+    },
+    {
+     "row": "Mk16 6in/47",
+     "same_page": false,
+     "kind": "different_calibre",
+     "why": "Mk16 6in/47 是 6 英寸炮，不是 Mk16 8in/55；同名 Mark 不同口径。"
+    }
+   ],
+   "source": {
+    "document": "american_fleets_2012_standard",
+    "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+    "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+    "pdf_page": 109,
+    "printed_page": "C-3",
+    "page_header": "C-3",
+    "table": "Annex C1 & C2 - Surface Naval & Coast Defense Guns",
+    "pdf_page_convention": "1-based PDF page index; printed page is the page header",
+    "verification": "pypdf 6.20.1 text extraction plus PyMuPDF 1.28.2 200 dpi full-page render and 300 dpi row-crop visual check"
+   },
+   "extracted_rows_verbatim": {
+    "APC": "USA Mk16 8in/55 APC 0 - 6.6 30 28 6.7 - 15 20 22 15.1 - 24 14 5 18 24.1 - 30 11 9 16",
+    "HC": "HC 0 - 6.6 3 30 6.7 - 15 2 25 15.1 - 24 1 1 22 24.1 - 30 1 2 20"
+   }
+  }
+ },
+ "coverage": {
+  "requested_gun_marks": 3,
+  "found_exact": 3,
+  "found_not_exact_only": 0,
+  "not_found": 0,
+  "ships_covered": 8,
+  "shipdef_gun_rows_complete": true,
+  "all_three_exact": true
+ },
+ "blockers": {
+  "gun_rows": [],
+  "other_than_gun_rows": [
+   {
+    "identity": "IBS-U-USN-ERMA-DES-MOINES",
+    "blocker": "1948 年配置放进 1944 年 ERMA 扩想定，属架空；该时期差异与本批炮表行无关，仍按源卡登记。"
+   },
+   {
+    "identity": "IBS-U-USN-ERMA-SALEM",
+    "blocker": "同 Des Moines 级 1948 配置 / 1944 架空时期差异；与本批炮表行无关。"
+   }
+  ]
+ },
+ "printed_rows_note": "printed_rows 是规范化后的可读行（把 pypdf 文本层的 '21 .2'、'7 .7' 等空格伪影合并为 21.2、7.7）；extracted_rows_verbatim 保留 pypdf 文本层原样（仅去行首缩进）。两者数值相同，且已对 C-3 页面 300 dpi 目视核对。"
+}

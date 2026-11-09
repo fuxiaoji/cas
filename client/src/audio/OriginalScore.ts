@@ -5,12 +5,15 @@ import engagement from './score/engagement.ogg';
 import victory from './score/victory.ogg';
 import defeat from './score/defeat.ogg';
 
+// Third-party World of Warships OST cuts. Provenance, hashes and segment
+// windows are in ./score/ledger.json. Private CAS playtest use only; public
+// release requires clearance for the source tracks.
 const cues = {
-  prologue: { source: prologue, loop: true, gain: 0.77 },
-  maneuver: { source: maneuver, loop: true, gain: 0.63 },
-  engagement: { source: engagement, loop: true, gain: 0.92 },
-  victory: { source: victory, loop: false, gain: 0.8 },
-  defeat: { source: defeat, loop: false, gain: 0.76 },
+  prologue: { source: prologue, loop: true, gain: 0.77, title: 'Duty Calls' },
+  maneuver: { source: maneuver, loop: true, gain: 0.63, title: 'World of Warships OST 7' },
+  engagement: { source: engagement, loop: true, gain: 0.92, title: 'World of Warships OST 23' },
+  victory: { source: victory, loop: false, gain: 0.8, title: 'World of Warships OST 11' },
+  defeat: { source: defeat, loop: false, gain: 0.76, title: 'World of Warships OST 12' },
 } as const;
 
 type Cue = keyof typeof cues;

@@ -7,9 +7,164 @@
     "IBS-S-12",
     "IBS-S-FM-01"
   ],
+  "collection": {
+    "id": "CAS-COLLECTION-0.6.9",
+    "note": "手游全集/非当前 11 剧本：本次补入且未出现在当前保留 11 个剧本中的 identity 用此标记入池；它们仅见于手游 0.6.9 全集或已移除剧本（IBS-S-03、IBS-S-07、IBS-S-12、IBS-S-FM-01 及已删除的第 15 关 IBS-S-EM-01），不据此伪造剧本归属。"
+  },
+  "provenance": {
+    "IBS-U-IJN-AKAGI": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-AMAGI": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-ASAKAZE": [
+      "IBS-S-07"
+    ],
+    "IBS-U-IJN-ERMA-KAZEGUMO": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-MAKINAMI": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-NAGANAMI": [
+      "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-KAMIKAZE": [
+      "IBS-S-07",
+      "IBS-S-12"
+    ],
+    "IBS-U-IJN-MUTSU": [
+      "IBS-S-12",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-MUTSUKI": [
+      "IBS-S-07"
+    ],
+    "IBS-U-IJN-NACHI": [
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-NAGATO": [
+      "IBS-S-12",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-OITE": [
+      "IBS-S-07",
+      "IBS-S-12"
+    ],
+    "IBS-U-IJN-OWARI": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-TATSUTA": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-IJN-UZUKI-2": [
+      "IBS-S-05"
+    ],
+    "IBS-U-KM-HANS-LODY": [
+      "IBS-S-03"
+    ],
+    "IBS-U-KM-KARL-GALSTER": [
+      "IBS-S-03"
+    ],
+    "IBS-U-KM-RICHARD-BEITZEN": [
+      "IBS-S-03"
+    ],
+    "IBS-U-RAN-AUSTRALIA": [
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-RN-JACKAL": [
+      "IBS-S-03"
+    ],
+    "IBS-U-RN-JAVELIN": [
+      "IBS-S-03"
+    ],
+    "IBS-U-RN-JERSEY": [
+      "IBS-S-03"
+    ],
+    "IBS-U-RN-JUPITER": [
+      "IBS-S-03"
+    ],
+    "IBS-U-RN-KASHMIR": [
+      "IBS-S-03"
+    ],
+    "IBS-U-USN-BAINBRIDGE": [
+      "IBS-S-07",
+      "IBS-S-12"
+    ],
+    "IBS-U-USN-COLORADO": [
+      "IBS-S-12",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-DAHLGREN": [
+      "IBS-S-07",
+      "IBS-S-12"
+    ],
+    "IBS-U-USN-DECATUR": [
+      "IBS-S-07"
+    ],
+    "IBS-U-USN-FOX": [
+      "IBS-S-07"
+    ],
+    "IBS-U-USN-HULL-I": [
+      "IBS-S-07",
+      "IBS-S-12"
+    ],
+    "IBS-U-USN-MCDONOUGH": [
+      "IBS-S-07"
+    ],
+    "IBS-U-USN-OMAHA": [
+      "IBS-S-12"
+    ],
+    "IBS-U-USN-PERRY": [
+      "IBS-S-07",
+      "IBS-S-12"
+    ],
+    "IBS-U-USN-TRUXTON": [
+      "IBS-S-07"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R06": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R07": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R08": [
+      "IBS-S-07",
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R13": [
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R22": [
+      "IBS-S-07"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R25": [
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R51": [
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R52": [
+      "IBS-S-FM-01"
+    ],
+    "IBS-U-USN-WEST-VIRGINIA": [
+      "IBS-S-12",
+      "IBS-S-FM-01"
+    ]
+  },
   "ships": {
     "IBS-U-IJN-AGANO": [
       "IBS-S-11"
+    ],
+    "IBS-U-IJN-AKAGI": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-AKATSUKI": [
       "IBS-S-09"
@@ -19,6 +174,9 @@
     ],
     "IBS-U-IJN-AKIZUKI": [
       "IBS-S-01"
+    ],
+    "IBS-U-IJN-AMAGI": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-AMAGIRI": [
       "IBS-S-02",
@@ -35,6 +193,9 @@
       "IBS-S-01",
       "IBS-S-06",
       "IBS-S-09"
+    ],
+    "IBS-U-IJN-ASAKAZE": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-ATAGO": [
       "IBS-S-06"
@@ -60,11 +221,20 @@
     "IBS-U-IJN-ERMA-ISHIKARI": [
       "IBS-S-EM-01"
     ],
+    "IBS-U-IJN-ERMA-KAZEGUMO": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-IJN-ERMA-KURAMA": [
       "IBS-S-EM-01"
     ],
+    "IBS-U-IJN-ERMA-MAKINAMI": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-IJN-ERMA-MUSASHI": [
       "IBS-S-EM-01"
+    ],
+    "IBS-U-IJN-ERMA-NAGANAMI": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-ERMA-SHIMAKAZE": [
       "IBS-S-EM-01"
@@ -128,6 +298,9 @@
     "IBS-U-IJN-KAKO-I": [
       "IBS-S-10"
     ],
+    "IBS-U-IJN-KAMIKAZE": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-IJN-KAWAKAZE": [
       "IBS-S-04"
     ],
@@ -174,8 +347,17 @@
     "IBS-U-IJN-MURASAME": [
       "IBS-S-09"
     ],
+    "IBS-U-IJN-MUTSU": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-IJN-MUTSUKI": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-IJN-MYOKO": [
       "IBS-S-11"
+    ],
+    "IBS-U-IJN-NACHI": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-NAGANAMI": [
       "IBS-S-04",
@@ -184,6 +366,9 @@
     "IBS-U-IJN-NAGARA": [
       "IBS-S-06",
       "IBS-S-09"
+    ],
+    "IBS-U-IJN-NAGATO": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-NAGATSUKI": [
       "IBS-S-02"
@@ -197,8 +382,14 @@
     "IBS-U-IJN-NISSHIN": [
       "IBS-S-01"
     ],
+    "IBS-U-IJN-OITE": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-IJN-ONAMI": [
       "IBS-S-05"
+    ],
+    "IBS-U-IJN-OWARI": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-IJN-OYASHIO": [
       "IBS-S-04"
@@ -248,6 +439,9 @@
     "IBS-U-IJN-TANIKAZE": [
       "IBS-S-02"
     ],
+    "IBS-U-IJN-TATSUTA": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-IJN-TENRYU": [
       "IBS-S-10"
     ],
@@ -259,6 +453,9 @@
       "IBS-S-06"
     ],
     "IBS-U-IJN-UZUKI": [
+      "IBS-S-05"
+    ],
+    "IBS-U-IJN-UZUKI-2": [
       "IBS-S-05"
     ],
     "IBS-U-IJN-WAKATSUKI": [
@@ -293,8 +490,35 @@
     "IBS-U-IJN-YUNAGI": [
       "IBS-S-13"
     ],
+    "IBS-U-KM-HANS-LODY": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-KM-KARL-GALSTER": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-KM-RICHARD-BEITZEN": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-RAN-AUSTRALIA": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-RAN-CANBERRA": [
       "IBS-S-10"
+    ],
+    "IBS-U-RN-JACKAL": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-RN-JAVELIN": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-RN-JERSEY": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-RN-JUPITER": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-RN-KASHMIR": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-RN-UNNAMED-T05-R01": [
       "IBS-S-08"
@@ -307,6 +531,9 @@
     ],
     "IBS-U-USN-BAGLEY": [
       "IBS-S-10"
+    ],
+    "IBS-U-USN-BAINBRIDGE": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-BARTON": [
       "IBS-S-09"
@@ -333,12 +560,21 @@
       "IBS-S-05",
       "IBS-S-11"
     ],
+    "IBS-U-USN-COLORADO": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-CONVERSE": [
       "IBS-S-05",
       "IBS-S-11"
     ],
     "IBS-U-USN-CUSHING": [
       "IBS-S-09"
+    ],
+    "IBS-U-USN-DAHLGREN": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-USN-DECATUR": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-DRAYTON": [
       "IBS-S-04"
@@ -396,6 +632,9 @@
     "IBS-U-USN-FOOTE": [
       "IBS-S-11"
     ],
+    "IBS-U-USN-FOX": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-GWIN": [
       "IBS-S-06",
       "IBS-S-08"
@@ -412,6 +651,9 @@
       "IBS-S-02",
       "IBS-S-04",
       "IBS-S-08"
+    ],
+    "IBS-U-USN-HULL-I": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-JARVIS": [
       "IBS-S-10"
@@ -440,6 +682,9 @@
     "IBS-U-USN-MCCALLA": [
       "IBS-S-01"
     ],
+    "IBS-U-USN-MCDONOUGH": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-MINNEAPOLIS": [
       "IBS-S-04"
     ],
@@ -464,6 +709,9 @@
       "IBS-S-13",
       "IBS-S-14"
     ],
+    "IBS-U-USN-OMAHA": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-PATTERSON": [
       "IBS-S-10"
     ],
@@ -472,6 +720,9 @@
     ],
     "IBS-U-USN-PERKINS": [
       "IBS-S-04"
+    ],
+    "IBS-U-USN-PERRY": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-PRESTON": [
       "IBS-S-06"
@@ -522,17 +773,38 @@
     "IBS-U-USN-THATCHER": [
       "IBS-S-11"
     ],
+    "IBS-U-USN-TRUXTON": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R06": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R07": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R08": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-UNNAMED-T01-R12": [
       "IBS-S-10"
     ],
+    "IBS-U-USN-UNNAMED-T01-R13": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-UNNAMED-T01-R20": [
       "IBS-S-09"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R22": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-UNNAMED-T01-R23": [
       "IBS-S-09"
     ],
     "IBS-U-USN-UNNAMED-T01-R24": [
       "IBS-S-09"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R25": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-UNNAMED-T01-R26": [
       "IBS-S-11"
@@ -546,6 +818,12 @@
     "IBS-U-USN-UNNAMED-T01-R29": [
       "IBS-S-11"
     ],
+    "IBS-U-USN-UNNAMED-T01-R51": [
+      "CAS-COLLECTION-0.6.9"
+    ],
+    "IBS-U-USN-UNNAMED-T01-R52": [
+      "CAS-COLLECTION-0.6.9"
+    ],
     "IBS-U-USN-VINCENNES": [
       "IBS-S-10"
     ],
@@ -554,6 +832,9 @@
     ],
     "IBS-U-USN-WASHINGTON": [
       "IBS-S-06"
+    ],
+    "IBS-U-USN-WEST-VIRGINIA": [
+      "CAS-COLLECTION-0.6.9"
     ],
     "IBS-U-USN-WILSON": [
       "IBS-S-10"

@@ -1,0 +1,1695 @@
+{
+ "schema_version": 1,
+ "scope": "66 non-scenario collection identities",
+ "rows": [
+  {
+   "identity": "IBS-U-USN-ERMA-WISCONSIN",
+   "name": "威斯康星",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-MISSOURI",
+   "name": "密苏里",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+   "name": "新泽西",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-COLORADO",
+   "name": "科罗拉多",
+   "side": "allies",
+   "type": "BB",
+   "class": "usn-colorado-bb",
+   "status": "cas_source_table",
+   "hits": {
+    "american": [
+     4,
+     7,
+     9
+    ]
+   },
+   "terms": [
+    "Colorado"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-IOWA",
+   "name": "衣阿华",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-WEST-VIRGINIA",
+   "name": "西弗吉尼亚",
+   "side": "allies",
+   "type": "BB",
+   "class": "usn-colorado-bb",
+   "status": "cas_source_table",
+   "hits": {
+    "american": [
+     4,
+     7,
+     9
+    ]
+   },
+   "terms": [
+    "Colorado"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R06",
+   "name": "列克星敦",
+   "side": "allies",
+   "type": "BC",
+   "class": "列克星敦",
+   "status": "cas_source_table",
+   "hits": {
+    "american": [
+     5,
+     10,
+     11,
+     12,
+     13,
+     68
+    ],
+    "emperor": [
+     24
+    ]
+   },
+   "terms": [
+    "Lexington"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R07",
+   "name": "合众国",
+   "side": "allies",
+   "type": "BC",
+   "class": "列克星敦",
+   "status": "cas_source_table",
+   "hits": {
+    "american": [
+     5,
+     10,
+     11,
+     12,
+     13,
+     68
+    ],
+    "emperor": [
+     24
+    ]
+   },
+   "terms": [
+    "Lexington"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R08",
+   "name": "宪法",
+   "side": "allies",
+   "type": "BC",
+   "class": "列克星敦",
+   "status": "cas_source_table",
+   "hits": {
+    "american": [
+     5,
+     10,
+     11,
+     12,
+     13,
+     68
+    ],
+    "emperor": [
+     24
+    ]
+   },
+   "terms": [
+    "Lexington"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R13",
+   "name": "休斯顿",
+   "side": "allies",
+   "type": "CA",
+   "class": "北安普顿",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     8,
+     15,
+     18,
+     19,
+     20
+    ],
+    "american": [
+     5,
+     15,
+     17
+    ]
+   },
+   "terms": [
+    "Northampton"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-SALEM",
+   "name": "塞勒姆",
+   "side": "allies",
+   "type": "CA",
+   "class": "erma-usn-des-moines-ca",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     15
+    ]
+   },
+   "terms": [
+    "Des Moines"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-DES-MOINES",
+   "name": "得梅因",
+   "side": "allies",
+   "type": "CA",
+   "class": "erma-usn-des-moines-ca",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     15
+    ]
+   },
+   "terms": [
+    "Des Moines"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-GUAM",
+   "name": "关岛",
+   "side": "allies",
+   "type": "CB",
+   "class": "erma-usn-alaska-cb",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     15,
+     71,
+     138
+    ],
+    "emperor": [
+     10,
+     64
+    ]
+   },
+   "terms": [
+    "Alaska"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALASKA",
+   "name": "阿拉斯加",
+   "side": "allies",
+   "type": "CB",
+   "class": "erma-usn-alaska-cb",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     15,
+     71,
+     138
+    ],
+    "emperor": [
+     10,
+     64
+    ]
+   },
+   "terms": [
+    "Alaska"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WORCESTER",
+   "name": "伍斯特",
+   "side": "allies",
+   "type": "CL",
+   "class": "erma-usn-worcester-cl",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     6,
+     17
+    ]
+   },
+   "terms": [
+    "Worcester"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-OMAHA",
+   "name": "奥马哈",
+   "side": "allies",
+   "type": "CL",
+   "class": "usn-omaha-cl",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     8,
+     15,
+     19,
+     21,
+     24,
+     268
+    ],
+    "american": [
+     5,
+     19,
+     88
+    ],
+    "home": [
+     108
+    ]
+   },
+   "terms": [
+    "Omaha"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R22",
+   "name": "孟菲斯",
+   "side": "allies",
+   "type": "CL",
+   "class": "奥马哈",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     8,
+     15,
+     19,
+     21,
+     24,
+     268
+    ],
+    "american": [
+     5,
+     19,
+     88
+    ],
+    "home": [
+     108
+    ]
+   },
+   "terms": [
+    "Omaha"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-MIDWAY",
+   "name": "中途岛",
+   "side": "allies",
+   "type": "CV",
+   "class": null,
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4
+    ],
+    "american": [
+     5,
+     11,
+     27,
+     75,
+     104
+    ],
+    "emperor": [
+     12,
+     16
+    ]
+   },
+   "terms": [
+    "Midway"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-PERRY",
+   "name": "佩里",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-RN-KASHMIR",
+   "name": "克什米尔",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     13,
+     19,
+     32
+    ],
+    "american": [
+     7,
+     13
+    ],
+    "home": [
+     13
+    ]
+   },
+   "terms": [
+    "J class",
+    "Javelin",
+    "Jupiter",
+    "Jersey",
+    "Jackal",
+    "Kashmir"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-GEARING",
+   "name": "基林",
+   "side": "allies",
+   "type": "DD",
+   "class": null,
+   "status": "cas_source_table",
+   "hits": {
+    "american": [
+     4,
+     19
+    ]
+   },
+   "terms": [
+    "Gearing"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-COOPER",
+   "name": "库珀",
+   "side": "allies",
+   "type": "DD",
+   "class": "erma-usn-sumner-dd",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     6,
+     19,
+     20,
+     25,
+     43
+    ]
+   },
+   "terms": [
+    "Sumner"
+   ]
+  },
+  {
+   "identity": "IBS-U-RN-JUPITER",
+   "name": "朱庇特",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     13,
+     19,
+     32
+    ],
+    "american": [
+     7,
+     13
+    ],
+    "home": [
+     13
+    ]
+   },
+   "terms": [
+    "J class",
+    "Javelin",
+    "Jupiter",
+    "Jersey",
+    "Jackal",
+    "Kashmir"
+   ]
+  },
+  {
+   "identity": "IBS-U-RN-JAVELIN",
+   "name": "标枪",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     13,
+     19,
+     32
+    ],
+    "american": [
+     7,
+     13
+    ],
+    "home": [
+     13
+    ]
+   },
+   "terms": [
+    "J class",
+    "Javelin",
+    "Jupiter",
+    "Jersey",
+    "Jackal",
+    "Kashmir"
+   ]
+  },
+  {
+   "identity": "IBS-U-RN-JERSEY",
+   "name": "泽西",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     13,
+     19,
+     32
+    ],
+    "american": [
+     7,
+     13
+    ],
+    "home": [
+     13
+    ]
+   },
+   "terms": [
+    "J class",
+    "Javelin",
+    "Jupiter",
+    "Jersey",
+    "Jackal",
+    "Kashmir"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-TRUXTON",
+   "name": "特鲁斯顿",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-BAINBRIDGE",
+   "name": "班布里奇",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-FOX",
+   "name": "福克斯",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "name": "艾伦·M·萨姆纳",
+   "side": "allies",
+   "type": "DD",
+   "class": "erma-usn-sumner-dd",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     6,
+     19,
+     20,
+     25,
+     43
+    ]
+   },
+   "terms": [
+    "Sumner"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-INGRAHAM",
+   "name": "英格拉罕",
+   "side": "allies",
+   "type": "DD",
+   "class": "erma-usn-sumner-dd",
+   "status": "erma_record_image",
+   "hits": {
+    "american": [
+     4,
+     6,
+     19,
+     20,
+     25,
+     43
+    ]
+   },
+   "terms": [
+    "Sumner"
+   ]
+  },
+  {
+   "identity": "IBS-U-RN-JACKAL",
+   "name": "豺",
+   "side": "allies",
+   "type": "DD",
+   "class": "rn-j-class-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     13,
+     19,
+     32
+    ],
+    "american": [
+     7,
+     13
+    ],
+    "home": [
+     13
+    ]
+   },
+   "terms": [
+    "J class",
+    "Javelin",
+    "Jupiter",
+    "Jersey",
+    "Jackal",
+    "Kashmir"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-DAHLGREN",
+   "name": "达尔格伦",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-DECATUR",
+   "name": "迪凯特",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-MCDONOUGH",
+   "name": "麦克多诺",
+   "side": "allies",
+   "type": "DD",
+   "class": "usn-4in-dd",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     10,
+     12,
+     16,
+     17,
+     18
+    ],
+    "american": [
+     4,
+     6,
+     22,
+     23,
+     24,
+     25
+    ],
+    "emperor": [
+     4,
+     26,
+     27
+    ],
+    "home": [
+     9,
+     11,
+     16,
+     20,
+     21,
+     27
+    ]
+   },
+   "terms": [
+    "4 inch",
+    "4-in",
+    "Clemson",
+    "Wickes"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-UZUKI-2",
+   "name": "卯月(II)",
+   "side": "axis",
+   "type": "APD",
+   "class": "睦月级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     7,
+     14,
+     18,
+     20,
+     21
+    ],
+    "emperor": [
+     5,
+     30,
+     31
+    ]
+   },
+   "terms": [
+    "Mutsuki"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-CHITOSE",
+   "name": "千岁",
+   "side": "axis",
+   "type": "AV",
+   "class": "千岁级",
+   "status": "cas_source_table",
+   "hits": {
+    "emperor": [
+     4,
+     13,
+     56
+    ]
+   },
+   "terms": [
+    "Chitose"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NISSHIN",
+   "name": "日进",
+   "side": "axis",
+   "type": "AV",
+   "class": "日进级",
+   "status": "cas_source_table",
+   "hits": {
+    "emperor": [
+     5,
+     19,
+     57
+    ]
+   },
+   "terms": [
+    "Nisshin"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-SHINANO",
+   "name": "信浓",
+   "side": "axis",
+   "type": "BB",
+   "class": "大和级",
+   "status": "erma_record_image",
+   "hits": {
+    "emperor": [
+     7
+    ]
+   },
+   "terms": [
+    "Yamato"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MUSASHI",
+   "name": "武藏",
+   "side": "axis",
+   "type": "BB",
+   "class": "大和级",
+   "status": "erma_record_image",
+   "hits": {
+    "emperor": [
+     7
+    ]
+   },
+   "terms": [
+    "Yamato"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NAGATO",
+   "name": "长门",
+   "side": "axis",
+   "type": "BB",
+   "class": "长门级",
+   "status": "cas_source_table",
+   "hits": {
+    "emperor": [
+     5,
+     8,
+     9
+    ]
+   },
+   "terms": [
+    "Nagato"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSU",
+   "name": "陆奥",
+   "side": "axis",
+   "type": "BB",
+   "class": "长门级",
+   "status": "cas_source_table",
+   "hits": {
+    "emperor": [
+     5,
+     8,
+     9
+    ]
+   },
+   "terms": [
+    "Nagato"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-AMAGI",
+   "name": "天城",
+   "side": "axis",
+   "type": "BC",
+   "class": "天城级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     7,
+     13,
+     17,
+     153,
+     154
+    ],
+    "emperor": [
+     4,
+     9,
+     10,
+     11,
+     12,
+     29
+    ]
+   },
+   "terms": [
+    "Amagi"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-OWARI",
+   "name": "尾张",
+   "side": "axis",
+   "type": "BC",
+   "class": "纪伊级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     32,
+     33,
+     34
+    ],
+    "american": [
+     109,
+     126,
+     127
+    ],
+    "emperor": [
+     5,
+     9
+    ],
+    "home": [
+     9,
+     10,
+     11,
+     15,
+     16,
+     17
+    ],
+    "german": [
+     75,
+     76,
+     77,
+     78,
+     79,
+     80
+    ]
+   },
+   "terms": [
+    "Kii"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-AKAGI",
+   "name": "赤城",
+   "side": "axis",
+   "type": "BC",
+   "class": "天城级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     7,
+     13,
+     17,
+     153,
+     154
+    ],
+    "emperor": [
+     4,
+     9,
+     10,
+     11,
+     12,
+     29
+    ]
+   },
+   "terms": [
+    "Amagi"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-IBUKI",
+   "name": "伊吹",
+   "side": "axis",
+   "type": "CA",
+   "class": "erma-ijn-ibuki-ca",
+   "status": "erma_record_image",
+   "hits": {
+    "emperor": [
+     5,
+     13,
+     76
+    ]
+   },
+   "terms": [
+    "Ibuki"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NACHI",
+   "name": "那智",
+   "side": "axis",
+   "type": "CA",
+   "class": "妙高级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     14,
+     17,
+     18,
+     20,
+     61
+    ],
+    "emperor": [
+     5,
+     15,
+     16,
+     18,
+     121
+    ]
+   },
+   "terms": [
+    "Myoko"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KURAMA",
+   "name": "鞍马",
+   "side": "axis",
+   "type": "CA",
+   "class": "erma-ijn-kurama-ca",
+   "status": "erma_record_image",
+   "hits": {
+    "emperor": [
+     13,
+     63,
+     67
+    ]
+   },
+   "terms": [
+    "Kurama"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-AZUMA",
+   "name": "吾妻",
+   "side": "axis",
+   "type": "CB",
+   "class": "erma-ijn-azuma-cb",
+   "status": "erma_record_image",
+   "hits": {
+    "form10": [
+     7,
+     11,
+     19,
+     149,
+     150,
+     151
+    ],
+    "emperor": [
+     4,
+     19,
+     29,
+     30,
+     58
+    ]
+   },
+   "terms": [
+    "Azuma"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-ISHIKARI",
+   "name": "石狩",
+   "side": "axis",
+   "type": "CB",
+   "class": "erma-ijn-ishikari-cb",
+   "status": "erma_record_image",
+   "hits": {},
+   "terms": [
+    "Ishikari"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-GOKASE",
+   "name": "五濑",
+   "side": "axis",
+   "type": "CL",
+   "class": "erma-ijn-gokase-cl",
+   "status": "erma_record_image",
+   "hits": {},
+   "terms": [
+    "Gokase"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-TATSUTA",
+   "name": "龙田",
+   "side": "axis",
+   "type": "CL",
+   "class": "天龙级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     5,
+     16,
+     21,
+     80,
+     81
+    ],
+    "emperor": [
+     6,
+     23
+    ]
+   },
+   "terms": [
+    "Tenryu"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MURAKUMO",
+   "name": "丛云",
+   "side": "axis",
+   "type": "DD",
+   "class": "吹雪级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     7,
+     13,
+     17,
+     18,
+     20
+    ],
+    "emperor": [
+     4,
+     29,
+     30
+    ]
+   },
+   "terms": [
+    "Fubuki"
+   ]
+  },
+  {
+   "identity": "IBS-U-KM-KARL-GALSTER",
+   "name": "卡尔加尔斯特",
+   "side": "axis",
+   "type": "DD",
+   "class": "km-destroyer",
+   "status": "cas_source_table",
+   "hits": {
+    "german": [
+     3,
+     18
+    ]
+   },
+   "terms": [
+    "Karl Galster",
+    "Hans Lody",
+    "Richard Beitzen",
+    "German destroyer"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+   "name": "卷波",
+   "side": "axis",
+   "type": "DD",
+   "class": "夕云级",
+   "status": "erma_record_image",
+   "hits": {
+    "form10": [
+     4,
+     6,
+     16,
+     19,
+     20,
+     21
+    ],
+    "emperor": [
+     6,
+     27
+    ]
+   },
+   "terms": [
+    "Yugumo"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-NATSUGUMO",
+   "name": "夏云",
+   "side": "axis",
+   "type": "DD",
+   "class": "朝潮级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     6,
+     11,
+     17,
+     20,
+     22
+    ],
+    "emperor": [
+     4,
+     28
+    ]
+   },
+   "terms": [
+    "Asashio"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-XIFENG",
+   "name": "夕风",
+   "side": "axis",
+   "type": "DD",
+   "class": null,
+   "status": "not_found",
+   "hits": {},
+   "terms": [
+    "Xifeng",
+    "夕风"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-YAMAGUMO",
+   "name": "山云",
+   "side": "axis",
+   "type": "DD",
+   "class": "朝潮级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     6,
+     11,
+     17,
+     20,
+     22
+    ],
+    "emperor": [
+     4,
+     28
+    ]
+   },
+   "terms": [
+    "Asashio"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-SHIMAKAZE",
+   "name": "岛风",
+   "side": "axis",
+   "type": "DD",
+   "class": "erma-ijn-shimakaze-dd",
+   "status": "erma_record_image",
+   "hits": {
+    "emperor": [
+     6,
+     26
+    ]
+   },
+   "terms": [
+    "Shimakaze"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ASAKAZE",
+   "name": "朝风",
+   "side": "axis",
+   "type": "DD",
+   "class": "神风级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     7,
+     14,
+     17,
+     18,
+     19,
+     22
+    ],
+    "american": [
+     7,
+     8,
+     10,
+     11,
+     12,
+     17
+    ],
+    "emperor": [
+     5,
+     27,
+     31,
+     77
+    ]
+   },
+   "terms": [
+    "Kamikaze"
+   ]
+  },
+  {
+   "identity": "IBS-U-KM-HANS-LODY",
+   "name": "汉斯·洛迪",
+   "side": "axis",
+   "type": "DD",
+   "class": "km-destroyer",
+   "status": "cas_source_table",
+   "hits": {
+    "german": [
+     3,
+     18
+    ]
+   },
+   "terms": [
+    "Karl Galster",
+    "Hans Lody",
+    "Richard Beitzen",
+    "German destroyer"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-MUTSUKI",
+   "name": "睦月",
+   "side": "axis",
+   "type": "DD",
+   "class": "睦月级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     4,
+     7,
+     14,
+     18,
+     20,
+     21
+    ],
+    "emperor": [
+     5,
+     30,
+     31
+    ]
+   },
+   "terms": [
+    "Mutsuki"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-KAMIKAZE",
+   "name": "神风",
+   "side": "axis",
+   "type": "DD",
+   "class": "神风级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     7,
+     14,
+     17,
+     18,
+     19,
+     22
+    ],
+    "american": [
+     7,
+     8,
+     10,
+     11,
+     12,
+     17
+    ],
+    "emperor": [
+     5,
+     27,
+     31,
+     77
+    ]
+   },
+   "terms": [
+    "Kamikaze"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-OITE",
+   "name": "追风",
+   "side": "axis",
+   "type": "DD",
+   "class": "神风级",
+   "status": "cas_source_table",
+   "hits": {
+    "form10": [
+     7,
+     14,
+     17,
+     18,
+     19,
+     22
+    ],
+    "american": [
+     7,
+     8,
+     10,
+     11,
+     12,
+     17
+    ],
+    "emperor": [
+     5,
+     27,
+     31,
+     77
+    ]
+   },
+   "terms": [
+    "Kamikaze"
+   ]
+  },
+  {
+   "identity": "IBS-U-KM-RICHARD-BEITZEN",
+   "name": "里夏德·拜茨恩",
+   "side": "axis",
+   "type": "DD",
+   "class": "km-destroyer",
+   "status": "cas_source_table",
+   "hits": {
+    "german": [
+     3,
+     18
+    ]
+   },
+   "terms": [
+    "Karl Galster",
+    "Hans Lody",
+    "Richard Beitzen",
+    "German destroyer"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+   "name": "长波",
+   "side": "axis",
+   "type": "DD",
+   "class": "夕云级",
+   "status": "erma_record_image",
+   "hits": {
+    "form10": [
+     4,
+     6,
+     16,
+     19,
+     20,
+     21
+    ],
+    "emperor": [
+     6,
+     27
+    ]
+   },
+   "terms": [
+    "Yugumo"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+   "name": "风云",
+   "side": "axis",
+   "type": "DD",
+   "class": "夕云级",
+   "status": "erma_record_image",
+   "hits": {
+    "form10": [
+     4,
+     6,
+     16,
+     19,
+     20,
+     21
+    ],
+    "emperor": [
+     6,
+     27
+    ]
+   },
+   "terms": [
+    "Yugumo"
+   ]
+  }
+ ]
+}

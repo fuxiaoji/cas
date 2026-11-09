@@ -1,0 +1,322 @@
+{
+    "ok":  true,
+    "nativeWasmCanonicalMatch":  true,
+    "replayMatch":  true,
+    "runs":  [
+                 {
+                     "side":  "allies",
+                     "variant":  "exercise",
+                     "version":  "cas-battle-v2",
+                     "seed":  6107,
+                     "tick":  2708,
+                     "result":  {
+                                    "allies":  4,
+                                    "axis":  3,
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  278,
+                     "canonicalSha256":  "cd864bdbabe6dcb2e58de49f97c724c867c9b28a080a5606788ccb678bd5ed84"
+                 },
+                 {
+                     "side":  "axis",
+                     "variant":  "exercise",
+                     "version":  "cas-battle-v2",
+                     "seed":  6106,
+                     "tick":  2708,
+                     "result":  {
+                                    "allies":  2,
+                                    "axis":  3,
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  274,
+                     "canonicalSha256":  "53051a05eff802a28635b45356d8a4cff6a8932bbbc4f6479f5ec4f3c18ea569"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "challenge",
+                     "version":  "cas-battle-v2",
+                     "seed":  6106,
+                     "tick":  2528,
+                     "result":  {
+                                    "allies":  2,
+                                    "axis":  3,
+                                    "primary":  false,
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  204,
+                     "canonicalSha256":  "b7fe39084168d593b92e57f47906618facb03ccdaa1127479b79cdf3716f4a5f"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "night",
+                     "version":  "cas-battle-v2",
+                     "seed":  6106,
+                     "tick":  2700,
+                     "result":  {
+                                    "allies":  2,
+                                    "axis":  2,
+                                    "winner":  "draw"
+                                },
+                     "visibleEvents":  218,
+                     "canonicalSha256":  "b7c4bcd7e4cf093b73b154c3b13bc7d65ed09fff8bc0880fe940a09b9b317c6c"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "radar",
+                     "version":  "cas-radar-v3",
+                     "seed":  6106,
+                     "tick":  2700,
+                     "result":  {
+                                    "allies":  4,
+                                    "axis":  0,
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  199,
+                     "canonicalSha256":  "08d5c0c0ce5a1fcb82d70f9d8effaf4db25436a94970d957fd93b3bc070dbcd0"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "night-training",
+                     "version":  "cas-illumination-v3",
+                     "seed":  6106,
+                     "tick":  2700,
+                     "result":  {
+                                    "allies":  2,
+                                    "axis":  1,
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  241,
+                     "canonicalSha256":  "bc4c61baf0ca37bfd4853a9fd697505e4f671d1695c4b8dd6010df1d6464488c"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "exercise",
+                     "version":  "cas-realtime-v10",
+                     "seed":  6106,
+                     "tick":  2226,
+                     "result":  {
+                                    "allies":  3,
+                                    "axis":  5,
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  5428,
+                     "canonicalSha256":  "6644dc996eba0b6224fb563a3f14440b6abf7737f394c2838619ce8d77941c3c"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "night-training",
+                     "version":  "cas-realtime-v10",
+                     "seed":  6106,
+                     "tick":  2509,
+                     "result":  {
+                                    "allies":  2,
+                                    "axis":  5,
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  3296,
+                     "canonicalSha256":  "e2d380e2ea011454142ef8d4e604c395134fe2dac65693e6ff675614ac329878"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "radar",
+                     "version":  "cas-realtime-v10",
+                     "seed":  6106,
+                     "tick":  2715,
+                     "result":  {
+                                    "allies":  3,
+                                    "axis":  3,
+                                    "winner":  "draw"
+                                },
+                     "visibleEvents":  3920,
+                     "canonicalSha256":  "f15a293ad39451e768a16e72ae66d22f26e06f1f101c135134d9801210e0416c"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "cape-st-george-rts",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6116,
+                     "tick":  5400,
+                     "result":  {
+                                    "allies":  3,
+                                    "axis":  5,
+                                    "grade":  "tactical",
+                                    "primary":  "本方达成战术胜利",
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  4816,
+                     "canonicalSha256":  "2cb393a06458425860c234ed34fe45e48aaa189f62ff39ed58eb887062eeaa3f"
+                 },
+                 {
+                     "side":  "axis",
+                     "variant":  "cape-st-george-rts",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6111,
+                     "tick":  2981,
+                     "result":  {
+                                    "allies":  0,
+                                    "axis":  1,
+                                    "grade":  "decisive",
+                                    "primary":  "本方达成决定性胜利",
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  925,
+                     "canonicalSha256":  "dce26a384fb72b024e6b8208231e71c5923190e0f27feddf2901c7817094c5e2"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "esperance-campaign",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6106,
+                     "tick":  3304,
+                     "result":  {
+                                    "allies":  5,
+                                    "axis":  0,
+                                    "grade":  "decisive",
+                                    "primary":  "本方达成决定性胜利",
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  2355,
+                     "canonicalSha256":  "273fb5144cbc9e5affe4e1a00ff2530e4af3c35d06a3ad908099856a564db7b1"
+                 },
+                 {
+                     "side":  "axis",
+                     "variant":  "esperance-campaign",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6106,
+                     "tick":  3304,
+                     "result":  {
+                                    "allies":  5,
+                                    "axis":  0,
+                                    "grade":  "none",
+                                    "primary":  "未达成本方战役胜利条件",
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  1286,
+                     "canonicalSha256":  "6b09850686e65414f4316d29fa9330e112cb4648f38ff6d8fd5068b3bfad5665"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "tassafaronga-campaign",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6106,
+                     "tick":  4200,
+                     "result":  {
+                                    "allies":  0,
+                                    "axis":  0,
+                                    "grade":  "decisive",
+                                    "primary":  "本方达成决定性胜利",
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  62,
+                     "canonicalSha256":  "a1e2094cf9c38ffc1a01ddf21e5610855ffdc71c0c3703cebec127226ba7f1fa"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "savo-campaign",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6106,
+                     "tick":  4200,
+                     "result":  {
+                                    "allies":  0,
+                                    "axis":  0,
+                                    "grade":  "none",
+                                    "primary":  "未达成本方战役胜利条件",
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  116,
+                     "canonicalSha256":  "dc20f95391689eb667cd70d522865d185d330b3216179c0e70ed153ad147c00a"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "prologue",
+                     "version":  "cas-realtime-v10",
+                     "seed":  6106,
+                     "tick":  2712,
+                     "result":  {
+                                    "allies":  1,
+                                    "axis":  2,
+                                    "winner":  "axis"
+                                },
+                     "visibleEvents":  3239,
+                     "canonicalSha256":  "3aaec2e33adf67c92bb564a39b9330653cd7ab94b3cbc3f9099dfec8cfe6e4c4"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "night-radar-training",
+                     "version":  "cas-realtime-v10",
+                     "seed":  6106,
+                     "tick":  2700,
+                     "result":  {
+                                    "allies":  0,
+                                    "axis":  0,
+                                    "winner":  "draw"
+                                },
+                     "visibleEvents":  9,
+                     "canonicalSha256":  "d230b962f160b00b2dbf4e6ab5eb42581b81a55b5aeb670811d822700c868f76"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "empress",
+                     "version":  "cas-realtime-v10",
+                     "seed":  6106,
+                     "tick":  3349,
+                     "result":  {
+                                    "allies":  10,
+                                    "axis":  1,
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  3291,
+                     "canonicalSha256":  "f50fed7fa1471213959615b72e5860e9a2b5f2b32c8bcd8db5ee5b521b4d2129"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "empress-campaign",
+                     "version":  "cas-campaign-v10",
+                     "seed":  6106,
+                     "tick":  2888,
+                     "result":  {
+                                    "allies":  10,
+                                    "axis":  0,
+                                    "grade":  "decisive",
+                                    "primary":  "本方达成决定性胜利",
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  4530,
+                     "canonicalSha256":  "a6260ec7a1bf3db7255b37016cdcb6037c5857f05f1e9a4c23479a10dce84b84"
+                 },
+                 {
+                     "side":  "allies",
+                     "variant":  "kula-gulf-rts",
+                     "version":  "cas-campaign-v9",
+                     "seed":  6106,
+                     "tick":  7200,
+                     "result":  {
+                                    "allies":  10,
+                                    "axis":  0,
+                                    "grade":  "decisive",
+                                    "primary":  "本方达成决定性胜利",
+                                    "winner":  "allies"
+                                },
+                     "visibleEvents":  11133,
+                     "canonicalSha256":  "4ffc69e284ef96924db3107fd16002dea86c98e058cee7fc5043666230c53f02"
+                 },
+                 {
+                     "side":  "axis",
+                     "variant":  "kula-gulf-rts",
+                     "version":  "cas-campaign-v9",
+                     "seed":  2,
+                     "tick":  7200,
+                     "result":  {
+                                    "allies":  7,
+                                    "axis":  2,
+                                    "grade":  "tactical",
+                                    "primary":  "本方达成战术胜利",
+                                    "winner":  "draw"
+                                },
+                     "visibleEvents":  2492,
+                     "canonicalSha256":  "85fe3ac2427672f31d153d10bfeb84008a9a85739ee4f78fa6688b22ab4cec10"
+                 }
+             ],
+    "wasmSha256":  "E486461F947C6AC3F5A5E66E591F63D1F3C16BC05FF9744AD74BBA678C49A402",
+    "wasmBytes":  3558262
+}

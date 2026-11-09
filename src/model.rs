@@ -381,7 +381,9 @@ impl Ai {
         }
     }
     pub fn validate(&self) -> E<()> {
-        if !matches!(self.profile.as_str(), "coord" | "gunnery" | "torpedo") {
+        if !matches!(self.profile.as_str(), "coord" | "gunnery" | "torpedo")
+            && !crate::ai::style(&self.profile).evolved
+        {
             return Err("未知 AI 风格".into());
         }
         if !matches!(self.mode.as_str(), "manual" | "suggest" | "auto") {
@@ -557,6 +559,10 @@ pub struct Saved {
     pub duel: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ranked: Option<RankedFleetMatch>,
+    /// Fictional challenge ladder stage. Older single-stage saves omit it and
+    /// reload the first stage.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub challenge_stage: Option<String>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]

@@ -1,3 +1,4 @@
+import { isProfile } from './engine';
 import type { Profile, Side } from './engine';
 import { normalizeCampaignProgress } from './campaign-progress';
 import type { CampaignProgress } from './campaign-progress';
@@ -47,7 +48,14 @@ export interface PortState {
   challengeReceipts: Record<string, { time: number; first: boolean; claimed: boolean }>;
   weeklySupply?: string; weeklyTicket?: string; mail?: LocalMail[];
 }
-export type PortLaunch = { side: Side; profile: Profile; leaderSlot: number; variant?: 'challenge' | 'night'; training?: boolean };
+export type PortLaunch = {
+  side: Side; profile: Profile; leaderSlot: number;
+  variant?: 'challenge' | 'night'; training?: boolean;
+  /** Fictional challenge stage id; the engine resolves the roster from stages.json. */
+  stage?: string;
+  seed?: number;
+  enemy?: Profile;
+};
 function fresh(): PortState {
   return { version: 1, lessons: [], starter: false, challengeClear: false, challengeClaim: false,
     wallet: { standard: 0, up: 0 }, marks: 0, pity: { standard: 0, up: 0 }, owned: {},
@@ -63,12 +71,15 @@ export function loadPort(key = PORT_KEY): PortState {
       !s.owned || !s.wallet || !s.pity || !nonnegative(s.wallet.standard) || !nonnegative(s.wallet.up) ||
       !nonnegative(s.pity.standard) || !nonnegative(s.pity.up) || !nonnegative(s.marks) || !nonnegative(s.sequence)) return fresh();
     const owned = Object.fromEntries((Object.keys(hulls) as Hull[]).filter(id => nonnegative(s.owned[id])).map(id => [id, Math.min(hulls[id].max, s.owned[id] ?? 0)]));
+    const profiles = [...new Set((Array.isArray(s.profiles) ? s.profiles : []).filter(isProfile))];
+    if (!profiles.length) profiles.push('coord');
+    const preset = { ...s.preset, profile: isProfile(s.preset.profile) ? s.preset.profile : 'coord' as Profile };
     const challengeReceipts = Object.fromEntries(Object.entries(s.challengeReceipts ?? {}).filter(([id, row]) =>
       /^[0-9a-f-]{36}$/i.test(id) && row && nonnegative(row.time) && typeof row.first === 'boolean' && typeof row.claimed === 'boolean'));
     const mail = Array.isArray(s.mail) ? s.mail.filter(letter => letter && typeof letter.id === 'string' &&
       typeof letter.title === 'string' && typeof letter.body === 'string' && typeof letter.sender === 'string' &&
       typeof letter.claimed === 'boolean' && nonnegative(letter.standard) && nonnegative(letter.up)) : [welcomeMail()];
-    return { ...s, owned, challengeReceipts, campaignProgress: normalizeCampaignProgress(s.campaignProgress), credits: nonnegative(s.credits) ? s.credits : 0, mail,
+    return { ...s, owned, profiles, preset, challengeReceipts, campaignProgress: normalizeCampaignProgress(s.campaignProgress), credits: nonnegative(s.credits) ? s.credits : 0, mail,
       courses: Array.isArray(s.courses) ? [...new Set(s.courses.filter(v => typeof v === 'string'))] : [],
       attendance: Array.isArray(s.attendance) ? [...new Set(s.attendance.filter(nonnegative))].sort((a,b)=>a-b).slice(0,7) : [],
       watch: s.watch && Object.hasOwn(hulls, s.watch) ? s.watch : undefined,

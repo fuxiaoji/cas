@@ -37,6 +37,17 @@ const ORIGIN: P = P {
 };
 const COLUMN_INTERVAL: f64 = 500. * YARD;
 
+/// One custom task-force group: a non-empty ship list placed on the historical
+/// player fleet position `position` (the index in the printed player group
+/// order). The historical anchor/heading/speed comes from the runtime world,
+/// never from a client-invented coordinate.
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields, rename_all = "camelCase")]
+pub struct GroupPick {
+    pub position: usize,
+    pub ships: Vec<String>,
+}
+
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(deny_unknown_fields, rename_all = "camelCase")]
 pub struct Start {
@@ -46,6 +57,10 @@ pub struct Start {
     /// Basic-difficulty point-buy picks, in the printed player hull order.
     #[serde(default)]
     pub fleet: Option<Vec<String>>,
+    /// Task-force custom groups. When present, the scenario spawns these
+    /// instead of the printed player groups; the enemy order is untouched.
+    #[serde(default)]
+    pub groups: Option<Vec<GroupPick>>,
 }
 impl Start {
     pub(crate) fn new(stage_id: &str, difficulty: &str) -> Self {
@@ -54,6 +69,7 @@ impl Start {
             difficulty: difficulty.into(),
             content_version: String::new(),
             fleet: None,
+            groups: None,
         };
         start.content_version = start.expected_content().into();
         start
@@ -73,6 +89,11 @@ impl Start {
     }
     pub(crate) fn is_savo(&self) -> bool {
         matches!(self.stage_id.as_str(), "CAMP-ALLIES-10" | "CAMP-AXIS-10")
+    }
+    /// Task-force custom groups are wired only for the multi-column scenarios
+    /// whose player anchors are already part of the runtime setup.
+    pub(crate) fn supports_groups(&self) -> bool {
+        supports_groups(&self.stage_id)
     }
     pub(crate) fn variant(&self) -> &'static str {
         if self.is_channel() {
@@ -186,9 +207,44 @@ fn layout() -> &'static Layout {
     LAYOUT.get_or_init(|| serde_json::from_str(super::CAPE).expect("verified Cape layout"))
 }
 
-pub(crate) fn character_id(ship: &str) -> Option<&'static str> {
+/// One period runtime card mapped to its stable catalog identity. Rows with a
+/// null identity are the agent's explicit "no such character" result; they must
+/// stay unresolved rather than fall back to a class card.
+#[derive(Deserialize)]
+struct RuntimeIdentityRow {
+    period_card_id: String,
+    #[serde(default)]
+    identity: Option<String>,
+}
+
+#[derive(Deserialize)]
+struct RuntimeIdentityTable {
+    rows: Vec<RuntimeIdentityRow>,
+}
+
+/// Period-card IDs from the four runtimes that ship a period `ships[]` table
+/// (Cape St George, Kula Gulf, Savo Island, Tassafaronga). This is the primary,
+/// exact mapping source: `period card id -> IBS-U-* identity`.
+fn runtime_identities() -> &'static BTreeMap<String, Option<String>> {
+    static IDENTITIES: OnceLock<BTreeMap<String, Option<String>>> = OnceLock::new();
+    IDENTITIES.get_or_init(|| {
+        let table: RuntimeIdentityTable =
+            serde_json::from_str(include_str!("../../data/ships/runtime-identities.json"))
+                .expect("pinned runtime identity table");
+        table
+            .rows
+            .into_iter()
+            .map(|row| (row.period_card_id, row.identity))
+            .collect()
+    })
+}
+
+/// The older roster crosswalk. Its meaningful fallback rows are the ten Cape
+/// St George instances plus the self-mapped catalog identities used by the
+/// channel/prologue card IDs.
+fn crosswalk_identities() -> &'static BTreeMap<String, String> {
     static CHARACTERS: OnceLock<BTreeMap<String, String>> = OnceLock::new();
-    let characters = CHARACTERS.get_or_init(|| {
+    CHARACTERS.get_or_init(|| {
         let source: Value =
             serde_json::from_str(include_str!("../../data/campaign/roster-crosswalk.json"))
                 .expect("pinned mobile identity crosswalk");
@@ -207,8 +263,16 @@ pub(crate) fn character_id(ship: &str) -> Option<&'static str> {
                 Some((id.into(), row["ibs_character_id"].as_str()?.into()))
             })
             .collect()
-    });
-    characters.get(ship).map(String::as_str)
+    })
+}
+
+/// Exact period-card -> identity resolution. Unmapped cards return `None`; no
+/// same-class or same-name guess is made here.
+pub(crate) fn character_id(ship: &str) -> Option<&'static str> {
+    if let Some(identity) = runtime_identities().get(ship) {
+        return identity.as_deref();
+    }
+    crosswalk_identities().get(ship).map(String::as_str)
 }
 
 #[derive(Deserialize)]
@@ -287,6 +351,13 @@ fn finish_fleet(w: &mut World, fleet: Option<Vec<String>>, basic: bool) -> E<()>
     Ok(())
 }
 
+pub(crate) fn supports_groups(stage_id: &str) -> bool {
+    matches!(
+        stage_id,
+        "CAMP-ALLIES-02" | "CAMP-AXIS-02" | "CAMP-ALLIES-11" | "CAMP-AXIS-11"
+    )
+}
+
 impl World {
     pub(crate) fn new_campaign(seed: u32, start: Start, profile: &str) -> E<Self> {
         let player = start.seat()?;
@@ -295,36 +366,40 @@ impl World {
             return Err("此存档使用另一个战役内容版本".into());
         }
         Ai::new(profile, "manual").validate()?;
+        let custom = start.groups.is_some();
+        if custom && !start.supports_groups() {
+            return Err("本关暂未接入特混编成".into());
+        }
         let fleet = start.fleet.clone();
         let basic = start.difficulty == "story";
         if start.is_channel() {
             let mut w = channel::open(seed, start, player, enemy, profile)?;
-            finish_fleet(&mut w, fleet, basic)?;
+            if !custom { finish_fleet(&mut w, fleet, basic)?; }
             return Ok(w);
         }
         if start.is_kula() {
             let mut w = kula::open(seed, start, player, enemy, profile)?;
-            finish_fleet(&mut w, fleet, basic)?;
+            if !custom { finish_fleet(&mut w, fleet, basic)?; }
             return Ok(w);
         }
         if start.is_empress() {
             let mut w = crate::empress::open(seed, start, player, enemy, profile)?;
-            finish_fleet(&mut w, fleet, basic)?;
+            if !custom { finish_fleet(&mut w, fleet, basic)?; }
             return Ok(w);
         }
         if start.is_esperance() {
             let mut w = super::esperance::open(seed, start, player, enemy, profile)?;
-            finish_fleet(&mut w, fleet, basic)?;
+            if !custom { finish_fleet(&mut w, fleet, basic)?; }
             return Ok(w);
         }
         if start.is_tassafaronga() {
             let mut w = super::tassafaronga::open(seed, start, player, enemy, profile)?;
-            finish_fleet(&mut w, fleet, basic)?;
+            if !custom { finish_fleet(&mut w, fleet, basic)?; }
             return Ok(w);
         }
         if start.is_savo() {
             let mut w = super::savo::open(seed, start, player, enemy, profile)?;
-            finish_fleet(&mut w, fleet, basic)?;
+            if !custom { finish_fleet(&mut w, fleet, basic)?; }
             return Ok(w);
         }
         let runtime = runtime()?;
@@ -819,5 +894,49 @@ mod tests {
             .all(|r| r["x"].as_f64().unwrap() <= super::WEST_EXIT));
         let save = request(&mut e, json!({"op":"save"}));
         assert_eq!(request(&mut e, json!({"op":"replay","save":save})), end);
+    }
+
+    #[test]
+    fn runtime_period_cards_resolve_to_exact_catalog_identities() {
+        // The four period runtimes map by exact card id; unresolved cards stay
+        // unresolved instead of borrowing a same-class identity.
+        assert_eq!(
+            super::character_id("tass_minneapolis"),
+            Some("IBS-U-USN-MINNEAPOLIS")
+        );
+        assert_eq!(
+            super::character_id("savo_chokai"),
+            Some("IBS-U-IJN-CHOKAI")
+        );
+        assert_eq!(
+            super::character_id("ausburne"),
+            Some("IBS-U-USN-CF-AUSBURNE")
+        );
+        assert_eq!(super::character_id("savo_hobart"), None);
+        assert_eq!(super::character_id("savo_blue"), None);
+        assert_eq!(super::character_id("kula-nicholas"), Some("IBS-U-USN-NICHOLAS"));
+    }
+
+    #[test]
+    fn campaign_observation_uses_the_exact_runtime_identity() {
+        let mut e = Engine::default();
+        let tassafaronga = opening(&mut e, "CAMP-ALLIES-05");
+        let minneapolis = tassafaronga["ships"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|ship| ship["classId"] == "tass_minneapolis")
+            .expect("Tassafaronga prints Minneapolis");
+        assert_eq!(minneapolis["characterId"], "IBS-U-USN-MINNEAPOLIS");
+
+        let mut e = Engine::default();
+        let savo = opening(&mut e, "CAMP-AXIS-10");
+        let chokai = savo["ships"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|ship| ship["classId"] == "savo_chokai")
+            .expect("Savo prints Chokai");
+        assert_eq!(chokai["characterId"], "IBS-U-IJN-CHOKAI");
     }
 }

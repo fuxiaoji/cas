@@ -1,0 +1,2117 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-class-proxy-cards-v1",
+ "generated_at": "2026-11-08T23:21:33+08:00",
+ "generated_by": "class-proxy build (strict numeric mode, source-page rebuild of 5 period source cards + Jintsu named fit)",
+ "source_policy": "class_proxy only；同级 period profile 原样抄录；完整 ShipDef 复用/修正 data/ships/period-cards.json 的同级卡（5 张源卡按 Form 10/American Fleets 原页重排炮座/雷座/速度/DP，其余字段保留），无完整 period def 时用 data/stage0.json 同类卡兜底；跨级冲突按原页改归（Gwin us_benson_dd、Barton us_bristol_dd）；不写 points；不改 src/、server/catalog、portraits、audio、AI、ranked_fleets；不修改 period-cards.json。",
+ "expected_identities": [
+  "IBS-U-IJN-ATAGO",
+  "IBS-U-IJN-TAKAO",
+  "IBS-U-USN-UNNAMED-T01-R23",
+  "IBS-U-USN-UNNAMED-T01-R24",
+  "IBS-U-USN-BENHAM",
+  "IBS-U-USN-STERETT",
+  "IBS-U-USN-BARTON",
+  "IBS-U-USN-GWIN",
+  "IBS-U-USN-WOODWORTH",
+  "IBS-U-USN-AARON-WARD",
+  "IBS-U-IJN-JINTSU-I",
+  "IBS-U-IJN-AMATSU-KAZE",
+  "IBS-U-USN-LA-VALLETTE"
+ ],
+ "coverage": {
+  "total": 13,
+  "cards": 13,
+  "ship_present": 13,
+  "period_profile_mode": 10,
+  "empress_profile_mode": 2,
+  "stage0_profile_mode": 1,
+  "stat_verified": 13,
+  "stat_unverified": 0,
+  "blocker_cards": 0
+ },
+ "checks": {
+  "count_13": true,
+  "identities_unique": true,
+  "identities_exact": true,
+  "every_card_class_proxy": true,
+  "every_source_class_exists": true,
+  "side_type_match_catalog": true,
+  "ship_id_name_match_identity": true,
+  "ship_side_kind_match": true,
+  "no_points": true,
+  "all_profile_verbatim": true,
+  "corrected_armament": true,
+  "corrected_speed_dp": true,
+  "all_true": true
+ },
+ "mapping_deviations": [
+  {
+   "identity": "IBS-U-USN-GWIN",
+   "task_list": "us_bristol_dd",
+   "final": "us_benson_dd",
+   "reason": "Form 10 p.301 标题 Benson-Livermore class（1839t、35/128、4 门/10 雷管）"
+  },
+  {
+   "identity": "IBS-U-USN-BARTON",
+   "task_list": "us_benson_dd",
+   "final": "us_bristol_dd",
+   "reason": "Form 10 p.291 标题 Bristol class（1630t、37/118、4 门/10 雷管）"
+  },
+  {
+   "identity": "IBS-U-IJN-JINTSU-I",
+   "task_list": "sendai_1943（empress）或 stage0 sendai",
+   "final": "stage0 sendai profile + Jintsu Form 10 p.71/72 个体 fit",
+   "reason": "Jintsu 原页 7 门/32/217/C/Type 93 8 管；不使用 sendai_1943 的 6 门/35/8th Year 值"
+  },
+  {
+   "identity": "IBS-U-USN-BENHAM/IBS-U-USN-STERETT",
+   "task_list": "us_benham_dd",
+   "final": "us_benham_dd + p.310/p.315 个体页 38/118",
+   "reason": "profile 35/124 为类表旧值；原页 38/118"
+  },
+  {
+   "identity": "IBS-U-IJN-ATAGO/IBS-U-IJN-TAKAO",
+   "task_list": "jp_takao_1939_ca",
+   "final": "jp_takao_1939_ca（炮/雷按 p.48/p.52；DP 471 与重建后的 period-cards 一致）",
+   "reason": "p.48/p.52 印 DP 471；period-cards 23:16 重建后已同步"
+  }
+ ],
+ "stat_verified_basis": "true = ShipDef 的炮座/雷座/速度/DP 已按 Form 10 / American Fleets 原页核对（5 张源卡重建 + Jintsu 个体页）；profile 字段仍按任务原样抄录，profile 与 ShipDef 的差异列在 cards[].profile_conflicts。",
+ "source_card_rebuilds": [
+  {
+   "source_identity": "IBS-U-IJN-CHOKAI",
+   "period_profile": "jp_takao_1939_ca",
+   "original": {
+    "gun_barrels": 20,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4
+   },
+   "corrected": {
+    "gun_barrels": 9,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "evidence": [
+    "Form 10 p.49 Chokai (Aug 42 Damage): Fwd(1)+Fwd(2)+P&S(2)+Aft(2)+Aft(2)=9 guns / 5 mounts",
+    "Form 10 p.49 torpedo: Port(4)+Stbd(4)=8 tubes / 2 mounts, 8 reload"
+   ],
+   "note": "Chokai source card rebuilt per p.49; Takao/Atago use the p.48/p.52 variant 10 guns / 16 tubes.",
+   "corrected_ship": {
+    "id": "IBS-U-IJN-CHOKAI",
+    "name": "鸟海",
+    "side": "axis",
+    "kind": "CA",
+    "size": "B",
+    "max_knots": 33,
+    "dp": 471,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 118,
+      "knots": 25
+     },
+     {
+      "damage": 236,
+      "knots": 16
+     },
+     {
+      "damage": 353,
+      "knots": 8
+     },
+     {
+      "damage": 424,
+      "knots": 0
+     },
+     {
+      "damage": 471,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 8,
+    "armor_deck": 5,
+    "in_service_year": 1932,
+    "gun": {
+     "name": "三年式二号 20cm/50 APC",
+     "caliber_mm": 203,
+     "range_yd": [
+      7000.0,
+      16000.0,
+      25600.0,
+      32000.0
+     ],
+     "damage": [
+      26,
+      20,
+      17,
+      15
+     ],
+     "gs": 4,
+     "barrels": 9,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      34,
+      23,
+      16,
+      12
+     ],
+     "pen_deck": [
+      null,
+      null,
+      5,
+      10
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "tubes": 8,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 4
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 4
+      }
+     ],
+     "fit_note": "mount row P/S(2)4 610mm TT w/2 Type 93 torps（8 reserve, 6 min; Form 10 p.49 Chokai Aug 42 Damage）"
+    },
+    "source_profile": "jp_takao_1939_ca"
+   },
+   "takao_atago_variant_ship": {
+    "id": "IBS-U-IJN-CHOKAI",
+    "name": "鸟海",
+    "side": "axis",
+    "kind": "CA",
+    "size": "B",
+    "max_knots": 33,
+    "dp": 471,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 118,
+      "knots": 25
+     },
+     {
+      "damage": 236,
+      "knots": 16
+     },
+     {
+      "damage": 353,
+      "knots": 8
+     },
+     {
+      "damage": 424,
+      "knots": 0
+     },
+     {
+      "damage": 471,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 8,
+    "armor_deck": 5,
+    "in_service_year": 1932,
+    "gun": {
+     "name": "三年式二号 20cm/50 APC",
+     "caliber_mm": 203,
+     "range_yd": [
+      7000.0,
+      16000.0,
+      25600.0,
+      32000.0
+     ],
+     "damage": [
+      26,
+      20,
+      17,
+      15
+     ],
+     "gs": 4,
+     "barrels": 10,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ]
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      34,
+      23,
+      16,
+      12
+     ],
+     "pen_deck": [
+      null,
+      null,
+      5,
+      10
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "九三式一型 Mod 1/2",
+     "speed_knots": 49,
+     "range_yd": 22000,
+     "warhead": 95,
+     "tubes": 16,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 2
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 2
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 2
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 2
+      }
+     ],
+     "fit_note": "mount row P/S(4)4 610mm TT w/4 Type 93 torps（8 reserve, 6 min; Takao/Atago, Form 10 p.48/p.52）"
+    },
+    "source_profile": "jp_takao_1939_ca"
+   }
+  },
+  {
+   "source_identity": "IBS-U-USN-WILSON",
+   "period_profile": "us_benham_dd",
+   "original": {
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "corrected": {
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4
+   },
+   "evidence": [
+    "Form 10 p.317 Wilson / p.315 Sterett / p.310 Benham: 4 single 5in mounts",
+    "Form 10 p.317/p.315/p.310 torpedo: Port(4)x2 + Stbd(4)x2 = 16 tubes / 4 mounts",
+    "Form 10 p.317/p.315/p.310: 38/28/19/10, DP 118, standard rudder 300 (1)"
+   ],
+   "note": "Wilson source card rebuilt; Benham/Sterett proxy cards use it.",
+   "corrected_ship": {
+    "id": "IBS-U-USN-WILSON",
+    "name": "威尔逊",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 38,
+    "dp": 118,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 19
+     },
+     {
+      "damage": 89,
+      "knots": 10
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1939,
+    "gun": {
+     "name": "Mk12/38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 16,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "fit_note": "mount row P/S(4)4 Mk12 533mm TT w/4 Mk15 torpedoes（Form 10 p.317 Wilson / p.315 Sterett / p.310 Benham）"
+    },
+    "source_profile": "us_benham_dd"
+   }
+  },
+  {
+   "source_identity": "IBS-U-USN-MONSSEN",
+   "period_profile": "us_benson_dd",
+   "original": {
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": null,
+    "torpedo_mounts": null
+   },
+   "corrected": {
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "evidence": [
+    "Form 10 p.303 Monssen (May 42): 4 single 5in mounts; 35/26/18/9, DP 128, rudder 300 (1)",
+    "Form 10 p.303 torpedo: Port & Stbd(5) Mk15 TT w/5 Mk15 = 2 mounts x 5 = 10 tubes",
+    "Form 10 p.301 Gwin same Benson-Livermore class: 4 guns, 10 tubes, 35/128"
+   ],
+   "note": "Monssen source card rebuilt per p.303; Gwin proxy uses it.",
+   "corrected_ship": {
+    "id": "IBS-U-USN-MONSSEN",
+    "name": "蒙森",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 35,
+    "dp": 128,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 32,
+      "knots": 26
+     },
+     {
+      "damage": 64,
+      "knots": 18
+     },
+     {
+      "damage": 96,
+      "knots": 9
+     },
+     {
+      "damage": 115,
+      "knots": 0
+     },
+     {
+      "damage": 128,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1940,
+    "gun": {
+     "name": "Mk12/38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "fit_note": "mount row Port & Stbd(5) Mk14 533mm TT w/5 Mk15 torpedoes（Form 10 p.303 Monssen / p.301 Gwin；10 管）"
+    },
+    "source_profile": "us_benson_dd"
+   }
+  },
+  {
+   "source_identity": "IBS-U-USN-BUCHANAN",
+   "period_profile": "us_bristol_dd",
+   "original": {
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "corrected": {
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "evidence": [
+    "Form 10 p.292 Buchanan / p.291 Barton / p.300 Woodworth / p.289 Aaron Ward: 4 single 5in",
+    "Form 10 p.292/p.291/p.300/p.289 torpedo: Port & Stbd(5) = 2 mounts x 5 = 10 tubes",
+    "Form 10 p.292: 37/28/18/9, DP 118, rudder 300 (1)"
+   ],
+   "note": "Buchanan source card rebuilt; Barton/Woodworth/Aaron Ward proxy cards use it.",
+   "corrected_ship": {
+    "id": "IBS-U-USN-BUCHANAN",
+    "name": "布坎南",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 37,
+    "dp": 118,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 37
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 18
+     },
+     {
+      "damage": 89,
+      "knots": 9
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1942,
+    "gun": {
+     "name": "Mk12/38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 4,
+     "mounts": [
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 1,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "fit_note": "mount row Port & Stbd(5) 533mm TT w/5 Mk15 torpedoes（Form 10 p.292 Buchanan / p.291 Barton / p.300 Woodworth / p.289 Aaron Ward；10 管）"
+    },
+    "source_profile": "us_bristol_dd"
+   }
+  },
+  {
+   "source_identity": "IBS-U-USN-UNNAMED-T01-R25",
+   "period_profile": "us_atlanta_cl",
+   "original": {
+    "gun_barrels": 10,
+    "gun_mounts": 5,
+    "torpedo_tubes": 4,
+    "torpedo_mounts": 2
+   },
+   "corrected": {
+    "gun_barrels": 16,
+    "gun_mounts": 8,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "evidence": [
+    "Form 10 p.262 San Juan: Fwd(2)x3 + Port(2) + Stbd(2) + Aft(2)x3 = 8 twin mounts / 16 guns",
+    "Form 10 p.262 San Juan torpedo: Port(4)+Stbd(4)=8 tubes / 2 mounts"
+   ],
+   "note": "San Juan source card rebuilt; Atlanta/Juneau proxy cards use it.",
+   "corrected_ship": {
+    "id": "IBS-U-USN-UNNAMED-T01-R25",
+    "name": "圣胡安",
+    "side": "allies",
+    "kind": "CL",
+    "size": "B",
+    "max_knots": 33,
+    "dp": 304,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 76,
+      "knots": 25
+     },
+     {
+      "damage": 152,
+      "knots": 16
+     },
+     {
+      "damage": 228,
+      "knots": 8
+     },
+     {
+      "damage": 274,
+      "knots": 0
+     },
+     {
+      "damage": 304,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 7,
+    "armor_deck": 3,
+    "in_service_year": 1942,
+    "gun": {
+     "name": "Mk12/38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 16,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 8,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 4,
+       "arc": [
+        210,
+        330
+       ],
+       "arc2": null,
+       "reserve": 0
+      },
+      {
+       "tubes": 4,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": null,
+       "reserve": 0
+      }
+     ],
+     "fit_note": "mount row Port(4)+Stbd(4) 533mm TT w/4 Mk15 torpedoes（Form 10 p.262 San Juan；8 管）"
+    },
+    "source_profile": "us_atlanta_cl"
+   }
+  }
+ ],
+ "individual_page_rebuilds": [
+  {
+   "identity": "IBS-U-IJN-JINTSU-I",
+   "profile": "sendai (stage0)",
+   "original_stage0": {
+    "gun_barrels": 7,
+    "gun_mounts": 7,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 4,
+    "torpedo_model": "8th Year"
+   },
+   "corrected": {
+    "gun_barrels": 7,
+    "gun_mounts": 7,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2,
+    "torpedo_model": "Type 93",
+    "speed": [
+     32,
+     24,
+     16,
+     8
+    ],
+    "dp": 217,
+    "turn": "C (300 yd, loss 1)"
+   },
+   "evidence": [
+    "Form 10 p.71/72 Jintsu (Oct 42-Jan 43 Modification): 7 single 14cm; 32/24/16/8, DP 217, rudder 300 (1)",
+    "Form 10 p.71: Port(4)+Stbd(4) 610mm TT w/4 Type 93 = 2 mounts x 4 = 8 tubes, 4 reload/mount (6 min)"
+   ],
+   "note": "Jintsu uses its own named Form 10 fit; stage0 sendai (川内本舰 1942) is kept only as the class profile, not for torpedo model/tube layout."
+  }
+ ],
+ "period_cards_concurrent_rebuild": {
+  "detected": true,
+  "path": "data/ships/period-cards.json",
+  "sha256": "80365c7b22f33063f9d2e3829ce37bd6b893cf1bcb32f43bbce48a2613250760",
+  "note": "period-cards.json 在 23:16 被另一批同步重建；Chokai(9/5, 8/2)、Wilson(4/4, 16/4)、San Juan(16/8) 已与本文件一致。Monssen/Buchanan 的雷座在该文件为 5 管/1 座（p.303/p.293 单座读法）；本文件按父级 Gwin/Barton 裁决「P&S(5)=10 管」取 10/2，并保留该差异供两批对齐。",
+  "current_source_cards": {
+   "IBS-U-IJN-CHOKAI": {
+    "gun_barrels": 9,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2,
+    "max_knots": 33,
+    "dp": 471
+   },
+   "IBS-U-USN-WILSON": {
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4,
+    "max_knots": 38,
+    "dp": 118
+   },
+   "IBS-U-USN-MONSSEN": {
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 5,
+    "torpedo_mounts": 1,
+    "max_knots": 35,
+    "dp": 128
+   },
+   "IBS-U-USN-BUCHANAN": {
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 5,
+    "torpedo_mounts": 1,
+    "max_knots": 37,
+    "dp": 118
+   },
+   "IBS-U-USN-UNNAMED-T01-R25": {
+    "gun_barrels": 16,
+    "gun_mounts": 8,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2,
+    "max_knots": 33,
+    "dp": 304
+   }
+  }
+ },
+ "cards": [
+  {
+   "identity": "IBS-U-IJN-ATAGO",
+   "name": "爱宕",
+   "side": "axis",
+   "type": "CA",
+   "source_class": "jp_takao_1939_ca",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    16,
+    17
+   ],
+   "source_document": "emperors_fleet",
+   "source_printed_pages": [
+    "A-13",
+    "A-14"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.jp_takao_1939_ca",
+   "ship_source": "data/ships/period-cards.json#IBS-U-IJN-CHOKAI",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 10,
+    "mounts": 5,
+    "caliber_mm": 203,
+    "name": "三年式二号 20cm/50 APC"
+   },
+   "torpedo": {
+    "tubes": 16,
+    "mounts": 4,
+    "name": "九三式一型 Mod 1/2",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 33,
+    "dp": 471,
+    "armor_belt": 8,
+    "armor_deck": 5,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 118,
+      "knots": 25
+     },
+     {
+      "damage": 236,
+      "knots": 16
+     },
+     {
+      "damage": 353,
+      "knots": 8
+     },
+     {
+      "damage": 424,
+      "knots": 0
+     },
+     {
+      "damage": 471,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "jp_takao_1939_ca profile 印 damage_points 401 / speed_knots 33-25-16-8；Form 10 p.48 Atago 印 DP 471；period-cards 23:16 重建后 ShipDef 用 471。profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-IJN-TAKAO",
+   "name": "高雄",
+   "side": "axis",
+   "type": "CA",
+   "source_class": "jp_takao_1939_ca",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    16,
+    17
+   ],
+   "source_document": "emperors_fleet",
+   "source_printed_pages": [
+    "A-13",
+    "A-14"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.jp_takao_1939_ca",
+   "ship_source": "data/ships/period-cards.json#IBS-U-IJN-CHOKAI",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 10,
+    "mounts": 5,
+    "caliber_mm": 203,
+    "name": "三年式二号 20cm/50 APC"
+   },
+   "torpedo": {
+    "tubes": 16,
+    "mounts": 4,
+    "name": "九三式一型 Mod 1/2",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 33,
+    "dp": 471,
+    "armor_belt": 8,
+    "armor_deck": 5,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 118,
+      "knots": 25
+     },
+     {
+      "damage": 236,
+      "knots": 16
+     },
+     {
+      "damage": 353,
+      "knots": 8
+     },
+     {
+      "damage": 424,
+      "knots": 0
+     },
+     {
+      "damage": 471,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "jp_takao_1939_ca profile 印 damage_points 401 / speed_knots 33-25-16-8；Form 10 p.52 Takao 印 DP 471；period-cards 23:16 重建后 ShipDef 用 471。profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R23",
+   "name": "亚特兰大",
+   "side": "allies",
+   "type": "CL",
+   "source_class": "us_atlanta_cl",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    18
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-15"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_atlanta_cl",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-UNNAMED-T01-R25",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 16,
+    "mounts": 8,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 8,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 33,
+    "dp": 304,
+    "armor_belt": 7,
+    "armor_deck": 3,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 76,
+      "knots": 25
+     },
+     {
+      "damage": 152,
+      "knots": 16
+     },
+     {
+      "damage": 228,
+      "knots": 8
+     },
+     {
+      "damage": 274,
+      "knots": 0
+     },
+     {
+      "damage": 304,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "us_atlanta_cl profile 写 5F/P/S/A 2（5 座双联=10 管）与 2P/S(2)（4 雷管）；American Fleets A-15 与 Form 10 p.262 印 3F/P/S/3A(2)8（8 座双联=16 管）与 P/S(4)2（8 雷管）。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R24",
+   "name": "朱诺",
+   "side": "allies",
+   "type": "CL",
+   "source_class": "us_atlanta_cl",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    18
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-15"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_atlanta_cl",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-UNNAMED-T01-R25",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 16,
+    "mounts": 8,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 8,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 33,
+    "dp": 304,
+    "armor_belt": 7,
+    "armor_deck": 3,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 76,
+      "knots": 25
+     },
+     {
+      "damage": 152,
+      "knots": 16
+     },
+     {
+      "damage": 228,
+      "knots": 8
+     },
+     {
+      "damage": 274,
+      "knots": 0
+     },
+     {
+      "damage": 304,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "us_atlanta_cl profile 写 5F/P/S/A 2（5 座双联=10 管）与 2P/S(2)（4 雷管）；American Fleets A-15 与 Form 10 p.262 印 3F/P/S/3A(2)8（8 座双联=16 管）与 P/S(4)2（8 雷管）。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-BENHAM",
+   "name": "本汉姆",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "us_benham_dd",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    21
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-18"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_benham_dd",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-WILSON",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 4,
+    "mounts": 4,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 16,
+    "mounts": 4,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 38,
+    "dp": 118,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 19
+     },
+     {
+      "damage": 89,
+      "knots": 10
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "us_benham_dd profile 印 35/26/18/9、DP 124；Form 10 p.310/p.317 印 38/28/19/10、DP 118。ShipDef 用原页值；profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-STERETT",
+   "name": "史特雷特",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "us_benham_dd",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    21
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-18"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_benham_dd",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-WILSON",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 4,
+    "mounts": 4,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 16,
+    "mounts": 4,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 38,
+    "dp": 118,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 38
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 19
+     },
+     {
+      "damage": 89,
+      "knots": 10
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "us_benham_dd profile 印 35/26/18/9、DP 124；Form 10 p.315 印 38/28/19/10、DP 118。ShipDef 用原页值；profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-BARTON",
+   "name": "巴顿",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "us_bristol_dd",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    20
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-17"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_bristol_dd",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-BUCHANAN",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 4,
+    "mounts": 4,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 10,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 37,
+    "dp": 118,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 37
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 18
+     },
+     {
+      "damage": 89,
+      "knots": 9
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "crosswalk 标签「本森级」；Form 10 p.291 标题 Bristol class、1630t、37/118、4 门/10 雷管。按原页改归 us_bristol_dd（与父级裁决一致）。us_bristol_dd profile 的 37/118/4 门与 ShipDef 一致，雷装 profile 串 P&S(4)4 读法 (2 座 x 4=8) 与 p.291 的 P&S(5)2=10 有差异，profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-GWIN",
+   "name": "葛文",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "us_benson_dd",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    20
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-17"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_benson_dd",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-MONSSEN",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 4,
+    "mounts": 4,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 10,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 35,
+    "dp": 128,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 32,
+      "knots": 26
+     },
+     {
+      "damage": 64,
+      "knots": 18
+     },
+     {
+      "damage": 96,
+      "knots": 9
+     },
+     {
+      "damage": 115,
+      "knots": 0
+     },
+     {
+      "damage": 128,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "crosswalk 无标签；Form 10 p.301 标题 Benson-Livermore class、1839t、35/128、4 门/10 雷管。按原页改归 us_benson_dd（与父级裁决一致）。us_benson_dd profile 印 37/144、8 雷管，与 p.301 的 35/128、10 雷管不同；profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-WOODWORTH",
+   "name": "伍德沃斯",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "us_bristol_dd",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    20
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-17"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_bristol_dd",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-BUCHANAN",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 4,
+    "mounts": 4,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 10,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 37,
+    "dp": 118,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 37
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 18
+     },
+     {
+      "damage": 89,
+      "knots": 9
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "us_bristol_dd profile 的 37/118/4 门与 Form 10 p.300 一致；雷装 profile 串 P&S(4)4 读法 (8) 与 p.300 的 P&S(5)2=10 有差异，profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-AARON-WARD",
+   "name": "亚伦沃德",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "us_bristol_dd",
+   "source_file": "data/campaign/period/savo-island-1942.json",
+   "source_pages": [
+    20
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-17"
+   ],
+   "profile_source": "data/campaign/period/savo-island-1942.json#profiles.us_bristol_dd",
+   "ship_source": "data/ships/period-cards.json#IBS-U-USN-BUCHANAN",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 4,
+    "mounts": 4,
+    "caliber_mm": 127,
+    "name": "Mk12/38 5in/38 SpCOM"
+   },
+   "torpedo": {
+    "tubes": 10,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 37,
+    "dp": 118,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 37
+     },
+     {
+      "damage": 30,
+      "knots": 28
+     },
+     {
+      "damage": 59,
+      "knots": 18
+     },
+     {
+      "damage": 89,
+      "knots": 9
+     },
+     {
+      "damage": 106,
+      "knots": 0
+     },
+     {
+      "damage": 118,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "us_bristol_dd profile 的 37/118/4 门与 Form 10 p.289 一致；雷装 profile 串 P&S(4)4 读法 (8) 与 p.289 的 P&S(5)2=10 有差异，profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-IJN-JINTSU-I",
+   "name": "神通(I)",
+   "side": "axis",
+   "type": "CL",
+   "source_class": "sendai",
+   "source_file": "data/stage0.json",
+   "source_pages": [
+    21,
+    22
+   ],
+   "source_document": "jp",
+   "source_printed_pages": [
+    "A-18",
+    "A-19"
+   ],
+   "profile_source": "data/stage0.json#sendai",
+   "ship_source": "data/stage0.json#sendai",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 7,
+    "mounts": 7,
+    "caliber_mm": 140,
+    "name": "三年式 14厘米/50"
+   },
+   "torpedo": {
+    "tubes": 8,
+    "mounts": 2,
+    "name": "九三式一型 Mod 1/2",
+    "reload_seconds": 360
+   },
+   "speed_dp": {
+    "max_knots": 32,
+    "dp": 217,
+    "armor_belt": 4,
+    "armor_deck": 2,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 32
+     },
+     {
+      "damage": 54,
+      "knots": 24
+     },
+     {
+      "damage": 109,
+      "knots": 16
+     },
+     {
+      "damage": 163,
+      "knots": 8
+     },
+     {
+      "damage": 195,
+      "knots": 0
+     },
+     {
+      "damage": 217,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "stage0 sendai card 是川内本舰 1942：7 门、32/24/16/8、DP 217、8th Year 4 座 x 2 雷；Jintsu Form 10 p.71/72（Oct 42-Jan 43）印同一 7 门/32/217/C，但雷装为 Type 93 2 座 x 4=8 管。ShipDef 用 Jintsu 原页；stage0 profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-IJN-AMATSU-KAZE",
+   "name": "天津风",
+   "side": "axis",
+   "type": "DD",
+   "source_class": "kagero_1943",
+   "source_file": "data/campaign/period/empress-augusta-bay-1943.json",
+   "source_pages": [
+    28
+   ],
+   "source_document": "emperors_fleet",
+   "source_printed_pages": [
+    "A-9"
+   ],
+   "profile_source": "data/campaign/period/empress-augusta-bay-1943.json#profiles.kagero_1943",
+   "ship_source": "data/stage0.json#kagero",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 6,
+    "mounts": 3,
+    "caliber_mm": 127,
+    "name": "三年式 12.7厘米/50"
+   },
+   "torpedo": {
+    "tubes": 8,
+    "mounts": 2,
+    "name": "九三式一型 Mod 1/2",
+    "reload_seconds": 360
+   },
+   "speed_dp": {
+    "max_knots": 35,
+    "dp": 138,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 35
+     },
+     {
+      "damage": 35,
+      "knots": 26
+     },
+     {
+      "damage": 69,
+      "knots": 18
+     },
+     {
+      "damage": 104,
+      "knots": 9
+     },
+     {
+      "damage": 124,
+      "knots": 0
+     },
+     {
+      "damage": 138,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [
+    "kagero_1943 profile turn_class A；Form 10 p.98 印标准舵 300yd(1)=C。ShipDef 用 C；profile 原样保留。"
+   ],
+   "blockers": []
+  },
+  {
+   "identity": "IBS-U-USN-LA-VALLETTE",
+   "name": "拉瓦利特",
+   "side": "allies",
+   "type": "DD",
+   "source_class": "fletcher_1943",
+   "source_file": "data/campaign/period/empress-augusta-bay-1943.json",
+   "source_pages": [
+    20
+   ],
+   "source_document": "american_fleets",
+   "source_printed_pages": [
+    "A-17"
+   ],
+   "profile_source": "data/campaign/period/empress-augusta-bay-1943.json#profiles.fletcher_1943",
+   "ship_source": "data/stage0.json#fletcher",
+   "stat_verified": true,
+   "gun": {
+    "barrels": 5,
+    "mounts": 5,
+    "caliber_mm": 127,
+    "name": "Mk30 5英寸/38"
+   },
+   "torpedo": {
+    "tubes": 10,
+    "mounts": 2,
+    "name": "Mk15（TNT）",
+    "reload_seconds": null
+   },
+   "speed_dp": {
+    "max_knots": 37,
+    "dp": 144,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 37
+     },
+     {
+      "damage": 36,
+      "knots": 28
+     },
+     {
+      "damage": 72,
+      "knots": 18
+     },
+     {
+      "damage": 108,
+      "knots": 9
+     },
+     {
+      "damage": 130,
+      "knots": 0
+     },
+     {
+      "damage": 144,
+      "knots": 0
+     }
+    ]
+   },
+   "profile_conflicts": [],
+   "blockers": []
+  }
+ ],
+ "blockers": [],
+ "unfixed": [
+  "period-cards.json 23:16 已由另一批重建：Chokai 9/5 + 8/2、Wilson 4/4 + 16/4、San Juan 16/8 与本文件一致；Monssen/Buchanan 仍为 5 管/1 座，本文件按父级 Gwin/Barton「P&S(5)=10 管」取 10/2，需两批对齐。",
+  "period profiles 本身有转录冲突（us_atlanta_cl 5 座 vs A-15 8 座；us_benson_dd 4 门/8 管 vs p.303 4 门/10 管；us_bristol_dd 雷装读法；us_benham_dd 35/124 vs p.310 38/118；kagero_1943 turn A）——按任务原样保留，未改 profile。",
+  "Jintsu 的 ShipDef 用了 Jintsu 个体 Form 10 p.71/72（7 门/Type 93）；profile 用 stage0 sendai（川内本舰 1942）原样保留，二者差异已登记。",
+  "其余 23 张 period-cards 的同级炮座错误未在本批逐一审计/修复。"
+ ],
+ "not_modified": [
+  "src/",
+  "server/catalog.json",
+  "data/portraits/",
+  "data/audio/",
+  "data/ai/",
+  "src/ranked_fleets.rs",
+  "data/ships/period-cards.json"
+ ],
+ "inputs": [
+  {
+   "path": "data/ships/period-cards.json",
+   "sha256": "80365c7b22f33063f9d2e3829ce37bd6b893cf1bcb32f43bbce48a2613250760",
+   "bytes": 64489
+  },
+  {
+   "path": "data/ships/period-cards-report.json",
+   "sha256": "1b68e1ec517999bf4823d0c6b4d122ddad531f250c6252e63b3415901fab2e0f",
+   "bytes": 41241
+  },
+  {
+   "path": "data/campaign/period/savo-island-1942.json",
+   "sha256": "9bc15f7376d032d260592973852d073e4bc13c84d0664870a80cc3f16745d5b4",
+   "bytes": 66676
+  },
+  {
+   "path": "data/campaign/period/savo-runtime.json",
+   "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "bytes": 129862
+  },
+  {
+   "path": "data/campaign/period/empress-augusta-bay-1943.json",
+   "sha256": "94192f0f4eb3c2d48682bd9477a56c9bd0441719fbfa2f66c43ba8e761676a1a",
+   "bytes": 32034
+  },
+  {
+   "path": "data/stage0.json",
+   "sha256": "08cd0a15db0972ba7ebf18c5cec4df1c1ec954427855fa6a46c97ed8f242e549",
+   "bytes": 111461
+  },
+  {
+   "path": "server/catalog.json",
+   "sha256": "fad4af07c0529b0b8cf371f494f0c66afecc4c5db6d0ab5f7ee71430024d968f",
+   "bytes": 51801
+  },
+  {
+   "path": "server/scenario-recruitable.json",
+   "sha256": "e1d4e52d5721d6f424467d40efba62f4999c96e07c3da52663458403d3c4bb71",
+   "bytes": 15769
+  },
+  {
+   "path": "data/campaign/vella-lavella.json",
+   "sha256": "3c455a04e85405311084eef912b2b90a86ec0cce6a74ac525b6427583bf904c6",
+   "bytes": 4612
+  }
+ ]
+}

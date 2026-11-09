@@ -5,7 +5,7 @@
   "source_manifest": "mobile/content/fleet-portrait-manifest.json",
   "source_manifest_sha256": "83593c33e6a3248be85dcd9803c81091c918e6ea114d573b2d2c0432ae0cf01f",
   "scope": "CAS local development and tests; redistribution scope unverified. These are character portraits, not CAS combat cards.",
-  "encoding": "Source alpha portraits reduced to at most 700×1050 and encoded to WebP quality 92.",
+  "encoding": "167 portraits reduced to at most 700x1050 and encoded to WebP quality 92; 43 additional identities are the pinned 512x768 WebP files copied byte-for-byte from client/src/assets/portraits/all (no re-encode).",
   "assets": [
     {
       "path": "ibs-u-usn-fletcher.webp",
@@ -284,6 +284,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-akagi.webp",
+      "character_id": "IBS-U-IJN-AKAGI",
+      "character_name": "赤城",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-akagi.png",
+      "source_sha256": "58899d0889062af791adb695154e288e4b75e51469818d6310fa3ad8fbaffac6",
+      "sha256": "e7ecca59b02634d9c29c9e2641dba23de18d20c6efb74333a6ddb8a99720cd69",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-akatsuki.webp",
       "character_id": "IBS-U-IJN-AKATSUKI",
       "character_name": "晓",
@@ -320,6 +332,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-amagi.webp",
+      "character_id": "IBS-U-IJN-AMAGI",
+      "character_name": "天城",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-amagi.png",
+      "source_sha256": "fe14a12a10ade6e00eb0aa3aa3bb14176df33db920c4aa9d45c52aefc373d842",
+      "sha256": "9df9f2e1902b15f5c8f17c277da9bbc2c730e9c40240ecad13b99b1f2ec5c714",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-amagiri.webp",
       "character_id": "IBS-U-IJN-AMAGIRI",
       "character_name": "天雾",
@@ -353,6 +377,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-asakaze.webp",
+      "character_id": "IBS-U-IJN-ASAKAZE",
+      "character_name": "朝风",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-asakaze.png",
+      "source_sha256": "d6ab0b0b5ed5ccefd35f6fddbe278945a93bfd6763c8cb1b98d4fda75c1320e2",
+      "sha256": "5f52c7952954804c2b08224bb7bdb19e9b246d3bc89b4d49ec93148b721c1c3c",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -452,6 +488,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-erma-kazegumo.webp",
+      "character_id": "IBS-U-IJN-ERMA-KAZEGUMO",
+      "character_name": "风云",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-kazegumo.png",
+      "source_sha256": "7cff4ab72ae236089a7dc54af12c0fd7ee4111fe1a020855ccb723514dea4915",
+      "sha256": "0158f42f051f3b26c9cc976c7c9c88aacf045755f56a4a6779035fd6d86e1214",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-erma-kurama.webp",
       "character_id": "IBS-U-IJN-ERMA-KURAMA",
       "character_name": "鞍马",
@@ -464,6 +512,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-erma-makinami.webp",
+      "character_id": "IBS-U-IJN-ERMA-MAKINAMI",
+      "character_name": "卷波",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-makinami.png",
+      "source_sha256": "a76a713563b1dec2253ab7a3c2b0f5861c76a564ae183aac8866df168734dceb",
+      "sha256": "7063f0585ea2bd252f21b5c736d98fc614cdc2d9ce17ef5ca41e7514d3bc998c",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-erma-musashi.webp",
       "character_id": "IBS-U-IJN-ERMA-MUSASHI",
       "character_name": "武藏",
@@ -473,6 +533,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-erma-naganami.webp",
+      "character_id": "IBS-U-IJN-ERMA-NAGANAMI",
+      "character_name": "长波",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-naganami.png",
+      "source_sha256": "1c6d48adcc2af43a3949ddf54a8e3dd7ad04accc5777cea54614413edf8c07e0",
+      "sha256": "29e9a494871fbf2a95915812e6186a2c4eae87b64a24e458b9a53b360a5eda32",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -680,6 +752,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-kamikaze.webp",
+      "character_id": "IBS-U-IJN-KAMIKAZE",
+      "character_name": "神风",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kamikaze.png",
+      "source_sha256": "b01bace82b91bf6fb19c2de0bac4eb07a1f8dc9db4dc4de92ad43de4dbc4f9f5",
+      "sha256": "50f4ebb0cbd4525707098fdd3b3fed9e324242caf13c75da3d2068ad9f81179a",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-kawakaze.webp",
       "character_id": "IBS-U-IJN-KAWAKAZE",
       "character_name": "江风",
@@ -800,6 +884,30 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-mutsu.webp",
+      "character_id": "IBS-U-IJN-MUTSU",
+      "character_name": "陆奥",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-mutsu.png",
+      "source_sha256": "0b9fcdbb40b56219b004ac7cbfca8f201c212699770b0571af2289eca9d18892",
+      "sha256": "ac1595dfede9eb6d6d57d61e1e6bc19997e00353f625f78bcde05a0ac5bd203e",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-mutsuki.webp",
+      "character_id": "IBS-U-IJN-MUTSUKI",
+      "character_name": "睦月",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-mutsuki.png",
+      "source_sha256": "50c659b39c021415eb5d4a4b6fae989d35a8ee57fe5cf61bedde5a53c2499859",
+      "sha256": "30d126cec3d3c6f41f69d65d45675eb6f456cd2b73fa5be5136df506586bae31",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-myoko.webp",
       "character_id": "IBS-U-IJN-MYOKO",
       "character_name": "妙高",
@@ -812,6 +920,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-nachi.webp",
+      "character_id": "IBS-U-IJN-NACHI",
+      "character_name": "那智",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-nachi.png",
+      "source_sha256": "1dcd74d585fbd56948f52ff3c25b17b695dd711f6ba1d9444e4a5cfcba1056e3",
+      "sha256": "fb092fe36365547a0b608fdfb477743d5e662296a589884ad1f2c3b16670ceb3",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-nagara.webp",
       "character_id": "IBS-U-IJN-NAGARA",
       "character_name": "长良",
@@ -821,6 +941,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-nagato.webp",
+      "character_id": "IBS-U-IJN-NAGATO",
+      "character_name": "长门",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-nagato.png",
+      "source_sha256": "b96198712be28a2330131766a29948c2e5ccdbed0738dfa448dd4cb650e73718",
+      "sha256": "4853b319c35a8a9957bfa2f1fe707ffb5668a0f553118e3f1d1ab7018f94e3b5",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -872,6 +1004,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-oite.webp",
+      "character_id": "IBS-U-IJN-OITE",
+      "character_name": "追风",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-oite.png",
+      "source_sha256": "51c648330e5a8da539ad470bae7f8550c09d9840035f6ff1a721d2b965dde923",
+      "sha256": "d74e4e9dafce9f80b9446e86ab6d7db8409821f4466ac0a14152017034351c9c",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-onami.webp",
       "character_id": "IBS-U-IJN-ONAMI",
       "character_name": "大波",
@@ -881,6 +1025,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-owari.webp",
+      "character_id": "IBS-U-IJN-OWARI",
+      "character_name": "尾张",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-owari.png",
+      "source_sha256": "269539e6197ff9c99c28ff07a46353d0e2e910fe2a2fcd576c7c340bda1ad920",
+      "sha256": "c1a4f7a533e270febaf4286da2a1b175769404c2ce6ad3ec512e90efa012a670",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1016,6 +1172,18 @@
       ]
     },
     {
+      "path": "ibs-u-ijn-tatsuta.webp",
+      "character_id": "IBS-U-IJN-TATSUTA",
+      "character_name": "龙田",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-tatsuta.png",
+      "source_sha256": "4645b36a34bf2dba60e43e5e3f9b1822f9f884a76402c5831e2dd6d9e73ec094",
+      "sha256": "8bf9abdb508759e3c7f9e336c61dc6a999ee7ae0f17c12c1482e9a994347f589",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ijn-tenryu.webp",
       "character_id": "IBS-U-IJN-TENRYU",
       "character_name": "天龙",
@@ -1061,6 +1229,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-ijn-uzuki-2.webp",
+      "character_id": "IBS-U-IJN-UZUKI-2",
+      "character_name": "卯月(II)",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ijn-uzuki-2.png",
+      "source_sha256": "e14f3110d63a47b342b4be14ac5a2cfd334f930f36974d2892ce0718d0835409",
+      "sha256": "fad29c862d3643409853d35cc78a13f9dc0dcfb1d7ab80f88a6ad8f10f705e09",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1184,6 +1364,54 @@
       ]
     },
     {
+      "path": "ibs-u-km-hans-lody.webp",
+      "character_id": "IBS-U-KM-HANS-LODY",
+      "character_name": "汉斯·洛迪",
+      "source_path": "mobile/public/characters/ships/fleet-v2/km-hans-lody.png",
+      "source_sha256": "df4a67b2b1a9af4a445d53f7e831e626bd9eaadf3b4b5dad040792ae34ba8921",
+      "sha256": "507bd6d9dbd6a8f1c8cef9f750aadf4c14d66f8c0fb7faeb098b4fa305a37ee2",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-km-karl-galster.webp",
+      "character_id": "IBS-U-KM-KARL-GALSTER",
+      "character_name": "卡尔加尔斯特",
+      "source_path": "mobile/public/characters/ships/fleet-v2/km-karl-galster.png",
+      "source_sha256": "90f695fa8b6c15375ac914b3d2eae5db6b0bb6cac681f5a543d13dff6bc85d11",
+      "sha256": "034ea41843352b84bb7769d89aeebbfa540adb831e474142dfb526844037e1f0",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-km-richard-beitzen.webp",
+      "character_id": "IBS-U-KM-RICHARD-BEITZEN",
+      "character_name": "里夏德·拜茨恩",
+      "source_path": "mobile/public/characters/ships/fleet-v2/km-richard-beitzen.png",
+      "source_sha256": "bb34ba0112c511c0b2746a9c969f1d68370f8575c1830ed77a0d3e2eccb8a596",
+      "sha256": "70df08cd07b4f8946e5acdaa3d7739bb50ec8e63dcac830b20343653dbfc1c8a",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-ran-australia.webp",
+      "character_id": "IBS-U-RAN-AUSTRALIA",
+      "character_name": "澳大利亚",
+      "source_path": "mobile/public/characters/ships/fleet-v2/ran-australia.png",
+      "source_sha256": "e105017ca23356325eb603965f7f4a24698dbaf57b21cf9009472087117bd0f9",
+      "sha256": "7f9b98e519d25bfb8f4e3f8b8e9c0bb23b11ac0e4e0e670142b266d8bf0d51a1",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-ran-canberra.webp",
       "character_id": "IBS-U-RAN-CANBERRA",
       "character_name": "堪培拉",
@@ -1193,6 +1421,66 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-rn-jackal.webp",
+      "character_id": "IBS-U-RN-JACKAL",
+      "character_name": "豺",
+      "source_path": "mobile/public/characters/ships/fleet-v2/rn-jackal.png",
+      "source_sha256": "a06cc21c5712a05dcbca9ba9814e826bf06a938663377f02eadb1ccea8cc57fc",
+      "sha256": "c64d4f645dd7e64d40525aed82692fefd2142a23199f86de7108aeb43b39d1ab",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-rn-javelin.webp",
+      "character_id": "IBS-U-RN-JAVELIN",
+      "character_name": "标枪",
+      "source_path": "mobile/public/characters/ships/fleet-v2/rn-javelin.png",
+      "source_sha256": "a347375dc95e23eb5475ca89153f7838781a74a8650347747257707cf2196de5",
+      "sha256": "8d63ad336b17a2acdfe9e1616b37563feb237a8fbacc69b3609807cf0e2b7a1f",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-rn-jersey.webp",
+      "character_id": "IBS-U-RN-JERSEY",
+      "character_name": "泽西",
+      "source_path": "mobile/public/characters/ships/fleet-v2/rn-jersey.png",
+      "source_sha256": "66e01ea6bf6cafc9fd79ee47cffa76f7e51ca87780b85bc7c31c8ce6cc76ee40",
+      "sha256": "0bd86a2c27d333dd5311cd2ddce3ea3cfee32bfb51f01cb220ece0a7bb9738c9",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-rn-jupiter.webp",
+      "character_id": "IBS-U-RN-JUPITER",
+      "character_name": "朱庇特",
+      "source_path": "mobile/public/characters/ships/fleet-v2/rn-jupiter.png",
+      "source_sha256": "597726f144dfa3da1522fbcb1d53d56f619833f8e6c53ab487e77b0562682275",
+      "sha256": "e2328f02e253531cd4c073d0b5f28490ca72b96fb52115abb4a24377d72800f9",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-rn-kashmir.webp",
+      "character_id": "IBS-U-RN-KASHMIR",
+      "character_name": "克什米尔",
+      "source_path": "mobile/public/characters/ships/fleet-v2/rn-kashmir.png",
+      "source_sha256": "33bad6edead827b10c22815ae278fcc16a27003a6267979087c6c7018b72e9f2",
+      "sha256": "5d3d53e056a5019b8afcf4905423a7cc80beec7924a7ad5f7f40f69be3729b61",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1241,6 +1529,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-bainbridge.webp",
+      "character_id": "IBS-U-USN-BAINBRIDGE",
+      "character_name": "班布里奇",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-bainbridge.png",
+      "source_sha256": "21835bcd96cc06777171725362ab9f8f09ef3d1ed5070dba0f38fbb4e8734d74",
+      "sha256": "41c672811f043d1b807eb6e22877fb957931895d7e1c5d3fc5dcdd591cd9f8fa",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1328,6 +1628,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-colorado.webp",
+      "character_id": "IBS-U-USN-COLORADO",
+      "character_name": "科罗拉多",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-colorado.png",
+      "source_sha256": "21ef480ca166a4e538e468424ef3accc2d2a8d224f323ae76691f52aee0d4533",
+      "sha256": "ed466640999d8f7b1028323d7c3c1bf681df34b0edccae31669266805cd27a98",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-converse.webp",
       "character_id": "IBS-U-USN-CONVERSE",
       "character_name": "康弗斯",
@@ -1349,6 +1661,30 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-dahlgren.webp",
+      "character_id": "IBS-U-USN-DAHLGREN",
+      "character_name": "达尔格伦",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-dahlgren.png",
+      "source_sha256": "9c39c6b2a14fc2319bc91a6259865a33ff753d56bee75b4ac92f59dc454382f6",
+      "sha256": "8c656c2dd30c8321169378a1898ba3242fc32f79ac46c312d2c4b6b095c9fdca",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-usn-decatur.webp",
+      "character_id": "IBS-U-USN-DECATUR",
+      "character_name": "迪凯特",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-decatur.png",
+      "source_sha256": "021b4c38f62a942694c765fb9772fe07813674e512051fa12b58fea195474bb0",
+      "sha256": "acba006dd3a52ef82b79beadff370609d2ad3919280a1d2b25ee4ab9d7216ac6",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1496,6 +1832,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-fox.webp",
+      "character_id": "IBS-U-USN-FOX",
+      "character_name": "福克斯",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-fox.png",
+      "source_sha256": "3f4c843352cf02bb66979745b0cc57796605e5286efcd7b0390575f7e9ed103b",
+      "sha256": "be84fb062c133631ea695fc8185658ca78c124e56671f9097cd6e5e29f26661c",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-gwin.webp",
       "character_id": "IBS-U-USN-GWIN",
       "character_name": "葛文",
@@ -1529,6 +1877,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-hull-i.webp",
+      "character_id": "IBS-U-USN-HULL-I",
+      "character_name": "赫尔(I)",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-hull-i.png",
+      "source_sha256": "dac273a9b61d12d598d1b0c97e8c084d06a4789c744134c6ea788560f8767128",
+      "sha256": "79b78744ec2060226701b71e587b7a6b41fc0f39b2843505052d15d1692a24dd",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1604,6 +1964,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-mcdonough.webp",
+      "character_id": "IBS-U-USN-MCDONOUGH",
+      "character_name": "麦克多诺",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-mcdonough.png",
+      "source_sha256": "127f03131d57974ee0c222ee9975e0ccfbb2c2fa687fa293e04d863a9e942069",
+      "sha256": "49a226b2c8d375f8d4af1337ab535fc783a18b5fddca8115e765a80f1525946b",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-monssen.webp",
       "character_id": "IBS-U-USN-MONSSEN",
       "character_name": "蒙森",
@@ -1664,6 +2036,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-omaha.webp",
+      "character_id": "IBS-U-USN-OMAHA",
+      "character_name": "奥马哈",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-omaha.png",
+      "source_sha256": "8399aa7972230502ce28b3a7d90aa7358dbf5d55261a57cdbf0c2c581907439d",
+      "sha256": "60d1e8e81d3d6f31c4d9fb0b85850f53a7766b90d69fd7102a99fe438712e4b0",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-patterson.webp",
       "character_id": "IBS-U-USN-PATTERSON",
       "character_name": "帕特森",
@@ -1685,6 +2069,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-perry.webp",
+      "character_id": "IBS-U-USN-PERRY",
+      "character_name": "佩里",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-perry.png",
+      "source_sha256": "f483621904b7b67cf3e65c5065a26d665e17b34ed3a8ec6580fb399f0c11afe9",
+      "sha256": "29034b7ac47f78b3b7ed5970131783014bad632c02f9cdc51d719bb1ae664b17",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1844,6 +2240,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-truxton.webp",
+      "character_id": "IBS-U-USN-TRUXTON",
+      "character_name": "特鲁斯顿",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-truxton.png",
+      "source_sha256": "efc43645d6500d290d142d16c04c159e614ed54d8e9dcc5e8817f39f73eb08a8",
+      "sha256": "ac14ce21633113598c979a9f43a27cccfc0e55f0e6e01b5c20af8a63bc3ba6d2",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-unnamed-t01-r03.webp",
       "character_id": "IBS-U-USN-UNNAMED-T01-R03",
       "character_name": "北卡罗来纳",
@@ -1853,6 +2261,42 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-unnamed-t01-r06.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R06",
+      "character_name": "列克星敦",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r06.png",
+      "source_sha256": "d83f24c243186b9a4d93285729b747a5c2c2caf6690cb674dfd66b124e1dadfb",
+      "sha256": "98d00186c32e8d712f24f2efd14c58be608764ef73086e1fb61e7a09381ff022",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-usn-unnamed-t01-r07.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R07",
+      "character_name": "合众国",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r07.png",
+      "source_sha256": "a0fdc0da9e52db45468f191637a8e546c21b7ddd2a403a33f38ddb049ad3f5d7",
+      "sha256": "0ab2f7a2dc0e800b32e3b8a826c9b589b34013183aa24bee905d9092dfaf280c",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-usn-unnamed-t01-r08.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R08",
+      "character_name": "宪法",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r08.png",
+      "source_sha256": "e6a44a3ff2f5f78b1a992d67dbb1df20128fed31eaa2e9792cd654afb8d36d47",
+      "sha256": "a5298584036d18fb5a7534e9eb6a6f45bfadd8cec60595a92c2daeb4e7b44129",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1868,6 +2312,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-unnamed-t01-r13.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R13",
+      "character_name": "休斯顿",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r13.png",
+      "source_sha256": "58dd3d3389c2f0409c21a9fd1c19fe0ccec8d3be8c0588bb1600e667cd399106",
+      "sha256": "8b51922ed5c297097de04fa8d0dc21776a4daeca7d4a328afc990c987230e28f",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-unnamed-t01-r20.webp",
       "character_id": "IBS-U-USN-UNNAMED-T01-R20",
       "character_name": "波特兰",
@@ -1877,6 +2333,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-unnamed-t01-r22.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R22",
+      "character_name": "孟菲斯",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r22.png",
+      "source_sha256": "a3b33882a434655fde695ccd1e4b9ea0eeb3b64239c4511177fe44eeaa186990",
+      "sha256": "14527c14c9d97c891a6550d04944ce696d3f5a6af8d4133c367771ff061eca0a",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1901,6 +2369,18 @@
       "size": [
         700,
         1050
+      ]
+    },
+    {
+      "path": "ibs-u-usn-unnamed-t01-r25.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R25",
+      "character_name": "圣胡安",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r25.png",
+      "source_sha256": "f9f10c29440e00716bb7f60d3aac8060fae19a671d877deedf39fdef96563275",
+      "sha256": "574b8093e9413cb9669d348739e8b8ca8d853ec04d182d4fe09f57886fd058ac",
+      "size": [
+        512,
+        768
       ]
     },
     {
@@ -1952,6 +2432,30 @@
       ]
     },
     {
+      "path": "ibs-u-usn-unnamed-t01-r51.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R51",
+      "character_name": "邓拉普",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r51.png",
+      "source_sha256": "543c7b3e170200c2b03f3b8d3b3f1e0877732e91f57f1f77abbb4d14756c81ae",
+      "sha256": "cc9960439a2caaa3559385e01fc4b72cc3e867083cc1ae3f9d67af94bcfe755f",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
+      "path": "ibs-u-usn-unnamed-t01-r52.webp",
+      "character_id": "IBS-U-USN-UNNAMED-T01-R52",
+      "character_name": "格里德利",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r52.png",
+      "source_sha256": "a740ed090a3a778f5d01286a4a7a5dea7eb53992d49fef73bd4e90c0f9bc3f30",
+      "sha256": "13f15d938208a956c0a59478e555d5c89dd21c442babec6dcb2e603ae9fcef4f",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-vincennes.webp",
       "character_id": "IBS-U-USN-VINCENNES",
       "character_name": "文森斯",
@@ -1988,6 +2492,18 @@
       ]
     },
     {
+      "path": "ibs-u-usn-west-virginia.webp",
+      "character_id": "IBS-U-USN-WEST-VIRGINIA",
+      "character_name": "西弗吉尼亚",
+      "source_path": "mobile/public/characters/ships/fleet-v2/usn-west-virginia.png",
+      "source_sha256": "4dbeff64b24977898047ab638f43a609722d04ecfe0083d6860c04eca01d876f",
+      "sha256": "f11fa4ef90efe018e0c84d3ce7b966977e1f1cdf66f1d66bcfdae1250273d095",
+      "size": [
+        512,
+        768
+      ]
+    },
+    {
       "path": "ibs-u-usn-wilson.webp",
       "character_id": "IBS-U-USN-WILSON",
       "character_name": "威尔逊",
@@ -2011,5 +2527,11 @@
         1050
       ]
     }
-  ]
+  ],
+  "collection_source": {
+    "ledger": "client/src/assets/portraits/all/ledger.json",
+    "generated_by": "scripts/import-portraits-identity.py",
+    "source_mobile_version": "0.6.9",
+    "note": "43 additional identities reuse the 512x768 WebP from the identity ledger; source_path and SHA-256 match mobile 0.6.11 fleet-portrait-manifest.json."
+  }
 }

@@ -43,8 +43,21 @@ class PointTableTest(unittest.TestCase):
         self.assertEqual(self.points.version, "cas-points-surface-v1")
         self.assertEqual(self.points.rules_version, "cas-realtime-v10")
         self.assertEqual(self.points.budgets, (3000, 10000))
-        self.assertEqual(len(self.points.hulls), 17)
+        # Every playable identity registered in src/ranked_fleets.rs PROFILES:
+        # 88 stage0/prologue cards + 91 merged per-hull cards (see
+        # data/ships/merged-cards.json) + 23 per-hull period cards (see
+        # data/ships/period-cards.json).
+        self.assertEqual(len(self.points.hulls), 202)
         self.assertTrue(set(PROLOGUE_SHIPS) <= set(self.points.hulls))
+        # The two capital-era and six paper/unbuilt identities stay collection-only.
+        for identity in ("IBS-U-USN-MIDWAY", "IBS-U-IJN-XIFENG", "IBS-U-IJN-AMAGI",
+                         "IBS-U-IJN-AKAGI", "IBS-U-IJN-OWARI", "IBS-U-IJN-ERMA-IBUKI",
+                         "IBS-U-IJN-ERMA-KURAMA", "IBS-U-IJN-ERMA-GOKASE"):
+            self.assertNotIn(identity, self.points.hulls)
+        # A sample of the merged hulls is admitted by the frozen table.
+        for identity in ("IBS-U-IJN-ATAGO", "IBS-U-USN-SOUTH-DAKOTA", "IBS-U-USN-ERMA-IOWA",
+                         "IBS-U-IJN-NAGATO", "IBS-U-USN-WALKE", "IBS-U-IJN-ERMA-SHINANO"):
+            self.assertIn(identity, self.points.hulls)
         self.assertEqual(set(self.points.probes), {3000, 10000})
 
     def test_free_starter_fleet_is_ranked_ready(self):
@@ -182,7 +195,7 @@ class RankedFlowTest(unittest.TestCase):
                  "cost_version": None}
         saved = self.good(self.post("/fleets", headers, tag + "-fleet", fleet=fleet))
         self.assertTrue(saved["validation"]["ranked_ready"], saved)
-        self.assertEqual(saved["validation"]["cost"], 1875)
+        self.assertEqual(saved["validation"]["cost"], 1375)
         return fleet
 
     def queue(self, headers, tag, fleet_id="fleet-3000"):
@@ -191,9 +204,9 @@ class RankedFlowTest(unittest.TestCase):
     def test_health_and_ladders(self):
         health = self.good(self.client.get("/health"))
         self.assertTrue(health["ranked_pvp"] and health["fleet_point_table_available"])
-        self.assertEqual(health["ranked_budgets"], [3000])
+        self.assertEqual(health["ranked_budgets"], [3000, 10000])
         status = self.good(self.get("/pvp/ranked/status", self.host))
-        self.assertEqual(status["available_budgets"], [3000])
+        self.assertEqual(status["available_budgets"], [3000, 10000])
         self.assertEqual(status["point_table_version"], "cas-points-surface-v1")
         self.assertEqual([entry["budget"] for entry in status["ratings"]], [3000, 10000])
         self.assertTrue(all(entry["rating"] == START_RATING and entry["rank"] == "白银" for entry in status["ratings"]))
@@ -215,7 +228,7 @@ class RankedFlowTest(unittest.TestCase):
         self.assertEqual(matched["status"], "matched")
         match = matched["match"]
         self.assertEqual(match["mode"], "ranked")
-        self.assertEqual((match["budget"], match["season_id"], match["fleet_cost"]), (3000, "S0001", 1875))
+        self.assertEqual((match["budget"], match["season_id"], match["fleet_cost"]), (3000, "S0001", 1375))
         self.assertIsNone(self.good(self.get("/pvp/ranked/status", self.host))["queue"])
         path = "/pvp/matches/" + match["match_id"]
         # "coord" needs no unlock, so a frozen ranked AI style is reached directly.

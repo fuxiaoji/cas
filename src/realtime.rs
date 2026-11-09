@@ -26,6 +26,16 @@ pub(crate) struct Timings {
     pub(crate) train: f64,
 }
 
+/// The challenge ladder fields registered identities; every other scenario
+/// keeps its own id-keyed timing rows.
+fn timing_class<'a>(variant: &str, id: &'a str) -> &'a str {
+    if variant == crate::challenge::VARIANT {
+        crate::ranked_fleets::source_class(id).unwrap_or(id)
+    } else {
+        id
+    }
+}
+
 fn timings(version: &str, class: &str) -> Option<Timings> {
     #[cfg(not(target_arch = "wasm32"))]
     let class = if version == VERSION { crate::ranked_fleets::source_class(class).unwrap_or(class) } else { class };
@@ -56,6 +66,66 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
                 return Some(Timings { reload: 5, train: 15. }),
             "north-carolina" => return Some(Timings { reload: 30, train: 4. }),
             "yamato" => return Some(Timings { reload: 40, train: 2. }),
+            _ => (),
+        }
+    }
+    if version == VERSION {
+        // Period per-hull cards (data/ships/period-cards.json). Each cadence is
+        // the one its own registered period runtime already uses for the same
+        // weapon family: 6in/47 Mk16 at 10 s/10 deg-s, 5in/38 singles at the
+        // Fletcher 4 s/28.7 record, 8in/55 Mk9 at 20 s/4 deg-s, 14cm/50 and
+        // 12cm/40 at 8 s, 20cm/50 No.2 at 12 s/6 deg-s, 12cm/45 on the Uzuki
+        // escort fit at 12 s/8 deg-s.
+        match class {
+            "brooklyn_first_group_1942" | "brooklyn_1" => {
+                return Some(Timings { reload: 10, train: 10. })
+            }
+            "bristol_1942" => return Some(Timings { reload: 5, train: 15. }),
+            "us_bristol_dd" | "us_bagley_dd" | "us_benham_dd" | "us_porter_dd"
+            | "us_farragut_dd" | "us_benson_dd" => {
+                return Some(Timings { reload: 4, train: 28.7 })
+            }
+            "us_atlanta_cl" => return Some(Timings { reload: 6, train: 18. }),
+            "gb_kent_1939_ca" => return Some(Timings { reload: 20, train: 4. }),
+            "jp_takao_1939_ca" => return Some(Timings { reload: 12, train: 6. }),
+            "jp_tenryu_cl" | "jp_yubari_cl" => return Some(Timings { reload: 8, train: 10. }),
+            "mutsuki_1943_uzuki" => return Some(Timings { reload: 12, train: 8. }),
+            // Merged per-hull cards (data/ships/merged-cards.json). These are
+            // the loaded class-card ids; each cadence reuses the same weapon
+            // family record as the period/prologue card of that gun.
+            "south_dakota_1942_09" | "kongo_1941_12" | "hiei_1941_12"
+            | "usn_colorado_bb_1929" | "usn_colorado_bb_1944" | "usn_lexington_bc_1924"
+            | "us_iowa_bb_1943" | "ijn_nagato_1936_bb" => {
+                return Some(Timings { reload: 30, train: 4. })
+            }
+            "erma_ijn_yamato_bb" => return Some(Timings { reload: 40, train: 2. }),
+            "us_alaska_cb_1944" | "erma_ijn_b64_cb" => {
+                return Some(Timings { reload: 20, train: 4. })
+            }
+            "portland_1942_05" | "usn_northampton_ca_1942_02" => {
+                return Some(Timings { reload: 20, train: 4. })
+            }
+            "us_des_moines_ca_1948" => return Some(Timings { reload: 10, train: 10. }),
+            "us_worcester_cl_1948" | "usn_omaha_cl_1923" => {
+                return Some(Timings { reload: 10, train: 10. })
+            }
+            "leander_1943" => return Some(Timings { reload: 6, train: 18. }),
+            "sims_1942_08" | "fletcher_1943" | "us_sumner_dd_1943" | "usn_gearing_dd_1944" => {
+                return Some(Timings { reload: 4, train: 28.7 })
+            }
+            "usn_clemson_4in_dd_1918" => return Some(Timings { reload: 5, train: 15. }),
+            "akatsuki_1942_07" | "asashio_1942_10" | "hatsuharu_1942_03" | "ijn_asashio_dd"
+            | "ijn_fubuki_dd" | "ijn_myoko_1935_ca" | "kagero_1943" | "erma_ijn_yugumo_dd"
+            | "erma_ijn_shimakaze_dd" => return Some(Timings { reload: 12, train: 6. }),
+            "mutsuki" | "mutsuki_mikazuki" | "ijn_mutsuki_dd" | "ijn_kamikaze_dd"
+            | "jp_kamikaze_1941_dd" => return Some(Timings { reload: 12, train: 8. }),
+            "nagara_1941_12" | "ijn_nisshin_av" | "rn_j_class_dd_1941_12" | "ijn_tenryu_cl" => {
+                return Some(Timings { reload: 8, train: 10. })
+            }
+            "ijn_chitose_av" => return Some(Timings { reload: 12, train: 6. }),
+            "km_type_1934a_dd" | "km_type_1936_dd" => {
+                return Some(Timings { reload: 9, train: 9. })
+            }
             _ => (),
         }
     }
@@ -95,6 +165,13 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
         | "savo_wilson" | "savo_monssen" | "savo_buchanan" | "savo_jarvis" | "savo_selfridge"
         | "savo_mugford" | "savo_dewey" | "savo_hull" | "savo_henley" | "savo_ellet" => (4, 28.7),
         "brooklyn_second_group_1942" | "tass_honolulu" => (10, 10.),
+        // Class cards fielded by the staged challenge ladder on the frozen v9
+        // timing. Same weapon-family cadences as the v10 block above.
+        "fletcher_1943" | "us_bristol_dd" | "us_benham_dd" => (4, 28.7),
+        "us_atlanta_cl" => (6, 18.),
+        "usn_clemson_4in_dd_1918" => (5, 15.),
+        "usn_colorado_bb_1929" | "usn_colorado_bb_1944" | "hiei_1941_12" | "kongo_1941_12" => (30, 4.),
+        "usn_omaha_cl_1923" => (10, 10.),
         "tass_fletcher" => (4, 28.7),
         "tass_perkins" | "tass_maury" | "tass_drayton" | "tass_lamson" | "tass_lardner" => (5, 15.),
         "tass_naganami" | "tass_makinami" | "tass_takanami" | "tass_kawakaze" | "tass_suzukaze" => (12, 6.),
@@ -103,7 +180,10 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
         "fubuki_1936_refit" => (12, 6.),
         "sendai" => (12, 7.5),
         "onami" | "makinami" | "amagiri" | "yugiri" => (9, 9.),
-        "uzuki" => (12, 8.),
+        "uzuki" | "mutsuki" | "mutsuki_mikazuki" | "mutsuki_1943_uzuki" | "ijn_mutsuki_dd"
+        | "jp_kamikaze_1941_dd" | "ijn_kamikaze_dd" => (12, 8.),
+        "km_type_1934a_dd" | "km_type_1936_dd" => (9, 9.),
+        "rn_j_class_dd_1941_12" => (8, 10.),
         "IBS-U-KM-KARL-GALSTER" | "IBS-U-KM-RICHARD-BEITZEN" | "IBS-U-KM-HANS-LODY" => (9, 9.),
         "IBS-U-RN-JAVELIN" | "IBS-U-RN-JUPITER" | "IBS-U-RN-KASHMIR" | "IBS-U-RN-JACKAL"
         | "IBS-U-RN-JERSEY" => (8, 10.),
@@ -178,7 +258,7 @@ impl World {
     pub(crate) fn enable_realtime(&mut self) -> E<()> {
         let version = if self.campaign.is_some() {
             crate::campaign::live::VERSION
-        } else if self.variant == "challenge" {
+        } else if self.variant == crate::challenge::VARIANT {
             // The 3-vs-5 challenge is a hand-tuned knife-edge; it keeps the
             // v9 timing (shared window dice, window-end torpedoes) so the v10
             // fire-discipline upgrades do not silently flip its balance.
@@ -192,7 +272,11 @@ impl World {
     pub(crate) fn init_realtime(&mut self, version: &'static str) -> E<()> {
         for s in &mut self.ships {
             let def = &self.data.ships[s.def];
-            timings(version, &def.id)
+            // The staged challenge ladder fields registered identities on the
+            // frozen v9 timing, so map them to their loaded class card only for
+            // this variant. Campaigns and the legacy exercises keep their own
+            // id-keyed cadences.
+            timings(version, timing_class(&self.variant, &def.id))
                 .ok_or_else(|| format!("{} 的实时炮座配置尚未核准", def.name))?;
             s.battery.turrets = def
                 .gun
@@ -235,12 +319,12 @@ impl World {
             return;
         }
         let tick = self.tick;
-        let reload = timings(
-            self.version,
+        let class = timing_class(
+            &self.variant,
             &self.data.ships[self.ship(id).unwrap().def].id,
         )
-        .unwrap()
-        .reload;
+        .to_string();
+        let reload = timings(self.version, &class).unwrap().reload;
         let s = self.ship_mut(id).unwrap();
         s.battery.turrets[index].ready = tick + reload;
     }
@@ -256,7 +340,8 @@ impl World {
 
     pub(crate) fn train_illumination_mount(&mut self, id: u32, index: usize, bearing: f64) {
         let s = self.ship(id).unwrap();
-        let train = timings(self.version, &self.data.ships[s.def].id)
+        let class = timing_class(&self.variant, &self.data.ships[s.def].id).to_string();
+        let train = timings(self.version, &class)
             .unwrap()
             .train;
         let goal = norm(bearing - s.h);
@@ -325,7 +410,8 @@ impl World {
     pub(crate) fn realtime_aim(&self, ship: &Ship, target: &str) -> E<Value> {
         let (contact, radar_only) = self.gun_contact(ship, target)?;
         let def = &self.data.ships[ship.def];
-        let timing = timings(self.version, &def.id).ok_or("本舰实时炮座未核准")?;
+        let timing = timings(self.version, timing_class(&self.variant, &def.id))
+            .ok_or("本舰实时炮座未核准")?;
         let mut solution = json!({
             "heading":(contact.p()-ship.p).heading(),"range":def.gun.range_yd[3]*YARD,
             "arcs":[],"friendly":false,"valid":false,"barrels":0,"mounts":[],
@@ -469,7 +555,11 @@ impl World {
             let owner = s.side;
             let name = s.name.clone();
             let gun = &self.data.ships[s.def].gun;
-            let timing = timings(self.version, &self.data.ships[s.def].id).unwrap();
+            let timing = timings(
+                self.version,
+                timing_class(&self.variant, &self.data.ships[s.def].id),
+            )
+            .unwrap();
             let contact = self
                 .gun_contact(s, &order.target)
                 .ok()

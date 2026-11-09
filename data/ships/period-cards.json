@@ -1,0 +1,3640 @@
+[
+ {
+  "identity": "IBS-U-USN-BOISE",
+  "name": "博伊西",
+  "side": "allies",
+  "type": "CL",
+  "source_file": "data/campaign/period/cape-esperance-1942.json",
+  "period_ship_id": "boise",
+  "period_profile": "brooklyn_first_group_1942",
+  "form10_page": 265,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/tassafaronga-runtime.json",
+   "ship_id": "tass_honolulu",
+   "note": "data/campaign/period/cape-esperance-1942.json profiles.brooklyn_first_group_1942 → tassafaronga-1942.json#profiles.brooklyn_first_group_1942 → tassafaronga-runtime.json tass_honolulu"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-BOISE",
+   "name": "博伊西",
+   "side": "allies",
+   "kind": "CL",
+   "size": "B",
+   "max_knots": 32,
+   "dp": 388,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 32
+    },
+    {
+     "damage": 97,
+     "knots": 24
+    },
+    {
+     "damage": 194,
+     "knots": 16
+    },
+    {
+     "damage": 291,
+     "knots": 8
+    },
+    {
+     "damage": 349,
+     "knots": 0
+    },
+    {
+     "damage": 388,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 3,
+   "accel_knots_per_turn": 10,
+   "accel_high_knots_per_turn": 5,
+   "brake_knots_per_turn": 12,
+   "armor_belt": 13,
+   "armor_deck": 5,
+   "in_service_year": 1937,
+   "gun": {
+    "name": "Mk16 6in/47 APC",
+    "caliber_mm": 152,
+    "range_yd": [
+     6200,
+     13000,
+     20800,
+     26000
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "barrels": 15,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 3,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ]
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     15,
+     9,
+     7,
+     5
+    ],
+    "pen_deck": [
+     null,
+     null,
+     2,
+     4
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": null,
+   "source_class": "brooklyn_first_group_1942",
+   "gun_note": null
+  }
+ },
+ {
+  "identity": "IBS-U-USN-FARENHOLT",
+  "name": "法伦霍尔特",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/cape-esperance-1942.json",
+  "period_ship_id": "farenholt",
+  "period_profile": "bristol_1942",
+  "form10_page": 296,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/tassafaronga-runtime.json",
+   "ship_id": "tass_lardner",
+   "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-FARENHOLT",
+   "name": "法伦霍尔特",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 37,
+   "dp": 118,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 37
+    },
+    {
+     "damage": 30,
+     "knots": 28
+    },
+    {
+     "damage": 59,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    },
+    {
+     "damage": 118,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 250,
+   "speed_loss_knots": 4,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1941,
+   "gun": {
+    "name": "Mk30 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500,
+     10900,
+     14600,
+     18200
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "barrels": 8,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 10,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "reload_seconds": null
+   },
+   "source_class": "bristol_1942",
+   "gun_note": null
+  }
+ },
+ {
+  "identity": "IBS-U-USN-DUNCAN",
+  "name": "邓肯",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/cape-esperance-1942.json",
+  "period_ship_id": "duncan",
+  "period_profile": "bristol_1942",
+  "form10_page": 295,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/tassafaronga-runtime.json",
+   "ship_id": "tass_lardner",
+   "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-DUNCAN",
+   "name": "邓肯",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 37,
+   "dp": 118,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 37
+    },
+    {
+     "damage": 30,
+     "knots": 28
+    },
+    {
+     "damage": 59,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    },
+    {
+     "damage": 118,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 250,
+   "speed_loss_knots": 4,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1941,
+   "gun": {
+    "name": "Mk30 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500,
+     10900,
+     14600,
+     18200
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "barrels": 8,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 10,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "reload_seconds": null
+   },
+   "source_class": "bristol_1942",
+   "gun_note": null
+  }
+ },
+ {
+  "identity": "IBS-U-USN-LAFFEY",
+  "name": "拉菲",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/cape-esperance-1942.json",
+  "period_ship_id": "laffey",
+  "period_profile": "bristol_1942",
+  "form10_page": 297,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/tassafaronga-runtime.json",
+   "ship_id": "tass_lardner",
+   "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-LAFFEY",
+   "name": "拉菲",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 37,
+   "dp": 118,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 37
+    },
+    {
+     "damage": 30,
+     "knots": 28
+    },
+    {
+     "damage": 59,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    },
+    {
+     "damage": 118,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 250,
+   "speed_loss_knots": 4,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1941,
+   "gun": {
+    "name": "Mk30 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500,
+     10900,
+     14600,
+     18200
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "barrels": 8,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 10,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "reload_seconds": null
+   },
+   "source_class": "bristol_1942",
+   "gun_note": null
+  }
+ },
+ {
+  "identity": "IBS-U-USN-BUCHANAN",
+  "name": "布坎南",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_buchanan",
+  "period_profile": "us_bristol_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "Rising Sun Form 10 p.292（Buchanan DD, Mar 42/Nov-Dec 42 两页同装）＋American Fleets A-17 Bristol：F/A(1)4 Mk30=4 门单装；Port & Stbd (5)×2=10 雷管；DP 118、37 节",
+  "stat_conflicts": [
+   "class 行 A-17（Bristol）与个体页 p.292/p.293 同印 Port & Stbd (5)；按同型 Barton p.291 / 13 张同型卡口径取 2 座×5=10 管，若后续确认单座再回调"
+  ],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_buchanan",
+   "note": "period ships[].savo_buchanan"
+  },
+  "also_recorded": [
+   {
+    "file": "data/campaign/period/cape-esperance-1942.json",
+    "hull_id": "buchanan",
+    "profile": "bristol_1942",
+    "form10_page": 293
+   }
+  ],
+  "ship": {
+   "id": "IBS-U-USN-BUCHANAN",
+   "name": "布坎南",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 37,
+   "dp": 118,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 37
+    },
+    {
+     "damage": 30,
+     "knots": 28
+    },
+    {
+     "damage": 59,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    },
+    {
+     "damage": 118,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1942,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 4,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 10,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row Port & Stbd (5)×2 Mk15 533mm TT w/5 Mk15 torpedoes（2 座×5=10，同型 Barton p.291 口径）"
+   },
+   "source_profile": "us_bristol_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-MCCALLA",
+  "name": "麦卡拉",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/cape-esperance-1942.json",
+  "period_ship_id": "mccalla",
+  "period_profile": "bristol_1942",
+  "form10_page": 299,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/tassafaronga-runtime.json",
+   "ship_id": "tass_lardner",
+   "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-MCCALLA",
+   "name": "麦卡拉",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 37,
+   "dp": 118,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 37
+    },
+    {
+     "damage": 30,
+     "knots": 28
+    },
+    {
+     "damage": 59,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    },
+    {
+     "damage": 118,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 250,
+   "speed_loss_knots": 4,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1941,
+   "gun": {
+    "name": "Mk30 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500,
+     10900,
+     14600,
+     18200
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "barrels": 8,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 10,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "reload_seconds": null
+   },
+   "source_class": "bristol_1942",
+   "gun_note": null
+  }
+ },
+ {
+  "identity": "IBS-U-USN-HONOLULU",
+  "name": "火奴鲁鲁",
+  "side": "allies",
+  "type": "CL",
+  "source_file": "data/campaign/period/kula-runtime.json",
+  "period_ship_id": "kula-honolulu",
+  "period_profile": "brooklyn_1",
+  "form10_page": 267,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/kula-runtime.json",
+   "ship_id": "brooklyn_1",
+   "note": "period profiles.brooklyn_1（内联完整 ShipDef）"
+  },
+  "also_recorded": [
+   {
+    "file": "data/campaign/period/tassafaronga-runtime.json",
+    "hull_id": "tass_honolulu",
+    "profile": "brooklyn_first_group_1942",
+    "form10_page": null
+   }
+  ],
+  "ship": {
+   "side": "allies",
+   "kind": "CL",
+   "size": "B",
+   "in_service_year": 1937,
+   "max_knots": 32,
+   "dp": 388,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 32
+    },
+    {
+     "damage": 97,
+     "knots": 24
+    },
+    {
+     "damage": 194,
+     "knots": 16
+    },
+    {
+     "damage": 291,
+     "knots": 8
+    },
+    {
+     "damage": 349,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 2,
+   "accel_knots_per_turn": 10,
+   "accel_high_knots_per_turn": 5,
+   "brake_knots_per_turn": 12,
+   "gun": {
+    "name": "Mk16 6英寸/47",
+    "caliber_mm": 152.4,
+    "shell": "APC",
+    "armor_piercing": true,
+    "range_yd": [
+     6200,
+     13000,
+     20800,
+     26000
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "pen_belt": [
+     15,
+     9,
+     7,
+     5
+    ],
+    "pen_deck": [
+     0,
+     0,
+     2,
+     4
+    ],
+    "barrels": 15,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 3,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       210,
+       330
+      ],
+      "arc2": [
+       30,
+       150
+      ]
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 3,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "source": {
+     "document": "us",
+     "pdf_page": 108,
+     "printed_page": "C-2"
+    }
+   },
+   "torpedo": null,
+   "armor_belt": 13,
+   "armor_deck": 5,
+   "id": "IBS-U-USN-HONOLULU",
+   "name": "火奴鲁鲁"
+  }
+ },
+ {
+  "identity": "IBS-U-IJN-UZUKI",
+  "name": "卯月(I)",
+  "side": "axis",
+  "type": "DD",
+  "source_file": "data/campaign/period/cape-runtime.json",
+  "period_ship_id": "uzuki",
+  "period_profile": "mutsuki_1943_uzuki",
+  "form10_page": 183,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/cape-runtime.json",
+   "ship_id": "uzuki",
+   "note": "period ships[].uzuki"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-IJN-UZUKI",
+   "name": "卯月(I)",
+   "side": "axis",
+   "kind": "DD",
+   "size": "D",
+   "max_knots": 33,
+   "dp": 88,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 22,
+     "knots": 25
+    },
+    {
+     "damage": 44,
+     "knots": 16
+    },
+    {
+     "damage": 66,
+     "knots": 8
+    },
+    {
+     "damage": 79,
+     "knots": 0
+    },
+    {
+     "damage": 88,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 200,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1925,
+   "gun": {
+    "name": "三年式 12cm/45 COM",
+    "caliber_mm": 120,
+    "range_yd": [
+     5300,
+     10600,
+     14100,
+     17600
+    ],
+    "damage": [
+     14,
+     11,
+     10,
+     9
+    ],
+    "barrels": 2,
+    "gs": 4,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     4,
+     3,
+     2,
+     1
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": false
+   },
+   "torpedo": null
+  }
+ },
+ {
+  "identity": "IBS-U-USN-RALPH-TALBOT",
+  "name": "拉尔夫·托尔伯特",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_ralph_talbot",
+  "period_profile": "us_bagley_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_ralph_talbot",
+   "note": "period ships[].savo_ralph_talbot"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-RALPH-TALBOT",
+   "name": "拉尔夫·托尔伯特",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 36,
+   "dp": 119,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 36
+    },
+    {
+     "damage": 30,
+     "knots": 27
+    },
+    {
+     "damage": 60,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 107,
+     "knots": 0
+    },
+    {
+     "damage": 119,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1937,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 8,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+   },
+   "source_profile": "us_bagley_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-MONSSEN",
+  "name": "蒙森",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_monssen",
+  "period_profile": "us_benson_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "Rising Sun Form 10 p.303（Monssen DD, May 42 Modification）：Fwd (1)×2+Aft (1)×2=4 门单装；Port & Stbd (5)×2=10 雷管；DP 128、35 节，损伤行 0/32/64/96/115/128→35/26/18/9/0",
+  "stat_conflicts": [
+   "class 行 A-17（Benson）印 5 门单装、37 节/144 DP；本卡按个体页 p.303 取 4 门单装、35 节/128 DP",
+   "p.303 雷装印一行 Port & Stbd (5)（5 个雷位框）；按同型 Gwin p.301 / 13 张同型卡口径取 2 座×5=10 管，若后续确认单座再回调"
+  ],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_monssen",
+   "note": "period ships[].savo_monssen"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-MONSSEN",
+   "name": "蒙森",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 35,
+   "dp": 128,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 35
+    },
+    {
+     "damage": 32,
+     "knots": 26
+    },
+    {
+     "damage": 64,
+     "knots": 18
+    },
+    {
+     "damage": 96,
+     "knots": 9
+    },
+    {
+     "damage": 115,
+     "knots": 0
+    },
+    {
+     "damage": 128,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1940,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 4,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "contact_fuze": true,
+    "tubes": 10,
+    "mounts": [
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 5,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row Port & Stbd (5)×2 Mk14 533mm TT w/5 Mk15 torp（2 座×5=10，同型 Gwin p.301 口径）"
+   },
+   "source_profile": "us_benson_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-RAN-AUSTRALIA",
+  "name": "澳大利亚",
+  "side": "allies",
+  "type": "CA",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_australia",
+  "period_profile": "gb_kent_1939_ca",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_australia",
+   "note": "period ships[].savo_australia"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-RAN-AUSTRALIA",
+   "name": "澳大利亚",
+   "side": "allies",
+   "kind": "CA",
+   "size": "B",
+   "max_knots": 32,
+   "dp": 333,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 32
+    },
+    {
+     "damage": 83,
+     "knots": 24
+    },
+    {
+     "damage": 167,
+     "knots": 16
+    },
+    {
+     "damage": 250,
+     "knots": 8
+    },
+    {
+     "damage": 300,
+     "knots": 0
+    },
+    {
+     "damage": 333,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 2,
+   "accel_knots_per_turn": 10,
+   "accel_high_knots_per_turn": 5,
+   "brake_knots_per_turn": 12,
+   "armor_belt": 6,
+   "armor_deck": 4,
+   "in_service_year": 1928,
+   "gun": {
+    "name": "8in/50 MkVIII APC",
+    "caliber_mm": 203,
+    "range_yd": [
+     6700.0,
+     15300.0,
+     24400.0,
+     30500.0
+    ],
+    "damage": [
+     26,
+     20,
+     17,
+     15
+    ],
+    "gs": 4,
+    "barrels": 12,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     33,
+     22,
+     15,
+     12
+    ],
+    "pen_deck": [
+     null,
+     null,
+     5,
+     10
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "MkIX",
+    "speed_knots": 45,
+    "range_yd": 11000,
+    "warhead": 84,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)2 533mm TT w/4 MkIX torp"
+   },
+   "source_profile": "gb_kent_1939_ca"
+  }
+ },
+ {
+  "identity": "IBS-U-RAN-CANBERRA",
+  "name": "堪培拉",
+  "side": "allies",
+  "type": "CA",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_canberra",
+  "period_profile": "gb_kent_1939_ca",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_canberra",
+   "note": "period ships[].savo_canberra"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-RAN-CANBERRA",
+   "name": "堪培拉",
+   "side": "allies",
+   "kind": "CA",
+   "size": "B",
+   "max_knots": 32,
+   "dp": 333,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 32
+    },
+    {
+     "damage": 83,
+     "knots": 24
+    },
+    {
+     "damage": 167,
+     "knots": 16
+    },
+    {
+     "damage": 250,
+     "knots": 8
+    },
+    {
+     "damage": 300,
+     "knots": 0
+    },
+    {
+     "damage": 333,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 2,
+   "accel_knots_per_turn": 10,
+   "accel_high_knots_per_turn": 5,
+   "brake_knots_per_turn": 12,
+   "armor_belt": 6,
+   "armor_deck": 4,
+   "in_service_year": 1928,
+   "gun": {
+    "name": "8in/50 MkVIII APC",
+    "caliber_mm": 203,
+    "range_yd": [
+     6700.0,
+     15300.0,
+     24400.0,
+     30500.0
+    ],
+    "damage": [
+     26,
+     20,
+     17,
+     15
+    ],
+    "gs": 4,
+    "barrels": 12,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     33,
+     22,
+     15,
+     12
+    ],
+    "pen_deck": [
+     null,
+     null,
+     5,
+     10
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "MkIX",
+    "speed_knots": 45,
+    "range_yd": 11000,
+    "warhead": 84,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)2 533mm TT w/4 MkIX torp"
+   },
+   "source_profile": "gb_kent_1939_ca"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-BAGLEY",
+  "name": "巴格莱",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_bagley",
+  "period_profile": "us_bagley_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_bagley",
+   "note": "period ships[].savo_bagley"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-BAGLEY",
+   "name": "巴格莱",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 36,
+   "dp": 119,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 36
+    },
+    {
+     "damage": 30,
+     "knots": 27
+    },
+    {
+     "damage": 60,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 107,
+     "knots": 0
+    },
+    {
+     "damage": 119,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1937,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 8,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+   },
+   "source_profile": "us_bagley_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-PATTERSON",
+  "name": "帕特森",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_patterson",
+  "period_profile": "us_bagley_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_patterson",
+   "note": "period ships[].savo_patterson"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-PATTERSON",
+   "name": "帕特森",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 36,
+   "dp": 119,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 36
+    },
+    {
+     "damage": 30,
+     "knots": 27
+    },
+    {
+     "damage": 60,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 107,
+     "knots": 0
+    },
+    {
+     "damage": 119,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1937,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 8,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+   },
+   "source_profile": "us_bagley_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-HELM",
+  "name": "赫尔姆",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_helm",
+  "period_profile": "us_bagley_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_helm",
+   "note": "period ships[].savo_helm"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-HELM",
+   "name": "赫尔姆",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 36,
+   "dp": 119,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 36
+    },
+    {
+     "damage": 30,
+     "knots": 27
+    },
+    {
+     "damage": 60,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 107,
+     "knots": 0
+    },
+    {
+     "damage": 119,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1937,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 8,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+   },
+   "source_profile": "us_bagley_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-WILSON",
+  "name": "威尔逊",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_wilson",
+  "period_profile": "us_benham_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "Rising Sun Form 10 p.317（Wilson DD, Dec 1941）＋American Fleets A-18 Benham：F/A(1)4=4 门单装；Port/Stbd (4)×2=16 雷管；DP 118、38 节，损伤行 0/30/59/89/106/118→38/28/19/10/0",
+  "stat_conflicts": [
+   "class 行 A-18（Benham）印 124 DP、35 节；本卡按个体页 p.317 取 118/38，级表差额保留"
+  ],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_wilson",
+   "note": "period ships[].savo_wilson"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-WILSON",
+   "name": "威尔逊",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 38,
+   "dp": 118,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 38
+    },
+    {
+     "damage": 30,
+     "knots": 28
+    },
+    {
+     "damage": 59,
+     "knots": 19
+    },
+    {
+     "damage": 89,
+     "knots": 10
+    },
+    {
+     "damage": 106,
+     "knots": 0
+    },
+    {
+     "damage": 118,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1939,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 4,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 16,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       210,
+       330
+      ],
+      "arc2": null,
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       210,
+       330
+      ],
+      "arc2": null,
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": null,
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": null,
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)4 Mk12 533mm TT w/4 Mk15 torpedoes（4 座×4=16）"
+   },
+   "source_profile": "us_benham_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-UNNAMED-T01-R25",
+  "name": "圣胡安",
+  "side": "allies",
+  "type": "CL",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_san_juan",
+  "period_profile": "us_atlanta_cl",
+  "form10_page": 262,
+  "stat_verified": true,
+  "stat_source": "Rising Sun Form 10 p.262（San Juan CL, May 1942）＋American Fleets A-15 Atlanta：3F/P/S/3A(2)8=8 座双联 16 管；Port/Stbd (4)=8 雷管",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_san_juan",
+   "note": "period ships[].savo_san_juan"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-UNNAMED-T01-R25",
+   "name": "圣胡安",
+   "side": "allies",
+   "kind": "CL",
+   "size": "B",
+   "max_knots": 33,
+   "dp": 304,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 76,
+     "knots": 25
+    },
+    {
+     "damage": 152,
+     "knots": 16
+    },
+    {
+     "damage": 228,
+     "knots": 8
+    },
+    {
+     "damage": 274,
+     "knots": 0
+    },
+    {
+     "damage": 304,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 2,
+   "accel_knots_per_turn": 10,
+   "accel_high_knots_per_turn": 5,
+   "brake_knots_per_turn": 12,
+   "armor_belt": 7,
+   "armor_deck": 3,
+   "in_service_year": 1942,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 16,
+    "mounts": [
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       210,
+       330
+      ],
+      "arc2": null,
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": null,
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)2 533mm TT w/4 Mk15 torpedoes（2 座×4=8）"
+   },
+   "source_profile": "us_atlanta_cl"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-JARVIS",
+  "name": "贾维斯",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_jarvis",
+  "period_profile": "us_bagley_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_jarvis",
+   "note": "period ships[].savo_jarvis"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-JARVIS",
+   "name": "贾维斯",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 36,
+   "dp": 119,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 36
+    },
+    {
+     "damage": 30,
+     "knots": 27
+    },
+    {
+     "damage": 60,
+     "knots": 18
+    },
+    {
+     "damage": 89,
+     "knots": 9
+    },
+    {
+     "damage": 107,
+     "knots": 0
+    },
+    {
+     "damage": 119,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1937,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 8,
+    "mounts": [
+     {
+      "barrels": 4,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 4,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P/S(4)4 Mk12, Mk13 533mm TT w/4 Mk15 torpedoes"
+   },
+   "source_profile": "us_bagley_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-SELFRIDGE",
+  "name": "赛尔弗里纪",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_selfridge",
+  "period_profile": "us_porter_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_selfridge",
+   "note": "period ships[].savo_selfridge"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-SELFRIDGE",
+   "name": "赛尔弗里纪",
+   "side": "allies",
+   "kind": "DD",
+   "size": "C",
+   "max_knots": 37,
+   "dp": 139,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 37
+    },
+    {
+     "damage": 35,
+     "knots": 28
+    },
+    {
+     "damage": 70,
+     "knots": 18
+    },
+    {
+     "damage": 104,
+     "knots": 9
+    },
+    {
+     "damage": 125,
+     "knots": 0
+    },
+    {
+     "damage": 139,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1936,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 8,
+    "mounts": [
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 4,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 4
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 4
+     }
+    ],
+    "fit_note": "mount row P&S(4)2 Mk12 533mm TT w/4 Mk15 torpedoes（4 reserve torp/mount for reload in 15 minutes）"
+   },
+   "source_profile": "us_porter_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-USN-HULL-I",
+  "name": "赫尔(I)",
+  "side": "allies",
+  "type": "DD",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_hull",
+  "period_profile": "us_farragut_dd",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "American Fleets A-19（Farragut）：2F/P&S/2A(1)5 Mk21=5 门单装；P&S(4)2 Mk11=8 雷管；Size D/Small、Standard Rudder 200 yds (1)；Dam 0/26/53/79/95/105 → 36/27/18/9/0",
+  "stat_conflicts": [
+   "Savo 包 us_farragut_dd 旧值 Dam 36/speed 26、turn 300、size C 与 AF A-19 原页冲突；本卡按 A-19 修正（与同盟 source card 一致）",
+   "A-19 备注「1942: P&S 5in removed」未落在本卡：class 行印 5 门，Hull 无本舰 Form 10；ASW w/7 DC 未建模"
+  ],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_hull",
+   "note": "period ships[].savo_hull"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-USN-HULL-I",
+   "name": "赫尔(I)",
+   "side": "allies",
+   "kind": "DD",
+   "size": "D",
+   "max_knots": 36,
+   "dp": 105,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 36
+    },
+    {
+     "damage": 26,
+     "knots": 27
+    },
+    {
+     "damage": 53,
+     "knots": 18
+    },
+    {
+     "damage": 79,
+     "knots": 9
+    },
+    {
+     "damage": 95,
+     "knots": 0
+    },
+    {
+     "damage": 105,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 200,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 0,
+   "armor_deck": 0,
+   "in_service_year": 1934,
+   "gun": {
+    "name": "Mk12/38 5in/38 SpCOM",
+    "caliber_mm": 127,
+    "range_yd": [
+     5500.0,
+     10900.0,
+     14600.0,
+     18200.0
+    ],
+    "damage": [
+     18,
+     14,
+     12,
+     11
+    ],
+    "gs": 4,
+    "barrels": 5,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ]
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     7,
+     4,
+     3,
+     2
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "Mk15（TNT）",
+    "speed_knots": 45,
+    "range_yd": 6000,
+    "warhead": 87,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P&S(4)2 Mk11 533mm TT w/4 Mk15 torpedoes（2 座×4=8）"
+   },
+   "source_profile": "us_farragut_dd"
+  }
+ },
+ {
+  "identity": "IBS-U-IJN-CHOKAI",
+  "name": "鸟海",
+  "side": "axis",
+  "type": "CA",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_chokai",
+  "period_profile": "jp_takao_1939_ca",
+  "form10_page": null,
+  "stat_verified": true,
+  "stat_source": "Rising Sun Form 10 p.49（Chokai CA, Aug 42 Damage）：Fwd (1)+Fwd (2)+P&S (2)+Aft (2)+Aft (2)=9 管/5 座；Port/Stbd (4) 610mm TT=8 雷管；DP 471、损伤行 0/118/236/353/424/471→33/25/16/8/0",
+  "stat_conflicts": [
+   "class profile jp_takao_1939_ca 印 (2)5=10 管、P/S(4)4=16 雷管、401 DP，属 Takao/Atago（p.52）；鸟海按本舰 p.49 取 9 管/8 雷管/471 DP，级表差额保留"
+  ],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_chokai",
+   "note": "period ships[].savo_chokai"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-IJN-CHOKAI",
+   "name": "鸟海",
+   "side": "axis",
+   "kind": "CA",
+   "size": "B",
+   "max_knots": 33,
+   "dp": 471,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 118,
+     "knots": 25
+    },
+    {
+     "damage": 236,
+     "knots": 16
+    },
+    {
+     "damage": 353,
+     "knots": 8
+    },
+    {
+     "damage": 424,
+     "knots": 0
+    },
+    {
+     "damage": 471,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 2,
+   "accel_knots_per_turn": 10,
+   "accel_high_knots_per_turn": 5,
+   "brake_knots_per_turn": 12,
+   "armor_belt": 8,
+   "armor_deck": 5,
+   "in_service_year": 1932,
+   "gun": {
+    "name": "三年式二号 20cm/50 APC",
+    "caliber_mm": 203,
+    "range_yd": [
+     7000.0,
+     16000.0,
+     25600.0,
+     32000.0
+    ],
+    "damage": [
+     26,
+     20,
+     17,
+     15
+    ],
+    "gs": 4,
+    "barrels": 9,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ]
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     34,
+     23,
+     16,
+     12
+    ],
+    "pen_deck": [
+     null,
+     null,
+     5,
+     10
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "九三式一型 Mod 1/2",
+    "speed_knots": 49,
+    "range_yd": 22000,
+    "warhead": 95,
+    "tubes": 8,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 4
+     },
+     {
+      "tubes": 4,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 4
+     }
+    ],
+    "fit_note": "mount row P/S(2)4 610mm TT w/2 Type 93 torps（8 reserve torp，6 分钟快装）"
+   },
+   "source_profile": "jp_takao_1939_ca"
+  }
+ },
+ {
+  "identity": "IBS-U-IJN-TENRYU",
+  "name": "天龙",
+  "side": "axis",
+  "type": "CL",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_tenryu",
+  "period_profile": "jp_tenryu_cl",
+  "form10_page": 81,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_tenryu",
+   "note": "period ships[].savo_tenryu"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-IJN-TENRYU",
+   "name": "天龙",
+   "side": "axis",
+   "kind": "CL",
+   "size": "C",
+   "max_knots": 33,
+   "dp": 158,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 33
+    },
+    {
+     "damage": 40,
+     "knots": 25
+    },
+    {
+     "damage": 79,
+     "knots": 16
+    },
+    {
+     "damage": 118,
+     "knots": 8
+    },
+    {
+     "damage": 142,
+     "knots": 0
+    },
+    {
+     "damage": 158,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 4,
+   "armor_deck": 2,
+   "in_service_year": 1919,
+   "gun": {
+    "name": "三年式 14cm/50 SpCOM",
+    "caliber_mm": 140,
+    "range_yd": [
+     6600.0,
+     13200.0,
+     17600.0,
+     22000.0
+    ],
+    "damage": [
+     17,
+     13,
+     12,
+     10
+    ],
+    "gs": 4,
+    "barrels": 4,
+    "mounts": [
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ]
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ]
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     9,
+     5,
+     4,
+     3
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "八年式二号",
+    "speed_knots": 38,
+    "range_yd": 10900,
+    "warhead": 87,
+    "tubes": 6,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 3,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     },
+     {
+      "tubes": 3,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 0
+     }
+    ],
+    "fit_note": "mount row P&S(2)3 533mm TT w/6 8th Yr Type torp"
+   },
+   "source_profile": "jp_tenryu_cl"
+  }
+ },
+ {
+  "identity": "IBS-U-IJN-YUBARI",
+  "name": "夕张",
+  "side": "axis",
+  "type": "CL",
+  "source_file": "data/campaign/period/savo-runtime.json",
+  "period_ship_id": "savo_yubari",
+  "period_profile": "jp_yubari_cl",
+  "form10_page": 75,
+  "stat_verified": true,
+  "stat_source": "period runtime row（与本包一致，本批未改）",
+  "stat_conflicts": [],
+  "resolved_from": {
+   "file": "data/campaign/period/savo-runtime.json",
+   "ship_id": "savo_yubari",
+   "note": "period ships[].savo_yubari"
+  },
+  "also_recorded": [],
+  "ship": {
+   "id": "IBS-U-IJN-YUBARI",
+   "name": "夕张",
+   "side": "axis",
+   "kind": "CL",
+   "size": "C",
+   "max_knots": 35,
+   "dp": 163,
+   "damage_speed": [
+    {
+     "damage": 0,
+     "knots": 35
+    },
+    {
+     "damage": 41,
+     "knots": 26
+    },
+    {
+     "damage": 82,
+     "knots": 18
+    },
+    {
+     "damage": 122,
+     "knots": 9
+    },
+    {
+     "damage": 147,
+     "knots": 0
+    },
+    {
+     "damage": 163,
+     "knots": 0
+    }
+   ],
+   "turn_advance_yards": 300,
+   "speed_loss_knots": 1,
+   "accel_knots_per_turn": 12,
+   "accel_high_knots_per_turn": 6,
+   "brake_knots_per_turn": 15,
+   "armor_belt": 5,
+   "armor_deck": 2,
+   "in_service_year": 1923,
+   "gun": {
+    "name": "三年式 14cm/50 SpCOM",
+    "caliber_mm": 140,
+    "range_yd": [
+     6600.0,
+     13200.0,
+     17600.0,
+     22000.0
+    ],
+    "damage": [
+     17,
+     13,
+     12,
+     10
+    ],
+    "gs": 4,
+    "barrels": 6,
+    "mounts": [
+     {
+      "barrels": 2,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 2,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       210,
+       150
+      ],
+      "arc2": null
+     },
+     {
+      "barrels": 1,
+      "arc": [
+       30,
+       330
+      ],
+      "arc2": null
+     }
+    ],
+    "pen_belt": [
+     9,
+     5,
+     4,
+     3
+    ],
+    "pen_deck": [
+     null,
+     null,
+     1,
+     2
+    ],
+    "armor_piercing": true
+   },
+   "torpedo": {
+    "name": "八年式二号",
+    "speed_knots": 38,
+    "range_yd": 10900,
+    "warhead": 87,
+    "tubes": 4,
+    "contact_fuze": true,
+    "mounts": [
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 1
+     },
+     {
+      "tubes": 2,
+      "arc": [
+       30,
+       150
+      ],
+      "arc2": [
+       210,
+       330
+      ],
+      "reserve": 1
+     }
+    ],
+    "fit_note": "mount row P&S(2)2 610mm TT w/4 8th Yr Type No.2 torps（1 reserve torp/mount for reload in 15 minutes）"
+   },
+   "source_profile": "jp_yubari_cl"
+  }
+ }
+]

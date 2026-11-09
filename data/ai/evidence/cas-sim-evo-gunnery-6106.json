@@ -1,0 +1,41 @@
+{
+    "schema":  "cas-ai-cas-sim-evidence-v1",
+    "source":  "cas-sim host protocol: new + ai + step + report + save, then replay(save) in a fresh process",
+    "seed":  6106,
+    "side":  "allies",
+    "candidateProfile":  "evo-gunnery",
+    "opponentProfile":  "coord",
+    "variant":  "",
+    "result":  {
+                   "allies":  5,
+                   "axis":  2,
+                   "winner":  "allies"
+               },
+    "stepTick":  2617,
+    "replayTick":  2617,
+    "replayResult":  {
+                         "allies":  5,
+                         "axis":  2,
+                         "winner":  "allies"
+                     },
+    "replayMatches":  true,
+    "saveSha256":  "d4c391c853b50b886013b26be4e7a1f87ad2cf4342cd525e5e63e36063422bd9",
+    "saveBytes":  268,
+    "events":  {
+                   "sunk":  7,
+                   "torpedo_hit":  3,
+                   "torpedo":  3,
+                   "hit":  20,
+                   "total":  305,
+                   "gun":  50
+               },
+    "sunkShips":  [
+                      "已观测到敌舰沉没",
+                      "已观测到敌舰沉没",
+                      "克利夫兰级 沉没",
+                      "已观测到敌舰沉没",
+                      "弗莱彻级 1 沉没",
+                      "已观测到敌舰沉没",
+                      "已观测到敌舰沉没"
+                  ]
+}

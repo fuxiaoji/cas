@@ -250,14 +250,70 @@ class FreeEconomyTest(unittest.TestCase):
         self.assertFalse(second["claimed"])
         self.assertEqual(second["meta"]["wallet"]["standard_tickets"], 3)
 
+    def test_evolved_ai_profiles_are_catalogued_and_purchased_with_tickets(self):
+        catalog = self.client.get("/catalog").json()
+        merged = json.loads((Path(__file__).resolve().parent.parent / "data" / "ai" / "shop-merge.json")
+                            .read_text(encoding="utf-8"))
+        entries = {entry["id"]: entry for entry in catalog["ai_profiles"]}
+        self.assertEqual({row["id"] for row in merged["profiles"]} <= entries.keys(), True)
+        for row in merged["profiles"]:
+            entry = entries[row["id"]]
+            self.assertEqual((entry["name"], entry["cost"], entry["currency"], entry["unlock"], entry["provisional"]),
+                             (row["name"], row["cost"], row["currency"], row["unlock"], True))
+        self.assertEqual(len(catalog["ai_profiles"]), 9)
+
+        self.fund_mail(0, 3000)
+        locked = self.post("/shop/purchase", "evo-locked", kind="ai", item_id="evo-screen",
+                           currency="recruit_ticket")
+        self.assertEqual(locked.status_code, 403)
+        self.assertIn("CAMP-ALLIES-02", locked.json()["detail"])
+        self.assertEqual(self.meta()["wallet"]["standard_tickets"], 3000)
+
+        stages = ["CAMP-ALLIES-02", "CAMP-ALLIES-03", "CAMP-ALLIES-11"]
+        with closing(self.service.connect()) as conn:
+            row = conn.execute("SELECT state FROM assets WHERE account_id=?", (self.account["account_id"],)).fetchone()
+            state = json.loads(row["state"])
+            state["campaign_progress"] = {stage: {"best": {"story": 2}, "claimed": 2} for stage in stages}
+            conn.execute("UPDATE assets SET state=? WHERE account_id=?", (encode(state), self.account["account_id"]))
+
+        wrong_currency = self.post("/shop/purchase", "evo-wrong-currency", kind="ai", item_id="evo-screen")
+        self.assertEqual(wrong_currency.status_code, 400)
+        bought = self.assert_success(self.post("/shop/purchase", "evo-buy-screen", kind="ai",
+                                               item_id="evo-screen", currency="recruit_ticket"))
+        self.assertTrue(bought["purchased"])
+        self.assertEqual(bought["meta"]["wallet"]["standard_tickets"], 2200)
+        self.assertIn("evo-screen", bought["meta"]["ai_profiles"])
+        replay = self.assert_success(self.post("/shop/purchase", "evo-buy-screen", kind="ai",
+                                               item_id="evo-screen", currency="recruit_ticket"))
+        self.assertEqual(replay, bought)
+        self.assertEqual(self.post("/shop/purchase", "evo-duplicate", kind="ai",
+                                   item_id="evo-screen", currency="recruit_ticket").status_code, 400)
+        self.assertEqual(self.post("/shop/purchase", "evo-buy-torpedo", kind="ai",
+                                   item_id="evo-torpedo", currency="recruit_ticket").status_code, 200)
+        self.assertEqual(self.post("/shop/purchase", "evo-buy-gunnery", kind="ai",
+                                   item_id="evo-gunnery", currency="recruit_ticket").status_code, 200)
+        meta = self.meta()
+        self.assertEqual(meta["wallet"]["standard_tickets"], 300)
+        self.assertEqual([pid for pid in meta["ai_profiles"] if pid.startswith("evo-")],
+                         ["evo-screen", "evo-torpedo", "evo-gunnery"])
+        with TestClient(create_app(self.db)) as restarted:
+            restored = restarted.get("/me", headers=self.headers).json()["meta"]
+            self.assertEqual(restored["ai_profiles"], meta["ai_profiles"])
+            self.assertEqual(restored["wallet"]["standard_tickets"], 300)
+        login = self.assert_success(self.client.post("/auth/login", json={
+            "username": "Test.Commander", "password": self.password}))
+        relogin = self.client.get("/me", headers={"Authorization": "Bearer " + login["token"]}).json()["meta"]
+        self.assertEqual(relogin["ai_profiles"], meta["ai_profiles"])
+        self.assertEqual(relogin["wallet"]["standard_tickets"], 300)
+
     def test_catalog_and_foreign_database_gate(self):
         catalog = self.client.get("/catalog").json()
         self.assertEqual(len(catalog["ships"]), 210)
-        # Every identity listed by a kept scenario joins the free-economy pool:
-        # 164 scenario members plus the two storefront identities without a
-        # kept-scenario membership. See server/scenario-recruitable.json and
-        # scripts/import-scenario-portraits.py.
-        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 167)
+        # All 210 stable identities are recruitable: the 164 kept-scenario
+        # members, the two storefront identities, and the 43 collection
+        # identities added for the full mobile roster. See
+        # server/scenario-recruitable.json and data/portraits/pool-report.json.
+        self.assertEqual(sum(s["recruitable"] for s in catalog["ships"]), 210)
         overlay = json.loads((Path(__file__).with_name("scenario-recruitable.json"))
                              .read_text(encoding="utf-8"))["ships"]
         entries = {ship["id"]: ship for ship in catalog["ships"]}

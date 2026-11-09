@@ -25,6 +25,18 @@
 .harbor-action > span { color: var(--muted); font-size: 11px; }
 .harbor-action button[aria-pressed=true] { color: var(--brass); border-color: #b69362; }
 .harbor-fine { margin-top: 9px; font-size: 12px; color: #b1c9ca; line-height: 1.65; }
+.ai-shop-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 11px; }
+.ai-shop-card { min-width: 0; border: 1px solid #42606b; border-left: 2px solid #81714f; background: linear-gradient(104deg, #19313c, #102833 78%); padding: 10px 12px; }
+.ai-shop-card[data-owned=true] { border-left-color: #7fa383; }
+.ai-shop-card header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.ai-shop-card h4 { font: 700 14px var(--serif); color: var(--brass); letter-spacing: .04em; }
+.ai-shop-provisional { border: 1px solid #8a6f4a; color: #e1bf85; padding: 1px 5px; font-size: 10px; white-space: nowrap; }
+.ai-shop-description { margin-top: 4px; font-size: 12px; color: #c2d3d4; line-height: 1.6; overflow-wrap: anywhere; }
+.ai-shop-unlock { margin-top: 4px; font-size: 11px; color: #9db3b5; overflow-wrap: anywhere; }
+.ai-shop-buy { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.ai-shop-buy span { font: 12px var(--numbers); color: var(--brass); white-space: nowrap; }
+.ai-shop-buy button { white-space: nowrap; }
+.ai-shop-reason { margin-top: 5px; font-size: 11px; color: #b9ccd0; line-height: 1.5; }
 .harbor-error { margin: 10px 26px 0; color: #efaf92; }
 .lesson-list { list-style: none; padding: 0; margin: 0; }
 .lesson-list li { display: grid; grid-template-columns: 23px 1fr; gap: 7px; padding: 6px 0; border-bottom: 1px solid #2c4650; }
@@ -74,6 +86,8 @@
   .harbor-tabs { padding: 8px 6px; }
   .night-card { padding: 6px 8px; margin-bottom: 8px; }
   .night-card h3 { font-size: 16px; }
+  .ai-shop-card { padding: 7px 9px; }
+  .ai-shop-description { font-size: 11px; line-height: 1.45; }
 }
 @media (max-width: 640px) {
   .hull-inventory { grid-template-columns: repeat(2, minmax(0, 1fr)); }

@@ -1,0 +1,784 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-09",
+  "generated_by": "scripts/challenge-balance-report.py",
+  "inputs": {
+    "stages": {
+      "path": "data/challenge/stages.json",
+      "sha256": "fb5d2d16389db76309d9994e53caaba8cb00426ef9872a7dc4352be2b60405b2"
+    },
+    "points": {
+      "path": "data/rules/cas-competitive-points-v1.json",
+      "sha256": "1c1c19146a3f63da52a9031fca0e629f968182922525292ce48adfc139c1f367"
+    },
+    "browser_receipt": "artifacts/client/challenge/receipt.json",
+    "wasm": {
+      "path": "client/public/cas_core.wasm",
+      "sha256": "e486461f947c6ac3f5a5e66e591f63d1f3c16bc05ff9744ad74bba678c49a402",
+      "bytes": 3558262
+    }
+  },
+  "point_audit": {
+    "manifest": "data/rules/cas-competitive-points-v1.json",
+    "rows": 202,
+    "provisional_rows": 185,
+    "provisional_breakdown": {
+      "merged_new_rows": 91,
+      "period_rows": 23,
+      "legacy_class_proxy_rows": 71
+    },
+    "provisional_scope_note": "91 = 本批新增的 merged 行（全部 provisional）；23 张 period 行与 71 张旧 class-proxy 行也仍带 provisional 文本，故全表合计 185 行。",
+    "new_merged_rows_this_batch": 91,
+    "formula": {
+      "source": "src/ranked_fleets.rs point_value",
+      "point_unit": 25,
+      "terms": {
+        "dp": 1.5,
+        "max_knots": 5.0,
+        "gun_barrels_times_average_band_damage": 2.0,
+        "torpedo_tubes_times_warhead": 0.12,
+        "belt_plus_deck_armor": 5.0,
+        "torpedo_protection_dp": 0.8
+      },
+      "kind_scale": {
+        "DD": 0.75,
+        "CL": 0.85,
+        "CA": 1.0,
+        "BB": 1.2
+      },
+      "rounding": "round(raw * scale / 25) * 25",
+      "known_gaps": [
+        "副炮、雷达、AA、火控与射程/穿深/弹速不单独计点；这是已登记的公式缺口，不是本批可证明的单行错误。",
+        "BC/CB/AV 没有单独 scale，按 1.0 计；分档槽位另行把 BC 计主力、CB/AV 计巡洋位。",
+        "没有单独的后期改装系数；点值直接取该舰卡实际 DP/航速/炮雷/装甲。"
+      ]
+    },
+    "checks": {
+      "arithmetic_mismatches": [],
+      "unresolved_cards": [],
+      "duplicate_stat_conflicts": [],
+      "same_class_price_conflicts": [],
+      "stale_class_proxies": [],
+      "same_type_groups_with_printed_fit_differences": [
+        {
+          "class_profile": "jp_takao_1939_ca",
+          "reason": "Chokai 本舰 Form 10 p.49 只印 9 管/8 雷管，Atago/Takao 用 10 管/16 雷管 class 卡，点价差 125 由实际炮雷行解释。"
+        },
+        {
+          "class_profile": "ijn_kamikaze_dd",
+          "reason": "Asakaze 4 炮 vs Kamikaze/Oite 3 炮；四舍五入后同为 325，非重复计价。"
+        },
+        {
+          "class_profile": "erma_ijn_b64_cb",
+          "reason": "Ishikari 有 8 雷管、Azuma 无鱼雷，差 100 分。"
+        },
+        {
+          "class_profile": "ijn_mutsuki_dd",
+          "reason": "Mutsuki 4 炮 vs Uzuki(II) 2 炮，差 25 分。"
+        },
+        {
+          "class_profile": "sendai",
+          "reason": "Jintsu-I 与 Sendai 同卡同价 675。"
+        }
+      ]
+    },
+    "tiers": {
+      "3000": {
+        "rule": "6 DD（或 4 DD + 2 巡洋）上限 3000；逐侧最便宜 6 艘必须装得下。",
+        "allies_six_dd_total": 2100,
+        "axis_six_dd_total": 1700,
+        "fits": true
+      },
+      "10000": {
+        "rule": "1–2 艘主力（BB/BC）+ 最多 4 DD + 巡洋，上限 10000；逐侧 2 BB + 4 DD 必须装得下。",
+        "allies_two_bb_four_dd_total": 5450,
+        "axis_two_bb_four_dd_total": 5575,
+        "fits": true
+      }
+    },
+    "historical_budgets": {
+      "status": "未改动",
+      "anchors": {
+        "CAMP-ALLIES-02": 6850,
+        "CAMP-ALLIES-05": 9300,
+        "CAMP-ALLIES-11": 7500
+      },
+      "note": "6825 是故事编成里用 6,850 预算换掉一艘后的实际点价，不是新的历史锚点；本批 0 行点价改动，所以 6825/6850/9300 全部保持原值。"
+    },
+    "changes": {
+      "changed_rows": 0,
+      "before_after": [],
+      "reason": "202 张完整 ShipDef 逐行重算与冻结表完全一致；同卡同签名无价差、同型组差异都由原页炮雷行解释；3000/10000 逐侧约束通过。没有可证明的点价错误，故不改任何一行，避免挪动历史战役预算锚点。"
+    },
+    "findings_not_changed": [
+      "21 张 merged 行（13 张 class_proxy + 8 张 period_named）的 source 文本仍写 'merged exact'，与 data/ships/merged-cards.json 的 identity_kind 不一致；只影响说明文字，点值由实际舰卡计算，本批不改生成源以免和 data/ships 卡源脱钩。",
+      "9 张 APD 来源卡（文月/松风/三日月/水无月/望月/长月/皋月/卯月(II)/夕凪）在 cards.json 标 type=APD，但完整 ShipDef kind=DD；引擎按 DD 上场并按 DD 的 0.75 scale 计点，登记为类型标注差异。"
+    ]
+  },
+  "challenge": {
+    "version": "cas-challenge-v2",
+    "kind": "fictional",
+    "engine": {
+      "variant": "challenge",
+      "rules_version": "cas-realtime-v9",
+      "field": {
+        "width": 24000,
+        "height": 14000,
+        "limit": 2700
+      },
+      "parameterisation": [
+        "stageId 由客户端 PortLaunch.stage 传入；lib.rs 转给 World::new_challenge。",
+        "每关在 data/challenge/stages.json 给出本席/敌方两套阵营编成、预算、种子、AI 风格、海图、时限与击沉目标。",
+        "World 保存 challenge_stage；from_save 用同一关卡表重建，旧 challenge 存档缺字段时回落到 challenge-01。",
+        "结果主目标按 required_enemy_losses 与“至少 1 艘本席舰存活”判定，不再写死 2 艘。"
+      ]
+    },
+    "stages": [
+      {
+        "id": "challenge-01",
+        "order": 1,
+        "name": "哨戒接触",
+        "tier": "DD/CL",
+        "budget": 2000,
+        "field": {
+          "width": 24000,
+          "height": 14000,
+          "limit": 2700
+        },
+        "seed": 6100,
+        "profile": "gunnery",
+        "enemy_profile": "gunnery",
+        "required_enemy_losses": 2,
+        "player": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-FLETCHER",
+              "IBS-U-USN-UNNAMED-T01-R26",
+              "IBS-U-USN-CHEVALIER"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD"
+            ],
+            "points": 1875
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-SENDAI",
+              "IBS-U-IJN-YUGUMO"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD"
+            ],
+            "points": 1625
+          }
+        },
+        "enemy": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-BAINBRIDGE",
+              "IBS-U-USN-OMAHA",
+              "IBS-U-USN-DAHLGREN",
+              "IBS-U-USN-DECATUR",
+              "IBS-U-USN-FOX"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 2300
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-SENDAI",
+              "IBS-U-IJN-AKIGUMO",
+              "IBS-U-IJN-HAMAKAZE",
+              "IBS-U-IJN-HATSU-KAZE"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 2575
+          }
+        },
+        "evidence": {
+          "seed": 6100,
+          "enemy_profile": "gunnery",
+          "result": {
+            "allies": 5,
+            "axis": 0,
+            "primary": true
+          },
+          "note": "本席与敌方均由 auto AI 操作，步进至时限；结果为敌我损失数。"
+        },
+        "browser_result": {
+          "allies": 5,
+          "axis": 0,
+          "primary": true,
+          "winner": "allies"
+        },
+        "reward": {
+          "first_clear": "首个主目标：雷击 AI + 2 张常驻券（既有首通口径）",
+          "repeat": "每周最多 3 次，每次 2 张常驻券",
+          "basis": "沿用既有挑战奖励；本关只记录通关进度。"
+        }
+      },
+      {
+        "id": "challenge-02",
+        "order": 2,
+        "name": "轻巡拦阻",
+        "tier": "DD/CL",
+        "budget": 2000,
+        "field": {
+          "width": 24000,
+          "height": 14000,
+          "limit": 2700
+        },
+        "seed": 6102,
+        "profile": "gunnery",
+        "enemy_profile": "gunnery",
+        "required_enemy_losses": 2,
+        "player": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-BUCHANAN",
+              "IBS-U-USN-UNNAMED-T01-R23",
+              "IBS-U-USN-DAHLGREN"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD"
+            ],
+            "points": 1800
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-AGANO",
+              "IBS-U-IJN-YUGUMO"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD"
+            ],
+            "points": 1750
+          }
+        },
+        "enemy": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-FLETCHER",
+              "IBS-U-USN-OMAHA",
+              "IBS-U-USN-BAINBRIDGE",
+              "IBS-U-USN-PERRY",
+              "IBS-U-USN-TRUXTON"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 2425
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-SENDAI",
+              "IBS-U-IJN-AKIGUMO",
+              "IBS-U-IJN-YUGUMO",
+              "IBS-U-IJN-AKIZUKI"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 2600
+          }
+        },
+        "evidence": {
+          "seed": 6102,
+          "enemy_profile": "gunnery",
+          "result": {
+            "allies": 5,
+            "axis": 0,
+            "primary": true
+          },
+          "note": "本席与敌方均由 auto AI 操作，步进至时限；结果为敌我损失数。"
+        },
+        "browser_result": {
+          "allies": 5,
+          "axis": 0,
+          "primary": true,
+          "winner": "allies"
+        },
+        "reward": {
+          "first_clear": "既有首通口径；本关不单独发货币",
+          "repeat": "每周最多 3 次，每次 2 张常驻券",
+          "basis": "沿用既有挑战奖励；本关只记录通关进度。"
+        }
+      },
+      {
+        "id": "challenge-03",
+        "order": 3,
+        "name": "雷击追击",
+        "tier": "DD/CL",
+        "budget": 2000,
+        "field": {
+          "width": 24000,
+          "height": 14000,
+          "limit": 2700
+        },
+        "seed": 6124,
+        "profile": "torpedo",
+        "enemy_profile": "torpedo",
+        "required_enemy_losses": 2,
+        "player": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-BENHAM",
+              "IBS-U-USN-STERETT",
+              "IBS-U-USN-LA-VALLETTE",
+              "IBS-U-USN-AARON-WARD"
+            ],
+            "kinds": [
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 1850
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-SENDAI",
+              "IBS-U-IJN-YUGUMO",
+              "IBS-U-IJN-UZUKI"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD"
+            ],
+            "points": 1875
+          }
+        },
+        "enemy": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-FLETCHER",
+              "IBS-U-USN-UNNAMED-T01-R26",
+              "IBS-U-USN-CHEVALIER",
+              "IBS-U-USN-NICHOLAS",
+              "IBS-U-USN-BAINBRIDGE"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 2700
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-SENDAI",
+              "IBS-U-IJN-AKIGUMO",
+              "IBS-U-IJN-HAMAKAZE",
+              "IBS-U-IJN-MUTSUKI"
+            ],
+            "kinds": [
+              "DD",
+              "CL",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 2425
+          }
+        },
+        "evidence": {
+          "seed": 6124,
+          "enemy_profile": "torpedo",
+          "result": {
+            "allies": 5,
+            "axis": 3,
+            "primary": true
+          },
+          "note": "本席与敌方均由 auto AI 操作；雷击 AI 与种子共同决定战果。"
+        },
+        "browser_result": {
+          "allies": 5,
+          "axis": 3,
+          "primary": true,
+          "winner": "allies"
+        },
+        "reward": {
+          "first_clear": "既有首通口径；本关不单独发货币",
+          "repeat": "每周最多 3 次，每次 2 张常驻券",
+          "basis": "沿用既有挑战奖励；本关只记录通关进度。"
+        }
+      },
+      {
+        "id": "challenge-04",
+        "order": 4,
+        "name": "战列舰拦截",
+        "tier": "BB/DD",
+        "budget": 3700,
+        "field": {
+          "width": 60000,
+          "height": 36000,
+          "limit": 3600
+        },
+        "seed": 6212,
+        "profile": "gunnery",
+        "enemy_profile": "gunnery",
+        "required_enemy_losses": 2,
+        "player": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-COLORADO",
+              "IBS-U-USN-BAINBRIDGE",
+              "IBS-U-USN-DAHLGREN",
+              "IBS-U-USN-DECATUR",
+              "IBS-U-USN-FOX"
+            ],
+            "kinds": [
+              "BB",
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 3425
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-HIEI",
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-MUTSUKI",
+              "IBS-U-IJN-UZUKI",
+              "IBS-U-IJN-ASAKAZE"
+            ],
+            "kinds": [
+              "BB",
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 3625
+          }
+        },
+        "enemy": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-COLORADO",
+              "IBS-U-USN-BAINBRIDGE",
+              "IBS-U-USN-DAHLGREN",
+              "IBS-U-USN-DECATUR",
+              "IBS-U-USN-FOX"
+            ],
+            "kinds": [
+              "BB",
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 3425
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-HIEI",
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-MUTSUKI",
+              "IBS-U-IJN-UZUKI",
+              "IBS-U-IJN-ASAKAZE"
+            ],
+            "kinds": [
+              "BB",
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 3625
+          }
+        },
+        "evidence": {
+          "seed": 6212,
+          "enemy_profile": "gunnery",
+          "result": {
+            "allies": 2,
+            "axis": 1,
+            "primary": true
+          },
+          "note": "本席与敌方均由 auto AI 操作，60 分钟时限内结算；敌我损失数来自镜像 5 舰编队实跑。"
+        },
+        "browser_result": {
+          "allies": 2,
+          "axis": 1,
+          "primary": true,
+          "winner": "allies"
+        },
+        "reward": {
+          "first_clear": "既有首通口径；本关不单独发货币",
+          "repeat": "每周最多 3 次，每次 2 张常驻券",
+          "basis": "沿用既有挑战奖励；战列舰关不提高单次奖励，避免与排位/战役经济串线。"
+        }
+      },
+      {
+        "id": "challenge-05",
+        "order": 5,
+        "name": "主力决战",
+        "tier": "BB/DD",
+        "budget": 5900,
+        "field": {
+          "width": 60000,
+          "height": 36000,
+          "limit": 3600
+        },
+        "seed": 6133,
+        "profile": "coord",
+        "enemy_profile": "coord",
+        "required_enemy_losses": 2,
+        "player": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-COLORADO",
+              "IBS-U-USN-WEST-VIRGINIA",
+              "IBS-U-USN-FLETCHER",
+              "IBS-U-USN-CHEVALIER",
+              "IBS-U-USN-BAINBRIDGE",
+              "IBS-U-USN-DAHLGREN"
+            ],
+            "kinds": [
+              "BB",
+              "BB",
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 5700
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-HIEI",
+              "IBS-U-IJN-KIRISHIMA",
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-MUTSUKI",
+              "IBS-U-IJN-UZUKI",
+              "IBS-U-IJN-ASAKAZE"
+            ],
+            "kinds": [
+              "BB",
+              "BB",
+              "DD",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 5875
+          }
+        },
+        "enemy": {
+          "allies": {
+            "ships": [
+              "IBS-U-USN-COLORADO",
+              "IBS-U-USN-WEST-VIRGINIA",
+              "IBS-U-USN-FLETCHER",
+              "IBS-U-USN-BAINBRIDGE",
+              "IBS-U-USN-DAHLGREN"
+            ],
+            "kinds": [
+              "BB",
+              "BB",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 5225
+          },
+          "axis": {
+            "ships": [
+              "IBS-U-IJN-HIEI",
+              "IBS-U-IJN-KIRISHIMA",
+              "IBS-U-IJN-KAGERO",
+              "IBS-U-IJN-MUTSUKI",
+              "IBS-U-IJN-UZUKI"
+            ],
+            "kinds": [
+              "BB",
+              "BB",
+              "DD",
+              "DD",
+              "DD"
+            ],
+            "points": 5550
+          }
+        },
+        "evidence": {
+          "seed": 6133,
+          "enemy_profile": "coord",
+          "result": {
+            "allies": 5,
+            "axis": 0,
+            "primary": true
+          },
+          "note": "本席与敌方均由 auto AI 操作，60 分钟时限内结算；敌我损失数来自镜像 6 舰编队实跑。"
+        },
+        "browser_result": {
+          "allies": 5,
+          "axis": 0,
+          "primary": true,
+          "winner": "allies"
+        },
+        "reward": {
+          "first_clear": "既有首通口径；本关不单独发货币",
+          "repeat": "每周最多 3 次，每次 2 张常驻券",
+          "basis": "沿用既有挑战奖励；五关共用首通/复战入口，避免重复计奖。"
+        }
+      }
+    ],
+    "stage_count": 5,
+    "playable": 5,
+    "blocked": 0,
+    "roster_policy": "本席编成由关卡从 202 张已登记卡中配发，港口只要求已领取初始舰队；不要求本机拥有同型舰，也不把 202 张卡塞进固定 3 对 5。",
+    "first_three_light_only": true,
+    "capital_stages_have_battleships": true,
+    "rewards": {
+      "policy": "沿用现有挑战首通与周复战规则；关卡梯度只记录通关进度，不新增货币或掉落。",
+      "first_clear": "首个主目标达成：雷击 AI 与 2 张常驻券（既有 receiveChallenge）",
+      "repeat": "每周最多 3 次，每次 2 张常驻券（既有 claimRepeat）",
+      "basis": "首通/复战数额沿用铁底湾手游挑战奖励口径；本批不改经济，只把五关的通关进度接入同一奖励入口。"
+    },
+    "collection_only_excluded": [
+      "IBS-U-IJN-AMAGI",
+      "IBS-U-IJN-AKAGI",
+      "IBS-U-IJN-OWARI",
+      "IBS-U-IJN-ERMA-IBUKI",
+      "IBS-U-IJN-ERMA-KURAMA",
+      "IBS-U-IJN-ERMA-GOKASE",
+      "IBS-U-USN-MIDWAY",
+      "IBS-U-IJN-XIFENG"
+    ]
+  },
+  "tests": {
+    "cargo_test_release_locked": {
+      "command": "cargo test --release --locked",
+      "passed": 121,
+      "failed": 0,
+      "challenge_tests": [
+        "challenge::tests::stage_table_is_lawful_and_progresses_from_light_to_capital_ships",
+        "challenge::tests::stage_one_keeps_the_accepted_three_ship_geometry",
+        "challenge::tests::every_evidence_seed_clears_its_stage_with_the_auto_ai"
+      ]
+    },
+    "server_test_ranked": {
+      "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_ranked",
+      "passed": 12,
+      "failed": 0
+    },
+    "other_server_suites": {
+      "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_accounts server.test_account_progression server.test_battle_pve server.test_duels server.test_fleets",
+      "passed": 21,
+      "failed": 0
+    },
+    "challenge_stage_generator": {
+      "command": "python scripts/challenge-stages.py --check",
+      "result": "pass"
+    },
+    "typescript": {
+      "command": "node node_modules/typescript/bin/tsc --noEmit -p client",
+      "result": "pass"
+    },
+    "vite_build": {
+      "command": "node node_modules/vite/bin/vite.js build",
+      "result": "pass",
+      "note": "仅既有 chunk-size 警告"
+    },
+    "browser_challenge": {
+      "command": "node tests/browser-challenge-stages.mjs",
+      "result": "pass",
+      "receipt": "artifacts/client/challenge/receipt.json",
+      "stages": 5,
+      "blocked": 0,
+      "results": {
+        "challenge-01": {
+          "allies": 5,
+          "axis": 0,
+          "primary": true,
+          "winner": "allies"
+        },
+        "challenge-02": {
+          "allies": 5,
+          "axis": 0,
+          "primary": true,
+          "winner": "allies"
+        },
+        "challenge-03": {
+          "allies": 5,
+          "axis": 3,
+          "primary": true,
+          "winner": "allies"
+        },
+        "challenge-04": {
+          "allies": 2,
+          "axis": 1,
+          "primary": true,
+          "winner": "allies"
+        },
+        "challenge-05": {
+          "allies": 5,
+          "axis": 0,
+          "primary": true,
+          "winner": "allies"
+        }
+      },
+      "rewards": {
+        "firstClearTickets": 2,
+        "repeatTickets": 6
+      },
+      "viewport740Overflow": 0,
+      "note": "真实点击五关：出航、切 auto AI、步进到结果、领首通与三次复战；五关主目标均达成，进度 5/5，740×360 无横向滚动。"
+    }
+  },
+  "blockers": [
+    "浏览器验收只驱动默认同盟席；轴心席由 Rust 测试逐关断言主目标达成（同一关卡表、同一 auto AI 配置），但未做轴心席的浏览器点击。",
+    "挑战为架空模式，未接入历史战役预算、星级或战役目录；历史 6,850/9,300/7,500 锚点未动。",
+    "点表 185 行仍带 provisional 文本（91 张本批 merged + 23 张 period + 71 张旧 class proxy）；本批只证明算术/同型/分档一致，没有做胜率平衡调参。"
+  ],
+  "not_touched": [
+    "server/catalog",
+    "data/ships 卡源",
+    "portraits",
+    "audio",
+    "AI",
+    "src/campaign/live.rs"
+  ],
+  "git_commit": "none (user instruction)"
+}

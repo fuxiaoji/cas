@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "enemy": "torpedo",
+      "hash": "ccd8b83220417bcd",
+      "name": "day-6106-allies",
+      "profile": "gunnery",
+      "seconds": 2700,
+      "seed": 6106,
+      "side": 0,
+      "variant": ""
+    },
+    {
+      "enemy": "gunnery",
+      "hash": "91dd4fb33d402efc",
+      "name": "day-6106-axis",
+      "profile": "torpedo",
+      "seconds": 2700,
+      "seed": 6106,
+      "side": 1,
+      "variant": ""
+    },
+    {
+      "enemy": "torpedo",
+      "hash": "03bc4855628f7831",
+      "name": "night-6107-allies",
+      "profile": "gunnery",
+      "seconds": 2700,
+      "seed": 6107,
+      "side": 0,
+      "variant": "night"
+    },
+    {
+      "enemy": "gunnery",
+      "hash": "9250266f47012832",
+      "name": "night-6107-axis",
+      "profile": "torpedo",
+      "seconds": 2700,
+      "seed": 6107,
+      "side": 1,
+      "variant": "night"
+    },
+    {
+      "enemy": "coord",
+      "hash": "a134cbaa45bcacb8",
+      "name": "empress-6106-default",
+      "profile": "coord",
+      "seconds": 4200,
+      "seed": 6106,
+      "side": 0,
+      "variant": "empress"
+    }
+  ],
+  "hash": "fnv1a64 over serde_json of {result,tick,commands,events}",
+  "source": "Builtin doctrines (coord/gunnery/torpedo) as run by cas-sim demo before the evolved-AI batch.",
+  "verifiedAgainst": "HEAD 5fc981b detached worktree: the same hashes are produced by HEAD src/ai.rs and by the restored builtin path",
+  "previousHashes": {
+    "day-6106-allies": "798818c4fc37f833",
+    "day-6106-axis": "1da4398660cd9ac6",
+    "night-6107-allies": "67a1f37af6201a53",
+    "night-6107-axis": "9a34ddf182b6a470",
+    "empress-6106-default": "2fc1b71ff06fdf5a"
+  },
+  "previousHashesNote": "Recorded earlier against an engine snapshot that no longer reproduces from HEAD src/ai.rs; kept for audit only, not used as an AI regression pin."
+}

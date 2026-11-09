@@ -1,0 +1,40 @@
+/* P1 design tokens. Screens opt in with the --cas-* names; old screens keep
+   their existing variables and are not restyled by this file. */
+:root {
+  --cas-abyss: #06141d;
+  --cas-deep: #0a1f2b;
+  --cas-panel: #102935;
+  --cas-panel-2: #16333f;
+  --cas-line: #2c4a57;
+  --cas-line-strong: #3f6270;
+  --cas-ink: #e8e6d8;
+  --cas-muted: #9fb6bc;
+  --cas-dim: #74909a;
+  --cas-brass: #e8c98c;
+  --cas-brass-2: #f3dca9;
+  --cas-mint: #9fd9c2;
+  --cas-blue: #8fb8d9;
+  --cas-alert: #f0a184;
+  --cas-danger: #d96b5a;
+
+  --cas-serif: "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
+  --cas-sans: "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --cas-mono: "Cascadia Code", Consolas, monospace;
+
+  --cas-fs-display: 28px;
+  --cas-fs-title: 20px;
+  --cas-fs-subtitle: 16px;
+  --cas-fs-body: 14px;
+  --cas-fs-small: 12px;
+  --cas-fs-caption: 11px;
+
+  --cas-sp-1: 4px;
+  --cas-sp-2: 8px;
+  --cas-sp-3: 12px;
+  --cas-sp-4: 16px;
+  --cas-sp-5: 24px;
+  --cas-sp-6: 32px;
+  --cas-radius: 3px;
+  --cas-fast: 120ms;
+  --cas-base: 200ms;
+}

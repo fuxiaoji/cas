@@ -1,0 +1,59 @@
+{
+  "aiStates": [
+    {
+      "fleet": 1,
+      "name": "训练第1分队",
+      "profile": "evo-gunnery",
+      "side": "allies",
+      "tactic": "保存兵力"
+    },
+    {
+      "fleet": 2,
+      "name": "训练第2分队",
+      "profile": "evo-gunnery",
+      "side": "allies",
+      "tactic": "交战"
+    },
+    {
+      "fleet": 3,
+      "name": "训练第3分队",
+      "profile": "coord",
+      "side": "axis",
+      "tactic": "保存兵力"
+    },
+    {
+      "fleet": 4,
+      "name": "训练第4分队",
+      "profile": "coord",
+      "side": "axis",
+      "tactic": "保存兵力"
+    }
+  ],
+  "arena": "fictional-training-2x2",
+  "damage": {
+    "allies": 0.7126683501683502,
+    "axis": 1.0
+  },
+  "engineVersion": "cas-battle-v2",
+  "events": {
+    "gun": 1674,
+    "hit": 873,
+    "sunk": 18,
+    "torpedo": 27,
+    "torpedo_hit": 7
+  },
+  "profile": "evo-gunnery",
+  "result": {
+    "allies": 6,
+    "axis": 3,
+    "winner": "allies"
+  },
+  "schema": "cas-ai-duel-v1",
+  "seed": 6106,
+  "ships": 12,
+  "sunk": {
+    "allies": 3,
+    "axis": 6
+  },
+  "tick": 1125
+}

@@ -1,0 +1,2036 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/import-portraits-identity.py",
+  "source": {
+    "schema_version": 1,
+    "generated_by": "scripts/import-portraits-identity.py",
+    "reference_project": "铁底湾",
+    "reference_checkout": "F:/Codex/worktrees/android-mobile/铁底湾",
+    "reference_mobile_version": "0.6.9",
+    "rule": "参考项目与原始素材只读；工作区只保留复核过的派生物和索引副本。",
+    "files": [
+      {
+        "role": "portrait_index",
+        "original_path": "F:/Codex/worktrees/android-mobile/铁底湾/mobile/release/立绘全集/立绘索引.csv",
+        "sha256": "8e613e8fb4afb47fde4310721c0dc5198c723795994902f1edd490264c1f3930",
+        "bytes": 77685,
+        "workspace_copy": "data/portraits/source/portrait-index.csv",
+        "workspace_sha256": "8e613e8fb4afb47fde4310721c0dc5198c723795994902f1edd490264c1f3930",
+        "current_ship_rows": 210,
+        "total_rows": 307
+      },
+      {
+        "role": "portrait_manifest",
+        "original_path": "F:/Codex/worktrees/android-mobile/铁底湾/mobile/content/fleet-portrait-manifest.json",
+        "sha256": "83593c33e6a3248be85dcd9803c81091c918e6ea114d573b2d2c0432ae0cf01f",
+        "bytes": 719816,
+        "ships": 210
+      },
+      {
+        "role": "pilot_catalog",
+        "original_path": "server/catalog.json",
+        "sha256": "9dfc9efe464d63b0971c857f64e1d492bfea86072213f7d8306db7160c75ceab",
+        "bytes": 51870,
+        "ships": 210
+      },
+      {
+        "role": "roster_crosswalk",
+        "original_path": "data/campaign/roster-crosswalk.json",
+        "sha256": "51b9b120f86b1cb8b4943fb4fae3bddc3f0c425bbbc535c1f94318f9901ff5e2",
+        "bytes": 74086,
+        "ships": 210
+      },
+      {
+        "role": "scenario_index",
+        "original_path": "data/campaign/crosswalk.json",
+        "sha256": "4761d6bd0ee7a559bcf83cf4046660d6851f6dc115700d057fee033e0e804dd2",
+        "bytes": 21753,
+        "scenarios": 16
+      },
+      {
+        "role": "zh_name_labels",
+        "original_path": "data/campaign/locale/zh-labels.json",
+        "sha256": "6b0407b3fab7bb995a40f24dcf8e47beb2352b3dac943b2ace5246c6276fc8a1",
+        "bytes": 13730
+      },
+      {
+        "role": "class_representative_ledger",
+        "original_path": "client/src/assets/portraits/ledger.json",
+        "sha256": "8e00d52e0a4aca0cb14f68e7ed598a661ce1ab2ca6ca1c96fa852ea98c92b5e7",
+        "bytes": 13059
+      }
+    ],
+    "scenario_files": [
+      {
+        "path": "data/campaign/cape-esperance.json",
+        "ibs_id": "IBS-S-01",
+        "sha256": "7ede08f5ab5e93702c3dcd8d325d6d45d03625235701cb9cf8b89967c7df8146"
+      },
+      {
+        "path": "data/campaign/kula-gulf.json",
+        "ibs_id": "IBS-S-02",
+        "sha256": "280223a1b63164028b74801280edf5cda2af22d8ec22d0be4ff72831ad39f9b2"
+      },
+      {
+        "path": "data/campaign/tassafaronga.json",
+        "ibs_id": "IBS-S-04",
+        "sha256": "be44bf2b9ee94bccaf57fc60b255d6587caeb6fe02d56370f9ad66c2ded55f3d"
+      },
+      {
+        "path": "data/campaign/cape-st-george.json",
+        "ibs_id": "IBS-S-05",
+        "sha256": "93c87bb7d6318584578e439aba60f9131430c376ae874e396df5e2bdc9e5a59e"
+      },
+      {
+        "path": "data/campaign/guadalcanal-ii.json",
+        "ibs_id": "IBS-S-06",
+        "sha256": "e13ecd5dbc7e0b0eec6abb45e732ff1760d77bbdad0cef6ac5e959d10b8b61e7"
+      },
+      {
+        "path": "data/campaign/kolombangara.json",
+        "ibs_id": "IBS-S-08",
+        "sha256": "e31443bd72eb66aebe5e5d77af3a8f3a4d9a085fbf8b1f0333d260db9cb5054f"
+      },
+      {
+        "path": "data/campaign/guadalcanal-i.json",
+        "ibs_id": "IBS-S-09",
+        "sha256": "4c33d9c5964a0f76990df784eeadac9064190ad5d76d9f35297f50ed7874d177"
+      },
+      {
+        "path": "data/campaign/savo-island.json",
+        "ibs_id": "IBS-S-10",
+        "sha256": "423c3e9e083f1d0b36417225668c6a495d4035092f78faade02122478de8bbc6"
+      },
+      {
+        "path": "data/campaign/empress-augusta-bay.json",
+        "ibs_id": "IBS-S-11",
+        "sha256": "ad94b884e0efeb84a1eb540829b856278e437221ef5fb1335649807fdcaa59ac"
+      },
+      {
+        "path": "data/campaign/vella-lavella.json",
+        "ibs_id": "IBS-S-13",
+        "sha256": "3c455a04e85405311084eef912b2b90a86ec0cce6a74ac525b6427583bf904c6"
+      },
+      {
+        "path": "data/campaign/horaniu.json",
+        "ibs_id": "IBS-S-14",
+        "sha256": "648c9f3309e6d6f5008e99690a98cb3e1e8d2b273a92de344dac86ddc50704fe"
+      }
+    ],
+    "runtime_files": [
+      {
+        "path": "data/campaign/period/cape-runtime.json",
+        "scenario": "cape-st-george",
+        "sha256": "10ae487509629e7aa512cbeff441235ba8f368a237b38e28c8ed5991e03c5476"
+      },
+      {
+        "path": "data/campaign/period/kula-runtime.json",
+        "scenario": "kula-gulf",
+        "sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0"
+      },
+      {
+        "path": "data/campaign/period/savo-runtime.json",
+        "scenario": "savo-island",
+        "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+      },
+      {
+        "path": "data/campaign/period/tassafaronga-runtime.json",
+        "scenario": "tassafaronga",
+        "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+      }
+    ]
+  },
+  "checks": {
+    "catalog_identities": 210,
+    "index_current_ship_rows": 210,
+    "manifest_ships": 210,
+    "identity_sets_equal": true,
+    "identities_without_asset": [],
+    "assets_without_identity": [],
+    "duplicate_source_paths": [],
+    "duplicate_source_sha256": [],
+    "duplicate_display_names": [
+      {
+        "name": "卷波",
+        "identities": [
+          "IBS-U-IJN-MAKINAMI",
+          "IBS-U-IJN-ERMA-MAKINAMI"
+        ],
+        "character_ids": [
+          "IBS-U-IJN-MAKINAMI",
+          "IBS-U-IJN-MAKINAMI"
+        ]
+      },
+      {
+        "name": "长波",
+        "identities": [
+          "IBS-U-IJN-NAGANAMI",
+          "IBS-U-IJN-ERMA-NAGANAMI"
+        ],
+        "character_ids": [
+          "IBS-U-IJN-NAGANAMI",
+          "IBS-U-IJN-NAGANAMI"
+        ]
+      },
+      {
+        "name": "风云",
+        "identities": [
+          "IBS-U-IJN-ERMA-KAZEGUMO",
+          "IBS-U-IJN-KAZEKUMO"
+        ],
+        "character_ids": [
+          "IBS-U-IJN-KAZEKUMO",
+          "IBS-U-IJN-KAZEKUMO"
+        ]
+      }
+    ],
+    "shared_character_ids": [
+      {
+        "character_id": "IBS-U-IJN-KAZEKUMO",
+        "identities": [
+          "IBS-U-IJN-ERMA-KAZEGUMO",
+          "IBS-U-IJN-KAZEKUMO"
+        ]
+      },
+      {
+        "character_id": "IBS-U-IJN-MAKINAMI",
+        "identities": [
+          "IBS-U-IJN-ERMA-MAKINAMI",
+          "IBS-U-IJN-MAKINAMI"
+        ]
+      },
+      {
+        "character_id": "IBS-U-IJN-NAGANAMI",
+        "identities": [
+          "IBS-U-IJN-ERMA-NAGANAMI",
+          "IBS-U-IJN-NAGANAMI"
+        ]
+      },
+      {
+        "character_id": "IBS-U-IJN-UZUKI",
+        "identities": [
+          "IBS-U-IJN-UZUKI",
+          "IBS-U-IJN-UZUKI-2"
+        ]
+      }
+    ],
+    "class_representatives": [
+      {
+        "class_id": "kagero",
+        "identity": "IBS-U-IJN-KAGERO",
+        "character_name": "阳炎",
+        "path": "kagero.png",
+        "sha256": "22bf931585c659b9073ac2a75023f4783d1fd7bd3667b86043d22b27dd3e6f0d",
+        "same_class_label": "阳炎级",
+        "would_bind": [
+          "IBS-U-IJN-AKIGUMO",
+          "IBS-U-IJN-HAMAKAZE",
+          "IBS-U-IJN-ISOKAZE",
+          "IBS-U-IJN-KAGERO",
+          "IBS-U-IJN-KUROSHIO",
+          "IBS-U-IJN-OYASHIO",
+          "IBS-U-IJN-TANIKAZE",
+          "IBS-U-IJN-YUKIKAZE"
+        ]
+      },
+      {
+        "class_id": "sendai",
+        "identity": "IBS-U-IJN-SENDAI",
+        "character_name": "川内",
+        "path": "sendai.png",
+        "sha256": "eaefdc9bad95f5e5119b8fb1ce6916f0e82af6840fc2be076b323b163d3a9c10",
+        "same_class_label": "川内级",
+        "would_bind": [
+          "IBS-U-IJN-SENDAI"
+        ]
+      },
+      {
+        "class_id": "fletcher",
+        "identity": "IBS-U-USN-FLETCHER",
+        "character_name": "弗莱彻",
+        "path": "fletcher.png",
+        "sha256": "43910f725219330a044f6bce08bd77719118c246c8f868404b13e3113403428c",
+        "same_class_label": "弗莱彻级",
+        "would_bind": [
+          "IBS-U-USN-CLAXTON",
+          "IBS-U-USN-CONVERSE",
+          "IBS-U-USN-DYSON",
+          "IBS-U-USN-FLETCHER",
+          "IBS-U-USN-JENKINS",
+          "IBS-U-USN-LARDNER",
+          "IBS-U-USN-NICHOLAS",
+          "IBS-U-USN-OBANNON",
+          "IBS-U-USN-RADFORD",
+          "IBS-U-USN-SPENCE",
+          "IBS-U-USN-STANLY",
+          "IBS-U-USN-TAYLOR",
+          "IBS-U-USN-THATCHER"
+        ]
+      },
+      {
+        "class_id": "cleveland",
+        "identity": "IBS-U-USN-UNNAMED-T01-R26",
+        "character_name": "克利夫兰",
+        "path": "cleveland.png",
+        "sha256": "275643134b2cb2b5d5032cfddbe1e3043785a9c6e276335d2f36ee3b269d9c90",
+        "same_class_label": "克利夫兰级",
+        "would_bind": [
+          "IBS-U-USN-UNNAMED-T01-R26",
+          "IBS-U-USN-UNNAMED-T01-R27",
+          "IBS-U-USN-UNNAMED-T01-R28",
+          "IBS-U-USN-UNNAMED-T01-R29"
+        ]
+      }
+    ],
+    "class_representative_impact": {
+      "阳炎级": [
+        "IBS-U-IJN-AKIGUMO",
+        "IBS-U-IJN-HAMAKAZE",
+        "IBS-U-IJN-ISOKAZE",
+        "IBS-U-IJN-KAGERO",
+        "IBS-U-IJN-KUROSHIO",
+        "IBS-U-IJN-OYASHIO",
+        "IBS-U-IJN-TANIKAZE",
+        "IBS-U-IJN-YUKIKAZE"
+      ],
+      "川内级": [
+        "IBS-U-IJN-SENDAI"
+      ],
+      "弗莱彻级": [
+        "IBS-U-USN-CLAXTON",
+        "IBS-U-USN-CONVERSE",
+        "IBS-U-USN-DYSON",
+        "IBS-U-USN-FLETCHER",
+        "IBS-U-USN-JENKINS",
+        "IBS-U-USN-LARDNER",
+        "IBS-U-USN-NICHOLAS",
+        "IBS-U-USN-OBANNON",
+        "IBS-U-USN-RADFORD",
+        "IBS-U-USN-SPENCE",
+        "IBS-U-USN-STANLY",
+        "IBS-U-USN-TAYLOR",
+        "IBS-U-USN-THATCHER"
+      ],
+      "克利夫兰级": [
+        "IBS-U-USN-UNNAMED-T01-R26",
+        "IBS-U-USN-UNNAMED-T01-R27",
+        "IBS-U-USN-UNNAMED-T01-R28",
+        "IBS-U-USN-UNNAMED-T01-R29"
+      ]
+    }
+  },
+  "coverage": {
+    "identities": 210,
+    "with_identity_portrait": 210,
+    "missing": 0,
+    "reused_online_recruit": 167,
+    "generated_512x768": 43,
+    "dimensions": {
+      "700x1050": 167,
+      "512x768": 43
+    },
+    "bytes": 30761316
+  },
+  "scenario_mapping": {
+    "scenarios": 11,
+    "scenario_rows": 316,
+    "unique_scenario_names": 181,
+    "unique_resolved": 139,
+    "unique_missing": 42,
+    "missing_rows": 42,
+    "missing_by_reason": {
+      "unmapped": 42
+    },
+    "missing_by_scenario": {
+      "cape-esperance": 1,
+      "guadalcanal-ii": 6,
+      "kolombangara": 1,
+      "savo-island": 34
+    },
+    "missing_by_kind": {
+      "AP": 23,
+      "CL": 1,
+      "DD": 4,
+      "unknown": 14
+    },
+    "runtime_rows": 105,
+    "runtime_resolved": 71,
+    "runtime_unresolved": 34
+  },
+  "display_rarity": {
+    "distribution": {
+      "common": 76,
+      "elite": 64,
+      "rare": 61,
+      "ur": 9
+    },
+    "changed_from_gacha": 67,
+    "late_war_identities": 67,
+    "capital_ships_at_least_rare": true
+  },
+  "entities": {
+    "count_with_independent_card": 35,
+    "count_class_card_only": 175,
+    "independent_profiles": [
+      "IBS-U-USN-FLETCHER",
+      "IBS-U-USN-PERKINS",
+      "IBS-U-USN-MAURY",
+      "IBS-U-USN-DRAYTON",
+      "IBS-U-USN-LAMSON",
+      "IBS-U-IJN-KAGERO",
+      "IBS-U-IJN-SENDAI",
+      "IBS-U-USN-UNNAMED-T01-R03",
+      "IBS-U-USN-WASHINGTON",
+      "IBS-U-IJN-ERMA-YAMATO",
+      "IBS-U-USN-UNNAMED-T01-R51",
+      "IBS-U-USN-UNNAMED-T01-R52",
+      "IBS-U-IJN-SHIRATSUYU",
+      "IBS-U-IJN-YUGUMO",
+      "IBS-U-IJN-AKIZUKI",
+      "IBS-U-IJN-FUBUKI",
+      "IBS-U-IJN-HATSUYUKI"
+    ],
+    "independent_period_instances": [
+      "IBS-U-IJN-AMAGIRI",
+      "IBS-U-IJN-MAKINAMI",
+      "IBS-U-IJN-ONAMI",
+      "IBS-U-IJN-UZUKI-2",
+      "IBS-U-IJN-YUGIRI",
+      "IBS-U-USN-CF-AUSBURNE",
+      "IBS-U-USN-CLAXTON",
+      "IBS-U-USN-CONVERSE",
+      "IBS-U-USN-DYSON",
+      "IBS-U-USN-SPENCE"
+    ],
+    "independent_runtime_identities": [
+      "IBS-U-KM-HANS-LODY",
+      "IBS-U-KM-KARL-GALSTER",
+      "IBS-U-KM-RICHARD-BEITZEN",
+      "IBS-U-RN-JACKAL",
+      "IBS-U-RN-JAVELIN",
+      "IBS-U-RN-JERSEY",
+      "IBS-U-RN-JUPITER",
+      "IBS-U-RN-KASHMIR",
+      "IBS-U-USN-DRAYTON",
+      "IBS-U-USN-FLETCHER",
+      "IBS-U-USN-LAMSON",
+      "IBS-U-USN-MAURY",
+      "IBS-U-USN-PERKINS"
+    ],
+    "class_card_only": [
+      {
+        "identity": "IBS-U-IJN-AGANO",
+        "name": "阿贺野",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "阿贺野级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AKAGI",
+        "name": "赤城",
+        "side": "axis",
+        "type": "BC",
+        "legacy_class_label": "天城级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AKATSUKI",
+        "name": "晓",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "晓级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AKIGUMO",
+        "name": "秋云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AMAGI",
+        "name": "天城",
+        "side": "axis",
+        "type": "BC",
+        "legacy_class_label": "天城级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AMATSU-KAZE",
+        "name": "天津风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AOBA",
+        "name": "青叶",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "青叶级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ASAGUMO",
+        "name": "朝云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "朝潮级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ASAKAZE",
+        "name": "朝风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "神风级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ATAGO",
+        "name": "爱宕",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "高雄级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-AYANAMI",
+        "name": "绫波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "绫波级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-CHITOSE",
+        "name": "千岁",
+        "side": "axis",
+        "type": "AV",
+        "legacy_class_label": "千岁级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-CHOKAI",
+        "name": "鸟海",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "高雄级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-AZUMA",
+        "name": "吾妻",
+        "side": "axis",
+        "type": "CB",
+        "legacy_class_label": "erma-ijn-azuma-cb",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-GOKASE",
+        "name": "五濑",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "erma-ijn-gokase-cl",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-IBUKI",
+        "name": "伊吹",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "erma-ijn-ibuki-ca",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-ISHIKARI",
+        "name": "石狩",
+        "side": "axis",
+        "type": "CB",
+        "legacy_class_label": "erma-ijn-ishikari-cb",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+        "name": "风云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-KURAMA",
+        "name": "鞍马",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "erma-ijn-kurama-ca",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+        "name": "卷波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-MUSASHI",
+        "name": "武藏",
+        "side": "axis",
+        "type": "BB",
+        "legacy_class_label": "大和级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+        "name": "长波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-SHIMAKAZE",
+        "name": "岛风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "erma-ijn-shimakaze-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-SHINANO",
+        "name": "信浓",
+        "side": "axis",
+        "type": "BB",
+        "legacy_class_label": "大和级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-FUMIZUKI",
+        "name": "文月",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-FURUTAKA",
+        "name": "古鹰",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "古鹰级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-HAGURO",
+        "name": "羽黑",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "妙高级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-HAMAKAZE",
+        "name": "浜风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-HARUSAME",
+        "name": "春雨",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-HATSU-KAZE",
+        "name": "初风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-HIEI",
+        "name": "比叡",
+        "side": "axis",
+        "type": "BB",
+        "legacy_class_label": "金刚级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-IKAZUCHI",
+        "name": "雷",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "晓级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-INAZUMA",
+        "name": "电",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "晓级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-ISOKAZE",
+        "name": "矶风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-JINTSU-I",
+        "name": "神通(I)",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "ijn-jintsu-cl",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KAKO-I",
+        "name": "加古(I)",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "ijn-kako-ca",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KAMIKAZE",
+        "name": "神风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "神风级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KAWAKAZE",
+        "name": "江风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KAZEKUMO",
+        "name": "风云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KINUGASA",
+        "name": "衣笠",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "青叶级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KIRISHIMA",
+        "name": "雾岛",
+        "side": "axis",
+        "type": "BB",
+        "legacy_class_label": "金刚级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KIYONAMI",
+        "name": "清波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-KUROSHIO",
+        "name": "黑潮",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MATSU-KAZE",
+        "name": "松风",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MIKAZUKI",
+        "name": "三日月",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MINAZUKI",
+        "name": "水无月",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MONCHIZUKI",
+        "name": "望月",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MURAKUMO",
+        "name": "丛云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "吹雪级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MURASAME",
+        "name": "村雨",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MUTSU",
+        "name": "陆奥",
+        "side": "axis",
+        "type": "BB",
+        "legacy_class_label": "长门级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MUTSUKI",
+        "name": "睦月",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-MYOKO",
+        "name": "妙高",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "妙高级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NACHI",
+        "name": "那智",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "妙高级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NAGANAMI",
+        "name": "长波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NAGARA",
+        "name": "长良",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "长良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NAGATO",
+        "name": "长门",
+        "side": "axis",
+        "type": "BB",
+        "legacy_class_label": "长门级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NAGATSUKI",
+        "name": "长月",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NATSUGUMO",
+        "name": "夏云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "朝潮级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NIIZUKI",
+        "name": "新月",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "秋月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-NISSHIN",
+        "name": "日进",
+        "side": "axis",
+        "type": "AV",
+        "legacy_class_label": "日进级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-OITE",
+        "name": "追风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "神风级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-OWARI",
+        "name": "尾张",
+        "side": "axis",
+        "type": "BC",
+        "legacy_class_label": "纪伊级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-OYASHIO",
+        "name": "亲潮",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SAMIDARE",
+        "name": "五月雨",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SATSUKI",
+        "name": "皋月",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SAZANAMI",
+        "name": "涟",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "绫波级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SHIGURE",
+        "name": "时雨",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SHIKINAMI",
+        "name": "敷波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "绫波级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SHIRAYUKI",
+        "name": "白雪",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "吹雪级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-SUZUKAZE",
+        "name": "凉风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-TAKANAMI",
+        "name": "高波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "夕云级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-TAKAO",
+        "name": "高雄",
+        "side": "axis",
+        "type": "CA",
+        "legacy_class_label": "高雄级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-TANIKAZE",
+        "name": "谷风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-TATSUTA",
+        "name": "龙田",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "天龙级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-TENRYU",
+        "name": "天龙",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "天龙级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-TERUZUKI",
+        "name": "照月",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "秋月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-URANAMI",
+        "name": "浦波",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "吹雪级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-UZUKI",
+        "name": "卯月(I)",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "睦月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-WAKATSUKI",
+        "name": "若月",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "秋月级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-XIFENG",
+        "name": "夕风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-YAMAGUMO",
+        "name": "山云",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "朝潮级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-YUBARI",
+        "name": "夕张",
+        "side": "axis",
+        "type": "CL",
+        "legacy_class_label": "夕张级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-YUDACHI",
+        "name": "夕立",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "白露级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-YUGURE",
+        "name": "夕暮",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "初春级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-YUKIKAZE",
+        "name": "雪风",
+        "side": "axis",
+        "type": "DD",
+        "legacy_class_label": "阳炎级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-IJN-YUNAGI",
+        "name": "夕凪",
+        "side": "axis",
+        "type": "APD",
+        "legacy_class_label": "神风级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-RAN-AUSTRALIA",
+        "name": "澳大利亚",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "commonwealth-ca-kent",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-RAN-CANBERRA",
+        "name": "堪培拉",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "commonwealth-ca-kent",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-RN-UNNAMED-T05-R01",
+        "name": "利安德",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "哈津斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-AARON-WARD",
+        "name": "亚伦沃德",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "格利夫斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ASTORIA",
+        "name": "阿斯托里亚",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "新奥尔良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-BAGLEY",
+        "name": "巴格莱",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "巴格莱级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-BAINBRIDGE",
+        "name": "班布里奇",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-BARTON",
+        "name": "巴顿",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "本森级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-BENHAM",
+        "name": "本汉姆",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "本汉姆级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-BOISE",
+        "name": "博伊西",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "布鲁克林级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-BUCHANAN",
+        "name": "布坎南",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "格利夫斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-CHEVALIER",
+        "name": "谢伐利埃",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-COLORADO",
+        "name": "科罗拉多",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": "usn-colorado-bb",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-CUSHING",
+        "name": "库欣",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "马汉级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-DAHLGREN",
+        "name": "达尔格伦",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-DECATUR",
+        "name": "迪凯特",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-DUNCAN",
+        "name": "邓肯",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "格利夫斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-ALASKA",
+        "name": "阿拉斯加",
+        "side": "allies",
+        "type": "CB",
+        "legacy_class_label": "erma-usn-alaska-cb",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+        "name": "艾伦·M·萨姆纳",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "erma-usn-sumner-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-COOPER",
+        "name": "库珀",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "erma-usn-sumner-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-DES-MOINES",
+        "name": "得梅因",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "erma-usn-des-moines-ca",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-GUAM",
+        "name": "关岛",
+        "side": "allies",
+        "type": "CB",
+        "legacy_class_label": "erma-usn-alaska-cb",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-INGRAHAM",
+        "name": "英格拉罕",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "erma-usn-sumner-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-IOWA",
+        "name": "衣阿华",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": "衣阿华级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-MISSOURI",
+        "name": "密苏里",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": "衣阿华级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+        "name": "新泽西",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": "衣阿华级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-SALEM",
+        "name": "塞勒姆",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "erma-usn-des-moines-ca",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-WISCONSIN",
+        "name": "威斯康星",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": "衣阿华级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ERMA-WORCESTER",
+        "name": "伍斯特",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "erma-usn-worcester-cl",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-FARENHOLT",
+        "name": "法伦霍尔特",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "本森级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-FOOTE",
+        "name": "福特",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-FOX",
+        "name": "福克斯",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-GEARING",
+        "name": "基林",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-GWIN",
+        "name": "葛文",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-HELENA",
+        "name": "海伦娜",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "圣路易斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-HELM",
+        "name": "赫尔姆",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "巴格莱级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-HONOLULU",
+        "name": "火奴鲁鲁",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "布鲁克林级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-HULL-I",
+        "name": "赫尔(I)",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-JARVIS",
+        "name": "贾维斯",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "巴格莱级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-JENKINS",
+        "name": "詹金斯",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-LA-VALLETTE",
+        "name": "拉瓦利特",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-LAFFEY",
+        "name": "拉菲",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "本森级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-LARDNER",
+        "name": "拉德纳",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-MCCALLA",
+        "name": "麦卡拉",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "格利夫斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-MCDONOUGH",
+        "name": "麦克多诺",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-MIDWAY",
+        "name": "中途岛",
+        "side": "allies",
+        "type": "CV",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-MINNEAPOLIS",
+        "name": "明尼阿波里斯",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "新奥尔良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-MONSSEN",
+        "name": "蒙森",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "格利夫斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-NEW-ORLEANS",
+        "name": "新奥尔良",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "新奥尔良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-NICHOLAS",
+        "name": "尼古拉斯",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-NORTHAMPTON",
+        "name": "北安普敦",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "北安普敦级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-OBANNON",
+        "name": "奥班农",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-OMAHA",
+        "name": "奥马哈",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "usn-omaha-cl",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-PATTERSON",
+        "name": "帕特森",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "巴格莱级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-PENSACOLA",
+        "name": "彭萨科拉",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "彭萨科拉级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-PERRY",
+        "name": "佩里",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-PRESTON",
+        "name": "普雷斯顿",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "马汉级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-QUINCY",
+        "name": "昆西",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "新奥尔良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-RADFORD",
+        "name": "雷德福德",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-RALPH-TALBOT",
+        "name": "拉尔夫·托尔伯特",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-SALT-LAKE-CITY",
+        "name": "盐湖城",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "彭萨科拉级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-SAN-FRANCISCO",
+        "name": "旧金山",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "新奥尔良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-SELFRIDGE",
+        "name": "赛尔弗里纪",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-SOUTH-DAKOTA",
+        "name": "南达科塔",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-ST-LOUIS",
+        "name": "圣路易斯",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "圣路易斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-STANLY",
+        "name": "斯坦立",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-STERETT",
+        "name": "史特雷特",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": null,
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-TAYLOR",
+        "name": "泰勒",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-THATCHER",
+        "name": "撒切尔",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "弗莱彻级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-TRUXTON",
+        "name": "特鲁斯顿",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "usn-4in-dd",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R06",
+        "name": "列克星敦",
+        "side": "allies",
+        "type": "BC",
+        "legacy_class_label": "列克星敦",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R07",
+        "name": "合众国",
+        "side": "allies",
+        "type": "BC",
+        "legacy_class_label": "列克星敦",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R08",
+        "name": "宪法",
+        "side": "allies",
+        "type": "BC",
+        "legacy_class_label": "列克星敦",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R12",
+        "name": "芝加哥",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "北安普顿",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R13",
+        "name": "休斯顿",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "北安普顿",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R20",
+        "name": "波特兰",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "波特兰级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R22",
+        "name": "孟菲斯",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "奥马哈",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R23",
+        "name": "亚特兰大",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "亚特兰大级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R24",
+        "name": "朱诺",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "亚特兰大级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R25",
+        "name": "圣胡安",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "亚特兰大级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R26",
+        "name": "克利夫兰",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "克利夫兰级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R27",
+        "name": "哥伦比亚",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "克利夫兰级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R28",
+        "name": "蒙彼利埃",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "克利夫兰级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R29",
+        "name": "丹弗",
+        "side": "allies",
+        "type": "CL",
+        "legacy_class_label": "克利夫兰级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-VINCENNES",
+        "name": "文森斯",
+        "side": "allies",
+        "type": "CA",
+        "legacy_class_label": "新奥尔良级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-WALKE",
+        "name": "沃克",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "西姆斯级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-WEST-VIRGINIA",
+        "name": "西弗吉尼亚",
+        "side": "allies",
+        "type": "BB",
+        "legacy_class_label": "usn-colorado-bb",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-WILSON",
+        "name": "威尔逊",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "本汉姆级",
+        "cas_named_hull_status": "unverified"
+      },
+      {
+        "identity": "IBS-U-USN-WOODWORTH",
+        "name": "伍德沃斯",
+        "side": "allies",
+        "type": "DD",
+        "legacy_class_label": "格利夫斯级",
+        "cas_named_hull_status": "unverified"
+      }
+    ]
+  },
+  "local_recruit": {
+    "hulls": [
+      {
+        "class_id": "fletcher",
+        "name": "弗莱彻级",
+        "side": "allies",
+        "kind": "驱逐舰",
+        "max": 4
+      },
+      {
+        "class_id": "cleveland",
+        "name": "克利夫兰级",
+        "side": "allies",
+        "kind": "轻巡洋舰",
+        "max": 1
+      },
+      {
+        "class_id": "kagero",
+        "name": "阳炎级",
+        "side": "axis",
+        "kind": "驱逐舰",
+        "max": 4
+      },
+      {
+        "class_id": "sendai",
+        "name": "川内级",
+        "side": "axis",
+        "kind": "轻巡洋舰",
+        "max": 1
+      }
+    ],
+    "roster_slots": 5,
+    "note": "本机征募仍按 port.ts 的 4 个舰型抽取；线上 167 舰池未回灌本机。"
+  },
+  "blockers": [
+    {
+      "id": "campaign-identity-wiring",
+      "status": "external",
+      "detail": "战斗里的 characterId 仅在圣乔治角/通道行动（src/campaign/live.rs）与序章/排位（src/world.rs）注入；埃斯佩兰斯角、萨沃、塔萨法隆格、库拉湾、皇后湾及资料层剧本没有 IBS identity，shipPortrait 无法在这些战役里按 identity 选图。需要内核/战役接线，超出本次立绘 scope。",
+      "affected": [
+        "cas-rs-cape-esperance",
+        "cas-rs-savo-island",
+        "cas-rs-tassafaronga",
+        "cas-rs-kula-gulf",
+        "cas-rs-empress-augusta-bay",
+        "cas-rs-horaniu",
+        "cas-rs-kolombangara",
+        "cas-rs-vella-lavella",
+        "cas-rs-guadalcanal-i",
+        "cas-rs-guadalcanal-ii"
+      ]
+    },
+    {
+      "id": "shared-character-ids",
+      "status": "registered",
+      "detail": "roster-crosswalk 有 4 个 ibs_character_id 被两个舰 identity 共用；本 ledger 以 catalog identity（ibs_ship_id）为键，每艘有自己的 PNG。若运行时只回传共享的 character_id，客户端无法区分这两艘。",
+      "items": [
+        {
+          "character_id": "IBS-U-IJN-KAZEKUMO",
+          "identities": [
+            "IBS-U-IJN-ERMA-KAZEGUMO",
+            "IBS-U-IJN-KAZEKUMO"
+          ]
+        },
+        {
+          "character_id": "IBS-U-IJN-MAKINAMI",
+          "identities": [
+            "IBS-U-IJN-ERMA-MAKINAMI",
+            "IBS-U-IJN-MAKINAMI"
+          ]
+        },
+        {
+          "character_id": "IBS-U-IJN-NAGANAMI",
+          "identities": [
+            "IBS-U-IJN-ERMA-NAGANAMI",
+            "IBS-U-IJN-NAGANAMI"
+          ]
+        },
+        {
+          "character_id": "IBS-U-IJN-UZUKI",
+          "identities": [
+            "IBS-U-IJN-UZUKI",
+            "IBS-U-IJN-UZUKI-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scenario-names-without-identity",
+      "status": "blocked",
+      "detail": "11 个剧本有 42 个唯一舰名在 210 identity 中没有对应；多为运输舰/APD/DMS/飞机/旧式驱逐舰，按规范登记，不用同级代表图或借用其它 identity。逐条见 data/portraits/scenario-mapping.json。",
+      "count": 42,
+      "samples": [
+        {
+          "scenario": "cape-esperance",
+          "name": "SOC-3",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "guadalcanal-ii",
+          "name": "Hayashimo",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "guadalcanal-ii",
+          "name": "Umikaze",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "guadalcanal-ii",
+          "name": "Kinugasa Maru",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "guadalcanal-ii",
+          "name": "Hirokawa Maru",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "guadalcanal-ii",
+          "name": "Yamaura Maru",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "guadalcanal-ii",
+          "name": "Yamazuki Maru",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "kolombangara",
+          "name": "PBY-5A",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "savo-island",
+          "name": "Blue",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "savo-island",
+          "name": "Hobart",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "savo-island",
+          "name": "Hopkins",
+          "reason": "unmapped"
+        },
+        {
+          "scenario": "savo-island",
+          "name": "Trever",
+          "reason": "unmapped"
+        }
+      ]
+    },
+    {
+      "id": "local-recruit-four-hulls",
+      "status": "known",
+      "detail": "本机征募/母港仍只有 4 个舰型（fletcher/cleveland/kagero/sendai），线上征募池 167 艘；本轮按要求不改 Harbor/port.ts，因此本机到港仍是舰型代表图，线上收藏才按 identity 出图。",
+      "hulls": [
+        {
+          "class_id": "fletcher",
+          "name": "弗莱彻级",
+          "side": "allies",
+          "kind": "驱逐舰",
+          "max": 4
+        },
+        {
+          "class_id": "cleveland",
+          "name": "克利夫兰级",
+          "side": "allies",
+          "kind": "轻巡洋舰",
+          "max": 1
+        },
+        {
+          "class_id": "kagero",
+          "name": "阳炎级",
+          "side": "axis",
+          "kind": "驱逐舰",
+          "max": 4
+        },
+        {
+          "class_id": "sendai",
+          "name": "川内级",
+          "side": "axis",
+          "kind": "轻巡洋舰",
+          "max": 1
+        }
+      ],
+      "online_recruitable": 167
+    },
+    {
+      "id": "class-representative-fallback",
+      "status": "explicit",
+      "detail": "4 个 class_representative 仍保留给没有任何 identity 的舰级槽位，返回 representative=true 并在界面标注“舰型代表”；有 identity 的舰永远先按 identity 查，不会落到同级代表图。",
+      "class_ids": [
+        "cleveland",
+        "fletcher",
+        "kagero",
+        "sendai"
+      ]
+    },
+    {
+      "id": "thumbnail-resolution-mix",
+      "status": "documented",
+      "detail": "167 个 identity 复用已提交的 700x1050 征募 WebP；43 个非征募 identity 新生成 512x768 WebP，控制新增体积。"
+    },
+    {
+      "id": "stale-browser-assertions",
+      "status": "external",
+      "detail": "client/tests/browser-online-supply.mjs 仍断言“收藏里只有弗莱彻有立绘”且查看器必须返回 fletcher.png；210 identity 上任后该断言过期，应由测试 owner 更新。client/tests/browser-campaign.mjs 是已废弃的旧档案脚本。"
+    }
+  ]
+}

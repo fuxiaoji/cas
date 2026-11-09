@@ -1,0 +1,3785 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-erma-source-cards-usn-v1",
+ "as_of": "2026-11-08",
+ "scope": "66 个非当前剧本身份中 status=erma_record_image 且 side=allies 的 12 艘非航母舰（BB/CA/CB/CL/DD）",
+ "policy": "ERMA 记录 + 基础同型表。ERMA 记录卡只转录，不把 IBS 记录值换算成 CAS；缺 CAS 弹道行只给 profile + blocker，不编造；同型共享 class profile；不写 points。",
+ "governance": {
+  "read": [
+   "AGENTS.md",
+   "agent.md",
+   "docs/rules/rts-adaptation-standards.md"
+  ],
+  "deliverables": [
+   "data/ships/erma-source-cards-usn.json",
+   "data/ships/erma-source-usn-report.json"
+  ],
+  "scratch": [
+   "artifacts/build-erma-usn.py（生成器，scratch）",
+   "artifacts/erma/*.png（2449×3242 原图逐行裁切，核对用，scratch）"
+  ],
+  "not_touched": [
+   "src/",
+   "server/catalog",
+   "portraits",
+   "audio",
+   "AI",
+   "ranked_fleets"
+  ],
+  "commit": false
+ },
+ "source_images": {
+  "usn_records": {
+   "path": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "pixel_size": [
+    2449,
+    3242
+   ],
+   "title_verbatim": "扩展想定 第二次马里亚纳海战 - 美国海军(USN)",
+   "game_verbatim": "IRON BOTTOM SOUND IV",
+   "credit_verbatim": "设计：兔化之仙；美工：一只小明",
+   "usage": "12 艘 allied ERMA 舰的主转录源；逐行裁切放大核对（artifacts/erma/*.png，scratch）。"
+  },
+  "overview": {
+   "path": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "sha256": "03880d80621d8042fcb29333ada63a622eadf3d40950bc2feec074e3a87ab625",
+   "pixel_size": [
+    2449,
+    6484
+   ],
+   "note": "IJN + USN 总览，USN 部分与 usn_records 同图；仅作交叉核对，不另立数据。"
+  }
+ },
+ "base_tables": {
+  "american_fleets_2012_standard": {
+   "path": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+   "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+   "pages": {
+    "us_iowa_bb_1943": "A-4 (pdf 7)",
+    "us_alaska_cb_1944": "A-12 (pdf 15)",
+    "us_des_moines_ca_1948": "A-12 (pdf 15)",
+    "us_worcester_cl_1948": "A-14 (pdf 17)",
+    "us_sumner_dd_1943": "A-17 (pdf 20)"
+   }
+  },
+  "rising_sun_form_10s": {
+   "path": "CAS带翻译/CAS带翻译/船表/旧版太平洋 船表Rising_Sun_Form_10s.pdf",
+   "note": "本批五级（Iowa/Alaska/Des Moines/Worcester/Allen M. Sumner）无 Form 10 卡；Form 10s 收录到 1943 年，且本批 audit hits 无 form10 项，未用作基础表。"
+  }
+ },
+ "class_profiles": {
+  "us_iowa_bb_1943": {
+   "shipdef_status": "blocked",
+   "shipdef_missing": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "shipdef_blockers": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "shared_by": [
+    "IBS-U-USN-ERMA-IOWA",
+    "IBS-U-USN-ERMA-NEW-JERSEY",
+    "IBS-U-USN-ERMA-MISSOURI",
+    "IBS-U-USN-ERMA-WISCONSIN"
+   ],
+   "profile": {
+    "class": "Iowa",
+    "class_zh": "衣阿华级",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 7,
+     "printed_page": "A-4",
+     "entry": "Iowa"
+    },
+    "displacement_std_tons": 45000,
+    "in_class": "4 + 2",
+    "in_service_year": 1943,
+    "crew": 2753,
+    "signature": "Large/Loud",
+    "armor_rating": "45/19/210",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     270,
+     540,
+     809,
+     971,
+     1079
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "main_gun_source": "American Fleets A-4（炮座/口径文本）；CAS Annex C 的 Mk7 16in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "secondary_verbatim": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)10 Mk28 5in/38 (5.6)",
+    "light_aa_verbatim": "(4)19 40mm, (1)11 40mm, (1)60 20mm (IA) (36.8); (4)20 40mm, (1)11 40mm, (1)60 20mm (others) (37.8)",
+    "sensors": "SK, 2 SG radars (IA, NJ, WI); SK-2, 2 SG radars (MO)",
+    "remarks_verbatim": "Iowa, New Jersey, Missouri, Wisconsin. MO and WI completed with Mk12/22 fire control radars for 5 in vice Mk4. Additional units Illinois and Kentucky never completed.",
+    "dated_remarks": [
+     "1945: Iowa had Mk4 replaced by Mk12/22, SK-2, SC-2, SU radars added.",
+     "1945: New Jersey had Mk4 replaced by Mk12/22, SK-2, SP radars added.",
+     "1945: Wisconsin fitted with SP, SC-2 radars.",
+     "Aug 45: Illinois canceled.",
+     "Jun 50: Work stopped on Kentucky, scrapped Jun 58.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-10 surface search; Mk12/22 replaced by Mk25."
+    ]
+   }
+  },
+  "us_alaska_cb_1944": {
+   "shipdef_status": "blocked",
+   "shipdef_missing": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "shipdef_blockers": [
+    "CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "shared_by": [
+    "IBS-U-USN-ERMA-ALASKA",
+    "IBS-U-USN-ERMA-GUAM"
+   ],
+   "profile": {
+    "class": "Alaska",
+    "class_zh": "阿拉斯加级",
+    "side": "allies",
+    "kind": "CB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 15,
+     "printed_page": "A-12",
+     "entry": "Alaska"
+    },
+    "displacement_std_tons": 29799,
+    "in_class": "2 + 1 + 3",
+    "in_service_year": 1944,
+    "crew": 1517,
+    "signature": "Large/Loud",
+    "armor_rating": "28/13/105",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     205,
+     410,
+     615,
+     738,
+     820
+    ],
+    "speed_knots": [
+     33,
+     25,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+    "main_gun_source": "American Fleets A-12（炮座/口径文本）；CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+    "secondary_verbatim": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)6 Mk32 5in/38 (3.4)",
+    "light_aa_verbatim": "(4)14 40mm, 34 20mm (22.5)",
+    "sensors": "SG, SK",
+    "remarks_verbatim": "Alaska, Guam. Additional unit Hawaii started with Aug 45 AA fit, but retained incomplete after 1945. Philippines, Puerto Rico and Samoa cancelled. Mk12/22 have F/A arcs.",
+    "dated_remarks": [
+     "Jan 45: Proposed Light AA to (4)15 40mm, (2)2 40mm, (1)30 20mm, Lt AA 23.5. None fitted.",
+     "Aug 45: Proposed Light AA to (4)15 40mm, (2)4 40mm, (2)24 20mm, Lt AA 29.0."
+    ]
+   }
+  },
+  "us_des_moines_ca_1948": {
+   "shipdef_status": "blocked",
+   "shipdef_missing": [
+    "gun.range_yd",
+    "gun.damage",
+    "gun.pen_belt",
+    "gun.pen_deck"
+   ],
+   "shipdef_blockers": [
+    "CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。",
+    "本级 1948 年才服役；ERMA 扩想定把 1948 配置放进 1944 年，属架空，不能当作 1944 年历史舰卡。"
+   ],
+   "shared_by": [
+    "IBS-U-USN-ERMA-DES-MOINES",
+    "IBS-U-USN-ERMA-SALEM"
+   ],
+   "profile": {
+    "class": "Des Moines",
+    "class_zh": "得梅因级",
+    "side": "allies",
+    "kind": "CA",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 15,
+     "printed_page": "A-12",
+     "entry": "Des Moines"
+    },
+    "displacement_std_tons": 19930,
+    "in_class": "3 + 1 + 9",
+    "in_service_year": 1948,
+    "in_service_note": "1948 - 80",
+    "scenario_fit_note": "1948 年服役配置；ERMA 扩想定设定为 1944 年第二次马里亚纳海战，属架空，不是 1944 年历史配置。",
+    "crew": 1860,
+    "signature": "Medium/Noisy",
+    "armor_rating": "16/9",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     157,
+     314,
+     470,
+     564,
+     627
+    ],
+    "speed_knots": [
+     33,
+     25,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+    "main_gun_source": "American Fleets A-12（炮座/口径文本）；CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+    "secondary_verbatim": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22",
+    "tertiary_verbatim": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+    "area_aa_verbatim": "(2)6 Mk32 5in/38, (2)12 Mk22 3in/50 (10.1)",
+    "light_aa_verbatim": "(2)10 20mm (5.0)",
+    "sensors": "SR-3, SG-5",
+    "remarks_verbatim": "Des Moines, Newport News, Salem. Nine other planned units canceled, included CA-140 Dallas (scrapped incomplete), CA 141 - 143, CA 149 - 153. Designed for (4)12 40mm, 20 20mm, but completed with 12 twin 20mm. In peacetime usually carried only 7 (F/2P/2S/PA/SA, Area AA 7.3) or 8 (3P/3S/PA/SA, Area AA 7.9) twin 3 inch.",
+    "dated_remarks": [
+     "Early 1950s: 20mm removed, catapults and aircraft removed.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-8A surface search; Mk12/22 replaced by Mk25.",
+     "1955: Forward most twin 3 in permanently removed, Area AA 6.7.",
+     "1962: Newport News rebuilt as flagship. Two midships 3 inch mounts removed, Area AA 6.7.",
+     "1966: Newport News 3 inch fit P/S/PA/SA(2)4, Area AA 5.6.",
+     "1973: Newport News 3 inch fit PA/SA(2)2, Area AA 4.5.",
+     "Decommissioned: Salem 1959, Des Moines 1961, Newport News 1975."
+    ]
+   }
+  },
+  "us_worcester_cl_1948": {
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "shipdef_blockers": [],
+   "shared_by": [
+    "IBS-U-USN-ERMA-WORCESTER"
+   ],
+   "profile": {
+    "class": "Worcester",
+    "class_zh": "伍斯特级",
+    "side": "allies",
+    "kind": "CL",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 17,
+     "printed_page": "A-14",
+     "entry": "Worcester"
+    },
+    "displacement_std_tons": 17400,
+    "in_class": "2 + 2",
+    "in_service_year": 1948,
+    "in_service_note": "1948 - 72",
+    "scenario_fit_note": "1948 年服役配置；ERMA 扩想定设定为 1944 年第二次马里亚纳海战，属架空，不是 1944 年历史配置。",
+    "crew": 1470,
+    "signature": "Medium/Noisy",
+    "armor_rating": "13/9",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     143,
+     287,
+     430,
+     516,
+     573
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_6in47_mk16",
+    "main_gun_verbatim": "F/A(2)6 Mk16 6in/47//2 Mk13 (surf) & 4 Mk37 (air)",
+    "main_gun_source": "CAS Annex C-2 Mk16 6in/47 行：data/campaign/period/tassafaronga-1942.json#weapon_models.us_6in47_mk16。",
+    "main_gun_status": "cas_annex_c2_row_linked",
+    "gun_mounts_verbatim": "F/A(2)6 Mk16 6in/47//2 Mk13 (surf) & 4 Mk37 (air)",
+    "secondary_verbatim": "F/5P/5S(2)11 Mk27 3in/50//4 Mk35",
+    "tertiary_verbatim": "PA/SA(1)2 Mk27 3in/50//4 Mk35",
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 SC-1 Seahawk",
+    "area_aa_verbatim": "(2)6 Mk16 6in/47, (2)11 Mk27 3in/50, (1)2 Mk27 3in/50 (16.8)",
+    "light_aa_verbatim": "(1)6 (Worcester), (1)8 (Roanoke) 20mm (1.5 or 2.0)",
+    "sensors": "SR-2, SR-6, SG-6, SP",
+    "remarks_verbatim": "Worcester, Roanoke. Two additional planned units canceled. Planned Lt AA fit (4)11 and (2)2 40mm, 20 20mm, changed to 3 inch in before completion. Each 6 in mount had its own Mk27 radar rangefinder instead of an optical rangefinder (modifier for local control -1, instead of -2).",
+    "dated_remarks": []
+   }
+  },
+  "us_sumner_dd_1943": {
+   "shipdef_status": "complete",
+   "shipdef_missing": [],
+   "shipdef_blockers": [],
+   "shared_by": [
+    "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+    "IBS-U-USN-ERMA-INGRAHAM",
+    "IBS-U-USN-ERMA-COOPER"
+   ],
+   "profile": {
+    "class": "Allen M. Sumner",
+    "class_zh": "艾伦·M·萨姆纳级",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 20,
+     "printed_page": "A-17",
+     "entry": "Allen M. Sumner"
+    },
+    "displacement_std_tons": 2610,
+    "in_class": 58,
+    "in_service_year": 1943,
+    "crew": 336,
+    "signature": "Small/Noisy",
+    "armor_rating": 0,
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     41,
+     81,
+     122,
+     146,
+     162
+    ],
+    "speed_knots": [
+     34,
+     26,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_mk30_5in38",
+    "main_gun_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "main_gun_source": "CAS Annex C-2 行 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38：data/campaign/period/tassafaronga-1942.json#weapon_models.us_mk30_5in38。",
+    "main_gun_status": "cas_annex_c2_row_linked",
+    "gun_mounts_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "secondary_verbatim": null,
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+    "torpedo_model": "us_mk15_tnt",
+    "asw": "2 Mk9 DC rail w/8 Mk7 or 12 Mk6/9 DC; 6 Mk6 K-gun w/4 Mk6/9 DC",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 Mk38 5in/38 (1.7)",
+    "light_aa_verbatim": "(4)2 40mm, (2)2 40mm, (1)11 20mm (5.8)",
+    "sensors": "QCL/QCJ sonar (K); SC-2, SG radars (J)",
+    "remarks_verbatim": "DD 692-709, 722-734, 741, 744-748, 752-762, 770, 774-781, 857 (DD 760-762 were commissioned post-war). Total of 23 Mk7 & 16 Mk6 or 41 Mk6/9 DCs carried.",
+    "dated_remarks": [
+     "Apr 43: (2)2 40mm and single 20mm added, Lt AA 7.0.",
+     "Later: (2)2 40mms replaced by (4)2 40mm, Lt AA 8.0.",
+     "1944?: Fitted with QGA vice QC sonar.",
+     "1944 DM conversion: 12 units converted to fast minelayers on the ways. TT suppressed; K-guns and DC rails relocated (see separate entry).",
+     "1945 Anti-kamikaze refit: (4)3 40mm (two have Mk34 radars for blind-fire control), (2)2 40mm, (2)9-10 20mm, Lt AA 8.5 or 9.0. One TT mount removed. Probably also SR radar, TDY jammers, DBM 1st Gen ESN. Some received Mk12/22 radars, other late war pictures show Mk25 FC radar"
+    ]
+   }
+  }
+ },
+ "ships": [
+  {
+   "identity": "IBS-U-USN-ERMA-IOWA",
+   "name": "衣阿华",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "class_name": "Iowa",
+   "class_zh": "衣阿华级",
+   "class_profile": "us_iowa_bb_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    320,
+    2449,
+    568
+   ],
+   "source_image_row": "BB-1",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 BB-1（BB 衣阿华）给 主炮 16\"/副炮 5\"/鱼雷 0\"、装甲 17/1/13/17、44 VPs；基础表 American Fleets 2012 A-4（衣阿华级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Iowa",
+    "class_zh": "衣阿华级",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 7,
+     "printed_page": "A-4",
+     "entry": "Iowa"
+    },
+    "displacement_std_tons": 45000,
+    "in_class": "4 + 2",
+    "in_service_year": 1943,
+    "crew": 2753,
+    "signature": "Large/Loud",
+    "armor_rating": "45/19/210",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     270,
+     540,
+     809,
+     971,
+     1079
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "main_gun_source": "American Fleets A-4（炮座/口径文本）；CAS Annex C 的 Mk7 16in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "secondary_verbatim": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)10 Mk28 5in/38 (5.6)",
+    "light_aa_verbatim": "(4)19 40mm, (1)11 40mm, (1)60 20mm (IA) (36.8); (4)20 40mm, (1)11 40mm, (1)60 20mm (others) (37.8)",
+    "sensors": "SK, 2 SG radars (IA, NJ, WI); SK-2, 2 SG radars (MO)",
+    "remarks_verbatim": "Iowa, New Jersey, Missouri, Wisconsin. MO and WI completed with Mk12/22 fire control radars for 5 in vice Mk4. Additional units Illinois and Kentucky never completed.",
+    "dated_remarks": [
+     "1945: Iowa had Mk4 replaced by Mk12/22, SK-2, SC-2, SU radars added.",
+     "1945: New Jersey had Mk4 replaced by Mk12/22, SK-2, SP radars added.",
+     "1945: Wisconsin fitted with SP, SC-2 radars.",
+     "Aug 45: Illinois canceled.",
+     "Jun 50: Work stopped on Kentucky, scrapped Jun 58.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-10 surface search; Mk12/22 replaced by Mk25."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "BB-1",
+    "printed_type": "BB",
+    "printed_name_en": "Iowa",
+    "printed_name_zh": "衣阿华",
+    "weapons_in": {
+     "pri": 16,
+     "sec": 5,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 17,
+     "sec": 1,
+     "belt": 13,
+     "bridge": 17
+    },
+    "vps": 44,
+    "marks": {
+     "displacement_class": "H",
+     "main_battery_gf": {
+      "bow": [
+       38,
+       38
+      ],
+      "stern": [
+       38
+      ]
+     },
+     "secondary_gf_verbatim": "上 5×3；下 5×3",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "44 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "audit_terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-NEW-JERSEY",
+   "name": "新泽西",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "class_name": "Iowa",
+   "class_zh": "衣阿华级",
+   "class_profile": "us_iowa_bb_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    568,
+    2449,
+    815
+   ],
+   "source_image_row": "BB-2",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 BB-2（BB 新泽西）给 主炮 16\"/副炮 5\"/鱼雷 0\"、装甲 17/1/13/17、43 VPs；基础表 American Fleets 2012 A-4（衣阿华级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Iowa",
+    "class_zh": "衣阿华级",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 7,
+     "printed_page": "A-4",
+     "entry": "Iowa"
+    },
+    "displacement_std_tons": 45000,
+    "in_class": "4 + 2",
+    "in_service_year": 1943,
+    "crew": 2753,
+    "signature": "Large/Loud",
+    "armor_rating": "45/19/210",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     270,
+     540,
+     809,
+     971,
+     1079
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "main_gun_source": "American Fleets A-4（炮座/口径文本）；CAS Annex C 的 Mk7 16in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "secondary_verbatim": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)10 Mk28 5in/38 (5.6)",
+    "light_aa_verbatim": "(4)19 40mm, (1)11 40mm, (1)60 20mm (IA) (36.8); (4)20 40mm, (1)11 40mm, (1)60 20mm (others) (37.8)",
+    "sensors": "SK, 2 SG radars (IA, NJ, WI); SK-2, 2 SG radars (MO)",
+    "remarks_verbatim": "Iowa, New Jersey, Missouri, Wisconsin. MO and WI completed with Mk12/22 fire control radars for 5 in vice Mk4. Additional units Illinois and Kentucky never completed.",
+    "dated_remarks": [
+     "1945: Iowa had Mk4 replaced by Mk12/22, SK-2, SC-2, SU radars added.",
+     "1945: New Jersey had Mk4 replaced by Mk12/22, SK-2, SP radars added.",
+     "1945: Wisconsin fitted with SP, SC-2 radars.",
+     "Aug 45: Illinois canceled.",
+     "Jun 50: Work stopped on Kentucky, scrapped Jun 58.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-10 surface search; Mk12/22 replaced by Mk25."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "BB-2",
+    "printed_type": "BB",
+    "printed_name_en": "New Jersey",
+    "printed_name_zh": "新泽西",
+    "weapons_in": {
+     "pri": 16,
+     "sec": 5,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 17,
+     "sec": 1,
+     "belt": 13,
+     "bridge": 17
+    },
+    "vps": 43,
+    "marks": {
+     "displacement_class": "H",
+     "main_battery_gf": {
+      "bow": [
+       38,
+       38
+      ],
+      "stern": [
+       38
+      ]
+     },
+     "secondary_gf_verbatim": "上 5×3；下 5×3",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "43 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "audit_terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-MISSOURI",
+   "name": "密苏里",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "class_name": "Iowa",
+   "class_zh": "衣阿华级",
+   "class_profile": "us_iowa_bb_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    815,
+    2449,
+    1062
+   ],
+   "source_image_row": "BB-3",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 BB-3（BB 密苏里）给 主炮 16\"/副炮 5\"/鱼雷 0\"、装甲 17/1/13/17、43 VPs；基础表 American Fleets 2012 A-4（衣阿华级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Iowa",
+    "class_zh": "衣阿华级",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 7,
+     "printed_page": "A-4",
+     "entry": "Iowa"
+    },
+    "displacement_std_tons": 45000,
+    "in_class": "4 + 2",
+    "in_service_year": 1943,
+    "crew": 2753,
+    "signature": "Large/Loud",
+    "armor_rating": "45/19/210",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     270,
+     540,
+     809,
+     971,
+     1079
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "main_gun_source": "American Fleets A-4（炮座/口径文本）；CAS Annex C 的 Mk7 16in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "secondary_verbatim": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)10 Mk28 5in/38 (5.6)",
+    "light_aa_verbatim": "(4)19 40mm, (1)11 40mm, (1)60 20mm (IA) (36.8); (4)20 40mm, (1)11 40mm, (1)60 20mm (others) (37.8)",
+    "sensors": "SK, 2 SG radars (IA, NJ, WI); SK-2, 2 SG radars (MO)",
+    "remarks_verbatim": "Iowa, New Jersey, Missouri, Wisconsin. MO and WI completed with Mk12/22 fire control radars for 5 in vice Mk4. Additional units Illinois and Kentucky never completed.",
+    "dated_remarks": [
+     "1945: Iowa had Mk4 replaced by Mk12/22, SK-2, SC-2, SU radars added.",
+     "1945: New Jersey had Mk4 replaced by Mk12/22, SK-2, SP radars added.",
+     "1945: Wisconsin fitted with SP, SC-2 radars.",
+     "Aug 45: Illinois canceled.",
+     "Jun 50: Work stopped on Kentucky, scrapped Jun 58.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-10 surface search; Mk12/22 replaced by Mk25."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "BB-3",
+    "printed_type": "BB",
+    "printed_name_en": "Missouri",
+    "printed_name_zh": "密苏里",
+    "weapons_in": {
+     "pri": 16,
+     "sec": 5,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 17,
+     "sec": 1,
+     "belt": 13,
+     "bridge": 17
+    },
+    "vps": 43,
+    "marks": {
+     "displacement_class": "H",
+     "main_battery_gf": {
+      "bow": [
+       38,
+       38
+      ],
+      "stern": [
+       38
+      ]
+     },
+     "secondary_gf_verbatim": "上 5×3；下 5×3",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "43 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "audit_terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WISCONSIN",
+   "name": "威斯康星",
+   "side": "allies",
+   "type": "BB",
+   "class": "衣阿华级",
+   "class_name": "Iowa",
+   "class_zh": "衣阿华级",
+   "class_profile": "us_iowa_bb_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    1062,
+    2449,
+    1309
+   ],
+   "source_image_row": "BB-4",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 BB-4（BB 威斯康星）给 主炮 16\"/副炮 5\"/鱼雷 0\"、装甲 17/1/13/17、43 VPs；基础表 American Fleets 2012 A-4（衣阿华级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Iowa",
+    "class_zh": "衣阿华级",
+    "side": "allies",
+    "kind": "BB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 7,
+     "printed_page": "A-4",
+     "entry": "Iowa"
+    },
+    "displacement_std_tons": 45000,
+    "in_class": "4 + 2",
+    "in_service_year": 1943,
+    "crew": 2753,
+    "signature": "Large/Loud",
+    "armor_rating": "45/19/210",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     270,
+     540,
+     809,
+     971,
+     1079
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "main_gun_source": "American Fleets A-4（炮座/口径文本）；CAS Annex C 的 Mk7 16in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+    "secondary_verbatim": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)10 Mk28 5in/38 (5.6)",
+    "light_aa_verbatim": "(4)19 40mm, (1)11 40mm, (1)60 20mm (IA) (36.8); (4)20 40mm, (1)11 40mm, (1)60 20mm (others) (37.8)",
+    "sensors": "SK, 2 SG radars (IA, NJ, WI); SK-2, 2 SG radars (MO)",
+    "remarks_verbatim": "Iowa, New Jersey, Missouri, Wisconsin. MO and WI completed with Mk12/22 fire control radars for 5 in vice Mk4. Additional units Illinois and Kentucky never completed.",
+    "dated_remarks": [
+     "1945: Iowa had Mk4 replaced by Mk12/22, SK-2, SC-2, SU radars added.",
+     "1945: New Jersey had Mk4 replaced by Mk12/22, SK-2, SP radars added.",
+     "1945: Wisconsin fitted with SP, SC-2 radars.",
+     "Aug 45: Illinois canceled.",
+     "Jun 50: Work stopped on Kentucky, scrapped Jun 58.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-10 surface search; Mk12/22 replaced by Mk25."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "BB-4",
+    "printed_type": "BB",
+    "printed_name_en": "Wisconsin",
+    "printed_name_zh": "威斯康星",
+    "weapons_in": {
+     "pri": 16,
+     "sec": 5,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 17,
+     "sec": 1,
+     "belt": 13,
+     "bridge": 17
+    },
+    "vps": 43,
+    "marks": {
+     "displacement_class": "H",
+     "main_battery_gf": {
+      "bow": [
+       38,
+       38
+      ],
+      "stern": [
+       38
+      ]
+     },
+     "secondary_gf_verbatim": "上 5×3；下 5×3",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 16\"",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "P/S(2)10 Mk28 5in/38 (10×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 17\" / Sec 1\" / Belt 13\" / Bridge 17\"（分项英寸）",
+     "base_table": "Armor Rating 45/19/210（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)19/20 40mm, (1)11 40mm, (1)60 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SK, 2 SG (IA/NJ/WI); SK-2, 2 SG (MO)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "H",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 38/38；Stern 38",
+     "base_table": "2F/A(3)3 Mk7 16 in 406mm/50 //2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "上 5×3；下 5×3",
+     "base_table": "P/S(2)10 Mk28 5in/38 //4 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "43 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "同型 VP 差异",
+     "erma_record": "Iowa 44；New Jersey / Missouri / Wisconsin 43",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only_unexplained"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 1079",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk7 16in/50（406mm/50）弹道行未在本工作区已核数据中定位；American Fleets A-4 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [
+    "同型四舰 VP 不一致（Iowa 44；New Jersey/Missouri/Wisconsin 43），图上未印原因。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     5,
+     7,
+     10,
+     11,
+     138
+    ]
+   },
+   "audit_terms": [
+    "Iowa"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALASKA",
+   "name": "阿拉斯加",
+   "side": "allies",
+   "type": "CB",
+   "class": "erma-usn-alaska-cb",
+   "class_name": "Alaska",
+   "class_zh": "阿拉斯加级",
+   "class_profile": "us_alaska_cb_1944",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    1309,
+    2449,
+    1556
+   ],
+   "source_image_row": "CB-1",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 CB-1（CB 阿拉斯加）给 主炮 12\"/副炮 5\"/鱼雷 0\"、装甲 13/1/9.5/9、30 VPs；基础表 American Fleets 2012 A-12（阿拉斯加级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Alaska",
+    "class_zh": "阿拉斯加级",
+    "side": "allies",
+    "kind": "CB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 15,
+     "printed_page": "A-12",
+     "entry": "Alaska"
+    },
+    "displacement_std_tons": 29799,
+    "in_class": "2 + 1 + 3",
+    "in_service_year": 1944,
+    "crew": 1517,
+    "signature": "Large/Loud",
+    "armor_rating": "28/13/105",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     205,
+     410,
+     615,
+     738,
+     820
+    ],
+    "speed_knots": [
+     33,
+     25,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+    "main_gun_source": "American Fleets A-12（炮座/口径文本）；CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+    "secondary_verbatim": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)6 Mk32 5in/38 (3.4)",
+    "light_aa_verbatim": "(4)14 40mm, 34 20mm (22.5)",
+    "sensors": "SG, SK",
+    "remarks_verbatim": "Alaska, Guam. Additional unit Hawaii started with Aug 45 AA fit, but retained incomplete after 1945. Philippines, Puerto Rico and Samoa cancelled. Mk12/22 have F/A arcs.",
+    "dated_remarks": [
+     "Jan 45: Proposed Light AA to (4)15 40mm, (2)2 40mm, (1)30 20mm, Lt AA 23.5. None fitted.",
+     "Aug 45: Proposed Light AA to (4)15 40mm, (2)4 40mm, (2)24 20mm, Lt AA 29.0."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "CB-1",
+    "printed_type": "CB",
+    "printed_name_en": "Alaska",
+    "printed_name_zh": "阿拉斯加",
+    "weapons_in": {
+     "pri": 12,
+     "sec": 5,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 13,
+     "sec": 1,
+     "belt": 9.5,
+     "bridge": 9
+    },
+    "vps": 30,
+    "marks": {
+     "displacement_class": "F",
+     "main_battery_gf": {
+      "bow": [
+       24,
+       24
+      ],
+      "stern": [
+       24
+      ]
+     },
+     "secondary_gf_verbatim": "前 2；上 3 3；下 3 3；尾 2",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 12\"",
+     "base_table": "2F/A(3)3 Mk8 12in/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 13\" / Sec 1\" / Belt 9.5\" / Bridge 9\"（分项英寸）",
+     "base_table": "Armor Rating 28/13/105（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)14 40mm, 34 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SG, SK",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "F",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 24/24；Stern 24",
+     "base_table": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 3；下 3 3；尾 2",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "30 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 820",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     15,
+     71,
+     138
+    ],
+    "emperor": [
+     10,
+     64
+    ]
+   },
+   "audit_terms": [
+    "Alaska"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-GUAM",
+   "name": "关岛",
+   "side": "allies",
+   "type": "CB",
+   "class": "erma-usn-alaska-cb",
+   "class_name": "Alaska",
+   "class_zh": "阿拉斯加级",
+   "class_profile": "us_alaska_cb_1944",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    1556,
+    2449,
+    1803
+   ],
+   "source_image_row": "CB-2",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 CB-2（CB 关岛）给 主炮 12\"/副炮 5\"/鱼雷 0\"、装甲 13/1/9.5/9、30 VPs；基础表 American Fleets 2012 A-12（阿拉斯加级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Alaska",
+    "class_zh": "阿拉斯加级",
+    "side": "allies",
+    "kind": "CB",
+    "size_class_en": "A/Large",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 15,
+     "printed_page": "A-12",
+     "entry": "Alaska"
+    },
+    "displacement_std_tons": 29799,
+    "in_class": "2 + 1 + 3",
+    "in_service_year": 1944,
+    "crew": 1517,
+    "signature": "Large/Loud",
+    "armor_rating": "28/13/105",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     205,
+     410,
+     615,
+     738,
+     820
+    ],
+    "speed_knots": [
+     33,
+     25,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+    "main_gun_source": "American Fleets A-12（炮座/口径文本）；CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+    "secondary_verbatim": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+    "tertiary_verbatim": null,
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+    "area_aa_verbatim": "(2)6 Mk32 5in/38 (3.4)",
+    "light_aa_verbatim": "(4)14 40mm, 34 20mm (22.5)",
+    "sensors": "SG, SK",
+    "remarks_verbatim": "Alaska, Guam. Additional unit Hawaii started with Aug 45 AA fit, but retained incomplete after 1945. Philippines, Puerto Rico and Samoa cancelled. Mk12/22 have F/A arcs.",
+    "dated_remarks": [
+     "Jan 45: Proposed Light AA to (4)15 40mm, (2)2 40mm, (1)30 20mm, Lt AA 23.5. None fitted.",
+     "Aug 45: Proposed Light AA to (4)15 40mm, (2)4 40mm, (2)24 20mm, Lt AA 29.0."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "CB-2",
+    "printed_type": "CB",
+    "printed_name_en": "Guam",
+    "printed_name_zh": "关岛",
+    "weapons_in": {
+     "pri": 12,
+     "sec": 5,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 13,
+     "sec": 1,
+     "belt": 9.5,
+     "bridge": 9
+    },
+    "vps": 30,
+    "marks": {
+     "displacement_class": "F",
+     "main_battery_gf": {
+      "bow": [
+       24,
+       24
+      ],
+      "stern": [
+       24
+      ]
+     },
+     "secondary_gf_verbatim": "前 2；上 3 3；下 3 3；尾 2",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 12\"",
+     "base_table": "2F/A(3)3 Mk8 12in/50 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 13\" / Sec 1\" / Belt 9.5\" / Bridge 9\"（分项英寸）",
+     "base_table": "Armor Rating 28/13/105（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)14 40mm, 34 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SG, SK",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Midships catapult, 4 OS2U-3 Kingfisher",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "F",
+     "base_table": "A/Large",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 24/24；Stern 24",
+     "base_table": "2F/A(3)3 Mk8 12in/50//2 Mk8",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 3；下 3 3；尾 2",
+     "base_table": "F/PW/SW/PA/SA/A(2)6 Mk32 5in/38//2 Mk12/22",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "30 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 820",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk8 12in/50 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     15,
+     71,
+     138
+    ],
+    "emperor": [
+     10,
+     64
+    ]
+   },
+   "audit_terms": [
+    "Alaska"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-DES-MOINES",
+   "name": "得梅因",
+   "side": "allies",
+   "type": "CA",
+   "class": "erma-usn-des-moines-ca",
+   "class_name": "Des Moines",
+   "class_zh": "得梅因级",
+   "class_profile": "us_des_moines_ca_1948",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    1803,
+    2449,
+    2050
+   ],
+   "source_image_row": "CA-1",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 CA-1（CA 得梅因）给 主炮 8\"/副炮 5\"/高射炮 3\"/鱼雷 0\"、装甲 8/1/6/6.5、16 VPs；基础表 American Fleets 2012 A-12（得梅因级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Des Moines",
+    "class_zh": "得梅因级",
+    "side": "allies",
+    "kind": "CA",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 15,
+     "printed_page": "A-12",
+     "entry": "Des Moines"
+    },
+    "displacement_std_tons": 19930,
+    "in_class": "3 + 1 + 9",
+    "in_service_year": 1948,
+    "in_service_note": "1948 - 80",
+    "scenario_fit_note": "1948 年服役配置；ERMA 扩想定设定为 1944 年第二次马里亚纳海战，属架空，不是 1944 年历史配置。",
+    "crew": 1860,
+    "signature": "Medium/Noisy",
+    "armor_rating": "16/9",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     157,
+     314,
+     470,
+     564,
+     627
+    ],
+    "speed_knots": [
+     33,
+     25,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+    "main_gun_source": "American Fleets A-12（炮座/口径文本）；CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+    "secondary_verbatim": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22",
+    "tertiary_verbatim": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+    "area_aa_verbatim": "(2)6 Mk32 5in/38, (2)12 Mk22 3in/50 (10.1)",
+    "light_aa_verbatim": "(2)10 20mm (5.0)",
+    "sensors": "SR-3, SG-5",
+    "remarks_verbatim": "Des Moines, Newport News, Salem. Nine other planned units canceled, included CA-140 Dallas (scrapped incomplete), CA 141 - 143, CA 149 - 153. Designed for (4)12 40mm, 20 20mm, but completed with 12 twin 20mm. In peacetime usually carried only 7 (F/2P/2S/PA/SA, Area AA 7.3) or 8 (3P/3S/PA/SA, Area AA 7.9) twin 3 inch.",
+    "dated_remarks": [
+     "Early 1950s: 20mm removed, catapults and aircraft removed.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-8A surface search; Mk12/22 replaced by Mk25.",
+     "1955: Forward most twin 3 in permanently removed, Area AA 6.7.",
+     "1962: Newport News rebuilt as flagship. Two midships 3 inch mounts removed, Area AA 6.7.",
+     "1966: Newport News 3 inch fit P/S/PA/SA(2)4, Area AA 5.6.",
+     "1973: Newport News 3 inch fit PA/SA(2)2, Area AA 4.5.",
+     "Decommissioned: Salem 1959, Des Moines 1961, Newport News 1975."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "CA-1",
+    "printed_type": "CA",
+    "printed_name_en": "Des Moines",
+    "printed_name_zh": "得梅因",
+    "weapons_in": {
+     "pri": 8,
+     "sec": 5,
+     "ter": 3,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 8,
+     "sec": 1,
+     "belt": 6,
+     "bridge": 6.5
+    },
+    "vps": 16,
+    "marks": {
+     "displacement_class": "D",
+     "main_battery_gf": {
+      "bow": [
+       20,
+       20
+      ],
+      "stern": [
+       20
+      ]
+     },
+     "secondary_gf_verbatim": "前 2；上 3 2 2 3；下 3 2 2 3；尾 2 2",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 8\"",
+     "base_table": "2F/A(3)3 Mk16 8in/55 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "高射炮",
+     "erma_record": "Ter 3\"",
+     "base_table": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50 (12×2) + PA/SA(1)2",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 8\" / Sec 1\" / Belt 6\" / Bridge 6.5\"（分项英寸）",
+     "base_table": "Armor Rating 16/9（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "仅 Ter 3\"；无 20mm",
+     "base_table": "(2)10 20mm",
+     "status": "partial_missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SR-3, SG-5",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "D",
+     "base_table": "B/Medium",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 20/20；Stern 20",
+     "base_table": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 2 2 3；下 3 2 2 3；尾 2 2",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22；2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "16 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 627",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。",
+    "本级 1948 年才服役；ERMA 扩想定把 1948 配置放进 1944 年，属架空，不能当作 1944 年历史舰卡。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [
+    "本级 1948 年服役，ERMA 扩想定用于 1944 年（第二次马里亚纳海战），属架空；1944 年计划配置未核。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     15
+    ]
+   },
+   "audit_terms": [
+    "Des Moines"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-SALEM",
+   "name": "塞勒姆",
+   "side": "allies",
+   "type": "CA",
+   "class": "erma-usn-des-moines-ca",
+   "class_name": "Des Moines",
+   "class_zh": "得梅因级",
+   "class_profile": "us_des_moines_ca_1948",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    2050,
+    2449,
+    2297
+   ],
+   "source_image_row": "CA-2",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 CA-2（CA 塞勒姆）给 主炮 8\"/副炮 5\"/高射炮 3\"/鱼雷 0\"、装甲 8/1/6/6.5、16 VPs；基础表 American Fleets 2012 A-12（得梅因级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道未闭合（见 blockers）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Des Moines",
+    "class_zh": "得梅因级",
+    "side": "allies",
+    "kind": "CA",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 15,
+     "printed_page": "A-12",
+     "entry": "Des Moines"
+    },
+    "displacement_std_tons": 19930,
+    "in_class": "3 + 1 + 9",
+    "in_service_year": 1948,
+    "in_service_note": "1948 - 80",
+    "scenario_fit_note": "1948 年服役配置；ERMA 扩想定设定为 1944 年第二次马里亚纳海战，属架空，不是 1944 年历史配置。",
+    "crew": 1860,
+    "signature": "Medium/Noisy",
+    "armor_rating": "16/9",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     157,
+     314,
+     470,
+     564,
+     627
+    ],
+    "speed_knots": [
+     33,
+     25,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": null,
+    "main_gun_verbatim": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+    "main_gun_source": "American Fleets A-12（炮座/口径文本）；CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位。",
+    "main_gun_status": "cas_annex_c_row_not_located",
+    "gun_mounts_verbatim": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+    "secondary_verbatim": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22",
+    "tertiary_verbatim": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+    "area_aa_verbatim": "(2)6 Mk32 5in/38, (2)12 Mk22 3in/50 (10.1)",
+    "light_aa_verbatim": "(2)10 20mm (5.0)",
+    "sensors": "SR-3, SG-5",
+    "remarks_verbatim": "Des Moines, Newport News, Salem. Nine other planned units canceled, included CA-140 Dallas (scrapped incomplete), CA 141 - 143, CA 149 - 153. Designed for (4)12 40mm, 20 20mm, but completed with 12 twin 20mm. In peacetime usually carried only 7 (F/2P/2S/PA/SA, Area AA 7.3) or 8 (3P/3S/PA/SA, Area AA 7.9) twin 3 inch.",
+    "dated_remarks": [
+     "Early 1950s: 20mm removed, catapults and aircraft removed.",
+     "Post-1953: Search radars replaced by SPS-12 air search and SPS-8A surface search; Mk12/22 replaced by Mk25.",
+     "1955: Forward most twin 3 in permanently removed, Area AA 6.7.",
+     "1962: Newport News rebuilt as flagship. Two midships 3 inch mounts removed, Area AA 6.7.",
+     "1966: Newport News 3 inch fit P/S/PA/SA(2)4, Area AA 5.6.",
+     "1973: Newport News 3 inch fit PA/SA(2)2, Area AA 4.5.",
+     "Decommissioned: Salem 1959, Des Moines 1961, Newport News 1975."
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "CA-2",
+    "printed_type": "CA",
+    "printed_name_en": "Salem",
+    "printed_name_zh": "塞勒姆",
+    "weapons_in": {
+     "pri": 8,
+     "sec": 5,
+     "ter": 3,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 8,
+     "sec": 1,
+     "belt": 6,
+     "bridge": 6.5
+    },
+    "vps": 16,
+    "marks": {
+     "displacement_class": "D",
+     "main_battery_gf": {
+      "bow": [
+       20,
+       20
+      ],
+      "stern": [
+       20
+      ]
+     },
+     "secondary_gf_verbatim": "前 2；上 3 2 2 3；下 3 2 2 3；尾 2 2",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 8\"",
+     "base_table": "2F/A(3)3 Mk16 8in/55 (3×3)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 5\"",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "高射炮",
+     "erma_record": "Ter 3\"",
+     "base_table": "2F/4P/4S/PA/SA(2)12 Mk27 3in/50 (12×2) + PA/SA(1)2",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 8\" / Sec 1\" / Belt 6\" / Bridge 6.5\"（分项英寸）",
+     "base_table": "Armor Rating 16/9（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "仅 Ter 3\"；无 20mm",
+     "base_table": "(2)10 20mm",
+     "status": "partial_missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SR-3, SG-5",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 Floatplanes (Des Moines only)",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "D",
+     "base_table": "B/Medium",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 20/20；Stern 20",
+     "base_table": "2F/A(3)3 Mk16 8in/55//2 Mk13",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 2；上 3 2 2 3；下 3 2 2 3；尾 2 2",
+     "base_table": "F/2P/2S/A(2)6 Mk32 5in/38//4 Mk12/22；2F/4P/4S/PA/SA(2)12 Mk27 3in/50//4 Mk35 + 2 Mk34",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "16 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 627",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": null,
+   "shipdef_status": "blocked",
+   "blockers": [
+    "CAS Annex C 的 Mk16 8in/55 弹道行未在本工作区已核数据中定位；American Fleets A-12 只给炮座/口径文本，不能补 range_yd/damage/pen，未用近似值或其它舰炮行替代。",
+    "本级 1948 年才服役；ERMA 扩想定把 1948 配置放进 1944 年，属架空，不能当作 1944 年历史舰卡。"
+   ],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。"
+   ],
+   "unresolved": [
+    "本级 1948 年服役，ERMA 扩想定用于 1944 年（第二次马里亚纳海战），属架空；1944 年计划配置未核。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     15
+    ]
+   },
+   "audit_terms": [
+    "Des Moines"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-WORCESTER",
+   "name": "伍斯特",
+   "side": "allies",
+   "type": "CL",
+   "class": "erma-usn-worcester-cl",
+   "class_name": "Worcester",
+   "class_zh": "伍斯特级",
+   "class_profile": "us_worcester_cl_1948",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    2297,
+    2449,
+    2544
+   ],
+   "source_image_row": "CL-1",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 CL-1（CL 伍斯特）给 主炮 6\"/副炮 3\"/鱼雷 0\"、装甲 5/0/5/5、12 VPs；基础表 American Fleets 2012 A-14（伍斯特级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道已由 CAS Annex C 行闭合（见 ship.gun）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Worcester",
+    "class_zh": "伍斯特级",
+    "side": "allies",
+    "kind": "CL",
+    "size_class_en": "B/Medium",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 17,
+     "printed_page": "A-14",
+     "entry": "Worcester"
+    },
+    "displacement_std_tons": 17400,
+    "in_class": "2 + 2",
+    "in_service_year": 1948,
+    "in_service_note": "1948 - 72",
+    "scenario_fit_note": "1948 年服役配置；ERMA 扩想定设定为 1944 年第二次马里亚纳海战，属架空，不是 1944 年历史配置。",
+    "crew": 1470,
+    "signature": "Medium/Noisy",
+    "armor_rating": "13/9",
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     143,
+     287,
+     430,
+     516,
+     573
+    ],
+    "speed_knots": [
+     33,
+     25,
+     16,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_6in47_mk16",
+    "main_gun_verbatim": "F/A(2)6 Mk16 6in/47//2 Mk13 (surf) & 4 Mk37 (air)",
+    "main_gun_source": "CAS Annex C-2 Mk16 6in/47 行：data/campaign/period/tassafaronga-1942.json#weapon_models.us_6in47_mk16。",
+    "main_gun_status": "cas_annex_c2_row_linked",
+    "gun_mounts_verbatim": "F/A(2)6 Mk16 6in/47//2 Mk13 (surf) & 4 Mk37 (air)",
+    "secondary_verbatim": "F/5P/5S(2)11 Mk27 3in/50//4 Mk35",
+    "tertiary_verbatim": "PA/SA(1)2 Mk27 3in/50//4 Mk35",
+    "torpedoes": null,
+    "torpedoes_verbatim": null,
+    "torpedo_model": null,
+    "aircraft": "2 Aft catapult, 4 SC-1 Seahawk",
+    "area_aa_verbatim": "(2)6 Mk16 6in/47, (2)11 Mk27 3in/50, (1)2 Mk27 3in/50 (16.8)",
+    "light_aa_verbatim": "(1)6 (Worcester), (1)8 (Roanoke) 20mm (1.5 or 2.0)",
+    "sensors": "SR-2, SR-6, SG-6, SP",
+    "remarks_verbatim": "Worcester, Roanoke. Two additional planned units canceled. Planned Lt AA fit (4)11 and (2)2 40mm, 20 20mm, changed to 3 inch in before completion. Each 6 in mount had its own Mk27 radar rangefinder instead of an optical rangefinder (modifier for local control -1, instead of -2).",
+    "dated_remarks": []
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "CL-1",
+    "printed_type": "CL",
+    "printed_name_en": "Worcester",
+    "printed_name_zh": "伍斯特",
+    "weapons_in": {
+     "pri": 6,
+     "sec": 3,
+     "ter": null,
+     "torpedo": 0
+    },
+    "armour_in": {
+     "pri": 5,
+     "sec": 0,
+     "belt": 5,
+     "bridge": 5
+    },
+    "vps": 12,
+    "marks": {
+     "displacement_class": "D",
+     "main_battery_gf": {
+      "bow": [
+       5,
+       5,
+       5
+      ],
+      "stern": [
+       5,
+       5,
+       5
+      ]
+     },
+     "secondary_gf_verbatim": "前 1；上 2 1 2；下 2 1 2；尾 1",
+     "torpedo_launchers_verbatim": null,
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": true,
+     "speed_track": {
+      "initial": "6-5-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 6\"",
+     "base_table": "F/A(2)6 Mk16 6in/47 (6×2)",
+     "status": "match"
+    },
+    {
+     "item": "副炮",
+     "erma_record": "Sec 3\"",
+     "base_table": "F/5P/5S(2)11 Mk27 3in/50 + PA/SA(1)2",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 0\"",
+     "base_table": "无雷装",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "Pri 5\" / Sec 0\" / Belt 5\" / Bridge 5\"（分项英寸）",
+     "base_table": "Armor Rating 13/9（CAS 装甲等级，量纲不同）",
+     "status": "different_scheme_not_converted"
+    },
+    {
+     "item": "AA",
+     "erma_record": "仅 Sec 3\"；无 20mm",
+     "base_table": "(1)6 20mm (Worcester)",
+     "status": "partial_missing_on_record"
+    },
+    {
+     "item": "雷达",
+     "erma_record": "未印",
+     "base_table": "SR-2, SR-6, SG-6, SP",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰载机",
+     "erma_record": "未印",
+     "base_table": "2 Aft catapult, 4 SC-1 Seahawk",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "D",
+     "base_table": "B/Medium",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 5/5/5；Stern 5/5/5",
+     "base_table": "F/A(2)6 Mk16 6in/47//2 Mk13 (surf) & 4 Mk37 (air)",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡副炮/高炮 GF",
+     "erma_record": "前 1；上 2 1 2；下 2 1 2；尾 1",
+     "base_table": "F/5P/5S(2)11 Mk27 3in/50//4 Mk35；PA/SA(1)2 Mk27 3in/50//4 Mk35",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-5-5",
+     "base_table": "CAS 最高 33 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "12 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 573",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": {
+    "id": "IBS-U-USN-ERMA-WORCESTER",
+    "name": "伍斯特",
+    "side": "allies",
+    "kind": "CL",
+    "size": "B",
+    "max_knots": 33,
+    "dp": 573,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 33
+     },
+     {
+      "damage": 143,
+      "knots": 25
+     },
+     {
+      "damage": 287,
+      "knots": 16
+     },
+     {
+      "damage": 430,
+      "knots": 8
+     },
+     {
+      "damage": 516,
+      "knots": 0
+     },
+     {
+      "damage": 573,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 2,
+    "accel_knots_per_turn": 10,
+    "accel_high_knots_per_turn": 5,
+    "brake_knots_per_turn": 12,
+    "armor_belt": 13,
+    "armor_deck": 9,
+    "in_service_year": 1948,
+    "gun": {
+     "name": "Mk16 6in/47 APC",
+     "caliber_mm": 152,
+     "range_yd": [
+      6200.0,
+      13000.0,
+      20800.0,
+      26000.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 12,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      15,
+      9,
+      7,
+      5
+     ],
+     "pen_deck": [
+      null,
+      null,
+      2,
+      4
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": null,
+    "source_class": "us_worcester_cl_1948",
+    "gun_note": "主炮 6in/47 Mk16 弹道取 CAS Annex C-2 行（tassafaronga 包已核）；炮座 6×2 按 AF A-14 'F/A(2)6' 分 3 前 3 后；F [210,150] / A [30,330]。",
+    "shipdef_basis": "DP/航速/装甲等级取 American Fleets A-14；turn/accel 取 CAS 5e 规则 3-2 与 3-1.1（B 级 300/2、10/5/12）；炮座弧按 CAS 2.2.2 的 F/A 约定。"
+   },
+   "shipdef_status": "complete",
+   "blockers": [],
+   "limitations": [
+    "ERMA 记录装甲为按部位英寸值（Pri/Sec/Belt/Bridge），CAS Armor Rating 为另一套等级；未换算，profile 采用基础表值。",
+    "ERMA 记录不列 AA、雷达、舰载机；这些字段只来自 American Fleets 基础表。",
+    "记录卡主炮/副炮 GF 是 IBS IV 游戏值，与 CAS 炮座数/弹道不是一一对应；未换算。",
+    "ShipDef 只含主炮与鱼雷；AA/雷达/深弹保留在 profile，不入 ShipDef。"
+   ],
+   "unresolved": [
+    "本级 1948 年服役，ERMA 扩想定用于 1944 年（第二次马里亚纳海战），属架空；1944 年计划配置未核。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     6,
+     17
+    ]
+   },
+   "audit_terms": [
+    "Worcester"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "name": "艾伦·M·萨姆纳",
+   "side": "allies",
+   "type": "DD",
+   "class": "erma-usn-sumner-dd",
+   "class_name": "Allen M. Sumner",
+   "class_zh": "艾伦·M·萨姆纳级",
+   "class_profile": "us_sumner_dd_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    2544,
+    1225,
+    2791
+   ],
+   "source_image_row": "DD-1",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 DD-1（DD 艾伦·M·萨姆纳）给 主炮 5\"/鱼雷 21\"、装甲 无（记录卡无装甲栏）、3 VPs；基础表 American Fleets 2012 A-17（艾伦·M·萨姆纳级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道已由 CAS Annex C 行闭合（见 ship.gun）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Allen M. Sumner",
+    "class_zh": "艾伦·M·萨姆纳级",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 20,
+     "printed_page": "A-17",
+     "entry": "Allen M. Sumner"
+    },
+    "displacement_std_tons": 2610,
+    "in_class": 58,
+    "in_service_year": 1943,
+    "crew": 336,
+    "signature": "Small/Noisy",
+    "armor_rating": 0,
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     41,
+     81,
+     122,
+     146,
+     162
+    ],
+    "speed_knots": [
+     34,
+     26,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_mk30_5in38",
+    "main_gun_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "main_gun_source": "CAS Annex C-2 行 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38：data/campaign/period/tassafaronga-1942.json#weapon_models.us_mk30_5in38。",
+    "main_gun_status": "cas_annex_c2_row_linked",
+    "gun_mounts_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "secondary_verbatim": null,
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+    "torpedo_model": "us_mk15_tnt",
+    "asw": "2 Mk9 DC rail w/8 Mk7 or 12 Mk6/9 DC; 6 Mk6 K-gun w/4 Mk6/9 DC",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 Mk38 5in/38 (1.7)",
+    "light_aa_verbatim": "(4)2 40mm, (2)2 40mm, (1)11 20mm (5.8)",
+    "sensors": "QCL/QCJ sonar (K); SC-2, SG radars (J)",
+    "remarks_verbatim": "DD 692-709, 722-734, 741, 744-748, 752-762, 770, 774-781, 857 (DD 760-762 were commissioned post-war). Total of 23 Mk7 & 16 Mk6 or 41 Mk6/9 DCs carried.",
+    "dated_remarks": [
+     "Apr 43: (2)2 40mm and single 20mm added, Lt AA 7.0.",
+     "Later: (2)2 40mms replaced by (4)2 40mm, Lt AA 8.0.",
+     "1944?: Fitted with QGA vice QC sonar.",
+     "1944 DM conversion: 12 units converted to fast minelayers on the ways. TT suppressed; K-guns and DC rails relocated (see separate entry).",
+     "1945 Anti-kamikaze refit: (4)3 40mm (two have Mk34 radars for blind-fire control), (2)2 40mm, (2)9-10 20mm, Lt AA 8.5 or 9.0. One TT mount removed. Probably also SR radar, TDY jammers, DBM 1st Gen ESN. Some received Mk12/22 radars, other late war pictures show Mk25 FC radar"
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "DD-1",
+    "printed_type": "DD",
+    "printed_name_en": "Allen M. Sumner",
+    "printed_name_zh": "艾伦·M·萨姆纳",
+    "weapons_in": {
+     "pri": 5,
+     "sec": null,
+     "ter": null,
+     "torpedo": 21
+    },
+    "armour_in": null,
+    "vps": 3,
+    "marks": {
+     "displacement_class": "A",
+     "main_battery_gf": {
+      "bow": [
+       3,
+       3
+      ],
+      "stern": [
+       3
+      ]
+     },
+     "secondary_gf_verbatim": null,
+     "torpedo_launchers_verbatim": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": false,
+     "speed_track": {
+      "initial": "6-6-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "6 5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 5\"",
+     "base_table": "2F/A(2)3 Mk38 5in/38 (3×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 21\"",
+     "base_table": "P&S(5)2 Mk14/Mk15 533mm TT w/5 Mk15",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "无装甲栏",
+     "base_table": "Armor Rating 0",
+     "status": "match_no_armor"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)2 40mm, (2)2 40mm, (1)11 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "反潜",
+     "erma_record": "未印",
+     "base_table": "2 Mk9 DC rail; 6 Mk6 K-gun",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达/声呐",
+     "erma_record": "未印",
+     "base_table": "QCL/QCJ sonar; SC-2, SG",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "A",
+     "base_table": "C/Small",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 3/3；Stern 3",
+     "base_table": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡鱼雷发射器",
+     "erma_record": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "base_table": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-6-5",
+     "base_table": "CAS 最高 34 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "3 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 162",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": {
+    "id": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+    "name": "艾伦·M·萨姆纳",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 34,
+    "dp": 162,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 34
+     },
+     {
+      "damage": 41,
+      "knots": 26
+     },
+     {
+      "damage": 81,
+      "knots": 17
+     },
+     {
+      "damage": 122,
+      "knots": 8
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     },
+     {
+      "damage": 162,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1943,
+    "gun": {
+     "name": "Mk38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 6,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null
+    },
+    "source_class": "us_sumner_dd_1943",
+    "gun_note": "主炮 5in/38 取 CAS Annex C-2 行（Mk12...Mk38 同列）；炮座 3×2 按 AF A-17 '2F/A(2)3' 分 2 前 1 后。",
+    "shipdef_basis": "DP/航速/装甲取 American Fleets A-17；turn/accel 取 CAS 5e 规则 3-2 与 3-1.1（C 级 300/1、12/6/15）；炮座弧按 CAS 2.2.2 的 F/A 约定；Mk15 鱼雷取 Annex F-1 TNT 行。",
+    "torpedo_note": "ERMA 记录只印 TT 21\"；Mk15 型号取自 AF A-17。ShipDef 用项目已登记的 Mk15 TNT 行（87 DP / 6000 yd / 45 kt）；1943+ Torpex 变体未写入，留作想定装载。"
+   },
+   "shipdef_status": "complete",
+   "blockers": [],
+   "limitations": [
+    "ERMA 记录无装甲栏；AA、深弹、雷达/声呐未印，只来自 American Fleets A-17。",
+    "记录卡鱼雷圆圈横线是 IBS IV 抽象（规则：1 游戏鱼雷=2 实雷），未与 CAS 10 管一一映射。",
+    "ShipDef 只含主炮与鱼雷；AA/雷达/深弹保留在 profile，不入 ShipDef。"
+   ],
+   "unresolved": [
+    "ERMA 记录未印鱼雷型号/战雷头；ShipDef 采用项目已登记的 Mk15 TNT 行，Torpex 变体未写入。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     6,
+     19,
+     20,
+     25,
+     43
+    ]
+   },
+   "audit_terms": [
+    "Sumner"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-INGRAHAM",
+   "name": "英格拉罕",
+   "side": "allies",
+   "type": "DD",
+   "class": "erma-usn-sumner-dd",
+   "class_name": "Allen M. Sumner",
+   "class_zh": "艾伦·M·萨姆纳级",
+   "class_profile": "us_sumner_dd_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    1225,
+    2544,
+    2449,
+    2791
+   ],
+   "source_image_row": "DD-2",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 DD-2（DD 英格拉罕）给 主炮 5\"/鱼雷 21\"、装甲 无（记录卡无装甲栏）、3 VPs；基础表 American Fleets 2012 A-17（艾伦·M·萨姆纳级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道已由 CAS Annex C 行闭合（见 ship.gun）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Allen M. Sumner",
+    "class_zh": "艾伦·M·萨姆纳级",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 20,
+     "printed_page": "A-17",
+     "entry": "Allen M. Sumner"
+    },
+    "displacement_std_tons": 2610,
+    "in_class": 58,
+    "in_service_year": 1943,
+    "crew": 336,
+    "signature": "Small/Noisy",
+    "armor_rating": 0,
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     41,
+     81,
+     122,
+     146,
+     162
+    ],
+    "speed_knots": [
+     34,
+     26,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_mk30_5in38",
+    "main_gun_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "main_gun_source": "CAS Annex C-2 行 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38：data/campaign/period/tassafaronga-1942.json#weapon_models.us_mk30_5in38。",
+    "main_gun_status": "cas_annex_c2_row_linked",
+    "gun_mounts_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "secondary_verbatim": null,
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+    "torpedo_model": "us_mk15_tnt",
+    "asw": "2 Mk9 DC rail w/8 Mk7 or 12 Mk6/9 DC; 6 Mk6 K-gun w/4 Mk6/9 DC",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 Mk38 5in/38 (1.7)",
+    "light_aa_verbatim": "(4)2 40mm, (2)2 40mm, (1)11 20mm (5.8)",
+    "sensors": "QCL/QCJ sonar (K); SC-2, SG radars (J)",
+    "remarks_verbatim": "DD 692-709, 722-734, 741, 744-748, 752-762, 770, 774-781, 857 (DD 760-762 were commissioned post-war). Total of 23 Mk7 & 16 Mk6 or 41 Mk6/9 DCs carried.",
+    "dated_remarks": [
+     "Apr 43: (2)2 40mm and single 20mm added, Lt AA 7.0.",
+     "Later: (2)2 40mms replaced by (4)2 40mm, Lt AA 8.0.",
+     "1944?: Fitted with QGA vice QC sonar.",
+     "1944 DM conversion: 12 units converted to fast minelayers on the ways. TT suppressed; K-guns and DC rails relocated (see separate entry).",
+     "1945 Anti-kamikaze refit: (4)3 40mm (two have Mk34 radars for blind-fire control), (2)2 40mm, (2)9-10 20mm, Lt AA 8.5 or 9.0. One TT mount removed. Probably also SR radar, TDY jammers, DBM 1st Gen ESN. Some received Mk12/22 radars, other late war pictures show Mk25 FC radar"
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "DD-2",
+    "printed_type": "DD",
+    "printed_name_en": "Ingraham",
+    "printed_name_zh": "英格拉罕",
+    "weapons_in": {
+     "pri": 5,
+     "sec": null,
+     "ter": null,
+     "torpedo": 21
+    },
+    "armour_in": null,
+    "vps": 3,
+    "marks": {
+     "displacement_class": "A",
+     "main_battery_gf": {
+      "bow": [
+       3,
+       3
+      ],
+      "stern": [
+       3
+      ]
+     },
+     "secondary_gf_verbatim": null,
+     "torpedo_launchers_verbatim": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": false,
+     "speed_track": {
+      "initial": "6-6-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "6 5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 5\"",
+     "base_table": "2F/A(2)3 Mk38 5in/38 (3×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 21\"",
+     "base_table": "P&S(5)2 Mk14/Mk15 533mm TT w/5 Mk15",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "无装甲栏",
+     "base_table": "Armor Rating 0",
+     "status": "match_no_armor"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)2 40mm, (2)2 40mm, (1)11 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "反潜",
+     "erma_record": "未印",
+     "base_table": "2 Mk9 DC rail; 6 Mk6 K-gun",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达/声呐",
+     "erma_record": "未印",
+     "base_table": "QCL/QCJ sonar; SC-2, SG",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "A",
+     "base_table": "C/Small",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 3/3；Stern 3",
+     "base_table": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡鱼雷发射器",
+     "erma_record": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "base_table": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-6-5",
+     "base_table": "CAS 最高 34 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "3 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 162",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": {
+    "id": "IBS-U-USN-ERMA-INGRAHAM",
+    "name": "英格拉罕",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 34,
+    "dp": 162,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 34
+     },
+     {
+      "damage": 41,
+      "knots": 26
+     },
+     {
+      "damage": 81,
+      "knots": 17
+     },
+     {
+      "damage": 122,
+      "knots": 8
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     },
+     {
+      "damage": 162,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1943,
+    "gun": {
+     "name": "Mk38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 6,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null
+    },
+    "source_class": "us_sumner_dd_1943",
+    "gun_note": "主炮 5in/38 取 CAS Annex C-2 行（Mk12...Mk38 同列）；炮座 3×2 按 AF A-17 '2F/A(2)3' 分 2 前 1 后。",
+    "shipdef_basis": "DP/航速/装甲取 American Fleets A-17；turn/accel 取 CAS 5e 规则 3-2 与 3-1.1（C 级 300/1、12/6/15）；炮座弧按 CAS 2.2.2 的 F/A 约定；Mk15 鱼雷取 Annex F-1 TNT 行。",
+    "torpedo_note": "ERMA 记录只印 TT 21\"；Mk15 型号取自 AF A-17。ShipDef 用项目已登记的 Mk15 TNT 行（87 DP / 6000 yd / 45 kt）；1943+ Torpex 变体未写入，留作想定装载。"
+   },
+   "shipdef_status": "complete",
+   "blockers": [],
+   "limitations": [
+    "ERMA 记录无装甲栏；AA、深弹、雷达/声呐未印，只来自 American Fleets A-17。",
+    "记录卡鱼雷圆圈横线是 IBS IV 抽象（规则：1 游戏鱼雷=2 实雷），未与 CAS 10 管一一映射。",
+    "ShipDef 只含主炮与鱼雷；AA/雷达/深弹保留在 profile，不入 ShipDef。"
+   ],
+   "unresolved": [
+    "ERMA 记录未印鱼雷型号/战雷头；ShipDef 采用项目已登记的 Mk15 TNT 行，Torpex 变体未写入。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     6,
+     19,
+     20,
+     25,
+     43
+    ]
+   },
+   "audit_terms": [
+    "Sumner"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-ERMA-COOPER",
+   "name": "库珀",
+   "side": "allies",
+   "type": "DD",
+   "class": "erma-usn-sumner-dd",
+   "class_name": "Allen M. Sumner",
+   "class_zh": "艾伦·M·萨姆纳级",
+   "class_profile": "us_sumner_dd_1943",
+   "source_image": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-usn-ship-records.png",
+   "source_image_sha256": "dced8a44b07a10936ac3f0096c467418717161d80cabbe21f4e91a488f3a1ed0",
+   "source_image_also": "F:/Codex/worktrees/android-mobile/铁底湾/resources/originals/extensions/erma/records/erma-ship-records-overview.png",
+   "source_image_bbox_px": [
+    0,
+    2791,
+    2449,
+    3038
+   ],
+   "source_image_row": "DD-3",
+   "source_note": "ERMA 记录 + 基础同型表：ERMA USN 舰表图 DD-3（DD 库珀）给 主炮 5\"/鱼雷 21\"、装甲 无（记录卡无装甲栏）、3 VPs；基础表 American Fleets 2012 A-17（艾伦·M·萨姆纳级）给 CAS DP/航速/装甲等级/AA/雷达等字段。主炮弹道已由 CAS Annex C 行闭合（见 ship.gun）；逐项差异见 deltas_vs_base。",
+   "profile": {
+    "class": "Allen M. Sumner",
+    "class_zh": "艾伦·M·萨姆纳级",
+    "side": "allies",
+    "kind": "DD",
+    "size_class_en": "C/Small",
+    "source": {
+     "document": "american_fleets",
+     "file": "CAS带翻译/CAS带翻译/船表/American_Fleets_2012_Standard.pdf",
+     "pdf_page": 20,
+     "printed_page": "A-17",
+     "entry": "Allen M. Sumner"
+    },
+    "displacement_std_tons": 2610,
+    "in_class": 58,
+    "in_service_year": 1943,
+    "crew": 336,
+    "signature": "Small/Noisy",
+    "armor_rating": 0,
+    "gunnery_standard": "IV",
+    "damage_points": [
+     0,
+     41,
+     81,
+     122,
+     146,
+     162
+    ],
+    "speed_knots": [
+     34,
+     26,
+     17,
+     8,
+     0,
+     0
+    ],
+    "main_gun": "us_mk30_5in38",
+    "main_gun_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "main_gun_source": "CAS Annex C-2 行 Mk12, 21, 22, 24, 25, 28, 29, 30, 32, 37, 38 5in/38：data/campaign/period/tassafaronga-1942.json#weapon_models.us_mk30_5in38。",
+    "main_gun_status": "cas_annex_c2_row_linked",
+    "gun_mounts_verbatim": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+    "secondary_verbatim": null,
+    "tertiary_verbatim": null,
+    "torpedoes_verbatim": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+    "torpedo_model": "us_mk15_tnt",
+    "asw": "2 Mk9 DC rail w/8 Mk7 or 12 Mk6/9 DC; 6 Mk6 K-gun w/4 Mk6/9 DC",
+    "aircraft": null,
+    "area_aa_verbatim": "(2)3 Mk38 5in/38 (1.7)",
+    "light_aa_verbatim": "(4)2 40mm, (2)2 40mm, (1)11 20mm (5.8)",
+    "sensors": "QCL/QCJ sonar (K); SC-2, SG radars (J)",
+    "remarks_verbatim": "DD 692-709, 722-734, 741, 744-748, 752-762, 770, 774-781, 857 (DD 760-762 were commissioned post-war). Total of 23 Mk7 & 16 Mk6 or 41 Mk6/9 DCs carried.",
+    "dated_remarks": [
+     "Apr 43: (2)2 40mm and single 20mm added, Lt AA 7.0.",
+     "Later: (2)2 40mms replaced by (4)2 40mm, Lt AA 8.0.",
+     "1944?: Fitted with QGA vice QC sonar.",
+     "1944 DM conversion: 12 units converted to fast minelayers on the ways. TT suppressed; K-guns and DC rails relocated (see separate entry).",
+     "1945 Anti-kamikaze refit: (4)3 40mm (two have Mk34 radars for blind-fire control), (2)2 40mm, (2)9-10 20mm, Lt AA 8.5 or 9.0. One TT mount removed. Probably also SR radar, TDY jammers, DBM 1st Gen ESN. Some received Mk12/22 radars, other late war pictures show Mk25 FC radar"
+    ]
+   },
+   "erma_record": {
+    "sheet": "USN",
+    "row": "DD-3",
+    "printed_type": "DD",
+    "printed_name_en": "Cooper",
+    "printed_name_zh": "库珀",
+    "weapons_in": {
+     "pri": 5,
+     "sec": null,
+     "ter": null,
+     "torpedo": 21
+    },
+    "armour_in": null,
+    "vps": 3,
+    "marks": {
+     "displacement_class": "A",
+     "main_battery_gf": {
+      "bow": [
+       3,
+       3
+      ],
+      "stern": [
+       3
+      ]
+     },
+     "secondary_gf_verbatim": null,
+     "torpedo_launchers_verbatim": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "main_fire_control_M": true,
+     "surface_search_radar_R": true,
+     "aircraft_box": false,
+     "speed_track": {
+      "initial": "6-6-5",
+      "rows": [
+       "6 5 4 3 2 1",
+       "6 5 4 3 2 1",
+       "5 4 3 2 1"
+      ]
+     },
+     "hull_durability_grid": "present (box grid; count not transcribed; not used by CAS)",
+     "interpretation": "按 IBS IV 规则 §1.2/§4F：主炮数字为炮火强度 GF，六角为副炮/高炮 GF，圆圈横线为鱼雷发射器，M/R 为火控/雷达，6..1 三行为航速档；均未换算成 CAS。"
+    },
+    "read_status": "readable: all printed numbers/letters legible in the 2449x3242 source PNG"
+   },
+   "deltas_vs_base": [
+    {
+     "item": "主炮",
+     "erma_record": "Pri 5\"",
+     "base_table": "2F/A(2)3 Mk38 5in/38 (3×2)",
+     "status": "match"
+    },
+    {
+     "item": "鱼雷",
+     "erma_record": "TT 21\"",
+     "base_table": "P&S(5)2 Mk14/Mk15 533mm TT w/5 Mk15",
+     "status": "match"
+    },
+    {
+     "item": "装甲",
+     "erma_record": "无装甲栏",
+     "base_table": "Armor Rating 0",
+     "status": "match_no_armor"
+    },
+    {
+     "item": "AA",
+     "erma_record": "未印",
+     "base_table": "(4)2 40mm, (2)2 40mm, (1)11 20mm",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "反潜",
+     "erma_record": "未印",
+     "base_table": "2 Mk9 DC rail; 6 Mk6 K-gun",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "雷达/声呐",
+     "erma_record": "未印",
+     "base_table": "QCL/QCJ sonar; SC-2, SG",
+     "status": "missing_on_record"
+    },
+    {
+     "item": "舰体等级",
+     "erma_record": "A",
+     "base_table": "C/Small",
+     "status": "different_label"
+    },
+    {
+     "item": "记录卡主炮 GF",
+     "erma_record": "Bow 3/3；Stern 3",
+     "base_table": "2F/A(2)3 Mk38 5in/38//1 Mk4",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡鱼雷发射器",
+     "erma_record": "2× 圆圈鱼雷发射器（内 3 横线）",
+     "base_table": "P&S(5)2 Mk14, Mk15 533mm TT w/5 Mk15 torpedoes",
+     "status": "record_only_game_abstraction"
+    },
+    {
+     "item": "记录卡航速档",
+     "erma_record": "6-6-5",
+     "base_table": "CAS 最高 34 kn",
+     "status": "record_only_different_scale"
+    },
+    {
+     "item": "胜利分",
+     "erma_record": "3 VPs",
+     "base_table": "CAS 无 VP 字段",
+     "status": "record_only"
+    },
+    {
+     "item": "记录卡船体耐久",
+     "erma_record": "方格 grid（未计格数）",
+     "base_table": "CAS DP 162",
+     "status": "record_only_different_scale"
+    }
+   ],
+   "ship": {
+    "id": "IBS-U-USN-ERMA-COOPER",
+    "name": "库珀",
+    "side": "allies",
+    "kind": "DD",
+    "size": "C",
+    "max_knots": 34,
+    "dp": 162,
+    "damage_speed": [
+     {
+      "damage": 0,
+      "knots": 34
+     },
+     {
+      "damage": 41,
+      "knots": 26
+     },
+     {
+      "damage": 81,
+      "knots": 17
+     },
+     {
+      "damage": 122,
+      "knots": 8
+     },
+     {
+      "damage": 146,
+      "knots": 0
+     },
+     {
+      "damage": 162,
+      "knots": 0
+     }
+    ],
+    "turn_advance_yards": 300,
+    "speed_loss_knots": 1,
+    "accel_knots_per_turn": 12,
+    "accel_high_knots_per_turn": 6,
+    "brake_knots_per_turn": 15,
+    "armor_belt": 0,
+    "armor_deck": 0,
+    "in_service_year": 1943,
+    "gun": {
+     "name": "Mk38 5in/38 SpCOM",
+     "caliber_mm": 127,
+     "range_yd": [
+      5500.0,
+      10900.0,
+      14600.0,
+      18200.0
+     ],
+     "damage": [
+      18,
+      14,
+      12,
+      11
+     ],
+     "gs": 4,
+     "barrels": 6,
+     "mounts": [
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        210,
+        150
+       ],
+       "arc2": null
+      },
+      {
+       "barrels": 2,
+       "arc": [
+        30,
+        330
+       ],
+       "arc2": null
+      }
+     ],
+     "pen_belt": [
+      7,
+      4,
+      3,
+      2
+     ],
+     "pen_deck": [
+      null,
+      null,
+      1,
+      2
+     ],
+     "armor_piercing": true
+    },
+    "torpedo": {
+     "name": "Mk15（TNT）",
+     "speed_knots": 45,
+     "range_yd": 6000,
+     "warhead": 87,
+     "tubes": 10,
+     "contact_fuze": true,
+     "mounts": [
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      },
+      {
+       "tubes": 5,
+       "arc": [
+        30,
+        150
+       ],
+       "arc2": [
+        210,
+        330
+       ],
+       "reserve": 0
+      }
+     ],
+     "reload_seconds": null
+    },
+    "source_class": "us_sumner_dd_1943",
+    "gun_note": "主炮 5in/38 取 CAS Annex C-2 行（Mk12...Mk38 同列）；炮座 3×2 按 AF A-17 '2F/A(2)3' 分 2 前 1 后。",
+    "shipdef_basis": "DP/航速/装甲取 American Fleets A-17；turn/accel 取 CAS 5e 规则 3-2 与 3-1.1（C 级 300/1、12/6/15）；炮座弧按 CAS 2.2.2 的 F/A 约定；Mk15 鱼雷取 Annex F-1 TNT 行。",
+    "torpedo_note": "ERMA 记录只印 TT 21\"；Mk15 型号取自 AF A-17。ShipDef 用项目已登记的 Mk15 TNT 行（87 DP / 6000 yd / 45 kt）；1943+ Torpex 变体未写入，留作想定装载。"
+   },
+   "shipdef_status": "complete",
+   "blockers": [],
+   "limitations": [
+    "ERMA 记录无装甲栏；AA、深弹、雷达/声呐未印，只来自 American Fleets A-17。",
+    "记录卡鱼雷圆圈横线是 IBS IV 抽象（规则：1 游戏鱼雷=2 实雷），未与 CAS 10 管一一映射。",
+    "ShipDef 只含主炮与鱼雷；AA/雷达/深弹保留在 profile，不入 ShipDef。"
+   ],
+   "unresolved": [
+    "ERMA 记录未印鱼雷型号/战雷头；ShipDef 采用项目已登记的 Mk15 TNT 行，Torpex 变体未写入。"
+   ],
+   "audit_status": "erma_record_image",
+   "audit_hits": {
+    "american": [
+     4,
+     6,
+     19,
+     20,
+     25,
+     43
+    ]
+   },
+   "audit_terms": [
+    "Sumner"
+   ]
+  }
+ ]
+}

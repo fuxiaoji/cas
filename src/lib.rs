@@ -1,4 +1,7 @@
 mod ai;
+#[cfg(not(target_arch = "wasm32"))]
+pub mod ai_evolve;
+mod challenge;
 mod empress;
 pub mod campaign;
 mod combat;
@@ -52,6 +55,11 @@ impl Engine {
                 start.fleet = r.get("fleet").and_then(Value::as_array).map(|picks| {
                     picks.iter().filter_map(Value::as_str).map(str::to_string).collect()
                 });
+                start.groups = match r.get("groups") {
+                    None => None,
+                    Some(value) => Some(serde_json::from_value(value.clone())
+                        .map_err(|error| format!("特混编成格式无效：{error}"))?),
+                };
                 let w = World::new_campaign(seed, start, profile)?;
                 let view = w.observation(w.player);
                 self.world = Some(w);
@@ -76,12 +84,20 @@ impl Engine {
                 let enemy = r.get("enemy").and_then(Value::as_str).unwrap_or("coord");
                 let variant = r.get("variant").and_then(Value::as_str).unwrap_or("");
                 let profile = r.get("profile").and_then(Value::as_str).unwrap_or("coord");
+                // Challenge stages may field up to eight hulls; the printed
+                // exercises and campaigns keep their five-slot ceiling.
+                let leader_limit = if variant == challenge::VARIANT { 8 } else { 5 };
                 let leader_slot = r
                     .get("leaderSlot")
-                    .map(|v| v.as_u64().filter(|v| *v < 5).ok_or("领舰位置无效"))
+                    .map(|v| v.as_u64().filter(|v| *v < leader_limit).ok_or("领舰位置无效"))
                     .transpose()?
                     .unwrap_or(0) as usize;
-                let mut w = World::new(seed, side, enemy, variant, profile, leader_slot)?;
+                let mut w = if variant == challenge::VARIANT {
+                    let stage = r.get("stage").and_then(Value::as_str).unwrap_or("challenge-01");
+                    World::new_challenge(seed, side, enemy, profile, leader_slot, stage)?
+                } else {
+                    World::new(seed, side, enemy, variant, profile, leader_slot)?
+                };
                 if let Some(opt) = r.get("realtime") {
                     if opt.as_bool().ok_or("实时炮击选项无效")? && !w.realtime() {
                         w.enable_realtime()?;

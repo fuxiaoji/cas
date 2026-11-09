@@ -45,6 +45,7 @@ export async function authenticateOnline(username: string, password: string, reg
 export interface OnlineMeta {
   wallet: { credits: number; up_tickets: number; standard_tickets: number; tickets: number; medals: number };
   owned_ships: string[]; claims: string[]; ai_profiles: string[];
+  campaign_progress?: Record<string, { best?: Record<string, number>; claimed?: number }>;
   pools?: Record<string, RecruitProgress>;
   draw?: RecruitProgress;
 }

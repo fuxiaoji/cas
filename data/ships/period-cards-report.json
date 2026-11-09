@@ -1,0 +1,1233 @@
+{
+ "schema_version": 1,
+ "content_version": "cas-period-cards-v1",
+ "as_of": "2026-11-08",
+ "generated_by": "scripts/build-period-cards.py",
+ "source": {
+  "identity_index": "data/ships/playable-cards.json#cards[].period_cards",
+  "packages": [
+   "data/campaign/period/cape-esperance-1942.json",
+   "data/campaign/period/cape-runtime.json",
+   "data/campaign/period/kula-runtime.json",
+   "data/campaign/period/savo-runtime.json",
+   "data/campaign/period/tassafaronga-runtime.json"
+  ],
+  "policy": "逐舰 period 卡原样复制：不做换算、不补默认值、不跨级套用类卡。Cape Esperance 包以 profile_ref 指向 Tassafaronga 包时，按该包已编译的运行时舰卡取完整 ShipDef（与 scripts/build_esperance_cards.py 同一解析路径）。Chokai / Wilson / Monssen / Buchanan / San Juan 五张的炮座与雷管按原页/class 行重录（此前 runtime 把座数×管数算错），其余字段不动；差额与冲突逐条在 stat_conflicts。"
+ },
+ "ranked_registry": {
+  "before": 88,
+  "added": 23,
+  "after": 111,
+  "playable_cards_identities": 139,
+  "playable_cards_before": 83,
+  "playable_cards_after": 106
+ },
+ "coverage_after": {
+  "catalog_identities": 210,
+  "playable": 111,
+  "collection_only": 99,
+  "collection_breakdown": {
+   "no_period_card": 28,
+   "apd_non_combatant": 5,
+   "outside_current_scenarios": 66
+  },
+  "note": "111 / 99 = 210 个 identity 减去可出战（88 既有 + 23 新增）。收藏侧 99 = 28 张无 period 卡 + 5 艘 APD（有 period 卡但按运输/非战斗保持收藏） + 66 个不在当前 11 个剧本交叉表内的 identity。"
+ },
+ "gaps": {
+  "no_period_card": [
+   "IBS-U-IJN-AKATSUKI",
+   "IBS-U-IJN-AMATSU-KAZE",
+   "IBS-U-IJN-ASAGUMO",
+   "IBS-U-IJN-ATAGO",
+   "IBS-U-IJN-FUMIZUKI",
+   "IBS-U-IJN-HIEI",
+   "IBS-U-IJN-IKAZUCHI",
+   "IBS-U-IJN-INAZUMA",
+   "IBS-U-IJN-JINTSU-I",
+   "IBS-U-IJN-KIRISHIMA",
+   "IBS-U-IJN-MATSU-KAZE",
+   "IBS-U-IJN-MINAZUKI",
+   "IBS-U-IJN-NAGARA",
+   "IBS-U-IJN-TAKAO",
+   "IBS-U-IJN-YUGURE",
+   "IBS-U-RN-UNNAMED-T05-R01",
+   "IBS-U-USN-AARON-WARD",
+   "IBS-U-USN-BARTON",
+   "IBS-U-USN-BENHAM",
+   "IBS-U-USN-GWIN",
+   "IBS-U-USN-LA-VALLETTE",
+   "IBS-U-USN-SOUTH-DAKOTA",
+   "IBS-U-USN-STERETT",
+   "IBS-U-USN-UNNAMED-T01-R20",
+   "IBS-U-USN-UNNAMED-T01-R23",
+   "IBS-U-USN-UNNAMED-T01-R24",
+   "IBS-U-USN-WALKE",
+   "IBS-U-USN-WOODWORTH"
+  ],
+  "apd_non_combatant": [
+   "IBS-U-IJN-MIKAZUKI",
+   "IBS-U-IJN-MONCHIZUKI",
+   "IBS-U-IJN-NAGATSUKI",
+   "IBS-U-IJN-SATSUKI",
+   "IBS-U-IJN-YUNAGI"
+  ],
+  "outside_current_scenarios": [
+   "IBS-U-USN-ERMA-MISSOURI",
+   "IBS-U-USN-ERMA-IOWA",
+   "IBS-U-USN-ERMA-DES-MOINES",
+   "IBS-U-USN-ERMA-WORCESTER",
+   "IBS-U-USN-GEARING",
+   "IBS-U-USN-MIDWAY",
+   "IBS-U-IJN-AKAGI",
+   "IBS-U-IJN-AMAGI",
+   "IBS-U-IJN-ASAKAZE",
+   "IBS-U-IJN-CHITOSE",
+   "IBS-U-IJN-ERMA-AZUMA",
+   "IBS-U-IJN-ERMA-GOKASE",
+   "IBS-U-IJN-ERMA-IBUKI",
+   "IBS-U-IJN-ERMA-ISHIKARI",
+   "IBS-U-IJN-ERMA-KAZEGUMO",
+   "IBS-U-IJN-ERMA-KURAMA",
+   "IBS-U-IJN-ERMA-MAKINAMI",
+   "IBS-U-IJN-ERMA-MUSASHI",
+   "IBS-U-IJN-ERMA-NAGANAMI",
+   "IBS-U-IJN-ERMA-SHIMAKAZE",
+   "IBS-U-IJN-ERMA-SHINANO",
+   "IBS-U-IJN-KAMIKAZE",
+   "IBS-U-IJN-MURAKUMO",
+   "IBS-U-IJN-MUTSU",
+   "IBS-U-IJN-MUTSUKI",
+   "IBS-U-IJN-NACHI",
+   "IBS-U-IJN-NAGATO",
+   "IBS-U-IJN-NATSUGUMO",
+   "IBS-U-IJN-NISSHIN",
+   "IBS-U-IJN-OITE",
+   "IBS-U-IJN-OWARI",
+   "IBS-U-IJN-TATSUTA",
+   "IBS-U-IJN-UZUKI-2",
+   "IBS-U-IJN-XIFENG",
+   "IBS-U-IJN-YAMAGUMO",
+   "IBS-U-KM-HANS-LODY",
+   "IBS-U-KM-KARL-GALSTER",
+   "IBS-U-KM-RICHARD-BEITZEN",
+   "IBS-U-RN-JACKAL",
+   "IBS-U-RN-JAVELIN",
+   "IBS-U-RN-JERSEY",
+   "IBS-U-RN-JUPITER",
+   "IBS-U-RN-KASHMIR",
+   "IBS-U-USN-BAINBRIDGE",
+   "IBS-U-USN-COLORADO",
+   "IBS-U-USN-DAHLGREN",
+   "IBS-U-USN-DECATUR",
+   "IBS-U-USN-ERMA-ALASKA",
+   "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+   "IBS-U-USN-ERMA-COOPER",
+   "IBS-U-USN-ERMA-GUAM",
+   "IBS-U-USN-ERMA-INGRAHAM",
+   "IBS-U-USN-ERMA-NEW-JERSEY",
+   "IBS-U-USN-ERMA-SALEM",
+   "IBS-U-USN-ERMA-WISCONSIN",
+   "IBS-U-USN-FOX",
+   "IBS-U-USN-MCDONOUGH",
+   "IBS-U-USN-OMAHA",
+   "IBS-U-USN-PERRY",
+   "IBS-U-USN-TRUXTON",
+   "IBS-U-USN-UNNAMED-T01-R06",
+   "IBS-U-USN-UNNAMED-T01-R07",
+   "IBS-U-USN-UNNAMED-T01-R08",
+   "IBS-U-USN-UNNAMED-T01-R13",
+   "IBS-U-USN-UNNAMED-T01-R22",
+   "IBS-U-USN-WEST-VIRGINIA"
+  ]
+ },
+ "stat_fixes": [
+  {
+   "identity": "IBS-U-USN-BUCHANAN",
+   "name": "布坎南",
+   "before": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "after": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "source": "Rising Sun Form 10 p.292（Buchanan DD, Mar 42/Nov-Dec 42 两页同装）＋American Fleets A-17 Bristol：F/A(1)4 Mk30=4 门单装；Port & Stbd (5)×2=10 雷管；DP 118、37 节",
+   "conflicts": [
+    "class 行 A-17（Bristol）与个体页 p.292/p.293 同印 Port & Stbd (5)；按同型 Barton p.291 / 13 张同型卡口径取 2 座×5=10 管，若后续确认单座再回调"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-MONSSEN",
+   "name": "蒙森",
+   "before": {
+    "dp": 144,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": null,
+    "torpedo_mounts": 0
+   },
+   "after": {
+    "dp": 128,
+    "max_knots": 35,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "source": "Rising Sun Form 10 p.303（Monssen DD, May 42 Modification）：Fwd (1)×2+Aft (1)×2=4 门单装；Port & Stbd (5)×2=10 雷管；DP 128、35 节，损伤行 0/32/64/96/115/128→35/26/18/9/0",
+   "conflicts": [
+    "class 行 A-17（Benson）印 5 门单装、37 节/144 DP；本卡按个体页 p.303 取 4 门单装、35 节/128 DP",
+    "p.303 雷装印一行 Port & Stbd (5)（5 个雷位框）；按同型 Gwin p.301 / 13 张同型卡口径取 2 座×5=10 管，若后续确认单座再回调"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-WILSON",
+   "name": "威尔逊",
+   "before": {
+    "dp": 124,
+    "max_knots": 35,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "after": {
+    "dp": 118,
+    "max_knots": 38,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4
+   },
+   "source": "Rising Sun Form 10 p.317（Wilson DD, Dec 1941）＋American Fleets A-18 Benham：F/A(1)4=4 门单装；Port/Stbd (4)×2=16 雷管；DP 118、38 节，损伤行 0/30/59/89/106/118→38/28/19/10/0",
+   "conflicts": [
+    "class 行 A-18（Benham）印 124 DP、35 节；本卡按个体页 p.317 取 118/38，级表差额保留"
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R25",
+   "name": "圣胡安",
+   "before": {
+    "dp": 304,
+    "max_knots": 33,
+    "gun_barrels": 10,
+    "gun_mounts": 5,
+    "torpedo_tubes": 4,
+    "torpedo_mounts": 2
+   },
+   "after": {
+    "dp": 304,
+    "max_knots": 33,
+    "gun_barrels": 16,
+    "gun_mounts": 8,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "source": "Rising Sun Form 10 p.262（San Juan CL, May 1942）＋American Fleets A-15 Atlanta：3F/P/S/3A(2)8=8 座双联 16 管；Port/Stbd (4)=8 雷管",
+   "conflicts": []
+  },
+  {
+   "identity": "IBS-U-USN-HULL-I",
+   "name": "赫尔(I)",
+   "before": {
+    "dp": 105,
+    "max_knots": 36,
+    "gun_barrels": 5,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "after": {
+    "dp": 105,
+    "max_knots": 36,
+    "gun_barrels": 5,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "source": "American Fleets A-19（Farragut）：2F/P&S/2A(1)5 Mk21=5 门单装；P&S(4)2 Mk11=8 雷管；Size D/Small、Standard Rudder 200 yds (1)；Dam 0/26/53/79/95/105 → 36/27/18/9/0",
+   "conflicts": [
+    "Savo 包 us_farragut_dd 旧值 Dam 36/speed 26、turn 300、size C 与 AF A-19 原页冲突；本卡按 A-19 修正（与同盟 source card 一致）",
+    "A-19 备注「1942: P&S 5in removed」未落在本卡：class 行印 5 门，Hull 无本舰 Form 10；ASW w/7 DC 未建模"
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-CHOKAI",
+   "name": "鸟海",
+   "before": {
+    "dp": 401,
+    "max_knots": 33,
+    "gun_barrels": 20,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4
+   },
+   "after": {
+    "dp": 471,
+    "max_knots": 33,
+    "gun_barrels": 9,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "source": "Rising Sun Form 10 p.49（Chokai CA, Aug 42 Damage）：Fwd (1)+Fwd (2)+P&S (2)+Aft (2)+Aft (2)=9 管/5 座；Port/Stbd (4) 610mm TT=8 雷管；DP 471、损伤行 0/118/236/353/424/471→33/25/16/8/0",
+   "conflicts": [
+    "class profile jp_takao_1939_ca 印 (2)5=10 管、P/S(4)4=16 雷管、401 DP，属 Takao/Atago（p.52）；鸟海按本舰 p.49 取 9 管/8 雷管/471 DP，级表差额保留"
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "identity": "IBS-U-USN-BOISE",
+   "name": "博伊西",
+   "side": "allies",
+   "type": "CL",
+   "source_file": "data/campaign/period/cape-esperance-1942.json",
+   "source_sha256": "f7c80109b897f171a85e97614e32c20242e1021169963af954a1dfa97ffdd5a5",
+   "resolved_from": {
+    "file": "data/campaign/period/tassafaronga-runtime.json",
+    "ship_id": "tass_honolulu",
+    "note": "data/campaign/period/cape-esperance-1942.json profiles.brooklyn_first_group_1942 → tassafaronga-1942.json#profiles.brooklyn_first_group_1942 → tassafaronga-runtime.json tass_honolulu",
+    "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+   },
+   "period_ship_id": "boise",
+   "period_profile": "brooklyn_first_group_1942",
+   "form10_page": 265,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 388,
+    "max_knots": 32,
+    "gun_barrels": 15,
+    "gun_mounts": 5,
+    "torpedo_tubes": null,
+    "torpedo_mounts": 0
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-FARENHOLT",
+   "name": "法伦霍尔特",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/cape-esperance-1942.json",
+   "source_sha256": "f7c80109b897f171a85e97614e32c20242e1021169963af954a1dfa97ffdd5a5",
+   "resolved_from": {
+    "file": "data/campaign/period/tassafaronga-runtime.json",
+    "ship_id": "tass_lardner",
+    "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner",
+    "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+   },
+   "period_ship_id": "farenholt",
+   "period_profile": "bristol_1942",
+   "form10_page": 296,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-DUNCAN",
+   "name": "邓肯",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/cape-esperance-1942.json",
+   "source_sha256": "f7c80109b897f171a85e97614e32c20242e1021169963af954a1dfa97ffdd5a5",
+   "resolved_from": {
+    "file": "data/campaign/period/tassafaronga-runtime.json",
+    "ship_id": "tass_lardner",
+    "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner",
+    "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+   },
+   "period_ship_id": "duncan",
+   "period_profile": "bristol_1942",
+   "form10_page": 295,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-LAFFEY",
+   "name": "拉菲",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/cape-esperance-1942.json",
+   "source_sha256": "f7c80109b897f171a85e97614e32c20242e1021169963af954a1dfa97ffdd5a5",
+   "resolved_from": {
+    "file": "data/campaign/period/tassafaronga-runtime.json",
+    "ship_id": "tass_lardner",
+    "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner",
+    "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+   },
+   "period_ship_id": "laffey",
+   "period_profile": "bristol_1942",
+   "form10_page": 297,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-BUCHANAN",
+   "name": "布坎南",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_buchanan",
+    "note": "period ships[].savo_buchanan",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_buchanan",
+   "period_profile": "us_bristol_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "Rising Sun Form 10 p.292（Buchanan DD, Mar 42/Nov-Dec 42 两页同装）＋American Fleets A-17 Bristol：F/A(1)4 Mk30=4 门单装；Port & Stbd (5)×2=10 雷管；DP 118、37 节",
+   "stat_conflicts": [
+    "class 行 A-17（Bristol）与个体页 p.292/p.293 同印 Port & Stbd (5)；按同型 Barton p.291 / 13 张同型卡口径取 2 座×5=10 管，若后续确认单座再回调"
+   ],
+   "stat_before": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "stat_after": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": [
+    {
+     "file": "data/campaign/period/cape-esperance-1942.json",
+     "hull_id": "buchanan",
+     "profile": "bristol_1942",
+     "form10_page": 293
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-USN-MCCALLA",
+   "name": "麦卡拉",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/cape-esperance-1942.json",
+   "source_sha256": "f7c80109b897f171a85e97614e32c20242e1021169963af954a1dfa97ffdd5a5",
+   "resolved_from": {
+    "file": "data/campaign/period/tassafaronga-runtime.json",
+    "ship_id": "tass_lardner",
+    "note": "data/campaign/period/cape-esperance-1942.json profiles.bristol_1942 → tassafaronga-1942.json#profiles.bristol_1942 → tassafaronga-runtime.json tass_lardner",
+    "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+   },
+   "period_ship_id": "mccalla",
+   "period_profile": "bristol_1942",
+   "form10_page": 299,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 118,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-HONOLULU",
+   "name": "火奴鲁鲁",
+   "side": "allies",
+   "type": "CL",
+   "source_file": "data/campaign/period/kula-runtime.json",
+   "source_sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0",
+   "resolved_from": {
+    "file": "data/campaign/period/kula-runtime.json",
+    "ship_id": "brooklyn_1",
+    "note": "period profiles.brooklyn_1（内联完整 ShipDef）",
+    "sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0"
+   },
+   "period_ship_id": "kula-honolulu",
+   "period_profile": "brooklyn_1",
+   "form10_page": 267,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 388,
+    "max_knots": 32,
+    "gun_barrels": 15,
+    "gun_mounts": 5,
+    "torpedo_tubes": null,
+    "torpedo_mounts": 0
+   },
+   "also_recorded": [
+    {
+     "file": "data/campaign/period/tassafaronga-runtime.json",
+     "hull_id": "tass_honolulu",
+     "profile": "brooklyn_first_group_1942",
+     "form10_page": null
+    }
+   ]
+  },
+  {
+   "identity": "IBS-U-IJN-UZUKI",
+   "name": "卯月(I)",
+   "side": "axis",
+   "type": "DD",
+   "source_file": "data/campaign/period/cape-runtime.json",
+   "source_sha256": "10ae487509629e7aa512cbeff441235ba8f368a237b38e28c8ed5991e03c5476",
+   "resolved_from": {
+    "file": "data/campaign/period/cape-runtime.json",
+    "ship_id": "uzuki",
+    "note": "period ships[].uzuki",
+    "sha256": "10ae487509629e7aa512cbeff441235ba8f368a237b38e28c8ed5991e03c5476"
+   },
+   "period_ship_id": "uzuki",
+   "period_profile": "mutsuki_1943_uzuki",
+   "form10_page": 183,
+   "form10_page_source": "period_card",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 88,
+    "max_knots": 33,
+    "gun_barrels": 2,
+    "gun_mounts": 2,
+    "torpedo_tubes": null,
+    "torpedo_mounts": 0
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-RALPH-TALBOT",
+   "name": "拉尔夫·托尔伯特",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_ralph_talbot",
+    "note": "period ships[].savo_ralph_talbot",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_ralph_talbot",
+   "period_profile": "us_bagley_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 119,
+    "max_knots": 36,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-MONSSEN",
+   "name": "蒙森",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_monssen",
+    "note": "period ships[].savo_monssen",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_monssen",
+   "period_profile": "us_benson_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "Rising Sun Form 10 p.303（Monssen DD, May 42 Modification）：Fwd (1)×2+Aft (1)×2=4 门单装；Port & Stbd (5)×2=10 雷管；DP 128、35 节，损伤行 0/32/64/96/115/128→35/26/18/9/0",
+   "stat_conflicts": [
+    "class 行 A-17（Benson）印 5 门单装、37 节/144 DP；本卡按个体页 p.303 取 4 门单装、35 节/128 DP",
+    "p.303 雷装印一行 Port & Stbd (5)（5 个雷位框）；按同型 Gwin p.301 / 13 张同型卡口径取 2 座×5=10 管，若后续确认单座再回调"
+   ],
+   "stat_before": {
+    "dp": 144,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": null,
+    "torpedo_mounts": 0
+   },
+   "stat_after": {
+    "dp": 128,
+    "max_knots": 35,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 10,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-RAN-AUSTRALIA",
+   "name": "澳大利亚",
+   "side": "allies",
+   "type": "CA",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_australia",
+    "note": "period ships[].savo_australia",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_australia",
+   "period_profile": "gb_kent_1939_ca",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 333,
+    "max_knots": 32,
+    "gun_barrels": 12,
+    "gun_mounts": 3,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 4
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-RAN-CANBERRA",
+   "name": "堪培拉",
+   "side": "allies",
+   "type": "CA",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_canberra",
+    "note": "period ships[].savo_canberra",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_canberra",
+   "period_profile": "gb_kent_1939_ca",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 333,
+    "max_knots": 32,
+    "gun_barrels": 12,
+    "gun_mounts": 3,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 4
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-BAGLEY",
+   "name": "巴格莱",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_bagley",
+    "note": "period ships[].savo_bagley",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_bagley",
+   "period_profile": "us_bagley_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 119,
+    "max_knots": 36,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-PATTERSON",
+   "name": "帕特森",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_patterson",
+    "note": "period ships[].savo_patterson",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_patterson",
+   "period_profile": "us_bagley_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 119,
+    "max_knots": 36,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-HELM",
+   "name": "赫尔姆",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_helm",
+    "note": "period ships[].savo_helm",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_helm",
+   "period_profile": "us_bagley_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 119,
+    "max_knots": 36,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-WILSON",
+   "name": "威尔逊",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_wilson",
+    "note": "period ships[].savo_wilson",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_wilson",
+   "period_profile": "us_benham_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "Rising Sun Form 10 p.317（Wilson DD, Dec 1941）＋American Fleets A-18 Benham：F/A(1)4=4 门单装；Port/Stbd (4)×2=16 雷管；DP 118、38 节，损伤行 0/30/59/89/106/118→38/28/19/10/0",
+   "stat_conflicts": [
+    "class 行 A-18（Benham）印 124 DP、35 节；本卡按个体页 p.317 取 118/38，级表差额保留"
+   ],
+   "stat_before": {
+    "dp": 124,
+    "max_knots": 35,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "stat_after": {
+    "dp": 118,
+    "max_knots": 38,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-UNNAMED-T01-R25",
+   "name": "圣胡安",
+   "side": "allies",
+   "type": "CL",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_san_juan",
+    "note": "period ships[].savo_san_juan",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_san_juan",
+   "period_profile": "us_atlanta_cl",
+   "form10_page": 262,
+   "form10_page_source": "savo-island-1942.json#instances.savo-san-juan",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "Rising Sun Form 10 p.262（San Juan CL, May 1942）＋American Fleets A-15 Atlanta：3F/P/S/3A(2)8=8 座双联 16 管；Port/Stbd (4)=8 雷管",
+   "stat_conflicts": [],
+   "stat_before": {
+    "dp": 304,
+    "max_knots": 33,
+    "gun_barrels": 10,
+    "gun_mounts": 5,
+    "torpedo_tubes": 4,
+    "torpedo_mounts": 2
+   },
+   "stat_after": {
+    "dp": 304,
+    "max_knots": 33,
+    "gun_barrels": 16,
+    "gun_mounts": 8,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-JARVIS",
+   "name": "贾维斯",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_jarvis",
+    "note": "period ships[].savo_jarvis",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_jarvis",
+   "period_profile": "us_bagley_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 119,
+    "max_knots": 36,
+    "gun_barrels": 8,
+    "gun_mounts": 2,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-SELFRIDGE",
+   "name": "赛尔弗里纪",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_selfridge",
+    "note": "period ships[].savo_selfridge",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_selfridge",
+   "period_profile": "us_porter_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 139,
+    "max_knots": 37,
+    "gun_barrels": 8,
+    "gun_mounts": 4,
+    "torpedo_tubes": 4,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-USN-HULL-I",
+   "name": "赫尔(I)",
+   "side": "allies",
+   "type": "DD",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_hull",
+    "note": "period ships[].savo_hull",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_hull",
+   "period_profile": "us_farragut_dd",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "American Fleets A-19（Farragut）：2F/P&S/2A(1)5 Mk21=5 门单装；P&S(4)2 Mk11=8 雷管；Size D/Small、Standard Rudder 200 yds (1)；Dam 0/26/53/79/95/105 → 36/27/18/9/0",
+   "stat_conflicts": [
+    "Savo 包 us_farragut_dd 旧值 Dam 36/speed 26、turn 300、size C 与 AF A-19 原页冲突；本卡按 A-19 修正（与同盟 source card 一致）",
+    "A-19 备注「1942: P&S 5in removed」未落在本卡：class 行印 5 门，Hull 无本舰 Form 10；ASW w/7 DC 未建模"
+   ],
+   "stat_before": {
+    "dp": 105,
+    "max_knots": 36,
+    "gun_barrels": 5,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "stat_after": {
+    "dp": 105,
+    "max_knots": 36,
+    "gun_barrels": 5,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-IJN-CHOKAI",
+   "name": "鸟海",
+   "side": "axis",
+   "type": "CA",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_chokai",
+    "note": "period ships[].savo_chokai",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_chokai",
+   "period_profile": "jp_takao_1939_ca",
+   "form10_page": null,
+   "form10_page_source": "unverified",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "Rising Sun Form 10 p.49（Chokai CA, Aug 42 Damage）：Fwd (1)+Fwd (2)+P&S (2)+Aft (2)+Aft (2)=9 管/5 座；Port/Stbd (4) 610mm TT=8 雷管；DP 471、损伤行 0/118/236/353/424/471→33/25/16/8/0",
+   "stat_conflicts": [
+    "class profile jp_takao_1939_ca 印 (2)5=10 管、P/S(4)4=16 雷管、401 DP，属 Takao/Atago（p.52）；鸟海按本舰 p.49 取 9 管/8 雷管/471 DP，级表差额保留"
+   ],
+   "stat_before": {
+    "dp": 401,
+    "max_knots": 33,
+    "gun_barrels": 20,
+    "gun_mounts": 4,
+    "torpedo_tubes": 16,
+    "torpedo_mounts": 4
+   },
+   "stat_after": {
+    "dp": 471,
+    "max_knots": 33,
+    "gun_barrels": 9,
+    "gun_mounts": 5,
+    "torpedo_tubes": 8,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-IJN-TENRYU",
+   "name": "天龙",
+   "side": "axis",
+   "type": "CL",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_tenryu",
+    "note": "period ships[].savo_tenryu",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_tenryu",
+   "period_profile": "jp_tenryu_cl",
+   "form10_page": 81,
+   "form10_page_source": "savo-island-1942.json#instances.savo-tenryu",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 158,
+    "max_knots": 33,
+    "gun_barrels": 4,
+    "gun_mounts": 4,
+    "torpedo_tubes": 6,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  },
+  {
+   "identity": "IBS-U-IJN-YUBARI",
+   "name": "夕张",
+   "side": "axis",
+   "type": "CL",
+   "source_file": "data/campaign/period/savo-runtime.json",
+   "source_sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6",
+   "resolved_from": {
+    "file": "data/campaign/period/savo-runtime.json",
+    "ship_id": "savo_yubari",
+    "note": "period ships[].savo_yubari",
+    "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+   },
+   "period_ship_id": "savo_yubari",
+   "period_profile": "jp_yubari_cl",
+   "form10_page": 75,
+   "form10_page_source": "savo-island-1942.json#instances.savo-yubari",
+   "complete": true,
+   "missing_fields": [],
+   "stat_verified": true,
+   "stat_source": "period runtime row（与本包一致，本批未改）",
+   "stat_conflicts": [],
+   "stat_before": null,
+   "stat_after": {
+    "dp": 163,
+    "max_knots": 35,
+    "gun_barrels": 6,
+    "gun_mounts": 4,
+    "torpedo_tubes": 4,
+    "torpedo_mounts": 2
+   },
+   "also_recorded": []
+  }
+ ],
+ "tests": {
+  "as_of": "2026-11-08",
+  "cargo_test_release_locked": {
+   "command": "cargo test --release --locked",
+   "lib_passed": 100,
+   "lib_failed": 0,
+   "binary_and_doc_targets": "0 tests, ok",
+   "ranked_fleets_tests": [
+    "ranked_fleets::tests::free_fleet_mirrors_keep_their_named_profiles_and_replay",
+    "ranked_fleets::tests::capital_ships_inherit_source_batteries_and_armor",
+    "ranked_fleets::tests::frozen_manifest_matches_the_runtime_point_formula",
+    "ranked_fleets::tests::every_profile_source_class_resolves_to_a_loaded_card",
+    "ranked_fleets::tests::period_cards_carry_complete_hulls_into_a_ranked_duel",
+    "ranked_fleets::tests::period_card_stats_follow_the_printed_hull_pages",
+    "ranked_fleets::tests::every_period_hull_has_a_realtime_gun_cadence",
+    "ranked_fleets::tests::declared_tiers_fit_the_cheapest_legal_fleets"
+   ]
+  },
+  "server_test_ranked": {
+   "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_ranked",
+   "ran": 12,
+   "failures": 0,
+   "skipped": 0,
+   "without_native_sim": "12 ran, 0 failed, 4 skipped (duel flow tests need the native sim path)"
+  },
+  "server_other_suites": {
+   "command": "CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_accounts server.test_battle_pve server.test_account_progression server.test_fleets server.test_duels",
+   "ran": 21,
+   "failures": 0
+  },
+  "client": {
+   "tsc": "node node_modules/typescript/bin/tsc --noEmit -> pass",
+   "vite_build": "node node_modules/vite/bin/vite.js build -> pass（仅既有 chunk-size 警告）"
+  },
+  "wasm": "未重建：本批只增加 ranked 注册表数据与 23 条实时炮座时序，未改任何剧本、裁决路径或既有舰卡；ranked 对局由原生服务端权威执行，浏览器内核不受影响。",
+  "stale_assertions_fixed": [
+   "server/test_ranked.py：免费序章编队点价 1875 → 1375（点表公式在 balance 批改为按实际舰卡计算，该断言只在设置 CAS_TEST_DUEL_SIM_PATH 时执行，此前一直跳过）",
+   "server/test_ranked.py：ranked_budgets / available_budgets [3000] → [3000, 10000]（10000 分档已开放，点表 enabled_budgets 已含）"
+  ],
+  "stat_correction_round": {
+   "rule": "有本舰 Form 10 个体页的取个体页（guns/torpedoes/DP/损伤-航速行），class 表只作未印项兜底；逐舰炮座/雷管与 13 张同型 source card 对齐（Gwin p.301 / Barton p.291 口径＝2 座×5）。差额与冲突逐条写入 period-cards.json 的 stat_conflicts。",
+   "cards": [
+    {
+     "identity": "IBS-U-IJN-CHOKAI",
+     "page": "Rising Sun Form 10 p.49（Chokai CA, Aug 42 Damage）",
+     "gun": "9 管 / 5 座（Fwd 单装 1 + Fwd 双联 2 + P&S 双联 2 + Aft 双联 2 + Aft 双联 2）",
+     "torpedo": "8 雷管 / 2 座×4（Port/Stbd），8 枚备雷",
+     "dp_speed": "471 DP；损伤行 0/118/236/353/424/471 → 33/25/16/8/0",
+     "before": "20 管 / 4 座×5；16 雷管 / 4 座；401 DP（class 行）",
+     "points": "1800 → 1375",
+     "playable": true
+    },
+    {
+     "identity": "IBS-U-USN-WILSON",
+     "page": "Rising Sun Form 10 p.317（Wilson DD, Dec 1941）＋AF A-18",
+     "gun": "4 门单装 / 4 座（Fwd 2 + Aft 2）",
+     "torpedo": "16 雷管 / 4 座×4（Port 2 + Stbd 2）",
+     "dp_speed": "118 DP、38 节；损伤行 0/30/59/89/106/118 → 38/28/19/10/0",
+     "before": "8 管 / 2 座×4；8 雷管 / 2 座；124 DP/35 节（class 行）",
+     "points": "500 → 475",
+     "playable": true
+    },
+    {
+     "identity": "IBS-U-USN-MONSSEN",
+     "page": "Rising Sun Form 10 p.303（Monssen DD, May 42 Modification）",
+     "gun": "4 门单装 / 4 座（Fwd 2 + Aft 2）",
+     "torpedo": "10 雷管 / 2 座×5（Port & Stbd (5)×2；同型 Gwin p.301 口径，与 13 张同型卡一致）",
+     "dp_speed": "128 DP、35 节；损伤行 0/32/64/96/115/128 → 35/26/18/9/0",
+     "before": "8 管 / 2 座×4；无鱼雷；144 DP/37 节（class 行）",
+     "points": "475 → 425",
+     "playable": true
+    },
+    {
+     "identity": "IBS-U-USN-BUCHANAN",
+     "page": "Rising Sun Form 10 p.292/p.293（Buchanan DD, Mar 42）＋AF A-17",
+     "gun": "4 门单装 / 4 座（Fwd 2 + Aft 2）",
+     "torpedo": "10 雷管 / 2 座×5（Port & Stbd (5)×2；同型 Barton p.291 口径）",
+     "dp_speed": "118 DP、37 节（与 class 行一致）",
+     "before": "8 管 / 2 座×4；8 雷管 / 2 座×4",
+     "points": "500 → 425",
+     "playable": true
+    },
+    {
+     "identity": "IBS-U-USN-UNNAMED-T01-R25",
+     "page": "Rising Sun Form 10 p.262（San Juan CL, May 1942）＋AF A-15",
+     "gun": "16 管 / 8 座×2（3F + Port + Stbd + 3A）",
+     "torpedo": "8 雷管 / 2 座×4（Port + Stbd）",
+     "dp_speed": "304 DP、33 节（与 class 行一致）",
+     "before": "10 管 / 5 座×2；4 雷管 / 2 座×2",
+     "points": "850 → 1025",
+     "playable": true
+    },
+    {
+     "identity": "IBS-U-USN-HULL-I",
+     "page": "American Fleets A-19（Farragut；无本舰 Form 10）",
+     "gun": "5 门单装 / 5 座（2F + P&S + 2A，Mk21 5in/38）",
+     "torpedo": "8 雷管 / 2 座×4（P&S(4)2 Mk11）",
+     "dp_speed": "105 DP、36 节；损伤行 0/26/53/79/95/105 → 36/27/18/9/0；Size D/Small、Standard Rudder 200 yds (1)",
+     "before": "damage 36/speed 26、turn 300、size C（Savo 包旧值）",
+     "points": "425 → 425",
+     "playable": true
+    }
+   ],
+   "all_verified": "23 张 stat_verified 全为 true，均仍可出战；无一张需要挂 blocker。",
+   "profile_old_values_not_used": "合并时以重建 ship 为准：period-cards 的 ship 覆盖 savo profile 旧值（us_atlanta_cl 5 座→8 座、us_benson_dd 8 管→10 管、us_bristol_dd 雷装→2×5、us_benham_dd 35/124→38/118、us_farragut_dd 36/26→26/27 与 200/1/D）；builder 只在重建表缺失时才回落到包内行，不把旧 profile 写回。"
+  },
+  "notes": [
+   "23 条 period 舰卡全部为完整 ShipDef（结构字段、主炮表、鱼雷段或源页明确的 null、装甲、损伤/航速行齐备）。",
+   "10 条有已核 Form 10 页（Boise 265、Farenholt 296、Duncan 295、Laffey 297、McCalla 299、Honolulu 267、Uzuki 183、San Juan 262、Tenryu 81、Yubari 75）；其余 13 条源包登记为未核（null），不补默认值。",
+   "Buchanan 与 Honolulu 各有两张 period 卡；本批按剧本运行时的逐舰卡选 us_bristol_dd（Savo）与 brooklyn_1（Kula），另一张记录在 also_recorded。",
+   "Chokai/Wilson/Monssen/Buchanan/San Juan 五张按个体页重录炮座与雷管（含 Monssen/Wilson/Chokai 的 DP 与损伤行），Hull 按 AF A-19 对齐；class 行与个体页差额保留在 stat_conflicts，不再原样沿用 runtime 错值。",
+   "Boise、Honolulu、Uzuki 三条源 period 卡没有鱼雷行（Brooklyn 级无鱼雷管、Uzuki 1943 运输配置拆雷），torpedo 保持 null，不臆造；其余 20 条按源卡登记鱼雷。"
+  ]
+ },
+ "tests_source": "data/ships/period-cards-tests.json"
+}

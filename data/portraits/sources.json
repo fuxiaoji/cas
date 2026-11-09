@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/import-portraits-identity.py",
+  "reference_project": "铁底湾",
+  "reference_checkout": "F:/Codex/worktrees/android-mobile/铁底湾",
+  "reference_mobile_version": "0.6.9",
+  "rule": "参考项目与原始素材只读；工作区只保留复核过的派生物和索引副本。",
+  "files": [
+    {
+      "role": "portrait_index",
+      "original_path": "F:/Codex/worktrees/android-mobile/铁底湾/mobile/release/立绘全集/立绘索引.csv",
+      "sha256": "8e613e8fb4afb47fde4310721c0dc5198c723795994902f1edd490264c1f3930",
+      "bytes": 77685,
+      "workspace_copy": "data/portraits/source/portrait-index.csv",
+      "workspace_sha256": "8e613e8fb4afb47fde4310721c0dc5198c723795994902f1edd490264c1f3930",
+      "current_ship_rows": 210,
+      "total_rows": 307
+    },
+    {
+      "role": "portrait_manifest",
+      "original_path": "F:/Codex/worktrees/android-mobile/铁底湾/mobile/content/fleet-portrait-manifest.json",
+      "sha256": "83593c33e6a3248be85dcd9803c81091c918e6ea114d573b2d2c0432ae0cf01f",
+      "bytes": 719816,
+      "ships": 210
+    },
+    {
+      "role": "pilot_catalog",
+      "original_path": "server/catalog.json",
+      "sha256": "9dfc9efe464d63b0971c857f64e1d492bfea86072213f7d8306db7160c75ceab",
+      "bytes": 51870,
+      "ships": 210
+    },
+    {
+      "role": "roster_crosswalk",
+      "original_path": "data/campaign/roster-crosswalk.json",
+      "sha256": "51b9b120f86b1cb8b4943fb4fae3bddc3f0c425bbbc535c1f94318f9901ff5e2",
+      "bytes": 74086,
+      "ships": 210
+    },
+    {
+      "role": "scenario_index",
+      "original_path": "data/campaign/crosswalk.json",
+      "sha256": "4761d6bd0ee7a559bcf83cf4046660d6851f6dc115700d057fee033e0e804dd2",
+      "bytes": 21753,
+      "scenarios": 16
+    },
+    {
+      "role": "zh_name_labels",
+      "original_path": "data/campaign/locale/zh-labels.json",
+      "sha256": "6b0407b3fab7bb995a40f24dcf8e47beb2352b3dac943b2ace5246c6276fc8a1",
+      "bytes": 13730
+    },
+    {
+      "role": "class_representative_ledger",
+      "original_path": "client/src/assets/portraits/ledger.json",
+      "sha256": "8e00d52e0a4aca0cb14f68e7ed598a661ce1ab2ca6ca1c96fa852ea98c92b5e7",
+      "bytes": 13059
+    }
+  ],
+  "scenario_files": [
+    {
+      "path": "data/campaign/cape-esperance.json",
+      "ibs_id": "IBS-S-01",
+      "sha256": "7ede08f5ab5e93702c3dcd8d325d6d45d03625235701cb9cf8b89967c7df8146"
+    },
+    {
+      "path": "data/campaign/kula-gulf.json",
+      "ibs_id": "IBS-S-02",
+      "sha256": "280223a1b63164028b74801280edf5cda2af22d8ec22d0be4ff72831ad39f9b2"
+    },
+    {
+      "path": "data/campaign/tassafaronga.json",
+      "ibs_id": "IBS-S-04",
+      "sha256": "be44bf2b9ee94bccaf57fc60b255d6587caeb6fe02d56370f9ad66c2ded55f3d"
+    },
+    {
+      "path": "data/campaign/cape-st-george.json",
+      "ibs_id": "IBS-S-05",
+      "sha256": "93c87bb7d6318584578e439aba60f9131430c376ae874e396df5e2bdc9e5a59e"
+    },
+    {
+      "path": "data/campaign/guadalcanal-ii.json",
+      "ibs_id": "IBS-S-06",
+      "sha256": "e13ecd5dbc7e0b0eec6abb45e732ff1760d77bbdad0cef6ac5e959d10b8b61e7"
+    },
+    {
+      "path": "data/campaign/kolombangara.json",
+      "ibs_id": "IBS-S-08",
+      "sha256": "e31443bd72eb66aebe5e5d77af3a8f3a4d9a085fbf8b1f0333d260db9cb5054f"
+    },
+    {
+      "path": "data/campaign/guadalcanal-i.json",
+      "ibs_id": "IBS-S-09",
+      "sha256": "4c33d9c5964a0f76990df784eeadac9064190ad5d76d9f35297f50ed7874d177"
+    },
+    {
+      "path": "data/campaign/savo-island.json",
+      "ibs_id": "IBS-S-10",
+      "sha256": "423c3e9e083f1d0b36417225668c6a495d4035092f78faade02122478de8bbc6"
+    },
+    {
+      "path": "data/campaign/empress-augusta-bay.json",
+      "ibs_id": "IBS-S-11",
+      "sha256": "ad94b884e0efeb84a1eb540829b856278e437221ef5fb1335649807fdcaa59ac"
+    },
+    {
+      "path": "data/campaign/vella-lavella.json",
+      "ibs_id": "IBS-S-13",
+      "sha256": "3c455a04e85405311084eef912b2b90a86ec0cce6a74ac525b6427583bf904c6"
+    },
+    {
+      "path": "data/campaign/horaniu.json",
+      "ibs_id": "IBS-S-14",
+      "sha256": "648c9f3309e6d6f5008e99690a98cb3e1e8d2b273a92de344dac86ddc50704fe"
+    }
+  ],
+  "runtime_files": [
+    {
+      "path": "data/campaign/period/cape-runtime.json",
+      "scenario": "cape-st-george",
+      "sha256": "10ae487509629e7aa512cbeff441235ba8f368a237b38e28c8ed5991e03c5476"
+    },
+    {
+      "path": "data/campaign/period/kula-runtime.json",
+      "scenario": "kula-gulf",
+      "sha256": "cace59562261609821d79219a22c4231fa3839d26fbdaa439c09c19d9adad0f0"
+    },
+    {
+      "path": "data/campaign/period/savo-runtime.json",
+      "scenario": "savo-island",
+      "sha256": "202fbb17e2fb051c1382bc34ad5363fc1bb0b7c6a81e9a66c709226ed6148bc6"
+    },
+    {
+      "path": "data/campaign/period/tassafaronga-runtime.json",
+      "scenario": "tassafaronga",
+      "sha256": "8ff08ec7cc1f889ab82eb045afbdd47cec8241266995c1ac1f4ccd9cb7dbecb6"
+    }
+  ]
+}

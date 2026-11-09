@@ -1,0 +1,745 @@
+{
+  "schema_version": 1,
+  "generated_by": "pdf-form10-transcription",
+  "scope": "Coverage, same-class reuse, cross-check page audit, and unresolved items for data/ships/pdf-source-cards.json.",
+  "counts": {
+    "requested": 12,
+    "transcribed": 12,
+    "missing": 0,
+    "class_profiles": 10,
+    "unresolved_items": 14
+  },
+  "checks": {
+    "all_12_have_identity": true,
+    "all_12_have_source_pages": true,
+    "all_12_have_profile": true,
+    "required_fields_present": true,
+    "same_class_profiles_identical": true,
+    "pdf_pages_within_requested_ranges": true,
+    "pypdf_page_text_spotcheck": true,
+    "source_pdf_hashes_recorded": true,
+    "class_family_stats_shared": {
+      "Kongo": false,
+      "Akatsuki": true
+    }
+  },
+  "coverage": [
+    {
+      "identity": "IBS-U-USN-SOUTH-DAKOTA",
+      "name": "南达科塔",
+      "name_en": "South Dakota",
+      "side": "allies",
+      "type": "BB",
+      "class_profile": "south_dakota_1942_09",
+      "status": "transcribed",
+      "identity_pages": [
+        234
+      ],
+      "profile_pages": [
+        234
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "american_fleets",
+          "pdf_pages": [
+            7,
+            8
+          ],
+          "printed_pages": [
+            "A-4",
+            "A-5"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-WALKE",
+      "name": "沃克",
+      "name_en": "Walke",
+      "side": "allies",
+      "type": "DD",
+      "class_profile": "sims_1942_08",
+      "status": "transcribed",
+      "identity_pages": [
+        309
+      ],
+      "profile_pages": [
+        309
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "american_fleets",
+          "pdf_pages": [
+            21
+          ],
+          "printed_pages": [
+            "A-18"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-ASAGUMO",
+      "name": "朝云",
+      "name_en": "Asagumo",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "asashio_1942_10",
+      "status": "transcribed",
+      "identity_pages": [
+        116
+      ],
+      "profile_pages": [
+        116
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            28
+          ],
+          "printed_pages": [
+            "A-25"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-KIRISHIMA",
+      "name": "雾岛",
+      "name_en": "Kirishima",
+      "side": "axis",
+      "type": "BB",
+      "class_profile": "kongo_1941_12",
+      "status": "transcribed",
+      "identity_pages": [
+        40
+      ],
+      "profile_pages": [
+        40
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            8
+          ],
+          "printed_pages": [
+            "A-5"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-HIEI",
+      "name": "比叡",
+      "name_en": "Hiei",
+      "side": "axis",
+      "type": "BB",
+      "class_profile": "hiei_1941_12",
+      "status": "transcribed",
+      "identity_pages": [
+        39
+      ],
+      "profile_pages": [
+        39
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            8
+          ],
+          "printed_pages": [
+            "A-5"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-NAGARA",
+      "name": "长良",
+      "name_en": "Nagara",
+      "side": "axis",
+      "type": "CL",
+      "class_profile": "nagara_1941_12",
+      "status": "transcribed",
+      "identity_pages": [
+        77
+      ],
+      "profile_pages": [
+        77
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            22
+          ],
+          "printed_pages": [
+            "A-19"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-INAZUMA",
+      "name": "电",
+      "name_en": "Inazuma",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "akatsuki_1942_07",
+      "status": "transcribed",
+      "identity_pages": [
+        150
+      ],
+      "profile_pages": [
+        146
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            30
+          ],
+          "printed_pages": [
+            "A-27"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-AKATSUKI",
+      "name": "晓",
+      "name_en": "Akatsuki",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "akatsuki_1942_07",
+      "status": "transcribed",
+      "identity_pages": [
+        146
+      ],
+      "profile_pages": [
+        146
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            30
+          ],
+          "printed_pages": [
+            "A-27"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-IKAZUCHI",
+      "name": "雷",
+      "name_en": "Ikazuchi",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "akatsuki_1942_07",
+      "status": "transcribed",
+      "identity_pages": [
+        148
+      ],
+      "profile_pages": [
+        146
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            30
+          ],
+          "printed_pages": [
+            "A-27"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-RN-UNNAMED-T05-R01",
+      "name": "利安德",
+      "name_en": "Leander",
+      "side": "allies",
+      "type": "CL",
+      "class_profile": "leander_1943",
+      "status": "transcribed",
+      "identity_pages": [
+        233
+      ],
+      "profile_pages": [
+        233
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "home_fleet",
+          "pdf_pages": [
+            32,
+            33
+          ],
+          "printed_pages": [
+            "A-28",
+            "A-29"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-YUGURE",
+      "name": "夕暮",
+      "name_en": "Yugure",
+      "side": "axis",
+      "type": "DD",
+      "class_profile": "hatsuharu_1942_03",
+      "status": "transcribed",
+      "identity_pages": [
+        145
+      ],
+      "profile_pages": [
+        145
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "emperors_fleet",
+          "pdf_pages": [
+            30
+          ],
+          "printed_pages": [
+            "A-27"
+          ]
+        }
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R20",
+      "name": "波特兰",
+      "name_en": "Portland",
+      "side": "allies",
+      "type": "CA",
+      "class_profile": "portland_1942_05",
+      "status": "transcribed",
+      "identity_pages": [
+        247
+      ],
+      "profile_pages": [
+        247
+      ],
+      "crosscheck_pages": [
+        {
+          "document": "american_fleets",
+          "pdf_pages": [
+            16
+          ],
+          "printed_pages": [
+            "A-13"
+          ]
+        }
+      ]
+    }
+  ],
+  "same_class_reuse": [
+    {
+      "class_profile": "south_dakota_1942_09",
+      "class": "South Dakota",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          234
+        ],
+        "printed_pages": [
+          234
+        ],
+        "label": "S. Dakota BB - Sep 1942 Modification"
+      },
+      "identities": [
+        "IBS-U-USN-SOUTH-DAKOTA"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "sims_1942_08",
+      "class": "Sims",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          309
+        ],
+        "printed_pages": [
+          309
+        ],
+        "label": "Walke DD - Aug-Oct 42 Modification"
+      },
+      "identities": [
+        "IBS-U-USN-WALKE"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "asashio_1942_10",
+      "class": "Asashio",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          116
+        ],
+        "printed_pages": [
+          116
+        ],
+        "label": "Asagumo DD - Oct-Nov 42 Modification"
+      },
+      "identities": [
+        "IBS-U-IJN-ASAGUMO"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "kongo_1941_12",
+      "class": "Kongo",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          40
+        ],
+        "printed_pages": [
+          40
+        ],
+        "label": "Kirishima BB - Dec 1941 (individual profile)"
+      },
+      "identities": [
+        "IBS-U-IJN-KIRISHIMA"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "Kirishima only; Hiei is in the separate hiei_1941_12 profile."
+    },
+    {
+      "class_profile": "hiei_1941_12",
+      "class": "Kongo",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          39
+        ],
+        "printed_pages": [
+          39
+        ],
+        "label": "Hiei BB - Dec 1941 (individual profile)"
+      },
+      "identities": [
+        "IBS-U-IJN-HIEI"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "Hiei only; individual p39 4 x 12.7cm / Area AA 0.8 fit. Kirishima p40 is a comparison only."
+    },
+    {
+      "class_profile": "nagara_1941_12",
+      "class": "Nagara",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          77
+        ],
+        "printed_pages": [
+          77
+        ],
+        "label": "Nagara CL - Dec 1941"
+      },
+      "identities": [
+        "IBS-U-IJN-NAGARA"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "akatsuki_1942_07",
+      "class": "Akatsuki",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          146
+        ],
+        "printed_pages": [
+          146
+        ],
+        "label": "Akatsuki DD - Jul-Aug 42 Modification (shared Akatsuki class profile)"
+      },
+      "identities": [
+        "IBS-U-IJN-INAZUMA",
+        "IBS-U-IJN-AKATSUKI",
+        "IBS-U-IJN-IKAZUCHI"
+      ],
+      "count": 3,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "leander_1943",
+      "class": "Leander",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          233
+        ],
+        "printed_pages": [
+          233
+        ],
+        "label": "Leander CL - 1943 Modification"
+      },
+      "identities": [
+        "IBS-U-RN-UNNAMED-T05-R01"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "hatsuharu_1942_03",
+      "class": "Hatsuharu",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          145
+        ],
+        "printed_pages": [
+          145
+        ],
+        "label": "Yugure DD - Mar-Apr 42 Modification"
+      },
+      "identities": [
+        "IBS-U-IJN-YUGURE"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    },
+    {
+      "class_profile": "portland_1942_05",
+      "class": "Portland",
+      "profile_source": {
+        "document": "rising_sun_form10",
+        "pdf_pages": [
+          247
+        ],
+        "printed_pages": [
+          247
+        ],
+        "label": "Portland CA - May 42 Modifications"
+      },
+      "identities": [
+        "IBS-U-USN-UNNAMED-T01-R20"
+      ],
+      "count": 1,
+      "identical_profile": true,
+      "note": "All identities in this group carry byte-identical profile objects."
+    }
+  ],
+  "page_hints_audit": [
+    {
+      "provided_hint": "The Emperor's Fleet 52-54",
+      "actual_content": "p52-54 = A-49 Ukishima Maru, A-50 Fujisan Maru, A-51 Ashizuri (auxiliaries); not Kongo.",
+      "used_instead": "p8 (A-5) Kongo (1934)",
+      "status": "hint_mismatch_not_used"
+    },
+    {
+      "provided_hint": "The Emperor's Fleet 61",
+      "actual_content": "p61 = A-58 Nagara Maru (merchant); not Nagara CL.",
+      "used_instead": "p22 (A-19) Nagara",
+      "status": "hint_mismatch_not_used"
+    },
+    {
+      "provided_hint": "The Emperor's Fleet 28",
+      "actual_content": "p28 = A-25 Asashio class.",
+      "used_instead": "p28 (A-25)",
+      "status": "verified"
+    },
+    {
+      "provided_hint": "The Emperor's Fleet 30",
+      "actual_content": "p30 = A-27 Hatsuharu class and Akatsuki class.",
+      "used_instead": "p30 (A-27)",
+      "status": "verified"
+    },
+    {
+      "provided_hint": "The Emperor's Fleet 58",
+      "actual_content": "p58 = A-55 Akatsuki Maru (merchant); not Akatsuki DD.",
+      "used_instead": "p30 (A-27) Akatsuki class",
+      "status": "hint_mismatch_not_used"
+    },
+    {
+      "provided_hint": "American Fleets 7-8",
+      "actual_content": "p7-8 = A-4/A-5 South Dakota class (1942) and dated remarks.",
+      "used_instead": "p7-8",
+      "status": "verified"
+    },
+    {
+      "provided_hint": "American Fleets 10",
+      "actual_content": "p10 = A-7 South Dakota (BB-49), the canceled 1920s class; not the 1942 class.",
+      "used_instead": "p7-8 (A-4/A-5)",
+      "status": "hint_mismatch_not_used"
+    },
+    {
+      "provided_hint": "American Fleets 16",
+      "actual_content": "p16 = A-13 Portland class.",
+      "used_instead": "p16 (A-13)",
+      "status": "verified"
+    },
+    {
+      "provided_hint": "American Fleets 21",
+      "actual_content": "p21 = A-18 Sims class.",
+      "used_instead": "p21 (A-18)",
+      "status": "verified"
+    },
+    {
+      "provided_hint": "Home Fleet 32-33",
+      "actual_content": "p32-33 = A-28/A-29 Leander class and dated remarks.",
+      "used_instead": "p32-33",
+      "status": "verified"
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "crosscheck-hints-emperors-merchant-pages",
+      "severity": "info",
+      "status": "source_page_hint_mismatch",
+      "detail": "The supplied Emperor's Fleet hints 52-54, 61 and 58 resolve to merchant/auxiliary entries, not the target warships: p52-54 = A-49 Ukishima Maru, A-50 Fujisan Maru, A-51 Ashizuri; p61 = A-58 Nagara Maru; p58 = A-55 Akatsuki Maru. Actual class pages used: p8 (A-5) Kongo, p22 (A-19) Nagara, p28 (A-25) Asashio, p30 (A-27) Hatsuharu/Akatsuki. No merchant data was used."
+    },
+    {
+      "id": "crosscheck-hint-american-p10",
+      "severity": "info",
+      "status": "source_page_hint_mismatch",
+      "detail": "American Fleets p10 (A-7) is the canceled 1920s South Dakota (BB-49) class, not the 1942 South Dakota class. The 1942 class is on p7-8 (A-4/A-5), which was used."
+    },
+    {
+      "id": "hiei-kirishima-127mm-fit",
+      "severity": "medium",
+      "status": "individual_profiles_separated",
+      "detail": "Hiei is now a separate individual profile from Form 10 p39: 2 twin Type 89 12.7cm/40 mounts (4 guns), Area AA (2)2 / 0.8. Kirishima remains on p40: 4 twin mounts (8 guns), Area AA (2)4 / 1.6. Emperor's Fleet p8 also says Hiei received only (2)2, Area AA 0.8. This deliberately does not share Kongo-class 12.7cm stats between the two cards; p40 is retained only as the same-class comparison."
+    },
+    {
+      "id": "kongo-light-aa-and-gun-mark",
+      "severity": "medium",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p39/p40 print Light AA (1)4 Vickers 40mm, 8 25mm, 8 13.2mm, 2.2; Emperor's Fleet p8 prints (2)2 25mm, (4)2 13.2mm, 1.0. Form 10 is retained. The two Kongo cards now keep their own main-gun marks: Hiei p39 Vickers Pattern 'A' 14in/45, Kirishima p40 41st Yr Type 36cm/45; the shell rows are identical."
+    },
+    {
+      "id": "asagumo-oct-nov-42-fit",
+      "severity": "medium",
+      "status": "page_specific_variant_retained",
+      "detail": "Asagumo p116 (Oct-Nov 42) prints two twin 12.7cm/50 mounts (4 guns), Area AA (2)2 / 0.4, and 10 25mm. p117 (Apr-May 42), p118 (Dec 1941) and Emperor's Fleet p28 print three twin mounts (6 guns) and 4 25mm. The p116 fit is retained for this card; no attempt is made to reconcile why Asagumo alone lost a turret in the Oct-Nov 42 page."
+    },
+    {
+      "id": "nagara-gs-secondary",
+      "severity": "medium",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p77 prints Gunnery Standard IV and no 8cm/40 secondary row; Emperor's Fleet p22 prints Gunnery Standard III and P/S(1)2 3rd Yr Type 8cm/40. The annex's own 1932-37 note says the 8cm guns were replaced, so the Dec 41 Form 10 fit is retained. Form 10 light AA is 4 25mm + 4 13.2mm + 2 7.7mm, 0.8; annex summarizes 2x2 25mm, 0.8."
+    },
+    {
+      "id": "portland-gs",
+      "severity": "low",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p247 prints Gunnery Standard IV; American Fleets p16 prints III with a 1936 note 'Gunnery Standard IV'. The May 42 Form 10 IV is retained."
+    },
+    {
+      "id": "portland-mount-label",
+      "severity": "low",
+      "status": "printed_typo_interpreted",
+      "detail": "Portland p247's third 8in/55 row is printed 'Fwd (3) ... //1 Aft Main Battery Director'. The third turret is aft. gun_mounts records F,F,A and gun_mounts_verbatim retains the printed 'Fwd' label; no other stat was changed."
+    },
+    {
+      "id": "sims-extreme-range",
+      "severity": "low",
+      "status": "printed_anomaly_retained",
+      "detail": "Walke p309 prints the 5in/38 COM extreme row as 25.9 kyds, 2/2, 11 DP, while SpCOM extreme is 14.7 kyds and the class's normal 5in/38 extreme is about 18 kyds. The value is retained verbatim as printed; no correction was made."
+    },
+    {
+      "id": "leander-1943-light-aa",
+      "severity": "medium",
+      "status": "printed_conflict_retained",
+      "detail": "Form 10 p233 prints 9 20mm and 12 .50 cal, Lt AA 3.5 for the 1943 fit. Home Fleet p32's 1943 remark says aircraft/catapult removed, (1)4 20mm added, Type 273 fitted, Lt AA 3.5. The Form 10 battery is retained verbatim."
+    },
+    {
+      "id": "yugure-date-choice",
+      "severity": "medium",
+      "status": "dated_profile_selected",
+      "detail": "Yugure uses the Mar-Apr 42 page p145 for the November 1942 Guadalcanal I use, not the Jun 43 page p144. The two pages conflict: p145 prints 5 x 12.7cm/50 (Fwd 2, P&S 1, Aft 2), Area AA (2)2, (1)1 / 0.6, and 2 x 13mm / 0.1; p144 prints 4 x 12.7cm/50 (Fwd 2, Aft 2), Area AA (2)2 / 0.4, and 4 x 25mm + 2 x 13mm / 0.6. p145 is used verbatim; p144 remains the later alternative."
+    },
+    {
+      "id": "kongo-date-choice",
+      "severity": "medium",
+      "status": "dated_profile_selected",
+      "detail": "No dedicated 1942 Hiei/Kirishima Form 10 exists in the requested range; p39/p40 are both Dec 1941. p37/p38 are Haruna and p41 is Kongo Aug 42, so they were not used. Hiei and Kirishima now have separate Dec 1941 profiles (p39 and p40 respectively), with their printed 12.7cm difference preserved."
+    },
+    {
+      "id": "hull-numbers-not-printed",
+      "severity": "info",
+      "status": "missing_source_field",
+      "detail": "The Form 10 pages do not print hull numbers. All twelve cards keep hull_number null; no hull number was inferred from external knowledge."
+    },
+    {
+      "id": "leander-crosswalk-class-label",
+      "severity": "low",
+      "status": "metadata_conflict_retained",
+      "detail": "data/ships/playable-cards.json records the Leander identity's class_label as '哈津斯级' (Hawkins). Form 10 p233 and Home Fleet p32 identify the hull as Leander class. This package uses Leander; the crosswalk label is left untouched."
+    }
+  ],
+  "evidence": {
+    "pypdf_version": "6.20.1",
+    "main_pdf_pages": 380,
+    "form10_pages_visually_rendered": [
+      39,
+      40,
+      77,
+      116,
+      144,
+      145,
+      146,
+      148,
+      150,
+      151,
+      233,
+      234,
+      247,
+      309
+    ],
+    "note": "pypdf 6.20.1 extracted the page text and confirmed the ship/class/date strings; pages were also rendered at 200 dpi and read visually for table values. No OCR was used. Hiei p39 and Yugure p145 were re-read for this correction; p40 and p144 are retained only as comparison/alternatives. All listed pages were fully legible."
+  },
+  "class_family_reuse": [
+    {
+      "class_family": "Kongo",
+      "identities": [
+        "IBS-U-IJN-KIRISHIMA",
+        "IBS-U-IJN-HIEI"
+      ],
+      "class_profiles": [
+        "kongo_1941_12",
+        "hiei_1941_12"
+      ],
+      "shared_stats": false,
+      "note": "Per instruction, Hiei uses its individual p39 4 x 12.7cm / Area AA 0.8 fit; Kirishima uses the p40 8 x 12.7cm / Area AA 1.6 fit. p40 is a comparison only."
+    },
+    {
+      "class_family": "Akatsuki",
+      "identities": [
+        "IBS-U-IJN-AKATSUKI",
+        "IBS-U-IJN-IKAZUCHI",
+        "IBS-U-IJN-INAZUMA"
+      ],
+      "class_profiles": [
+        "akatsuki_1942_07"
+      ],
+      "shared_stats": true,
+      "note": "All three use the same p146 Jul-Aug 42 profile."
+    }
+  ]
+}

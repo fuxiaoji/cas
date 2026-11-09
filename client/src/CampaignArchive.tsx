@@ -8,25 +8,36 @@ import { campaignBest, campaignDifficulties, campaignRewards, campaignRewardText
 import type { CampaignDifficulty, CampaignLaunch, CampaignMission, CampaignOutcome, CampaignProgress, CampaignStars } from './campaign-progress';
 import './campaign-archive.css';
 
-type Match = 'exact_historical_counterpart' | 'related_alternate' | 'unverified' | 'ibs_original_or_absent';
-type Reference = { document: string; pdf_pages: number[]; printed_pages: number[] };
-type Entry = {
+export type Match = 'exact_historical_counterpart' | 'related_alternate' | 'unverified' | 'ibs_original_or_absent';
+export type Reference = { document: string; pdf_pages: number[]; printed_pages: number[] };
+export type Entry = {
   ibs_id: string; ibs_title: string; ibs_date: string; ibs_kind: string; stage_ids: string[];
   classification: Match; cas: null | { scenario_id: string; title: string; source: Reference; verification: string; import: string | null };
   playable: boolean; note: string; runtime?: { historicalReady: boolean; label: string; localOnly?: boolean };
 };
-interface Archive { schema_version: number; content_version: string; scenarios: Entry[] }
-type FleetOption = { id: string; class: string; name: string; kind: string; points: number };
-type FleetPick = { budget: number; historical: { class: string; name: string; kind: string; points: number; slot: number }[]; options: FleetOption[] };
+export interface Archive { schema_version: number; content_version: string; scenarios: Entry[] }
+export type FleetOption = { id: string; class: string; name: string; kind: string; points: number };
+export type FleetPosition = {
+  position: number; fleet: number; name: string; leader?: string; course?: number;
+  speed: number; x?: number; y?: number; members: number;
+};
+export type FleetPick = {
+  budget: number;
+  historical: { class: string; name: string; kind: string; points: number; slot: number }[];
+  options: FleetOption[];
+  positions?: FleetPosition[];
+  taskForceSupported?: boolean;
+};
 type Condition = { type: string; count?: number; kind?: string; pct?: number; damage_pct?: number; damage_pct_gte?: number;
   fraction?: number; distance_nmi?: number; duration_seconds?: number; tonnage_gt?: number };
-type Goal = string | { all_of: Condition[] } | { type: string; ratio?: number } | null;
-type Objective = { orders: string; decisive: Goal; tactical: Goal };
-interface RecordDetail {
+export type Goal = string | { all_of: Condition[] } | { type: string; ratio?: number } | null;
+export type Objective = { orders: string; decisive: Goal; tactical: Goal };
+export interface RecordDetail {
   record: null | { start: { date_local: string; time_local: string; location: string }; environment?: {
     light?: string; visibility_pct?: number; sea_state?: number; wind_from_deg?: number; wind_speed_knots?: number | number[];
   }; forces?: Record<Side, unknown>; groups?: { id: string; side: Side; unit: string; members_in_order: string[]; course_deg: number; speed_knots: number }[];
   ships?: { id: string; name: string }[]; objectives: Record<Side, Objective>;
+  setup?: Record<string, unknown>;
   special_rules?: (string | { rule: string })[]; blockers: (string | { detail: string })[] };
   readiness: null | { datedShips: number; periodProfiles: number; unresolvedPeriodData: { id: string }[] };
   legacy?: LegacyDeployment | null;
@@ -44,7 +55,7 @@ type LegacyDeployment = {
   conflicts: unknown[]; source: { baseline: string };
 };
 
-const matchNames: Record<Match, string> = {
+export const matchNames: Record<Match, string> = {
   exact_historical_counterpart: '同一历史战斗', related_alternate: '相关改编',
   unverified: '尚待核对', ibs_original_or_absent: '旧作想定或未找到',
 };
@@ -91,7 +102,7 @@ export function CampaignRewardActions({ stageId, progress, onClaim, busy }: {
   </div>;
 }
 
-function goalText(goal: Goal) {
+export function goalText(goal: Goal) {
   if (typeof goal === 'string') return campaignText(goal);
   if (!goal) return '原页未明确该档，待复核。';
   if (!('all_of' in goal)) {

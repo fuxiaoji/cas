@@ -1,0 +1,2707 @@
+{
+  "schema_version": 1,
+  "kind": "recruit-pool-expansion",
+  "generated_by": "卡池扩容 agent：server/import_catalog.py 投影 + client/src/online-recruit 立绘台账",
+  "date": "2026-11-08",
+  "source": {
+    "catalog": "server/catalog.json",
+    "before_catalog": "git HEAD:server/catalog.json",
+    "overlay": "server/scenario-recruitable.json",
+    "roster_crosswalk": "data/campaign/roster-crosswalk.json",
+    "identity_ledger": "client/src/assets/portraits/all/ledger.json",
+    "recruit_ledger": "client/src/online-recruit/ledger.json",
+    "mobile_manifest": "mobile/content/fleet-portrait-manifest.json",
+    "mobile_manifest_sha256": "83593c33e6a3248be85dcd9803c81091c918e6ea114d573b2d2c0432ae0cf01f",
+    "mobile_version": "0.6.11 (manifest)；identity ledger source_mobile_version 0.6.9"
+  },
+  "summary": {
+    "identities": 210,
+    "recruitable_before": 167,
+    "recruitable_after": 210,
+    "excluded_before": 43,
+    "excluded_after": 0,
+    "new_recruitable": 43,
+    "collection_only_added": 42,
+    "current_scenario_added": 1,
+    "collection_only_total_in_overlay": 42
+  },
+  "new_identities": [
+    {
+      "identity": "IBS-U-IJN-AKAGI",
+      "name": "赤城",
+      "side": "axis",
+      "type": "BC",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-akagi.webp",
+        "bytes": 68064,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-akagi.png",
+        "source_sha256": "58899d0889062af791adb695154e288e4b75e51469818d6310fa3ad8fbaffac6",
+        "sha256": "e7ecca59b02634d9c29c9e2641dba23de18d20c6efb74333a6ddb8a99720cd69",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-AMAGI",
+      "name": "天城",
+      "side": "axis",
+      "type": "BC",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-amagi.webp",
+        "bytes": 71292,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-amagi.png",
+        "source_sha256": "fe14a12a10ade6e00eb0aa3aa3bb14176df33db920c4aa9d45c52aefc373d842",
+        "sha256": "9df9f2e1902b15f5c8f17c277da9bbc2c730e9c40240ecad13b99b1f2ec5c714",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-ASAKAZE",
+      "name": "朝风",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-asakaze.webp",
+        "bytes": 77446,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-asakaze.png",
+        "source_sha256": "d6ab0b0b5ed5ccefd35f6fddbe278945a93bfd6763c8cb1b98d4fda75c1320e2",
+        "sha256": "5f52c7952954804c2b08224bb7bdb19e9b246d3bc89b4d49ec93148b721c1c3c",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+      "name": "风云",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-EM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-erma-kazegumo.webp",
+        "bytes": 65024,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-kazegumo.png",
+        "source_sha256": "7cff4ab72ae236089a7dc54af12c0fd7ee4111fe1a020855ccb723514dea4915",
+        "sha256": "0158f42f051f3b26c9cc976c7c9c88aacf045755f56a4a6779035fd6d86e1214",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+      "name": "卷波",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-EM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-erma-makinami.webp",
+        "bytes": 76526,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-makinami.png",
+        "source_sha256": "a76a713563b1dec2253ab7a3c2b0f5861c76a564ae183aac8866df168734dceb",
+        "sha256": "7063f0585ea2bd252f21b5c736d98fc614cdc2d9ce17ef5ca41e7514d3bc998c",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+      "name": "长波",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-EM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-erma-naganami.webp",
+        "bytes": 81872,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-naganami.png",
+        "source_sha256": "1c6d48adcc2af43a3949ddf54a8e3dd7ad04accc5777cea54614413edf8c07e0",
+        "sha256": "29e9a494871fbf2a95915812e6186a2c4eae87b64a24e458b9a53b360a5eda32",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-KAMIKAZE",
+      "name": "神风",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-kamikaze.webp",
+        "bytes": 74052,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kamikaze.png",
+        "source_sha256": "b01bace82b91bf6fb19c2de0bac4eb07a1f8dc9db4dc4de92ad43de4dbc4f9f5",
+        "sha256": "50f4ebb0cbd4525707098fdd3b3fed9e324242caf13c75da3d2068ad9f81179a",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-MUTSU",
+      "name": "陆奥",
+      "side": "axis",
+      "type": "BB",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-12",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-mutsu.webp",
+        "bytes": 64386,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-mutsu.png",
+        "source_sha256": "0b9fcdbb40b56219b004ac7cbfca8f201c212699770b0571af2289eca9d18892",
+        "sha256": "ac1595dfede9eb6d6d57d61e1e6bc19997e00353f625f78bcde05a0ac5bd203e",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-MUTSUKI",
+      "name": "睦月",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-mutsuki.webp",
+        "bytes": 67068,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-mutsuki.png",
+        "source_sha256": "50c659b39c021415eb5d4a4b6fae989d35a8ee57fe5cf61bedde5a53c2499859",
+        "sha256": "30d126cec3d3c6f41f69d65d45675eb6f456cd2b73fa5be5136df506586bae31",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-NACHI",
+      "name": "那智",
+      "side": "axis",
+      "type": "CA",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-nachi.webp",
+        "bytes": 90846,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-nachi.png",
+        "source_sha256": "1dcd74d585fbd56948f52ff3c25b17b695dd711f6ba1d9444e4a5cfcba1056e3",
+        "sha256": "fb092fe36365547a0b608fdfb477743d5e662296a589884ad1f2c3b16670ceb3",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-NAGATO",
+      "name": "长门",
+      "side": "axis",
+      "type": "BB",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-12",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-nagato.webp",
+        "bytes": 62588,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-nagato.png",
+        "source_sha256": "b96198712be28a2330131766a29948c2e5ccdbed0738dfa448dd4cb650e73718",
+        "sha256": "4853b319c35a8a9957bfa2f1fe707ffb5668a0f553118e3f1d1ab7018f94e3b5",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-OITE",
+      "name": "追风",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-oite.webp",
+        "bytes": 76754,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-oite.png",
+        "source_sha256": "51c648330e5a8da539ad470bae7f8550c09d9840035f6ff1a721d2b965dde923",
+        "sha256": "d74e4e9dafce9f80b9446e86ab6d7db8409821f4466ac0a14152017034351c9c",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-OWARI",
+      "name": "尾张",
+      "side": "axis",
+      "type": "BC",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-owari.webp",
+        "bytes": 58596,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-owari.png",
+        "source_sha256": "269539e6197ff9c99c28ff07a46353d0e2e910fe2a2fcd576c7c340bda1ad920",
+        "sha256": "c1a4f7a533e270febaf4286da2a1b175769404c2ce6ad3ec512e90efa012a670",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-TATSUTA",
+      "name": "龙田",
+      "side": "axis",
+      "type": "CL",
+      "gacha_rarity": "elite",
+      "display_rarity": "elite",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-tatsuta.webp",
+        "bytes": 55666,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-tatsuta.png",
+        "source_sha256": "4645b36a34bf2dba60e43e5e3f9b1822f9f884a76402c5831e2dd6d9e73ec094",
+        "sha256": "8bf9abdb508759e3c7f9e336c61dc6a999ee7ae0f17c12c1482e9a994347f589",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-IJN-UZUKI-2",
+      "name": "卯月(II)",
+      "side": "axis",
+      "type": "APD",
+      "gacha_rarity": "common",
+      "display_rarity": "elite",
+      "credits_price": 300,
+      "recruit_provenance": [
+        "IBS-S-05"
+      ],
+      "campaign_memberships": [
+        "IBS-S-05"
+      ],
+      "portrait": {
+        "path": "ibs-u-ijn-uzuki-2.webp",
+        "bytes": 86566,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ijn-uzuki-2.png",
+        "source_sha256": "e14f3110d63a47b342b4be14ac5a2cfd334f930f36974d2892ce0718d0835409",
+        "sha256": "fad29c862d3643409853d35cc78a13f9dc0dcfb1d7ab80f88a6ad8f10f705e09",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-KM-HANS-LODY",
+      "name": "汉斯·洛迪",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-km-hans-lody.webp",
+        "bytes": 63722,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/km-hans-lody.png",
+        "source_sha256": "df4a67b2b1a9af4a445d53f7e831e626bd9eaadf3b4b5dad040792ae34ba8921",
+        "sha256": "507bd6d9dbd6a8f1c8cef9f750aadf4c14d66f8c0fb7faeb098b4fa305a37ee2",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-KM-KARL-GALSTER",
+      "name": "卡尔加尔斯特",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-km-karl-galster.webp",
+        "bytes": 79030,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/km-karl-galster.png",
+        "source_sha256": "90f695fa8b6c15375ac914b3d2eae5db6b0bb6cac681f5a543d13dff6bc85d11",
+        "sha256": "034ea41843352b84bb7769d89aeebbfa540adb831e474142dfb526844037e1f0",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-KM-RICHARD-BEITZEN",
+      "name": "里夏德·拜茨恩",
+      "side": "axis",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-km-richard-beitzen.webp",
+        "bytes": 54832,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/km-richard-beitzen.png",
+        "source_sha256": "bb34ba0112c511c0b2746a9c969f1d68370f8575c1830ed77a0d3e2eccb8a596",
+        "sha256": "70df08cd07b4f8946e5acdaa3d7739bb50ec8e63dcac830b20343653dbfc1c8a",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-RAN-AUSTRALIA",
+      "name": "澳大利亚",
+      "side": "allies",
+      "type": "CA",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-ran-australia.webp",
+        "bytes": 61038,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/ran-australia.png",
+        "source_sha256": "e105017ca23356325eb603965f7f4a24698dbaf57b21cf9009472087117bd0f9",
+        "sha256": "7f9b98e519d25bfb8f4e3f8b8e9c0bb23b11ac0e4e0e670142b266d8bf0d51a1",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-RN-JACKAL",
+      "name": "豺",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-rn-jackal.webp",
+        "bytes": 69852,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/rn-jackal.png",
+        "source_sha256": "a06cc21c5712a05dcbca9ba9814e826bf06a938663377f02eadb1ccea8cc57fc",
+        "sha256": "c64d4f645dd7e64d40525aed82692fefd2142a23199f86de7108aeb43b39d1ab",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-RN-JAVELIN",
+      "name": "标枪",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-rn-javelin.webp",
+        "bytes": 68480,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/rn-javelin.png",
+        "source_sha256": "a347375dc95e23eb5475ca89153f7838781a74a8650347747257707cf2196de5",
+        "sha256": "8d63ad336b17a2acdfe9e1616b37563feb237a8fbacc69b3609807cf0e2b7a1f",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-RN-JERSEY",
+      "name": "泽西",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-rn-jersey.webp",
+        "bytes": 68738,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/rn-jersey.png",
+        "source_sha256": "66e01ea6bf6cafc9fd79ee47cffa76f7e51ca87780b85bc7c31c8ce6cc76ee40",
+        "sha256": "0bd86a2c27d333dd5311cd2ddce3ea3cfee32bfb51f01cb220ece0a7bb9738c9",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-RN-JUPITER",
+      "name": "朱庇特",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-rn-jupiter.webp",
+        "bytes": 71074,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/rn-jupiter.png",
+        "source_sha256": "597726f144dfa3da1522fbcb1d53d56f619833f8e6c53ab487e77b0562682275",
+        "sha256": "e2328f02e253531cd4c073d0b5f28490ca72b96fb52115abb4a24377d72800f9",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-RN-KASHMIR",
+      "name": "克什米尔",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-03"
+      ],
+      "portrait": {
+        "path": "ibs-u-rn-kashmir.webp",
+        "bytes": 68858,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/rn-kashmir.png",
+        "source_sha256": "33bad6edead827b10c22815ae278fcc16a27003a6267979087c6c7018b72e9f2",
+        "sha256": "5d3d53e056a5019b8afcf4905423a7cc80beec7924a7ad5f7f40f69be3729b61",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-BAINBRIDGE",
+      "name": "班布里奇",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-bainbridge.webp",
+        "bytes": 77072,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-bainbridge.png",
+        "source_sha256": "21835bcd96cc06777171725362ab9f8f09ef3d1ed5070dba0f38fbb4e8734d74",
+        "sha256": "41c672811f043d1b807eb6e22877fb957931895d7e1c5d3fc5dcdd591cd9f8fa",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-COLORADO",
+      "name": "科罗拉多",
+      "side": "allies",
+      "type": "BB",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-12",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-colorado.webp",
+        "bytes": 61258,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-colorado.png",
+        "source_sha256": "21ef480ca166a4e538e468424ef3accc2d2a8d224f323ae76691f52aee0d4533",
+        "sha256": "ed466640999d8f7b1028323d7c3c1bf681df34b0edccae31669266805cd27a98",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-DAHLGREN",
+      "name": "达尔格伦",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-dahlgren.webp",
+        "bytes": 83222,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-dahlgren.png",
+        "source_sha256": "9c39c6b2a14fc2319bc91a6259865a33ff753d56bee75b4ac92f59dc454382f6",
+        "sha256": "8c656c2dd30c8321169378a1898ba3242fc32f79ac46c312d2c4b6b095c9fdca",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-DECATUR",
+      "name": "迪凯特",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-decatur.webp",
+        "bytes": 69004,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-decatur.png",
+        "source_sha256": "021b4c38f62a942694c765fb9772fe07813674e512051fa12b58fea195474bb0",
+        "sha256": "acba006dd3a52ef82b79beadff370609d2ad3919280a1d2b25ee4ab9d7216ac6",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-FOX",
+      "name": "福克斯",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-fox.webp",
+        "bytes": 77570,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-fox.png",
+        "source_sha256": "3f4c843352cf02bb66979745b0cc57796605e5286efcd7b0390575f7e9ed103b",
+        "sha256": "be84fb062c133631ea695fc8185658ca78c124e56671f9097cd6e5e29f26661c",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-HULL-I",
+      "name": "赫尔(I)",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-hull-i.webp",
+        "bytes": 63062,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-hull-i.png",
+        "source_sha256": "dac273a9b61d12d598d1b0c97e8c084d06a4789c744134c6ea788560f8767128",
+        "sha256": "79b78744ec2060226701b71e587b7a6b41fc0f39b2843505052d15d1692a24dd",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-MCDONOUGH",
+      "name": "麦克多诺",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-mcdonough.webp",
+        "bytes": 78050,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-mcdonough.png",
+        "source_sha256": "127f03131d57974ee0c222ee9975e0ccfbb2c2fa687fa293e04d863a9e942069",
+        "sha256": "49a226b2c8d375f8d4af1337ab535fc783a18b5fddca8115e765a80f1525946b",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-OMAHA",
+      "name": "奥马哈",
+      "side": "allies",
+      "type": "CL",
+      "gacha_rarity": "elite",
+      "display_rarity": "elite",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-omaha.webp",
+        "bytes": 77478,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-omaha.png",
+        "source_sha256": "8399aa7972230502ce28b3a7d90aa7358dbf5d55261a57cdbf0c2c581907439d",
+        "sha256": "60d1e8e81d3d6f31c4d9fb0b85850f53a7766b90d69fd7102a99fe438712e4b0",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-PERRY",
+      "name": "佩里",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-12"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-perry.webp",
+        "bytes": 69580,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-perry.png",
+        "source_sha256": "f483621904b7b67cf3e65c5065a26d665e17b34ed3a8ec6580fb399f0c11afe9",
+        "sha256": "29034b7ac47f78b3b7ed5970131783014bad632c02f9cdc51d719bb1ae664b17",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-TRUXTON",
+      "name": "特鲁斯顿",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-truxton.webp",
+        "bytes": 71768,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-truxton.png",
+        "source_sha256": "efc43645d6500d290d142d16c04c159e614ed54d8e9dcc5e8817f39f73eb08a8",
+        "sha256": "ac14ce21633113598c979a9f43a27cccfc0e55f0e6e01b5c20af8a63bc3ba6d2",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R06",
+      "name": "列克星敦",
+      "side": "allies",
+      "type": "BC",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r06.webp",
+        "bytes": 64444,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r06.png",
+        "source_sha256": "d83f24c243186b9a4d93285729b747a5c2c2caf6690cb674dfd66b124e1dadfb",
+        "sha256": "98d00186c32e8d712f24f2efd14c58be608764ef73086e1fb61e7a09381ff022",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R07",
+      "name": "合众国",
+      "side": "allies",
+      "type": "BC",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r07.webp",
+        "bytes": 69214,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r07.png",
+        "source_sha256": "a0fdc0da9e52db45468f191637a8e546c21b7ddd2a403a33f38ddb049ad3f5d7",
+        "sha256": "0ab2f7a2dc0e800b32e3b8a826c9b589b34013183aa24bee905d9092dfaf280c",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R08",
+      "name": "宪法",
+      "side": "allies",
+      "type": "BC",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r08.webp",
+        "bytes": 53856,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r08.png",
+        "source_sha256": "e6a44a3ff2f5f78b1a992d67dbb1df20128fed31eaa2e9792cd654afb8d36d47",
+        "sha256": "a5298584036d18fb5a7534e9eb6a6f45bfadd8cec60595a92c2daeb4e7b44129",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R13",
+      "name": "休斯顿",
+      "side": "allies",
+      "type": "CA",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r13.webp",
+        "bytes": 66690,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r13.png",
+        "source_sha256": "58dd3d3389c2f0409c21a9fd1c19fe0ccec8d3be8c0588bb1600e667cd399106",
+        "sha256": "8b51922ed5c297097de04fa8d0dc21776a4daeca7d4a328afc990c987230e28f",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R22",
+      "name": "孟菲斯",
+      "side": "allies",
+      "type": "CL",
+      "gacha_rarity": "elite",
+      "display_rarity": "elite",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-07"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r22.webp",
+        "bytes": 60014,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r22.png",
+        "source_sha256": "a3b33882a434655fde695ccd1e4b9ea0eeb3b64239c4511177fe44eeaa186990",
+        "sha256": "14527c14c9d97c891a6550d04944ce696d3f5a6af8d4133c367771ff061eca0a",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R25",
+      "name": "圣胡安",
+      "side": "allies",
+      "type": "CL",
+      "gacha_rarity": "elite",
+      "display_rarity": "elite",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r25.webp",
+        "bytes": 64570,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r25.png",
+        "source_sha256": "f9f10c29440e00716bb7f60d3aac8060fae19a671d877deedf39fdef96563275",
+        "sha256": "574b8093e9413cb9669d348739e8b8ca8d853ec04d182d4fe09f57886fd058ac",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R51",
+      "name": "邓拉普",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r51.webp",
+        "bytes": 86976,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r51.png",
+        "source_sha256": "543c7b3e170200c2b03f3b8d3b3f1e0877732e91f57f1f77abbb4d14756c81ae",
+        "sha256": "cc9960439a2caaa3559385e01fc4b72cc3e867083cc1ae3f9d67af94bcfe755f",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R52",
+      "name": "格里德利",
+      "side": "allies",
+      "type": "DD",
+      "gacha_rarity": "common",
+      "display_rarity": "common",
+      "credits_price": 400,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-unnamed-t01-r52.webp",
+        "bytes": 73900,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r52.png",
+        "source_sha256": "a740ed090a3a778f5d01286a4a7a5dea7eb53992d49fef73bd4e90c0f9bc3f30",
+        "sha256": "13f15d938208a956c0a59478e555d5c89dd21c442babec6dcb2e603ae9fcef4f",
+        "copied_without_reencode": true
+      }
+    },
+    {
+      "identity": "IBS-U-USN-WEST-VIRGINIA",
+      "name": "西弗吉尼亚",
+      "side": "allies",
+      "type": "BB",
+      "gacha_rarity": "rare",
+      "display_rarity": "rare",
+      "credits_price": null,
+      "recruit_provenance": [
+        "CAS-COLLECTION-0.6.9"
+      ],
+      "campaign_memberships": [
+        "IBS-S-12",
+        "IBS-S-FM-01"
+      ],
+      "portrait": {
+        "path": "ibs-u-usn-west-virginia.webp",
+        "bytes": 78464,
+        "size": [
+          512,
+          768
+        ],
+        "source_path": "mobile/public/characters/ships/fleet-v2/usn-west-virginia.png",
+        "source_sha256": "4dbeff64b24977898047ab638f43a609722d04ecfe0083d6860c04eca01d876f",
+        "sha256": "f11fa4ef90efe018e0c84d3ce7b966977e1f1cdf66f1d66bcfdae1250273d095",
+        "copied_without_reencode": true
+      }
+    }
+  ],
+  "name_conflicts": [
+    {
+      "name": "风云",
+      "identities": [
+        "IBS-U-IJN-ERMA-KAZEGUMO",
+        "IBS-U-IJN-KAZEKUMO"
+      ],
+      "distinct_source": true,
+      "sha256": [
+        "0158f42f051f3b26c9cc976c7c9c88aacf045755f56a4a6779035fd6d86e1214",
+        "d84cb7919bdf9a5c285121e8bf091a2474c03a5758b0a40154092d8292dd611b"
+      ],
+      "resolution": "不同 identity、不同源图与输出哈希；不合并，按 identity 出图。按中文名查询时 shipPortraits.ts 拒绝歧义。"
+    },
+    {
+      "name": "卷波",
+      "identities": [
+        "IBS-U-IJN-ERMA-MAKINAMI",
+        "IBS-U-IJN-MAKINAMI"
+      ],
+      "distinct_source": true,
+      "sha256": [
+        "7063f0585ea2bd252f21b5c736d98fc614cdc2d9ce17ef5ca41e7514d3bc998c",
+        "7a3a6da8bcd3bc2b7c124d8c8084b687523900affe171e08ad4f73c96f034551"
+      ],
+      "resolution": "不同 identity、不同源图与输出哈希；不合并，按 identity 出图。"
+    },
+    {
+      "name": "长波",
+      "identities": [
+        "IBS-U-IJN-ERMA-NAGANAMI",
+        "IBS-U-IJN-NAGANAMI"
+      ],
+      "distinct_source": true,
+      "sha256": [
+        "29e9a494871fbf2a95915812e6186a2c4eae87b64a24e458b9a53b360a5eda32",
+        "eec27ac214ae33e52dd900efc6a697323d6a6e2280726d9003b4e459450eb9cb"
+      ],
+      "resolution": "不同 identity、不同源图与输出哈希；不合并，按 identity 出图。"
+    },
+    {
+      "name": "卯月(II)",
+      "identities": [
+        "IBS-U-IJN-UZUKI-2",
+        "IBS-U-IJN-UZUKI"
+      ],
+      "distinct_source": true,
+      "shared_mobile_character_id": "IBS-U-IJN-UZUKI",
+      "sha256": [
+        "fad29c862d3643409853d35cc78a13f9dc0dcfb1d7ab80f88a6ad8f10f705e09",
+        "214df5f02e97be2d467039c520efcbd8f070c1463ddccafc74b2df15470d33d5"
+      ],
+      "resolution": "手游把卯月(II)登记为同一角色的时期变体；两张源图/输出哈希不同。本 ledger 以 catalog identity 为键，不把 II 型图套给 I 型。"
+    }
+  ],
+  "rates": {
+    "unchanged": true,
+    "pools": [
+      {
+        "id": "missouri-up",
+        "kind": "up",
+        "rates": {
+          "common": 0.75,
+          "elite": 0.2,
+          "rare": 0.03,
+          "ur": 0.02
+        },
+        "pity": {
+          "elite": 10,
+          "rare": 40,
+          "ur": 80
+        },
+        "ur_ship_ids": [
+          "IBS-U-USN-UNNAMED-T01-R03",
+          "IBS-U-USN-ERMA-IOWA",
+          "IBS-U-USN-ERMA-DES-MOINES",
+          "IBS-U-USN-ERMA-WORCESTER",
+          "IBS-U-USN-GEARING",
+          "IBS-U-USN-MIDWAY"
+        ],
+        "featured_ship_id": "IBS-U-USN-UNNAMED-T01-R03",
+        "ur_ship_ids_valid": true
+      },
+      {
+        "id": "standard-v2",
+        "kind": "standard",
+        "rates": {
+          "common": 0.75,
+          "elite": 0.2,
+          "rare": 0.03,
+          "ur": 0.02
+        },
+        "pity": {
+          "elite": 10,
+          "rare": 40,
+          "ur": 80
+        },
+        "ur_ship_ids": [
+          "IBS-U-USN-ERMA-IOWA",
+          "IBS-U-USN-ERMA-DES-MOINES",
+          "IBS-U-USN-ERMA-WORCESTER",
+          "IBS-U-USN-GEARING",
+          "IBS-U-USN-MIDWAY"
+        ],
+        "featured_ship_id": null,
+        "ur_ship_ids_valid": true
+      }
+    ]
+  },
+  "catalog_diff": {
+    "changed_ships": 43,
+    "allowed_fields": [
+      "recruitable",
+      "credits_price",
+      "combat_ready"
+    ],
+    "changed_fields": [
+      "credits_price",
+      "recruitable"
+    ],
+    "rates_pity_exchange_ur_changed": false,
+    "combat_ready_changed": false,
+    "new_common_prices": [
+      {
+        "identity": "IBS-U-IJN-ASAKAZE",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-KAMIKAZE",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-MUTSUKI",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-OITE",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-IJN-UZUKI-2",
+        "credits_price": 300
+      },
+      {
+        "identity": "IBS-U-KM-HANS-LODY",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-KM-KARL-GALSTER",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-KM-RICHARD-BEITZEN",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-RN-JACKAL",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-RN-JAVELIN",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-RN-JERSEY",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-RN-JUPITER",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-RN-KASHMIR",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-BAINBRIDGE",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-DAHLGREN",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-DECATUR",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-FOX",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-HULL-I",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-MCDONOUGH",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-PERRY",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-TRUXTON",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R51",
+        "credits_price": 400
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R52",
+        "credits_price": 400
+      }
+    ],
+    "price_formula": "max(200, ceil(cost/100)*100)，与既有 import_catalog.py 公式一致，未改公式",
+    "new_ur": []
+  },
+  "portrait_assets": {
+    "ledger": "client/src/online-recruit/ledger.json",
+    "ledger_sha256": "f6ea567f392fb42ee6c21b01c6dfc5252811532b7529302796278329b3cbbf5f",
+    "ledger_assets": 210,
+    "webp_files_in_assets": 210,
+    "new_assets": 43,
+    "new_total_bytes": 3028562,
+    "encoding": "167 portraits reduced to at most 700x1050 and encoded to WebP quality 92; 43 additional identities are the pinned 512x768 WebP files copied byte-for-byte from client/src/assets/portraits/all (no re-encode).",
+    "items": [
+      {
+        "identity": "IBS-U-IJN-AKAGI",
+        "name": "赤城",
+        "side": "axis",
+        "type": "BC",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-akagi.webp",
+          "bytes": 68064,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-akagi.png",
+          "source_sha256": "58899d0889062af791adb695154e288e4b75e51469818d6310fa3ad8fbaffac6",
+          "sha256": "e7ecca59b02634d9c29c9e2641dba23de18d20c6efb74333a6ddb8a99720cd69",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-AMAGI",
+        "name": "天城",
+        "side": "axis",
+        "type": "BC",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-amagi.webp",
+          "bytes": 71292,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-amagi.png",
+          "source_sha256": "fe14a12a10ade6e00eb0aa3aa3bb14176df33db920c4aa9d45c52aefc373d842",
+          "sha256": "9df9f2e1902b15f5c8f17c277da9bbc2c730e9c40240ecad13b99b1f2ec5c714",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-ASAKAZE",
+        "name": "朝风",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-asakaze.webp",
+          "bytes": 77446,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-asakaze.png",
+          "source_sha256": "d6ab0b0b5ed5ccefd35f6fddbe278945a93bfd6763c8cb1b98d4fda75c1320e2",
+          "sha256": "5f52c7952954804c2b08224bb7bdb19e9b246d3bc89b4d49ec93148b721c1c3c",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-KAZEGUMO",
+        "name": "风云",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-EM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-erma-kazegumo.webp",
+          "bytes": 65024,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-kazegumo.png",
+          "source_sha256": "7cff4ab72ae236089a7dc54af12c0fd7ee4111fe1a020855ccb723514dea4915",
+          "sha256": "0158f42f051f3b26c9cc976c7c9c88aacf045755f56a4a6779035fd6d86e1214",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-MAKINAMI",
+        "name": "卷波",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-EM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-erma-makinami.webp",
+          "bytes": 76526,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-makinami.png",
+          "source_sha256": "a76a713563b1dec2253ab7a3c2b0f5861c76a564ae183aac8866df168734dceb",
+          "sha256": "7063f0585ea2bd252f21b5c736d98fc614cdc2d9ce17ef5ca41e7514d3bc998c",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-ERMA-NAGANAMI",
+        "name": "长波",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-EM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-erma-naganami.webp",
+          "bytes": 81872,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-erma-naganami.png",
+          "source_sha256": "1c6d48adcc2af43a3949ddf54a8e3dd7ad04accc5777cea54614413edf8c07e0",
+          "sha256": "29e9a494871fbf2a95915812e6186a2c4eae87b64a24e458b9a53b360a5eda32",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-KAMIKAZE",
+        "name": "神风",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-kamikaze.webp",
+          "bytes": 74052,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-kamikaze.png",
+          "source_sha256": "b01bace82b91bf6fb19c2de0bac4eb07a1f8dc9db4dc4de92ad43de4dbc4f9f5",
+          "sha256": "50f4ebb0cbd4525707098fdd3b3fed9e324242caf13c75da3d2068ad9f81179a",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-MUTSU",
+        "name": "陆奥",
+        "side": "axis",
+        "type": "BB",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-12",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-mutsu.webp",
+          "bytes": 64386,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-mutsu.png",
+          "source_sha256": "0b9fcdbb40b56219b004ac7cbfca8f201c212699770b0571af2289eca9d18892",
+          "sha256": "ac1595dfede9eb6d6d57d61e1e6bc19997e00353f625f78bcde05a0ac5bd203e",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-MUTSUKI",
+        "name": "睦月",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-mutsuki.webp",
+          "bytes": 67068,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-mutsuki.png",
+          "source_sha256": "50c659b39c021415eb5d4a4b6fae989d35a8ee57fe5cf61bedde5a53c2499859",
+          "sha256": "30d126cec3d3c6f41f69d65d45675eb6f456cd2b73fa5be5136df506586bae31",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-NACHI",
+        "name": "那智",
+        "side": "axis",
+        "type": "CA",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-nachi.webp",
+          "bytes": 90846,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-nachi.png",
+          "source_sha256": "1dcd74d585fbd56948f52ff3c25b17b695dd711f6ba1d9444e4a5cfcba1056e3",
+          "sha256": "fb092fe36365547a0b608fdfb477743d5e662296a589884ad1f2c3b16670ceb3",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-NAGATO",
+        "name": "长门",
+        "side": "axis",
+        "type": "BB",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-12",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-nagato.webp",
+          "bytes": 62588,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-nagato.png",
+          "source_sha256": "b96198712be28a2330131766a29948c2e5ccdbed0738dfa448dd4cb650e73718",
+          "sha256": "4853b319c35a8a9957bfa2f1fe707ffb5668a0f553118e3f1d1ab7018f94e3b5",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-OITE",
+        "name": "追风",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-oite.webp",
+          "bytes": 76754,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-oite.png",
+          "source_sha256": "51c648330e5a8da539ad470bae7f8550c09d9840035f6ff1a721d2b965dde923",
+          "sha256": "d74e4e9dafce9f80b9446e86ab6d7db8409821f4466ac0a14152017034351c9c",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-OWARI",
+        "name": "尾张",
+        "side": "axis",
+        "type": "BC",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-owari.webp",
+          "bytes": 58596,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-owari.png",
+          "source_sha256": "269539e6197ff9c99c28ff07a46353d0e2e910fe2a2fcd576c7c340bda1ad920",
+          "sha256": "c1a4f7a533e270febaf4286da2a1b175769404c2ce6ad3ec512e90efa012a670",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-TATSUTA",
+        "name": "龙田",
+        "side": "axis",
+        "type": "CL",
+        "gacha_rarity": "elite",
+        "display_rarity": "elite",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-tatsuta.webp",
+          "bytes": 55666,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-tatsuta.png",
+          "source_sha256": "4645b36a34bf2dba60e43e5e3f9b1822f9f884a76402c5831e2dd6d9e73ec094",
+          "sha256": "8bf9abdb508759e3c7f9e336c61dc6a999ee7ae0f17c12c1482e9a994347f589",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-IJN-UZUKI-2",
+        "name": "卯月(II)",
+        "side": "axis",
+        "type": "APD",
+        "gacha_rarity": "common",
+        "display_rarity": "elite",
+        "credits_price": 300,
+        "recruit_provenance": [
+          "IBS-S-05"
+        ],
+        "campaign_memberships": [
+          "IBS-S-05"
+        ],
+        "portrait": {
+          "path": "ibs-u-ijn-uzuki-2.webp",
+          "bytes": 86566,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ijn-uzuki-2.png",
+          "source_sha256": "e14f3110d63a47b342b4be14ac5a2cfd334f930f36974d2892ce0718d0835409",
+          "sha256": "fad29c862d3643409853d35cc78a13f9dc0dcfb1d7ab80f88a6ad8f10f705e09",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-KM-HANS-LODY",
+        "name": "汉斯·洛迪",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-km-hans-lody.webp",
+          "bytes": 63722,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/km-hans-lody.png",
+          "source_sha256": "df4a67b2b1a9af4a445d53f7e831e626bd9eaadf3b4b5dad040792ae34ba8921",
+          "sha256": "507bd6d9dbd6a8f1c8cef9f750aadf4c14d66f8c0fb7faeb098b4fa305a37ee2",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-KM-KARL-GALSTER",
+        "name": "卡尔加尔斯特",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-km-karl-galster.webp",
+          "bytes": 79030,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/km-karl-galster.png",
+          "source_sha256": "90f695fa8b6c15375ac914b3d2eae5db6b0bb6cac681f5a543d13dff6bc85d11",
+          "sha256": "034ea41843352b84bb7769d89aeebbfa540adb831e474142dfb526844037e1f0",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-KM-RICHARD-BEITZEN",
+        "name": "里夏德·拜茨恩",
+        "side": "axis",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-km-richard-beitzen.webp",
+          "bytes": 54832,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/km-richard-beitzen.png",
+          "source_sha256": "bb34ba0112c511c0b2746a9c969f1d68370f8575c1830ed77a0d3e2eccb8a596",
+          "sha256": "70df08cd07b4f8946e5acdaa3d7739bb50ec8e63dcac830b20343653dbfc1c8a",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-RAN-AUSTRALIA",
+        "name": "澳大利亚",
+        "side": "allies",
+        "type": "CA",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-ran-australia.webp",
+          "bytes": 61038,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/ran-australia.png",
+          "source_sha256": "e105017ca23356325eb603965f7f4a24698dbaf57b21cf9009472087117bd0f9",
+          "sha256": "7f9b98e519d25bfb8f4e3f8b8e9c0bb23b11ac0e4e0e670142b266d8bf0d51a1",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-RN-JACKAL",
+        "name": "豺",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-rn-jackal.webp",
+          "bytes": 69852,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/rn-jackal.png",
+          "source_sha256": "a06cc21c5712a05dcbca9ba9814e826bf06a938663377f02eadb1ccea8cc57fc",
+          "sha256": "c64d4f645dd7e64d40525aed82692fefd2142a23199f86de7108aeb43b39d1ab",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-RN-JAVELIN",
+        "name": "标枪",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-rn-javelin.webp",
+          "bytes": 68480,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/rn-javelin.png",
+          "source_sha256": "a347375dc95e23eb5475ca89153f7838781a74a8650347747257707cf2196de5",
+          "sha256": "8d63ad336b17a2acdfe9e1616b37563feb237a8fbacc69b3609807cf0e2b7a1f",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-RN-JERSEY",
+        "name": "泽西",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-rn-jersey.webp",
+          "bytes": 68738,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/rn-jersey.png",
+          "source_sha256": "66e01ea6bf6cafc9fd79ee47cffa76f7e51ca87780b85bc7c31c8ce6cc76ee40",
+          "sha256": "0bd86a2c27d333dd5311cd2ddce3ea3cfee32bfb51f01cb220ece0a7bb9738c9",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-RN-JUPITER",
+        "name": "朱庇特",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-rn-jupiter.webp",
+          "bytes": 71074,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/rn-jupiter.png",
+          "source_sha256": "597726f144dfa3da1522fbcb1d53d56f619833f8e6c53ab487e77b0562682275",
+          "sha256": "e2328f02e253531cd4c073d0b5f28490ca72b96fb52115abb4a24377d72800f9",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-RN-KASHMIR",
+        "name": "克什米尔",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-03"
+        ],
+        "portrait": {
+          "path": "ibs-u-rn-kashmir.webp",
+          "bytes": 68858,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/rn-kashmir.png",
+          "source_sha256": "33bad6edead827b10c22815ae278fcc16a27003a6267979087c6c7018b72e9f2",
+          "sha256": "5d3d53e056a5019b8afcf4905423a7cc80beec7924a7ad5f7f40f69be3729b61",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-BAINBRIDGE",
+        "name": "班布里奇",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-bainbridge.webp",
+          "bytes": 77072,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-bainbridge.png",
+          "source_sha256": "21835bcd96cc06777171725362ab9f8f09ef3d1ed5070dba0f38fbb4e8734d74",
+          "sha256": "41c672811f043d1b807eb6e22877fb957931895d7e1c5d3fc5dcdd591cd9f8fa",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-COLORADO",
+        "name": "科罗拉多",
+        "side": "allies",
+        "type": "BB",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-12",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-colorado.webp",
+          "bytes": 61258,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-colorado.png",
+          "source_sha256": "21ef480ca166a4e538e468424ef3accc2d2a8d224f323ae76691f52aee0d4533",
+          "sha256": "ed466640999d8f7b1028323d7c3c1bf681df34b0edccae31669266805cd27a98",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-DAHLGREN",
+        "name": "达尔格伦",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-dahlgren.webp",
+          "bytes": 83222,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-dahlgren.png",
+          "source_sha256": "9c39c6b2a14fc2319bc91a6259865a33ff753d56bee75b4ac92f59dc454382f6",
+          "sha256": "8c656c2dd30c8321169378a1898ba3242fc32f79ac46c312d2c4b6b095c9fdca",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-DECATUR",
+        "name": "迪凯特",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-decatur.webp",
+          "bytes": 69004,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-decatur.png",
+          "source_sha256": "021b4c38f62a942694c765fb9772fe07813674e512051fa12b58fea195474bb0",
+          "sha256": "acba006dd3a52ef82b79beadff370609d2ad3919280a1d2b25ee4ab9d7216ac6",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-FOX",
+        "name": "福克斯",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-fox.webp",
+          "bytes": 77570,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-fox.png",
+          "source_sha256": "3f4c843352cf02bb66979745b0cc57796605e5286efcd7b0390575f7e9ed103b",
+          "sha256": "be84fb062c133631ea695fc8185658ca78c124e56671f9097cd6e5e29f26661c",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-HULL-I",
+        "name": "赫尔(I)",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-hull-i.webp",
+          "bytes": 63062,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-hull-i.png",
+          "source_sha256": "dac273a9b61d12d598d1b0c97e8c084d06a4789c744134c6ea788560f8767128",
+          "sha256": "79b78744ec2060226701b71e587b7a6b41fc0f39b2843505052d15d1692a24dd",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-MCDONOUGH",
+        "name": "麦克多诺",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-mcdonough.webp",
+          "bytes": 78050,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-mcdonough.png",
+          "source_sha256": "127f03131d57974ee0c222ee9975e0ccfbb2c2fa687fa293e04d863a9e942069",
+          "sha256": "49a226b2c8d375f8d4af1337ab535fc783a18b5fddca8115e765a80f1525946b",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-OMAHA",
+        "name": "奥马哈",
+        "side": "allies",
+        "type": "CL",
+        "gacha_rarity": "elite",
+        "display_rarity": "elite",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-omaha.webp",
+          "bytes": 77478,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-omaha.png",
+          "source_sha256": "8399aa7972230502ce28b3a7d90aa7358dbf5d55261a57cdbf0c2c581907439d",
+          "sha256": "60d1e8e81d3d6f31c4d9fb0b85850f53a7766b90d69fd7102a99fe438712e4b0",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-PERRY",
+        "name": "佩里",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-12"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-perry.webp",
+          "bytes": 69580,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-perry.png",
+          "source_sha256": "f483621904b7b67cf3e65c5065a26d665e17b34ed3a8ec6580fb399f0c11afe9",
+          "sha256": "29034b7ac47f78b3b7ed5970131783014bad632c02f9cdc51d719bb1ae664b17",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-TRUXTON",
+        "name": "特鲁斯顿",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-truxton.webp",
+          "bytes": 71768,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-truxton.png",
+          "source_sha256": "efc43645d6500d290d142d16c04c159e614ed54d8e9dcc5e8817f39f73eb08a8",
+          "sha256": "ac14ce21633113598c979a9f43a27cccfc0e55f0e6e01b5c20af8a63bc3ba6d2",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R06",
+        "name": "列克星敦",
+        "side": "allies",
+        "type": "BC",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r06.webp",
+          "bytes": 64444,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r06.png",
+          "source_sha256": "d83f24c243186b9a4d93285729b747a5c2c2caf6690cb674dfd66b124e1dadfb",
+          "sha256": "98d00186c32e8d712f24f2efd14c58be608764ef73086e1fb61e7a09381ff022",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R07",
+        "name": "合众国",
+        "side": "allies",
+        "type": "BC",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r07.webp",
+          "bytes": 69214,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r07.png",
+          "source_sha256": "a0fdc0da9e52db45468f191637a8e546c21b7ddd2a403a33f38ddb049ad3f5d7",
+          "sha256": "0ab2f7a2dc0e800b32e3b8a826c9b589b34013183aa24bee905d9092dfaf280c",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R08",
+        "name": "宪法",
+        "side": "allies",
+        "type": "BC",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r08.webp",
+          "bytes": 53856,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r08.png",
+          "source_sha256": "e6a44a3ff2f5f78b1a992d67dbb1df20128fed31eaa2e9792cd654afb8d36d47",
+          "sha256": "a5298584036d18fb5a7534e9eb6a6f45bfadd8cec60595a92c2daeb4e7b44129",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R13",
+        "name": "休斯顿",
+        "side": "allies",
+        "type": "CA",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r13.webp",
+          "bytes": 66690,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r13.png",
+          "source_sha256": "58dd3d3389c2f0409c21a9fd1c19fe0ccec8d3be8c0588bb1600e667cd399106",
+          "sha256": "8b51922ed5c297097de04fa8d0dc21776a4daeca7d4a328afc990c987230e28f",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R22",
+        "name": "孟菲斯",
+        "side": "allies",
+        "type": "CL",
+        "gacha_rarity": "elite",
+        "display_rarity": "elite",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-07"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r22.webp",
+          "bytes": 60014,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r22.png",
+          "source_sha256": "a3b33882a434655fde695ccd1e4b9ea0eeb3b64239c4511177fe44eeaa186990",
+          "sha256": "14527c14c9d97c891a6550d04944ce696d3f5a6af8d4133c367771ff061eca0a",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R25",
+        "name": "圣胡安",
+        "side": "allies",
+        "type": "CL",
+        "gacha_rarity": "elite",
+        "display_rarity": "elite",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r25.webp",
+          "bytes": 64570,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r25.png",
+          "source_sha256": "f9f10c29440e00716bb7f60d3aac8060fae19a671d877deedf39fdef96563275",
+          "sha256": "574b8093e9413cb9669d348739e8b8ca8d853ec04d182d4fe09f57886fd058ac",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R51",
+        "name": "邓拉普",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r51.webp",
+          "bytes": 86976,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r51.png",
+          "source_sha256": "543c7b3e170200c2b03f3b8d3b3f1e0877732e91f57f1f77abbb4d14756c81ae",
+          "sha256": "cc9960439a2caaa3559385e01fc4b72cc3e867083cc1ae3f9d67af94bcfe755f",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-UNNAMED-T01-R52",
+        "name": "格里德利",
+        "side": "allies",
+        "type": "DD",
+        "gacha_rarity": "common",
+        "display_rarity": "common",
+        "credits_price": 400,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-unnamed-t01-r52.webp",
+          "bytes": 73900,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-unnamed-t01-r52.png",
+          "source_sha256": "a740ed090a3a778f5d01286a4a7a5dea7eb53992d49fef73bd4e90c0f9bc3f30",
+          "sha256": "13f15d938208a956c0a59478e555d5c89dd21c442babec6dcb2e603ae9fcef4f",
+          "copied_without_reencode": true
+        }
+      },
+      {
+        "identity": "IBS-U-USN-WEST-VIRGINIA",
+        "name": "西弗吉尼亚",
+        "side": "allies",
+        "type": "BB",
+        "gacha_rarity": "rare",
+        "display_rarity": "rare",
+        "credits_price": null,
+        "recruit_provenance": [
+          "CAS-COLLECTION-0.6.9"
+        ],
+        "campaign_memberships": [
+          "IBS-S-12",
+          "IBS-S-FM-01"
+        ],
+        "portrait": {
+          "path": "ibs-u-usn-west-virginia.webp",
+          "bytes": 78464,
+          "size": [
+            512,
+            768
+          ],
+          "source_path": "mobile/public/characters/ships/fleet-v2/usn-west-virginia.png",
+          "source_sha256": "4dbeff64b24977898047ab638f43a609722d04ecfe0083d6860c04eca01d876f",
+          "sha256": "f11fa4ef90efe018e0c84d3ce7b966977e1f1cdf66f1d66bcfdae1250273d095",
+          "copied_without_reencode": true
+        }
+      }
+    ]
+  },
+  "verification": [
+    {
+      "command": "python server/import_catalog.py 'F:/Codex/worktrees/android-mobile/铁底湾' --write",
+      "result": "Verified 210 stable identities, 210 recruitable ships, 2 pools, 3 bundles",
+      "exit": 0
+    },
+    {
+      "command": "python server/import_catalog.py 'F:/Codex/worktrees/android-mobile/铁底湾'",
+      "result": "同输出；无 --check 参数，无参运行即校验 catalog.json 与固定快照投影一致",
+      "exit": 0
+    },
+    {
+      "command": "node client/node_modules/typescript/bin/tsc --noEmit -p client/tsconfig.json",
+      "result": "通过",
+      "exit": 0
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js build (cwd=client)",
+      "result": "通过；仅既有 chunk-size 警告；dist 含 210 张 ibs-u-* WebP（含新增 43）",
+      "exit": 0
+    },
+    {
+      "command": "python -m unittest -v server.test_accounts (Python 3.13)",
+      "result": "8 项中 7 通过；test_catalog_and_foreign_database_gate 在 server/test_accounts.py:260 仍断言 167，得到 210 != 167（该文件不在本 agent scope）",
+      "exit": 1
+    },
+    {
+      "command": "python -m unittest -v server.test_battle_pve server.test_account_progression server.test_fleets (Python 3.13)",
+      "result": "11 项全部通过",
+      "exit": 0
+    },
+    {
+      "command": "python 资产核对（ledger 210 / assets 210 / 路径集合一致 / 逐文件 SHA-256）",
+      "result": "210 条全部可解析；无缺失；167 条原条目对象未变；43 张与 portraits/all 逐字节一致",
+      "exit": 0
+    },
+    {
+      "command": "python catalog 字段级 diff（HEAD vs 现在）",
+      "result": "仅 43 艘的 recruitable / credits_price 变化；rates/pity/ur_ship_ids/featured/exchange_price 未变；combat_ready 未变",
+      "exit": 0
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "test-accounts-167-assertion",
+      "status": "blocked-outside-scope",
+      "detail": "server/test_accounts.py:260 的 167 断言属于测试文件，不在本 agent scope；需由拥有该文件的 agent 改为 210 并更新注释（207 overlay entries = 164 保留剧本 + 43 补入，再加 2 storefront 与 1 UP = 210）。当前该测试 7/8 通过，其余 11 项通过。"
+    },
+    {
+      "id": "import-scenario-portraits-regenerator",
+      "status": "out-of-scope",
+      "detail": "scripts/import-scenario-portraits.py 仍按 ibs_character_id 聚合、只取保留剧本成员，重跑会生成 164 条 overlay / 167 条 ledger 并覆盖本次改动（且会漏掉 3 个 ERMA 变体与卯月(II)）。需要拥有 scripts/ 的 agent 改为按 ibs_ship_id 合并 CAS-COLLECTION，再保留本次 43 条。"
+    },
+    {
+      "id": "docs-stale-167",
+      "status": "out-of-scope",
+      "detail": "server/README.md、docs/campaign/campaign-data-audit.md、plan.md、havedone.md 仍写 167；data/portraits/report.json 的 local_recruit blocker 仍写“线上征募池 167 艘”。本 agent 未改这些文件。"
+    },
+    {
+      "id": "identity-portrait-regenerator",
+      "status": "out-of-scope",
+      "detail": "scripts/import-portraits-identity.py 依据 online-recruit ledger 是否已有同源 SHA 条目来判定 167 复用 / 43 生成；本次补入 43 条后重跑该脚本会把 210 全判为 root=online-recruit，并重写 client/src/assets/portraits/all/ledger.json 与 data/portraits/report.json（--check 也会失败）。脚本需要先区分“来源台账”与“征募池复用”，本 agent 未改 scripts/ 与 all/ 源。"
+    },
+    {
+      "id": "shared-character-ids",
+      "status": "registered",
+      "detail": "4 个 ibs_character_id 被两个 identity 共用（风云/卷波/长波 的 ERMA 变体 + 卯月 I/II）。本 ledger 以 catalog identity 为键且每艘独立图，不合并；若运行时只回传共享 character_id，客户端无法区分两者（data/portraits/report.json 已登记）。"
+    },
+    {
+      "id": "collection-only-no-battle-provenance",
+      "status": "registered",
+      "detail": "42 个补入 identity 仅登记手游全集/已移除剧本（含第 15 关 IBS-S-EM-01），无当前 11 剧本归属；仅入收藏/征募池，不据此生成战役编制、舰卡 stats 或点价。1 个（卯月(II)）用现有 IBS-S-05 成员。"
+    },
+    {
+      "id": "new-ur-none",
+      "status": "registered",
+      "detail": "43 个补入 identity 在 catalog gacha rarity 中没有 ur（26 common / 13 rare / 4 elite），两池 ur_ship_ids 与 featured 不需改动；未新增 UR，未改概率/保底/兑换价。"
+    }
+  ]
+}
