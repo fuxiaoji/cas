@@ -111,7 +111,7 @@ class AuthorityTest(unittest.TestCase):
         self.good(self.post(path + "/inspect", command={"op": "suggest", "fleet": 1}))
         self.good(self.post(path + "/inspect", command={"op": "preview_route", "fleet": 1, "mode": "follow",
                                                          "points": [{"x": 30000, "y": 20000}]}))
-        self.assertEqual(self.ai(path, "locked-torpedo", 0, 1, "torpedo").status_code, 403)
+        self.assertEqual(self.ai(path, "locked-torpedo", 0, 1, "evo-torpedo").status_code, 403)
         order = self.good(self.ai(path, "valid-first-ai", 0, 1, "coord"))
         self.assertEqual(order["revision"], 1)
         self.assertEqual(order, self.good(self.ai(path, "valid-first-ai", 0, 1, "coord")))
@@ -165,15 +165,24 @@ class AuthorityTest(unittest.TestCase):
         self.good(self.post("/prologue/claim", request_id="unlock-prologue", leader_id=PROLOGUE_SHIPS[0]))
         self.good(self.post("/starter-gifts/claim", request_id="unlock-starter-bridge", course="bridge"))
         self.good(self.post("/starter-gifts/claim", request_id="unlock-starter-night", course="night"))
-        self.good(self.post("/shop/purchase", request_id="unlock-torpedo", kind="ai", item_id="rc_torpedo_wings",
-                            currency="credits"))
+        # The six evolved doctrines replace the old mobile AI list in the
+        # catalog. Buy the torpedo doctrine with recruit tickets after the
+        # CAMP-ALLIES-03 clear above unlocked it.
+        me = self.good(self.get("/me"))
+        self.app.state.accounts.deliver_mail(
+            me["account_id"], "pve-ai-tickets", title="测试征募券", body="CAS",
+            attachments={"up_tickets": 0, "standard_tickets": 900})
+        self.good(self.post("/mail/pve-ai-tickets/claim", request_id="pve-ai-ticket-claim"))
+        self.good(self.post("/shop/purchase", request_id="unlock-torpedo", kind="ai", item_id="evo-torpedo",
+                            currency="recruit_ticket"))
         # cas-realtime-v10 brings both sides into contact earlier and the
-        # closed 8.3 criticals plus torpedo reloads moved the seed; 6133 still
-        # produces a real decisive victory in both standard and challenge.
-        self.seed = 6133
+        # closed 8.3 criticals plus torpedo reloads moved the seed. With the
+        # evolved torpedo doctrine the verified seed is 6150 (decisive in both
+        # standard and challenge on CAMP-ALLIES-03).
+        self.seed = 6150
         path = "/battles/" + self.start("real-decisive", difficulty="standard")["battle_id"]
         for i in range(2):
-            self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, "torpedo"))
+            self.good(self.ai(path, f"decisive-ai-{i}", i, i + 1, "evo-torpedo"))
         self.assertEqual(self.finish(path)["result"]["grade"], "decisive")
         before = self.good(self.get("/me"))["meta"]["wallet"]
         decisive = self.good(self.post(path + "/claim", request_id="claim-decisive-one"))
@@ -189,7 +198,7 @@ class AuthorityTest(unittest.TestCase):
 
         path = "/battles/" + self.start("repeat-decisive", difficulty="challenge")["battle_id"]
         for i in range(2):
-            self.good(self.ai(path, f"repeat-ai-{i}", i, i + 1, "torpedo"))
+            self.good(self.ai(path, f"repeat-ai-{i}", i, i + 1, "evo-torpedo"))
         self.assertEqual(self.finish(path)["result"]["grade"], "decisive")
         self.assertFalse(self.good(self.post(path + "/claim", request_id="claim-third-stage"))["claimed"])
         mission = self.good(self.get("/missions/weekly-pve"))

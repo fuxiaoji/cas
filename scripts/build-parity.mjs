@@ -14,7 +14,7 @@ const json = value => JSON.stringify(value, (_, item) =>
 const encode = new TextEncoder();
 const decode = new TextDecoder('utf-8', { fatal: true });
 
-async function verify(side, fleet, variant = '', seed = 6106, realtime = false, campaign = false) {
+async function verify(side, fleet, variant = '', seed = 6106, realtime = false, campaign = false, profile = null, opponent = null) {
   const channel = variant === 'channel-action-rts';
   const kula = variant === 'kula-gulf-rts';
   const empressCampaign = variant === 'empress-campaign';
@@ -34,7 +34,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
   const commands = [
     { op: 'info' },
     campaign ? { op: 'new_campaign', id: empressCampaign ? (side === 'allies' ? 'CAMP-ALLIES-11' : 'CAMP-AXIS-11') : esperanceCampaign ? (side === 'allies' ? 'CAMP-ALLIES-02' : 'CAMP-AXIS-02') : tassafarongaCampaign ? (side === 'allies' ? 'CAMP-ALLIES-05' : 'CAMP-AXIS-05') : savoCampaign ? (side === 'allies' ? 'CAMP-ALLIES-10' : 'CAMP-AXIS-10') : 'CAMP-' + side.toUpperCase() + (kula ? '-04' : '-03'), difficulty: kula ? side === 'allies' ? 'standard' : 'challenge' : 'story', seed, ...(kula ? { profile: side === 'allies' ? 'gunnery' : 'torpedo' } : {}) } :
-      { op: 'new', seed, side, enemy: variant === 'night-training' ? 'gunnery' : 'torpedo', variant, realtime },
+      { op: 'new', seed, side, enemy: opponent ?? (variant === 'night-training' ? 'gunnery' : 'torpedo'), variant, realtime, ...(profile ? { profile } : {}) },
   ];
   if (variant === 'night-training') commands.push(
     { op: 'route', fleet, mode: 'follow', speed: 15, points: [{ x: 13000, y: 6550 }, { x: 13000, y: 10400 }] },
@@ -87,7 +87,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
     for (const fleet of [1, 2]) commands.push(
       { op: 'ai', fleet, profile: 'torpedo', mode: 'auto', move: true, gun: true, torpedo: true });
   } else commands.push(
-    { op: 'ai', fleet, profile: 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true },
+    { op: 'ai', fleet, profile: profile ?? 'gunnery', mode: 'auto', move: true, gun: true, torpedo: true },
   );
   const wasmOutput = [];
   for (const command of commands) wasmOutput.push(call(command));
@@ -254,7 +254,7 @@ async function verify(side, fleet, variant = '', seed = 6106, realtime = false, 
   }
   assert(end.result, `${side}: exercise failed to produce a result`);
   assert.equal(json(wasmOutput.at(-1).data), json(end), `${side}: replay diverged from live result`);
-  return { side, variant: variant || 'exercise', version: start.version, seed, tick: end.tick, result: end.result, visibleEvents: report.events.length,
+  return { side, variant: variant || 'exercise', ...(profile ? { profile } : {}), version: start.version, seed, tick: end.tick, result: end.result, visibleEvents: report.events.length,
     canonicalSha256: createHash('sha256').update(json(wasmOutput)).digest('hex') };
 }
 
@@ -273,7 +273,10 @@ const runs = [await verify('allies', 1, '', 6107), await verify('axis', 2), awai
   await verify('allies', 1, 'empress', 6106, true),
   await verify('allies', 1, 'empress-campaign', 6106, true, true),
   await verify('allies', 1, 'kula-gulf-rts', 6106, true, true),
-  await verify('axis', 2, 'kula-gulf-rts', 2, true, true)];
+  await verify('axis', 2, 'kula-gulf-rts', 2, true, true),
+  await verify('allies', 1, '', 6106, false, false, 'evo-brawler', 'coord'),
+  await verify('allies', 1, '', 6112, false, false, 'evo-kiter', 'gunnery'),
+  await verify('allies', 1, '', 6111, false, false, 'evo-denial', 'torpedo')];
 const report = JSON.stringify({ ok: true, nativeWasmCanonicalMatch: true, replayMatch: true, runs }, null, 2) + '\n';
 console.log(report);
 if (evidence) {

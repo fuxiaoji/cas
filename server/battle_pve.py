@@ -33,8 +33,14 @@ REWARDS = (
     ("STAR2", "保存舰队", {"credits": 200, "tickets": 1}),
     ("STAR3", "战术星章", {"tickets": 2, "medals": 10}),
 )
-AI_UNLOCK = {"gunnery": "fleet", "torpedo": "rc_torpedo_wings",
-             "evo-screen": "evo-screen", "evo-torpedo": "evo-torpedo", "evo-gunnery": "evo-gunnery"}
+# The builtin coord/gunnery/torpedo doctrines are always available; the six
+# evolved doctrines are bought from the CAS storefront under their own id.
+AI_UNLOCK = {
+    "evo-screen": "evo-screen", "evo-torpedo": "evo-torpedo", "evo-gunnery": "evo-gunnery",
+    "evo-brawler": "evo-brawler", "evo-kiter": "evo-kiter", "evo-denial": "evo-denial",
+}
+ProfileId = Literal["coord", "gunnery", "torpedo", "evo-screen", "evo-torpedo", "evo-gunnery",
+                    "evo-brawler", "evo-kiter", "evo-denial"]
 Stage = Literal["CAMP-ALLIES-03", "CAMP-AXIS-03", "CAMP-ALLIES-11", "CAMP-AXIS-11", "CAMP-ALLIES-02", "CAMP-AXIS-02"]
 Difficulty = Literal["story", "standard", "challenge"]
 UnitId = Annotated[int, Field(gt=0, le=10000)]
@@ -109,7 +115,7 @@ class FleetInspection(StrictModel):
 class AI(StrictModel):
     op: Literal["ai"]
     fleet: UnitId
-    profile: Literal["coord", "gunnery", "torpedo"]
+    profile: ProfileId
     mode: Literal["manual", "suggest", "auto"]
     move: bool
     gun: bool

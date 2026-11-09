@@ -260,16 +260,26 @@ class FreeEconomyTest(unittest.TestCase):
             entry = entries[row["id"]]
             self.assertEqual((entry["name"], entry["cost"], entry["currency"], entry["unlock"], entry["provisional"]),
                              (row["name"], row["cost"], row["currency"], row["unlock"], True))
-        self.assertEqual(len(catalog["ai_profiles"]), 9)
+        # The storefront is exactly the six CAS evolved doctrines; the old
+        # mobile AI list is no longer sold alongside a duplicate set.
+        self.assertEqual(len(catalog["ai_profiles"]), 6)
+        self.assertEqual([entry["id"] for entry in catalog["ai_profiles"]],
+                         ["evo-screen", "evo-torpedo", "evo-gunnery",
+                          "evo-brawler", "evo-kiter", "evo-denial"])
 
-        self.fund_mail(0, 3000)
+        self.fund_mail(0, 6000)
         locked = self.post("/shop/purchase", "evo-locked", kind="ai", item_id="evo-screen",
                            currency="recruit_ticket")
         self.assertEqual(locked.status_code, 403)
         self.assertIn("CAMP-ALLIES-02", locked.json()["detail"])
-        self.assertEqual(self.meta()["wallet"]["standard_tickets"], 3000)
+        locked_new = self.post("/shop/purchase", "evo-locked-brawler", kind="ai", item_id="evo-brawler",
+                               currency="recruit_ticket")
+        self.assertEqual(locked_new.status_code, 403)
+        self.assertIn("CAMP-ALLIES-05", locked_new.json()["detail"])
+        self.assertEqual(self.meta()["wallet"]["standard_tickets"], 6000)
 
-        stages = ["CAMP-ALLIES-02", "CAMP-ALLIES-03", "CAMP-ALLIES-11"]
+        stages = ["CAMP-ALLIES-02", "CAMP-ALLIES-03", "CAMP-ALLIES-11",
+                  "CAMP-ALLIES-05", "CAMP-ALLIES-10"]
         with closing(self.service.connect()) as conn:
             row = conn.execute("SELECT state FROM assets WHERE account_id=?", (self.account["account_id"],)).fetchone()
             state = json.loads(row["state"])
@@ -281,30 +291,39 @@ class FreeEconomyTest(unittest.TestCase):
         bought = self.assert_success(self.post("/shop/purchase", "evo-buy-screen", kind="ai",
                                                item_id="evo-screen", currency="recruit_ticket"))
         self.assertTrue(bought["purchased"])
-        self.assertEqual(bought["meta"]["wallet"]["standard_tickets"], 2200)
+        self.assertEqual(bought["meta"]["wallet"]["standard_tickets"], 5200)
         self.assertIn("evo-screen", bought["meta"]["ai_profiles"])
         replay = self.assert_success(self.post("/shop/purchase", "evo-buy-screen", kind="ai",
                                                item_id="evo-screen", currency="recruit_ticket"))
         self.assertEqual(replay, bought)
         self.assertEqual(self.post("/shop/purchase", "evo-duplicate", kind="ai",
                                    item_id="evo-screen", currency="recruit_ticket").status_code, 400)
-        self.assertEqual(self.post("/shop/purchase", "evo-buy-torpedo", kind="ai",
-                                   item_id="evo-torpedo", currency="recruit_ticket").status_code, 200)
-        self.assertEqual(self.post("/shop/purchase", "evo-buy-gunnery", kind="ai",
-                                   item_id="evo-gunnery", currency="recruit_ticket").status_code, 200)
+        order = [
+            ("evo-buy-torpedo", "evo-torpedo", 4300),
+            ("evo-buy-gunnery", "evo-gunnery", 3300),
+            ("evo-buy-brawler", "evo-brawler", 2400),
+            ("evo-buy-kiter", "evo-kiter", 1300),
+            ("evo-buy-denial", "evo-denial", 100),
+        ]
+        for request_id, item_id, balance in order:
+            response = self.assert_success(self.post("/shop/purchase", request_id, kind="ai",
+                                                     item_id=item_id, currency="recruit_ticket"))
+            self.assertTrue(response["purchased"])
+            self.assertEqual(response["meta"]["wallet"]["standard_tickets"], balance)
         meta = self.meta()
-        self.assertEqual(meta["wallet"]["standard_tickets"], 300)
+        self.assertEqual(meta["wallet"]["standard_tickets"], 100)
         self.assertEqual([pid for pid in meta["ai_profiles"] if pid.startswith("evo-")],
-                         ["evo-screen", "evo-torpedo", "evo-gunnery"])
+                         ["evo-screen", "evo-torpedo", "evo-gunnery",
+                          "evo-brawler", "evo-kiter", "evo-denial"])
         with TestClient(create_app(self.db)) as restarted:
             restored = restarted.get("/me", headers=self.headers).json()["meta"]
             self.assertEqual(restored["ai_profiles"], meta["ai_profiles"])
-            self.assertEqual(restored["wallet"]["standard_tickets"], 300)
+            self.assertEqual(restored["wallet"]["standard_tickets"], 100)
         login = self.assert_success(self.client.post("/auth/login", json={
             "username": "Test.Commander", "password": self.password}))
         relogin = self.client.get("/me", headers={"Authorization": "Bearer " + login["token"]}).json()["meta"]
         self.assertEqual(relogin["ai_profiles"], meta["ai_profiles"])
-        self.assertEqual(relogin["wallet"]["standard_tickets"], 300)
+        self.assertEqual(relogin["wallet"]["standard_tickets"], 100)
 
     def test_catalog_and_foreign_database_gate(self):
         catalog = self.client.get("/catalog").json()

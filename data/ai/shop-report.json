@@ -1,15 +1,31 @@
 {
   "schema": "cas-ai-shop-report-v1",
-  "generatedAt": "2026-11-09T11:21:15+08:00",
+  "generatedAt": "2026-11-09T12:23:11+08:00",
   "state": "shipped-provisional",
   "currency": "recruit_ticket",
   "summary": {
-    "profiles": 3,
-    "catalogued": 3,
-    "serverPurchaseVerified": 3,
+    "profiles": 6,
+    "catalogued": 6,
+    "serverPurchaseVerified": 6,
     "browserPurchased": 3,
-    "battleExercised": ["evo-screen", "evo-gunnery", "evo-torpedo"],
-    "saveReloadVerified": ["evo-screen", "evo-gunnery"],
+    "browserNote": "旧三条由上一批 browser-ai-shop 覆盖；新三条本批未跑浏览器，UI 页面由并行 agent 负责，本批提供共享数据与服务端验证。",
+    "battleExercised": [
+      "evo-screen",
+      "evo-gunnery",
+      "evo-torpedo"
+    ],
+    "headlessExercised": [
+      "evo-screen",
+      "evo-torpedo",
+      "evo-gunnery",
+      "evo-brawler",
+      "evo-kiter",
+      "evo-denial"
+    ],
+    "saveReloadVerified": [
+      "evo-screen",
+      "evo-gunnery"
+    ],
     "blockers": 0
   },
   "source": {
@@ -19,98 +35,413 @@
     "serverProjection": "server/import_catalog.py",
     "clientStore": "client/src/ai-shop.ts",
     "harbor": "client/src/Harbor.tsx",
-    "battle": ["client/src/main.tsx", "client/src/engine.ts", "src/model.rs", "src/ai.rs"]
+    "battle": [
+      "client/src/main.tsx",
+      "client/src/engine.ts",
+      "src/model.rs",
+      "src/ai.rs"
+    ]
   },
   "profiles": [
     {
       "id": "evo-screen",
       "name": "帷幄 · 屏护协同",
+      "role": "screen",
       "description": "以屏护与交叉火力为主：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。",
       "cost": 800,
       "currency": "recruit_ticket",
       "unlock": "campaign:CAMP-ALLIES-02",
       "unlockStageName": "埃斯佩兰斯角",
       "provisional": true,
+      "basis": "ga",
       "fitness": {
         "validationMean": 282.56642788774843,
         "trainingMean": 354.152506414956,
-        "builtinBaseline": {"profile": "coord", "validationMean": 50.170051319648074},
-        "seeds": [6106, 6107, 6111, 6112, 6113]
+        "builtinBaseline": {
+          "profile": "coord",
+          "validationMean": 50.170051319648074
+        },
+        "seeds": [
+          6106,
+          6107,
+          6111,
+          6112,
+          6113
+        ]
       },
-      "catalog": {"registered": true, "fields": ["id", "name", "description", "unlock", "cost", "currency", "provisional"]},
-      "serverPurchase": {"kind": "ai", "endpoint": "/shop/purchase", "wallet": "standard_tickets", "verified": true},
-      "client": {"storeVisible": true, "localPurchase": true, "provisionalBadge": true, "battleSelectable": true},
-      "battle": {
-        "exerciseNew": {"passed": true, "evidence": "browser-ai-shop.mjs: 母港预设 -> new -> AI 面板 profile=evo-screen"},
-        "campaignNew": {"passed": false, "note": "该战役解锁条件与浏览器 740/Campaign 验证由 evo-gunnery 覆盖"},
-        "saveReload": {"passed": true, "evidence": "browser-ai-shop.mjs: 存档 profile=evo-screen，刷新后继续演习仍为 evo-screen"}
+      "catalog": {
+        "registered": true,
+        "fields": [
+          "id",
+          "name",
+          "description",
+          "unlock",
+          "cost",
+          "currency",
+          "provisional"
+        ]
       },
-      "browserPurchase": {"passed": true, "paid": 800, "balanceAfter": 4200}
+      "serverPurchase": {
+        "kind": "ai",
+        "endpoint": "/shop/purchase",
+        "wallet": "standard_tickets",
+        "verified": true
+      },
+      "client": {
+        "storeVisible": true,
+        "localPurchase": true,
+        "provisionalBadge": true,
+        "battleSelectable": true,
+        "fit": "验证 282.6 / 内置 coord 50.2（同 objective 6 场）",
+        "risk": "屏护分队被雷击队钉住时炮火会分散，收割慢。",
+        "axes": {
+          "range": "mid",
+          "maneuver": "screen",
+          "torpedo": "support"
+        }
+      },
+      "evidence": {
+        "headless": true,
+        "profileEvidence": []
+      }
     },
     {
       "id": "evo-torpedo",
       "name": "夜潮 · 雷击突击",
+      "role": "torpedo",
       "description": "以雷击为主：分队分头绕向敌纵队侧翼，压缩距离后按侧舷角放雷，炮战只做压制。",
       "cost": 900,
       "currency": "recruit_ticket",
       "unlock": "campaign:CAMP-ALLIES-03",
       "unlockStageName": "圣乔治角",
       "provisional": true,
+      "basis": "ga",
       "fitness": {
         "validationMean": 217.56140855236958,
         "trainingMean": 283.1633049242424,
-        "builtinBaseline": {"profile": "torpedo", "validationMean": 181.34674149650627},
-        "seeds": [6106, 6107, 6111, 6112, 6113]
+        "builtinBaseline": {
+          "profile": "torpedo",
+          "validationMean": 181.34674149650627
+        },
+        "seeds": [
+          6106,
+          6107,
+          6111,
+          6112,
+          6113
+        ]
       },
-      "catalog": {"registered": true, "fields": ["id", "name", "description", "unlock", "cost", "currency", "provisional"]},
-      "serverPurchase": {"kind": "ai", "endpoint": "/shop/purchase", "wallet": "standard_tickets", "verified": true},
-      "client": {"storeVisible": true, "localPurchase": true, "provisionalBadge": true, "battleSelectable": true},
-      "battle": {
-        "exerciseNew": {"passed": true, "evidence": "browser-ai-shop.mjs: 母港预设选 evo-torpedo -> new -> AI 面板 profile=evo-torpedo"},
-        "campaignNew": {"passed": false, "note": "本批战役路径由 evo-gunnery 覆盖，二者共用同一 profile 透传与 Ai::validate 路径"},
-        "saveReload": {"passed": false, "note": "同一存档字段由 evo-screen（演习）与 evo-gunnery（战役）两点覆盖"}
+      "catalog": {
+        "registered": true,
+        "fields": [
+          "id",
+          "name",
+          "description",
+          "unlock",
+          "cost",
+          "currency",
+          "provisional"
+        ]
       },
-      "browserPurchase": {"passed": true, "paid": 900, "balanceAfter": 2300},
-      "serverPurchaseVerified": true
+      "serverPurchase": {
+        "kind": "ai",
+        "endpoint": "/shop/purchase",
+        "wallet": "standard_tickets",
+        "verified": true
+      },
+      "client": {
+        "storeVisible": true,
+        "localPurchase": true,
+        "provisionalBadge": true,
+        "battleSelectable": true,
+        "fit": "验证 217.6 / 内置 torpedo 181.3（同 objective 6 场）",
+        "risk": "贴脸后吃交叉火力；雷未中时交换比差。",
+        "axes": {
+          "range": "near",
+          "maneuver": "brawl",
+          "torpedo": "direct"
+        }
+      },
+      "evidence": {
+        "headless": true,
+        "profileEvidence": []
+      }
     },
     {
       "id": "evo-gunnery",
       "name": "铁幕 · 炮战纵队",
+      "role": "gunnery",
       "description": "以炮战为主：保持远距射界，优先抢占敌纵队的 T 头位置，用交叉火力分散其指挥。",
       "cost": 1000,
       "currency": "recruit_ticket",
       "unlock": "campaign:CAMP-ALLIES-11",
       "unlockStageName": "奥古斯塔皇后湾",
       "provisional": true,
+      "basis": "ga",
       "fitness": {
         "validationMean": 1692.1575308415697,
         "trainingMean": 1968.850209080048,
-        "builtinBaseline": {"profile": "gunnery", "validationMean": 1094.8852847848257},
-        "seeds": [6106, 6107, 6111, 6112, 6113]
+        "builtinBaseline": {
+          "profile": "gunnery",
+          "validationMean": 1094.8852847848257
+        },
+        "seeds": [
+          6106,
+          6107,
+          6111,
+          6112,
+          6113
+        ]
       },
-      "catalog": {"registered": true, "fields": ["id", "name", "description", "unlock", "cost", "currency", "provisional"]},
-      "serverPurchase": {"kind": "ai", "endpoint": "/shop/purchase", "wallet": "standard_tickets", "verified": true},
-      "client": {"storeVisible": true, "localPurchase": true, "provisionalBadge": true, "battleSelectable": true},
-      "battle": {
-        "exerciseNew": {"passed": false, "note": "本批未单独以 evo-gunnery 出航演习；战役路径已覆盖"},
-        "campaignNew": {"passed": true, "evidence": "browser-ai-shop.mjs: CAMP-ALLIES-02 编成选 evo-gunnery -> new_campaign -> AI 面板 profile=evo-gunnery"},
-        "saveReload": {"passed": true, "evidence": "browser-ai-shop.mjs: campaign 存档 profile=evo-gunnery，刷新后继续演习仍为 evo-gunnery"}
+      "catalog": {
+        "registered": true,
+        "fields": [
+          "id",
+          "name",
+          "description",
+          "unlock",
+          "cost",
+          "currency",
+          "provisional"
+        ]
       },
-      "browserPurchase": {"passed": true, "paid": 1000, "balanceAfter": 3200, "unlock": "先锁定禁用，补 CAMP-ALLIES-11 通关后解锁再购买"}
+      "serverPurchase": {
+        "kind": "ai",
+        "endpoint": "/shop/purchase",
+        "wallet": "standard_tickets",
+        "verified": true
+      },
+      "client": {
+        "storeVisible": true,
+        "localPurchase": true,
+        "provisionalBadge": true,
+        "battleSelectable": true,
+        "fit": "验证 1692.2 / 内置 gunnery 1094.9（同 objective 6 场）",
+        "risk": "被高速雷击队贴到 3 km 内时射界与装填吃亏。",
+        "axes": {
+          "range": "far",
+          "maneuver": "screen",
+          "torpedo": "support"
+        }
+      },
+      "evidence": {
+        "headless": true,
+        "profileEvidence": []
+      }
+    },
+    {
+      "id": "evo-brawler",
+      "name": "绞肉 · 近战乱斗",
+      "role": "brawler",
+      "description": "以近距乱战为主：高航速贴脸，压缩到 3 公里内炮雷混战，低撤退阈值。",
+      "cost": 900,
+      "currency": "recruit_ticket",
+      "unlock": "campaign:CAMP-ALLIES-05",
+      "unlockStageName": "塔萨法隆格",
+      "provisional": true,
+      "basis": "ga",
+      "fitness": {
+        "validationMean": 822.0335183148691,
+        "trainingMean": 1072.9753355123821,
+        "builtinBaseline": {
+          "profile": "torpedo",
+          "validationMean": 656.0253705287646
+        },
+        "seeds": [
+          6106,
+          6107,
+          6111,
+          6112,
+          6113
+        ]
+      },
+      "catalog": {
+        "registered": true,
+        "fields": [
+          "id",
+          "name",
+          "description",
+          "unlock",
+          "cost",
+          "currency",
+          "provisional"
+        ]
+      },
+      "serverPurchase": {
+        "kind": "ai",
+        "endpoint": "/shop/purchase",
+        "wallet": "standard_tickets",
+        "verified": true
+      },
+      "client": {
+        "storeVisible": true,
+        "localPurchase": true,
+        "provisionalBadge": true,
+        "battleSelectable": true,
+        "fit": "验证 822.0 / 内置 torpedo 656.0（3 km 内实伤与接敌秒）",
+        "risk": "被远距风筝时打不到人；低撤退阈值会硬吃损伤。",
+        "axes": {
+          "range": "near",
+          "maneuver": "brawl",
+          "torpedo": "direct"
+        }
+      },
+      "evidence": {
+        "headless": true,
+        "profileEvidence": [
+          "cas-sim-evo-brawler-6106.json"
+        ]
+      }
+    },
+    {
+      "id": "evo-kiter",
+      "name": "拖刀 · 远距风筝",
+      "role": "kiter",
+      "description": "以远距风筝为主：保持 6 公里外射界，边打边退维持射程边缘，高撤退阈值。",
+      "cost": 1100,
+      "currency": "recruit_ticket",
+      "unlock": "campaign:CAMP-ALLIES-11",
+      "unlockStageName": "奥古斯塔皇后湾",
+      "provisional": true,
+      "basis": "ga",
+      "fitness": {
+        "validationMean": 846.6409188855818,
+        "trainingMean": 940.5185248958376,
+        "builtinBaseline": {
+          "profile": "gunnery",
+          "validationMean": 234.29500869273224
+        },
+        "seeds": [
+          6106,
+          6107,
+          6111,
+          6112,
+          6113
+        ]
+      },
+      "catalog": {
+        "registered": true,
+        "fields": [
+          "id",
+          "name",
+          "description",
+          "unlock",
+          "cost",
+          "currency",
+          "provisional"
+        ]
+      },
+      "serverPurchase": {
+        "kind": "ai",
+        "endpoint": "/shop/purchase",
+        "wallet": "standard_tickets",
+        "verified": true
+      },
+      "client": {
+        "storeVisible": true,
+        "localPurchase": true,
+        "provisionalBadge": true,
+        "battleSelectable": true,
+        "fit": "验证 846.6 / 内置 gunnery 234.3（6 km 外实伤与射程维持）",
+        "risk": "被迫近身后射程优势消失，且高撤退会放弃部分战果。",
+        "axes": {
+          "range": "far",
+          "maneuver": "kite",
+          "torpedo": "support"
+        }
+      },
+      "evidence": {
+        "headless": true,
+        "profileEvidence": [
+          "cas-sim-evo-kiter-6112.json"
+        ]
+      }
+    },
+    {
+      "id": "evo-denial",
+      "name": "雷网 · 封走位",
+      "role": "denial",
+      "description": "以鱼雷扇面封走位为主：高雷击占比、宽扇面与屏护协同，目标不是命中而是逼敌转向。",
+      "cost": 1200,
+      "currency": "recruit_ticket",
+      "unlock": "campaign:CAMP-ALLIES-10",
+      "unlockStageName": "萨沃岛",
+      "provisional": true,
+      "basis": "ga",
+      "fitness": {
+        "validationMean": 1200.3221696531275,
+        "trainingMean": 1427.1566197736784,
+        "builtinBaseline": {
+          "profile": "torpedo",
+          "validationMean": 831.0648328306156
+        },
+        "seeds": [
+          6106,
+          6107,
+          6111,
+          6112,
+          6113
+        ]
+      },
+      "catalog": {
+        "registered": true,
+        "fields": [
+          "id",
+          "name",
+          "description",
+          "unlock",
+          "cost",
+          "currency",
+          "provisional"
+        ]
+      },
+      "serverPurchase": {
+        "kind": "ai",
+        "endpoint": "/shop/purchase",
+        "wallet": "standard_tickets",
+        "verified": true
+      },
+      "client": {
+        "storeVisible": true,
+        "localPurchase": true,
+        "provisionalBadge": true,
+        "battleSelectable": true,
+        "fit": "验证 1200.3 / 内置 torpedo 831.1（扇面覆盖预定航路与威胁后转向）",
+        "risk": "封走位不直接转化为命中，单舰收割能力弱。",
+        "axes": {
+          "range": "mid",
+          "maneuver": "screen",
+          "torpedo": "deny"
+        }
+      },
+      "evidence": {
+        "headless": true,
+        "profileEvidence": [
+          "cas-sim-evo-denial-6111.json"
+        ]
+      }
     }
   ],
   "unlock": {
     "source": "server campaign_progress / local PortState.campaignProgress",
-    "rule": "对应 CAMP-ALLIES-02/03/11 任一难度取得 >0 星（真实完成战役）；0 星不解锁",
+    "rule": "对应 CAMP-ALLIES-02/03/05/10/11 任一难度取得 >0 星；0 星不解锁",
     "serverEnforced": true,
-    "clientEnforced": true
+    "clientEnforced": true,
+    "substitution": "CAMP-ALLIES-06 is archived only; evo-kiter uses the playable CAMP-ALLIES-11"
   },
   "server": {
-    "catalogProfiles": 9,
-    "evolvedProfiles": 3,
+    "catalogProfiles": 6,
+    "evolvedProfiles": 6,
     "purchase": {
       "kind": "ai",
-      "itemIds": ["evo-screen", "evo-torpedo", "evo-gunnery"],
+      "itemIds": [
+        "evo-screen",
+        "evo-torpedo",
+        "evo-gunnery",
+        "evo-brawler",
+        "evo-kiter",
+        "evo-denial"
+      ],
       "walletKey": "standard_tickets",
       "currencyFromCatalog": true,
       "duplicateGuard": true,
@@ -128,78 +459,160 @@
       "newCase": "server.test_accounts.FreeEconomyTest.test_evolved_ai_profiles_are_catalogued_and_purchased_with_tickets"
     }
   },
-  "client": {
-    "harbor": {
-      "showsThreeProfiles": true,
-      "showsPrice": true,
-      "showsUnlockCondition": true,
-      "showsProvisionalBadge": true,
-      "disabledReasons": true,
-      "localPurchaseUses": "PortState.wallet.standard",
-      "persistsIn": "localStorage PortState.profiles",
-      "740x360HorizontalOverflow": 0
-    },
-    "onlineSupply": {
-      "showsEvolvedProfiles": true,
-      "purchaseCurrency": "recruit_ticket",
-      "unlockReads": "meta.campaign_progress",
-      "metaRefreshAfterPurchase": true
-    },
-    "battleStyleDropdown": {
-      "ownedProfilesEnabled": true,
-      "unownedDisabled": true,
-      "unownedLabel": "（未拥有）",
-      "reasonText": "未拥有的风格须先在母港「AI 战术室」解锁"
-    },
-    "surfaces": ["Harbor 编队协助风格", "演习设置对手 AI", "战斗内 AI 风格", "关前编成战术风格", "特混编成战术风格"]
-  },
   "tests": {
-    "cargo": {"command": "cargo test --release --locked", "passed": 121, "failed": 0},
-    "server": {"passed": 34, "failed": 0},
-    "typescript": {"command": "node node_modules/typescript/bin/tsc --noEmit -p .", "passed": true},
-    "viteBuild": {"command": "node node_modules/vite/bin/vite.js build", "passed": true, "warning": "existing chunk-size warning"},
-    "browser": {
-      "script": "client/tests/browser-ai-shop.mjs",
+    "cargo": {
+      "command": "cargo test --release --locked",
+      "tests": 123,
+      "passed": 123,
+      "failed": 0
+    },
+    "server": {
+      "command": "CAS_TEST_SIM_PATH/CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_accounts server.test_account_progression server.test_battle_pve server.test_fleets server.test_ranked server.test_duels",
+      "tests": 34,
+      "passed": 34,
+      "failed": 0
+    },
+    "typescript": {
+      "command": "cd client; node node_modules/typescript/bin/tsc --noEmit -p .",
+      "passed": true
+    },
+    "viteBuild": {
+      "command": "cd client; node node_modules/vite/bin/vite.js build",
       "passed": true,
-      "viewport740Overflow": false,
-      "purchases": ["evo-screen", "evo-gunnery", "evo-torpedo"],
-      "wallet": {"before": 5000, "after": 2300},
-      "unownedOptionDisabledBeforePurchase": "evo-torpedo",
-      "battleProfiles": {"exercise": "evo-screen", "campaign": "evo-gunnery", "torpedoExercise": "evo-torpedo"},
-      "exerciseSaveReload": "evo-screen",
-      "campaign": {"stageId": "CAMP-ALLIES-02", "profile": "evo-gunnery"},
-      "campaignSaveReload": "evo-gunnery",
-      "regressions": [
-        "browser-lobby: 母港/战役大厅/编成屏/剧情/740 overflow pass",
-        "browser-esperance: CAMP-ALLIES-02 出航、决定性胜利与真实战果 pass"
-      ]
+      "warning": "existing chunk-size warning only"
+    },
+    "newDoctrineEvidence": {
+      "cas-sim-evo-brawler-6106.json": {
+        "seed": 6106,
+        "candidate": "evo-brawler",
+        "opponent": "coord",
+        "result": {
+          "allies": 5,
+          "axis": 3,
+          "winner": "allies"
+        },
+        "tick": 2168,
+        "replayMatches": true,
+        "saveSha256": "0baa5e0291dba80c4fb635c458d1074872d5beae3321c16ed9bbf4d113b12b10"
+      },
+      "cas-sim-evo-denial-6111.json": {
+        "seed": 6111,
+        "candidate": "evo-denial",
+        "opponent": "torpedo",
+        "result": {
+          "allies": 5,
+          "axis": 2,
+          "winner": "allies"
+        },
+        "tick": 2359,
+        "replayMatches": true,
+        "saveSha256": "e1d719d03c9e14a3affac3dc58b33e0d80cbcde9f93394f12ac5fb0bbb88c44e"
+      },
+      "cas-sim-evo-kiter-6112.json": {
+        "seed": 6112,
+        "candidate": "evo-kiter",
+        "opponent": "gunnery",
+        "result": {
+          "allies": 3,
+          "axis": 0,
+          "winner": "allies"
+        },
+        "tick": 2708,
+        "replayMatches": true,
+        "saveSha256": "d403167fb992336739b4071aed292e014e940513cca757e0f13ed11a277664c0"
+      }
+    },
+    "nativeWasmParity": {
+      "runs": 24,
+      "nativeWasmCanonicalMatch": true,
+      "replayMatch": true,
+      "doctrineRuns": [
+        {
+          "profile": "evo-brawler",
+          "seed": 6106,
+          "result": {
+            "allies": 5,
+            "axis": 3,
+            "winner": "allies"
+          }
+        },
+        {
+          "profile": "evo-kiter",
+          "seed": 6112,
+          "result": {
+            "allies": 3,
+            "axis": 0,
+            "winner": "allies"
+          }
+        },
+        {
+          "profile": "evo-denial",
+          "seed": 6111,
+          "result": {
+            "allies": 5,
+            "axis": 2,
+            "winner": "allies"
+          }
+        }
+      ],
+      "wasmSha256": "27406A90C5CA8AFFE5BE9C55AE4A6778303D36B1B4D69CF71F591A266E696C5C",
+      "wasmBytes": 3602934,
+      "evidence": "data/ai/evidence/native-wasm-parity.json"
     }
   },
   "evidence": {
-    "browserReceipt": "client/artifacts/client/ai-shop/browser-receipt.json",
-    "screenshots": [
-      "client/artifacts/client/ai-shop/ai-shop-740.png",
-      "client/artifacts/client/ai-shop/ai-shop-owned.png",
-      "client/artifacts/client/ai-shop/battle-ai-profile.png",
-      "client/artifacts/client/ai-shop/battle-ai-profile-reload.png",
-      "client/artifacts/client/ai-shop/battle-ai-torpedo.png",
-      "client/artifacts/client/ai-shop/campaign-ai-profile.png"
-    ],
-    "hashes": {
-      "data/ai/evolved.json": "1a34f3d847a15465c1dca302acff93835606966e93bd5a196989f2aead214e31",
-      "data/ai/shop-merge.json": "7df1929af5f7ade7b4b73ae16bb03c4cb3ba116173a8f083bfd0c5bae5defec4",
-      "server/catalog.json": "73b24d412bb784d6da8b148373be7c23fba1299b463ef2663e301bdfb802f207",
-      "client/src/ai-shop.ts": "5bc4c66729ece87f17ea651fe4c98bc755df1d4a268b1d26d3d80564246cc510",
-      "client/artifacts/client/ai-shop/browser-receipt.json": "db98d5124e884189438fa3b78cc334ca71178b36893b72da3afa14c85487bb9a"
-    }
+    "newDoctrine": {
+      "cas-sim-evo-brawler-6106.json": {
+        "seed": 6106,
+        "candidate": "evo-brawler",
+        "opponent": "coord",
+        "result": {
+          "allies": 5,
+          "axis": 3,
+          "winner": "allies"
+        },
+        "tick": 2168,
+        "replayMatches": true,
+        "saveSha256": "0baa5e0291dba80c4fb635c458d1074872d5beae3321c16ed9bbf4d113b12b10"
+      },
+      "cas-sim-evo-denial-6111.json": {
+        "seed": 6111,
+        "candidate": "evo-denial",
+        "opponent": "torpedo",
+        "result": {
+          "allies": 5,
+          "axis": 2,
+          "winner": "allies"
+        },
+        "tick": 2359,
+        "replayMatches": true,
+        "saveSha256": "e1d719d03c9e14a3affac3dc58b33e0d80cbcde9f93394f12ac5fb0bbb88c44e"
+      },
+      "cas-sim-evo-kiter-6112.json": {
+        "seed": 6112,
+        "candidate": "evo-kiter",
+        "opponent": "gunnery",
+        "result": {
+          "allies": 3,
+          "axis": 0,
+          "winner": "allies"
+        },
+        "tick": 2708,
+        "replayMatches": true,
+        "saveSha256": "d403167fb992336739b4071aed292e014e940513cca757e0f13ed11a277664c0"
+      }
+    },
+    "parity": "data/ai/evidence/native-wasm-parity.json"
   },
   "boundaries": [
-    "三条 evolved profile 仍是 provisional，fitness 未重新训练，未改 genome/params。",
-    "未改 data/ships、portraits、audio、challenge/ranked 点价、AI 训练代码；未新增货币。",
-    "服务端/客户端联机 AI 商店浏览器购买未单列脚本；服务端购买由 test_accounts 覆盖，联机页面由 tsc/build 验证。",
-    "排位与双席 evolved AI 白名单未开放；本批战斗可选范围是演习与战役。",
-    "浏览器 740×360 只验证商店页 overflow=0；战斗侧沿用既有响应式布局。",
-    "未 git commit，未回滚既有未提交改动。"
+    "Denial measures coverage of the enemy's current course projection inside a 450 m corridor; it does not model the enemy's full intent or future manoeuvres. The observed 90 s course change is reported as behaviour, not as a scripted reward.",
+    "Brawler and kiter damage attribution uses the nearest candidate hull to the impact point when a tick has multiple hits; this is a real observed proxy, not an exact per-shooter ledger.",
+    "Kiter can hold outside torpedo range and fight with guns only; its objective therefore rewards 6 km+ damage, 6 km+ range keeping and survival rather than torpedo launches.",
+    "All six evolved storefront entries remain provisional; prices are 800/900/1000/900/1100/1200 recruit tickets and are not a balance claim.",
+    "CAMP-ALLIES-06 exists only as an archived crosswalk entry with no runnable runtime; the kiter unlock uses CAMP-ALLIES-11 and the substitution is recorded in shop.unlockSubstitution.",
+    "The new profiles are not added to the ranked/duel AI whitelist; this batch covers exercise/campaign selection and the storefront.",
+    "server/battle_pve's runnable Stage enum remains 02/03/11, so the 05/10 unlock progress is exercised by seeded progress in tests and by the local campaign; registering those two stages in the online PvE service is follow-up work.",
+    "No UI page was added in this batch; client/src/ai-shop.ts carries the shared six-entry data for the supply/recruit UI owner."
   ],
   "blockers": []
 }

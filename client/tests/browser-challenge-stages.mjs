@@ -12,8 +12,11 @@ try {
   const page = await browser.newPage({ viewport: { width: 1360, height: 768 } });
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.stack));
-  const q = (op, params = {}) => page.evaluate(async (request) =>
-    (await import('/src/engine.ts')).ask(request), { op, ...params });
+  const q = (op, params = {}) => page.evaluate(async (request) => {
+    const resource = performance.getEntriesByType('resource')
+      .filter((entry) => entry.name.includes('/src/engine.ts')).at(-1);
+    return (await import(resource?.name ?? '/src/engine.ts')).ask(request);
+  }, { op, ...params });
   const button = (name) => page.getByRole('button', { name, exact: true });
   const walletTickets = async () => {
     const match = (await page.locator('.harbor-wallet').innerText()).match(/征募券\s*(\d+)/);

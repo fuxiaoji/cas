@@ -1621,17 +1621,30 @@ mod tests {
         struct Profile {
             id: String,
             name: String,
+            basis: String,
             params: Style,
             fitness: serde_json::Value,
             seeds: serde_json::Value,
             training: serde_json::Value,
         }
         let file: File = serde_json::from_str(EVOLVED_JSON).unwrap();
-        assert!(file.profiles.len() >= 3, "at least three evolved AIs");
+        assert_eq!(file.profiles.len(), 6, "six evolved doctrines ship");
         let ids = evolved_profile_ids();
+        assert_eq!(
+            ids,
+            [
+                "evo-brawler",
+                "evo-denial",
+                "evo-gunnery",
+                "evo-kiter",
+                "evo-screen",
+                "evo-torpedo"
+            ]
+        );
         for profile in &file.profiles {
             assert!(profile.id.starts_with("evo-"), "{}", profile.id);
             assert!(!profile.name.is_empty());
+            assert!(matches!(profile.basis.as_str(), "ga" | "hand_authored"));
             assert!(ids.contains(&profile.id));
             assert!(style(&profile.id).evolved);
             assert!(profile.fitness["validation"]["mean"].as_f64().is_some());
@@ -1648,6 +1661,42 @@ mod tests {
                 assert!(distance > 0.2, "{} and {} are not distinct", a.id, b.id);
             }
         }
+
+        let by_id = |id: &str| {
+            file.profiles
+                .iter()
+                .find(|profile| profile.id == id)
+                .unwrap_or_else(|| panic!("missing shipped profile {id}"))
+        };
+        let close = |a: f64, b: f64| (a - b).abs() < 1e-9;
+        // The three pre-batch profiles keep their exact genomes and fitness.
+        let screen = by_id("evo-screen").params.clone();
+        assert!(close(screen.range, 6000.) && close(screen.flank, 51.));
+        assert!(close(screen.speed, 22.) && close(screen.torp_fraction, 0.9));
+        assert!(close(screen.torp_angle, 156.) && close(screen.screen, 0.31));
+        assert!(close(screen.withdraw_hp, 0.2));
+        let torpedo = by_id("evo-torpedo").params.clone();
+        assert!(close(torpedo.range, 3300.) && close(torpedo.speed, 29.));
+        assert!(close(torpedo.torp_angle, 95.) && close(torpedo.crossfire, 0.85));
+        let gunnery = by_id("evo-gunnery").params.clone();
+        assert!(close(gunnery.range, 3110.) && close(gunnery.t_head, 0.7));
+        assert!(close(gunnery.spread, 0.95) && close(gunnery.speed, 20.));
+        // The new doctrines must still express the shop's advertised role.
+        let brawler = by_id("evo-brawler").params.clone();
+        assert!((2600. ..=3200.).contains(&brawler.range), "{}", brawler.range);
+        assert!((29. ..=32.).contains(&brawler.speed));
+        assert!((0.08..=0.12).contains(&brawler.withdraw_hp));
+        assert!((0.85..=0.95).contains(&brawler.torp_fraction));
+        let kiter = by_id("evo-kiter").params.clone();
+        assert!((7400. ..=8000.).contains(&kiter.range), "{}", kiter.range);
+        assert!((29. ..=32.).contains(&kiter.speed));
+        assert!((0.32..=0.4).contains(&kiter.withdraw_hp));
+        assert!((0.6..=1.).contains(&kiter.t_head));
+        let denial = by_id("evo-denial").params.clone();
+        assert!((0.9..=0.95).contains(&denial.torp_fraction));
+        assert!((140. ..=160.).contains(&denial.torp_angle));
+        assert!((0.8..=1.).contains(&denial.coordination));
+        assert!((0.7..=1.).contains(&denial.screen));
     }
 
     #[test]

@@ -1,8 +1,10 @@
 import type { CampaignGrade, CampaignMission } from './campaign-progress';
 
 export type Side = 'allies' | 'axis';
-/** Builtin CAS doctrines plus the three evolved profiles sold in the harbor. */
-export type EvolvedProfile = 'evo-screen' | 'evo-torpedo' | 'evo-gunnery';
+/** Builtin CAS doctrines plus the six evolved profiles sold in the harbor. */
+export type EvolvedProfile =
+  | 'evo-screen' | 'evo-torpedo' | 'evo-gunnery'
+  | 'evo-brawler' | 'evo-kiter' | 'evo-denial';
 export type Profile = 'coord' | 'gunnery' | 'torpedo' | EvolvedProfile;
 export type Maneuver = 'follow' | 'sync';
 export type Weapon = 'gun' | 'torpedo';
@@ -79,9 +81,12 @@ type Message = { id: number; response: { ok: true; data: unknown } | { ok: false
 export const profileNames: Record<Profile, string> = {
   coord: '协同', gunnery: '炮战', torpedo: '雷击',
   'evo-screen': '帷幄 · 屏护协同', 'evo-torpedo': '夜潮 · 雷击突击', 'evo-gunnery': '铁幕 · 炮战纵队',
+  'evo-brawler': '绞肉 · 近战乱斗', 'evo-kiter': '拖刀 · 远距风筝', 'evo-denial': '雷网 · 封走位',
 };
 export const profileIds = Object.keys(profileNames) as Profile[];
-export const evolvedProfileIds: EvolvedProfile[] = ['evo-screen', 'evo-torpedo', 'evo-gunnery'];
+export const evolvedProfileIds: EvolvedProfile[] = [
+  'evo-screen', 'evo-torpedo', 'evo-gunnery', 'evo-brawler', 'evo-kiter', 'evo-denial',
+];
 export function isProfile(value: unknown): value is Profile {
   return typeof value === 'string' && profileIds.includes(value as Profile);
 }

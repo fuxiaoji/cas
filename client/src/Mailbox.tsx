@@ -72,7 +72,7 @@ export function Mailbox({ token, state, change, onMeta, onBack, onRecruit }: Pro
       <div className="mailbox-banner">
         <span>内测启航</span>
         <strong>20 抽征募补给</strong>
-        <p>新账号的 20 张常驻征募券放在邮箱里，领取后可在「征募与补给」使用。</p>
+        <p>新账号的 20 张常驻征募券放在邮箱里，领取后可在「军需处」使用。</p>
       </div>
       {error && <p className="mailbox-error" role="alert">{error}</p>}
       {notice && <p className="mailbox-notice" role="status">{notice}</p>}
@@ -104,7 +104,7 @@ export function Mailbox({ token, state, change, onMeta, onBack, onRecruit }: Pro
           </li>;
         })}
       </ul>
-      {onRecruit && <button type="button" className="mailbox-recruit" onClick={onRecruit}>前往征募与补给 ›</button>}
+      {onRecruit && <button type="button" className="mailbox-recruit" onClick={onRecruit}>前往军需处 ›</button>}
     </div>
   </main>;
 }

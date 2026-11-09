@@ -1,5 +1,34 @@
 # 验证记录
 
+## 2026-11-09｜军需处四柜台与军港征募全屏页
+
+- 结论：`Harbor` 的 `recruit` section 已改为「军需处」，四柜台可用；「军港征募」是独立全屏 overlay，左卡池 / 中主视觉 / 右 UP·概率·保底·兑换 / 底部征募 1/10 全部接入。抽卡概率与接口、服务端经济、舰卡、音频与 challenge/ranked 点价均未改，未新增货币，未提交；本批实现也未编辑 `ai-shop.ts` / `data/ai` / `server/catalog`（6 条 AI 数据由并行 agent 落地）。
+- 军需处：[Quartermaster.tsx](client/src/screens/quartermaster/Quartermaster.tsx) + [quartermaster.css](client/src/screens/quartermaster/quartermaster.css)。舰船柜台提供军港征募入口与 4 舰型图鉴；补给配给调用既有 `buyWeeklyTicket` / `claimWeeklySupply`；AI 战术读 `AI_SHOP` 的 6 / 6 条投影并防御式渲染 `role / axes / fit / risk`；礼包与兑换调用既有 `getGunnery`（6 舰队勋章），联机礼包/舰船兑换只作只读说明。钱包显示信用点 / 舰队勋章 / 常驻券。
+- 军港征募：[RecruitScreen.tsx](client/src/screens/recruit/RecruitScreen.tsx) + [recruit-screen.css](client/src/screens/recruit/recruit-screen.css)。本地抽卡仍走 `port.drawRecruit`，双池独立、85/15、十抽轻巡保底、重复转勋章与 `RecruitArrival` 到港均沿用旧逻辑；概率、记录、兑换为抽屉，底部固定征募栏，Esc 先关抽屉再关全屏，返回按钮回军需处。
+- 共享层：[economy.tsx](client/src/widgets/economy.tsx) + [economy.css](client/src/widgets/economy.css) 提供 WalletBar、ShopCard、Drawer、PityMeter 与 `cas-btn`，Harbor 头部钱包也改用 WalletBar；军需处为白天干船坞纸卡/黄铜/盖章，征募为夜间军港/探照灯/信号灯，均使用 `--cas-*` token。本机 `GrowthPort` dock 与 `Mailbox` 文案同步为「军需处」，联机 dock 保留「征募与补给」以对应未改的 `OnlineSupply`。
+- AI 6 卡状态：另一 agent 已把 [ai-shop.ts](client/src/ai-shop.ts) 扩到 6 条（evo-screen / evo-torpedo / evo-gunnery / evo-brawler / evo-kiter / evo-denial，全部 provisional）；本次只读该文件，未编辑。三轴枚举（range: near/mid/far、maneuver: brawl/screen/kite、torpedo: direct/deny/support）已显示为相对刻度与「近距/中距/远距、乱战/屏护/风筝、直击/封路/支援」文字。
+- 验收：
+  - `node node_modules/typescript/bin/tsc --noEmit -p .` 通过；`node node_modules/vite/bin/vite.js build` exit 0（仅既有 chunk-size 警告）。
+  - 新增 `node tests/browser-shop.mjs` 通过：四柜台、钱包三项、周券（500 信用点 → 常驻券 5001）与周补给（+500 / +3 券）、AI 6 卡全部显示价格/解锁/provisional/三轴/定位/适配/风险，采购 evo-screen 扣 800、6 勋章兑换炮战 AI 后勋章 14、刷新后钱包 4204 / 勋章 14 / 已拥有保持；券不足时按钮显示「常驻券不足」并禁用；740×360 `overflow=false` 且底部采购条可见、采购单为底部 sheet。凭证 [browser-receipt.json](client/artifacts/client/shop/browser-receipt.json)，截图同目录（`quartermaster-1360.png`、`quartermaster-ai.png`、`quartermaster-740.png` 等）。
+  - 新增 `node tests/browser-recruit.mjs` 通过：双卡池、标准池 85/15、pity 9 的单抽保底到港（pity 归零、history 1）、记录回看不重抽、UP 池切换（轴心舰队 · UP）、概率/记录/兑换抽屉、十连（常驻券 20 → 9、history 11、batchSize 10）、Esc/返回关闭、740×360 `overflow=false` 且抽屉为底部 sheet。凭证 [browser-receipt.json](client/artifacts/client/recruit/browser-receipt.json)，截图同目录。
+  - 回归 `browser-ai-shop` 通过（6 卡、解锁/扣券/重载/演习与战役进战斗）；`browser-lobby` 通过（4 dock、11 关、编成、剧情/序章）；`browser-esperance` 通过（CAMP-ALLIES-02 9 舰/1 编队/决定性胜利）。
+- 边界：母港到军港征募为「母港 → 军需处 → 舰船 → 进入军港征募」，未新增第五个母港 dock；联机征募仍走 `OnlineSupply`，本次未改；新 AI 的 `fit` 是真实 headless 验证均值，不是平衡承诺；`browser-offline.mjs` 仍使用旧的 Harbor 征募按钮，属旧脚本，未纳入本批回归。
+
+## 2026-11-09｜六套 evolved doctrine：近战 / 风筝 / 雷网与商店扩至 6
+
+- 结论：[evolved.json](data/ai/evolved.json) 已从 3 条扩到 6 条，新增 `evo-brawler`（绞肉 · 近战乱斗）、`evo-kiter`（拖刀 · 远距风筝）、`evo-denial`（雷网 · 封走位），全部 provisional、常驻征募券、真实 headless fitness；内置 `coord`/`gunnery`/`torpedo` 出招路径、`builtin-orders` 与 full-match hash 逐字节不变，三条旧 evolved 的基因/fitness 保持基线。未改舰船卡、`data/ships`、portraits、audio、challenge/ranked 点价，未提交。
+- 目标与 fitness：[ai_evolve.rs](src/ai_evolve.rs) 新增 Brawler/Kiter/Denial objective 和 `play_traced` 实时指标。Brawler 用 3 km 内实伤（每次 `damage` 事件按着弹点与最近本舰距离归因）+ 3 km 内接敌秒 + 击杀；Kiter 用 6 km 外实伤 + 6 km 射程维持舰秒比 + 存活/巡洋存活；Denial 用鱼雷直航轨迹对敌当前航向投影的 450 m 扇面覆盖（CPA 必须为正、在鱼雷剩余航程内）+ 被覆盖敌舰数 + 威胁后 90 秒实际转向度 + 扇面宽度 + 小权重命中。三条 objective 的 fitness 均由 `play_traced` 的真实 `World::advance` 对局算出，`basis=ga`；Denial 指标本轮可用，未使用 `hand_authored` 回退，ai-report 仍逐条记录 basis。
+- 训练：population 6、generations 3、elitism 2、mutation 0.35、crossover 0.6、rng_seed 6106、train seeds 6106 coord / 6107 gunnery、validation seeds 6111 torpedo / 6112 coord / 6113 gunnery、seats 0/1；Brawler/Kiter 在 doctrine envelope 内搜索（brawler 射程 2600–3200、航速 29–32、撤退 0.08–0.12；kiter 射程 7400–8000、航速 29–32、撤退 0.32–0.40、T 头 0.6–1.0），避免 GA 产出与商店描述相反的风格。三条旧 objective 的 RNG 流与结果未变。
+- 产出：6 profiles 的验证均值（同 objective 6 场）为 screen 282.57 / torpedo 217.56 / gunnery 1692.16 / brawler 822.03（内置 torpedo 656.03）/ kiter 846.64（内置 gunnery 234.30）/ denial 1200.32（内置 torpedo 831.06）；brawler 最终射程 3030 m、航速 30、撤退 0.12；kiter 射程 7630 m、航速 32、撤退 0.36、T 头 0.70；denial 雷击占比 0.95、torp_angle 143、coordination 0.87、screen 0.75。training-log 与 ai-report 记录 config、seeds、history、每场 match 和 doctrine 指标均值；shop-merge 6 条。
+- 商店/服务端：[ai-shop.ts](client/src/ai-shop.ts) 的 `AiShopEntry` 增加可选 `role/fit/risk/axes`（near/mid/far、brawl/screen/kite、direct/deny/support），旧三条补齐，新三条 900/1100/1200 常驻券，unlock `CAMP-ALLIES-05` / `CAMP-ALLIES-11` / `CAMP-ALLIES-10`；`CAMP-ALLIES-06` 仅有 crosswalk 档案、无可运行关，按约定把 kiter 改用可通关的 `CAMP-ALLIES-11` 并在 ai-report 登记。[server/catalog.json](server/catalog.json) 的 `ai_profiles` 改为严格 6 条（3 旧 evolved + 3 新，不再并列旧手游 6 条 AI），[import_catalog.py](server/import_catalog.py) 从 shop-merge 投影 6 条。[battle_pve.py](server/battle_pve.py) profile 枚举与 `AI_UNLOCK` 同步 6 条（内置 coord/gunnery/torpedo 不再依赖旧手游 AI 商品）。
+- 验收：
+  - `cargo test --release --locked` 123 passed / 0 failed，含新 objective 的 doctrine 指标测试、六 profile 训练测试、旧三 profile 基因基线断言；`builtin_orders_stay_identical_to_the_recorded_baseline` 与 `builtin_full_matches_stay_frozen` 均通过。
+  - 服务端 34 项全过（`test_accounts` 9、`test_account_progression`、`test_battle_pve`、`test_fleets`、`test_ranked`、`test_duels`）；`test_accounts` 覆盖 6 条逐条解锁/扣券 6000→100、错误币种、重复购买、request_id 幂等、重启、重登；`test_battle_pve` 以 evo-torpedo + 种子 6150 在标准/挑战均取决定性，并覆盖未解锁 403。
+  - `tsc --noEmit` 通过；`vite build` 通过（仅既有 chunk-size 警告）；`scripts/check-ai-shop.py` 校验 client 6 条与 catalog/ai-report 的 id/name/description/unlock/cost/currency/provisional 一致。
+  - `cas-sim` 三条新 doctrine 各一场 evolved vs builtin 的 save+replay：brawler 6106 vs coord 5:3（tick 2168）、kiter 6112 vs gunnery 3:0（tick 2708）、denial 6111 vs torpedo 5:2（tick 2359），均 `replayMatches=true`；证据在 [evidence](data/ai/evidence/)。
+  - WASM 重建（`27406A90C5CA8AFFE5BE9C55AE4A6778303D36B1B4D69CF71F591A266E696C5C`，3,602,934 bytes），24 组原生/WASM parity 全过（含 3 条新 doctrine），`nativeWasmCanonicalMatch=true`、`replayMatch=true`。
+- 边界：Denial 覆盖的是敌当前航向投影，不是完整意图；Brawler/Kiter 多舰同秒命中用最近本舰距离归因；Kiter 可能保持 6 km 外纯炮战、不发射鱼雷；新三条未接入排位/双席白名单；`server/battle_pve` 可出航 Stage 仍为 02/03/11，05/10 的解锁进度本轮由测试种子与本地战役覆盖，线上 PvE 注册这两关留作后续；UI 页面由并行 agent 做，本批只提供共享 6 条数据；未 commit。
+
 ## 2026-11-09｜evolved AI 商店上架、购买持久化与战斗接线
 
 - 结论：[shop-merge.json](data/ai/shop-merge.json) 的三条 provisional evolved 战术（evo-screen 800 / evo-torpedo 900 / evo-gunnery 1000 常驻征募券）已真正接入商店、账号与战斗，不再只是清单。舰船卡、portraits、audio、AI 训练/evolved 权重、challenge/ranked 点价均未改，未新增货币，未提交。

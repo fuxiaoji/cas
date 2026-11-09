@@ -9,6 +9,26 @@ CAS 独立建仓、发包、存档和账本。二次元成长沿用铁底湾手�
 
 本批四路并行：资料核页、内核/AI、客户端、运行和包。阶段验收须以同一 Rust 内核、真实界面和实际交火为依据。范围逐项见 havedone.md 和规则台账。
 
+## 当前批：军需处与军港征募（2026-11-09）
+
+0. **口径**：`Harbor` 的 `recruit` section 改为「军需处」，内设舰船 / 补给配给 / AI 战术 / 礼包与兑换四个柜台；「军港征募」是独立全屏 overlay，从舰船柜台进入。抽卡概率与接口、服务端经济、`ai-shop.ts`、`data/ai`、`server/catalog`、舰卡、音频与 challenge/ranked 点价均不改，不新增货币。
+1. **军需处**：新 [Quartermaster.tsx](client/src/screens/quartermaster/Quartermaster.tsx) 与 CSS；钱包显示信用点 / 舰队勋章 / 常驻券；周券、实战补给、AI 采购与 6 勋章炮战 AI 分别调用 `buyWeeklyTicket` / `claimWeeklySupply` / `buyAiShopEntry` / `getGunnery`。740×360 为顶部横向柜台、单列卡与底部采购条。
+2. **军港征募**：新 [RecruitScreen.tsx](client/src/screens/recruit/RecruitScreen.tsx) 与 CSS；左侧卡池、中央夜间主视觉、右侧 UP / 概率 / 保底 / 兑换、底部征募 1/10。本地抽卡仍走 `port.drawRecruit`，概率、保底和到港回执沿用既有口径；概率 / 记录 / 兑换为抽屉，Esc 先关抽屉再关全屏。
+3. **共享组件与视觉**：[widgets/economy.tsx](client/src/widgets/economy.tsx) 提供钱包、商品卡、抽屉、按钮与保底条；军需处为白天干船坞纸卡/黄铜/盖章，征募为夜间军港/探照灯/信号灯，两场景共享 `--cas-*` token。
+4. **AI 战术**：读 [ai-shop.ts](client/src/ai-shop.ts) 的 6 条投影（当前 6 / 6，另一 agent 已落入），防御式渲染 `role / axes / fit / risk`；三轴支持 near/mid/far、brawl/screen/kite、direct/deny/support 枚举与数值两种形态。
+5. **验收**：`tsc --noEmit`、`vite build`；新增 `browser-shop`（四柜台、钱包、周券/周补给、AI 6 卡购买、6 勋章 AI、刷新持久化、740 overflow=0）与 `browser-recruit`（双卡池、85/15 概率、十抽保底、1/10 连、记录/概率/兑换抽屉、Esc/返回、740 overflow=0）；保留 `browser-ai-shop`（6 卡）、`browser-lobby`、`browser-esperance` 回归通过。证据见 havedone.md。
+6. **边界**：母港到军港征募为「母港 → 军需处 → 舰船 → 进入军港征募」，未新增第五个母港 dock，保持既有 4-dock 与路由 key；联机征募仍走 `OnlineSupply`，本次未改；AI 6 条的 `fit` 是验证均值，不是平衡承诺。
+
+## 当前批：六套 evolved doctrine 与商店扩至 6（2026-11-09，AI 线）
+
+0. **口径**：内置 `coord`/`gunnery`/`torpedo` 出招路径、`builtin-orders` 与 full-match hash 保持逐字节不变；三条旧 evolved（screen/torpedo/gunnery）的基因与真实 fitness 保持基线。新增 `evo-brawler`/`evo-kiter`/`evo-denial` 只走 `Style.evolved` 路径，商店从 3 条扩到 6 条，未改舰船卡、`data/ships`、portraits、audio、challenge/ranked 点价，未提交。
+1. **目标与真实 fitness**：[ai_evolve.rs](src/ai_evolve.rs) 增加三个 objective：Brawler 以 3 km 内实伤、3 km 内接敌秒和击杀为主；Kiter 以 6 km 外实伤、6 km 射程维持率、存活与巡洋存活为主；Denial 以鱼雷直航轨迹覆盖敌当前航向投影（450 m 扇面走廊）、被覆盖敌舰数、威胁后 90 秒实际转向度与扇面宽度为主，命中只作小权重，不再只算命中。三个 objective 的 fitness 全部来自 `play_traced` 的真实 headless `World::advance` 对局，`basis=ga`，没有手写分数；Denial 的指标本轮已可用，因此未使用 `hand_authored` 回退。
+2. **训练**：population 6、generations 3、rng_seed 6106、train seeds 6106/6107、validation seeds 6111/6112/6113、seats 0/1；Brawler/Kiter 在 doctrine envelope 内搜索射程、航速、雷击占比、T 头、屏护与撤退阈值，避免 GA 产出与商店描述相反的风格。产出 [evolved.json](data/ai/evolved.json) 6 profiles、[training-log.json](data/ai/training-log.json) 和 [ai-report.json](data/ai/ai-report.json)；[shop-merge.json](data/ai/shop-merge.json) 6 条。
+3. **商店与服务端**：`AiShopEntry` 增加可选 `role/fit/risk/axes`（range near/mid/far、maneuver brawl/screen/kite、torpedo direct/deny/support），现有三条也补齐；新三条价格 900/1100/1200 常驻券，unlock 用 `CAMP-ALLIES-05`、`CAMP-ALLIES-11`、`CAMP-ALLIES-10`。要求的 `CAMP-ALLIES-06` 只存在于 crosswalk 档案、无运行时，按本批约定改用可通关的 `CAMP-ALLIES-11` 并在 ai-report 登记。`server/catalog.json` 的 `ai_profiles` 从 9 条改为 6 条（三条旧 evolved + 三条新），不再并列旧手游 6 条 AI；[import_catalog.py](server/import_catalog.py) 从 shop-merge 投影同样 6 条。
+4. **服务端购买/解锁/重登**：`test_accounts` 覆盖 6 条逐条解锁与扣券（6000→100）、错误币种、重复购买、同 request_id 幂等、重启与重登；`test_battle_pve` 改为购买 `evo-torpedo` 并以种子 6150 取标准/挑战决定性，`battle_pve` 的 profile 枚举与解锁表同步 6 条。
+5. **验收**：`cargo test --release --locked` 123 项全绿（含三条新 objective 测试）；服务端 34 项全绿；`tsc --noEmit` 与 `vite build` 通过；`cas-sim` 三条新 doctrine 各一场 evolved vs builtin 存档+重演；WASM 重建并跑 24 组原生/WASM parity（含三条新 doctrine，`nativeWasmCanonicalMatch=true`）。
+6. **边界**：Denial 覆盖的是敌当前航向投影而非完整意图；Brawler/Kiter 的多舰同秒命中用最近本舰距离归因；新三条未接入排位/双席白名单；服务端 `battle_pve` 可出航 Stage 仍为 02/03/11，05/10 的解锁进度本轮由测试种子与本地战役覆盖，线上 PvE 注册这两关留作后续；UI 页面由并行 agent 做，本批只提供 6 条共享数据。
+
 ## 当前批：evolved AI 商店上架与战斗接线（2026-11-09）
 
 0. **口径**：[evolved.json](data/ai/evolved.json) 的三条真实 fitness 战术（evo-screen / evo-torpedo / evo-gunnery）保持 provisional；只把它们接到既有免费经济，不改舰船卡、立绘、音频、AI 训练、evolved 基因/权重、challenge/ranked 点价，也不新增货币。

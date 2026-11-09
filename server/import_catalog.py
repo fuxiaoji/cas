@@ -29,7 +29,7 @@ COMBAT_READY = {
 
 
 def evolved_ai_profiles():
-    """Project the three evolved AI profiles without touching mobile values."""
+    """Project the six evolved AI profiles without touching mobile values."""
     merged = json.loads(EVOLVED_SHOP.read_text(encoding="utf-8"))
     if merged.get("state") != "provisional":
         raise SystemExit("Evolved AI shop entries must stay provisional")
@@ -40,8 +40,8 @@ def evolved_ai_profiles():
         rows.append({key: profile[key] for key in
                      ("id", "name", "description", "unlock", "cost", "currency")}
                     | {"provisional": True})
-    if len(rows) != 3 or len({row["id"] for row in rows}) != 3:
-        raise SystemExit("Evolved AI shop merge must contain three profiles")
+    if len(rows) != 6 or len({row["id"] for row in rows}) != 6:
+        raise SystemExit("Evolved AI shop merge must contain six profiles")
     return rows
 
 
@@ -98,8 +98,11 @@ def project(repo):
         "ships": ships, "recruit_pools": pools,
         "ship_bundles": [{k: b[k] for k in ("id", "name", "description", "credits", "ship_ids") if k in b}
                          for b in base["ship_bundles"]],
-        "ai_profiles": [{k: a[k] for k in ("id", "name", "description", "unlock", "cost") if k in a}
-                        for a in base["ai_profiles"]] + evolved_ai_profiles(),
+        # The storefront now carries exactly the six CAS evolved doctrines.
+        # The pinned mobile AI list (balanced/adaptive/fleet/rc_*) is not sold:
+        # its names and points came from the old mobile economy, not from a CAS
+        # doctrine, and keeping both sets would duplicate the shop.
+        "ai_profiles": evolved_ai_profiles(),
         "stages": [], "combat_catalog_available": False,
     }
 
@@ -116,4 +119,4 @@ if __name__ == "__main__":
     elif OUTPUT.read_bytes() != payload.encode("utf-8"):
         raise SystemExit("The CAS economy projection differs from the pinned catalog")
     print(f"Verified 210 stable identities, 210 recruitable ships, 2 pools, 3 bundles, "
-          f"{len(data['ai_profiles'])} AI profiles")
+          f"{len(data['ai_profiles'])} evolved AI profiles")

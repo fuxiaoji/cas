@@ -57,6 +57,9 @@ const descriptions: Record<Profile, string> = {
   'evo-screen': '屏护协同：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。',
   'evo-torpedo': '雷击突击：分队绕向敌纵队侧翼，压缩距离后按侧舷角放雷。',
   'evo-gunnery': '炮战纵队：保持远距射界，抢 T 头并以交叉火力分散敌指挥。',
+  'evo-brawler': '近战乱斗：高航速贴脸，3 公里内炮雷混战，低撤退阈值。',
+  'evo-kiter': '远距风筝：保持 6 公里外射界，边打边退，高撤退阈值。',
+  'evo-denial': '雷网封走位：高雷击占比、宽扇面与协同，逼敌转向而非只求命中。',
 };
 const errorText = (error: unknown) => error instanceof Error ? error.message : String(error);
 

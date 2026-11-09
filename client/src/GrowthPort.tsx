@@ -53,7 +53,7 @@ export function GrowthPort({state,onNavigate,onHome,onReplayPrologue,onWatch,onO
   </section>
   <nav className="growth-dock" aria-label="母港功能">
    <button data-guide="fleet" onClick={()=>onNavigate('fleet')}><DockIcon kind="fleet"/><span><strong>舰库与编队</strong><small>{online?`已收藏 ${online.meta?.owned_ships.length??'—'} 艘`:'查看舰船 · 整备出战'}</small></span></button>
-   <button data-guide="economy" onClick={()=>onNavigate('economy')}><DockIcon kind="supply"/><span><strong>征募与补给</strong><small>{online?'双池征募 · 商店与邮箱':'新舰入列 · 战术包兑换'}</small></span></button>
+   <button data-guide="economy" onClick={()=>onNavigate('economy')}><DockIcon kind="supply"/><span><strong>{online?'征募与补给':'军需处'}</strong><small>{online?'双池征募 · 商店与邮箱':'采购 · 配给 · 战术 · 兑换'}</small></span></button>
    <button onClick={()=>onNavigate('academy')}><DockIcon kind="academy"/><span><strong>教学复习</strong><small>{meta.completed_courses.length}/3 门实操课程</small></span></button>
    <button onClick={onOnline} disabled={!onOnline}><DockIcon kind="online"/><span><strong>线上舰桥</strong><small>云端航程 · 2000/5000 分对战</small></span></button>
   </nav>

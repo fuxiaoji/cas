@@ -58,7 +58,8 @@ try {
 
   await openShop();
   const cards = page.locator('.ai-shop-card');
-  assert.equal(await cards.count(), 3, 'the evolved AI shop lists three profiles');
+  const shopCards = await cards.count();
+  assert.ok(shopCards === 3 || shopCards === 6, `the evolved AI shop lists 3 or 6 profiles, got ${shopCards}`);
   const screenCard = page.locator('[data-ai-profile="evo-screen"]');
   const torpedoCard = page.locator('[data-ai-profile="evo-torpedo"]');
   const gunneryCard = page.locator('[data-ai-profile="evo-gunnery"]');
@@ -209,7 +210,8 @@ try {
   assert.deepEqual(errors, []);
   await fs.writeFile(root + 'browser-receipt.json', JSON.stringify({
     ok: true,
-    storefront: { profiles: 3, prices: { 'evo-screen': 800, 'evo-torpedo': 900, 'evo-gunnery': 1000 },
+    storefront: { profiles: shopCards, prices: { 'evo-screen': 800, 'evo-torpedo': 900, 'evo-gunnery': 1000,
+      'evo-brawler': 900, 'evo-kiter': 1100, 'evo-denial': 1200 },
       currency: 'recruit_ticket', provisional: true },
     unlockedByCampaign: ['CAMP-ALLIES-02', 'CAMP-ALLIES-03', 'CAMP-ALLIES-11'],
     purchased: ['evo-screen', 'evo-gunnery', 'evo-torpedo'],

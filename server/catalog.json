@@ -2202,47 +2202,6 @@
   ],
   "ai_profiles": [
     {
-      "id": "balanced",
-      "name": "经典均衡",
-      "description": "永久基础操作辅助；先给出可执行计划，再由你决定。",
-      "unlock": "教学任务或补给兑换",
-      "cost": 1200
-    },
-    {
-      "id": "adaptive",
-      "name": "基础教官 · 自适应",
-      "description": "调用现有自适应规划器；不承诺所有场景都强于基础策略。",
-      "unlock": "本机初始免费辅助，教学继续讲解"
-    },
-    {
-      "id": "fleet",
-      "name": "炮战集群",
-      "description": "现有舰队战术profile，适合进行阵容训练。",
-      "unlock": "章节任务或补给直购",
-      "cost": 1800
-    },
-    {
-      "id": "rc_coordinated",
-      "name": "白汐 · 协同舰队",
-      "description": "你的初航状态机辅助。根据本方观察整理编队航路与火力建议，最终命令由你确认。",
-      "unlock": "完成编队课程或补给直购",
-      "cost": 2600
-    },
-    {
-      "id": "rc_torpedo_wings",
-      "name": "雷击翼队",
-      "description": "调用既有雷击翼队编队策略。",
-      "unlock": "挑战兑换或补给直购",
-      "cost": 3200
-    },
-    {
-      "id": "rc_pincer",
-      "name": "两翼夹击",
-      "description": "调用既有夹击编队策略。",
-      "unlock": "高级挑战或补给直购",
-      "cost": 3600
-    },
-    {
       "id": "evo-screen",
       "name": "帷幄 · 屏护协同",
       "description": "以屏护与交叉火力为主：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。",
@@ -2266,6 +2225,33 @@
       "description": "以炮战为主：保持远距射界，优先抢占敌纵队的 T 头位置，用交叉火力分散其指挥。",
       "unlock": "campaign:CAMP-ALLIES-11",
       "cost": 1000,
+      "currency": "recruit_ticket",
+      "provisional": true
+    },
+    {
+      "id": "evo-brawler",
+      "name": "绞肉 · 近战乱斗",
+      "description": "以近距乱战为主：高航速贴脸，压缩到 3 公里内炮雷混战，低撤退阈值。",
+      "unlock": "campaign:CAMP-ALLIES-05",
+      "cost": 900,
+      "currency": "recruit_ticket",
+      "provisional": true
+    },
+    {
+      "id": "evo-kiter",
+      "name": "拖刀 · 远距风筝",
+      "description": "以远距风筝为主：保持 6 公里外射界，边打边退维持射程边缘，高撤退阈值。",
+      "unlock": "campaign:CAMP-ALLIES-11",
+      "cost": 1100,
+      "currency": "recruit_ticket",
+      "provisional": true
+    },
+    {
+      "id": "evo-denial",
+      "name": "雷网 · 封走位",
+      "description": "以鱼雷扇面封走位为主：高雷击占比、宽扇面与屏护协同，目标不是命中而是逼敌转向。",
+      "unlock": "campaign:CAMP-ALLIES-10",
+      "cost": 1200,
       "currency": "recruit_ticket",
       "provisional": true
     }

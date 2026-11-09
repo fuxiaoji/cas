@@ -16,7 +16,7 @@ use crate::{
 };
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 use std::path::PathBuf;
 
 pub const TRAINING_SCHEMA: &str = "cas-ai-training-v1";
@@ -36,10 +36,20 @@ const SCREEN_BOUNDS: (f64, f64) = (0.05, 1.);
 const SPREAD_BOUNDS: (f64, f64) = (0.05, 1.);
 const TORP_ANGLE_BOUNDS: (f64, f64) = (20., 160.);
 const FRIENDLY_MARGIN_BOUNDS: (f64, f64) = (600., 2_000.);
+const WITHDRAW_BOUNDS: (f64, f64) = (0.08, 0.4);
 
-/// Fixed withdrawal threshold for evolved styles. Kept out of the genome so a
-/// "survive by running" genome cannot win the screen objective.
+/// Default withdrawal threshold for evolved styles. The screen objective keeps
+/// this fixed so a "survive by running" genome cannot win it; the brawler and
+/// kiter objectives evolve their own threshold inside `WITHDRAW_BOUNDS`.
 const WITHDRAW_HP: f64 = 0.2;
+
+fn default_withdraw_hp() -> f64 {
+    WITHDRAW_HP
+}
+
+fn is_default_withdraw_hp(value: &f64) -> bool {
+    (*value - WITHDRAW_HP).abs() < 1e-9
+}
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Genome {
@@ -56,6 +66,11 @@ pub struct Genome {
     pub spread: f64,
     pub torp_angle: f64,
     pub friendly_margin: f64,
+    /// Per-profile withdrawal threshold. Appended after the original gene
+    /// list so the three pre-batch profiles keep their exact encoded keys and
+    /// match records (`0.2` is omitted when serialized).
+    #[serde(default = "default_withdraw_hp", skip_serializing_if = "is_default_withdraw_hp")]
+    pub withdraw_hp: f64,
 }
 
 impl Genome {
@@ -75,6 +90,7 @@ impl Genome {
                 spread: 0.55,
                 torp_angle: 90.,
                 friendly_margin: 1_200.,
+                withdraw_hp: WITHDRAW_HP,
             },
             Objective::Torpedo => Self {
                 range: 3_400.,
@@ -90,6 +106,7 @@ impl Genome {
                 spread: 0.5,
                 torp_angle: 90.,
                 friendly_margin: 900.,
+                withdraw_hp: WITHDRAW_HP,
             },
             Objective::Gunnery => Self {
                 range: 6_850.,
@@ -105,6 +122,55 @@ impl Genome {
                 spread: 0.7,
                 torp_angle: 70.,
                 friendly_margin: 1_000.,
+                withdraw_hp: WITHDRAW_HP,
+            },
+            Objective::Brawler => Self {
+                range: 2_600.,
+                flank: 38.,
+                speed: 31.,
+                torp_fraction: 0.92,
+                period: 85,
+                focus: true,
+                coordination: 0.45,
+                crossfire: 0.35,
+                t_head: 0.15,
+                screen: 0.15,
+                spread: 0.3,
+                torp_angle: 55.,
+                friendly_margin: 700.,
+                withdraw_hp: 0.1,
+            },
+            Objective::Kiter => Self {
+                range: 8_000.,
+                flank: 58.,
+                speed: 31.,
+                torp_fraction: 0.75,
+                period: 75,
+                focus: false,
+                coordination: 0.55,
+                crossfire: 0.65,
+                t_head: 0.4,
+                screen: 0.3,
+                spread: 0.55,
+                torp_angle: 105.,
+                friendly_margin: 1_500.,
+                withdraw_hp: 0.36,
+            },
+            Objective::Denial => Self {
+                range: 5_800.,
+                flank: 60.,
+                speed: 28.,
+                torp_fraction: 0.95,
+                period: 80,
+                focus: false,
+                coordination: 0.95,
+                crossfire: 0.6,
+                t_head: 0.3,
+                screen: 0.85,
+                spread: 0.85,
+                torp_angle: 150.,
+                friendly_margin: 1_600.,
+                withdraw_hp: WITHDRAW_HP,
             },
         }
     }
@@ -117,7 +183,7 @@ impl Genome {
             torp_fraction: self.torp_fraction,
             period: self.period,
             focus: self.focus,
-            withdraw_hp: WITHDRAW_HP,
+            withdraw_hp: self.withdraw_hp,
             coordination: self.coordination,
             crossfire: self.crossfire,
             t_head: self.t_head,
@@ -148,8 +214,34 @@ impl Genome {
             spread: rng.range(SPREAD_BOUNDS.0, SPREAD_BOUNDS.1),
             torp_angle: rng.range(TORP_ANGLE_BOUNDS.0, TORP_ANGLE_BOUNDS.1),
             friendly_margin: rng.range(FRIENDLY_MARGIN_BOUNDS.0, FRIENDLY_MARGIN_BOUNDS.1),
+            withdraw_hp: WITHDRAW_HP,
         }
         .quantized()
+    }
+
+    /// Random seed genome for one objective. The three pre-batch objectives
+    /// keep the fixed withdrawal threshold so their GA stream is unchanged;
+    /// brawler and kiter search their own threshold.
+    fn random_for(objective: Objective, rng: &mut Rng) -> Self {
+        let mut genome = Self::random(rng);
+        if matches!(
+            objective,
+            Objective::Brawler | Objective::Kiter | Objective::Denial
+        ) {
+            let draw = |rng: &mut Rng, bounds: (f64, f64)| rng.range(bounds.0, bounds.1);
+            genome.range = draw(rng, objective.range_bounds());
+            genome.speed = draw(rng, objective.speed_bounds());
+            genome.torp_fraction = draw(rng, objective.torp_fraction_bounds());
+            genome.torp_angle = draw(rng, objective.torp_angle_bounds());
+            genome.t_head = draw(rng, objective.t_head_bounds());
+            genome.coordination = draw(rng, objective.coordination_bounds());
+            genome.screen = draw(rng, objective.screen_bounds());
+            genome.spread = draw(rng, objective.spread_bounds());
+        }
+        if objective.evolves_withdrawal() {
+            genome.withdraw_hp = rng.range(objective.withdraw_bounds().0, objective.withdraw_bounds().1);
+        }
+        genome.quantized()
     }
 
     fn quantized(mut self) -> Self {
@@ -164,6 +256,7 @@ impl Genome {
         self.spread = round_to(self.spread, 0.01);
         self.torp_angle = round_to(self.torp_angle, 1.);
         self.friendly_margin = round_to(self.friendly_margin, 50.);
+        self.withdraw_hp = round_to(self.withdraw_hp, 0.01);
         self.clamp();
         self
     }
@@ -187,6 +280,7 @@ impl Genome {
         self.friendly_margin = self
             .friendly_margin
             .clamp(FRIENDLY_MARGIN_BOUNDS.0, FRIENDLY_MARGIN_BOUNDS.1);
+        self.withdraw_hp = self.withdraw_hp.clamp(WITHDRAW_BOUNDS.0, WITHDRAW_BOUNDS.1);
     }
 
     fn crossover(a: &Self, b: &Self, rng: &mut Rng) -> Self {
@@ -205,28 +299,35 @@ impl Genome {
             spread: pick(rng, a.spread, b.spread),
             torp_angle: pick(rng, a.torp_angle, b.torp_angle),
             friendly_margin: pick(rng, a.friendly_margin, b.friendly_margin),
+            // Copying (rather than picking) keeps the pre-batch RNG stream
+            // untouched for the fixed-threshold objectives; brawler/kiter
+            // still mutate their threshold afterwards.
+            withdraw_hp: a.withdraw_hp,
         }
         .quantized()
     }
 
-    fn mutate(&mut self, rng: &mut Rng, rate: f64) {
+    fn mutate(&mut self, rng: &mut Rng, rate: f64, objective: Objective) {
         let mut jitter = |rng: &mut Rng, value: &mut f64, bounds: (f64, f64)| {
             if rng.unit() < rate {
                 let span = bounds.1 - bounds.0;
                 *value += gaussian(rng) * span * 0.12;
             }
         };
-        jitter(rng, &mut self.range, RANGE_BOUNDS);
+        jitter(rng, &mut self.range, objective.range_bounds());
         jitter(rng, &mut self.flank, FLANK_BOUNDS);
-        jitter(rng, &mut self.speed, SPEED_BOUNDS);
-        jitter(rng, &mut self.torp_fraction, TORP_FRACTION_BOUNDS);
-        jitter(rng, &mut self.coordination, COORDINATION_BOUNDS);
+        jitter(rng, &mut self.speed, objective.speed_bounds());
+        jitter(rng, &mut self.torp_fraction, objective.torp_fraction_bounds());
+        jitter(rng, &mut self.coordination, objective.coordination_bounds());
         jitter(rng, &mut self.crossfire, CROSSFIRE_BOUNDS);
-        jitter(rng, &mut self.t_head, T_HEAD_BOUNDS);
-        jitter(rng, &mut self.screen, SCREEN_BOUNDS);
-        jitter(rng, &mut self.spread, SPREAD_BOUNDS);
-        jitter(rng, &mut self.torp_angle, TORP_ANGLE_BOUNDS);
+        jitter(rng, &mut self.t_head, objective.t_head_bounds());
+        jitter(rng, &mut self.screen, objective.screen_bounds());
+        jitter(rng, &mut self.spread, objective.spread_bounds());
+        jitter(rng, &mut self.torp_angle, objective.torp_angle_bounds());
         jitter(rng, &mut self.friendly_margin, FRIENDLY_MARGIN_BOUNDS);
+        if objective.evolves_withdrawal() {
+            jitter(rng, &mut self.withdraw_hp, objective.withdraw_bounds());
+        }
         if rng.unit() < rate {
             self.period = (self.period as i32 + if rng.unit() < 0.5 { -5 } else { 5 })
                 .clamp(PERIOD_BOUNDS.0 as i32, PERIOD_BOUNDS.1 as i32)
@@ -236,6 +337,30 @@ impl Genome {
             self.focus = !self.focus;
         }
         *self = self.clone().quantized();
+        self.clamp_to_objective(objective);
+    }
+
+    fn clamp_to_objective(&mut self, objective: Objective) {
+        if !matches!(
+            objective,
+            Objective::Brawler | Objective::Kiter | Objective::Denial
+        ) {
+            return;
+        }
+        let clamp = |value: &mut f64, bounds: (f64, f64)| {
+            *value = value.clamp(bounds.0, bounds.1);
+        };
+        clamp(&mut self.range, objective.range_bounds());
+        clamp(&mut self.speed, objective.speed_bounds());
+        clamp(&mut self.torp_fraction, objective.torp_fraction_bounds());
+        clamp(&mut self.torp_angle, objective.torp_angle_bounds());
+        clamp(&mut self.t_head, objective.t_head_bounds());
+        clamp(&mut self.coordination, objective.coordination_bounds());
+        clamp(&mut self.screen, objective.screen_bounds());
+        clamp(&mut self.spread, objective.spread_bounds());
+        if objective.evolves_withdrawal() {
+            clamp(&mut self.withdraw_hp, objective.withdraw_bounds());
+        }
     }
 }
 
@@ -277,17 +402,30 @@ pub enum Objective {
     Screen,
     Torpedo,
     Gunnery,
+    Brawler,
+    Kiter,
+    Denial,
 }
 
 impl Objective {
-    fn all() -> [Self; 3] {
-        [Self::Screen, Self::Torpedo, Self::Gunnery]
+    fn all() -> [Self; 6] {
+        [
+            Self::Screen,
+            Self::Torpedo,
+            Self::Gunnery,
+            Self::Brawler,
+            Self::Kiter,
+            Self::Denial,
+        ]
     }
     fn id(self) -> &'static str {
         match self {
             Self::Screen => "evo-screen",
             Self::Torpedo => "evo-torpedo",
             Self::Gunnery => "evo-gunnery",
+            Self::Brawler => "evo-brawler",
+            Self::Kiter => "evo-kiter",
+            Self::Denial => "evo-denial",
         }
     }
     fn name(self) -> &'static str {
@@ -295,6 +433,9 @@ impl Objective {
             Self::Screen => "帷幄 · 屏护协同",
             Self::Torpedo => "夜潮 · 雷击突击",
             Self::Gunnery => "铁幕 · 炮战纵队",
+            Self::Brawler => "绞肉 · 近战乱斗",
+            Self::Kiter => "拖刀 · 远距风筝",
+            Self::Denial => "雷网 · 封走位",
         }
     }
     fn description(self) -> &'static str {
@@ -302,6 +443,9 @@ impl Objective {
             Self::Screen => "以屏护与交叉火力为主：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。",
             Self::Torpedo => "以雷击为主：分队分头绕向敌纵队侧翼，压缩距离后按侧舷角放雷，炮战只做压制。",
             Self::Gunnery => "以炮战为主：保持远距射界，优先抢占敌纵队的 T 头位置，用交叉火力分散其指挥。",
+            Self::Brawler => "以近距乱战为主：高航速贴脸，压缩到 3 公里内炮雷混战，低撤退阈值。",
+            Self::Kiter => "以远距风筝为主：保持 6 公里外射界，边打边退维持射程边缘，高撤退阈值。",
+            Self::Denial => "以鱼雷扇面封走位为主：高雷击占比、宽扇面与屏护协同，目标不是命中而是逼敌转向。",
         }
     }
     fn role(self) -> &'static str {
@@ -309,6 +453,9 @@ impl Objective {
             Self::Screen => "screen",
             Self::Torpedo => "torpedo",
             Self::Gunnery => "gunnery",
+            Self::Brawler => "brawler",
+            Self::Kiter => "kiter",
+            Self::Denial => "denial",
         }
     }
     fn seal_salt(self) -> u64 {
@@ -316,6 +463,9 @@ impl Objective {
             Self::Screen => 0x51ce_0001,
             Self::Torpedo => 0x70a9_0002,
             Self::Gunnery => 0x6011_0003,
+            Self::Brawler => 0x6b7a_0004,
+            Self::Kiter => 0x4b17_0005,
+            Self::Denial => 0xde41_0006,
         }
     }
     /// Builtin profile this objective is compared against on every report.
@@ -324,15 +474,23 @@ impl Objective {
             Self::Screen => "coord",
             Self::Torpedo => "torpedo",
             Self::Gunnery => "gunnery",
+            Self::Brawler => "torpedo",
+            Self::Kiter => "gunnery",
+            Self::Denial => "torpedo",
         }
     }
-    /// Catalog-stage key that should unlock this profile when a later batch
-    /// wires the shop. Not consumed by `server/catalog` in this batch.
+    /// Catalog-stage key that unlocks this profile. `CAMP-ALLIES-06` only
+    /// exists as an archived crosswalk entry without a runnable runtime, so the
+    /// kiter uses the existing playable Empress Augusta Bay stage instead; the
+    /// substitution is recorded in `data/ai/ai-report.json`.
     fn unlock(self) -> &'static str {
         match self {
             Self::Screen => "campaign:CAMP-ALLIES-02",
             Self::Torpedo => "campaign:CAMP-ALLIES-03",
             Self::Gunnery => "campaign:CAMP-ALLIES-11",
+            Self::Brawler => "campaign:CAMP-ALLIES-05",
+            Self::Kiter => "campaign:CAMP-ALLIES-11",
+            Self::Denial => "campaign:CAMP-ALLIES-10",
         }
     }
     /// Provisional shop price in recruit tickets. The store merge manifest
@@ -342,7 +500,96 @@ impl Objective {
             Self::Screen => 800,
             Self::Torpedo => 900,
             Self::Gunnery => 1_000,
+            Self::Brawler => 900,
+            Self::Kiter => 1_100,
+            Self::Denial => 1_200,
         }
+    }
+    /// Brawler and kiter evolve their own withdrawal threshold; the other
+    /// four objectives keep the pre-batch fixed 0.2 so their GA stream and
+    /// fitness stay byte-identical.
+    fn evolves_withdrawal(self) -> bool {
+        matches!(self, Self::Brawler | Self::Kiter)
+    }
+
+    // Doctrine envelopes. The three pre-batch objectives use the original
+    // global bounds, so their random and mutation streams are unchanged. The
+    // new objectives search inside a doctrine envelope: the shop description
+    // promises a role, and the GA must not hand back a "brawler" that kites.
+    fn range_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (2_600., 3_200.),
+            Self::Kiter => (7_400., 8_000.),
+            Self::Denial => (5_000., 6_500.),
+            _ => RANGE_BOUNDS,
+        }
+    }
+    fn speed_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler | Self::Kiter => (29., 32.),
+            Self::Denial => (26., 30.),
+            _ => SPEED_BOUNDS,
+        }
+    }
+    fn torp_fraction_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (0.85, 0.95),
+            Self::Kiter => (0.6, 0.9),
+            Self::Denial => (0.9, 0.95),
+            _ => TORP_FRACTION_BOUNDS,
+        }
+    }
+    fn torp_angle_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (40., 80.),
+            Self::Kiter => (80., 130.),
+            Self::Denial => (140., 160.),
+            _ => TORP_ANGLE_BOUNDS,
+        }
+    }
+    fn t_head_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (0.05, 0.35),
+            Self::Kiter => (0.6, 1.),
+            Self::Denial => (0.1, 0.5),
+            _ => T_HEAD_BOUNDS,
+        }
+    }
+    fn coordination_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (0.05, 0.6),
+            Self::Kiter => (0.2, 0.8),
+            Self::Denial => (0.8, 1.),
+            _ => COORDINATION_BOUNDS,
+        }
+    }
+    fn screen_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (0.05, 0.3),
+            Self::Kiter => (0.1, 0.5),
+            Self::Denial => (0.7, 1.),
+            _ => SCREEN_BOUNDS,
+        }
+    }
+    fn spread_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (0.1, 0.5),
+            Self::Kiter => (0.3, 0.8),
+            Self::Denial => (0.6, 0.9),
+            _ => SPREAD_BOUNDS,
+        }
+    }
+    fn withdraw_bounds(self) -> (f64, f64) {
+        match self {
+            Self::Brawler => (0.08, 0.12),
+            Self::Kiter => (0.32, 0.4),
+            _ => WITHDRAW_BOUNDS,
+        }
+    }
+    /// Whether this profile's numbers came from the GA. A hand-authored
+    /// fallback would be marked `hand_authored` instead of claiming a search.
+    fn basis(self) -> &'static str {
+        "ga"
     }
 }
 
@@ -565,9 +812,7 @@ pub(crate) fn seat_side(seat: usize) -> usize {
     if seat == 0 { 0 } else { 1 }
 }
 
-/// Play one headless match: the candidate profile on `seat`, the opponent on
-/// the other side, until the scenario decides or the time limit settles.
-pub(crate) fn play(seed: u32, candidate: &str, opponent: &str, seat: usize) -> E<World> {
+fn prepared_world(seed: u32, candidate: &str, opponent: &str, seat: usize) -> E<World> {
     let mut world = training_world(seed)?;
     let candidate_side = seat_side(seat);
     for fleet in &mut world.fleets {
@@ -578,10 +823,245 @@ pub(crate) fn play(seed: u32, candidate: &str, opponent: &str, seat: usize) -> E
         };
         fleet.ai = Ai::new(profile, "auto");
     }
+    Ok(world)
+}
+
+/// Play one headless match: the candidate profile on `seat`, the opponent on
+/// the other side, until the scenario decides or the time limit settles.
+pub(crate) fn play(seed: u32, candidate: &str, opponent: &str, seat: usize) -> E<World> {
+    Ok(play_traced(seed, candidate, opponent, seat)?.0)
+}
+
+/// Real, observed metrics used by the three new doctrines. Every field is
+/// sampled from the same headless `World::advance` loop as the match itself;
+/// nothing is inferred from the final score alone.
+#[derive(Clone, Debug, Default, Serialize)]
+pub struct MatchTrace {
+    /// Damage actually dealt to the enemy while no candidate hull was farther
+    /// than 3 km from the hit position (brawler).
+    pub close_damage: f64,
+    /// Damage actually dealt to the enemy while the nearest candidate hull was
+    /// farther than 6 km (kiter).
+    pub far_damage: f64,
+    /// Seconds with at least one candidate hull inside 3 km of an enemy.
+    pub close_ticks: u32,
+    /// Candidate ship-seconds with at least one enemy inside acquisition range.
+    pub contact_ship_ticks: u32,
+    /// Candidate ship-seconds with the nearest enemy at 6 km or farther.
+    pub range_keep_ship_ticks: u32,
+    /// Torpedo-salvo × enemy pairs whose straight track covers the enemy's
+    /// current course projection within the fan corridor.
+    pub denial_coverage: u32,
+    /// Distinct enemy hulls whose projected course was covered.
+    pub denial_threats: u32,
+    /// Observed enemy course change in the 90 s after a covered projection.
+    pub denial_turn_degrees: f64,
+    /// Mean angular width of the candidate torpedo fan while torpedoes are in
+    /// flight (max pairwise heading separation).
+    pub denial_fan_degrees: f64,
+    /// Candidate torpedo launches observed in the match.
+    pub torpedo_launches: u32,
+}
+
+const BRAWL_RANGE: f64 = 3_000.;
+const KITER_RANGE: f64 = 6_000.;
+/// Half-width of the torpedo fan corridor used to call a projected enemy
+/// course "covered". A real torpedo body is far narrower; this deliberately
+/// measures denial of the *route*, not a hit.
+const DENIAL_FAN_RADIUS: f64 = 450.;
+const DENIAL_THREAT_WINDOW: u32 = 90;
+
+/// Closest approach between a straight-running torpedo and the enemy hull's
+/// current course projection, in metres. `None` when the torpedo is already
+/// past its run or has no speed.
+fn torpedo_cpa(torpedo: &Torpedo, ship: &Ship) -> Option<f64> {
+    let torpedo_speed = torpedo.speed * KNOT;
+    if torpedo_speed <= 1e-9 || torpedo.remaining <= 0. {
+        return None;
+    }
+    let relative = ship.p - torpedo.p;
+    let velocity = P::bearing(ship.h) * (ship.speed * KNOT)
+        - P::bearing(torpedo.h) * torpedo_speed;
+    let speed_sq = velocity.dot(velocity);
+    let flight = torpedo.remaining / torpedo_speed;
+    let time = if speed_sq > 1e-9 {
+        -relative.dot(velocity) / speed_sq
+    } else {
+        0.
+    };
+    // Only a future crossing covers the enemy's projected route. A torpedo
+    // that has already passed the hull (or is opening the range) must not earn
+    // "denial" credit merely because it is currently nearby.
+    if time <= 0. || time > flight {
+        return None;
+    }
+    Some((relative + velocity * time).len())
+}
+
+fn damage_amount(text: &str) -> f64 {
+    text.split_whitespace()
+        .rev()
+        .nth(1)
+        .and_then(|value| value.parse::<f64>().ok())
+        .unwrap_or(0.)
+}
+
+fn play_traced(
+    seed: u32,
+    candidate: &str,
+    opponent: &str,
+    seat: usize,
+) -> E<(World, MatchTrace)> {
+    let mut world = prepared_world(seed, candidate, opponent, seat)?;
+    let candidate_side = seat_side(seat);
+    let opponent_side = 1 - candidate_side;
+    let mut trace = MatchTrace::default();
+    let mut seen_events = 0usize;
+    let mut covered: BTreeSet<(u32, u32, u64, u32)> = BTreeSet::new();
+    let mut threatened: BTreeSet<u32> = BTreeSet::new();
+    // ship id -> (window end, accumulated degrees, active)
+    let mut threat_state: BTreeMap<u32, (u32, f64, bool)> = BTreeMap::new();
+    let mut previous_heading: BTreeMap<u32, f64> = BTreeMap::new();
+    let mut fan_sum = 0.;
+    let mut fan_ticks = 0u32;
     while world.result.is_none() && world.tick < LIMIT + 60 {
         world.advance();
+        let tick = world.tick;
+        for event in &world.events[seen_events..] {
+            if event.kind != "damage" || event.mask != (1u8 << opponent_side) {
+                continue;
+            }
+            let (Some(x), Some(y)) = (event.x, event.y) else { continue };
+            let at = P { x, y };
+            let nearest = world
+                .ships
+                .iter()
+                .filter(|ship| ship.side == candidate_side && ship.alive())
+                .map(|ship| ship.p.dist(at))
+                .fold(f64::INFINITY, f64::min);
+            let amount = damage_amount(&event.text);
+            if nearest <= BRAWL_RANGE {
+                trace.close_damage += amount;
+            }
+            if nearest > KITER_RANGE {
+                trace.far_damage += amount;
+            }
+        }
+        seen_events = world.events.len();
+        // Observed course changes of enemy hulls that have a live torpedo
+        // threat. The window is fixed at 90 s so the metric cannot be farmed
+        // by one long turn late in the match.
+        for ship in world
+            .ships
+            .iter()
+            .filter(|ship| ship.side == opponent_side && ship.alive())
+        {
+            if let Some(previous) = previous_heading.insert(ship.id, ship.h) {
+                if let Some((_, accumulated, active)) = threat_state.get_mut(&ship.id) {
+                    if *active {
+                        *accumulated += delta(previous, ship.h).abs();
+                    }
+                }
+            }
+        }
+        for (until, accumulated, active) in threat_state.values_mut() {
+            if *active && tick >= *until {
+                trace.denial_turn_degrees += *accumulated;
+                *accumulated = 0.;
+                *active = false;
+            }
+        }
+        // Close/keep-range clocks. `contact_ship_ticks` counts one tick per
+        // candidate hull that has any live enemy within 25 km, so a kiter is
+        // credited per hull-second rather than per fleet.
+        let mut any_close = false;
+        for ship in world
+            .ships
+            .iter()
+            .filter(|ship| ship.side == candidate_side && ship.alive())
+        {
+            let nearest = world
+                .ships
+                .iter()
+                .filter(|enemy| enemy.side == opponent_side && enemy.alive())
+                .map(|enemy| ship.p.dist(enemy.p))
+                .fold(f64::INFINITY, f64::min);
+            if nearest <= 25_000. {
+                trace.contact_ship_ticks += 1;
+                if nearest >= KITER_RANGE {
+                    trace.range_keep_ship_ticks += 1;
+                }
+                if nearest <= BRAWL_RANGE {
+                    any_close = true;
+                }
+            }
+        }
+        if any_close {
+            trace.close_ticks += 1;
+        }
+        // Denial: does any candidate torpedo's straight track cover the
+        // enemy's current course projection? The pair key keeps one credit
+        // per salvo/hull even though the geometry is re-checked every tick.
+        for torpedo in world
+            .torps
+            .iter()
+            .filter(|torpedo| torpedo.side == candidate_side)
+        {
+            for enemy in world
+                .ships
+                .iter()
+                .filter(|enemy| enemy.side == opponent_side && enemy.alive())
+            {
+                let Some(miss) = torpedo_cpa(torpedo, enemy) else { continue };
+                if miss > DENIAL_FAN_RADIUS {
+                    continue;
+                }
+                let key = (torpedo.ship, torpedo.born, torpedo.h.to_bits(), enemy.id);
+                if !covered.insert(key) {
+                    continue;
+                }
+                trace.denial_coverage += 1;
+                if threatened.insert(enemy.id) {
+                    trace.denial_threats += 1;
+                }
+                let state = threat_state.entry(enemy.id).or_insert((0, 0., false));
+                if !state.2 {
+                    state.0 = tick + DENIAL_THREAT_WINDOW;
+                    state.2 = true;
+                }
+            }
+        }
+        trace.torpedo_launches += world
+            .torps
+            .iter()
+            .filter(|torpedo| torpedo.side == candidate_side && torpedo.born == tick)
+            .count() as u32;
+        let headings: Vec<f64> = world
+            .torps
+            .iter()
+            .filter(|torpedo| torpedo.side == candidate_side)
+            .map(|torpedo| torpedo.h)
+            .collect();
+        if headings.len() >= 2 {
+            let mut span = 0f64;
+            for (index, a) in headings.iter().enumerate() {
+                for b in &headings[index + 1..] {
+                    span = span.max(delta(*a, *b).abs());
+                }
+            }
+            fan_sum += span;
+            fan_ticks += 1;
+        }
     }
-    Ok(world)
+    for (_, accumulated, active) in threat_state.values() {
+        if *active {
+            trace.denial_turn_degrees += *accumulated;
+        }
+    }
+    if fan_ticks > 0 {
+        trace.denial_fan_degrees = fan_sum / f64::from(fan_ticks);
+    }
+    Ok((world, trace))
 }
 
 /// Deterministic mirrored duel used by the AI behavior tests and by the
@@ -610,6 +1090,34 @@ pub struct MatchRecord {
     pub torpedo_hits: u32,
     pub friendly_fire: u32,
     pub score: f64,
+    /// Doctrine metrics, only populated for the three new objectives. They are
+    /// omitted when zero so the pre-batch three profile records stay identical.
+    #[serde(skip_serializing_if = "is_zero_f64")]
+    pub close_damage: f64,
+    #[serde(skip_serializing_if = "is_zero_f64")]
+    pub far_damage: f64,
+    #[serde(skip_serializing_if = "is_zero_u32")]
+    pub close_ticks: u32,
+    #[serde(skip_serializing_if = "is_zero_f64")]
+    pub range_keep_ratio: f64,
+    #[serde(skip_serializing_if = "is_zero_u32")]
+    pub denial_coverage: u32,
+    #[serde(skip_serializing_if = "is_zero_u32")]
+    pub denial_threats: u32,
+    #[serde(skip_serializing_if = "is_zero_f64")]
+    pub denial_turn_degrees: f64,
+    #[serde(skip_serializing_if = "is_zero_f64")]
+    pub denial_fan_degrees: f64,
+    #[serde(skip_serializing_if = "is_zero_u32")]
+    pub torpedo_launches: u32,
+}
+
+fn is_zero_f64(value: &f64) -> bool {
+    value.abs() < 1e-9
+}
+
+fn is_zero_u32(value: &u32) -> bool {
+    *value == 0
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -678,7 +1186,13 @@ fn cruiser_survival(world: &World, side: usize) -> f64 {
     cruisers.iter().filter(|ship| ship.alive()).count() as f64 / cruisers.len() as f64
 }
 
-fn score_match(world: &World, case: &SeedCase, seat: usize, objective: Objective) -> MatchRecord {
+fn score_match(
+    world: &World,
+    trace: &MatchTrace,
+    case: &SeedCase,
+    seat: usize,
+    objective: Objective,
+) -> MatchRecord {
     let candidate = seat_side(seat);
     let opponent = 1 - candidate;
     let winner = world.result.as_ref().map(|result| result.winner.clone());
@@ -736,7 +1250,41 @@ fn score_match(world: &World, case: &SeedCase, seat: usize, objective: Objective
                 + 25. * enemy_damage
                 + 20. * f64::from(opponent_sunk);
         }
+        Objective::Brawler => {
+            // Close-range damage is measured per hit against the firing fleet's
+            // actual distance at impact; the engagement clock and kills add
+            // pressure to finish fights instead of merely surviving them.
+            score += 1.5 * trace.close_damage
+                + 0.3 * f64::from(trace.close_ticks)
+                + 50. * f64::from(opponent_sunk);
+        }
+        Objective::Kiter => {
+            let keep = f64::from(trace.range_keep_ship_ticks)
+                / f64::from(trace.contact_ship_ticks.max(1));
+            score += 1.5 * trace.far_damage
+                + 150. * keep
+                + 60. * (1. - own_damage)
+                + 40. * cruiser_survival(world, candidate);
+        }
+        Objective::Denial => {
+            // Coverage of the enemy's projected route is the primary term;
+            // hits are deliberately a minor add-on. The observed course change
+            // is real enemy behaviour after a covered projection, not a
+            // scripted reward.
+            score += 30. * f64::from(trace.denial_coverage)
+                + 10. * f64::from(trace.denial_threats)
+                + 0.6 * trace.denial_turn_degrees
+                + 0.5 * trace.denial_fan_degrees
+                + 2. * f64::from(trace.torpedo_launches)
+                + 8. * f64::from(count("torpedo_hit"));
+        }
     }
+    let new_doctrine = matches!(
+        objective,
+        Objective::Brawler | Objective::Kiter | Objective::Denial
+    );
+    let keep_ratio = f64::from(trace.range_keep_ship_ticks)
+        / f64::from(trace.contact_ship_ticks.max(1));
     MatchRecord {
         seed: case.seed,
         seat,
@@ -755,6 +1303,15 @@ fn score_match(world: &World, case: &SeedCase, seat: usize, objective: Objective
         torpedo_hits: count("torpedo_hit"),
         friendly_fire,
         score,
+        close_damage: if new_doctrine { trace.close_damage } else { 0. },
+        far_damage: if new_doctrine { trace.far_damage } else { 0. },
+        close_ticks: if new_doctrine { trace.close_ticks } else { 0 },
+        range_keep_ratio: if new_doctrine { keep_ratio } else { 0. },
+        denial_coverage: if new_doctrine { trace.denial_coverage } else { 0 },
+        denial_threats: if new_doctrine { trace.denial_threats } else { 0 },
+        denial_turn_degrees: if new_doctrine { trace.denial_turn_degrees } else { 0. },
+        denial_fan_degrees: if new_doctrine { trace.denial_fan_degrees } else { 0. },
+        torpedo_launches: if new_doctrine { trace.torpedo_launches } else { 0 },
     }
 }
 
@@ -773,8 +1330,8 @@ fn evaluate_profile(
     let mut records = Vec::new();
     for case in cases {
         for &seat in seats {
-            let world = play(case.seed, profile, &case.opponent, seat)?;
-            records.push(score_match(&world, case, seat, objective));
+            let (world, trace) = play_traced(case.seed, profile, &case.opponent, seat)?;
+            records.push(score_match(&world, &trace, case, seat, objective));
         }
     }
     let mean = mean_score(&records);
@@ -796,6 +1353,9 @@ pub struct ProfileReport {
     pub name: String,
     pub description: String,
     pub role: String,
+    /// `ga` when the numbers come from the genetic search; `hand_authored`
+    /// when a fixed genome was only verified with headless matches.
+    pub basis: String,
     pub params: Value,
     pub genome: Value,
     pub fitness: Value,
@@ -851,7 +1411,7 @@ fn evolve_objective(
     let mut rng = Rng::new(config.rng_seed ^ objective.seal_salt());
     let mut population: Vec<Genome> = vec![Genome::anchor(objective)];
     while population.len() < config.population {
-        population.push(Genome::random(&mut rng));
+        population.push(Genome::random_for(objective, &mut rng));
     }
     let mut history = Vec::new();
     let mut scored: Vec<(f64, Genome)> = Vec::new();
@@ -894,7 +1454,7 @@ fn evolve_objective(
             } else {
                 a
             };
-            child.mutate(&mut rng, config.mutation);
+            child.mutate(&mut rng, config.mutation, objective);
             next.push(child);
         }
         population = next;
@@ -953,6 +1513,7 @@ fn profile_report(
         "seats": config.seats,
         "time_limit_seconds": config.time_limit_seconds,
         "match_limit": config.match_limit,
+        "basis": objective.basis(),
         "fitness": fitness_definition(objective),
     });
     Ok(ProfileReport {
@@ -960,10 +1521,12 @@ fn profile_report(
         name: objective.name().into(),
         description: objective.description().into(),
         role: objective.role().into(),
+        basis: objective.basis().into(),
         params,
         genome: serde_json::to_value(genome).map_err(|error| error.to_string())?,
         fitness: json!({
             "objective": objective.role(),
+            "basis": objective.basis(),
             "definition": fitness_definition(objective),
             "training": Summary::of(&training.records),
             "validation": Summary::of(&validation.records),
@@ -997,6 +1560,15 @@ fn fitness_definition(objective: Objective) -> &'static str {
         }
         Objective::Gunnery => {
             "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 2.5*炮击命中 + 25*敌损伤率 + 20*敌沉"
+        }
+        Objective::Brawler => {
+            "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 1.5*3km内实伤 + 0.3*3km内接敌秒 + 50*敌沉"
+        }
+        Objective::Kiter => {
+            "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 1.5*6km外实伤 + 150*射程维持率 + 60*(1-己损伤率) + 40*巡洋存活率"
+        }
+        Objective::Denial => {
+            "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 30*扇面覆盖预定航路 + 10*被覆盖敌舰 + 0.6*威胁后90秒转向度 + 0.5*扇面宽度 + 2*鱼雷发射 + 8*鱼雷命中"
         }
     }
 }
@@ -1036,15 +1608,16 @@ impl TrainingReport {
                 "schema": "cas-ai-shop-merge-v1",
                 "source": "data/ai/evolved.json",
                 "state": "provisional",
-                "note": "本轮只输出上架合并清单；server/catalog 与母港未改。",
+                "note": "六条 doctrine 已接入 server/catalog 与 client/src/ai-shop.ts；常驻征募券价格仍为 provisional。",
                 "profiles": shop,
             },
         })
     }
 }
 
-/// Run the full three-objective training and return the report. This never
-/// fabricates a fitness: every reported number comes from `play()` above.
+/// Run the full six-objective training and return the report. This never
+/// fabricates a fitness: every reported number comes from `play_traced()`
+/// above, on the same headless Rust core the game runs.
 pub fn train(config: TrainConfig) -> E<TrainingReport> {
     config.validate()?;
     let started = std::time::Instant::now();
@@ -1328,8 +1901,9 @@ mod tests {
         let mut rng = Rng::new(7);
         for _ in 0..200 {
             let mut genome = Genome::random(&mut rng);
-            genome.mutate(&mut rng, 1.);
+            genome.mutate(&mut rng, 1., Objective::Brawler);
             assert!((RANGE_BOUNDS.0..=RANGE_BOUNDS.1).contains(&genome.range));
+            assert!((WITHDRAW_BOUNDS.0..=WITHDRAW_BOUNDS.1).contains(&genome.withdraw_hp));
             assert!((FLANK_BOUNDS.0..=FLANK_BOUNDS.1).contains(&genome.flank));
             assert!((SPEED_BOUNDS.0..=SPEED_BOUNDS.1).contains(&genome.speed));
             assert!((TORP_FRACTION_BOUNDS.0..=TORP_FRACTION_BOUNDS.1).contains(&genome.torp_fraction));
@@ -1350,6 +1924,7 @@ mod tests {
         let world = play(6106, &Genome::anchor(Objective::Gunnery).key(), "coord", 0).unwrap();
         let record = score_match(
             &world,
+            &MatchTrace::default(),
             &SeedCase { seed: 6106, opponent: "coord".into() },
             0,
             Objective::Gunnery,
@@ -1361,7 +1936,7 @@ mod tests {
     }
 
     #[test]
-    fn a_small_training_run_writes_three_distinct_profiles() {
+    fn a_small_training_run_writes_six_distinct_profiles() {
         let mut config = TrainConfig::default();
         config.population = 3;
         config.generations = 1;
@@ -1369,12 +1944,93 @@ mod tests {
         config.train = vec![SeedCase { seed: 6106, opponent: "coord".into() }];
         config.validation = vec![SeedCase { seed: 6112, opponent: "coord".into() }];
         let report = train(config).unwrap();
-        assert_eq!(report.profiles.len(), 3);
+        assert_eq!(report.profiles.len(), 6);
         for profile in &report.profiles {
             assert!(profile.fitness["validation"]["mean"].as_f64().is_some());
             assert!(profile.training["schema"] == json!(TRAINING_SCHEMA));
+            assert_eq!(profile.basis, "ga");
         }
         let ids: Vec<&str> = report.profiles.iter().map(|p| p.id.as_str()).collect();
-        assert_eq!(ids, ["evo-screen", "evo-torpedo", "evo-gunnery"]);
+        assert_eq!(
+            ids,
+            [
+                "evo-screen",
+                "evo-torpedo",
+                "evo-gunnery",
+                "evo-brawler",
+                "evo-kiter",
+                "evo-denial"
+            ]
+        );
+    }
+
+    #[test]
+    fn new_doctrine_anchors_express_their_range_and_torpedo_roles() {
+        let brawler = Genome::anchor(Objective::Brawler);
+        assert!(brawler.range <= 2_800., "{}", brawler.range);
+        assert!(brawler.withdraw_hp <= 0.12, "{}", brawler.withdraw_hp);
+        assert!(brawler.torp_fraction >= 0.9);
+        let kiter = Genome::anchor(Objective::Kiter);
+        assert!(kiter.range >= 7_800., "{}", kiter.range);
+        assert!(kiter.withdraw_hp >= 0.34, "{}", kiter.withdraw_hp);
+        assert!(kiter.speed >= 30.);
+        let denial = Genome::anchor(Objective::Denial);
+        assert!(denial.torp_fraction >= 0.95);
+        assert!(denial.torp_angle >= 140.);
+        assert!(denial.coordination >= 0.9);
+        assert!(denial.screen >= 0.8);
+        assert!(denial.spread >= 0.8);
+        for objective in [Objective::Brawler, Objective::Kiter, Objective::Denial] {
+            assert!(Genome::anchor(objective).to_style().sane());
+            assert_eq!(objective.basis(), "ga");
+        }
+    }
+
+    #[test]
+    fn new_doctrine_headless_matches_measure_real_doctrine_metrics() {
+        for (objective, seed) in [
+            (Objective::Brawler, 6106u32),
+            (Objective::Kiter, 6107u32),
+            (Objective::Denial, 6112u32),
+        ] {
+            let genome = Genome::anchor(objective);
+            let (world, trace) =
+                play_traced(seed, &genome.key(), objective.baseline(), 0).unwrap();
+            assert!(trace.contact_ship_ticks > 0, "{objective:?} never made contact");
+            if objective != Objective::Kiter {
+                // A kiter can legitimately hold outside torpedo range and
+                // fight with guns only; brawler and denial must launch.
+                assert!(trace.torpedo_launches > 0, "{objective:?} never launched a torpedo");
+            }
+            let record = score_match(
+                &world,
+                &trace,
+                &SeedCase { seed, opponent: objective.baseline().into() },
+                0,
+                objective,
+            );
+            assert!(record.score.is_finite());
+            match objective {
+                Objective::Brawler => {
+                    assert!(trace.close_ticks > 0, "brawler never closed to 3 km");
+                    assert!(trace.close_damage > 0., "brawler dealt no damage inside 3 km");
+                }
+                Objective::Kiter => {
+                    assert!(trace.range_keep_ship_ticks > 0, "kiter never kept 6 km");
+                }
+                Objective::Denial => {
+                    assert!(trace.denial_coverage > 0, "denial never covered a projected route");
+                    assert!(trace.denial_threats > 0);
+                    assert!(
+                        trace.denial_coverage > record.torpedo_hits,
+                        "coverage must measure route denial, not just torpedo hits ({} vs {})",
+                        trace.denial_coverage,
+                        record.torpedo_hits
+                    );
+                    assert!(trace.denial_turn_degrees > 0., "no observed threat turn");
+                }
+                _ => unreachable!(),
+            }
+        }
     }
 }

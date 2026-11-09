@@ -3,8 +3,21 @@ import { campaignBest } from './campaign-progress';
 import type { CampaignProgress } from './campaign-progress';
 import type { PortState } from './port';
 
+export type AiShopRole = 'screen' | 'torpedo' | 'gunnery' | 'brawler' | 'kiter' | 'denial';
+export type AiShopRangeAxis = 'near' | 'mid' | 'far';
+export type AiShopManeuverAxis = 'brawl' | 'screen' | 'kite';
+export type AiShopTorpedoAxis = 'direct' | 'deny' | 'support';
+export interface AiShopAxes {
+  range: AiShopRangeAxis;
+  maneuver: AiShopManeuverAxis;
+  torpedo: AiShopTorpedoAxis;
+}
+
 /** Storefront projection of data/ai/shop-merge.json. The server catalog mirrors
- *  these fields; the local harbor store uses them while offline. */
+ *  these fields; the local harbor store uses them while offline. `role`, `fit`,
+ *  `risk` and `axes` are optional CAS doctrine metadata for the fleet/recruit
+ *  UI; `fit` is a real headless validation mean under that doctrine, not a
+ *  balance claim. */
 export interface AiShopEntry {
   id: EvolvedProfile;
   name: string;
@@ -15,26 +28,66 @@ export interface AiShopEntry {
   cost: number;
   currency: 'recruit_ticket';
   provisional: boolean;
+  role?: AiShopRole;
+  fit?: string;
+  risk?: string;
+  axes?: AiShopAxes;
 }
 
 export const AI_SHOP: readonly AiShopEntry[] = [
   {
-    id: 'evo-screen', name: '帷幄 · 屏护协同',
+    id: 'evo-screen', name: '帷幄 · 屏护协同', role: 'screen',
     description: '以屏护与交叉火力为主：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。',
     unlock: 'campaign:CAMP-ALLIES-02', stage: 'CAMP-ALLIES-02', stageName: '埃斯佩兰斯角',
     cost: 800, currency: 'recruit_ticket', provisional: true,
+    fit: '验证 282.6 / 内置 coord 50.2（同 objective 6 场）',
+    risk: '屏护分队被雷击队钉住时炮火会分散，收割慢。',
+    axes: { range: 'mid', maneuver: 'screen', torpedo: 'support' },
   },
   {
-    id: 'evo-torpedo', name: '夜潮 · 雷击突击',
+    id: 'evo-torpedo', name: '夜潮 · 雷击突击', role: 'torpedo',
     description: '以雷击为主：分队分头绕向敌纵队侧翼，压缩距离后按侧舷角放雷，炮战只做压制。',
     unlock: 'campaign:CAMP-ALLIES-03', stage: 'CAMP-ALLIES-03', stageName: '圣乔治角',
     cost: 900, currency: 'recruit_ticket', provisional: true,
+    fit: '验证 217.6 / 内置 torpedo 181.3（同 objective 6 场）',
+    risk: '贴脸后吃交叉火力；雷未中时交换比差。',
+    axes: { range: 'near', maneuver: 'brawl', torpedo: 'direct' },
   },
   {
-    id: 'evo-gunnery', name: '铁幕 · 炮战纵队',
+    id: 'evo-gunnery', name: '铁幕 · 炮战纵队', role: 'gunnery',
     description: '以炮战为主：保持远距射界，优先抢占敌纵队的 T 头位置，用交叉火力分散其指挥。',
     unlock: 'campaign:CAMP-ALLIES-11', stage: 'CAMP-ALLIES-11', stageName: '奥古斯塔皇后湾',
     cost: 1000, currency: 'recruit_ticket', provisional: true,
+    fit: '验证 1692.2 / 内置 gunnery 1094.9（同 objective 6 场）',
+    risk: '被高速雷击队贴到 3 km 内时射界与装填吃亏。',
+    axes: { range: 'far', maneuver: 'screen', torpedo: 'support' },
+  },
+  {
+    id: 'evo-brawler', name: '绞肉 · 近战乱斗', role: 'brawler',
+    description: '以近距乱战为主：高航速贴脸，压缩到 3 公里内炮雷混战，低撤退阈值。',
+    unlock: 'campaign:CAMP-ALLIES-05', stage: 'CAMP-ALLIES-05', stageName: '塔萨法隆格',
+    cost: 900, currency: 'recruit_ticket', provisional: true,
+    fit: '验证 822.0 / 内置 torpedo 656.0（3 km 内实伤与接敌秒）',
+    risk: '被远距风筝时打不到人；低撤退阈值会硬吃损伤。',
+    axes: { range: 'near', maneuver: 'brawl', torpedo: 'direct' },
+  },
+  {
+    id: 'evo-kiter', name: '拖刀 · 远距风筝', role: 'kiter',
+    description: '以远距风筝为主：保持 6 公里外射界，边打边退维持射程边缘，高撤退阈值。',
+    unlock: 'campaign:CAMP-ALLIES-11', stage: 'CAMP-ALLIES-11', stageName: '奥古斯塔皇后湾',
+    cost: 1100, currency: 'recruit_ticket', provisional: true,
+    fit: '验证 846.6 / 内置 gunnery 234.3（6 km 外实伤与射程维持）',
+    risk: '被迫近身后射程优势消失，且高撤退会放弃部分战果。',
+    axes: { range: 'far', maneuver: 'kite', torpedo: 'support' },
+  },
+  {
+    id: 'evo-denial', name: '雷网 · 封走位', role: 'denial',
+    description: '以鱼雷扇面封走位为主：高雷击占比、宽扇面与屏护协同，目标不是命中而是逼敌转向。',
+    unlock: 'campaign:CAMP-ALLIES-10', stage: 'CAMP-ALLIES-10', stageName: '萨沃岛',
+    cost: 1200, currency: 'recruit_ticket', provisional: true,
+    fit: '验证 1200.3 / 内置 torpedo 831.1（扇面覆盖预定航路与威胁后转向）',
+    risk: '封走位不直接转化为命中，单舰收割能力弱。',
+    axes: { range: 'mid', maneuver: 'screen', torpedo: 'deny' },
   },
 ];
 

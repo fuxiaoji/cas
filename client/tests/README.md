@@ -15,7 +15,9 @@
 13. 运行 `node tests/browser-campaign-modes.mjs` 验收战役模式边界：史料馆 11 行、未开放关卡按钮禁用、标准难度按历史编制直出。凭证默认写入 `artifacts/client/campaign-modes/`。
 14. 运行 `node tests/browser-taskforce.mjs` 验收特混编成（奥古斯塔皇后湾）：3 个初设位置、第 1 位战列舰、第 2 位空置、第 3 位驱逐舰；出航 2 舰/2 编队并核对两处历史锚点。凭证默认写入 `artifacts/client/taskforce/`。
 15. 运行 `node tests/browser-taskforce-esperance.mjs` 验收单编队极端：1 个初设位置、单舰北卡罗来纳、核对历史锚点。凭证默认写入 `artifacts/client/taskforce-esperance/`。
-16. 运行 `node tests/browser-ai-shop.mjs` 验收 evolved AI 商店：三条 profile 的价格/解锁条件/provisional 标记、战役通关解锁、常驻征募券扣款与防重复、刷新持久化、740×360 无横向滚动、母港预设与战役编成进战斗、存档重载后 profile 不丢。凭证默认写入 `artifacts/client/ai-shop/`。
+16. 运行 `node tests/browser-ai-shop.mjs` 验收 evolved AI 商店（当前 6 条，脚本兼容 3/6 条）：profile 的价格/解锁条件/provisional 标记、战役通关解锁、常驻征募券扣款与防重复、刷新持久化、740×360 无横向滚动、母港预设与战役编成进战斗、存档重载后 profile 不丢。凭证默认写入 `artifacts/client/ai-shop/`。
+17. 运行 `node tests/browser-shop.mjs` 验收军需处四柜台（舰船 / 补给配给 / AI 战术 / 礼包与兑换）、钱包三项、周券与周补给、AI 采购与已拥有、6 勋章炮战 AI、740×360 无横向滚动与刷新持久化。凭证默认写入 `artifacts/client/shop/`。
+18. 运行 `node tests/browser-recruit.mjs` 验收军港征募全屏页：双卡池切换、85/15 概率与十抽轻巡保底、1/10 连抽、保底到港、记录回看、概率/记录/兑换抽屉、Esc 与返回、740×360 底部抽屉且无横向滚动。凭证默认写入 `artifacts/client/recruit/`。
 
 > `browser-campaign.mjs` 是旧 `.archive-list` 版本的战役脚本，早于当前 `.war-*` 档案页；当前战役与编成验收使用上列 `browser-esperance` / `browser-deployment` / `browser-campaign-modes` / `browser-taskforce`。
 

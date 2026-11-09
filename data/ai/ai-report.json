@@ -1,16 +1,18 @@
 {
   "schema": "cas-ai-report-v1",
-  "generatedAt": "2026-11-09T11:03:40+08:00",
+  "generatedAt": "2026-11-09T12:23:11+08:00",
   "engineVersion": "cas-battle-v2",
-  "batch": "evolved AI restore: builtin-safe baseline + role-coordinated evolved profiles",
+  "batch": "six evolved doctrines: brawler / kiter / denial added on top of the builtin-safe baseline",
+  "fitnessBasis": {
+    "evo-screen": "ga",
+    "evo-torpedo": "ga",
+    "evo-gunnery": "ga",
+    "evo-brawler": "ga",
+    "evo-kiter": "ga",
+    "evo-denial": "ga"
+  },
   "baseline": {
     "ordersArtifact": "data/ai/baseline-orders.json",
-    "ordersNote": "coord tick-0 orders reproduced byte-textually (numbers emitted with the recorded shortest decimal text); serde_json default float parsing is not bit-exact so the test tolerates 1 ULP only when the emitted text occurs verbatim in the recording.",
-    "ordersCases": [
-      "day6106 fleet 1",
-      "night6107 fleet 1",
-      "empress6106 (empty object, no contact)"
-    ],
     "ordersSha256": "6FCCC6D75132D66FC5113BF7ECE60DE8B58C83EF5F4333D1ABEBF4307E0C069A",
     "extendedArtifact": "data/ai/builtin-orders.json",
     "extendedCases": 11,
@@ -19,7 +21,7 @@
       "gunnery",
       "torpedo"
     ],
-    "extendedProvenance": "recorded by HEAD 5fc981b src/ai.rs in a detached worktree, then replayed by the restored builtin path",
+    "fullMatchArtifact": "data/ai/builtin-baseline.json",
     "fullMatchHashes": {
       "day-6106-allies": "ccd8b83220417bcd",
       "day-6106-axis": "91dd4fb33d402efc",
@@ -28,7 +30,6 @@
       "empress-6106-default": "a134cbaa45bcacb8"
     },
     "fullMatchHashDefinition": "fnv1a64 over serde_json of {result,tick,commands,events}",
-    "fullMatchVerifiedAgainst": "HEAD 5fc981b detached worktree: the same hashes are produced by HEAD src/ai.rs and by the restored builtin path",
     "previousFullMatchHashes": {
       "day-6106-allies": "798818c4fc37f833",
       "day-6106-axis": "1da4398660cd9ac6",
@@ -36,7 +37,13 @@
       "night-6107-axis": "9a34ddf182b6a470",
       "empress-6106-default": "2fc1b71ff06fdf5a"
     },
-    "previousHashesNote": "Recorded earlier against an engine snapshot that no longer reproduces from HEAD src/ai.rs; kept for audit only, not used as an AI regression pin."
+    "previousHashesNote": "Recorded earlier against an engine snapshot that no longer reproduces from HEAD src/ai.rs; kept for audit only, not used as an AI regression pin.",
+    "verifiedAgainst": "HEAD 5fc981b detached worktree: the same hashes are produced by HEAD src/ai.rs and by the restored builtin path",
+    "tests": [
+      "ai::tests::builtin_orders_stay_identical_to_the_recorded_baseline",
+      "ai::tests::builtin_full_matches_stay_frozen"
+    ],
+    "result": "both builtin identity tests pass; coord/gunnery/torpedo files are untouched"
   },
   "training": {
     "config": {
@@ -79,38 +86,10 @@
         }
       ]
     },
-    "seeds": {
-      "training": [
-        {
-          "opponent": "coord",
-          "seed": 6106
-        },
-        {
-          "opponent": "gunnery",
-          "seed": 6107
-        }
-      ],
-      "validation": [
-        {
-          "opponent": "torpedo",
-          "seed": 6111
-        },
-        {
-          "opponent": "coord",
-          "seed": 6112
-        },
-        {
-          "opponent": "gunnery",
-          "seed": 6113
-        }
-      ],
-      "seats": [
-        0,
-        1
-      ]
-    },
+    "durationMillis": 25174,
     "runs": [
       {
+        "objective": "screen",
         "anchor": {
           "coordination": 0.85,
           "crossfire": 0.6,
@@ -125,19 +104,6 @@
           "t_head": 0.5,
           "torp_angle": 90.0,
           "torp_fraction": 0.72
-        },
-        "builtin_baseline": {
-          "profile": "coord",
-          "validation": {
-            "draws": 0,
-            "friendly_fire": 4,
-            "losses": 3,
-            "matches": 6,
-            "mean": 50.170051319648074,
-            "opponent_sunk": 28,
-            "own_sunk": 27,
-            "wins": 3
-          }
         },
         "history": [
           {
@@ -162,7 +128,6 @@
             "mean": 206.21320698868158
           }
         ],
-        "objective": "screen",
         "training": {
           "draws": 0,
           "friendly_fire": 0,
@@ -173,84 +138,6 @@
           "own_sunk": 3,
           "wins": 4
         },
-        "training_matches": [
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.5239583333333335,
-            "candidate_side": "allies",
-            "candidate_sunk": 1,
-            "friendly_fire": 0,
-            "gun_events": 1597,
-            "hit_events": 737,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 337.84374999999994,
-            "seat": 0,
-            "seed": 6106,
-            "tick": 1312,
-            "torpedo_events": 10,
-            "torpedo_hits": 2,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.20408900836320223,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 408,
-            "hit_events": 247,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 381.6319892473118,
-            "seat": 1,
-            "seed": 6106,
-            "tick": 817,
-            "torpedo_events": 22,
-            "torpedo_hits": 4,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.5240530303030315,
-            "candidate_side": "allies",
-            "candidate_sunk": 2,
-            "friendly_fire": 0,
-            "gun_events": 1715,
-            "hit_events": 779,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 322.83522727272714,
-            "seat": 0,
-            "seed": 6107,
-            "tick": 1380,
-            "torpedo_events": 6,
-            "torpedo_hits": 0,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.28556600955794526,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 769,
-            "hit_events": 439,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 374.2990591397849,
-            "seat": 1,
-            "seed": 6107,
-            "tick": 1329,
-            "torpedo_events": 18,
-            "torpedo_hits": 1,
-            "winner": "axis"
-          }
-        ],
         "validation": {
           "draws": 0,
           "friendly_fire": 0,
@@ -261,124 +148,22 @@
           "own_sunk": 9,
           "wins": 5
         },
-        "validation_matches": [
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 1.0,
-            "candidate_side": "allies",
-            "candidate_sunk": 6,
-            "friendly_fire": 0,
-            "gun_events": 1256,
-            "hit_events": 587,
-            "opponent": "torpedo",
-            "opponent_damage": 0.871572580645161,
-            "opponent_sunk": 4,
-            "score": -118.98991935483873,
-            "seat": 0,
-            "seed": 6111,
-            "tick": 1011,
-            "torpedo_events": 4,
-            "torpedo_hits": 3,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.2092159498207891,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 577,
-            "hit_events": 339,
-            "opponent": "torpedo",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 381.17056451612893,
-            "seat": 1,
-            "seed": 6111,
-            "tick": 921,
-            "torpedo_events": 22,
-            "torpedo_hits": 3,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.5754471801346803,
-            "candidate_side": "allies",
-            "candidate_sunk": 2,
-            "friendly_fire": 0,
-            "gun_events": 2013,
-            "hit_events": 1009,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 318.2097537878788,
-            "seat": 0,
-            "seed": 6112,
-            "tick": 1640,
-            "torpedo_events": 9,
-            "torpedo_hits": 2,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.2574566905615296,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 673,
-            "hit_events": 418,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 376.82889784946235,
-            "seat": 1,
-            "seed": 6112,
-            "tick": 1363,
-            "torpedo_events": 12,
-            "torpedo_hits": 2,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.2839646464646469,
-            "candidate_side": "allies",
-            "candidate_sunk": 1,
-            "friendly_fire": 0,
-            "gun_events": 1622,
-            "hit_events": 663,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 359.44318181818176,
-            "seat": 0,
-            "seed": 6113,
-            "tick": 1056,
-            "torpedo_events": 0,
-            "torpedo_hits": 0,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.2362656810035835,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 669,
-            "hit_events": 341,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 378.73608870967746,
-            "seat": 1,
-            "seed": 6113,
-            "tick": 1261,
-            "torpedo_events": 20,
-            "torpedo_hits": 2,
-            "winner": "axis"
+        "builtin_baseline": {
+          "profile": "coord",
+          "validation": {
+            "draws": 0,
+            "friendly_fire": 4,
+            "losses": 3,
+            "matches": 6,
+            "mean": 50.170051319648074,
+            "opponent_sunk": 28,
+            "own_sunk": 27,
+            "wins": 3
           }
-        ]
+        }
       },
       {
+        "objective": "torpedo",
         "anchor": {
           "coordination": 0.75,
           "crossfire": 0.85,
@@ -393,19 +178,6 @@
           "t_head": 0.3,
           "torp_angle": 90.0,
           "torp_fraction": 0.9
-        },
-        "builtin_baseline": {
-          "profile": "torpedo",
-          "validation": {
-            "draws": 0,
-            "friendly_fire": 2,
-            "losses": 2,
-            "matches": 6,
-            "mean": 181.34674149650627,
-            "opponent_sunk": 28,
-            "own_sunk": 21,
-            "wins": 4
-          }
         },
         "history": [
           {
@@ -430,7 +202,6 @@
             "mean": 208.0793317075323
           }
         ],
-        "objective": "torpedo",
         "training": {
           "draws": 0,
           "friendly_fire": 1,
@@ -441,84 +212,6 @@
           "own_sunk": 10,
           "wins": 3
         },
-        "training_matches": [
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 0.554229797979798,
-            "candidate_side": "allies",
-            "candidate_sunk": 1,
-            "friendly_fire": 0,
-            "gun_events": 1430,
-            "hit_events": 694,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 386.20391414141415,
-            "seat": 0,
-            "seed": 6106,
-            "tick": 1028,
-            "torpedo_events": 10,
-            "torpedo_hits": 4,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.1571527777777778,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 322,
-            "hit_events": 207,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 440.99930555555557,
-            "seat": 1,
-            "seed": 6106,
-            "tick": 626,
-            "torpedo_events": 14,
-            "torpedo_hits": 4,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 1.0,
-            "candidate_side": "allies",
-            "candidate_sunk": 6,
-            "friendly_fire": 0,
-            "gun_events": 1107,
-            "hit_events": 531,
-            "opponent": "gunnery",
-            "opponent_damage": 0.7610147849462368,
-            "opponent_sunk": 4,
-            "score": -49.89852150537632,
-            "seat": 0,
-            "seed": 6107,
-            "tick": 1450,
-            "torpedo_events": 8,
-            "torpedo_hits": 3,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 0.6521639784946242,
-            "candidate_side": "axis",
-            "candidate_sunk": 3,
-            "friendly_fire": 1,
-            "gun_events": 643,
-            "hit_events": 376,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 355.3485215053763,
-            "seat": 1,
-            "seed": 6107,
-            "tick": 1873,
-            "torpedo_events": 22,
-            "torpedo_hits": 4,
-            "winner": "axis"
-          }
-        ],
         "validation": {
           "draws": 0,
           "friendly_fire": 2,
@@ -529,124 +222,22 @@
           "own_sunk": 17,
           "wins": 4
         },
-        "validation_matches": [
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.5833333333333334,
-            "candidate_side": "allies",
-            "candidate_sunk": 2,
-            "friendly_fire": 0,
-            "gun_events": 1205,
-            "hit_events": 538,
-            "opponent": "torpedo",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 366.1666666666667,
-            "seat": 0,
-            "seed": 6111,
-            "tick": 1044,
-            "torpedo_events": 9,
-            "torpedo_hits": 4,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.20914426523297502,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 385,
-            "hit_events": 251,
-            "opponent": "torpedo",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 439.35990143369173,
-            "seat": 1,
-            "seed": 6111,
-            "tick": 763,
-            "torpedo_events": 18,
-            "torpedo_hits": 3,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 1.0,
-            "candidate_side": "allies",
-            "candidate_sunk": 6,
-            "friendly_fire": 0,
-            "gun_events": 1537,
-            "hit_events": 753,
-            "opponent": "coord",
-            "opponent_damage": 0.5768914277180411,
-            "opponent_sunk": 3,
-            "score": -113.31085722819589,
-            "seat": 0,
-            "seed": 6112,
-            "tick": 1273,
-            "torpedo_events": 8,
-            "torpedo_hits": 1,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.2690359916367972,
-            "candidate_side": "axis",
-            "candidate_sunk": 1,
-            "friendly_fire": 1,
-            "gun_events": 485,
-            "hit_events": 324,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 372.1674805854242,
-            "seat": 1,
-            "seed": 6112,
-            "tick": 1004,
-            "torpedo_events": 12,
-            "torpedo_hits": 3,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 1.0,
-            "candidate_side": "allies",
-            "candidate_sunk": 6,
-            "friendly_fire": 0,
-            "gun_events": 1187,
-            "hit_events": 587,
-            "opponent": "gunnery",
-            "opponent_damage": 0.6096774193548387,
-            "opponent_sunk": 2,
-            "score": -132.03225806451613,
-            "seat": 0,
-            "seed": 6113,
-            "tick": 1142,
-            "torpedo_events": 9,
-            "torpedo_hits": 1,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.4711783154121857,
-            "candidate_side": "axis",
-            "candidate_sunk": 2,
-            "friendly_fire": 1,
-            "gun_events": 696,
-            "hit_events": 385,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 373.01751792114703,
-            "seat": 1,
-            "seed": 6113,
-            "tick": 1746,
-            "torpedo_events": 22,
-            "torpedo_hits": 3,
-            "winner": "axis"
+        "builtin_baseline": {
+          "profile": "torpedo",
+          "validation": {
+            "draws": 0,
+            "friendly_fire": 2,
+            "losses": 2,
+            "matches": 6,
+            "mean": 181.34674149650627,
+            "opponent_sunk": 28,
+            "own_sunk": 21,
+            "wins": 4
           }
-        ]
+        }
       },
       {
+        "objective": "gunnery",
         "anchor": {
           "coordination": 0.6,
           "crossfire": 0.5,
@@ -661,19 +252,6 @@
           "t_head": 0.95,
           "torp_angle": 70.0,
           "torp_fraction": 0.66
-        },
-        "builtin_baseline": {
-          "profile": "gunnery",
-          "validation": {
-            "draws": 0,
-            "friendly_fire": 3,
-            "losses": 4,
-            "matches": 6,
-            "mean": 1094.8852847848257,
-            "opponent_sunk": 17,
-            "own_sunk": 28,
-            "wins": 6
-          }
         },
         "history": [
           {
@@ -698,7 +276,6 @@
             "mean": 1677.9411551106948
           }
         ],
-        "objective": "gunnery",
         "training": {
           "draws": 0,
           "friendly_fire": 1,
@@ -709,84 +286,6 @@
           "own_sunk": 6,
           "wins": 4
         },
-        "training_matches": [
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 0.7126683501683502,
-            "candidate_side": "allies",
-            "candidate_sunk": 3,
-            "friendly_fire": 1,
-            "gun_events": 1279,
-            "hit_events": 652,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1990.1132154882155,
-            "seat": 0,
-            "seed": 6106,
-            "tick": 1125,
-            "torpedo_events": 9,
-            "torpedo_hits": 4,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.18499850657108732,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 319,
-            "hit_events": 216,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1012.0501045400239,
-            "seat": 1,
-            "seed": 6106,
-            "tick": 678,
-            "torpedo_events": 14,
-            "torpedo_hits": 4,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 0.8573547979797981,
-            "candidate_side": "allies",
-            "candidate_sunk": 2,
-            "friendly_fire": 0,
-            "gun_events": 2308,
-            "hit_events": 1136,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 3234.9851641414143,
-            "seat": 0,
-            "seed": 6107,
-            "tick": 2001,
-            "torpedo_events": 4,
-            "torpedo_hits": 2,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.27496639784946114,
-            "candidate_side": "axis",
-            "candidate_sunk": 1,
-            "friendly_fire": 0,
-            "gun_events": 1115,
-            "hit_events": 475,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1638.2523521505377,
-            "seat": 1,
-            "seed": 6107,
-            "tick": 2215,
-            "torpedo_events": 22,
-            "torpedo_hits": 1,
-            "winner": "axis"
-          }
-        ],
         "validation": {
           "draws": 0,
           "friendly_fire": 2,
@@ -797,132 +296,254 @@
           "own_sunk": 14,
           "wins": 6
         },
-        "validation_matches": [
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 0.8221170033670033,
-            "candidate_side": "allies",
-            "candidate_sunk": 4,
-            "friendly_fire": 1,
-            "gun_events": 1923,
-            "hit_events": 873,
-            "opponent": "torpedo",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 2519.95180976431,
-            "seat": 0,
-            "seed": 6111,
-            "tick": 2009,
-            "torpedo_events": 9,
-            "torpedo_hits": 3,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.3804360812425326,
-            "candidate_side": "axis",
-            "candidate_sunk": 1,
-            "friendly_fire": 1,
-            "gun_events": 405,
-            "hit_events": 260,
-            "opponent": "torpedo",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1063.3694743130227,
-            "seat": 1,
-            "seed": 6111,
-            "tick": 785,
-            "torpedo_events": 22,
-            "torpedo_hits": 4,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.3649831649831658,
-            "candidate_side": "allies",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 1215,
-            "hit_events": 554,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1844.4511784511783,
-            "seat": 0,
-            "seed": 6112,
-            "tick": 1003,
-            "torpedo_events": 10,
-            "torpedo_hits": 5,
-            "winner": "allies"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.6082638888888893,
-            "candidate_side": "axis",
-            "candidate_sunk": 3,
-            "friendly_fire": 0,
-            "gun_events": 450,
-            "hit_events": 277,
-            "opponent": "coord",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1089.9215277777778,
-            "seat": 1,
-            "seed": 6112,
-            "tick": 1215,
-            "torpedo_events": 8,
-            "torpedo_hits": 1,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 0.0,
-            "candidate_damage": 1.0,
-            "candidate_side": "allies",
-            "candidate_sunk": 6,
-            "friendly_fire": 0,
-            "gun_events": 1869,
-            "hit_events": 900,
-            "opponent": "gunnery",
-            "opponent_damage": 0.9058691756272405,
-            "opponent_sunk": 5,
-            "score": 2281.057571684588,
-            "seat": 0,
-            "seed": 6113,
-            "tick": 2325,
-            "torpedo_events": 7,
-            "torpedo_hits": 2,
-            "winner": "axis"
-          },
-          {
-            "candidate_cruiser_survival": 1.0,
-            "candidate_damage": 0.19009109916367933,
-            "candidate_side": "axis",
-            "candidate_sunk": 0,
-            "friendly_fire": 0,
-            "gun_events": 599,
-            "hit_events": 353,
-            "opponent": "gunnery",
-            "opponent_damage": 1.0,
-            "opponent_sunk": 6,
-            "score": 1354.1936230585425,
-            "seat": 1,
-            "seed": 6113,
-            "tick": 1422,
-            "torpedo_events": 21,
-            "torpedo_hits": 0,
-            "winner": "axis"
+        "builtin_baseline": {
+          "profile": "gunnery",
+          "validation": {
+            "draws": 0,
+            "friendly_fire": 3,
+            "losses": 4,
+            "matches": 6,
+            "mean": 1094.8852847848257,
+            "opponent_sunk": 17,
+            "own_sunk": 28,
+            "wins": 6
           }
-        ]
+        }
+      },
+      {
+        "objective": "brawler",
+        "anchor": {
+          "coordination": 0.45,
+          "crossfire": 0.35,
+          "flank": 38.0,
+          "focus": true,
+          "friendly_margin": 700.0,
+          "period": 85,
+          "range": 2600.0,
+          "screen": 0.15,
+          "speed": 31.0,
+          "spread": 0.3,
+          "t_head": 0.15,
+          "torp_angle": 55.0,
+          "torp_fraction": 0.92,
+          "withdraw_hp": 0.1
+        },
+        "history": [
+          {
+            "best": 1022.1322483911676,
+            "best_key": "evo:range=3030.0;flank=70.0;speed=30.5;torp_fraction=0.91;period=128;focus=0;withdraw_hp=0.12;coordination=0.08;crossfire=0.18;t_head=0.1;screen=0.1;spread=0.32;torp_angle=68.0;friendly_margin=1600.0",
+            "evaluated": 48,
+            "generation": 0,
+            "mean": 876.7907901540037
+          },
+          {
+            "best": 1022.1322483911676,
+            "best_key": "evo:range=3030.0;flank=70.0;speed=30.5;torp_fraction=0.91;period=128;focus=0;withdraw_hp=0.12;coordination=0.08;crossfire=0.18;t_head=0.07;screen=0.09;spread=0.37;torp_angle=68.0;friendly_margin=1600.0",
+            "evaluated": 52,
+            "generation": 1,
+            "mean": 940.4833724227028
+          },
+          {
+            "best": 1072.9753355123821,
+            "best_key": "evo:range=3030.0;flank=70.0;speed=30.0;torp_fraction=0.91;period=133;focus=0;withdraw_hp=0.12;coordination=0.08;crossfire=0.18;t_head=0.06;screen=0.1;spread=0.32;torp_angle=68.0;friendly_margin=1600.0",
+            "evaluated": 56,
+            "generation": 2,
+            "mean": 907.9197531005615
+          }
+        ],
+        "training": {
+          "draws": 0,
+          "friendly_fire": 2,
+          "losses": 1,
+          "matches": 4,
+          "mean": 1072.9753355123821,
+          "opponent_sunk": 21,
+          "own_sunk": 7,
+          "wins": 4
+        },
+        "validation": {
+          "draws": 0,
+          "friendly_fire": 0,
+          "losses": 2,
+          "matches": 6,
+          "mean": 822.0335183148691,
+          "opponent_sunk": 25,
+          "own_sunk": 15,
+          "wins": 4
+        },
+        "builtin_baseline": {
+          "profile": "torpedo",
+          "validation": {
+            "draws": 0,
+            "friendly_fire": 2,
+            "losses": 2,
+            "matches": 6,
+            "mean": 656.0253705287646,
+            "opponent_sunk": 28,
+            "own_sunk": 21,
+            "wins": 5
+          }
+        }
+      },
+      {
+        "objective": "kiter",
+        "anchor": {
+          "coordination": 0.55,
+          "crossfire": 0.65,
+          "flank": 58.0,
+          "focus": false,
+          "friendly_margin": 1500.0,
+          "period": 75,
+          "range": 8000.0,
+          "screen": 0.3,
+          "speed": 31.0,
+          "spread": 0.55,
+          "t_head": 0.4,
+          "torp_angle": 105.0,
+          "torp_fraction": 0.75,
+          "withdraw_hp": 0.36
+        },
+        "history": [
+          {
+            "best": 835.0543130274684,
+            "best_key": "evo:range=7630.0;flank=58.0;speed=32.0;torp_fraction=0.6900000000000001;period=95;focus=0;withdraw_hp=0.36;coordination=0.28;crossfire=0.56;t_head=0.75;screen=0.31;spread=0.66;torp_angle=98.0;friendly_margin=1050.0",
+            "evaluated": 62,
+            "generation": 0,
+            "mean": 734.3756735558526
+          },
+          {
+            "best": 835.0543130274684,
+            "best_key": "evo:range=7630.0;flank=58.0;speed=32.0;torp_fraction=0.6900000000000001;period=95;focus=0;withdraw_hp=0.36;coordination=0.28;crossfire=0.56;t_head=0.75;screen=0.31;spread=0.66;torp_angle=98.0;friendly_margin=1050.0",
+            "evaluated": 66,
+            "generation": 1,
+            "mean": 771.6101291158828
+          },
+          {
+            "best": 940.5185248958376,
+            "best_key": "evo:range=7630.0;flank=58.0;speed=32.0;torp_fraction=0.6900000000000001;period=100;focus=0;withdraw_hp=0.36;coordination=0.21;crossfire=0.63;t_head=0.7000000000000001;screen=0.32;spread=0.62;torp_angle=98.0;friendly_margin=950.0",
+            "evaluated": 70,
+            "generation": 2,
+            "mean": 831.179646417992
+          }
+        ],
+        "training": {
+          "draws": 0,
+          "friendly_fire": 2,
+          "losses": 2,
+          "matches": 4,
+          "mean": 940.5185248958376,
+          "opponent_sunk": 16,
+          "own_sunk": 14,
+          "wins": 3
+        },
+        "validation": {
+          "draws": 0,
+          "friendly_fire": 2,
+          "losses": 3,
+          "matches": 6,
+          "mean": 846.6409188855818,
+          "opponent_sunk": 23,
+          "own_sunk": 22,
+          "wins": 5
+        },
+        "builtin_baseline": {
+          "profile": "gunnery",
+          "validation": {
+            "draws": 0,
+            "friendly_fire": 3,
+            "losses": 4,
+            "matches": 6,
+            "mean": 234.29500869273224,
+            "opponent_sunk": 17,
+            "own_sunk": 28,
+            "wins": 4
+          }
+        }
+      },
+      {
+        "objective": "denial",
+        "anchor": {
+          "coordination": 0.95,
+          "crossfire": 0.6,
+          "flank": 60.0,
+          "focus": false,
+          "friendly_margin": 1600.0,
+          "period": 80,
+          "range": 5800.0,
+          "screen": 0.85,
+          "speed": 28.0,
+          "spread": 0.85,
+          "t_head": 0.3,
+          "torp_angle": 150.0,
+          "torp_fraction": 0.95
+        },
+        "history": [
+          {
+            "best": 1395.724141871541,
+            "best_key": "evo:range=6420.0;flank=58.0;speed=26.0;torp_fraction=0.9;period=101;focus=1;withdraw_hp=0.2;coordination=0.89;crossfire=0.85;t_head=0.27;screen=0.89;spread=0.67;torp_angle=148.0;friendly_margin=1700.0",
+            "evaluated": 76,
+            "generation": 0,
+            "mean": 1216.3908233929462
+          },
+          {
+            "best": 1427.1566197736784,
+            "best_key": "evo:range=6470.0;flank=79.5;speed=28.0;torp_fraction=0.95;period=122;focus=1;withdraw_hp=0.2;coordination=0.87;crossfire=0.96;t_head=0.47000000000000003;screen=0.75;spread=0.8;torp_angle=143.0;friendly_margin=1000.0",
+            "evaluated": 80,
+            "generation": 1,
+            "mean": 1293.9197261969932
+          },
+          {
+            "best": 1427.1566197736784,
+            "best_key": "evo:range=6470.0;flank=79.5;speed=28.0;torp_fraction=0.95;period=122;focus=1;withdraw_hp=0.2;coordination=0.87;crossfire=0.96;t_head=0.47000000000000003;screen=0.75;spread=0.8;torp_angle=143.0;friendly_margin=1000.0",
+            "evaluated": 84,
+            "generation": 2,
+            "mean": 1330.9874565323823
+          }
+        ],
+        "training": {
+          "draws": 0,
+          "friendly_fire": 1,
+          "losses": 2,
+          "matches": 4,
+          "mean": 1427.1566197736784,
+          "opponent_sunk": 15,
+          "own_sunk": 13,
+          "wins": 4
+        },
+        "validation": {
+          "draws": 0,
+          "friendly_fire": 0,
+          "losses": 1,
+          "matches": 6,
+          "mean": 1200.3221696531275,
+          "opponent_sunk": 31,
+          "own_sunk": 12,
+          "wins": 5
+        },
+        "builtin_baseline": {
+          "profile": "torpedo",
+          "validation": {
+            "draws": 0,
+            "friendly_fire": 2,
+            "losses": 2,
+            "matches": 6,
+            "mean": 831.0648328306156,
+            "opponent_sunk": 28,
+            "own_sunk": 21,
+            "wins": 6
+          }
+        }
       }
     ],
-    "durationMillis": 12173,
-    "fitnessSource": "ai_evolve::play: real headless World::advance matches on the same Rust core; no scripted or synthetic scores"
+    "fitnessSource": "ai_evolve::play_traced: real headless World::advance matches on the same Rust core; no scripted or synthetic scores",
+    "denialNote": "Denial fitness is a real geometric metric: a torpedo salvo's straight track must cover the enemy's current course projection inside a 450 m fan corridor, and the report also samples the enemy's observed 90 s course change after that coverage. It is not a hit count."
   },
   "profiles": [
     {
       "id": "evo-screen",
       "name": "帷幄 · 屏护协同",
       "role": "screen",
+      "basis": "ga",
       "description": "以屏护与交叉火力为主：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。",
       "params": {
         "coordination": 0.26,
@@ -940,6 +561,21 @@
         "torp_fraction": 0.9,
         "withdraw_hp": 0.2
       },
+      "genome": {
+        "coordination": 0.26,
+        "crossfire": 0.25,
+        "flank": 51.0,
+        "focus": true,
+        "friendly_margin": 1600.0,
+        "period": 101,
+        "range": 6000.0,
+        "screen": 0.31,
+        "speed": 22.0,
+        "spread": 0.38,
+        "t_head": 0.4,
+        "torp_angle": 156.0,
+        "torp_fraction": 0.9
+      },
       "seeds": [
         {
           "opponent": "coord",
@@ -968,13 +604,17 @@
         }
       ],
       "fitness": {
+        "objective": "screen",
+        "definition": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 40*己方巡洋存活率 + 20*(1-己损伤率)",
         "training_mean": 354.152506414956,
         "training_matches": 4,
         "validation_mean": 282.56642788774843,
         "validation_matches": 6,
+        "validation_wins": 5,
+        "validation_losses": 1,
+        "validation_draws": 0,
         "builtin_profile": "coord",
         "builtin_validation_mean": 50.170051319648074,
-        "better_than_builtin_validation": true,
         "delta_validation_mean": 232.39637656810035
       },
       "training": {
@@ -986,22 +626,78 @@
         "mutation": 0.35,
         "crossover": 0.6,
         "rng_seed": 6106,
-        "objective": "screen",
-        "time_limit_seconds": 2700,
-        "match_limit": 3,
-        "fitness": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 40*己方巡洋存活率 + 20*(1-己损伤率)"
+        "seats": [
+          0,
+          1
+        ],
+        "train": [
+          {
+            "opponent": "coord",
+            "seed": 6106
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6107
+          }
+        ],
+        "validation": [
+          {
+            "opponent": "torpedo",
+            "seed": 6111
+          },
+          {
+            "opponent": "coord",
+            "seed": 6112
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6113
+          }
+        ],
+        "history": [
+          {
+            "best": 354.152506414956,
+            "best_key": "evo:range=6000.0;flank=51.0;speed=22.0;torp_fraction=0.9;period=101;focus=1;withdraw_hp=0.2;coordination=0.26;crossfire=0.25;t_head=0.4;screen=0.31;spread=0.38;torp_angle=156.0;friendly_margin=1600.0",
+            "evaluated": 6,
+            "generation": 0,
+            "mean": 121.83354654293832
+          },
+          {
+            "best": 354.152506414956,
+            "best_key": "evo:range=6000.0;flank=51.0;speed=22.0;torp_fraction=0.9;period=101;focus=1;withdraw_hp=0.2;coordination=0.26;crossfire=0.25;t_head=0.4;screen=0.31;spread=0.38;torp_angle=156.0;friendly_margin=1600.0",
+            "evaluated": 10,
+            "generation": 1,
+            "mean": 240.7316288161634
+          },
+          {
+            "best": 354.152506414956,
+            "best_key": "evo:range=6000.0;flank=51.0;speed=22.0;torp_fraction=0.9;period=101;focus=1;withdraw_hp=0.2;coordination=0.26;crossfire=0.25;t_head=0.4;screen=0.31;spread=0.38;torp_angle=156.0;friendly_margin=1600.0",
+            "evaluated": 14,
+            "generation": 2,
+            "mean": 206.21320698868158
+          }
+        ]
       },
       "shop": {
         "unlock": "campaign:CAMP-ALLIES-02",
         "cost": 800,
         "currency": "recruit_ticket",
-        "state": "provisional"
+        "state": "provisional",
+        "role": "screen",
+        "fit": "验证 282.6 / 内置 coord 50.2（同 objective 6 场）",
+        "risk": "屏护分队被雷击队钉住时炮火会分散，收割慢。",
+        "axes": {
+          "range": "mid",
+          "maneuver": "screen",
+          "torpedo": "support"
+        }
       }
     },
     {
       "id": "evo-torpedo",
       "name": "夜潮 · 雷击突击",
       "role": "torpedo",
+      "basis": "ga",
       "description": "以雷击为主：分队分头绕向敌纵队侧翼，压缩距离后按侧舷角放雷，炮战只做压制。",
       "params": {
         "coordination": 0.75,
@@ -1019,6 +715,21 @@
         "torp_fraction": 0.9,
         "withdraw_hp": 0.2
       },
+      "genome": {
+        "coordination": 0.75,
+        "crossfire": 0.85,
+        "flank": 64.0,
+        "focus": false,
+        "friendly_margin": 900.0,
+        "period": 90,
+        "range": 3300.0,
+        "screen": 0.25,
+        "speed": 29.0,
+        "spread": 0.39,
+        "t_head": 0.3,
+        "torp_angle": 95.0,
+        "torp_fraction": 0.9
+      },
       "seeds": [
         {
           "opponent": "coord",
@@ -1047,13 +758,17 @@
         }
       ],
       "fitness": {
+        "objective": "torpedo",
+        "definition": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 10*鱼雷命中 + 3*鱼雷发射 + 30*敌损伤率",
         "training_mean": 283.1633049242424,
         "training_matches": 4,
         "validation_mean": 217.56140855236958,
         "validation_matches": 6,
+        "validation_wins": 4,
+        "validation_losses": 2,
+        "validation_draws": 0,
         "builtin_profile": "torpedo",
         "builtin_validation_mean": 181.34674149650627,
-        "better_than_builtin_validation": true,
         "delta_validation_mean": 36.214667055863316
       },
       "training": {
@@ -1065,22 +780,78 @@
         "mutation": 0.35,
         "crossover": 0.6,
         "rng_seed": 6106,
-        "objective": "torpedo",
-        "time_limit_seconds": 2700,
-        "match_limit": 3,
-        "fitness": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 10*鱼雷命中 + 3*鱼雷发射 + 30*敌损伤率"
+        "seats": [
+          0,
+          1
+        ],
+        "train": [
+          {
+            "opponent": "coord",
+            "seed": 6106
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6107
+          }
+        ],
+        "validation": [
+          {
+            "opponent": "torpedo",
+            "seed": 6111
+          },
+          {
+            "opponent": "coord",
+            "seed": 6112
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6113
+          }
+        ],
+        "history": [
+          {
+            "best": 266.72559363799286,
+            "best_key": "evo:range=3400.0;flank=64.0;speed=28.0;torp_fraction=0.9;period=95;focus=0;withdraw_hp=0.2;coordination=0.75;crossfire=0.85;t_head=0.3;screen=0.25;spread=0.5;torp_angle=90.0;friendly_margin=900.0",
+            "evaluated": 20,
+            "generation": 0,
+            "mean": 139.02586840911357
+          },
+          {
+            "best": 283.1633049242424,
+            "best_key": "evo:range=3300.0;flank=64.0;speed=29.0;torp_fraction=0.9;period=90;focus=0;withdraw_hp=0.2;coordination=0.75;crossfire=0.85;t_head=0.3;screen=0.25;spread=0.39;torp_angle=95.0;friendly_margin=900.0",
+            "evaluated": 24,
+            "generation": 1,
+            "mean": 192.98597353462947
+          },
+          {
+            "best": 283.1633049242424,
+            "best_key": "evo:range=3300.0;flank=64.0;speed=29.0;torp_fraction=0.9;period=90;focus=0;withdraw_hp=0.2;coordination=0.75;crossfire=0.85;t_head=0.3;screen=0.25;spread=0.39;torp_angle=95.0;friendly_margin=900.0",
+            "evaluated": 28,
+            "generation": 2,
+            "mean": 208.0793317075323
+          }
+        ]
       },
       "shop": {
         "unlock": "campaign:CAMP-ALLIES-03",
         "cost": 900,
         "currency": "recruit_ticket",
-        "state": "provisional"
+        "state": "provisional",
+        "role": "torpedo",
+        "fit": "验证 217.6 / 内置 torpedo 181.3（同 objective 6 场）",
+        "risk": "贴脸后吃交叉火力；雷未中时交换比差。",
+        "axes": {
+          "range": "near",
+          "maneuver": "brawl",
+          "torpedo": "direct"
+        }
       }
     },
     {
       "id": "evo-gunnery",
       "name": "铁幕 · 炮战纵队",
       "role": "gunnery",
+      "basis": "ga",
       "description": "以炮战为主：保持远距射界，优先抢占敌纵队的 T 头位置，用交叉火力分散其指挥。",
       "params": {
         "coordination": 0.37,
@@ -1098,6 +869,21 @@
         "torp_fraction": 0.7000000000000001,
         "withdraw_hp": 0.2
       },
+      "genome": {
+        "coordination": 0.37,
+        "crossfire": 0.54,
+        "flank": 55.5,
+        "focus": true,
+        "friendly_margin": 900.0,
+        "period": 84,
+        "range": 3110.0,
+        "screen": 0.17,
+        "speed": 20.0,
+        "spread": 0.9500000000000001,
+        "t_head": 0.7000000000000001,
+        "torp_angle": 61.0,
+        "torp_fraction": 0.7000000000000001
+      },
       "seeds": [
         {
           "opponent": "coord",
@@ -1126,13 +912,17 @@
         }
       ],
       "fitness": {
+        "objective": "gunnery",
+        "definition": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 2.5*炮击命中 + 25*敌损伤率 + 20*敌沉",
         "training_mean": 1968.850209080048,
         "training_matches": 4,
         "validation_mean": 1692.1575308415697,
         "validation_matches": 6,
+        "validation_wins": 5,
+        "validation_losses": 1,
+        "validation_draws": 0,
         "builtin_profile": "gunnery",
         "builtin_validation_mean": 1094.8852847848257,
-        "better_than_builtin_validation": true,
         "delta_validation_mean": 597.272246056744
       },
       "training": {
@@ -1144,16 +934,571 @@
         "mutation": 0.35,
         "crossover": 0.6,
         "rng_seed": 6106,
-        "objective": "gunnery",
-        "time_limit_seconds": 2700,
-        "match_limit": 3,
-        "fitness": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 2.5*炮击命中 + 25*敌损伤率 + 20*敌沉"
+        "seats": [
+          0,
+          1
+        ],
+        "train": [
+          {
+            "opponent": "coord",
+            "seed": 6106
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6107
+          }
+        ],
+        "validation": [
+          {
+            "opponent": "torpedo",
+            "seed": 6111
+          },
+          {
+            "opponent": "coord",
+            "seed": 6112
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6113
+          }
+        ],
+        "history": [
+          {
+            "best": 1730.7326931953949,
+            "best_key": "evo:range=4260.0;flank=54.5;speed=20.0;torp_fraction=0.87;period=104;focus=0;withdraw_hp=0.2;coordination=0.4;crossfire=0.81;t_head=0.93;screen=0.5700000000000001;spread=0.85;torp_angle=153.0;friendly_margin=1400.0",
+            "evaluated": 34,
+            "generation": 0,
+            "mean": 1416.0991594229708
+          },
+          {
+            "best": 1968.850209080048,
+            "best_key": "evo:range=3110.0;flank=55.5;speed=20.0;torp_fraction=0.7000000000000001;period=84;focus=1;withdraw_hp=0.2;coordination=0.37;crossfire=0.54;t_head=0.7000000000000001;screen=0.19;spread=0.9500000000000001;torp_angle=64.0;friendly_margin=850.0",
+            "evaluated": 38,
+            "generation": 1,
+            "mean": 1424.5161798314691
+          },
+          {
+            "best": 1968.850209080048,
+            "best_key": "evo:range=3110.0;flank=55.5;speed=20.0;torp_fraction=0.7000000000000001;period=84;focus=1;withdraw_hp=0.2;coordination=0.37;crossfire=0.54;t_head=0.7000000000000001;screen=0.17;spread=0.9500000000000001;torp_angle=61.0;friendly_margin=900.0",
+            "evaluated": 42,
+            "generation": 2,
+            "mean": 1677.9411551106948
+          }
+        ]
       },
       "shop": {
         "unlock": "campaign:CAMP-ALLIES-11",
         "cost": 1000,
         "currency": "recruit_ticket",
-        "state": "provisional"
+        "state": "provisional",
+        "role": "gunnery",
+        "fit": "验证 1692.2 / 内置 gunnery 1094.9（同 objective 6 场）",
+        "risk": "被高速雷击队贴到 3 km 内时射界与装填吃亏。",
+        "axes": {
+          "range": "far",
+          "maneuver": "screen",
+          "torpedo": "support"
+        }
+      }
+    },
+    {
+      "id": "evo-brawler",
+      "name": "绞肉 · 近战乱斗",
+      "role": "brawler",
+      "basis": "ga",
+      "description": "以近距乱战为主：高航速贴脸，压缩到 3 公里内炮雷混战，低撤退阈值。",
+      "params": {
+        "coordination": 0.08,
+        "crossfire": 0.18,
+        "flank": 70.0,
+        "focus": false,
+        "friendly_margin": 1600.0,
+        "period": 133,
+        "range": 3030.0,
+        "screen": 0.1,
+        "speed": 30.0,
+        "spread": 0.32,
+        "t_head": 0.06,
+        "torp_angle": 68.0,
+        "torp_fraction": 0.91,
+        "withdraw_hp": 0.12
+      },
+      "genome": {
+        "coordination": 0.08,
+        "crossfire": 0.18,
+        "flank": 70.0,
+        "focus": false,
+        "friendly_margin": 1600.0,
+        "period": 133,
+        "range": 3030.0,
+        "screen": 0.1,
+        "speed": 30.0,
+        "spread": 0.32,
+        "t_head": 0.06,
+        "torp_angle": 68.0,
+        "torp_fraction": 0.91,
+        "withdraw_hp": 0.12
+      },
+      "seeds": [
+        {
+          "opponent": "coord",
+          "seed": 6106,
+          "split": "training"
+        },
+        {
+          "opponent": "gunnery",
+          "seed": 6107,
+          "split": "training"
+        },
+        {
+          "opponent": "torpedo",
+          "seed": 6111,
+          "split": "validation"
+        },
+        {
+          "opponent": "coord",
+          "seed": 6112,
+          "split": "validation"
+        },
+        {
+          "opponent": "gunnery",
+          "seed": 6113,
+          "split": "validation"
+        }
+      ],
+      "fitness": {
+        "objective": "brawler",
+        "definition": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 1.5*3km内实伤 + 0.3*3km内接敌秒 + 50*敌沉",
+        "training_mean": 1072.9753355123821,
+        "training_matches": 4,
+        "validation_mean": 822.0335183148691,
+        "validation_matches": 6,
+        "validation_wins": 4,
+        "validation_losses": 2,
+        "validation_draws": 0,
+        "builtin_profile": "torpedo",
+        "builtin_validation_mean": 656.0253705287646,
+        "delta_validation_mean": 166.00814778610447
+      },
+      "training": {
+        "schema": "cas-ai-training-v1",
+        "arena": "fictional-training-2x2",
+        "population": 6,
+        "generations": 3,
+        "elitism": 2,
+        "mutation": 0.35,
+        "crossover": 0.6,
+        "rng_seed": 6106,
+        "seats": [
+          0,
+          1
+        ],
+        "train": [
+          {
+            "opponent": "coord",
+            "seed": 6106
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6107
+          }
+        ],
+        "validation": [
+          {
+            "opponent": "torpedo",
+            "seed": 6111
+          },
+          {
+            "opponent": "coord",
+            "seed": 6112
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6113
+          }
+        ],
+        "history": [
+          {
+            "best": 1022.1322483911676,
+            "best_key": "evo:range=3030.0;flank=70.0;speed=30.5;torp_fraction=0.91;period=128;focus=0;withdraw_hp=0.12;coordination=0.08;crossfire=0.18;t_head=0.1;screen=0.1;spread=0.32;torp_angle=68.0;friendly_margin=1600.0",
+            "evaluated": 48,
+            "generation": 0,
+            "mean": 876.7907901540037
+          },
+          {
+            "best": 1022.1322483911676,
+            "best_key": "evo:range=3030.0;flank=70.0;speed=30.5;torp_fraction=0.91;period=128;focus=0;withdraw_hp=0.12;coordination=0.08;crossfire=0.18;t_head=0.07;screen=0.09;spread=0.37;torp_angle=68.0;friendly_margin=1600.0",
+            "evaluated": 52,
+            "generation": 1,
+            "mean": 940.4833724227028
+          },
+          {
+            "best": 1072.9753355123821,
+            "best_key": "evo:range=3030.0;flank=70.0;speed=30.0;torp_fraction=0.91;period=133;focus=0;withdraw_hp=0.12;coordination=0.08;crossfire=0.18;t_head=0.06;screen=0.1;spread=0.32;torp_angle=68.0;friendly_margin=1600.0",
+            "evaluated": 56,
+            "generation": 2,
+            "mean": 907.9197531005615
+          }
+        ]
+      },
+      "shop": {
+        "unlock": "campaign:CAMP-ALLIES-05",
+        "cost": 900,
+        "currency": "recruit_ticket",
+        "state": "provisional",
+        "role": "brawler",
+        "fit": "验证 822.0 / 内置 torpedo 656.0（3 km 内实伤与接敌秒）",
+        "risk": "被远距风筝时打不到人；低撤退阈值会硬吃损伤。",
+        "axes": {
+          "range": "near",
+          "maneuver": "brawl",
+          "torpedo": "direct"
+        }
+      },
+      "doctrine_metrics": {
+        "close_damage_mean": 345.41999999999996,
+        "close_ticks_mean": 244.4,
+        "far_damage_mean": 85.11666666666667,
+        "range_keep_ratio_mean": 0.5459855510546302,
+        "denial_coverage_mean": 28.333333333333332,
+        "denial_threats_mean": 4.833333333333333,
+        "denial_turn_degrees_mean": 505.60063983698836,
+        "denial_fan_degrees_mean": 54.08736103963648,
+        "torpedo_launches_mean": 12.0,
+        "source": "fitness.validation_matches（同一次 headless 对局）"
+      }
+    },
+    {
+      "id": "evo-kiter",
+      "name": "拖刀 · 远距风筝",
+      "role": "kiter",
+      "basis": "ga",
+      "description": "以远距风筝为主：保持 6 公里外射界，边打边退维持射程边缘，高撤退阈值。",
+      "params": {
+        "coordination": 0.21,
+        "crossfire": 0.63,
+        "flank": 58.0,
+        "focus": false,
+        "friendly_margin": 950.0,
+        "period": 100,
+        "range": 7630.0,
+        "screen": 0.32,
+        "speed": 32.0,
+        "spread": 0.62,
+        "t_head": 0.7000000000000001,
+        "torp_angle": 98.0,
+        "torp_fraction": 0.6900000000000001,
+        "withdraw_hp": 0.36
+      },
+      "genome": {
+        "coordination": 0.21,
+        "crossfire": 0.63,
+        "flank": 58.0,
+        "focus": false,
+        "friendly_margin": 950.0,
+        "period": 100,
+        "range": 7630.0,
+        "screen": 0.32,
+        "speed": 32.0,
+        "spread": 0.62,
+        "t_head": 0.7000000000000001,
+        "torp_angle": 98.0,
+        "torp_fraction": 0.6900000000000001,
+        "withdraw_hp": 0.36
+      },
+      "seeds": [
+        {
+          "opponent": "coord",
+          "seed": 6106,
+          "split": "training"
+        },
+        {
+          "opponent": "gunnery",
+          "seed": 6107,
+          "split": "training"
+        },
+        {
+          "opponent": "torpedo",
+          "seed": 6111,
+          "split": "validation"
+        },
+        {
+          "opponent": "coord",
+          "seed": 6112,
+          "split": "validation"
+        },
+        {
+          "opponent": "gunnery",
+          "seed": 6113,
+          "split": "validation"
+        }
+      ],
+      "fitness": {
+        "objective": "kiter",
+        "definition": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 1.5*6km外实伤 + 150*射程维持率 + 60*(1-己损伤率) + 40*巡洋存活率",
+        "training_mean": 940.5185248958376,
+        "training_matches": 4,
+        "validation_mean": 846.6409188855818,
+        "validation_matches": 6,
+        "validation_wins": 3,
+        "validation_losses": 3,
+        "validation_draws": 0,
+        "builtin_profile": "gunnery",
+        "builtin_validation_mean": 234.29500869273224,
+        "delta_validation_mean": 612.3459101928495
+      },
+      "training": {
+        "schema": "cas-ai-training-v1",
+        "arena": "fictional-training-2x2",
+        "population": 6,
+        "generations": 3,
+        "elitism": 2,
+        "mutation": 0.35,
+        "crossover": 0.6,
+        "rng_seed": 6106,
+        "seats": [
+          0,
+          1
+        ],
+        "train": [
+          {
+            "opponent": "coord",
+            "seed": 6106
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6107
+          }
+        ],
+        "validation": [
+          {
+            "opponent": "torpedo",
+            "seed": 6111
+          },
+          {
+            "opponent": "coord",
+            "seed": 6112
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6113
+          }
+        ],
+        "history": [
+          {
+            "best": 835.0543130274684,
+            "best_key": "evo:range=7630.0;flank=58.0;speed=32.0;torp_fraction=0.6900000000000001;period=95;focus=0;withdraw_hp=0.36;coordination=0.28;crossfire=0.56;t_head=0.75;screen=0.31;spread=0.66;torp_angle=98.0;friendly_margin=1050.0",
+            "evaluated": 62,
+            "generation": 0,
+            "mean": 734.3756735558526
+          },
+          {
+            "best": 835.0543130274684,
+            "best_key": "evo:range=7630.0;flank=58.0;speed=32.0;torp_fraction=0.6900000000000001;period=95;focus=0;withdraw_hp=0.36;coordination=0.28;crossfire=0.56;t_head=0.75;screen=0.31;spread=0.66;torp_angle=98.0;friendly_margin=1050.0",
+            "evaluated": 66,
+            "generation": 1,
+            "mean": 771.6101291158828
+          },
+          {
+            "best": 940.5185248958376,
+            "best_key": "evo:range=7630.0;flank=58.0;speed=32.0;torp_fraction=0.6900000000000001;period=100;focus=0;withdraw_hp=0.36;coordination=0.21;crossfire=0.63;t_head=0.7000000000000001;screen=0.32;spread=0.62;torp_angle=98.0;friendly_margin=950.0",
+            "evaluated": 70,
+            "generation": 2,
+            "mean": 831.179646417992
+          }
+        ]
+      },
+      "shop": {
+        "unlock": "campaign:CAMP-ALLIES-11",
+        "cost": 1100,
+        "currency": "recruit_ticket",
+        "state": "provisional",
+        "role": "kiter",
+        "fit": "验证 846.6 / 内置 gunnery 234.3（6 km 外实伤与射程维持）",
+        "risk": "被迫近身后射程优势消失，且高撤退会放弃部分战果。",
+        "axes": {
+          "range": "far",
+          "maneuver": "kite",
+          "torpedo": "support"
+        }
+      },
+      "doctrine_metrics": {
+        "close_damage_mean": 112.80000000000008,
+        "close_ticks_mean": 128.0,
+        "far_damage_mean": 437.36666666666656,
+        "range_keep_ratio_mean": 0.7915062072127865,
+        "denial_coverage_mean": 28.75,
+        "denial_threats_mean": 5.75,
+        "denial_turn_degrees_mean": 538.2500610757104,
+        "denial_fan_degrees_mean": 47.62323575490878,
+        "torpedo_launches_mean": 13.5,
+        "source": "fitness.validation_matches（同一次 headless 对局）"
+      }
+    },
+    {
+      "id": "evo-denial",
+      "name": "雷网 · 封走位",
+      "role": "denial",
+      "basis": "ga",
+      "description": "以鱼雷扇面封走位为主：高雷击占比、宽扇面与屏护协同，目标不是命中而是逼敌转向。",
+      "params": {
+        "coordination": 0.87,
+        "crossfire": 0.96,
+        "flank": 79.5,
+        "focus": true,
+        "friendly_margin": 1000.0,
+        "period": 122,
+        "range": 6470.0,
+        "screen": 0.75,
+        "speed": 28.0,
+        "spread": 0.8,
+        "t_head": 0.47000000000000003,
+        "torp_angle": 143.0,
+        "torp_fraction": 0.95,
+        "withdraw_hp": 0.2
+      },
+      "genome": {
+        "coordination": 0.87,
+        "crossfire": 0.96,
+        "flank": 79.5,
+        "focus": true,
+        "friendly_margin": 1000.0,
+        "period": 122,
+        "range": 6470.0,
+        "screen": 0.75,
+        "speed": 28.0,
+        "spread": 0.8,
+        "t_head": 0.47000000000000003,
+        "torp_angle": 143.0,
+        "torp_fraction": 0.95
+      },
+      "seeds": [
+        {
+          "opponent": "coord",
+          "seed": 6106,
+          "split": "training"
+        },
+        {
+          "opponent": "gunnery",
+          "seed": 6107,
+          "split": "training"
+        },
+        {
+          "opponent": "torpedo",
+          "seed": 6111,
+          "split": "validation"
+        },
+        {
+          "opponent": "coord",
+          "seed": 6112,
+          "split": "validation"
+        },
+        {
+          "opponent": "gunnery",
+          "seed": 6113,
+          "split": "validation"
+        }
+      ],
+      "fitness": {
+        "objective": "denial",
+        "definition": "120*win + 25*敌沉 - 15*己沉 + 70*(敌损伤率-己损伤率) - 30*友军误击 + 30*扇面覆盖预定航路 + 10*被覆盖敌舰 + 0.6*威胁后90秒转向度 + 0.5*扇面宽度 + 2*鱼雷发射 + 8*鱼雷命中",
+        "training_mean": 1427.1566197736784,
+        "training_matches": 4,
+        "validation_mean": 1200.3221696531275,
+        "validation_matches": 6,
+        "validation_wins": 5,
+        "validation_losses": 1,
+        "validation_draws": 0,
+        "builtin_profile": "torpedo",
+        "builtin_validation_mean": 831.0648328306156,
+        "delta_validation_mean": 369.2573368225119
+      },
+      "training": {
+        "schema": "cas-ai-training-v1",
+        "arena": "fictional-training-2x2",
+        "population": 6,
+        "generations": 3,
+        "elitism": 2,
+        "mutation": 0.35,
+        "crossover": 0.6,
+        "rng_seed": 6106,
+        "seats": [
+          0,
+          1
+        ],
+        "train": [
+          {
+            "opponent": "coord",
+            "seed": 6106
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6107
+          }
+        ],
+        "validation": [
+          {
+            "opponent": "torpedo",
+            "seed": 6111
+          },
+          {
+            "opponent": "coord",
+            "seed": 6112
+          },
+          {
+            "opponent": "gunnery",
+            "seed": 6113
+          }
+        ],
+        "history": [
+          {
+            "best": 1395.724141871541,
+            "best_key": "evo:range=6420.0;flank=58.0;speed=26.0;torp_fraction=0.9;period=101;focus=1;withdraw_hp=0.2;coordination=0.89;crossfire=0.85;t_head=0.27;screen=0.89;spread=0.67;torp_angle=148.0;friendly_margin=1700.0",
+            "evaluated": 76,
+            "generation": 0,
+            "mean": 1216.3908233929462
+          },
+          {
+            "best": 1427.1566197736784,
+            "best_key": "evo:range=6470.0;flank=79.5;speed=28.0;torp_fraction=0.95;period=122;focus=1;withdraw_hp=0.2;coordination=0.87;crossfire=0.96;t_head=0.47000000000000003;screen=0.75;spread=0.8;torp_angle=143.0;friendly_margin=1000.0",
+            "evaluated": 80,
+            "generation": 1,
+            "mean": 1293.9197261969932
+          },
+          {
+            "best": 1427.1566197736784,
+            "best_key": "evo:range=6470.0;flank=79.5;speed=28.0;torp_fraction=0.95;period=122;focus=1;withdraw_hp=0.2;coordination=0.87;crossfire=0.96;t_head=0.47000000000000003;screen=0.75;spread=0.8;torp_angle=143.0;friendly_margin=1000.0",
+            "evaluated": 84,
+            "generation": 2,
+            "mean": 1330.9874565323823
+          }
+        ]
+      },
+      "shop": {
+        "unlock": "campaign:CAMP-ALLIES-10",
+        "cost": 1200,
+        "currency": "recruit_ticket",
+        "state": "provisional",
+        "role": "denial",
+        "fit": "验证 1200.3 / 内置 torpedo 831.1（扇面覆盖预定航路与威胁后转向）",
+        "risk": "封走位不直接转化为命中，单舰收割能力弱。",
+        "axes": {
+          "range": "mid",
+          "maneuver": "screen",
+          "torpedo": "deny"
+        }
+      },
+      "doctrine_metrics": {
+        "close_damage_mean": 68.5999999999999,
+        "close_ticks_mean": 438.0,
+        "far_damage_mean": 336.283333333333,
+        "range_keep_ratio_mean": 0.7305471372306979,
+        "denial_coverage_mean": 22.833333333333332,
+        "denial_threats_mean": 4.666666666666667,
+        "denial_turn_degrees_mean": 360.60978520974686,
+        "denial_fan_degrees_mean": 35.146214139385116,
+        "torpedo_launches_mean": 10.833333333333334,
+        "source": "fitness.validation_matches（同一次 headless 对局）"
       }
     }
   ],
@@ -1162,192 +1507,255 @@
     "source": "data/ai/evolved.json",
     "state": "provisional",
     "currency": "recruit_ticket",
-    "catalogChanged": false,
-    "harborChanged": false,
+    "catalog": "server/catalog.json",
+    "client": "client/src/ai-shop.ts",
     "profiles": [
       {
         "id": "evo-screen",
         "name": "帷幄 · 屏护协同",
-        "description": "以屏护与交叉火力为主：驱逐分队卡在敌雷击队与主力之间，炮战保持射界并抢 T 头。",
-        "unlock": "campaign:CAMP-ALLIES-02",
         "cost": 800,
         "currency": "recruit_ticket",
-        "state": "provisional"
+        "unlock": "campaign:CAMP-ALLIES-02",
+        "stageName": "埃斯佩兰斯角",
+        "provisional": true
       },
       {
         "id": "evo-torpedo",
         "name": "夜潮 · 雷击突击",
-        "description": "以雷击为主：分队分头绕向敌纵队侧翼，压缩距离后按侧舷角放雷，炮战只做压制。",
-        "unlock": "campaign:CAMP-ALLIES-03",
         "cost": 900,
         "currency": "recruit_ticket",
-        "state": "provisional"
+        "unlock": "campaign:CAMP-ALLIES-03",
+        "stageName": "圣乔治角",
+        "provisional": true
       },
       {
         "id": "evo-gunnery",
         "name": "铁幕 · 炮战纵队",
-        "description": "以炮战为主：保持远距射界，优先抢占敌纵队的 T 头位置，用交叉火力分散其指挥。",
-        "unlock": "campaign:CAMP-ALLIES-11",
         "cost": 1000,
         "currency": "recruit_ticket",
-        "state": "provisional"
+        "unlock": "campaign:CAMP-ALLIES-11",
+        "stageName": "奥古斯塔皇后湾",
+        "provisional": true
+      },
+      {
+        "id": "evo-brawler",
+        "name": "绞肉 · 近战乱斗",
+        "cost": 900,
+        "currency": "recruit_ticket",
+        "unlock": "campaign:CAMP-ALLIES-05",
+        "stageName": "塔萨法隆格",
+        "provisional": true
+      },
+      {
+        "id": "evo-kiter",
+        "name": "拖刀 · 远距风筝",
+        "cost": 1100,
+        "currency": "recruit_ticket",
+        "unlock": "campaign:CAMP-ALLIES-11",
+        "stageName": "奥古斯塔皇后湾",
+        "provisional": true
+      },
+      {
+        "id": "evo-denial",
+        "name": "雷网 · 封走位",
+        "cost": 1200,
+        "currency": "recruit_ticket",
+        "unlock": "campaign:CAMP-ALLIES-10",
+        "stageName": "萨沃岛",
+        "provisional": true
       }
-    ]
+    ],
+    "unlockSubstitution": {
+      "requested": "CAMP-ALLIES-06",
+      "status": "archived crosswalk only (Second Battle of Guadalcanal); no runnable runtime",
+      "used": "CAMP-ALLIES-11（奥古斯塔皇后湾）",
+      "reason": "the batch allows replacing a missing stage with an existing playable stage; the substitution is recorded here"
+    }
   },
   "tests": {
-    "cargoTestReleaseLocked": {
+    "cargo": {
       "command": "cargo test --release --locked",
-      "tests": 121,
-      "passed": 121,
-      "failed": 0,
-      "ignored": 0
-    },
-    "aiOnly": {
-      "command": "cargo test --release --locked ai::tests::",
-      "passed": 10,
+      "tests": 123,
+      "passed": 123,
       "failed": 0
     },
-    "wasmBuild": {
-      "command": "cargo build --target wasm32-unknown-unknown --release --locked --lib",
-      "ok": true
+    "server": {
+      "command": "CAS_TEST_SIM_PATH/CAS_TEST_DUEL_SIM_PATH=target/release/cas-sim.exe python -m unittest server.test_accounts server.test_account_progression server.test_battle_pve server.test_fleets server.test_ranked server.test_duels",
+      "tests": 34,
+      "passed": 34,
+      "failed": 0
+    },
+    "typescript": {
+      "command": "cd client; node node_modules/typescript/bin/tsc --noEmit -p .",
+      "passed": true
+    },
+    "viteBuild": {
+      "command": "cd client; node node_modules/vite/bin/vite.js build",
+      "passed": true,
+      "warning": "existing chunk-size warning only"
+    },
+    "newDoctrineEvidence": {
+      "cas-sim-evo-brawler-6106.json": {
+        "seed": 6106,
+        "candidate": "evo-brawler",
+        "opponent": "coord",
+        "result": {
+          "allies": 5,
+          "axis": 3,
+          "winner": "allies"
+        },
+        "tick": 2168,
+        "replayMatches": true,
+        "saveSha256": "0baa5e0291dba80c4fb635c458d1074872d5beae3321c16ed9bbf4d113b12b10"
+      },
+      "cas-sim-evo-denial-6111.json": {
+        "seed": 6111,
+        "candidate": "evo-denial",
+        "opponent": "torpedo",
+        "result": {
+          "allies": 5,
+          "axis": 2,
+          "winner": "allies"
+        },
+        "tick": 2359,
+        "replayMatches": true,
+        "saveSha256": "e1d719d03c9e14a3affac3dc58b33e0d80cbcde9f93394f12ac5fb0bbb88c44e"
+      },
+      "cas-sim-evo-kiter-6112.json": {
+        "seed": 6112,
+        "candidate": "evo-kiter",
+        "opponent": "gunnery",
+        "result": {
+          "allies": 3,
+          "axis": 0,
+          "winner": "allies"
+        },
+        "tick": 2708,
+        "replayMatches": true,
+        "saveSha256": "d403167fb992336739b4071aed292e014e940513cca757e0f13ed11a277664c0"
+      }
     },
     "nativeWasmParity": {
-      "command": "node scripts/build-parity.mjs target/release/cas-sim.exe target/wasm32-unknown-unknown/release/cas_core.wasm",
-      "runs": 21,
+      "runs": 24,
       "nativeWasmCanonicalMatch": true,
       "replayMatch": true,
-      "wasmSha256": "E486461F947C6AC3F5A5E66E591F63D1F3C16BC05FF9744AD74BBA678C49A402",
-      "wasmBytes": 3558262
+      "doctrineRuns": [
+        {
+          "profile": "evo-brawler",
+          "seed": 6106,
+          "result": {
+            "allies": 5,
+            "axis": 3,
+            "winner": "allies"
+          }
+        },
+        {
+          "profile": "evo-kiter",
+          "seed": 6112,
+          "result": {
+            "allies": 3,
+            "axis": 0,
+            "winner": "allies"
+          }
+        },
+        {
+          "profile": "evo-denial",
+          "seed": 6111,
+          "result": {
+            "allies": 5,
+            "axis": 2,
+            "winner": "allies"
+          }
+        }
+      ],
+      "wasmSha256": "27406A90C5CA8AFFE5BE9C55AE4A6778303D36B1B4D69CF71F591A266E696C5C",
+      "wasmBytes": 3602934,
+      "evidence": "data/ai/evidence/native-wasm-parity.json"
     }
   },
   "evidence": {
-    "cas-sim-evo-gunnery-6106.json": {
-      "result": {
-        "allies": 5,
-        "axis": 2,
-        "winner": "allies"
+    "newDoctrine": {
+      "cas-sim-evo-brawler-6106.json": {
+        "seed": 6106,
+        "candidate": "evo-brawler",
+        "opponent": "coord",
+        "result": {
+          "allies": 5,
+          "axis": 3,
+          "winner": "allies"
+        },
+        "tick": 2168,
+        "replayMatches": true,
+        "saveSha256": "0baa5e0291dba80c4fb635c458d1074872d5beae3321c16ed9bbf4d113b12b10"
       },
-      "tick": 2617,
-      "replayMatches": true,
-      "candidate": "evo-gunnery",
-      "opponent": "coord"
-    },
-    "cas-sim-evo-screen-6106.json": {
-      "result": {
-        "allies": 5,
-        "axis": 1,
-        "winner": "allies"
+      "cas-sim-evo-denial-6111.json": {
+        "seed": 6111,
+        "candidate": "evo-denial",
+        "opponent": "torpedo",
+        "result": {
+          "allies": 5,
+          "axis": 2,
+          "winner": "allies"
+        },
+        "tick": 2359,
+        "replayMatches": true,
+        "saveSha256": "e1d719d03c9e14a3affac3dc58b33e0d80cbcde9f93394f12ac5fb0bbb88c44e"
       },
-      "tick": 2348,
-      "replayMatches": true,
-      "candidate": "evo-screen",
-      "opponent": "torpedo"
-    },
-    "cas-sim-evo-torpedo-6106.json": {
-      "result": {
-        "allies": 5,
-        "axis": 4,
-        "winner": "allies"
-      },
-      "tick": 2528,
-      "replayMatches": true,
-      "candidate": "evo-torpedo",
-      "opponent": "coord"
-    },
-    "duel-evo-gunnery-6106.json": {
-      "result": {
-        "allies": 6,
-        "axis": 3,
-        "winner": "allies"
-      },
-      "tick": 1125,
-      "profile": "evo-gunnery",
-      "events": {
-        "gun": 1674,
-        "hit": 873,
-        "torpedo": 27,
-        "torpedo_hit": 7
-      },
-      "sunk": {
-        "allies": 3,
-        "axis": 6
+      "cas-sim-evo-kiter-6112.json": {
+        "seed": 6112,
+        "candidate": "evo-kiter",
+        "opponent": "gunnery",
+        "result": {
+          "allies": 3,
+          "axis": 0,
+          "winner": "allies"
+        },
+        "tick": 2708,
+        "replayMatches": true,
+        "saveSha256": "d403167fb992336739b4071aed292e014e940513cca757e0f13ed11a277664c0"
       }
     },
-    "duel-evo-screen-6106.json": {
-      "result": {
-        "allies": 6,
-        "axis": 1,
-        "winner": "allies"
-      },
-      "tick": 1312,
-      "profile": "evo-screen",
-      "events": {
-        "gun": 1997,
-        "hit": 943,
-        "torpedo": 26,
-        "torpedo_hit": 9
-      },
-      "sunk": {
-        "allies": 1,
-        "axis": 6
-      }
-    },
-    "duel-evo-torpedo-6106.json": {
-      "result": {
-        "allies": 6,
-        "axis": 1,
-        "winner": "allies"
-      },
-      "tick": 1028,
-      "profile": "evo-torpedo",
-      "events": {
-        "gun": 1761,
-        "hit": 869,
-        "torpedo": 26,
-        "torpedo_hit": 8
-      },
-      "sunk": {
-        "allies": 1,
-        "axis": 6
-      }
-    },
-    "native-wasm-parity.json": {
-      "ok": true,
-      "nativeWasmCanonicalMatch": true,
-      "replayMatch": true,
-      "runs": 21,
-      "wasmSha256": "E486461F947C6AC3F5A5E66E591F63D1F3C16BC05FF9744AD74BBA678C49A402",
-      "wasmBytes": 3558262
-    }
+    "parity": "data/ai/evidence/native-wasm-parity.json"
   },
-  "casSimNote": "cas-sim now accepts shipped evolved profiles through the authorized one-line Ai::validate extension; builtin coord/gunnery/torpedo validation is unchanged (matches! short-circuits first).",
   "limitations": [
-    "friendly_margin is retained in the style/genome schema and its gun-lane/torpedo-guard helpers are unit tested, but the current evolved firing base delegates to the builtin engine guard, so this gene does not yet score gameplay. No fitness claim relies on it.",
-    "The paused side_gun_plan/side_torp_plan fire-allocation prototypes remain as dead code (retained for the next iteration); the shipped evolved path uses builtin per-ship targeting plus role-aware routes.",
-    "spread is active only as a small formation-dispersal term in route scoring (weight 3), not as a fire-allocation gene.",
-    "data/ai/builtin-baseline.json full-match hashes had to be re-recorded because the old values do not reproduce from HEAD src/ai.rs; the old values are preserved in previousHashes.",
-    "Shop merge manifest is provisional; server/catalog and Harbor were not changed. Unlock keys reference campaign stages but are not consumed yet.",
-    "Evolved profiles are selectable through the engine profile key (and cas-sim/trainer), but no lobby/Harbor UI entry was added in this batch."
+    "Denial measures coverage of the enemy's current course projection inside a 450 m corridor; it does not model the enemy's full intent or future manoeuvres. The observed 90 s course change is reported as behaviour, not as a scripted reward.",
+    "Brawler and kiter damage attribution uses the nearest candidate hull to the impact point when a tick has multiple hits; this is a real observed proxy, not an exact per-shooter ledger.",
+    "Kiter can hold outside torpedo range and fight with guns only; its objective therefore rewards 6 km+ damage, 6 km+ range keeping and survival rather than torpedo launches.",
+    "All six evolved storefront entries remain provisional; prices are 800/900/1000/900/1100/1200 recruit tickets and are not a balance claim.",
+    "CAMP-ALLIES-06 exists only as an archived crosswalk entry with no runnable runtime; the kiter unlock uses CAMP-ALLIES-11 and the substitution is recorded in shop.unlockSubstitution.",
+    "The new profiles are not added to the ranked/duel AI whitelist; this batch covers exercise/campaign selection and the storefront.",
+    "server/battle_pve's runnable Stage enum remains 02/03/11, so the 05/10 unlock progress is exercised by seeded progress in tests and by the local campaign; registering those two stages in the online PvE service is follow-up work.",
+    "No UI page was added in this batch; client/src/ai-shop.ts carries the shared six-entry data for the supply/recruit UI owner."
   ],
   "scope": {
     "changed": [
-      "src/ai.rs",
-      "src/ai_evolve.rs",
-      "src/bin/ai-trainer.rs",
-      "src/lib.rs (native mod only)",
-      "src/model.rs (Ai::validate evolved-profile gate)",
-      "data/ai/**",
-      "AI tests inside src/ai.rs and src/ai_evolve.rs"
+      "src/ai_evolve.rs (three objectives, real trace metrics, doctrine envelopes, six-profile training)",
+      "src/ai.rs (six-profile shipped-style assertions)",
+      "data/ai/evolved.json",
+      "data/ai/training-log.json",
+      "data/ai/shop-merge.json",
+      "data/ai/ai-report.json",
+      "data/ai/shop-report.json",
+      "data/ai/evidence/*",
+      "scripts/build-parity.mjs (three new doctrine parity runs)",
+      "scripts/capture-ai-evidence.py",
+      "server/catalog.json (ai_profiles only)",
+      "server/import_catalog.py",
+      "server/battle_pve.py (profile enum and unlock map)",
+      "server/test_accounts.py",
+      "server/test_battle_pve.py",
+      "client/src/ai-shop.ts",
+      "client/src/engine.ts",
+      "client/src/main.tsx"
     ],
     "untouched": [
-      "server/catalog",
+      "server/catalog ship cards",
       "data/ships",
       "portraits",
       "audio",
-      "ranked_fleets",
-      "challenge",
-      "balanced/challenge/campaign data",
-      "data/ai/evolved.json is the only shipped AI profile artifact"
-    ]
+      "ranked/challenge point prices",
+      "builtin coord/gunnery/torpedo order path"
+    ],
+    "commit": "none (working tree only)"
   }
 }
