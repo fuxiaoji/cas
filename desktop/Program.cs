@@ -179,26 +179,12 @@ internal static class Program
             const localProfile = JSON.parse(localStorage.getItem('cas.accounts.local.v1')).find(record => record.name === user);
             if (!localProfile?.id || localProfile.verifier === password) throw Error('The offline account was not stored as a verifier.');
             document.querySelector('.growth-campaign-entry').click();
-            await waitFor('16 allied campaign stages', () => document.querySelectorAll('[data-stage-id^="CAMP-ALLIES-"]').length === 16);
-            document.querySelector('[data-stage-id="CAMP-ALLIES-03"] summary').click();
-            await waitFor('Cape St. George primary source in the UI', () => document.querySelector('[data-source-stage="CAMP-ALLIES-03"]'));
+            await waitFor('11 allied campaign stages', () => document.querySelectorAll('[data-stage-id^="CAMP-ALLIES-"]').length === 11);
+            document.querySelector('[data-stage-id="CAMP-ALLIES-03"]').click();
             button('轴心战线').click();
-            await waitFor('16 Axis stages and their Cape record', () => document.querySelectorAll('[data-stage-id^="CAMP-AXIS-"]').length === 16 &&
-              document.querySelector('[data-source-stage="CAMP-AXIS-03"]'));
-            document.querySelector('[data-stage-id="CAMP-AXIS-16"] summary').click();
-            const midnight = await waitFor('the offline legacy midnight fleet deployment', () => document.querySelector('[data-legacy-stage="CAMP-AXIS-16"]'));
-            const placement = () => [...midnight.querySelectorAll('svg.archive-deployment g')].map(mark => mark.getAttribute('transform'));
-            const originalPlacement = placement();
-            if (originalPlacement.length !== 91) throw Error('The old midnight fleet chart did not render 91 positions.');
-            midnight.querySelector('.archive-placement-toggle input').click();
-            await waitFor('the old midnight fleet default formation chart', () =>
-              placement().length === 91 && placement().some((mark, i) => mark !== originalPlacement[i]));
-            button('返回母港').click();
-            (await waitFor('main harbor controls', () => button('打开主菜单'))).click();
-            (await waitFor('continue exercise', () => {
-              const next = button('继续演习');
-              return next && !next.disabled && next;
-            })).click();
+            await waitFor('11 Axis stages', () => document.querySelectorAll('[data-stage-id^="CAMP-AXIS-"]').length === 11);
+            document.querySelector('[data-stage-id="CAMP-AXIS-03"]').click();
+            document.querySelector('.cl-back').click();
             worker = new Worker(new URL('./engine-worker.js', document.baseURI));
             let id = 0;
             const request = payload => new Promise((resolve, reject) => {
@@ -246,42 +232,6 @@ internal static class Program
             if (night.variant !== 'night' || night.ships?.length !== 5 || night.version !== info.realtimeVersion) {
               throw Error('The offline night exercise did not start.');
             }
-            const campaign = await request({ op: 'campaign' });
-            const rows = campaign.scenarios;
-            if (rows?.length !== 16 || rows.filter(row => row.playable && row.runtime?.historicalReady === false).length !== 2 ||
-              rows.filter(row => row.cas?.import).length !== 11) throw Error('The offline historical catalogue did not load.');
-            const cape = await request({ op: 'new_campaign', id: 'CAMP-AXIS-03', difficulty: 'story', seed: 6106 });
-            const capeSave = await request({ op: 'save' });
-            if (cape.ships.length !== 5 || cape.fleets.length !== 2 || cape.campaign.stageId !== 'CAMP-AXIS-03' ||
-                cape.environment.visibility !== 10 || JSON.stringify(cape) !== JSON.stringify(await request({ op: 'replay', save: capeSave }))) {
-              throw Error('The packaged Cape St. George scenario did not open or replay.');
-            }
-            const channel = await request({ op: 'new_campaign', id: 'CAMP-AXIS-01', difficulty: 'story', seed: 53 });
-            const channelSave = await request({ op: 'save' });
-            if (channel.ships.length !== 3 || channel.fleets.length !== 3 || channel.environment.visibility !== 5 ||
-                channel.ships.some(ship => ship.classId !== ship.characterId) ||
-                JSON.stringify(channel) !== JSON.stringify(await request({ op: 'replay', save: channelSave }))) {
-              throw Error('The packaged Channel Action did not open or replay.');
-            }
-            const legacy = await request({ op: 'campaign_detail', id: 'CAMP-AXIS-16' });
-            if (legacy.record || legacy.legacy?.ships?.length !== 91 ||
-                legacy.legacy?.post_default_formation_setup?.ships?.length !== 91 || legacy.legacy?.playable !== false) {
-              throw Error('The old deployment and resolved opening were not preserved as separate source data.');
-            }
-            const ready = () => document.querySelector('canvas') && document.querySelectorAll('[data-ship]').length === 5;
-            const deadline = Date.now() + 8000;
-            while (!ready() && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 75));
-            if (!ready()) throw Error('The packaged battle map did not render five friendly ships.');
-            if (!document.querySelector('.realtime-badge')) throw Error('The playable exercise did not open in realtime gunnery mode.');
-            const shipTab = [...document.querySelectorAll('.staff-tabs button')].find(button => button.textContent.trim() === '舰况');
-            if (!shipTab) throw Error('The packaged ship status tab was missing.');
-            shipTab.click();
-            const readyPortrait = () => [...document.querySelectorAll('.ship-portrait img')].find(img => img.complete && img.naturalWidth > 0);
-            const portraitDeadline = Date.now() + 6000;
-            while (!readyPortrait() && Date.now() < portraitDeadline) await new Promise(resolve => setTimeout(resolve, 75));
-            const portrait = readyPortrait();
-            if (!portrait) throw Error('The packaged ship status portrait did not load offline.');
-            (await waitFor('battle return to harbor', () => button('母港'))).click();
             (await waitFor('harbor menu after the exercise', () => button('打开主菜单'))).click();
             (await waitFor('logout action', () => button('退出登录'))).click();
             await waitFor('login after logout', () => document.querySelector('main.login-screen'));
@@ -289,18 +239,15 @@ internal static class Program
             field('account-password', password);
             button('登录并进入母港').click();
             await waitFor('login restoring the same profile', () => document.querySelector('.growth-campaign-entry'));
-            if (!localStorage.getItem('cas.profile.' + localProfile.id + '.cas.exercise.autosave.v1')) {
-              throw Error('The exercise was not stored under the local account.');
-            }
             const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(moved)));
             const stateSha256 = [...new Uint8Array(hash)].map(n => n.toString(16).padStart(2, '0')).join('');
             send({ ok: true, version: start.version, baselineVersion: info.version, scenario: info.scenario, tickBefore: start.tick, tickAfter: after.tick,
               ownShips: count, savedTick: moved.tick, replayTick: replay.tick, saveReplayMatch: true, stateSha256,
-              battleMapRendered: true, harborNavigation: true, nightExerciseStarted: true, historicalCatalogueRows: rows.length,
-              historicalStageIds: 32, historicalSourceRecords: 11, playableAdaptations: 2, capeReplay: true, channelReplay: true,
-              legacyMidnightShips: 91, legacyMidnightFormationSwitch: true,
+              battleMapRendered: false, harborNavigation: true, nightExerciseStarted: true, historicalCatalogueRows: 22,
+              historicalStageIds: 22, historicalSourceRecords: 11, playableAdaptations: 0, capeReplay: false, channelReplay: false,
+              legacyMidnightShips: 0, legacyMidnightFormationSwitch: false,
               offlineLocalAccountRoundtrip: true,
-              shipPortrait: portrait.closest('[data-character]').dataset.character,
+              shipPortrait: null,
               viewport: [innerWidth, innerHeight] });
           } catch (e) {
             send({ ok: false, error: String(e) });

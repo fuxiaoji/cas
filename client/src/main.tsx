@@ -1242,13 +1242,15 @@ function testProfile(): LocalProfile {
 }
 
 function Entry() {
-  // Test build: no account wall. The fixed test commander keeps the same
-  // local port/story keys across reloads; online accounts stay optional.
-  const [profile, setProfile] = useState<LocalProfile>(testProfile);
-  return <App key={profile.id} profile={profile} onLogout={() => {
+  // A bare `vite dev` (and the browser tests) opens the port with the fixed
+  // test commander; production builds start at the account wall so the desktop
+  // host and the static package exercise the real local/online profile.
+  const testBuild = import.meta.env.DEV;
+  const [profile, setProfile] = useState<LocalProfile | undefined>(testBuild ? testProfile : undefined);
+  return profile ? <App key={profile.id} profile={profile} onLogout={() => {
     if (profile.online) void onlineRequest('/auth/logout', profile.online.token, {}).catch(() => {});
-    closeSession(); setProfile(testProfile());
-  }} />;
+    closeSession(); setProfile(testBuild ? testProfile() : undefined);
+  }} /> : <Login onLogin={setProfile} />;
 }
 
 createRoot(document.getElementById('root')!).render(<Entry />);
