@@ -8,11 +8,12 @@
 use crate::{
     campaign::{Grade, Outcome},
     campaign::live::Start,
-    model::{Ai, Field, Fleet, P, Tactic, YARD},
+    model::{Ai, Data, Field, Fleet, P, Tactic, YARD},
     world::World,
     E,
 };
 use serde_json::json;
+use std::sync::OnceLock;
 
 pub(crate) const VARIANT: &str = "esperance";
 pub(crate) const LABEL: &str = "埃斯佩兰斯角 · 14 舰夜战";
@@ -210,10 +211,21 @@ pub(crate) fn fill(w: &mut World) -> E<()> {
     Ok(())
 }
 
+/// Scenario cards plus the 202 registered single-ship cards. The printed
+/// class cards stay first, so a historical pick keeps the runtime hull.
+fn data() -> E<&'static Data> {
+    static DATA: OnceLock<Result<Data, String>> = OnceLock::new();
+    DATA.get_or_init(|| {
+        let mut data = crate::prologue::data()?.clone();
+        super::fleet::add_registered_cards(&mut data)?;
+        Ok(data)
+    })
+    .as_ref()
+    .map_err(Clone::clone)
+}
+
 pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile: &str) -> E<World> {
-    // The campaign point-buy pool includes the verified prologue cards.
-    let data = crate::prologue::data()?;
-    let mut w = World::blank(data, seed, player, enemy, VARIANT, profile, 0);
+    let mut w = World::blank(data()?, seed, player, enemy, VARIANT, profile, 0);
     w.campaign = Some(start);
     fill(&mut w)?;
     Ok(w)

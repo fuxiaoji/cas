@@ -1,0 +1,91 @@
+{
+  "version": "cas-combined-arms-ships-v4",
+  "historical_campaign_available": false,
+  "aviation_scope": "fictional-air-v1",
+  "ships": [
+    {
+      "id": "CAS-H-USN-ENTERPRISE-1942",
+      "name": "企业",
+      "type": "CV",
+      "points": 2600,
+      "dp": 628,
+      "max_knots": 32,
+      "price_origins": 1800,
+      "source_kind": "printed_CAS_hull",
+      "class": "约克城级 · 1942",
+      "description": "战斗机、俯冲轰炸与航空鱼雷；空群必须返航整备。",
+      "portrait": "res://assets/ships/aviation-v4/CAS-H-USN-ENTERPRISE-1942.png",
+      "playable": true,
+      "recruitable": false,
+      "rarity": "SSR",
+      "side": "allies",
+      "special_mode_scope": [
+        "cas-littoral-v4",
+        "cas-adventure-v3"
+      ]
+    },
+    {
+      "id": "CAS-H-IJN-SHOKAKU-1942",
+      "name": "翔鹤",
+      "type": "CV",
+      "points": 2750,
+      "dp": 742,
+      "max_knots": 34,
+      "price_origins": 1800,
+      "source_kind": "printed_CAS_hull",
+      "class": "翔鹤级 · 1942.8",
+      "description": "有限舰载机与串行甲板作业；可搭载空输部队。",
+      "portrait": "res://assets/ships/aviation-v4/CAS-H-IJN-SHOKAKU-1942.png",
+      "playable": true,
+      "recruitable": false,
+      "rarity": "SSR",
+      "side": "allies",
+      "special_mode_scope": [
+        "cas-littoral-v4",
+        "cas-adventure-v3"
+      ]
+    },
+    {
+      "id": "CAS-O-LHA-RETURNLIGHT",
+      "name": "返航灯",
+      "type": "LHA",
+      "points": 1700,
+      "dp": 520,
+      "max_knots": 25,
+      "price_origins": 900,
+      "source_kind": "original_fictional",
+      "class": "原创 · 两栖攻击舰",
+      "description": "直升机空突与装甲投送；近岸舰炮协同。",
+      "portrait": "res://assets/ships/aviation-v4/CAS-O-LHA-RETURNLIGHT.png",
+      "playable": true,
+      "recruitable": false,
+      "rarity": "SSR",
+      "side": "allies",
+      "special_mode_scope": [
+        "cas-littoral-v4",
+        "cas-adventure-v3"
+      ]
+    },
+    {
+      "id": "CAS-O-APV-TIDEBRIDGE",
+      "name": "潮桥",
+      "type": "APV",
+      "points": 1100,
+      "dp": 360,
+      "max_knots": 21,
+      "price_origins": 600,
+      "source_kind": "original_fictional",
+      "class": "原创 · 装甲运输舰",
+      "description": "装甲部队近岸投送；无固定翼起降资格。",
+      "portrait": "res://assets/ships/aviation-v4/CAS-O-APV-TIDEBRIDGE.png",
+      "playable": true,
+      "recruitable": false,
+      "rarity": "SSR",
+      "side": "allies",
+      "special_mode_scope": [
+        "cas-littoral-v4",
+        "cas-adventure-v3"
+      ]
+    }
+  ]
+}

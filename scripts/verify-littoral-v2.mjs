@@ -1,0 +1,49 @@
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {createInterface} from 'node:readline';
+import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+const root=resolve(import.meta.dirname,'..'),out=resolve(root,'artifacts/littoral-v2');await mkdir(out,{recursive:true});
+const native=process.env.CAS_LITTORAL_NATIVE;assert.ok(native,'set immutable CAS_LITTORAL_NATIVE');
+const old=resolve(root,'godot/bin/runtime/7134b0254ce4ef91/cas-sim.exe');
+const wasmPath=process.env.CAS_LITTORAL_WASM;
+const sha=b=>createHash('sha256').update(b).digest('hex');
+class Sim{constructor(exe=native){this.p=spawn(exe,[],{stdio:['pipe','pipe','inherit']});this.lines=createInterface({input:this.p.stdout})[Symbol.asyncIterator]();this.commands=[];this.responses=[];}async raw(q){this.commands.push(q);this.p.stdin.write(JSON.stringify(q)+'\n');let r=await this.lines.next();assert.equal(r.done,false);this.responses.push(r.value);return r.value;}async ask(q,expected=true){const r=JSON.parse(await this.raw(q));if(expected!==null)assert.equal(r.ok,expected,JSON.stringify(r));return r.ok?r.data:r;}close(){this.p.stdin.end();}}
+function request(mode,roster,seed=42){return{op:'new_littoral',version:'cas-littoral-v2',seed,mode,ships:[{id:'IBS-U-IJN-NISSHIN',hp:100,ammo:100},{id:'IBS-U-USN-ERMA-IOWA',hp:100,ammo:100}],roster,unit_condition:roster.map(id=>({id,hp:100})),transport_preset:'transport',defense:[]};}
+const reports=[];
+async function run(mode,roster,seed=42,success=true){let sim=new Sim(),v,stage=mode==='defense'?'defense':'land',groundAt=null,selected=new Set(),naval=false,firstSnapshot=false,seen=new Set(),shots=new Set(),skills=new Set(),trace=[],peaks={bodies:0,projectiles:0,transports:0};
+try{
+v=await sim.ask(request(mode,roster,seed));
+if(mode!=='defense')for(const g of v.littoral.groups){const p=await sim.ask({op:'littoral_preview',kind:'deploy',unit_id:g.id,beach:2,insertion:'landing'});assert.equal(p.valid,true);v=await sim.ask({op:'littoral_deploy',unit_id:g.id,beach:2,insertion:'landing',queue:true});}
+for(let n=0;n<1100&&!v.result;n++){
+ peaks.bodies=Math.max(peaks.bodies,v.littoral.land.entities.length);peaks.projectiles=Math.max(peaks.projectiles,v.shells.length);peaks.transports=Math.max(peaks.transports,v.littoral.transports.length);
+ for(const b of v.littoral.land.entities)if(b.side==='allies')seen.add(b.unit_id);
+ for(const s of v.littoral.shots){if(s.side==='allies'){if(s.source.startsWith('body:')){let b=v.littoral.land.entities.find(b=>'body:'+b.id===s.source);if(b)shots.add(b.unit_id);}if(s.kind==='naval')naval=true;}}
+ if(!firstSnapshot&&v.tick>=1){const s=await sim.ask({op:'save'});assert.deepEqual(await sim.ask({op:'load',save:s}),v);assert.deepEqual(await sim.ask({op:'replay',save:s}),v);firstSnapshot=true;}
+ const groups=v.littoral.groups.filter(g=>g.stage==='ground');if(groups.length)groundAt??=v.tick;
+ if(stage==='land'&&v.littoral.groups.every(g=>['ground','lost'].includes(g.stage))){for(const g of groups)v=await sim.ask({op:'littoral_order',unit_id:g.id,action:'search',target:1});stage='battle';}
+ if(['battle','defense'].includes(stage)){
+   // Ground salvo at a public AA location; an actual queued shot must appear.
+   const target=v.littoral.land.buildings.find(b=>b.kind==='aa'&&b.hp>0)||v.littoral.land.ruins[0];
+   for(const s of v.littoral.support.naval){if(!selected.has(s.ship)&&s.alive&&s.ammo>=3){let r=await sim.ask({op:'littoral_ship_order',ship:s.ship,action:'aim_land',x:target.x,y:target.y},null);if(r.ok===false)continue;v=r;r=await sim.ask({op:'littoral_support',kind:'naval',ship:s.ship,x:target.x,y:target.y,queue:true},null);if(r.ok!==false){v=r;selected.add(s.ship);}}}
+   for(const g of groups){if(!skills.has(g.id)&&g.ability?.available){const p=g.ability.range>0?{x:g.position.x,y:g.position.y-250}:{};const r=await sim.ask({op:'littoral_ability',unit_id:g.id,...p},null);if(r.ok!==false){v=r;skills.add(g.id);}}}
+ }
+ if(stage==='battle'&&mode==='raid'&&v.littoral.land.ruins[0].searched){const hq=v.littoral.land.buildings.find(b=>b.kind==='hq');for(const g of groups)if(g.order!=='attack')v=await sim.ask({op:'littoral_order',unit_id:g.id,action:'attack',x:hq.x,y:hq.y});}
+ if(v.littoral.objectives[0].complete&&stage==='battle'){for(const g of groups)v=await sim.ask({op:'littoral_order',unit_id:g.id,action:'retreat'});stage='return';}
+ if(stage==='return'&&v.littoral.groups.every(g=>['embarked','recovered','lost'].includes(g.stage))){for(const s of v.ships.filter(s=>s.hp>0))v=await sim.ask({op:'littoral_ship_order',ship:s.id,action:'move',x:5500+(s.id-1)*220,y:13500});stage='exit';}
+ if(stage==='exit'&&v.ships.filter(s=>s.hp>0).every(s=>Math.hypot(s.x-v.littoral.exit.x,s.y-v.littoral.exit.y)<1500)){v=await sim.ask({op:'littoral_extract'});break;}
+ v=await sim.ask({op:'step',seconds:.5});
+ if(Math.round(v.tick*10)%100===0)trace.push({tick:v.tick,stage,groups:v.littoral.groups.map(g=>({id:g.id,stage:g.stage,hp:g.hp_percent,order:g.order})),ships:v.ships.map(s=>({id:s.id,hp:s.hp,ammo:s.ammo,x:s.x,y:s.y})),objective:v.littoral.objectives[0]});
+}
+await writeFile(resolve(out,`last-${mode}-${seed}.json`),JSON.stringify(v));assert.ok(v.result,'real terminal');assert.equal(v.littoral.outcome.success,success,JSON.stringify({mode,roster,trace:trace.slice(-4),outcome:v.littoral.outcome}));
+assert.equal(seen.size,roster.length,'every selected tactical identity actually deployed');assert.ok(peaks.bodies<=96&&peaks.projectiles<=256&&peaks.transports<=6,'bounded physical simulation');if(mode==='tutorial')assert.ok(groundAt>=20&&groundAt<=40,'first actual landing within tutorial pacing');const saved=await sim.ask({op:'save'});assert.deepEqual(await sim.ask({op:'load',save:saved}),v);assert.deepEqual(await sim.ask({op:'replay',save:saved}),v);
+for(const s of v.littoral.outcome.ships)assert.equal(s.loaded_ammo_percent,s.ammo_percent+s.ammo_spent_percent);
+const name=`v2-${mode}-${seed}-${roster[0]}`;await writeFile(resolve(out,name+'-commands.json'),JSON.stringify(sim.commands));await writeFile(resolve(out,name+'-native.json'),JSON.stringify({terminal:v,trace},null,2));const report={name,tick:v.tick,firstGround:groundAt,seen:[...seen],firing:[...shots],skills:[...skills],naval,peaks,outcome:v.littoral.outcome};reports.push(report);console.log(JSON.stringify(report));
+}finally{sim.close();}}
+async function frozen(){const files=(await readdir(resolve(root,'artifacts/littoral-core'))).filter(f=>f.endsWith('-commands.json'));let requests=0,bytes=0;for(const file of files){let a=new Sim(),b=new Sim(old);try{for(const q of JSON.parse(await readFile(resolve(root,'artifacts/littoral-core',file),'utf8'))){const x=await a.raw(q),y=await b.raw(q);assert.equal(x,y,`v1 bytefreeze ${file} ${requests} ${q.op}`);requests++;bytes+=Buffer.byteLength(x);}}finally{a.close();b.close();}}return{files:files.length,requests,bytes,old,sha:sha(await readFile(old))};}
+async function parity(){if(!wasmPath)return null;const bytes=await readFile(wasmPath);const files=(await readdir(out)).filter(f=>f.startsWith('v2-')&&f.endsWith('-commands.json')).map(f=>resolve(out,f));files.push(...(await readdir(resolve(root,'artifacts/littoral-core'))).filter(f=>f.endsWith('-commands.json')).map(f=>resolve(root,'artifacts/littoral-core',f)));let requests=0,total=0;for(const file of files){const{instance}=await WebAssembly.instantiate(bytes,{}),api=instance.exports,enc=new TextEncoder(),dec=new TextDecoder(),sim=new Sim();try{for(const q of JSON.parse(await readFile(file,'utf8'))){let text=JSON.stringify(q);if(typeof q.serialized==='string'&&['load','replay'].includes(q.op)){const fields={...q};delete fields.serialized;text=JSON.stringify(fields).slice(0,-1)+',"save":'+q.serialized+'}';}const wire=enc.encode(text),p=api.cas_alloc(wire.length)>>>0;new Uint8Array(api.memory.buffer,p,wire.length).set(wire);const r=api.cas_request(p,wire.length)>>>0;const raw=dec.decode(new Uint8Array(api.memory.buffer,r,api.cas_response_len()>>>0)),nativeRaw=await sim.raw(q);assert.equal(nativeRaw,raw,`raw WASM ${file} ${requests} ${q.op}`);requests++;total+=Buffer.byteLength(raw);}}finally{sim.close();}}return{files:files.length,requests,bytes:total,wasmPath,sha:sha(bytes)};}
+try{
+if(!process.env.CAS_LITTORAL_PARITY_ONLY){await run('tutorial',['MCP-034']);await run('salvage',['MCP-001','MCP-034','MCP-076','MCP-009','MCP-022','MCP-011'],43);await run('raid',['MCP-018','MCP-027','MCP-041','MCP-052','MCP-063','MCP-087'],44,false);await run('raid',['MCP-001','MCP-034','MCP-076','MCP-009','MCP-022'],42);await run('salvage',['MCP-103','MCP-116','MCP-128','MCP-145','MCP-167','MCP-184'],45);await run('defense',['MCP-203','MCP-240','MCP-009','MCP-022'],46);}
+const legacy=await frozen(),raw=await parity();await writeFile(resolve(out,process.env.CAS_LITTORAL_PARITY_ONLY?'parity-receipt.json':'native-receipt.json'),JSON.stringify({passed:true,native,nativeSha:sha(await readFile(native)),reports,legacy,raw},null,2));console.log(JSON.stringify({passed:true,matches:reports.length,legacy,raw}));
+}catch(e){await writeFile(resolve(out,'failure.json'),JSON.stringify({error:e.message,stack:e.stack,reports},null,2));throw e;}

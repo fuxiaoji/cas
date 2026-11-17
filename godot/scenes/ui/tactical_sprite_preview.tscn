@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/tactical_sprite_preview.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/tactical_sprite.tscn" id="2"]
+[node name="TacticalSpritePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+[node name="Backdrop" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.16,0.25,0.27,1)
+mouse_filter = 2
+[node name="Caption" type="Label" parent="."]
+offset_left = 70.0
+offset_top = 70.0
+offset_right = 1250.0
+offset_bottom = 130.0
+text = "本人SD姿态预览 · 拖动下方滑块（仅预览，不代表战况）"
+theme_override_font_sizes/font_size = 30
+[node name="Frame" type="HSlider" parent="."]
+offset_left = 70.0
+offset_top = 500.0
+offset_right = 1210.0
+offset_bottom = 550.0
+max_value = 11.0
+step = 1.0
+[node name="Cast" type="Node2D" parent="."]
+[node name="MCP001" parent="Cast" instance=ExtResource("2")]
+position = Vector2(160,440)
+sheet_path = "res://assets/tactical/sprites/MCP-001-sheet.png"
+display_height = 170.0
+preview_mode = true
+[node name="Name001" type="Label" parent="."]
+offset_left = 90.0
+offset_top = 455.0
+offset_right = 280.0
+offset_bottom = 490.0
+text = "MCP-001"
+theme_override_font_sizes/font_size = 24
+[node name="MCP034" parent="Cast" instance=ExtResource("2")]
+position = Vector2(400,440)
+sheet_path = "res://assets/tactical/sprites/MCP-034-sheet.png"
+display_height = 170.0
+preview_mode = true
+[node name="Name034" type="Label" parent="."]
+offset_left = 330.0
+offset_top = 455.0
+offset_right = 520.0
+offset_bottom = 490.0
+text = "MCP-034"
+theme_override_font_sizes/font_size = 24
+[node name="MCP076" parent="Cast" instance=ExtResource("2")]
+position = Vector2(640,440)
+sheet_path = "res://assets/tactical/sprites/MCP-076-sheet.png"
+display_height = 170.0
+preview_mode = true
+[node name="Name076" type="Label" parent="."]
+offset_left = 570.0
+offset_top = 455.0
+offset_right = 760.0
+offset_bottom = 490.0
+text = "MCP-076"
+theme_override_font_sizes/font_size = 24
+[node name="MCP009" parent="Cast" instance=ExtResource("2")]
+position = Vector2(880,440)
+sheet_path = "res://assets/tactical/sprites/MCP-009-sheet.png"
+display_height = 170.0
+preview_mode = true
+[node name="Name009" type="Label" parent="."]
+offset_left = 810.0
+offset_top = 455.0
+offset_right = 1000.0
+offset_bottom = 490.0
+text = "MCP-009"
+theme_override_font_sizes/font_size = 24
+[node name="MCP022" parent="Cast" instance=ExtResource("2")]
+position = Vector2(1120,440)
+sheet_path = "res://assets/tactical/sprites/MCP-022-sheet.png"
+display_height = 170.0
+preview_mode = true
+[node name="Name022" type="Label" parent="."]
+offset_left = 1050.0
+offset_top = 455.0
+offset_right = 1240.0
+offset_bottom = 490.0
+text = "MCP-022"
+theme_override_font_sizes/font_size = 24

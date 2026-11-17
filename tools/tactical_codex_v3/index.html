@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CAS · 战术档案</title><link rel="stylesheet" href="style.css"><script defer src="data.js"></script><script defer src="accuracy.js"></script><script defer src="cadence.js"></script><script defer src="app.js"></script></head>
+<body>
+<header class="masthead"><a class="brand" href="#"><span class="brand-symbol">✦</span><span>CAS <small>TACTICAL ARCHIVE</small></span></a><div class="headnote">归航 / 联合兵种档案 <span class="offline">离线可用</span></div><button id="toggle-editor" aria-pressed="false">调整方案</button></header>
+<main>
+<aside class="roster"><div class="roster-heading"><span class="eyebrow">PERSONNEL / 22</span><h1>战术人格</h1><p>一个意识，协同作战。</p></div><label class="search-label"><span class="sr-only">搜索名字、番号或武器</span><input id="search" type="search" placeholder="搜索名字、番号或武器…"></label><div id="filters" class="filters" aria-label="部队类型筛选"></div><div id="count" aria-live="polite"></div><nav id="unit-list" aria-label="战术人格列表"></nav><p class="baseline-note">原核目录基线 <code id="baseline-sha"></code><br>旧版本航次保持原有规则。</p></aside>
+<section class="content"><div id="hero"></div><div class="section-nav" role="tablist" aria-label="档案分区"><button data-tab="overview" role="tab" aria-selected="true">编制与职责</button><button data-tab="weapons" role="tab" aria-selected="false">武器与目标</button><button data-tab="transport" role="tab" aria-selected="false">投送与载具</button></div><div id="detail"></div><footer>本页为原创加速模式的数据档案。距离、速度与装填用于游戏节奏，不代表历史实测。<br>界面显示原核基线，滑块编辑仅保存在本页内存；关闭页面即丢弃未导出的方案。</footer></section>
+</main>
+<div id="editor-bar" hidden><div><strong>方案编辑</strong><span id="change-count">尚未调整</span></div><button id="reset">还原基线</button><button id="export-csv">导出 CSV</button><button id="export-json" class="primary">导出 JSON</button></div><div id="toast" role="status"></div>
+</body></html>

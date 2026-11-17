@@ -101,6 +101,7 @@ fn data() -> E<&'static crate::model::Data> {
                 data.ships.push(ship);
             }
         }
+        super::fleet::add_registered_cards(&mut data)?;
         Ok(data)
     })
     .as_ref()

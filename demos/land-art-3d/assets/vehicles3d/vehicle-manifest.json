@@ -1,0 +1,447 @@
+{
+  "date": "2026-11-16",
+  "models": [
+    {
+      "articulated_nodes": [
+        "Ramp"
+      ],
+      "articulation_nodes_checked": 1,
+      "asset_bytes": 359444,
+      "blender_version": "5.0.0",
+      "forward_godot": "-Z",
+      "geometry_surfaces": 2,
+      "godot_maximum_m": [
+        2.50392317771912,
+        4.80000019073486,
+        6.73000049591064
+      ],
+      "godot_minimum_m": [
+        -2.50392317771912,
+        -0.800000011920929,
+        -6.69999980926514
+      ],
+      "godot_size_m": [
+        5.00784635543823,
+        5.60000038146973,
+        13.4300003051758
+      ],
+      "heading_motion_dot": 0.999941766262054,
+      "id": "cas_landing_craft",
+      "length_class_m": 14.0,
+      "license": "Project original",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 2,
+      "ramp_open_rotation_x_rad": -1.4,
+      "runtime_triangles": 5448,
+      "sha256": "ac7a4e44cd63eb217d2e93a7df6c11cc8658702eb05976068c2c33e797fbe447",
+      "source": "CAS original Blender construction after free military landing-craft search found only unsuitable civilian/sailing craft",
+      "source_blender_triangles": 5448.0,
+      "triangles": 5448,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "vertex_palette_gpu_verified": true,
+      "waterline_y": 0.0,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "antenna_tip_height_m": 3.96000003814697,
+      "articulated_nodes": [
+        "Turret"
+      ],
+      "articulation_nodes_checked": 1,
+      "asset_bytes": 224072,
+      "blender_version": "5.0.0",
+      "body_roof_height_m": 2.2,
+      "forward_godot": "-Z",
+      "geometry_surfaces": 2,
+      "godot_maximum_m": [
+        1.95499992370605,
+        3.96000003814697,
+        4.03999996185303
+      ],
+      "godot_minimum_m": [
+        -1.95499992370605,
+        2.23517417907715e-08,
+        -3.84999990463257
+      ],
+      "godot_size_m": [
+        3.90999984741211,
+        3.96000003814697,
+        7.8899998664856
+      ],
+      "heading_motion_dot": 0.999891459941864,
+      "id": "cas_amphibious_apc",
+      "length_class_m": 8.5,
+      "license": "Project original",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 2,
+      "runtime_triangles": 3796,
+      "sha256": "e04107bf2a9e97ea6ba47b8b867251b5db6cf7994e9d5d53b28a2e6c6d639c46",
+      "source": "CAS original Blender construction; amphibious carrier with deck details and separate weapon station",
+      "source_blender_triangles": 3796.0,
+      "triangles": 3796,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "vertex_palette_gpu_verified": true,
+      "waterline_godot_y": 0.81,
+      "weapon_station_height_m": 2.915,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "antenna_tip_height_m": 3.11519813537598,
+      "articulated_nodes": [
+        "Turret"
+      ],
+      "articulation_nodes_checked": 1,
+      "asset_bytes": 440392,
+      "blender_version": "5.0.0",
+      "body_roof_height_m": 1.361,
+      "download_url": "https://raw.githubusercontent.com/trebeljahr/quaternius-showcase/main/public/glb/tank_pack/Tank.glb",
+      "forward_godot": "-Z",
+      "geometry_surfaces": 2,
+      "godot_maximum_m": [
+        1.99537110328674,
+        3.11519813537598,
+        3.84143209457397
+      ],
+      "godot_minimum_m": [
+        -1.9407045841217,
+        -2.98023223876953e-07,
+        -5.11095476150513
+      ],
+      "godot_size_m": [
+        3.93607568740845,
+        3.11519837379456,
+        8.9523868560791
+      ],
+      "heading_motion_dot": 0.999997437000275,
+      "id": "cas_tank_cc0",
+      "length_class_m": 8.9,
+      "license": "CC0-1.0",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 2,
+      "modifications": "Bake rest geometry, remove stray Icosphere, normalize original -X forward to GLB -Z, metre scale, recolour shared palette, independent turret pivot. Original source rig/track animation kept separately in vendor/Tank.glb.; art silhouette narrowed to 3.936m and height scaled 0.8, ground anchor zero; these changes do not alter any core vehicle specification.",
+      "runtime_triangles": 6064,
+      "sha256": "84a2cf244646e8392c3654a0d171286e9e13e90c9d7291d1188d831f79cc964b",
+      "source": "Quaternius Animated Tanks Pack / Tank.glb via trebeljahr converted mirror",
+      "source_blender_triangles": 6064.0,
+      "source_url": "https://quaternius.com/packs/animatedtanks.html",
+      "triangles": 6064,
+      "turret_roof_height_m": 2.3,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "vertex_palette_gpu_verified": true,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "articulated_nodes": [
+        "Ramp"
+      ],
+      "articulation_nodes_checked": 1,
+      "asset_bytes": 447216,
+      "blender_version": "5.0.0",
+      "body_roof_height_m": 4.34,
+      "capacity_art_interface": {
+        "person_seats": 12.0,
+        "vehicle_bays": 1.0
+      },
+      "forward_godot": "-Z",
+      "geometry_surfaces": 2,
+      "godot_maximum_m": [
+        3.57124376296997,
+        6.17000007629395,
+        11.6999998092651
+      ],
+      "godot_minimum_m": [
+        -3.57124376296997,
+        -1.22000002861023,
+        -11.6999998092651
+      ],
+      "godot_size_m": [
+        7.14248752593994,
+        7.39000034332275,
+        23.3999996185303
+      ],
+      "heading_motion_dot": 0.9999960064888,
+      "id": "cas_heavy_landing_craft",
+      "length_class_m": 23.4,
+      "license": "Project original",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 2,
+      "role": "Heavy vehicle transport, broad ramp and reinforced cargo well; art interface only",
+      "runtime_triangles": 6636,
+      "sha256": "729d37541d1c691a4ffdc9317f680332e96018c1b99720608b894dc38ceefc46",
+      "source": "CAS original Blender heavy well-deck craft; no suitable free military bow-ramp model found",
+      "source_blender_triangles": 6636.0,
+      "triangles": 6636,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "waterline_godot_y": 0.0,
+      "vertex_palette_gpu_verified": true,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "articulated_nodes": [],
+      "articulation_nodes_checked": 0,
+      "asset_bytes": 243080,
+      "blender_version": "5.0.0",
+      "capacity_art_interface": {
+        "person_seats": 8.0,
+        "vehicle_bays": 0.0
+      },
+      "forward_godot": "-Z",
+      "geometry_surfaces": 1,
+      "godot_maximum_m": [
+        1.52999997138977,
+        1.44000005722046,
+        3.9425003528595
+      ],
+      "godot_minimum_m": [
+        -1.52999997138977,
+        -0.5,
+        -3.54999995231628
+      ],
+      "godot_size_m": [
+        3.05999994277954,
+        1.94000005722046,
+        7.49250030517578
+      ],
+      "heading_motion_dot": 0.999783158302307,
+      "id": "cas_fast_assault_boat",
+      "length_class_m": 7.8,
+      "license": "Project original",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 1,
+      "role": "Low protection, twin outboard fast insertion boat; art interface only",
+      "runtime_triangles": 4244,
+      "sha256": "d05e61573d7dad141af126a6b078383c70217ae610709b5e66c2fb15e04d4b6c",
+      "source": "CAS original Blender rigid inflatable assault boat",
+      "source_blender_triangles": 4244.0,
+      "triangles": 4244,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "waterline_godot_y": 0.0,
+      "vertex_palette_gpu_verified": true,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "articulated_nodes": [
+        "Turret"
+      ],
+      "articulation_nodes_checked": 1,
+      "asset_bytes": 368168,
+      "blender_version": "5.0.0",
+      "body_roof_height_m": 1.44,
+      "capacity_art_interface": {
+        "person_seats": 6.0
+      },
+      "forward_godot": "-Z",
+      "geometry_surfaces": 2,
+      "godot_maximum_m": [
+        2.10999989509583,
+        4.16499996185303,
+        3.84999990463257
+      ],
+      "godot_minimum_m": [
+        -2.10999989509583,
+        0.0,
+        -6.57000017166138
+      ],
+      "godot_size_m": [
+        4.21999979019165,
+        4.16499996185303,
+        10.4200000762939
+      ],
+      "heading_motion_dot": 0.999993681907654,
+      "id": "cas_self_propelled_artillery",
+      "length_class_m": 10.4,
+      "license": "Project original",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 2,
+      "role": "Independent tracked artillery vehicle, long barrel, enclosed gunhouse; art interface only",
+      "runtime_triangles": 6004,
+      "sha256": "49f79faaa1280398b5287449925f820c0c92c0c2712e73cdb2e89fb9f8247a2c",
+      "source": "CAS original Blender tracked 155mm artillery silhouette",
+      "source_blender_triangles": 6004.0,
+      "triangles": 6004,
+      "turret_roof_height_m": 2.92,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "vertex_palette_gpu_verified": true,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "articulated_nodes": [
+        "MainRotor",
+        "TailRotor"
+      ],
+      "articulation_nodes_checked": 2,
+      "asset_bytes": 374928,
+      "blender_version": "5.0.0",
+      "capacity_art_interface": {
+        "person_seats": 10.0
+      },
+      "download_url": "https://cdn.3dassets.dev/assets/20028/v1/model.glb",
+      "forward_godot": "-Z",
+      "geometry_surfaces": 3,
+      "godot_maximum_m": [
+        5.50250005722046,
+        4.59070301055908,
+        6.56424999237061
+      ],
+      "godot_minimum_m": [
+        -5.50250005722046,
+        0.000113725662231445,
+        -6.56424999237061
+      ],
+      "godot_size_m": [
+        11.0050001144409,
+        4.59058952331543,
+        13.1284999847412
+      ],
+      "heading_motion_dot": 0.999972343444824,
+      "id": "cas_transport_helicopter",
+      "length_class_m": 13.1,
+      "license": "CC0-1.0 + original additions",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 3,
+      "modifications": "1.55 metre uniform scale, +Z nose normalized to Godot -Z; military recolour, cabin door and fuel equipment, independent main/tail rotor assemblies, one shared vertex palette",
+      "role": "Transport helicopter, rotor and disembark anchors; art interface only",
+      "rotor_motion_checked": true,
+      "runtime_triangles": 3736,
+      "sha256": "f5b30226aa0abd1b33797b2d981e3c343f8f2b3784df613ee15104b8b06c4492",
+      "source": "3DAssets.dev Utility helicopter / Air Land Sea Vehicles, plus CAS military equipment conversion",
+      "source_blender_triangles": 3736.0,
+      "source_sha256": "5b01f318035776d9cc632d76dc25ac9a0447b94e37180f46850bdb154b8faff5",
+      "source_url": "https://3dassets.dev/assets/air-land-sea-vehicles-utility-helicopter-7dbc148e",
+      "triangles": 3736,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "vertex_palette_gpu_verified": true,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png",
+        "godot-rotorcraft-close.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    },
+    {
+      "articulated_nodes": [
+        "MainRotor",
+        "TailRotor",
+        "ChinGun"
+      ],
+      "articulation_nodes_checked": 3,
+      "asset_bytes": 251744,
+      "blender_version": "5.0.0",
+      "capacity_art_interface": {
+        "person_seats": 6.0
+      },
+      "forward_godot": "-Z",
+      "geometry_surfaces": 4,
+      "godot_maximum_m": [
+        5.83500003814697,
+        3.52999997138977,
+        6.80999994277954
+      ],
+      "godot_minimum_m": [
+        -5.83500003814697,
+        0.0,
+        -5.15500020980835
+      ],
+      "godot_size_m": [
+        11.6700000762939,
+        3.52999997138977,
+        11.9650001525879
+      ],
+      "heading_motion_dot": 0.999887228012085,
+      "id": "cas_attack_helicopter",
+      "length_class_m": 11.7,
+      "license": "Project original",
+      "material_names": [
+        "CAS vehicle vertex palette"
+      ],
+      "materials": 1.0,
+      "measurement": "Godot 4.7.2 imported GLB actual MeshInstance3D global AABB at identity with every articulated pivot at rest zero; sizes [width,height,length], includes antenna/rotors. Empty anchors and presentation wake excluded.",
+      "mesh_nodes": 4,
+      "role": "Armed assault helicopter: autocannon, twin rocket pods, small troop cabin; art interface only",
+      "rotor_motion_checked": true,
+      "runtime_triangles": 4352,
+      "sha256": "1e8a2f65e1945ea566ab53351d8b78d6ef284ea8a685215dec3aaab1227ebf71",
+      "source": "CAS original Blender tandem-seat assault gunship, after checking CC0 utility helicopter limitations",
+      "source_blender_triangles": 4352.0,
+      "triangles": 4352,
+      "up_godot": "+Y",
+      "vertex_palette_array_verified": true,
+      "vertex_palette_gpu_verified": true,
+      "gpu_evidence": [
+        "godot-vehicle-catalog.png",
+        "godot-rotorcraft-close.png"
+      ],
+      "gpu_device": "Godot 4.7.2 OpenGL Compatibility / NVIDIA RTX 5070; desktop evidence only",
+      "interface_anchor_units": "metres; -Z forward; +Y up; vehicle root shares all geometry/motion/selection projection"
+    }
+  ],
+  "original_three_preserved_sha256": {
+    "cas_amphibious_apc": "e04107bf2a9e97ea6ba47b8b867251b5db6cf7994e9d5d53b28a2e6c6d639c46",
+    "cas_landing_craft": "ac7a4e44cd63eb217d2e93a7df6c11cc8658702eb05976068c2c33e797fbe447",
+    "cas_tank_cc0": "84a2cf244646e8392c3654a0d171286e9e13e90c9d7291d1188d831f79cc964b"
+  },
+  "scope": "Isolated art showcase, no battle/economy/account modification",
+  "total_runtime_triangles": 40280,
+  "total_runtime_geometry_surfaces": 18,
+  "glb_bytes": 2709044,
+  "mobile_budget_status": "8 art samples / shared vertex palette; no texture atlas needed. LOD, many simultaneous instances, mobile GPU/thermal/memory remain unverified."
+}

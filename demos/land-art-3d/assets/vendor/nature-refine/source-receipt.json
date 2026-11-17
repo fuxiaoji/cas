@@ -1,0 +1,27 @@
+{
+  "author": "Quaternius",
+  "pack": "Ultimate Nature Pack",
+  "license": "CC0-1.0",
+  "official_url": "https://quaternius.com/packs/ultimatenature.html",
+  "mirror": "https://github.com/trebeljahr/quaternius-showcase",
+  "files": [
+    {
+      "source": "https://raw.githubusercontent.com/trebeljahr/quaternius-showcase/main/public/glb/nature_pack/CommonTree_1.glb",
+      "name": "CommonTree_1.glb",
+      "bytes": 158708,
+      "sha256": "61c05d351070fb5fb9f7c1b46b53f59cfd9625ddd16ba8de1ef3855f35557f72"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/trebeljahr/quaternius-showcase/main/public/glb/nature_pack/CommonTree_3.glb",
+      "name": "CommonTree_3.glb",
+      "bytes": 89340,
+      "sha256": "01ce29544f56c7f1d0828fe8268b45ff3d75a4612b067ac3707c9bfb11a02f7f"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/trebeljahr/quaternius-showcase/main/public/glb/nature_pack/CommonTree_5.glb",
+      "name": "CommonTree_5.glb",
+      "bytes": 101896,
+      "sha256": "e3b151c793549f505b9bb76e62f8020af9eb3b59087f3e8f815ff821da0d41e2"
+    }
+  ]
+}

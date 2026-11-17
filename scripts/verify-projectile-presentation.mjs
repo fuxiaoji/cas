@@ -1,0 +1,45 @@
+// Optional visual metadata must leave every pre-existing response byte intact.
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+
+const root=resolve(import.meta.dirname,'..'),out=resolve(root,'artifacts/projectile-presentation');
+await mkdir(out,{recursive:true});
+const native=process.env.CAS_FX_NATIVE||resolve(root,'target/projectile-fx-native-build/release/cas-sim.exe');
+const manifest=JSON.parse(await readFile(resolve(root,'godot/bin/core-current.json'),'utf8'));
+const baseline=process.env.CAS_FX_BASELINE||resolve(root,'godot/bin/runtime/0821f592e1977625/cas-sim.exe');
+const wasmPath=resolve(root,'target/projectile-fx-wasm-build/wasm32-unknown-unknown/release/cas_core.wasm');
+const wasm=await readFile(wasmPath);
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const canonical=v=>JSON.stringify(v,(_,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.entries(x).sort(([a],[b])=>a.localeCompare(b,'en'))):x);
+const run=(exe,qs)=>{const p=spawnSync(exe,[],{input:qs.map(JSON.stringify).join('\n')+'\n',encoding:'utf8',maxBuffer:512*1024*1024});assert.equal(p.status,0,p.error?.stack||p.stderr);return{raw:p.stdout,rows:p.stdout.trim().split(/\r?\n/).map(JSON.parse)};};
+async function wasmRun(){const {instance}=await WebAssembly.instantiate(wasm,{}),api=instance.exports,enc=new TextEncoder(),dec=new TextDecoder();return q=>{const b=enc.encode(JSON.stringify(q)),p=api.cas_alloc(b.length)>>>0;new Uint8Array(api.memory.buffer,p,b.length).set(b);const r=api.cas_request(p,b.length)>>>0;return JSON.parse(dec.decode(new Uint8Array(api.memory.buffer,r,api.cas_response_len()>>>0)));};}
+const current=[];
+async function suite(name,exercise){const call=await wasmRun(),qs=[],rs=[];const raw=q=>{qs.push(q);const r=call(q);rs.push(r);return r;};const ask=q=>{const r=raw(q);assert.equal(r.ok,true,name+JSON.stringify(r));return r.data;};const detail=await exercise(ask,raw);const n=run(native,qs);assert.equal(canonical(n.rows),canonical(rs),name+' new native/WASM');const oldQs=qs.filter(q=>q.op!=='presentation');const nOld=n.raw.trimEnd().split(/\r?\n/).filter((_,i)=>qs[i].op!=='presentation');const old=run(baseline,oldQs);assert.equal(nOld.join('\n')+'\n',old.raw.replaceAll('\r\n','\n'),name+' queries leave legacy bytes unchanged');const row={name,requests:qs.length,legacyRequests:oldQs.length,nativeWasm:true,legacyBytesUnchanged:true,...detail};current.push(row);await writeFile(resolve(out,name+'-commands.json'),JSON.stringify(qs,null,2));console.log(JSON.stringify(row));}
+
+await suite('real-heavy-main-and-secondaries',(ask)=>{
+ let v=ask({op:'new',seed:6106,side:'allies',enemy:'gunnery',profile:'gunnery',realtime:true,ships:['IBS-U-USN-WASHINGTON','IBS-U-USN-HONOLULU','IBS-U-USN-SAN-FRANCISCO','IBS-U-USN-FLETCHER','IBS-U-USN-PERKINS']});
+ ask({op:'ai',fleet:1,profile:'gunnery',mode:'auto',move:true,gun:true,torpedo:true});
+ const shots=new Map(),secondaryEvents=new Set(),mainCalibers=new Set(),mainCounts=new Set();let checks=0;
+ for(let step=0;step<620&&!v.result;step++){
+  v=ask({op:'step',seconds:1});const fx=ask({op:'presentation'});assert.equal(fx.version,'projectile-fx-v1');assert.equal(fx.tick,v.tick);
+  for(const ev of v.events||[])if(ev.kind==='secondary')secondaryEvents.add(ev.id);
+  for(const shot of fx.shots){assert.ok(v.ships.some(s=>s.id===shot.own_ship),'only own identity');assert.ok(shot.barrels>0&&shot.caliber_mm>0);assert.ok(!('target'in shot)&&!('hit'in shot)&&!('damage'in shot));shots.set(shot.id,shot);if(shot.battery==='main'){const shell=v.shells.find(s=>s.id===shot.shell_id&&s.own);assert.ok(shell);assert.equal(shell.barrels,shot.barrels);assert.deepEqual(shell.from,shot.from);assert.deepEqual(shell.to,shot.to);mainCalibers.add(shot.caliber_mm);mainCounts.add(shot.barrels);checks++;}}
+  if(step%30===0){const save=ask({op:'save'}),view=ask({op:'observe'});assert.deepEqual(ask({op:'presentation'}),fx);assert.deepEqual(ask({op:'save'}),save);assert.deepEqual(ask({op:'observe'}),view);assert.ok(!('presentation'in save)&&!('presentation'in view));}
+ }
+ const all=[...shots.values()],secondary=all.filter(s=>s.battery==='secondary');assert.ok(mainCalibers.has(406));assert.ok([...mainCounts].some(n=>n%3===0));const save=ask({op:'save'}),end=ask({op:'observe'});assert.deepEqual(ask({op:'load',save}),end);const fx=ask({op:'presentation'});assert.deepEqual(ask({op:'presentation'}),fx);assert.deepEqual(ask({op:'save'}),save);return{ticks:v.tick,mainCalibers:[...mainCalibers],mainActualBarrelCounts:[...mainCounts],liveShellChecks:checks,secondaryDischarges:secondary.length,existingSecondaryHitEvents:secondaryEvents.size,restoreReadOnly:true};
+});
+await suite('real-secondary-hits-and-misses',async ask=>{const fixture=JSON.parse(await readFile(resolve(root,'artifacts/combat-feedback-audit/secondary-native-sample.json'),'utf8'));const seen=new Map(),hits=new Set();let tick=0;for(const q of fixture.requests){const v=ask(q);tick=v.tick;if(q.op==='step'){for(const ev of v.events||[])if(ev.kind==='secondary')hits.add(ev.id);const fx=ask({op:'presentation'});for(const shot of fx.shots)if(shot.battery==='secondary'){seen.set(shot.id,shot);assert.ok(v.ships.some(s=>s.id===shot.own_ship));assert.ok(shot.caliber_mm>0&&shot.barrels>0);}}}assert.ok(hits.size>0);assert.ok(seen.size>hits.size,'real missed shots are not suppressed');return{tick,secondaryDischarges:seen.size,unchangedSecondaryHitEvents:hits.size,missesShown:true,secondaryCalibers:[...new Set([...seen.values()].map(s=>s.caliber_mm))],secondaryActualBarrelCounts:[...new Set([...seen.values()].map(s=>s.barrels))]};});
+await suite('light-own-seat-and-reset-boundary',ask=>{let v=ask({op:'new',seed:6106,side:'allies',enemy:'gunnery',profile:'gunnery',realtime:true});ask({op:'fire',ship:1,weapon:'gun',target:'C01'});v=ask({op:'step',seconds:1});const fx=ask({op:'presentation'});assert.ok(fx.shots.some(s=>s.battery==='main'&&s.caliber_mm===127));const save=ask({op:'save'});ask({op:'replay',save,tick:0});assert.deepEqual(ask({op:'save'}),save);assert.deepEqual(ask({op:'presentation'}),fx);v=ask({op:'new',seed:6106,side:'axis',enemy:'gunnery',profile:'gunnery',realtime:true});assert.deepEqual(ask({op:'presentation'}).shots,[]);return{light127:true,newBattleStartsEmpty:true,readonlyReplayDoesNotReplaceCurrentBattle:true};});
+await suite('chapter-and-standalone-tide-safe',ask=>{ask({op:'new_chapter',id:'c1-breakout',seed:6109,gameplay_profile:'cas-adventure-v1',intel_profile:'open-intel-v1'});ask({op:'step',seconds:25});let v=ask({op:'observe'});const before=ask({op:'save'});ask({op:'presentation'});assert.deepEqual(ask({op:'observe'}),v);assert.deepEqual(ask({op:'save'}),before);ask({op:'new_tide',seed:42,character_id:'IBS-U-USN-FLETCHER'});for(let i=0;i<8;i++){v=ask({op:'step',seconds:1});assert.deepEqual(ask({op:'presentation'}),{version:'projectile-fx-v1',tick:v.tick,shots:[]});}return{chapterUnchanged:true,tideKeepsExistingIndependentBolts:true};});
+
+const frozen=[];
+async function freeze(name,qs){const n=run(native,qs),b=run(baseline,qs);assert.equal(n.raw,b.raw,name+' exact legacy native bytes');const w=await wasmRun(),ws=qs.map(q=>w(q));assert.equal(canonical(n.rows),canonical(ws),name+' legacy native/WASM');frozen.push({name,requests:qs.length,bytes:Buffer.byteLength(n.raw),rawByteEqual:true,nativeWasm:true});console.log(JSON.stringify({frozen:name,requests:qs.length}));}
+const tideReceipt=JSON.parse(await readFile(resolve(root,'artifacts/tide-core/receipt.json'),'utf8'));
+for(const row of tideReceipt.rows)await freeze('tide-core/'+row.name,JSON.parse(await readFile(resolve(root,'artifacts/tide-core/'+row.name+'-commands.json'),'utf8')));
+for(const dir of ['artifacts/chapter-two-three-core','artifacts/expedition-v2-core','artifacts/extraction-autopilot'])for(const f of await readdir(resolve(root,dir)))if(f.endsWith('-commands.json'))await freeze(dir+'/'+f,JSON.parse(await readFile(resolve(root,dir,f),'utf8')));
+for(const stage of ['c2-convoy','c2-relay','c2-warden','c3-crossing','c3-core','c3-breaker']){const save=JSON.parse(await readFile(resolve(root,'artifacts/godot/chapters-two-three/'+stage+'-terminal.json'),'utf8'));await freeze('actual-gpu-terminal-'+stage,[{op:'load',save},{op:'save'},{op:'replay',save}]);}
+const report={version:'projectile-fx-v1',native:resolve(native),nativeSha256:sha(await readFile(native)),baseline:resolve(baseline),baselineSha256:sha(await readFile(baseline)),wasm:wasmPath,wasmSha256:sha(wasm),manifestObserved:manifest,current,frozen,frozenGroups:frozen.length,frozenRequests:frozen.reduce((a,r)=>a+r.requests,0),frozenRawBytes:frozen.reduce((a,r)=>a+r.bytes,0),allLegacyRawBytesUnchanged:true,allNativeWasmEqual:true};
+await writeFile(resolve(out,'receipt.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({...report,current:undefined,frozen:undefined}));

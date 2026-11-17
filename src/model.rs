@@ -310,6 +310,10 @@ pub struct Ship {
     pub side: usize,
     pub fleet: Option<u32>,
     pub name: String,
+    /// Stable catalogue identity (`IBS-U-*`) of this hull when one is known.
+    /// Historical class cards and named hulls without a catalogue row stay
+    /// `None`; the battle view then falls back to the class representative.
+    pub character: Option<String>,
     pub p: P,
     pub h: f64,
     pub speed: f64,
@@ -541,6 +545,12 @@ pub struct ResupplyPoint {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct Saved {
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub arena:Option<crate::arena::Start>,
+    #[serde(default,skip_serializing_if="String::is_empty")]
+    pub intel_profile:String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub salvage: Option<crate::salvage::Start>,
     pub version: String,
     pub seed: u32,
     pub side: String,
@@ -563,6 +573,10 @@ pub struct Saved {
     /// reload the first stage.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub challenge_stage: Option<String>,
+    /// Five registered single-ship identities for a local exercise. Absent on
+    /// every campaign, challenge and printed/default exercise save.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ships: Option<Vec<String>>,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]

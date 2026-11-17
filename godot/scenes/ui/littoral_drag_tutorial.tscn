@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/littoral_drag_tutorial.gd" id="1_tutorial"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_hint"]
+bg_color = Color(0.094, 0.231, 0.282, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.788, 0.851, 0.765, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_left = 14
+corner_radius_bottom_right = 14
+shadow_color = Color(0, 0, 0, 0.22)
+shadow_size = 5
+
+[node name="LittoralDragTutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tutorial")
+
+[node name="Hint" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 18.0
+offset_right = 945.0
+offset_bottom = 90.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_hint")
+
+[node name="Margin" type="MarginContainer" parent="Hint"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="Row" type="HBoxContainer" parent="Hint/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Instruction" type="Label" parent="Hint/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.965, 0.859, 1)
+theme_override_font_sizes/font_size = 20
+text = "把部队卡拖到发光滩头"
+autowrap_mode = 3
+text_overrun_behavior = 3
+max_lines_visible = 2
+
+[node name="Close" type="Button" parent="Hint/Margin/Row"]
+custom_minimum_size = Vector2(62, 48)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "收起提示，可在帮助中重新学习"
+theme_override_font_sizes/font_size = 17
+text = "稍后"

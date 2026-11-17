@@ -1,0 +1,469 @@
+{
+ "version": "coastal-scenarios-v1",
+ "note": "P1 standard assault samples; same 150pt defense cap (tower budget per design + garrison company points per CSV). Exercise mode = lossless, no account cost.",
+ "scenarios": [
+  {
+   "id": "beach_fire",
+   "title": "标准攻防 · 滩头火力",
+   "text": "礁刃×5+断浪×3+苍穹+汐锚。滩头机枪/加农/岸舰炮+Fletcher驻防舰。先取制海权，夺HQ与两仓库后撤收。",
+   "level": 3,
+   "seed": 18031,
+   "roster": [
+    "MCP-034",
+    "MCP-063",
+    "MCP-145",
+    "MCP-009"
+   ],
+   "roster_points": 100,
+   "garrison": [
+    "MCP-034",
+    "MCP-302",
+    "MCP-184"
+   ],
+   "garrison_points": 23,
+   "garrison_ship": "IBS-U-USN-FLETCHER",
+   "garrison_ship_ammo": 50,
+   "ships": [
+    {
+     "id": "CAS-H-USN-ENTERPRISE-1942",
+     "hp": 100,
+     "ammo": 100
+    },
+    {
+     "id": "CAS-O-APV-TIDEBRIDGE",
+     "hp": 100,
+     "ammo": 100
+    }
+   ],
+   "forts": [
+    {
+     "kind": "hq",
+     "x": 0.7333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-0",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.4666666666666667,
+     "y": 0.5,
+     "id": "fort-1",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.5333333333333333,
+     "y": 0.7,
+     "id": "fort-2",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.5666666666666667,
+     "id": "fort-3",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4,
+     "y": 0.7,
+     "id": "fort-4",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.6333333333333333,
+     "id": "fort-5",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.5333333333333333,
+     "y": 0.5,
+     "id": "fort-6",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "cannon",
+     "x": 0.5333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-7",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "cannon",
+     "x": 0.4666666666666667,
+     "y": 0.7,
+     "id": "fort-8",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "anti_ship",
+     "x": 0.5333333333333333,
+     "y": 0.6333333333333333,
+     "id": "fort-9",
+     "level": 1,
+     "hp": 100.0
+    }
+   ],
+   "towers_used": 74
+  },
+  {
+   "id": "industrial_depth",
+   "title": "标准攻防 · 工业纵深",
+   "text": "铁潮×3+礁刃×2+断浪+苍穹。纵深迫击炮/加农/防空。步兵清位、装甲推进、防空护空突。",
+   "level": 3,
+   "seed": 18031,
+   "roster": [
+    "MCP-022",
+    "MCP-034",
+    "MCP-063",
+    "MCP-145"
+   ],
+   "roster_points": 129,
+   "garrison": [
+    "MCP-034",
+    "MCP-184",
+    "MCP-302",
+    "MCP-087"
+   ],
+   "garrison_points": 38,
+   "garrison_ship": "IBS-U-USN-FLETCHER",
+   "garrison_ship_ammo": 50,
+   "ships": [
+    {
+     "id": "CAS-H-USN-ENTERPRISE-1942",
+     "hp": 100,
+     "ammo": 100
+    },
+    {
+     "id": "CAS-O-APV-TIDEBRIDGE",
+     "hp": 100,
+     "ammo": 100
+    }
+   ],
+   "forts": [
+    {
+     "kind": "hq",
+     "x": 0.7333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-0",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.5333333333333333,
+     "y": 0.5,
+     "id": "fort-1",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.5333333333333333,
+     "y": 0.6333333333333333,
+     "id": "fort-2",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.6666666666666666,
+     "y": 0.5666666666666667,
+     "id": "fort-3",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.5,
+     "id": "fort-4",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.5666666666666667,
+     "id": "fort-5",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "cannon",
+     "x": 0.5333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-6",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "cannon",
+     "x": 0.4666666666666667,
+     "y": 0.6333333333333333,
+     "id": "fort-7",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "mortar",
+     "x": 0.7333333333333333,
+     "y": 0.6333333333333333,
+     "id": "fort-8",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "mortar",
+     "x": 0.6,
+     "y": 0.7,
+     "id": "fort-9",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "air_defense",
+     "x": 0.5333333333333333,
+     "y": 0.7,
+     "id": "fort-10",
+     "level": 1,
+     "hp": 100.0
+    }
+   ],
+   "towers_used": 66
+  },
+  {
+   "id": "mobile_garrison",
+   "title": "标准攻防 · 机动驻军",
+   "text": "云隼直升机×3+礁刃×2+汐锚。守军机动连队为主。直升机侧后投送，步兵抢占HQ与仓库。",
+   "level": 3,
+   "seed": 18031,
+   "roster": [
+    "MCP-001",
+    "MCP-034",
+    "MCP-009"
+   ],
+   "roster_points": 76,
+   "garrison": [
+    "MCP-034",
+    "MCP-302",
+    "MCP-184",
+    "MCP-304"
+   ],
+   "garrison_points": 34,
+   "garrison_ship": "IBS-U-USN-FLETCHER",
+   "garrison_ship_ammo": 50,
+   "ships": [
+    {
+     "id": "CAS-H-USN-ENTERPRISE-1942",
+     "hp": 100,
+     "ammo": 100
+    },
+    {
+     "id": "CAS-O-APV-TIDEBRIDGE",
+     "hp": 100,
+     "ammo": 100
+    }
+   ],
+   "forts": [
+    {
+     "kind": "hq",
+     "x": 0.7333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-0",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.5333333333333333,
+     "y": 0.5,
+     "id": "fort-1",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.5333333333333333,
+     "y": 0.7,
+     "id": "fort-2",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.5,
+     "id": "fort-3",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.5666666666666667,
+     "id": "fort-4",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "mortar",
+     "x": 0.5333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-5",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "air_defense",
+     "x": 0.6666666666666666,
+     "y": 0.5666666666666667,
+     "id": "fort-6",
+     "level": 1,
+     "hp": 100.0
+    }
+   ],
+   "towers_used": 48
+  },
+  {
+   "id": "two_formation",
+   "title": "两编队协同 · 战列舰制海",
+   "text": "2BB编队（依阿华+北卡）制海并压制岸防；登陆编队（LHA+潮桥）先入近海点待机，制海后登滩。赤隼武直玻璃大炮打侧后，云隼直升机投送空中步兵抢纵深HQ。注意防空塔与直升机脆皮。",
+   "level": 3,
+   "seed": 18031,
+   "roster": [
+    "MCP-027",
+    "MCP-001",
+    "MCP-034",
+    "MCP-063"
+   ],
+   "roster_points": 97,
+   "garrison": [
+    "MCP-034",
+    "MCP-302",
+    "MCP-184"
+   ],
+   "garrison_points": 23,
+   "garrison_ship": "IBS-U-USN-FLETCHER",
+   "garrison_ship_ammo": 50,
+   "ships": [
+    {
+     "id": "IBS-U-USN-ERMA-IOWA",
+     "hp": 100,
+     "ammo": 100
+    },
+    {
+     "id": "IBS-U-USN-UNNAMED-T01-R03",
+     "hp": 100,
+     "ammo": 100
+    },
+    {
+     "id": "CAS-O-LHA-RETURNLIGHT",
+     "hp": 100,
+     "ammo": 100
+    },
+    {
+     "id": "CAS-O-APV-TIDEBRIDGE",
+     "hp": 100,
+     "ammo": 100
+    }
+   ],
+   "forts": [
+    {
+     "kind": "hq",
+     "x": 0.7333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-0",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.4666666666666667,
+     "y": 0.5,
+     "id": "fort-1",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "warehouse",
+     "x": 0.5333333333333333,
+     "y": 0.7,
+     "id": "fort-2",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.5666666666666667,
+     "id": "fort-3",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4,
+     "y": 0.7,
+     "id": "fort-4",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.4666666666666667,
+     "y": 0.6333333333333333,
+     "id": "fort-5",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "machine_gun",
+     "x": 0.5333333333333333,
+     "y": 0.5,
+     "id": "fort-6",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "cannon",
+     "x": 0.5333333333333333,
+     "y": 0.5666666666666667,
+     "id": "fort-7",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "cannon",
+     "x": 0.4666666666666667,
+     "y": 0.7,
+     "id": "fort-8",
+     "level": 1,
+     "hp": 100.0
+    },
+    {
+     "kind": "anti_ship",
+     "x": 0.5333333333333333,
+     "y": 0.6333333333333333,
+     "id": "fort-9",
+     "level": 1,
+     "hp": 100.0
+    }
+   ],
+   "towers_used": 74
+  }
+ ]
+}

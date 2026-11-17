@@ -1,0 +1,569 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=24 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="祈祷从没有接线的旧收音机里传出来。没人碰它，调频旋钮却自己颤了一下。仓库管理员退到门边，手里还拿着没盖上的印泥盒。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="herald"
+
+speaker_name=""
+
+text="第五队，下午好。你们带回来的那只箱子，是我们遗失的东西。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="报身份和频道。这里是民用仓库。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="step"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="herald"
+
+speaker_name=""
+
+text="我们在寻找一位走散的客人。你们已经找到他，却还在给他披不合身的衣服。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你在说我？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="收音机沉默了一会儿。你听见底噪里有一声呼吸，随后又想起这不该是能传声音的设备。帕金斯已经拔下天线，声音没有变化。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker="herald"
+
+speaker_name=""
+
+text="你还记得门吗？门后的海很安静。你曾经希望所有人都能听见。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我记不得。你说得再具体一点。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker="herald"
+
+speaker_name=""
+
+text="他们让你失去了名字。我们可以还给你。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="真要还东西就留个领取地址。躲在收音机后面，连自己叫什么都不肯说？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她把收音机转了个面，露出后盖一张褪色标签。标签上不是神的名字，是一个维修班组号，旁边贴着半张尚未兑付的食堂券。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker="herald"
+
+speaker_name=""
+
+text="不是每个人都愿意听见真相。你的朋友尤其如此。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="你不知道我的朋友愿意听什么。把你控制的东西从仓库退出去，这里有平民。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="外海接触在变。它们绕过巡逻灯，朝打捞区来了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="这些东西是你带来的？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="herald"
+
+speaker_name=""
+
+text="我们只替它们清掉妨碍它们聆听的噪声。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="弗莱彻压低声音，让仓库管理员先带人离开。她没有继续和收音机争辩。你忽然明白，让对方一直说话也是在给远处争时间，而你们已经没有多少。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="箱子留下封存，净水膜先运走。第五队去外堤，我们不在住人的地方接这一仗。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="如果他说的名字是真的——"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="回来再听。你今天不用拿港口换一个答案。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_20"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="收音机里又响起四次敲击。这次你把每一下都记住，没有跟着敲。德雷顿拽住你的袖子，拉你离开了那张桌子。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["herald", "fletcher", "perkins"])
+
+actor_tones={"fletcher": "resolve"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="message"
+
+background="res://assets/story/chapter1/archive-room-v1.png"
+
+full_cg=false
+
+actors=Array[String](["herald", "fletcher", "drayton"])
+
+music_scene="salvage"
+
+location="修复资料舱 · 异常来讯"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19"), SubResource("Line_20")])

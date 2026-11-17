@@ -1,0 +1,465 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=20 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="准备攻平台前，弗莱彻发现你已经第三次读同一行字。她伸手挡住纸，问你刚才读的是什么，你张嘴，却只能记得那一段放在左下角。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="吃东西，休息一会儿。让帕金斯接。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="现在停会不会太晚？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="继续读不进去才会晚。不是只有睡着才叫累。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你很不情愿地把耳机摘下来，坐到遮雨棚下面。德雷顿正在处理擦伤，她用牙想撕胶带，撕了两次都没撕开，最后把胶带递给你，让你也有件不需要想太多的事做。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="医生说不许拿牙撕，我刚才只是试试她有没有道理。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="现在知道了？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="知道了。我牙疼，胶带没变短。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你帮她剪好，发现手腕也酸。海图上的每一个折点，你今天好像都用力按过。德雷顿让你把手松开，别把一张早已经画好的图继续握在手里。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我怕一放下，就漏掉什么。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="你现在已经漏掉自己刚读的那行了。还好漏在这里，没漏在别人问你往哪边的时候。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她说得很直接，你起初有点难受，后来才慢慢听进去。不是每一种提醒都能像毯子一样裹上来，有些得让你先看见自己确实在发抖。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你们怎么知道谁能继续，谁该停？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="也会看错。所以问具体的。刚才睡多久，伤口有没有继续渗，命令能不能复述，别只问“你行不行”。问那个，谁都说行。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你问她手腕还疼不疼，她说疼，但能完成接下来的任务，也能告诉弗莱彻哪种动作不行。你忽然意识到，能说出“不行的部分”比坚持一句全都可以更接近可靠。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="这边确认完了。你休息以后再核一遍，不要直接接着你停下的字往下读，先问我们中间改过什么。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你点头，把饼干吃完，喝一杯水。休息没有让问题自动解决，不过等你回到图前，终于能把一句话完整看完，再用自己的话说给别人听。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+actor_tones={"fletcher": "concern"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c2-break-time"
+
+background="res://assets/story/chapter2/mines.png"
+
+full_cg=false
+
+actors=Array[String](["fletcher", "drayton", "perkins"])
+
+music_scene="salvage"
+
+location="旧采掘平台 · 热泉"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16")])

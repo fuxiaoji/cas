@@ -78,6 +78,22 @@ try {
       return rows.at(-1) ?? null;
     });
   }
+  // Every roster chip is keyed by its catalogue identity. Each one must render
+  // either the identity portrait (`img`) or ShipThumb's explicit placeholder.
+  async function assertStageArtwork(stage) {
+    const ships = page.locator('.challenge-detail [data-ship]');
+    const count = await ships.count();
+    assert(count > 0, `${stage} renders its single-ship roster`);
+    for (let index = 0; index < count; index++) {
+      const chip = ships.nth(index);
+      const id = await chip.getAttribute('data-ship');
+      const art = await chip.locator('img').count();
+      const placeholder = await chip.locator('.ship-thumb--fallback').count();
+      assert(art + placeholder > 0, `${stage} [data-ship="${id}"] has a portrait or an explicit placeholder`);
+    }
+    await page.locator('.challenge-detail').screenshot({ path: out + stage + '-detail.png' });
+    return count;
+  }
 
   await page.goto(process.env.CAS_TEST_URL || 'http://127.0.0.1:5175/');
   await signInLocal(page, 'cas-challenge-qa', true);
@@ -105,6 +121,8 @@ try {
   assert.match(await page.locator('.challenge-detail').innerText(), /1875 \/ 2000/);
   assert.match(await page.locator('.challenge-detail').innerText(), /种子 6100/);
   await page.screenshot({ path: out + 'challenge-stages-1360.png' });
+  const rosterChips = {};
+  rosterChips['challenge-01'] = await assertStageArtwork('challenge-01');
 
   const stages = [
     { id: 'challenge-01', seed: 6100, ships: 3, profile: 'gunnery', leaderKind: 'cl' },
@@ -121,6 +139,7 @@ try {
       await openChallenge();
       assert.equal(await cards.nth(index).isDisabled(), false, `${expect.id} unlocks after the previous stage`);
       await cards.nth(index).click();
+      rosterChips[expect.id] = await assertStageArtwork(expect.id);
     }
     const { after } = await clearSelectedStage(expect);
     results[expect.id] = after.result;
@@ -166,10 +185,12 @@ try {
     blocked: 0,
     clearOrder: stages.map((stage) => stage.id),
     results,
+    rosterChips,
     persisted: stored?.challengeLadder ?? null,
     rewards: { firstClearTickets, repeatTickets: ticketsAfterRepeat - beforeRepeat },
     viewport740Overflow: overflow,
-    screenshots: ['challenge-stages-1360.png', 'challenge-stages-740.png'],
+    screenshots: ['challenge-stages-1360.png', 'challenge-stages-740.png',
+      ...stages.map((stage) => `${stage.id}-detail.png`)],
   };
   await fs.writeFile(out + 'receipt.json', JSON.stringify(receipt, null, 2));
   console.log('challenge receipt', JSON.stringify(receipt));

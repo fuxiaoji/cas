@@ -1,0 +1,213 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/arena_presentation.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/recruit/missouri-up-v1.png" id="2"]
+[ext_resource type="Script" path="res://scripts/arena_badge.gd" id="3"]
+
+[sub_resource type="AtlasTexture" id="HeroCrop"]
+atlas = ExtResource("2")
+region = Rect2(880,0,640,941)
+
+[sub_resource type="Gradient" id="Gradient_shade"]
+colors = PackedColorArray(0.02,0.08,0.15,0.1,0.02,0.08,0.15,0.97)
+[sub_resource type="GradientTexture2D" id="Shade"]
+gradient = SubResource("Gradient_shade")
+fill_from = Vector2(0,0)
+fill_to = Vector2(0,1)
+
+[node name="ArenaHub" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="Hero" type="TextureRect" parent="."]
+anchor_left = 0.034
+anchor_top = 0.151
+anchor_right = 0.292
+anchor_bottom = 0.905
+texture = SubResource("HeroCrop")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+[node name="HeroShade" type="TextureRect" parent="."]
+anchor_left = 0.034
+anchor_top = 0.151
+anchor_right = 0.292
+anchor_bottom = 0.905
+texture = SubResource("Shade")
+expand_mode = 1
+mouse_filter = 2
+[node name="ModeLabel" type="Label" parent="."]
+anchor_left = 0.053
+anchor_top = 0.183
+anchor_right = 0.281
+anchor_bottom = 0.25
+theme_override_colors/font_color = Color(1,0.96,0.84,1)
+theme_override_font_sizes/font_size = 38
+text = "舰队排位"
+mouse_filter = 2
+[node name="RankBadge" type="Control" parent="."]
+anchor_left = 0.095
+anchor_top = 0.475
+anchor_right = 0.231
+anchor_bottom = 0.715
+mouse_filter = 2
+script = ExtResource("3")
+[node name="RankName" type="Label" parent="."]
+anchor_left = 0.05
+anchor_top = 0.696
+anchor_right = 0.276
+anchor_bottom = 0.746
+theme_override_colors/font_color = Color(1,0.95,0.81,1)
+theme_override_font_sizes/font_size = 29
+horizontal_alignment = 1
+text = "见习"
+mouse_filter = 2
+[node name="Rating" type="Label" parent="."]
+anchor_left = 0.05
+anchor_top = 0.745
+anchor_right = 0.276
+anchor_bottom = 0.802
+theme_override_colors/font_color = Color(1,1,1,1)
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+text = "0"
+mouse_filter = 2
+[node name="RankHint" type="Label" parent="."]
+anchor_left = 0.05
+anchor_top = 0.800
+anchor_right = 0.276
+anchor_bottom = 0.832
+theme_override_colors/font_color = Color(0.78,0.86,0.89,1)
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+text = "最高 0"
+mouse_filter = 2
+[node name="Progress" type="ProgressBar" parent="."]
+anchor_left = 0.065
+anchor_top = 0.843
+anchor_right = 0.261
+anchor_bottom = 0.850
+show_percentage = false
+mouse_filter = 2
+[node name="NextRank" type="Label" parent="."]
+anchor_left = 0.05
+anchor_top = 0.858
+anchor_right = 0.276
+anchor_bottom = 0.89
+theme_override_colors/font_color = Color(0.78,0.86,0.89,1)
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+text = "下一段位"
+mouse_filter = 2
+
+[node name="Ranked" type="Button" parent="."]
+anchor_left = 0.312
+anchor_top = 0.151
+anchor_right = 0.586
+anchor_bottom = 0.214
+text = "舰队排位"
+[node name="Team3" type="Button" parent="."]
+anchor_left = 0.599
+anchor_top = 0.151
+anchor_right = 0.963
+anchor_bottom = 0.214
+text = "3v3协同团战"
+[node name="ModeHint" type="Label" parent="."]
+anchor_left = 0.316
+anchor_top = 0.232
+anchor_right = 0.96
+anchor_bottom = 0.272
+theme_override_font_sizes/font_size = 24
+text = "自由编成舰队，争夺海域制海权"
+mouse_filter = 2
+[node name="RuleHint" type="Label" parent="."]
+anchor_left = 0.316
+anchor_top = 0.278
+anchor_right = 0.77
+anchor_bottom = 0.31
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.36,0.44,0.51,1)
+text = "10000分预算 · 最多四个编队"
+mouse_filter = 2
+[node name="EditFleet" type="Button" parent="."]
+anchor_left = 0.815
+anchor_top = 0.262
+anchor_right = 0.963
+anchor_bottom = 0.316
+text = "编辑编队"
+[node name="FleetScroll" type="ScrollContainer" parent="."]
+anchor_left = 0.312
+anchor_top = 0.335
+anchor_right = 0.963
+anchor_bottom = 0.710
+horizontal_scroll_mode = 0
+[node name="Fleets" type="GridContainer" parent="FleetScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+[node name="Selection" type="Label" parent="."]
+anchor_left = 0.316
+anchor_top = 0.730
+anchor_right = 0.60
+anchor_bottom = 0.766
+theme_override_font_sizes/font_size = 22
+text = "出击编队  0 / 4"
+mouse_filter = 2
+[node name="BudgetValue" type="Label" parent="."]
+anchor_left = 0.684
+anchor_top = 0.730
+anchor_right = 0.963
+anchor_bottom = 0.766
+theme_override_font_sizes/font_size = 27
+horizontal_alignment = 2
+text = "0 / 10000"
+mouse_filter = 2
+[node name="Budget" type="ProgressBar" parent="."]
+anchor_left = 0.316
+anchor_top = 0.777
+anchor_right = 0.963
+anchor_bottom = 0.786
+show_percentage = false
+mouse_filter = 2
+[node name="Feedback" type="Label" parent="."]
+anchor_left = 0.316
+anchor_top = 0.799
+anchor_right = 0.963
+anchor_bottom = 0.831
+theme_override_font_sizes/font_size = 18
+text = "请选择出击编队"
+mouse_filter = 2
+[node name="TierRewards" type="Button" parent="."]
+anchor_left = 0.312
+anchor_top = 0.846
+anchor_right = 0.495
+anchor_bottom = 0.91
+text = "段位奖励"
+[node name="History" type="Button" parent="."]
+anchor_left = 0.506
+anchor_top = 0.846
+anchor_right = 0.677
+anchor_bottom = 0.91
+text = "最近对局"
+[node name="Launch" type="Button" parent="."]
+anchor_left = 0.69
+anchor_top = 0.846
+anchor_right = 0.963
+anchor_bottom = 0.91
+text = "开始排位"
+[node name="BotNotice" type="Label" parent="."]
+anchor_left = 0.315
+anchor_top = 0.922
+anchor_right = 0.963
+anchor_bottom = 0.952
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.36,0.44,0.51,1)
+horizontal_alignment = 2
+text = "当前所有对手和队友均为本地人机"
+mouse_filter = 2

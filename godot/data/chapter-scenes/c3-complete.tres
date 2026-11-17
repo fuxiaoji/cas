@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c3-complete"
+
+background="res://assets/story/chapter3/gate.png"
+
+full_cg=false
+
+actors=Array[String]([])
+
+music_scene="salvage"
+
+location="潮门 · 初日"
+
+lines=Array[ExtResource("2_line")]([])

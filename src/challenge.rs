@@ -505,6 +505,24 @@ mod tests {
     }
 
     #[test]
+    fn challenge_ships_expose_their_catalogue_identity_in_the_battle_view() {
+        let world = World::new_challenge(6100, 0, "gunnery", "gunnery", 1, "challenge-01").unwrap();
+        let view = world.observation(0);
+        let ships = view["ships"].as_array().unwrap();
+        assert!(!ships.is_empty());
+        for ship in ships {
+            let id = ship["characterId"].as_str().expect("challenge hull has a characterId");
+            assert_eq!(id, ship["classId"].as_str().unwrap(),
+                "challenge card id is the stable single-ship identity");
+        }
+        // The same identity is present on the enemy's own seat view.
+        let axis = world.observation(1);
+        for ship in axis["ships"].as_array().unwrap() {
+            assert!(ship["characterId"].as_str().is_some_and(|id| id.starts_with("IBS-U-")));
+        }
+    }
+
+    #[test]
     fn every_evidence_seed_clears_its_stage_with_the_auto_ai() {
         for stage in stages().unwrap() {
             let mut recorded = None;

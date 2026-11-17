@@ -1,0 +1,801 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-09T15:38:14+08:00",
+  "scope": "challenge and campaign single-ship identities and portrait resolution",
+  "sources": {
+    "engine": "target/release/cas-sim.exe",
+    "engine_seed": 6106,
+    "identity_ledger": "client/src/assets/portraits/all/ledger.json",
+    "class_ledger": "client/src/assets/portraits/ledger.json",
+    "runtime_identities": "data/ships/runtime-identities.json",
+    "challenge_stages": "data/challenge/stages.json"
+  },
+  "portrait_ledger": {
+    "identity_rows": 210,
+    "class_representative_classes": [
+      "cleveland",
+      "fletcher",
+      "kagero",
+      "sendai"
+    ],
+    "identity_asset_root": "client/src/assets/portraits/all",
+    "class_asset_root": "client/src/assets/portraits"
+  },
+  "challenge": {
+    "stages": 5,
+    "roster_rows_all_seats": 92,
+    "by_stage": [
+      {
+        "stage": "challenge-01",
+        "name": "哨戒接触",
+        "roster_rows": 16,
+        "displayed_allied_chips": 8,
+        "engine_identity_mismatches": [],
+        "ships": 16,
+        "with_identity": 16,
+        "identity": 16,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "challenge-02",
+        "name": "轻巡拦阻",
+        "roster_rows": 16,
+        "displayed_allied_chips": 8,
+        "engine_identity_mismatches": [],
+        "ships": 16,
+        "with_identity": 16,
+        "identity": 16,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "challenge-03",
+        "name": "雷击追击",
+        "roster_rows": 18,
+        "displayed_allied_chips": 9,
+        "engine_identity_mismatches": [],
+        "ships": 18,
+        "with_identity": 18,
+        "identity": 18,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "challenge-04",
+        "name": "战列舰拦截",
+        "roster_rows": 20,
+        "displayed_allied_chips": 10,
+        "engine_identity_mismatches": [],
+        "ships": 20,
+        "with_identity": 20,
+        "identity": 20,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "challenge-05",
+        "name": "主力决战",
+        "roster_rows": 22,
+        "displayed_allied_chips": 11,
+        "engine_identity_mismatches": [],
+        "ships": 22,
+        "with_identity": 22,
+        "identity": 22,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      }
+    ],
+    "ships": 92,
+    "with_identity": 92,
+    "identity": 92,
+    "class_representative": 0,
+    "placeholder": 0,
+    "identity_without_ledger": 0
+  },
+  "campaign": {
+    "stage_seats": 12,
+    "by_stage": [
+      {
+        "stage": "CAMP-ALLIES-02",
+        "difficulty": "standard",
+        "seat": "allies",
+        "identity_of": "printed runtime card",
+        "ships": 9,
+        "with_identity": 0,
+        "identity": 0,
+        "class_representative": 5,
+        "placeholder": 4,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-AXIS-02",
+        "difficulty": "standard",
+        "seat": "axis",
+        "identity_of": "printed runtime card",
+        "ships": 5,
+        "with_identity": 0,
+        "identity": 0,
+        "class_representative": 0,
+        "placeholder": 5,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-ALLIES-03",
+        "difficulty": "standard",
+        "seat": "allies",
+        "identity_of": "printed runtime card",
+        "ships": 5,
+        "with_identity": 5,
+        "identity": 5,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-AXIS-03",
+        "difficulty": "standard",
+        "seat": "axis",
+        "identity_of": "printed runtime card",
+        "ships": 5,
+        "with_identity": 5,
+        "identity": 5,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-ALLIES-04",
+        "difficulty": "standard",
+        "seat": "allies",
+        "identity_of": "printed runtime card",
+        "ships": 7,
+        "with_identity": 7,
+        "identity": 7,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-AXIS-04",
+        "difficulty": "standard",
+        "seat": "axis",
+        "identity_of": "printed runtime card",
+        "ships": 10,
+        "with_identity": 10,
+        "identity": 10,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-ALLIES-05",
+        "difficulty": "standard",
+        "seat": "allies",
+        "identity_of": "printed runtime card",
+        "ships": 11,
+        "with_identity": 11,
+        "identity": 11,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-AXIS-05",
+        "difficulty": "standard",
+        "seat": "axis",
+        "identity_of": "printed runtime card",
+        "ships": 8,
+        "with_identity": 8,
+        "identity": 8,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-ALLIES-10",
+        "difficulty": "standard",
+        "seat": "allies",
+        "identity_of": "printed runtime card",
+        "ships": 49,
+        "with_identity": 16,
+        "identity": 16,
+        "class_representative": 0,
+        "placeholder": 33,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-AXIS-10",
+        "difficulty": "standard",
+        "seat": "axis",
+        "identity_of": "printed runtime card",
+        "ships": 8,
+        "with_identity": 8,
+        "identity": 8,
+        "class_representative": 0,
+        "placeholder": 0,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-ALLIES-11",
+        "difficulty": "standard",
+        "seat": "allies",
+        "identity_of": "printed runtime card",
+        "ships": 12,
+        "with_identity": 0,
+        "identity": 0,
+        "class_representative": 8,
+        "placeholder": 4,
+        "identity_without_ledger": 0
+      },
+      {
+        "stage": "CAMP-AXIS-11",
+        "difficulty": "standard",
+        "seat": "axis",
+        "identity_of": "printed runtime card",
+        "ships": 10,
+        "with_identity": 0,
+        "identity": 0,
+        "class_representative": 2,
+        "placeholder": 8,
+        "identity_without_ledger": 0
+      }
+    ],
+    "ships": 139,
+    "with_identity": 70,
+    "identity": 70,
+    "class_representative": 15,
+    "placeholder": 54,
+    "identity_without_ledger": 0
+  },
+  "savo_unresolved_34": {
+    "count": 34,
+    "by_reason": {
+      "named_hull_not_in_identity_roster": 6,
+      "transport_not_in_identity_roster": 28
+    },
+    "fielded_in_standard_order": 33,
+    "fielded_period_cards": [
+      "savo_alchiba",
+      "savo_alhena",
+      "savo_american_legion",
+      "savo_barnett",
+      "savo_bellatrix",
+      "savo_betelgeuse",
+      "savo_colhoun",
+      "savo_crescent_city",
+      "savo_dewey",
+      "savo_ellet",
+      "savo_fomalhaut",
+      "savo_fuller",
+      "savo_george_f_elliott",
+      "savo_gregory",
+      "savo_henley",
+      "savo_heywood_yoke",
+      "savo_hobart",
+      "savo_hopkins",
+      "savo_hovey",
+      "savo_hunter_liggett",
+      "savo_libra",
+      "savo_little",
+      "savo_mccawley",
+      "savo_mckean",
+      "savo_mugford",
+      "savo_neville",
+      "savo_president_adams",
+      "savo_president_hayes",
+      "savo_president_jackson",
+      "savo_southard",
+      "savo_trever",
+      "savo_zane",
+      "savo_zeilin"
+    ],
+    "not_in_standard_order": [
+      "savo_blue"
+    ],
+    "rows": [
+      {
+        "period_card_id": "savo_hobart",
+        "name": "霍巴特",
+        "name_en": "Hobart",
+        "kind": "CL",
+        "reason": "named_hull_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；catalog 无同名或固定别名 identity，roster-crosswalk 无同名条目。"
+      },
+      {
+        "period_card_id": "savo_blue",
+        "name": "布鲁",
+        "name_en": "Blue",
+        "kind": "DD",
+        "reason": "named_hull_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；catalog 无同名或固定别名 identity，roster-crosswalk 无同名条目。"
+      },
+      {
+        "period_card_id": "savo_mugford",
+        "name": "马格福德",
+        "name_en": "Mugford",
+        "kind": "DD",
+        "reason": "named_hull_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；catalog 无同名或固定别名 identity，roster-crosswalk 无同名条目。"
+      },
+      {
+        "period_card_id": "savo_dewey",
+        "name": "杜威",
+        "name_en": "Dewey",
+        "kind": "DD",
+        "reason": "named_hull_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；catalog 无同名或固定别名 identity，roster-crosswalk 无同名条目。"
+      },
+      {
+        "period_card_id": "savo_henley",
+        "name": "亨利",
+        "name_en": "Henley",
+        "kind": "DD",
+        "reason": "named_hull_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；catalog 无同名或固定别名 identity，roster-crosswalk 无同名条目。"
+      },
+      {
+        "period_card_id": "savo_ellet",
+        "name": "埃利特",
+        "name_en": "Ellet",
+        "kind": "DD",
+        "reason": "named_hull_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；catalog 无同名或固定别名 identity，roster-crosswalk 无同名条目。"
+      },
+      {
+        "period_card_id": "savo_fuller",
+        "name": "富勒",
+        "name_en": "Fuller",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_american_legion",
+        "name": "美国军团",
+        "name_en": "American Legion",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_bellatrix",
+        "name": "贝拉特里克斯",
+        "name_en": "Bellatrix",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_mccawley",
+        "name": "麦考利",
+        "name_en": "McCawley",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_barnett",
+        "name": "巴尼特",
+        "name_en": "Barnett",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_george_f_elliott",
+        "name": "乔治·F·埃利奥特",
+        "name_en": "George F. Elliott",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_libra",
+        "name": "天秤座",
+        "name_en": "Libra",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_hunter_liggett",
+        "name": "亨特·利格特",
+        "name_en": "Hunter Liggett",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_alchiba",
+        "name": "菜鸟座",
+        "name_en": "Alchiba",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "该具名舰不在 210 个 IBS-U-* identity 内；runtime id/alchiba 与 zh-labels 的 Alchiba（阿尔奇巴）同名，但 catalog 无该身份，roster-crosswalk 无条目。"
+      },
+      {
+        "period_card_id": "savo_betelgeuse",
+        "name": "参宿四",
+        "name_en": "Betelgeuse",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_fomalhaut",
+        "name": "北落师门",
+        "name_en": "Formalhaut",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_crescent_city",
+        "name": "新月城",
+        "name_en": "Crescent City",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_president_hayes",
+        "name": "海斯总统",
+        "name_en": "President Hayes",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_president_adams",
+        "name": "亚当斯总统",
+        "name_en": "President Adams",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_alhena",
+        "name": "阿尔赫纳",
+        "name_en": "Alhena",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_heywood_yoke",
+        "name": "海伍德（Yoke）",
+        "name_en": "Heywood",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_neville",
+        "name": "内维尔",
+        "name_en": "Neville",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_zeilin",
+        "name": "塞林",
+        "name_en": "Zeilin",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_president_jackson",
+        "name": "杰克逊总统",
+        "name_en": "President Jackson",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_colhoun",
+        "name": "科尔霍恩",
+        "name_en": "Colhoun",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_little",
+        "name": "利特尔",
+        "name_en": "Little",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_gregory",
+        "name": "格雷戈里",
+        "name_en": "Gregory",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_mckean",
+        "name": "麦基恩",
+        "name_en": "McKean",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_hopkins",
+        "name": "霍普金斯",
+        "name_en": "Hopkins",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_trever",
+        "name": "特雷弗",
+        "name_en": "Trever",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_zane",
+        "name": "赞恩",
+        "name_en": "Zane",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_southard",
+        "name": "绍瑟德",
+        "name_en": "Southard",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      },
+      {
+        "period_card_id": "savo_hovey",
+        "name": "霍维",
+        "name_en": "Hovey",
+        "kind": "AP",
+        "reason": "transport_not_in_identity_roster",
+        "detail": "210 个 IBS-U-* identity 只含作战舰（DD/CA/CL/BB/BC/CB/AV/CV/APD），没有 AP/运输舰身份；catalog 与 roster-crosswalk 均无此舰。"
+      }
+    ]
+  },
+  "class_only_identity_gaps": [
+    {
+      "stage": "CAMP-ALLIES-02",
+      "ships_without_identity": 9,
+      "classes": [
+        "fletcher",
+        "new_orleans_1942",
+        "northampton_1942",
+        "salt_lake_city_1942",
+        "brooklyn_second_group_1942"
+      ]
+    },
+    {
+      "stage": "CAMP-ALLIES-10",
+      "ships_without_identity": 33,
+      "classes": [
+        "savo_hobart",
+        "savo_hopkins",
+        "savo_trever",
+        "savo_zane",
+        "savo_southard",
+        "savo_hovey",
+        "savo_dewey",
+        "savo_mugford",
+        "savo_fuller",
+        "savo_american_legion",
+        "savo_bellatrix",
+        "savo_mccawley",
+        "savo_barnett",
+        "savo_george_f_elliott",
+        "savo_libra",
+        "savo_hunter_liggett",
+        "savo_alchiba",
+        "savo_betelgeuse",
+        "savo_fomalhaut",
+        "savo_crescent_city",
+        "savo_president_hayes",
+        "savo_president_adams",
+        "savo_alhena",
+        "savo_henley",
+        "savo_ellet",
+        "savo_heywood_yoke",
+        "savo_neville",
+        "savo_zeilin",
+        "savo_president_jackson",
+        "savo_colhoun",
+        "savo_little",
+        "savo_gregory",
+        "savo_mckean"
+      ]
+    },
+    {
+      "stage": "CAMP-ALLIES-11",
+      "ships_without_identity": 12,
+      "classes": [
+        "fletcher",
+        "cleveland_empress"
+      ]
+    },
+    {
+      "stage": "CAMP-AXIS-02",
+      "ships_without_identity": 5,
+      "classes": [
+        "aoba_1938",
+        "furutaka_1937",
+        "kinugasa_1938",
+        "fubuki_1936_refit"
+      ]
+    },
+    {
+      "stage": "CAMP-AXIS-11",
+      "ships_without_identity": 10,
+      "classes": [
+        "myoko",
+        "sendai",
+        "shiratsuyu",
+        "agano",
+        "yugumo",
+        "kagero",
+        "akizuki"
+      ]
+    }
+  ],
+  "tests": {
+    "rust": {
+      "command": "cargo test --release --locked",
+      "passed": 131,
+      "failed": 0
+    },
+    "client": {
+      "tsc": "node node_modules/typescript/bin/tsc --noEmit -p . -> pass",
+      "vite": "node node_modules/vite/bin/vite.js build -> pass"
+    },
+    "server": {
+      "command": "python -m unittest server.test_fleets server.test_battle_pve",
+      "passed": 7,
+      "failed": 0
+    },
+    "browser": {
+      "deployment": {
+        "path": "artifacts/client/deployment/receipt.json",
+        "summary": {
+          "ok": true,
+          "stage": "CAMP-ALLIES-02",
+          "difficulty": "story",
+          "ships": 9,
+          "firstShip": "拉姆森",
+          "sameClassFletchers": 5,
+          "candidateRows": 116,
+          "overflow740": 0,
+          "placeholderShip": "旧金山",
+          "classRepresentativeShip": "邓肯",
+          "draft": "拉姆森"
+        }
+      },
+      "campaign_modes": {
+        "path": "artifacts/client/campaign-modes/receipt.json",
+        "summary": {
+          "ok": true,
+          "archiveRows": 11,
+          "sourceOnlyDisabled": true,
+          "storyHistorical": 9,
+          "sameClassHulls": 5,
+          "registeredOptions": 107,
+          "identityDraftShips": 5,
+          "legacyDraftShips": 5,
+          "stage": "CAMP-ALLIES-02",
+          "difficulty": "standard",
+          "ships": 9
+        }
+      },
+      "challenge": {
+        "path": "artifacts/client/challenge/receipt.json",
+        "summary": {
+          "ok": true,
+          "stages": 5,
+          "blocked": 0,
+          "clearOrder": [
+            "challenge-01",
+            "challenge-02",
+            "challenge-03",
+            "challenge-04",
+            "challenge-05"
+          ],
+          "results": {
+            "challenge-01": {
+              "allies": 5,
+              "axis": 0,
+              "primary": true,
+              "winner": "allies"
+            },
+            "challenge-02": {
+              "allies": 5,
+              "axis": 0,
+              "primary": true,
+              "winner": "allies"
+            },
+            "challenge-03": {
+              "allies": 5,
+              "axis": 3,
+              "primary": true,
+              "winner": "allies"
+            },
+            "challenge-04": {
+              "allies": 2,
+              "axis": 1,
+              "primary": true,
+              "winner": "allies"
+            },
+            "challenge-05": {
+              "allies": 5,
+              "axis": 0,
+              "primary": true,
+              "winner": "allies"
+            }
+          },
+          "rosterChips": {
+            "challenge-01": 8,
+            "challenge-02": 8,
+            "challenge-03": 9,
+            "challenge-04": 10,
+            "challenge-05": 11
+          },
+          "persisted": {
+            "version": 1,
+            "cleared": [
+              "challenge-01",
+              "challenge-02",
+              "challenge-03",
+              "challenge-04",
+              "challenge-05"
+            ],
+            "selected": "challenge-05"
+          },
+          "rewards": {
+            "firstClearTickets": 2,
+            "repeatTickets": 6
+          },
+          "viewport740Overflow": 0,
+          "screenshots": [
+            "challenge-stages-1360.png",
+            "challenge-stages-740.png",
+            "challenge-01-detail.png",
+            "challenge-02-detail.png",
+            "challenge-03-detail.png",
+            "challenge-04-detail.png",
+            "challenge-05-detail.png"
+          ]
+        }
+      }
+    },
+    "wasm": {
+      "path": "client/public/cas_core.wasm",
+      "sha256": "15428446548be701254d9b9b19b5ef664fefe7dd1f75dd311960061622e8a2cd",
+      "bytes": 3606076
+    }
+  },
+  "notes": [
+    "identity = catalogue character id with a ledger portrait; class_representative = explicit class fallback; placeholder = battle UI must draw 无立绘/舰影.",
+    "Challenge rows are the four printed fleets per stage (both seats); each chip is one catalogue identity.",
+    "Campaign rows are the standard-difficulty printed rosters, queried from the native engine for both seats.",
+    "Savo's 34 unresolved runtime rows are data gaps: 28 AP transports have no AP identity in the 210-card roster; 6 named hulls (Hobart, Blue, Mugford, Dewey, Henley, Ellet) have no exact roster row. No class card is substituted.",
+    "Of those 34 rows, 33 are fielded in the CAMP-ALLIES-10 standard order (16 resolved identities + 33 explicit placeholders); savo_blue is a runtime card outside the printed 49-hull player order, so it is counted as a data row, not a battle slot.",
+    "Esperance and Empress historical columns still use class cards without a registered identity; they render the class representative or the explicit placeholder and are listed under class_only_identity_gaps."
+  ]
+}

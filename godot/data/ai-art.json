@@ -1,0 +1,184 @@
+{
+  "profiles": [
+    {
+      "id": "balanced",
+      "name": "衡灯",
+      "prompt": "Make a single independent original fictional naval strategy game character portrait. The supplied style image is the strict upper limit for apparent facial maturity, shoulder width and body mass, and demonstrates quality of soft expressive anime rendering. Keep original identity, no copying the hair, face or uniform. Precise fine Japanese anime line work, softly shaded face, luminously detailed eyes, fine hand-painted material details, coherent colors, delicately articulated hands, feminine graceful posture. Fully clothed modest design, neutral eye-level framing, no sensual pose or emphasis. Soft slender shoulder/hand/foot proportions, no adult severity, muscle, bulky boxy shoulders or imposing anatomy. Center complete head, hair and both shoes with clear margin around all rigging, portrait 2:3 transparent RGBA alpha background, one character. No backdrop, glow, floor, text, watermark, logos or political flags. Classical balance and planning automaton. Pale ivory fair skin, pink copper short bob and little magnifying monocle, soft lavender eyes. Neat navy fitted tunic jacket with ivory capelet, A-line red-blue plaid short skirt, thick navy tights and brown over-knee boots, holding a twin-pan brass navigation balance, patient faint smile.",
+      "sha256": "96d2738a35bfa5963e8d8286c6c2f053b31cfa3569f2c181b70af6c43d562205",
+      "portrait": "res://assets/ai/balanced.png",
+      "original_portrait": "/characters/fsm-v2/balanced.png",
+      "source_path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\mobile\\public\\characters\\fsm-v2\\balanced.png"
+    },
+    {
+      "id": "adaptive",
+      "name": "澪",
+      "prompt": "Make a single independent original fictional naval strategy game character portrait. The supplied style image is the strict upper limit for apparent facial maturity, shoulder width and body mass, and demonstrates quality of soft expressive anime rendering. Keep original identity, no copying the hair, face or uniform. Precise fine Japanese anime line work, softly shaded face, luminously detailed eyes, fine hand-painted material details, coherent colors, delicately articulated hands, feminine graceful posture. Fully clothed modest design, neutral eye-level framing, no sensual pose or emphasis. Soft slender shoulder/hand/foot proportions, no adult severity, muscle, bulky boxy shoulders or imposing anatomy. Center complete head, hair and both shoes with clear margin around all rigging, portrait 2:3 transparent RGBA alpha background, one character. No backdrop, glow, floor, text, watermark, logos or political flags. Adaptive tactical instructor, an original young adult female communications technician. Warm fair ivory skin, mint green long side braid, curious hazel eyes and a friendly quiet smile, short teal navy radio crew jacket, light gray pleated short skirt over opaque blue tights, simple tall over-knee boots. Holds a brass pocket chronometer and a rolled small signal flag, slim headset.",
+      "sha256": "cbcc3eae1ae9f6d7fb904b21e35833fad1897eecd9862a76126c912d44dbbc25",
+      "portrait": "res://assets/ai/adaptive.png",
+      "original_portrait": "/characters/fsm-v2/adaptive.png",
+      "source_path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\mobile\\public\\characters\\fsm-v2\\adaptive.png"
+    },
+    {
+      "id": "fleet",
+      "name": "炮铃",
+      "prompt": "Make a single independent original fictional naval strategy game character portrait. The supplied style image is the strict upper limit for apparent facial maturity, shoulder width and body mass, and demonstrates quality of soft expressive anime rendering. Keep original identity, no copying the hair, face or uniform. Precise fine Japanese anime line work, softly shaded face, luminously detailed eyes, fine hand-painted material details, coherent colors, delicately articulated hands, feminine graceful posture. Fully clothed modest design, neutral eye-level framing, no sensual pose or emphasis. Soft slender shoulder/hand/foot proportions, no adult severity, muscle, bulky boxy shoulders or imposing anatomy. Center complete head, hair and both shoes with clear margin around all rigging, portrait 2:3 transparent RGBA alpha background, one character. No backdrop, glow, floor, text, watermark, logos or political flags. Fleet gunnery coordination automaton. Short fiery red curls, soft oval face and fair warm skin, brown eyes and broad bright smile. Vintage fitted deep navy flight leather jacket with brick accents, dark gold period plaid short skirt, gray opaque tights and long brown leather boots. Holds a small articulated twin rangefinder and numberedless brass plotting ruler, clean shoulders.",
+      "sha256": "238b4a44ec182f0968f38e56e41ef3ec5787838a8ed7ebd9b3ff4fd03f5410ea",
+      "portrait": "res://assets/ai/fleet.png",
+      "original_portrait": "/characters/fsm-v2/fleet.png",
+      "source_path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\mobile\\public\\characters\\fsm-v2\\fleet.png"
+    },
+    {
+      "id": "rc_torpedo_wings",
+      "name": "澜翼",
+      "prompt": "Make a single independent original fictional naval strategy game character portrait. The supplied style image is the strict upper limit for apparent facial maturity, shoulder width and body mass, and demonstrates quality of soft expressive anime rendering. Keep original identity, no copying the hair, face or uniform. Precise fine Japanese anime line work, softly shaded face, luminously detailed eyes, fine hand-painted material details, coherent colors, delicately articulated hands, feminine graceful posture. Fully clothed modest design, neutral eye-level framing, no sensual pose or emphasis. Soft slender shoulder/hand/foot proportions, no adult severity, muscle, bulky boxy shoulders or imposing anatomy. Center complete head, hair and both shoes with clear margin around all rigging, portrait 2:3 transparent RGBA alpha background, one character. No backdrop, glow, floor, text, watermark, logos or political flags. Torpedo wings officer automaton. Cool pale fair skin, inky blue long loose low ponytail, narrow graceful silhouette with soft face and lilac eyes. Fitted petrol-blue cropped deck jacket, charcoal pleated mini skirt over fully opaque ink-blue tights, polished over-knee boots, one electric amber accent at the pocket. Two tiny tasteful fictional black cat ears and one slim black cat tail. Holds a tiny torpedo-planning compass and narrow folding semaphore instrument.",
+      "sha256": "17e20b6fd19ac6ae370c4caf2bdb84ce530277b4fe1cf435f8c68935f462d498",
+      "portrait": "res://assets/ai/rc_torpedo_wings.png",
+      "original_portrait": "/characters/fsm-v2/rc_torpedo_wings.png",
+      "source_path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\mobile\\public\\characters\\fsm-v2\\rc_torpedo_wings.png"
+    },
+    {
+      "id": "rc_pincer",
+      "name": "双隼",
+      "prompt": "Make a single independent original fictional naval strategy game character portrait. The supplied style image is the strict upper limit for apparent facial maturity, shoulder width and body mass, and demonstrates quality of soft expressive anime rendering. Keep original identity, no copying the hair, face or uniform. Precise fine Japanese anime line work, softly shaded face, luminously detailed eyes, fine hand-painted material details, coherent colors, delicately articulated hands, feminine graceful posture. Fully clothed modest design, neutral eye-level framing, no sensual pose or emphasis. Soft slender shoulder/hand/foot proportions, no adult severity, muscle, bulky boxy shoulders or imposing anatomy. Center complete head, hair and both shoes with clear margin around all rigging, portrait 2:3 transparent RGBA alpha background, one character. No backdrop, glow, floor, text, watermark, logos or political flags. Pincer maneuvers officer automaton. Warm light beige skin, silver-taupe softly waved shoulder-length hair with asymmetric maroon hair clip, warm steel-blue eyes and a reserved clever smile. Cherry-wine high-collared dress coat with asymmetric pale lining, tailored short gray pleat skirt, taupe opaque tights and slender tall boots. In one hand two small folding semaphore flags with no symbols; the other hand positions a brass bearing disk.",
+      "sha256": "4845d2f12d37b7c92338970a483cdcc5b47dbb9e49861a8f6f9bd9f425ad0ecc",
+      "portrait": "res://assets/ai/rc_pincer.png",
+      "original_portrait": "/characters/fsm-v2/rc_pincer.png",
+      "source_path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\mobile\\public\\characters\\fsm-v2\\rc_pincer.png"
+    },
+    {
+      "id": "rc_coordinated",
+      "name": "白汐",
+      "portrait": "res://assets/ai/rc_coordinated.png",
+      "source": "approved instructor reference",
+      "sha256": "890fbf78c4b1bfe0c550ba9c2937a943985b316df90e0e8e03b333ab52b67a23",
+      "original_portrait": "/characters/prologue/baixi.png",
+      "source_path": "F:\\Codex\\worktrees\\android-mobile\\铁底湾\\mobile\\public\\characters\\prologue\\baixi.png"
+    },
+    {
+      "id": "evo-screen",
+      "name": "帷幄",
+      "detail": "Shield-screen strategist. Elegant adult woman with chestnut dark-brown chin-length blunt bob, green eyes, slender oval glasses; high-collar deep petrol green tailored double-breasted officer coat reaching knees over cream blouse and dark skirt, black opaque tights and polished low boots. Warm copper piping and three tiny geometric clasps, a folding brass signal shield/plotting fan held open near waist, other hand adjusting glasses. Calm reassuring expression. Rounded cape shoulder silhouette, no weapons.",
+      "prompt": "Original anime naval tactical automaton character portrait for CAS waterworld naval RPG. One distinct young ADULT woman, fully clothed, full body centered including head and shoes with generous margin, truly transparent RGBA background, no vignette or backdrop. Use supplied image for high quality graceful anime rendering ONLY, never copy her identity, white ponytail, white longcoat, book or pose. Fine Japanese anime lineart, soft expressive face, luminous eyes, clean coherent restrained palette, intricately designed fabric and compact brass tools, modest uniform, attractive character design. No text, symbols resembling text, watermark, logos, flags, floor, glow or floating particles. Shield-screen strategist. Elegant adult woman with chestnut dark-brown chin-length blunt bob, green eyes, slender oval glasses; high-collar deep petrol green tailored double-breasted officer coat reaching knees over cream blouse and dark skirt, black opaque tights and polished low boots. Warm copper piping and three tiny geometric clasps, a folding brass signal shield/plotting fan held open near waist, other hand adjusting glasses. Calm reassuring expression. Rounded cape shoulder silhouette, no weapons.",
+      "generated_file": "C:/Users/fwj/.codex/generated_images/01a1c982-0b2a-7823-a308-501f2664f6ea/exec-faa3662e-af2d-4f17-aca4-9c2d55869ca4.png",
+      "sha256": "ba099d595192fbbf4cd48ba67f04a75703d6c736b1fa7c781c2a96a1b1434abe",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixels_unchanged": true,
+      "portrait": "res://assets/ai/original-v3/evo-screen.png",
+      "generator": "built-in imagegen",
+      "style_reference": "res://assets/ai/rc_coordinated.png",
+      "identity": "original_unique_tactical_automaton",
+      "scope": "local_developer_and_test_builds",
+      "appearance_review": "agent_visual_checked",
+      "user_acceptance": "not_claimed"
+    },
+    {
+      "id": "evo-torpedo",
+      "name": "夜潮",
+      "detail": "Night torpedo specialist. Adult woman with very long midnight-purple straight hair in a low side braid, pale amber eyes, a small asymmetric plum hair ornament. Cropped black-navy naval duffel jacket with plum lining over ivory tunic, fitted high-waist navy trousers and lace-up sea boots, modest fully clothed. A compact brass torpedo course calculator in left hand and a coiled thin measuring cord on belt. Leaning forward slightly with playful focused smile, one bent elbow. Slender angular silhouette, soft face.",
+      "prompt": "Original anime naval tactical automaton character portrait for CAS waterworld naval RPG. One distinct young ADULT woman, fully clothed, full body centered including head and shoes with generous margin, truly transparent RGBA background, no vignette or backdrop. Use supplied image for high quality graceful anime rendering ONLY, never copy her identity, white ponytail, white longcoat, book or pose. Fine Japanese anime lineart, soft expressive face, luminous eyes, clean coherent restrained palette, intricately designed fabric and compact brass tools, modest uniform, attractive character design. No text, symbols resembling text, watermark, logos, flags, floor, glow or floating particles. Night torpedo specialist. Adult woman with very long midnight-purple straight hair in a low side braid, pale amber eyes, a small asymmetric plum hair ornament. Cropped black-navy naval duffel jacket with plum lining over ivory tunic, fitted high-waist navy trousers and lace-up sea boots, modest fully clothed. A compact brass torpedo course calculator in left hand and a coiled thin measuring cord on belt. Leaning forward slightly with playful focused smile, one bent elbow. Slender angular silhouette, soft face.",
+      "generated_file": "C:/Users/fwj/.codex/generated_images/01a1c982-0b2a-7823-a308-501f2664f6ea/exec-0a4b0b83-aae7-4978-9fb9-fb39b0e839e3.png",
+      "sha256": "8c699a3d65d47bc775abd2aeb2459d4e8eabec4a82289cbdb9b6eb68270684ac",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixels_unchanged": true,
+      "portrait": "res://assets/ai/original-v3/evo-torpedo.png",
+      "generator": "built-in imagegen",
+      "style_reference": "res://assets/ai/rc_coordinated.png",
+      "identity": "original_unique_tactical_automaton",
+      "scope": "local_developer_and_test_builds",
+      "appearance_review": "agent_visual_checked",
+      "user_acceptance": "not_claimed"
+    },
+    {
+      "id": "evo-gunnery",
+      "name": "铁幕",
+      "detail": "Long-range gunnery strategist. Adult woman with silver-blonde short wavy hair tucked behind ears, steel blue eyes, small navy beret tilted sideways. Structured oxblood burgundy naval coat with gold edging, ivory high-neck shirt and dark graphite pleated long skirt, opaque charcoal tights and brown ankle boots. Holds an ornate compact twin-lens optical rangefinder horizontally in both hands at hip. Composed precise expression with gentle smile, graceful upright pose. Warm burgundy is dominant accent; not a white coat.",
+      "prompt": "Original anime naval tactical automaton character portrait for CAS waterworld naval RPG. One distinct young ADULT woman, fully clothed, full body centered including head and shoes with generous margin, truly transparent RGBA background, no vignette or backdrop. Use supplied image for high quality graceful anime rendering ONLY, never copy her identity, white ponytail, white longcoat, book or pose. Fine Japanese anime lineart, soft expressive face, luminous eyes, clean coherent restrained palette, intricately designed fabric and compact brass tools, modest uniform, attractive character design. No text, symbols resembling text, watermark, logos, flags, floor, glow or floating particles. Long-range gunnery strategist. Adult woman with silver-blonde short wavy hair tucked behind ears, steel blue eyes, small navy beret tilted sideways. Structured oxblood burgundy naval coat with gold edging, ivory high-neck shirt and dark graphite pleated long skirt, opaque charcoal tights and brown ankle boots. Holds an ornate compact twin-lens optical rangefinder horizontally in both hands at hip. Composed precise expression with gentle smile, graceful upright pose. Warm burgundy is dominant accent; not a white coat.",
+      "generated_file": "C:/Users/fwj/.codex/generated_images/01a1c982-0b2a-7823-a308-501f2664f6ea/exec-03ac15b5-606b-4a00-88cb-766f588b7839.png",
+      "sha256": "81accb8fb8b6b923a1ad45d91b524b12578ea795aabac3f207378d264a5ffed9",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixels_unchanged": true,
+      "portrait": "res://assets/ai/original-v3/evo-gunnery.png",
+      "generator": "built-in imagegen",
+      "style_reference": "res://assets/ai/rc_coordinated.png",
+      "identity": "original_unique_tactical_automaton",
+      "scope": "local_developer_and_test_builds",
+      "appearance_review": "agent_visual_checked",
+      "user_acceptance": "not_claimed"
+    },
+    {
+      "id": "evo-brawler",
+      "name": "绯刃",
+      "detail": "Close-combat boarding tactician: warm tan adult woman, short asymmetric coral-red hair with one charcoal streak, honey eyes, a confident friendly grin. Copper-brown cropped naval leather jacket with burgundy scarf over ivory high-neck sailor shirt, high-waist charcoal belted trousers tucked into oxblood calf boots. Navy fingerless work gloves. A compact brass boarding whistle and folded harbor chart at waist; right hand on hip and left hand open inviting the crew forward. Compact energetic silhouette, fully clothed, no muscles or aggressive weapon pose.",
+      "prompt": "One original ADULT female naval tactical automaton character portrait for CAS waterworld anime RPG. Truly transparent RGBA background, no vignette/backdrop, include entire head/hair/full body/shoes with margin. Supplied portrait is style-quality reference only: do not copy her white ponytail, white coat, book, face or pose. Beautiful clean Japanese anime linework, softly rendered expressive face and luminous eyes, coherent detailed naval fabrics, elegant fully clothed modest outfit, delicate hands, readable silhouette. No text, flags, logos, floor, glow, particles or watermark. Close-combat boarding tactician: warm tan adult woman, short asymmetric coral-red hair with one charcoal streak, honey eyes, a confident friendly grin. Copper-brown cropped naval leather jacket with burgundy scarf over ivory high-neck sailor shirt, high-waist charcoal belted trousers tucked into oxblood calf boots. Navy fingerless work gloves. A compact brass boarding whistle and folded harbor chart at waist; right hand on hip and left hand open inviting the crew forward. Compact energetic silhouette, fully clothed, no muscles or aggressive weapon pose.",
+      "generated_file": "C:/Users/fwj/.codex/generated_images/01a1c982-0b2a-7823-a308-501f2664f6ea/exec-12fbf1ae-6cc0-42e0-a19a-230d94ae9326.png",
+      "sha256": "e73480e50de45b3c0ca654256a2ed97e83888df18d353da851f77cd4f300761a",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixels_unchanged": true,
+      "portrait": "res://assets/ai/original-v3/evo-brawler.png",
+      "generator": "built-in imagegen",
+      "style_reference": "res://assets/ai/rc_coordinated.png",
+      "identity": "original_unique_tactical_automaton",
+      "scope": "local_developer_and_test_builds",
+      "appearance_review": "agent_visual_checked",
+      "user_acceptance": "not_claimed"
+    },
+    {
+      "id": "evo-kiter",
+      "name": "逐浪",
+      "detail": "Evasive range-control tactician: fair adult woman, shoulder-length seafoam teal hair gathered in a loose low bun with trailing side bangs, golden-brown eyes, quiet amused smile. Asymmetric sea-blue officer capelet over cream fitted tunic, dark navy culottes reaching knees, opaque teal tights and ivory ankle boots, slim brass binoculars on belt and wind-speed instrument in raised hand. Torso turned 20 degrees with weight on one foot, free hand sweeping capelet slightly, airy graceful silhouette. Cyan and cream dominant with coral small accents.",
+      "prompt": "One original ADULT female naval tactical automaton character portrait for CAS waterworld anime RPG. Truly transparent RGBA background, no vignette/backdrop, include entire head/hair/full body/shoes with margin. Supplied portrait is style-quality reference only: do not copy her white ponytail, white coat, book, face or pose. Beautiful clean Japanese anime linework, softly rendered expressive face and luminous eyes, coherent detailed naval fabrics, elegant fully clothed modest outfit, delicate hands, readable silhouette. No text, flags, logos, floor, glow, particles or watermark. Evasive range-control tactician: fair adult woman, shoulder-length seafoam teal hair gathered in a loose low bun with trailing side bangs, golden-brown eyes, quiet amused smile. Asymmetric sea-blue officer capelet over cream fitted tunic, dark navy culottes reaching knees, opaque teal tights and ivory ankle boots, slim brass binoculars on belt and wind-speed instrument in raised hand. Torso turned 20 degrees with weight on one foot, free hand sweeping capelet slightly, airy graceful silhouette. Cyan and cream dominant with coral small accents.",
+      "generated_file": "C:/Users/fwj/.codex/generated_images/01a1c982-0b2a-7823-a308-501f2664f6ea/exec-e9793462-f204-4db4-8b5b-484eb6b527fc.png",
+      "sha256": "33795cfee363a0fa2f220241753494812621af05586e683a458160c05c4bcdc1",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixels_unchanged": true,
+      "portrait": "res://assets/ai/original-v3/evo-kiter.png",
+      "generator": "built-in imagegen",
+      "style_reference": "res://assets/ai/rc_coordinated.png",
+      "identity": "original_unique_tactical_automaton",
+      "scope": "local_developer_and_test_builds",
+      "appearance_review": "agent_visual_checked",
+      "user_acceptance": "not_claimed"
+    },
+    {
+      "id": "evo-denial",
+      "name": "缚潮",
+      "detail": "Torpedo area-denial tactician: fair adult woman with rich black hair in two low compact looped braids, warm violet eyes, small antique golden chain hair comb, calm sly half-smile. Dark slate naval long vest over ivory high-neck blouse with billowy sleeves, violet pleated ankle-length skirt with small brass hexagonal fasteners, opaque stockings and black lace-up boots. Holding a brass spherical naval plotting cage with thin crossed longitude rings in both hands at waist, a rolled signal net map clipped to belt. Elegant long triangular silhouette, slate and muted violet dominant.",
+      "prompt": "One original ADULT female naval tactical automaton character portrait for CAS waterworld anime RPG. Truly transparent RGBA background, no vignette/backdrop, include entire head/hair/full body/shoes with margin. Supplied portrait is style-quality reference only: do not copy her white ponytail, white coat, book, face or pose. Beautiful clean Japanese anime linework, softly rendered expressive face and luminous eyes, coherent detailed naval fabrics, elegant fully clothed modest outfit, delicate hands, readable silhouette. No text, flags, logos, floor, glow, particles or watermark. Torpedo area-denial tactician: fair adult woman with rich black hair in two low compact looped braids, warm violet eyes, small antique golden chain hair comb, calm sly half-smile. Dark slate naval long vest over ivory high-neck blouse with billowy sleeves, violet pleated ankle-length skirt with small brass hexagonal fasteners, opaque stockings and black lace-up boots. Holding a brass spherical naval plotting cage with thin crossed longitude rings in both hands at waist, a rolled signal net map clipped to belt. Elegant long triangular silhouette, slate and muted violet dominant.",
+      "generated_file": "C:/Users/fwj/.codex/generated_images/01a1c982-0b2a-7823-a308-501f2664f6ea/exec-8b60283f-9563-45f0-b49c-40d4d1ae5190.png",
+      "sha256": "c0fe372f734675a495a46799ed1799357c1f826fc12ac8ac30c6ca01646411a3",
+      "size": [
+        1024,
+        1536
+      ],
+      "pixels_unchanged": true,
+      "portrait": "res://assets/ai/original-v3/evo-denial.png",
+      "generator": "built-in imagegen",
+      "style_reference": "res://assets/ai/rc_coordinated.png",
+      "identity": "original_unique_tactical_automaton",
+      "scope": "local_developer_and_test_builds",
+      "appearance_review": "agent_visual_checked",
+      "user_acceptance": "not_claimed"
+    }
+  ],
+  "source_project": "铁底湾",
+  "source_worktree": "F:\\Codex\\worktrees\\android-mobile\\铁底湾",
+  "manifest": "mobile/content/fsm-portrait-manifest.json",
+  "source_thread": "01a1a6d6-24fc-7cf1-ba7b-73ef067f6d3d",
+  "import_method": "exact copy of approved worktree artwork, SHA256 matches original manifest; reference project read-only",
+  "scope": "AI avatar art only; original Python FSM implementations are not substituted for CAS tactics"
+}

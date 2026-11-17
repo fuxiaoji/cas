@@ -36,10 +36,11 @@ import { OnlineFleetEditor } from './OnlineFleetEditor';
 import { OnlineDuelLobby } from './OnlineDuelLobby';
 import { ask, clock, closeSession, isProfile, maneuverNames, profileNames, sideNames } from './engine';
 import type { AiConfig, LogEvent, Maneuver, Observation, Point, Profile, Request, Result, RoutePreview, Ship, Side, Suggestion, TorpedoSettings, Weapon } from './engine';
-import { grantPrologue, hulls, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
-import type { Hull, Lesson, PortLaunch } from './port';
+import { grantPrologue, lessons, loadPort, PORT_KEY, recordLesson, writePort } from './port';
+import type { Lesson, PortLaunch } from './port';
 import './style.css';
 import './ui/tokens.css';
+import './mobile.css';
 
 const SAVE_KEY = 'cas.exercise.autosave.v1';
 const options = [1, 2, 4, 8, 20] as const;
@@ -681,8 +682,9 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
   async function launchFromHarbor(launch: PortLaunch) {
     setBusy(true); setPortError(undefined);
     try {
-      const { training: isTraining, ...options } = launch;
-      const next = await ask<Observation>({ op: 'new', ...defaultSetup, ...options });
+      const { training: isTraining, ships, ...options } = launch;
+      const next = await ask<Observation>({ op: 'new', ...defaultSetup, ...options,
+        ...(ships?.length ? { ships: [...ships] } : {}) });
       clearCloud();
       challengeId.current = options.variant === 'challenge' ? crypto.randomUUID() : undefined;
       campaignId.current = undefined;
@@ -839,7 +841,7 @@ function App({ profile, onLogout }: { profile: LocalProfile; onLogout: () => voi
         onOnline={cloudToken ? () => setSection('duel') : undefined}
         online={cloudToken ? {meta:cloudMeta,error:cloudError} : undefined}
         onReplayPrologue={() => setStoryMenu(true)}
-        onWatch={id => setPort(s => Object.hasOwn(hulls,id) && (s.owned[id as Hull] ?? 0) > 0 ? { ...s, watch: id as Hull } : s)} />
+        onWatch={id => setPort(s => s.owned[id] === true ? { ...s, watch: id } : s)} />
       {mainMenu && <div className="dialog-backdrop" onClick={e=>{if(e.target===e.currentTarget)setMainMenu(false);}}>
         <section className="setup-dialog" role="dialog" aria-modal="true" aria-label="主菜单">
           <h2>主菜单</h2><p className="field-note">当前指挥官：{profile.name}</p>

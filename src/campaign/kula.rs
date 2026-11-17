@@ -129,11 +129,13 @@ fn runtime() -> E<&'static Runtime> {
                     serde_json::from_value(hull).map_err(|e| format!("库拉湾舰卡无效：{e}"))?,
                 );
             }
+            let mut data = Data {
+                ships,
+                rules: World::exercise_data()?.rules.clone(),
+            };
+            super::fleet::add_registered_cards(&mut data)?;
             Ok(Runtime {
-                data: Data {
-                    ships,
-                    rules: World::exercise_data()?.rules.clone(),
-                },
+                data,
                 instances: manifest.instances,
             })
         })

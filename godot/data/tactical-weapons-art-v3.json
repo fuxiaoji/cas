@@ -1,0 +1,1698 @@
+{
+  "version": "tactical-weapons-art-v3",
+  "icons": {
+    "heavy_sniper": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        401,
+        531,
+        504,
+        163
+      ],
+      "anchor": [
+        199.895,
+        82.91
+      ],
+      "scale_reference": 488,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "smg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        394,
+        130,
+        390,
+        239
+      ],
+      "anchor": [
+        209.161,
+        100.867
+      ],
+      "scale_reference": 374,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "lmg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        807,
+        955,
+        445,
+        180
+      ],
+      "anchor": [
+        207.555,
+        77.571
+      ],
+      "scale_reference": 429,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "assault_rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "stinger": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        417,
+        936,
+        375,
+        192
+      ],
+      "anchor": [
+        195.607,
+        88.357
+      ],
+      "scale_reference": 359,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "dmr": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        6,
+        525,
+        400,
+        187
+      ],
+      "anchor": [
+        172.417,
+        87.218
+      ],
+      "scale_reference": 384,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "rpg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        5,
+        964,
+        403,
+        159
+      ],
+      "anchor": [
+        189.118,
+        67.822
+      ],
+      "scale_reference": 387,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "shotgun": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        903,
+        565,
+        343,
+        144
+      ],
+      "anchor": [
+        154.9,
+        47.691
+      ],
+      "scale_reference": 327,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon"
+    },
+    "grenade": {
+      "source": "res://assets/tactical/vehicles-v3/grenade.png",
+      "region": [
+        453,
+        48,
+        630,
+        932
+      ],
+      "anchor": [
+        321.331,
+        472.323
+      ],
+      "scale_reference": 908,
+      "source_sha256": "45caf9aa65d330422d0a49031ba67c3bf6b55f80745c2b32229f37a3a7f6e272",
+      "representation": "equipment_icon"
+    }
+  },
+  "weapons": {
+    "rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "rifle"
+      ],
+      "shared_class_art": true
+    },
+    "carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "carbine"
+      ],
+      "shared_class_art": true
+    },
+    "pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "pistol"
+      ],
+      "shared_class_art": false
+    },
+    "smg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        394,
+        130,
+        390,
+        239
+      ],
+      "anchor": [
+        209.161,
+        100.867
+      ],
+      "scale_reference": 374,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "smg",
+      "native_weapon_ids": [
+        "smg"
+      ],
+      "shared_class_art": false
+    },
+    "sniper": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        401,
+        531,
+        504,
+        163
+      ],
+      "anchor": [
+        199.895,
+        82.91
+      ],
+      "scale_reference": 488,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "heavy_sniper",
+      "native_weapon_ids": [
+        "sniper"
+      ],
+      "shared_class_art": true
+    },
+    "lmg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        807,
+        955,
+        445,
+        180
+      ],
+      "anchor": [
+        207.555,
+        77.571
+      ],
+      "scale_reference": 429,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "lmg",
+      "native_weapon_ids": [
+        "lmg"
+      ],
+      "shared_class_art": false
+    },
+    "rocket": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        5,
+        964,
+        403,
+        159
+      ],
+      "anchor": [
+        189.118,
+        67.822
+      ],
+      "scale_reference": 387,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "rpg",
+      "native_weapon_ids": [
+        "rocket"
+      ],
+      "shared_class_art": true
+    },
+    "aa_missile": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        417,
+        936,
+        375,
+        192
+      ],
+      "anchor": [
+        195.607,
+        88.357
+      ],
+      "scale_reference": 359,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "stinger",
+      "native_weapon_ids": [
+        "aa_missile"
+      ],
+      "shared_class_art": true
+    },
+    "dmr": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        6,
+        525,
+        400,
+        187
+      ],
+      "anchor": [
+        172.417,
+        87.218
+      ],
+      "scale_reference": 384,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "dmr",
+      "native_weapon_ids": [
+        "dmr"
+      ],
+      "shared_class_art": false
+    },
+    "heavy_sniper": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        401,
+        531,
+        504,
+        163
+      ],
+      "anchor": [
+        199.895,
+        82.91
+      ],
+      "scale_reference": 488,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "heavy_sniper",
+      "native_weapon_ids": [
+        "heavy_sniper"
+      ],
+      "shared_class_art": false
+    },
+    "shotgun": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        903,
+        565,
+        343,
+        144
+      ],
+      "anchor": [
+        154.9,
+        47.691
+      ],
+      "scale_reference": 327,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "equipment_icon",
+      "icon_class": "shotgun",
+      "native_weapon_ids": [
+        "shotgun"
+      ],
+      "shared_class_art": false
+    },
+    "grenade": {
+      "source": "res://assets/tactical/vehicles-v3/grenade.png",
+      "region": [
+        453,
+        48,
+        630,
+        932
+      ],
+      "anchor": [
+        321.331,
+        472.323
+      ],
+      "scale_reference": 908,
+      "source_sha256": "45caf9aa65d330422d0a49031ba67c3bf6b55f80745c2b32229f37a3a7f6e272",
+      "representation": "equipment_icon",
+      "icon_class": "grenade",
+      "native_weapon_ids": [
+        "grenade"
+      ],
+      "shared_class_art": false
+    },
+    "tank_gun": {
+      "source": "res://assets/tactical/vehicles-v3/tank.png",
+      "region": [
+        143,
+        24,
+        344,
+        586
+      ],
+      "anchor": [
+        171.179,
+        323.588
+      ],
+      "scale_reference": 562,
+      "icon_class": "tank",
+      "native_weapon_ids": [
+        "tank_gun"
+      ],
+      "representation": "equipment_platform",
+      "shared_class_art": false,
+      "source_sha256": "7eacb55010073c9c6f4a0b914f6e0e991cd3b7fbd6a3867ccfa9c56accffa582",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration."
+    },
+    "autocannon": {
+      "source": "res://assets/tactical/vehicles-v3/amphibious_vehicle.png",
+      "region": [
+        173,
+        9,
+        284,
+        582
+      ],
+      "anchor": [
+        141.246,
+        303.602
+      ],
+      "scale_reference": 558,
+      "icon_class": "amphibious_vehicle",
+      "native_weapon_ids": [
+        "autocannon"
+      ],
+      "representation": "equipment_platform",
+      "shared_class_art": false,
+      "source_sha256": "8680b7fe3a3a71fb87d2563ef19f627afcedc7ca55a5518e5a2c47e56043d790",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration."
+    },
+    "howitzer": {
+      "source": "res://assets/tactical/vehicles-v3/self_propelled_gun.png",
+      "region": [
+        207,
+        16,
+        215,
+        565
+      ],
+      "anchor": [
+        106.859,
+        340.907
+      ],
+      "scale_reference": 541,
+      "icon_class": "self_propelled_gun",
+      "native_weapon_ids": [
+        "howitzer"
+      ],
+      "representation": "equipment_platform",
+      "shared_class_art": false,
+      "source_sha256": "95da556a1093ba7925e904225379799929424226efddec15ecc029915b5ce3a5",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration."
+    },
+    "helicopter_cannon": {
+      "source": "res://assets/tactical/vehicles-v3/attack_helicopter.png",
+      "region": [
+        139,
+        23,
+        348,
+        577
+      ],
+      "anchor": [
+        174.547,
+        262.653
+      ],
+      "scale_reference": 553,
+      "icon_class": "attack_helicopter",
+      "native_weapon_ids": [
+        "helicopter_cannon"
+      ],
+      "representation": "equipment_platform",
+      "shared_class_art": false,
+      "source_sha256": "35fe52963b042f7b6792dfc74bf0155aa18b224bd35127d77f810ce94303c6a3",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration."
+    },
+    "aa_cannon": {
+      "source": "res://assets/tactical/vehicles-v3/aa_turret.png",
+      "region": [
+        118,
+        22,
+        391,
+        525
+      ],
+      "anchor": [
+        194.817,
+        310.063
+      ],
+      "scale_reference": 501,
+      "icon_class": "aa_turret",
+      "native_weapon_ids": [
+        "aa_cannon"
+      ],
+      "representation": "equipment_platform",
+      "shared_class_art": false,
+      "source_sha256": "f9a9692e1cd9728f1d06d29205e629fefa486bb54b535adcc834c04deeb4ed40",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration."
+    },
+    "demolition_charge": {
+      "source": "res://assets/tactical/vehicles-v3/grenade.png",
+      "region": [
+        453,
+        48,
+        630,
+        932
+      ],
+      "anchor": [
+        321.331,
+        472.323
+      ],
+      "scale_reference": 908,
+      "source_sha256": "45caf9aa65d330422d0a49031ba67c3bf6b55f80745c2b32229f37a3a7f6e272",
+      "representation": "shared_class_icon",
+      "icon_class": "grenade",
+      "native_weapon_ids": [
+        "demolition_charge"
+      ],
+      "shared_class_art": true,
+      "shared_art_from_family": "grenade",
+      "art_note": "工程炸药类别示意，复用现有手雷装备图；不是该型号独立枪械或炸药立绘。"
+    }
+  },
+  "scope": "Inventory/detail category illustrations only. All concrete models explicitly map to registered family art; 类别示意，不是该型号独立枪械立绘。 Original 17 family mappings and all PNG pixels are unchanged. No firing data, weapon assignments, ammunition or actor identity is changed.",
+  "models": {
+    "mcp001_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp001_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-001",
+      "name": "折翼-C7 紧凑卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp001_lmg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        807,
+        955,
+        445,
+        180
+      ],
+      "anchor": [
+        207.555,
+        77.571
+      ],
+      "scale_reference": 429,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "lmg",
+      "native_weapon_ids": [
+        "mcp001_lmg"
+      ],
+      "shared_class_art": true,
+      "family_id": "lmg",
+      "unit_id": "MCP-001",
+      "name": "掠影-L4 轻机枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp034_rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp034_rifle"
+      ],
+      "shared_class_art": true,
+      "family_id": "rifle",
+      "unit_id": "MCP-034",
+      "name": "潮线-R3 短点射步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp034_lmg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        807,
+        955,
+        445,
+        180
+      ],
+      "anchor": [
+        207.555,
+        77.571
+      ],
+      "scale_reference": 429,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "lmg",
+      "native_weapon_ids": [
+        "mcp034_lmg"
+      ],
+      "shared_class_art": true,
+      "family_id": "lmg",
+      "unit_id": "MCP-034",
+      "name": "锚链-L5 班用机枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp076_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp076_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-076",
+      "name": "落星-C3 折叠卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp076_rocket": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        5,
+        964,
+        403,
+        159
+      ],
+      "anchor": [
+        189.118,
+        67.822
+      ],
+      "scale_reference": 387,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "rpg",
+      "native_weapon_ids": [
+        "mcp076_rocket"
+      ],
+      "shared_class_art": true,
+      "family_id": "rocket",
+      "unit_id": "MCP-076",
+      "name": "凌空-76 轻型火箭筒",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp076_pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "mcp076_pistol"
+      ],
+      "shared_class_art": true,
+      "family_id": "pistol",
+      "unit_id": "MCP-076",
+      "name": "余烬-P7 备用手枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp022_tank_gun": {
+      "source": "res://assets/tactical/vehicles-v3/tank.png",
+      "region": [
+        143,
+        24,
+        344,
+        586
+      ],
+      "anchor": [
+        171.179,
+        323.588
+      ],
+      "scale_reference": 562,
+      "icon_class": "tank",
+      "native_weapon_ids": [
+        "mcp022_tank_gun"
+      ],
+      "representation": "shared_class_icon",
+      "shared_class_art": true,
+      "source_sha256": "7eacb55010073c9c6f4a0b914f6e0e991cd3b7fbd6a3867ccfa9c56accffa582",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration.",
+      "family_id": "tank_gun",
+      "unit_id": "MCP-022",
+      "name": "铁幕-120 自动装填炮",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp011_smg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        394,
+        130,
+        390,
+        239
+      ],
+      "anchor": [
+        209.161,
+        100.867
+      ],
+      "scale_reference": 374,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "smg",
+      "native_weapon_ids": [
+        "mcp011_smg"
+      ],
+      "shared_class_art": true,
+      "family_id": "smg",
+      "unit_id": "MCP-011",
+      "name": "静潮-S3 微声冲锋枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp018_dmr": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        6,
+        525,
+        400,
+        187
+      ],
+      "anchor": [
+        172.417,
+        87.218
+      ],
+      "scale_reference": 384,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "dmr",
+      "native_weapon_ids": [
+        "mcp018_dmr"
+      ],
+      "shared_class_art": true,
+      "family_id": "dmr",
+      "unit_id": "MCP-018",
+      "name": "浅影-D8 侦察射手步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp018_sniper": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        401,
+        531,
+        504,
+        163
+      ],
+      "anchor": [
+        199.895,
+        82.91
+      ],
+      "scale_reference": 488,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "heavy_sniper",
+      "native_weapon_ids": [
+        "mcp018_sniper"
+      ],
+      "shared_class_art": true,
+      "family_id": "sniper",
+      "unit_id": "MCP-018",
+      "name": "远汐-S5 侦察狙击枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp027_helicopter_cannon": {
+      "source": "res://assets/tactical/vehicles-v3/attack_helicopter.png",
+      "region": [
+        139,
+        23,
+        348,
+        577
+      ],
+      "anchor": [
+        174.547,
+        262.653
+      ],
+      "scale_reference": 553,
+      "icon_class": "attack_helicopter",
+      "native_weapon_ids": [
+        "mcp027_helicopter_cannon"
+      ],
+      "representation": "shared_class_icon",
+      "shared_class_art": true,
+      "source_sha256": "35fe52963b042f7b6792dfc74bf0155aa18b224bd35127d77f810ce94303c6a3",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration.",
+      "family_id": "helicopter_cannon",
+      "unit_id": "MCP-027",
+      "name": "赤隼-A4 稳定机炮",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp041_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp041_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-041",
+      "name": "回声-C1 屏蔽卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp052_pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "mcp052_pistol"
+      ],
+      "shared_class_art": true,
+      "family_id": "pistol",
+      "unit_id": "MCP-052",
+      "name": "祈愿-P6 救护手枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp063_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp063_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-063",
+      "name": "海刺-C2 自卫卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp063_rocket": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        5,
+        964,
+        403,
+        159
+      ],
+      "anchor": [
+        189.118,
+        67.822
+      ],
+      "scale_reference": 387,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "rpg",
+      "native_weapon_ids": [
+        "mcp063_rocket"
+      ],
+      "shared_class_art": true,
+      "family_id": "rocket",
+      "unit_id": "MCP-063",
+      "name": "破锚-R6 重型火箭筒",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp063_pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "mcp063_pistol"
+      ],
+      "shared_class_art": true,
+      "family_id": "pistol",
+      "unit_id": "MCP-063",
+      "name": "磐石-P8 后备手枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp087_pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "mcp087_pistol"
+      ],
+      "shared_class_art": true,
+      "family_id": "pistol",
+      "unit_id": "MCP-087",
+      "name": "守炉-P4 护炮手枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp087_howitzer": {
+      "source": "res://assets/tactical/vehicles-v3/self_propelled_gun.png",
+      "region": [
+        207,
+        16,
+        215,
+        565
+      ],
+      "anchor": [
+        106.859,
+        340.907
+      ],
+      "scale_reference": 541,
+      "icon_class": "self_propelled_gun",
+      "native_weapon_ids": [
+        "mcp087_howitzer"
+      ],
+      "representation": "shared_class_icon",
+      "shared_class_art": true,
+      "source_sha256": "95da556a1093ba7925e904225379799929424226efddec15ecc029915b5ce3a5",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration.",
+      "family_id": "howitzer",
+      "unit_id": "MCP-087",
+      "name": "长夜-H3 自行榴弹炮",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp103_autocannon": {
+      "source": "res://assets/tactical/vehicles-v3/amphibious_vehicle.png",
+      "region": [
+        173,
+        9,
+        284,
+        582
+      ],
+      "anchor": [
+        141.246,
+        303.602
+      ],
+      "scale_reference": 558,
+      "icon_class": "amphibious_vehicle",
+      "native_weapon_ids": [
+        "mcp103_autocannon"
+      ],
+      "representation": "shared_class_icon",
+      "shared_class_art": true,
+      "source_sha256": "8680b7fe3a3a71fb87d2563ef19f627afcedc7ca55a5518e5a2c47e56043d790",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration.",
+      "family_id": "autocannon",
+      "unit_id": "MCP-103",
+      "name": "逐浪-A3 两栖机关炮",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp116_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp116_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-116",
+      "name": "归航-C6 后勤卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp128_dmr": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        6,
+        525,
+        400,
+        187
+      ],
+      "anchor": [
+        172.417,
+        87.218
+      ],
+      "scale_reference": 384,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "dmr",
+      "native_weapon_ids": [
+        "mcp128_dmr"
+      ],
+      "shared_class_art": true,
+      "family_id": "dmr",
+      "unit_id": "MCP-128",
+      "name": "望潮-D6 精准射手步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp128_heavy_sniper": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        401,
+        531,
+        504,
+        163
+      ],
+      "anchor": [
+        199.895,
+        82.91
+      ],
+      "scale_reference": 488,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "heavy_sniper",
+      "native_weapon_ids": [
+        "mcp128_heavy_sniper"
+      ],
+      "shared_class_art": true,
+      "family_id": "heavy_sniper",
+      "unit_id": "MCP-128",
+      "name": "天尺-S4 重型狙击枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp145_rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp145_rifle"
+      ],
+      "shared_class_art": true,
+      "family_id": "rifle",
+      "unit_id": "MCP-145",
+      "name": "天幕-R2 警戒步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp145_aa_missile": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        417,
+        936,
+        375,
+        192
+      ],
+      "anchor": [
+        195.607,
+        88.357
+      ],
+      "scale_reference": 359,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "stinger",
+      "native_weapon_ids": [
+        "mcp145_aa_missile"
+      ],
+      "shared_class_art": true,
+      "family_id": "aa_missile",
+      "unit_id": "MCP-145",
+      "name": "星针-M1 防空导弹",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp145_pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "mcp145_pistol"
+      ],
+      "shared_class_art": true,
+      "family_id": "pistol",
+      "unit_id": "MCP-145",
+      "name": "灯塔-P2 自卫手枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp145_aa_cannon": {
+      "source": "res://assets/tactical/vehicles-v3/aa_turret.png",
+      "region": [
+        118,
+        22,
+        391,
+        525
+      ],
+      "anchor": [
+        194.817,
+        310.063
+      ],
+      "scale_reference": 501,
+      "icon_class": "aa_turret",
+      "native_weapon_ids": [
+        "mcp145_aa_cannon"
+      ],
+      "representation": "shared_class_icon",
+      "shared_class_art": true,
+      "source_sha256": "f9a9692e1cd9728f1d06d29205e629fefa486bb54b535adcc834c04deeb4ed40",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration.",
+      "family_id": "aa_cannon",
+      "unit_id": "MCP-145",
+      "name": "海萤-A3 部署防空炮",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp167_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp167_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-167",
+      "name": "水獭-C2 水网卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp167_lmg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        807,
+        955,
+        445,
+        180
+      ],
+      "anchor": [
+        207.555,
+        77.571
+      ],
+      "scale_reference": 429,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "lmg",
+      "native_weapon_ids": [
+        "mcp167_lmg"
+      ],
+      "shared_class_art": true,
+      "family_id": "lmg",
+      "unit_id": "MCP-167",
+      "name": "芦苇-L4 轻机枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp184_smg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        394,
+        130,
+        390,
+        239
+      ],
+      "anchor": [
+        209.161,
+        100.867
+      ],
+      "scale_reference": 374,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "smg",
+      "native_weapon_ids": [
+        "mcp184_smg"
+      ],
+      "shared_class_art": true,
+      "family_id": "smg",
+      "unit_id": "MCP-184",
+      "name": "破门-S3 短管冲锋枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp184_shotgun": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        903,
+        565,
+        343,
+        144
+      ],
+      "anchor": [
+        154.9,
+        47.691
+      ],
+      "scale_reference": 327,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "shotgun",
+      "native_weapon_ids": [
+        "mcp184_shotgun"
+      ],
+      "shared_class_art": true,
+      "family_id": "shotgun",
+      "unit_id": "MCP-184",
+      "name": "叩门-Q6 泵动霰弹枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp184_grenade": {
+      "source": "res://assets/tactical/vehicles-v3/grenade.png",
+      "region": [
+        453,
+        48,
+        630,
+        932
+      ],
+      "anchor": [
+        321.331,
+        472.323
+      ],
+      "scale_reference": 908,
+      "source_sha256": "45caf9aa65d330422d0a49031ba67c3bf6b55f80745c2b32229f37a3a7f6e272",
+      "representation": "shared_class_icon",
+      "icon_class": "grenade",
+      "native_weapon_ids": [
+        "mcp184_grenade"
+      ],
+      "shared_class_art": true,
+      "family_id": "grenade",
+      "unit_id": "MCP-184",
+      "name": "棱角-G1 破片手雷",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp203_dmr": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        6,
+        525,
+        400,
+        187
+      ],
+      "anchor": [
+        172.417,
+        87.218
+      ],
+      "scale_reference": 384,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "dmr",
+      "native_weapon_ids": [
+        "mcp203_dmr"
+      ],
+      "shared_class_art": true,
+      "family_id": "dmr",
+      "unit_id": "MCP-203",
+      "name": "协律-D10 指挥射手步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp240_pistol": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        66,
+        136,
+        266,
+        211
+      ],
+      "anchor": [
+        110.779,
+        87.657
+      ],
+      "scale_reference": 250,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "pistol",
+      "native_weapon_ids": [
+        "mcp240_pistol"
+      ],
+      "shared_class_art": true,
+      "family_id": "pistol",
+      "unit_id": "MCP-240",
+      "name": "归燕-P3 救援手枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp088_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp088_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-088",
+      "name": "霜铃-C3 空降卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp088_lmg": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        807,
+        955,
+        445,
+        180
+      ],
+      "anchor": [
+        207.555,
+        77.571
+      ],
+      "scale_reference": 429,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "lmg",
+      "native_weapon_ids": [
+        "mcp088_lmg"
+      ],
+      "shared_class_art": true,
+      "family_id": "lmg",
+      "unit_id": "MCP-088",
+      "name": "雪线-L4 空降机枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp006_helicopter_cannon": {
+      "source": "res://assets/tactical/vehicles-v3/attack_helicopter.png",
+      "region": [
+        139,
+        23,
+        348,
+        577
+      ],
+      "anchor": [
+        174.547,
+        262.653
+      ],
+      "scale_reference": 553,
+      "icon_class": "attack_helicopter",
+      "native_weapon_ids": [
+        "mcp006_helicopter_cannon"
+      ],
+      "representation": "shared_class_icon",
+      "shared_class_art": true,
+      "source_sha256": "35fe52963b042f7b6792dfc74bf0155aa18b224bd35127d77f810ce94303c6a3",
+      "note": "The artwork represents the complete equipment platform, not a detached gun illustration.",
+      "family_id": "helicopter_cannon",
+      "unit_id": "MCP-006",
+      "name": "夜枭-A5 快射机炮",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp009_rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp009_rifle"
+      ],
+      "shared_class_art": true,
+      "family_id": "rifle",
+      "unit_id": "MCP-009",
+      "name": "工蜂-R2 战斗工兵步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp022_rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp022_rifle"
+      ],
+      "shared_class_art": true,
+      "family_id": "rifle",
+      "unit_id": "MCP-022",
+      "name": "铁幕-R6 伴随步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp103_rifle": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp103_rifle"
+      ],
+      "shared_class_art": true,
+      "family_id": "rifle",
+      "unit_id": "MCP-103",
+      "name": "逐浪-R3 两栖步枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp027_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp027_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-027",
+      "name": "赤隼-C3 机降卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp006_carbine": {
+      "source": "res://assets/tactical/vehicles-v3/weapons.png",
+      "region": [
+        805,
+        148,
+        438,
+        204
+      ],
+      "anchor": [
+        196.202,
+        83.174
+      ],
+      "scale_reference": 422,
+      "facing": "right",
+      "source_sha256": "7dc638f504669ceefac2b598df7f0bde9a931414dc8e69da55468ff0c7cf47c1",
+      "representation": "shared_class_icon",
+      "icon_class": "assault_rifle",
+      "native_weapon_ids": [
+        "mcp006_carbine"
+      ],
+      "shared_class_art": true,
+      "family_id": "carbine",
+      "unit_id": "MCP-006",
+      "name": "夜枭-C2 轻型突击卡宾枪",
+      "art_note": "类别示意，不是该型号独立枪械立绘。"
+    },
+    "mcp009_demolition_charge": {
+      "source": "res://assets/tactical/vehicles-v3/grenade.png",
+      "region": [
+        453,
+        48,
+        630,
+        932
+      ],
+      "anchor": [
+        321.331,
+        472.323
+      ],
+      "scale_reference": 908,
+      "source_sha256": "45caf9aa65d330422d0a49031ba67c3bf6b55f80745c2b32229f37a3a7f6e272",
+      "representation": "shared_class_icon",
+      "icon_class": "grenade",
+      "native_weapon_ids": [
+        "mcp009_demolition_charge"
+      ],
+      "shared_class_art": true,
+      "shared_art_from_family": "grenade",
+      "art_note": "类别示意，不是该型号独立枪械立绘。",
+      "family_id": "demolition_charge",
+      "unit_id": "MCP-009",
+      "name": "破障-D2 工程炸药"
+    }
+  },
+  "model_binding_source": {
+    "catalogue": "res://data/island-war-v3.json",
+    "catalogue_sha256": "a47faf371d9f324f8c45e7494ff234d6eb7a7001f9074182b3a071343ab47e7c",
+    "core_sha256": "298b78ecd20420cf7962fa24125b87d499cf4ba4708a22ba60453f7f64f78977",
+    "status": "final native source identity verified; full simulation regression and installation are tracked separately by core receipts"
+  }
+}

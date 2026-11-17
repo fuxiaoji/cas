@@ -1,8 +1,8 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { sideNames } from './engine';
-import { hulls } from './port';
 import type { PortState } from './port';
-import { shipPortrait } from './shipPortraits';
+import { shipCard, shipName, shipRarityName, shipTypeName } from './ship-catalog';
+import { shipPortraitById } from './shipPortraits';
 import './recruit-arrival.css';
 
 function HarborPlot() {
@@ -28,8 +28,8 @@ export function RecruitArrival({ receipts, replay, onClose }: {
   const [index, setIndex] = useState(0);
   const receipt = receipts[index];
   const more = phase === 'arrival' && index + 1 < receipts.length;
-  const hull = hulls[receipt.hull];
-  const portrait = shipPortrait(receipt.hull);
+  const card = shipCard(receipt.ship);
+  const portrait = shipPortraitById(receipt.ship);
   useLayoutEffect(() => {
     const element = dialog.current!;
     if (!element.open) element.showModal();
@@ -55,7 +55,7 @@ export function RecruitArrival({ receipts, replay, onClose }: {
   }
   const title = phase === 'scan' ? '港灯正在引航' : phase === 'arrival' ? '舰船到港' : '到港清册';
   return <dialog ref={dialog} className="recruit-arrival" aria-labelledby={label} data-draw-id={receipts.at(-1)!.id} data-phase={phase}
-    data-hull={receipt.hull} onCancel={(event) => { event.preventDefault(); onClose(); }}>
+    data-ship={receipt.ship} onCancel={(event) => { event.preventDefault(); onClose(); }}>
     <header><div><span>{receipt.pool === 'up' ? '阵营 UP 池' : '常驻池'} · 本机征募</span><h2 id={label}>{title}</h2></div>
       <button type="button" onClick={phase === 'receipt' ? onClose : () => setPhase('receipt')}>
         {phase === 'receipt' ? '关闭到港报告' : '跳过动画'}
@@ -64,18 +64,20 @@ export function RecruitArrival({ receipts, replay, onClose }: {
     <div className="arrival-content">
       {phase === 'scan' ? <div className="arrival-scan"><HarborPlot /><div aria-hidden="true" /><p>收到舰船呼号</p></div> :
         phase === 'receipt' && receipts.length > 1 ? <ol className="arrival-batch" aria-label="本次到港清册">
-          {receipts.map(row => <li key={row.id} data-draw-id={row.id}>
-            <strong>{hulls[row.hull].name}</strong><span>{row.duplicate ? '转为舰队勋章' : '入列'}{row.guaranteed ? ' · 保底' : ''}</span>
+          {receipts.map(row => <li key={row.id} data-draw-id={row.id} data-ship={row.ship}>
+            <strong>{shipName(row.ship)}</strong><span>{row.duplicate ? '转为舰队勋章' : '入列'}{row.guaranteed ? ' · 保底' : ''}</span>
           </li>)}
         </ol> : <>
         <div className="arrival-description">
-          <span>{receipt.guaranteed ? '保底到港' : sideNames[hull.side]}</span>
-          <h3>{hull.name}</h3><p>{receipt.guaranteed ? sideNames[hull.side] + ' · ' : ''}{hull.kind}</p>
-          <strong>{receipt.duplicate ? '仓位已满，转为舰队勋章' : '已编入本机舰库'}</strong>
+          <span>{receipt.guaranteed ? '保底到港' : card ? sideNames[card.side] : '本机征募'}</span>
+          <h3>{shipName(receipt.ship)}</h3>
+          <p>{receipt.guaranteed && card ? sideNames[card.side] + ' · ' : ''}{card ? `${shipTypeName(card.type)} · ${shipRarityName(card.gachaRarity)}` : '单舰身份'}</p>
+          <strong>{receipt.duplicate ? '该舰已在舰库，转为舰队勋章' : '已编入本机舰库'}</strong>
         </div>
         <figure className="arrival-portrait"><HarborPlot />
           {portrait && <><img src={portrait.src} alt={portrait.name + '舰娘立绘'} />
-            <figcaption>{portrait.name} · 舰型代表</figcaption></>}
+            <figcaption>{portrait.name} · 单舰身份</figcaption></>}
+          {!portrait && <figcaption>{shipName(receipt.ship)} · 暂无立绘</figcaption>}
         </figure>
       </>}
     </div>

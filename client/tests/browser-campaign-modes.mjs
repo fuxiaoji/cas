@@ -44,6 +44,34 @@ try {
   await button('返回港口').click();
   await page.locator('.campaign-lobby').waitFor();
 
+  // The story point-buy pool is the 202-card single-ship registry, not a set of
+  // class cards: five printed Fletcher-class hulls stay five independent rows
+  // and the options keep same-class identities separate.
+  const fleet = await q('campaign_fleet', { id: 'CAMP-ALLIES-02', difficulty: 'story' });
+  assert.equal(fleet.historical.length, 9, 'nine printed hulls');
+  const fletchers = fleet.historical.filter((row) => row.class === 'fletcher');
+  assert.equal(fletchers.length, 5, 'all five same-class printed hulls are present');
+  assert.deepEqual(fletchers.map((row) => row.name), ['法伦霍尔特', '邓肯', '拉菲', '布坎南', '麦卡拉']);
+  assert.equal(new Set(fletchers.map((row) => row.slot)).size, 5, 'slot ids stay unique');
+  assert(fleet.options.length > 100, `the registered single-ship pool is offered (got ${fleet.options.length})`);
+  const optionClasses = fleet.options.map((row) => row.class);
+  assert(optionClasses.length > new Set(optionClasses).size, 'options are not deduped by class');
+
+  // New drafts store the single-ship identity; old drafts stored the class
+  // card. Both still resolve, and both write the identity onto the hull.
+  const cape = await q('campaign_fleet', { id: 'CAMP-ALLIES-03', difficulty: 'story' });
+  assert(cape.historical.every((row) => typeof row.identity === 'string'), 'Cape printed hulls have exact identities');
+  const identitySortie = await q('new_campaign', {
+    id: 'CAMP-ALLIES-03', difficulty: 'story', seed: 6106,
+    fleet: cape.historical.map((row) => row.identity),
+  });
+  assert(identitySortie.ships.every((ship) => ship.characterId), 'identity draft reaches the battle view');
+  const legacySortie = await q('new_campaign', {
+    id: 'CAMP-ALLIES-03', difficulty: 'story', seed: 6106,
+    fleet: cape.historical.map((row) => row.class),
+  });
+  assert(legacySortie.ships.every((ship) => ship.characterId), 'old class draft still resolves to the exact identity');
+
   // Standard difficulty uses the printed fleet directly, without the point picker.
   await page.locator('.cl-row').filter({ hasText: '埃斯佩兰斯角' }).first().click();
   await page.locator('.cl-diff button').filter({ hasText: '标准' }).click();
@@ -59,6 +87,11 @@ try {
     ok: true,
     archiveRows: 11,
     sourceOnlyDisabled: true,
+    storyHistorical: fleet.historical.length,
+    sameClassHulls: fletchers.length,
+    registeredOptions: fleet.options.length,
+    identityDraftShips: identitySortie.ships.length,
+    legacyDraftShips: legacySortie.ships.length,
     stage: obs.campaign.stageId,
     difficulty: obs.campaign.difficulty,
     ships: obs.ships.length,

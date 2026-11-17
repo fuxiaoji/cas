@@ -1,0 +1,3408 @@
+{
+  "cards": [
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 18.0,
+        "id": "air_rockets",
+        "name": "空地火箭",
+        "radius": 130.0,
+        "range": 1200.0
+      },
+      "ability_radius": 130.0,
+      "ability_range": 1200.0,
+      "air": true,
+      "air_insertion": true,
+      "ammo": 0,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 65.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 65.0
+        },
+        {
+          "airborne": true,
+          "ammo": 45,
+          "armor": 1.0,
+          "damage": 32.0,
+          "hp": 150.0,
+          "kind": "helicopter",
+          "range": 1200.0,
+          "reload_seconds": 1.5,
+          "speed": 65.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "helicopter"
+      ],
+      "brief": "两名特勤与旋翼机；有限空地火箭，防空威胁大",
+      "charges": 3,
+      "cooldown": 18.0,
+      "damage_scale": 1.0,
+      "entity_count": 3,
+      "hp_scale": 1.0,
+      "id": "MCP-001",
+      "name": "云隼",
+      "nato_type": "airmobile_infantry",
+      "range_scale": 1.0,
+      "readable": "两名特勤与旋翼机；有限空地火箭，防空威胁大",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "air_assault",
+      "role_label": "空中特勤",
+      "slots": 2,
+      "speed": 65.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 16.0,
+        "id": "suppression",
+        "name": "压制齐射",
+        "radius": 180.0,
+        "range": 1100.0
+      },
+      "ability_radius": 180.0,
+      "ability_range": 1100.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 0,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 48.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 48.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 48.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 0.45,
+          "damage": 42.0,
+          "hp": 260.0,
+          "kind": "ifv",
+          "range": 1100.0,
+          "reload_seconds": 2.0,
+          "speed": 48.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "marine",
+        "ifv"
+      ],
+      "brief": "三步兵与步战车；近岸压制齐射，持续火力稳定",
+      "charges": 3,
+      "cooldown": 16.0,
+      "damage_scale": 1.0,
+      "entity_count": 4,
+      "hp_scale": 1.0,
+      "id": "MCP-034",
+      "name": "礁刃",
+      "nato_type": "mechanized_infantry",
+      "range_scale": 1.0,
+      "readable": "三步兵与步战车；近岸压制齐射，持续火力稳定",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "marine",
+      "role_label": "海军派遣",
+      "slots": 3,
+      "speed": 48.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "id": "air_rockets",
+        "name": "空地火箭",
+        "radius": 110.0,
+        "range": 1400.0
+      },
+      "ability_radius": 110.0,
+      "ability_range": 1400.0,
+      "air": true,
+      "air_insertion": true,
+      "ammo": 0,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 0.9,
+          "damage": 30.0,
+          "hp": 95.0,
+          "kind": "vdv",
+          "range": 850.0,
+          "reload_seconds": 1.8,
+          "speed": 58.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 0.9,
+          "damage": 30.0,
+          "hp": 95.0,
+          "kind": "vdv",
+          "range": 850.0,
+          "reload_seconds": 1.8,
+          "speed": 58.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 0.9,
+          "damage": 30.0,
+          "hp": 95.0,
+          "kind": "vdv",
+          "range": 850.0,
+          "reload_seconds": 1.8,
+          "speed": 58.0
+        },
+        {
+          "airborne": true,
+          "ammo": 45,
+          "armor": 1.0,
+          "damage": 55.0,
+          "hp": 180.0,
+          "kind": "gunship",
+          "range": 1400.0,
+          "reload_seconds": 1.8,
+          "speed": 58.0
+        }
+      ],
+      "body_kinds": [
+        "vdv",
+        "vdv",
+        "vdv",
+        "gunship"
+      ],
+      "brief": "三空降兵与支援机；空中插入，精确反装甲",
+      "charges": 3,
+      "cooldown": 20.0,
+      "damage_scale": 1.0,
+      "entity_count": 4,
+      "hp_scale": 1.0,
+      "id": "MCP-076",
+      "name": "冬鸢",
+      "nato_type": "airborne_infantry",
+      "range_scale": 1.0,
+      "readable": "三空降兵与支援机；空中插入，精确反装甲",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "airborne",
+      "role_label": "近卫空降",
+      "slots": 3,
+      "speed": 58.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 15.0,
+        "id": "field_repair",
+        "name": "应急工程",
+        "radius": 500.0,
+        "range": 600.0
+      },
+      "ability_radius": 500.0,
+      "ability_range": 600.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 0,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 16.0,
+          "hp": 95.0,
+          "kind": "engineer",
+          "range": 600.0,
+          "reload_seconds": 1.8,
+          "speed": 45.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 16.0,
+          "hp": 95.0,
+          "kind": "engineer",
+          "range": 600.0,
+          "reload_seconds": 1.8,
+          "speed": 45.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 16.0,
+          "hp": 95.0,
+          "kind": "engineer",
+          "range": 600.0,
+          "reload_seconds": 1.8,
+          "speed": 45.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 16.0,
+          "hp": 95.0,
+          "kind": "engineer",
+          "range": 600.0,
+          "reload_seconds": 1.8,
+          "speed": 45.0
+        }
+      ],
+      "body_kinds": [
+        "engineer",
+        "engineer",
+        "engineer",
+        "engineer"
+      ],
+      "brief": "四工兵；双倍搜索排雷，有限工具修复己方设施",
+      "charges": 3,
+      "cooldown": 15.0,
+      "damage_scale": 1.0,
+      "entity_count": 4,
+      "hp_scale": 1.0,
+      "id": "MCP-009",
+      "name": "汐锚",
+      "nato_type": "engineer",
+      "range_scale": 1.0,
+      "readable": "四工兵；双倍搜索排雷，有限工具修复己方设施",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "engineer",
+      "role_label": "工兵",
+      "slots": 2,
+      "speed": 45.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 24.0,
+        "id": "hull_down",
+        "name": "车体掩护",
+        "radius": 650.0,
+        "range": 0.0
+      },
+      "ability_radius": 650.0,
+      "ability_range": 0.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 0,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 0.28,
+          "damage": 100.0,
+          "hp": 420.0,
+          "kind": "tank",
+          "range": 1600.0,
+          "reload_seconds": 4.0,
+          "speed": 38.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 0.28,
+          "damage": 100.0,
+          "hp": 420.0,
+          "kind": "tank",
+          "range": 1600.0,
+          "reload_seconds": 4.0,
+          "speed": 38.0
+        },
+        {
+          "airborne": false,
+          "ammo": 90,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 38.0
+        }
+      ],
+      "body_kinds": [
+        "tank",
+        "tank",
+        "marine"
+      ],
+      "brief": "双装甲车与护卫；抗轻武器，短时阵地防护",
+      "charges": 3,
+      "cooldown": 24.0,
+      "damage_scale": 1.0,
+      "entity_count": 3,
+      "hp_scale": 1.0,
+      "id": "MCP-022",
+      "name": "铁潮",
+      "nato_type": "armor",
+      "range_scale": 1.0,
+      "readable": "双装甲车与护卫；抗轻武器，短时阵地防护",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "armor",
+      "role_label": "装甲",
+      "slots": 4,
+      "speed": 38.0,
+      "transport_slots": 4
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "id": "smoke",
+        "name": "近岸烟幕",
+        "radius": 600.0,
+        "range": 0.0
+      },
+      "ability_radius": 600.0,
+      "ability_range": 0.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 80,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 23.1,
+          "hp": 90.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.4,
+          "speed": 62.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 23.1,
+          "hp": 90.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.4,
+          "speed": 62.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 23.1,
+          "hp": 90.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.4,
+          "speed": 62.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 15.75,
+          "hp": 76.5,
+          "kind": "scout",
+          "range": 760.0,
+          "reload_seconds": 1.3,
+          "speed": 62.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "marine",
+        "scout"
+      ],
+      "brief": "轻装渗透；快速夺点，烟幕换取短时近岸生存",
+      "charges": 3,
+      "cooldown": 20.0,
+      "damage_scale": 1.05,
+      "entity_count": 4,
+      "hp_scale": 0.9,
+      "id": "MCP-011",
+      "name": "灯鲨",
+      "nato_type": "naval_infantry",
+      "range_scale": 0.95,
+      "readable": "轻装渗透；快速夺点，烟幕换取短时近岸生存",
+      "released": true,
+      "reload_scale": 0.95,
+      "role": "marine",
+      "role_label": "海军派遣",
+      "slots": 2,
+      "speed": 62.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 18.0,
+        "id": "recon_mark",
+        "name": "目标标定",
+        "radius": 550.0,
+        "range": 1800.0
+      },
+      "ability_radius": 550.0,
+      "ability_range": 1800.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 80,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 13.5,
+          "hp": 76.5,
+          "kind": "scout",
+          "range": 880.0000000000001,
+          "reload_seconds": 1.3,
+          "speed": 72.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 13.5,
+          "hp": 76.5,
+          "kind": "scout",
+          "range": 880.0000000000001,
+          "reload_seconds": 1.3,
+          "speed": 72.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 13.5,
+          "hp": 76.5,
+          "kind": "scout",
+          "range": 880.0000000000001,
+          "reload_seconds": 1.3,
+          "speed": 72.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 13.5,
+          "hp": 76.5,
+          "kind": "scout",
+          "range": 880.0000000000001,
+          "reload_seconds": 1.3,
+          "speed": 72.0
+        }
+      ],
+      "body_kinds": [
+        "scout",
+        "scout",
+        "scout",
+        "scout"
+      ],
+      "brief": "四侦察体；速度快、搜索快，标定区增强友军命中火力",
+      "charges": 3,
+      "cooldown": 18.0,
+      "damage_scale": 0.9,
+      "entity_count": 4,
+      "hp_scale": 0.9,
+      "id": "MCP-018",
+      "name": "苔原",
+      "nato_type": "recon",
+      "range_scale": 1.1,
+      "readable": "四侦察体；速度快、搜索快，标定区增强友军命中火力",
+      "released": true,
+      "reload_scale": 0.9,
+      "role": "recon",
+      "role_label": "侦察",
+      "slots": 2,
+      "speed": 72.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 24.0,
+        "id": "air_rockets",
+        "name": "空地火箭",
+        "radius": 200.0,
+        "range": 1600.0
+      },
+      "ability_radius": 200.0,
+      "ability_range": 1600.0,
+      "air": true,
+      "air_insertion": true,
+      "ammo": 50,
+      "bodies": [
+        {
+          "airborne": true,
+          "ammo": 50,
+          "armor": 1.0,
+          "damage": 60.50000000000001,
+          "hp": 198.00000000000003,
+          "kind": "gunship",
+          "range": 1400.0,
+          "reload_seconds": 2.0,
+          "speed": 55.0
+        },
+        {
+          "airborne": true,
+          "ammo": 50,
+          "armor": 1.0,
+          "damage": 35.2,
+          "hp": 165.0,
+          "kind": "helicopter",
+          "range": 1200.0,
+          "reload_seconds": 1.7,
+          "speed": 55.0
+        },
+        {
+          "airborne": false,
+          "ammo": 50,
+          "armor": 1.0,
+          "damage": 24.200000000000003,
+          "hp": 110.00000000000001,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.7,
+          "speed": 55.0
+        }
+      ],
+      "body_kinds": [
+        "gunship",
+        "helicopter",
+        "marine"
+      ],
+      "brief": "双旋翼装备；强区域火力，占舱多且受防空克制",
+      "charges": 3,
+      "cooldown": 24.0,
+      "damage_scale": 1.1,
+      "entity_count": 3,
+      "hp_scale": 1.1,
+      "id": "MCP-027",
+      "name": "赤隼",
+      "nato_type": "aviation",
+      "range_scale": 1.0,
+      "readable": "双旋翼装备；强区域火力，占舱多且受防空克制",
+      "released": true,
+      "reload_scale": 1.1,
+      "role": "gunship",
+      "role_label": "旋翼火力",
+      "slots": 4,
+      "speed": 55.0,
+      "transport_slots": 4
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 25.0,
+        "id": "jam",
+        "name": "链路干扰",
+        "radius": 1000.0,
+        "range": 1300.0
+      },
+      "ability_radius": 1000.0,
+      "ability_range": 1300.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 70,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 12.8,
+          "hp": 90.25,
+          "kind": "engineer",
+          "range": 660.0,
+          "reload_seconds": 1.8,
+          "speed": 52.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 95.0,
+          "kind": "marine",
+          "range": 770.0000000000001,
+          "reload_seconds": 1.5,
+          "speed": 52.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 12.0,
+          "hp": 80.75,
+          "kind": "scout",
+          "range": 880.0000000000001,
+          "reload_seconds": 1.4,
+          "speed": 52.0
+        }
+      ],
+      "body_kinds": [
+        "engineer",
+        "marine",
+        "scout"
+      ],
+      "brief": "电子战小队；限次干扰区延缓敌炮塔和防空装填",
+      "charges": 3,
+      "cooldown": 25.0,
+      "damage_scale": 0.8,
+      "entity_count": 3,
+      "hp_scale": 0.95,
+      "id": "MCP-041",
+      "name": "雾雀",
+      "nato_type": "electronic_warfare",
+      "range_scale": 1.1,
+      "readable": "电子战小队；限次干扰区延缓敌炮塔和防空装填",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "electronic",
+      "role_label": "电子战",
+      "slots": 2,
+      "speed": 52.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 25.0,
+        "id": "triage",
+        "name": "战地急救",
+        "radius": 600.0,
+        "range": 600.0
+      },
+      "ability_radius": 600.0,
+      "ability_range": 600.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 70,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 14.3,
+          "hp": 105.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.5,
+          "speed": 50.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 14.3,
+          "hp": 105.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.5,
+          "speed": 50.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 10.4,
+          "hp": 99.75,
+          "kind": "engineer",
+          "range": 540.0,
+          "reload_seconds": 1.8,
+          "speed": 50.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "engineer"
+      ],
+      "brief": "医疗撤收；有限医包止损，不能复活或超过出航整备",
+      "charges": 3,
+      "cooldown": 25.0,
+      "damage_scale": 0.65,
+      "entity_count": 3,
+      "hp_scale": 1.05,
+      "id": "MCP-052",
+      "name": "白鹭",
+      "nato_type": "medical",
+      "range_scale": 0.9,
+      "readable": "医疗撤收；有限医包止损，不能复活或超过出航整备",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "medic",
+      "role_label": "医疗",
+      "slots": 2,
+      "speed": 50.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 22.0,
+        "id": "at_missile",
+        "name": "反装甲导弹",
+        "radius": 100.0,
+        "range": 1700.0
+      },
+      "ability_radius": 100.0,
+      "ability_range": 1700.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 60,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 60,
+          "armor": 1.0,
+          "damage": 96.0,
+          "hp": 110.0,
+          "kind": "anti_tank",
+          "range": 1080.0,
+          "reload_seconds": 3.5,
+          "speed": 44.0
+        },
+        {
+          "airborne": false,
+          "ammo": 60,
+          "armor": 1.0,
+          "damage": 96.0,
+          "hp": 110.0,
+          "kind": "anti_tank",
+          "range": 1080.0,
+          "reload_seconds": 3.5,
+          "speed": 44.0
+        },
+        {
+          "airborne": false,
+          "ammo": 60,
+          "armor": 1.0,
+          "damage": 26.4,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 840.0,
+          "reload_seconds": 1.5,
+          "speed": 44.0
+        }
+      ],
+      "body_kinds": [
+        "anti_tank",
+        "anti_tank",
+        "marine"
+      ],
+      "brief": "双反装甲组；远距穿甲导弹，近距离持续火力弱",
+      "charges": 3,
+      "cooldown": 22.0,
+      "damage_scale": 1.2,
+      "entity_count": 3,
+      "hp_scale": 1.0,
+      "id": "MCP-063",
+      "name": "断浪",
+      "nato_type": "anti_tank",
+      "range_scale": 1.2,
+      "readable": "双反装甲组；远距穿甲导弹，近距离持续火力弱",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "antiarmor",
+      "role_label": "反装甲",
+      "slots": 3,
+      "speed": 44.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 2,
+        "cooldown": 30.0,
+        "id": "barrage",
+        "name": "火箭弹幕",
+        "radius": 180.0,
+        "range": 2600.0
+      },
+      "ability_radius": 180.0,
+      "ability_range": 2600.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 45,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 45,
+          "armor": 0.65,
+          "damage": 72.0,
+          "hp": 180.0,
+          "kind": "howitzer",
+          "range": 2400.0,
+          "reload_seconds": 5.5,
+          "speed": 30.0
+        },
+        {
+          "airborne": false,
+          "ammo": 45,
+          "armor": 0.65,
+          "damage": 72.0,
+          "hp": 180.0,
+          "kind": "howitzer",
+          "range": 2400.0,
+          "reload_seconds": 5.5,
+          "speed": 30.0
+        },
+        {
+          "airborne": false,
+          "ammo": 45,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 30.0
+        }
+      ],
+      "body_kinds": [
+        "howitzer",
+        "howitzer",
+        "marine"
+      ],
+      "brief": "双火箭炮；越障远射与三发弹幕，500米内无法主炮射击",
+      "charges": 2,
+      "cooldown": 30.0,
+      "damage_scale": 1.0,
+      "entity_count": 3,
+      "hp_scale": 1.0,
+      "id": "MCP-087",
+      "name": "砾火",
+      "nato_type": "artillery",
+      "range_scale": 1.0,
+      "readable": "双火箭炮；越障远射与三发弹幕，500米内无法主炮射击",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "artillery",
+      "role_label": "火箭炮",
+      "slots": 4,
+      "speed": 30.0,
+      "transport_slots": 4
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 18.0,
+        "id": "rapid_march",
+        "name": "快速转进",
+        "radius": 650.0,
+        "range": 0.0
+      },
+      "ability_radius": 650.0,
+      "ability_range": 0.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 80,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 0.45,
+          "damage": 33.6,
+          "hp": 234.0,
+          "kind": "ifv",
+          "range": 990.0,
+          "reload_seconds": 1.9,
+          "speed": 65.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 90.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.4,
+          "speed": 65.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 90.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.4,
+          "speed": 65.0
+        }
+      ],
+      "body_kinds": [
+        "ifv",
+        "marine",
+        "marine"
+      ],
+      "brief": "浅滩输送；登陆艇加速，短时机动掩护回收",
+      "charges": 3,
+      "cooldown": 18.0,
+      "damage_scale": 0.8,
+      "entity_count": 3,
+      "hp_scale": 0.9,
+      "id": "MCP-103",
+      "name": "潮梭",
+      "nato_type": "transport",
+      "range_scale": 0.9,
+      "readable": "浅滩输送；登陆艇加速，短时机动掩护回收",
+      "released": true,
+      "reload_scale": 0.95,
+      "role": "transport",
+      "role_label": "浅滩输送",
+      "slots": 2,
+      "speed": 65.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "id": "resupply",
+        "name": "前线补弹",
+        "radius": 550.0,
+        "range": 550.0
+      },
+      "ability_radius": 550.0,
+      "ability_range": 550.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 110,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 110,
+          "armor": 1.0,
+          "damage": 16.5,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.7,
+          "speed": 42.0
+        },
+        {
+          "airborne": false,
+          "ammo": 110,
+          "armor": 1.0,
+          "damage": 16.5,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.7,
+          "speed": 42.0
+        },
+        {
+          "airborne": false,
+          "ammo": 110,
+          "armor": 1.0,
+          "damage": 16.5,
+          "hp": 100.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.7,
+          "speed": 42.0
+        },
+        {
+          "airborne": false,
+          "ammo": 110,
+          "armor": 1.0,
+          "damage": 12.0,
+          "hp": 95.0,
+          "kind": "engineer",
+          "range": 570.0,
+          "reload_seconds": 2.0,
+          "speed": 42.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "marine",
+        "engineer"
+      ],
+      "brief": "前线补给；携120发有限补充弹药，按真实库存分配",
+      "charges": 3,
+      "cooldown": 20.0,
+      "damage_scale": 0.75,
+      "entity_count": 4,
+      "hp_scale": 1.0,
+      "id": "MCP-116",
+      "name": "银脉",
+      "nato_type": "supply",
+      "range_scale": 0.95,
+      "readable": "前线补给；携120发有限补充弹药，按真实库存分配",
+      "released": true,
+      "reload_scale": 1.1,
+      "role": "logistics",
+      "role_label": "后勤",
+      "slots": 3,
+      "speed": 42.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 24.0,
+        "id": "precision",
+        "name": "精确射击",
+        "radius": 800.0,
+        "range": 0.0
+      },
+      "ability_radius": 800.0,
+      "ability_range": 0.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 36,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 36,
+          "armor": 1.0,
+          "damage": 73.5,
+          "hp": 67.5,
+          "kind": "sniper",
+          "range": 1800.0,
+          "reload_seconds": 3.5,
+          "speed": 40.0
+        },
+        {
+          "airborne": false,
+          "ammo": 36,
+          "armor": 1.0,
+          "damage": 73.5,
+          "hp": 67.5,
+          "kind": "sniper",
+          "range": 1800.0,
+          "reload_seconds": 3.5,
+          "speed": 40.0
+        },
+        {
+          "airborne": false,
+          "ammo": 36,
+          "armor": 1.0,
+          "damage": 73.5,
+          "hp": 67.5,
+          "kind": "sniper",
+          "range": 1800.0,
+          "reload_seconds": 3.5,
+          "speed": 40.0
+        },
+        {
+          "airborne": false,
+          "ammo": 36,
+          "armor": 1.0,
+          "damage": 15.75,
+          "hp": 76.5,
+          "kind": "scout",
+          "range": 800.0,
+          "reload_seconds": 1.4,
+          "speed": 40.0
+        }
+      ],
+      "body_kinds": [
+        "sniper",
+        "sniper",
+        "sniper",
+        "scout"
+      ],
+      "brief": "三狙击与观察员；远程精确，近战脆弱且弹量少",
+      "charges": 3,
+      "cooldown": 24.0,
+      "damage_scale": 1.05,
+      "entity_count": 4,
+      "hp_scale": 0.9,
+      "id": "MCP-128",
+      "name": "夜莺",
+      "nato_type": "sniper",
+      "range_scale": 1.0,
+      "readable": "三狙击与观察员；远程精确，近战脆弱且弹量少",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "sniper",
+      "role_label": "狙击",
+      "slots": 3,
+      "speed": 40.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "id": "aa_burst",
+        "name": "防空弹幕",
+        "radius": 220.0,
+        "range": 2100.0
+      },
+      "ability_radius": 220.0,
+      "ability_range": 2100.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 60,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 60,
+          "armor": 1.0,
+          "damage": 45.0,
+          "hp": 136.5,
+          "kind": "aa_team",
+          "range": 1800.0,
+          "reload_seconds": 2.0,
+          "speed": 40.0
+        },
+        {
+          "airborne": false,
+          "ammo": 60,
+          "armor": 1.0,
+          "damage": 45.0,
+          "hp": 136.5,
+          "kind": "aa_team",
+          "range": 1800.0,
+          "reload_seconds": 2.0,
+          "speed": 40.0
+        },
+        {
+          "airborne": false,
+          "ammo": 60,
+          "armor": 1.0,
+          "damage": 22.0,
+          "hp": 105.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 40.0
+        }
+      ],
+      "body_kinds": [
+        "aa_team",
+        "aa_team",
+        "marine"
+      ],
+      "brief": "双防空组；真实可对空，限次区域防空弹幕",
+      "charges": 3,
+      "cooldown": 20.0,
+      "damage_scale": 1.0,
+      "entity_count": 3,
+      "hp_scale": 1.05,
+      "id": "MCP-145",
+      "name": "苍穹",
+      "nato_type": "air_defense",
+      "range_scale": 1.0,
+      "readable": "双防空组；真实可对空，限次区域防空弹幕",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "airdefense",
+      "role_label": "防空",
+      "slots": 3,
+      "speed": 40.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 2,
+        "cooldown": 22.0,
+        "id": "smoke",
+        "name": "近岸烟幕",
+        "radius": 500.0,
+        "range": 0.0
+      },
+      "ability_radius": 500.0,
+      "ability_range": 0.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 80,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 18.7,
+          "hp": 85.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.4,
+          "speed": 68.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 18.7,
+          "hp": 85.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.4,
+          "speed": 68.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 18.7,
+          "hp": 85.0,
+          "kind": "marine",
+          "range": 630.0,
+          "reload_seconds": 1.4,
+          "speed": 68.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 0.45,
+          "damage": 35.699999999999996,
+          "hp": 221.0,
+          "kind": "ifv",
+          "range": 990.0,
+          "reload_seconds": 1.8,
+          "speed": 68.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "marine",
+        "ifv"
+      ],
+      "brief": "河口快艇；登陆与撤收更快，牺牲装甲换机动",
+      "charges": 2,
+      "cooldown": 22.0,
+      "damage_scale": 0.85,
+      "entity_count": 4,
+      "hp_scale": 0.85,
+      "id": "MCP-167",
+      "name": "苇影",
+      "nato_type": "naval_infantry",
+      "range_scale": 0.9,
+      "readable": "河口快艇；登陆与撤收更快，牺牲装甲换机动",
+      "released": true,
+      "reload_scale": 0.9,
+      "role": "riverine",
+      "role_label": "河口",
+      "slots": 2,
+      "speed": 68.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 2,
+        "cooldown": 25.0,
+        "id": "breach",
+        "name": "爆破突入",
+        "radius": 220.0,
+        "range": 700.0
+      },
+      "ability_radius": 220.0,
+      "ability_range": 700.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 70,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 27.5,
+          "hp": 110.00000000000001,
+          "kind": "marine",
+          "range": 455.0,
+          "reload_seconds": 1.4,
+          "speed": 52.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 27.5,
+          "hp": 110.00000000000001,
+          "kind": "marine",
+          "range": 455.0,
+          "reload_seconds": 1.4,
+          "speed": 52.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 27.5,
+          "hp": 110.00000000000001,
+          "kind": "marine",
+          "range": 455.0,
+          "reload_seconds": 1.4,
+          "speed": 52.0
+        },
+        {
+          "airborne": false,
+          "ammo": 70,
+          "armor": 1.0,
+          "damage": 20.0,
+          "hp": 104.50000000000001,
+          "kind": "engineer",
+          "range": 390.0,
+          "reload_seconds": 1.6,
+          "speed": 52.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "marine",
+        "engineer"
+      ],
+      "brief": "废城突击；近程高伤爆破，必须靠近才能破障",
+      "charges": 2,
+      "cooldown": 25.0,
+      "damage_scale": 1.25,
+      "entity_count": 4,
+      "hp_scale": 1.1,
+      "id": "MCP-184",
+      "name": "烬羽",
+      "nato_type": "assault_infantry",
+      "range_scale": 0.65,
+      "readable": "废城突击；近程高伤爆破，必须靠近才能破障",
+      "released": true,
+      "reload_scale": 0.9,
+      "role": "breacher",
+      "role_label": "突击",
+      "slots": 3,
+      "speed": 52.0,
+      "transport_slots": 3
+    },
+    {
+      "ability": {
+        "charges": 2,
+        "cooldown": 28.0,
+        "id": "coordination",
+        "name": "协同指挥",
+        "radius": 900.0,
+        "range": 0.0
+      },
+      "ability_radius": 900.0,
+      "ability_range": 0.0,
+      "air": false,
+      "air_insertion": false,
+      "ammo": 80,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 95.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 46.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 95.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 46.0
+        },
+        {
+          "airborne": false,
+          "ammo": 80,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 95.0,
+          "kind": "marine",
+          "range": 700.0,
+          "reload_seconds": 1.5,
+          "speed": 46.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "marine"
+      ],
+      "brief": "协同指挥；区域加速装填与行军，本人直接火力较弱",
+      "charges": 2,
+      "cooldown": 28.0,
+      "damage_scale": 0.8,
+      "entity_count": 3,
+      "hp_scale": 0.95,
+      "id": "MCP-203",
+      "name": "星桅",
+      "nato_type": "command",
+      "range_scale": 1.0,
+      "readable": "协同指挥；区域加速装填与行军，本人直接火力较弱",
+      "released": true,
+      "reload_scale": 1.0,
+      "role": "command",
+      "role_label": "指挥",
+      "slots": 2,
+      "speed": 46.0,
+      "transport_slots": 2
+    },
+    {
+      "ability": {
+        "charges": 2,
+        "cooldown": 24.0,
+        "id": "rescue",
+        "name": "紧急撤收",
+        "radius": 500.0,
+        "range": 500.0
+      },
+      "ability_radius": 500.0,
+      "ability_range": 500.0,
+      "air": true,
+      "air_insertion": true,
+      "ammo": 55,
+      "bodies": [
+        {
+          "airborne": false,
+          "ammo": 55,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 85.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.4,
+          "speed": 70.0
+        },
+        {
+          "airborne": false,
+          "ammo": 55,
+          "armor": 1.0,
+          "damage": 17.6,
+          "hp": 85.0,
+          "kind": "marine",
+          "range": 665.0,
+          "reload_seconds": 1.4,
+          "speed": 70.0
+        },
+        {
+          "airborne": true,
+          "ammo": 55,
+          "armor": 1.0,
+          "damage": 25.6,
+          "hp": 127.5,
+          "kind": "helicopter",
+          "range": 1140.0,
+          "reload_seconds": 1.4,
+          "speed": 70.0
+        }
+      ],
+      "body_kinds": [
+        "marine",
+        "marine",
+        "helicopter"
+      ],
+      "brief": "空中撤收；快速回舰与有限急救，不凭空复活身体",
+      "charges": 2,
+      "cooldown": 24.0,
+      "damage_scale": 0.8,
+      "entity_count": 3,
+      "hp_scale": 0.85,
+      "id": "MCP-240",
+      "name": "雨燕",
+      "nato_type": "rescue",
+      "range_scale": 0.95,
+      "readable": "空中撤收；快速回舰与有限急救，不凭空复活身体",
+      "released": true,
+      "reload_scale": 0.9,
+      "role": "rescue",
+      "role_label": "救援",
+      "slots": 3,
+      "speed": 70.0,
+      "transport_slots": 3
+    }
+  ],
+  "duration": 480,
+  "friendly_body_budget": 32,
+  "max_groups": 6,
+  "modes": [
+    "tutorial",
+    "raid",
+    "defense",
+    "salvage"
+  ],
+  "presets": {
+    "balanced": 70,
+    "combat": 100,
+    "transport": 40
+  },
+  "ships": [
+    {
+      "id": "IBS-U-USN-FLETCHER",
+      "kind": "DD",
+      "name": "弗莱彻",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-PERKINS",
+      "kind": "DD",
+      "name": "帕金斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-MAURY",
+      "kind": "DD",
+      "name": "莫里",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-DRAYTON",
+      "kind": "DD",
+      "name": "德雷顿",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-LAMSON",
+      "kind": "DD",
+      "name": "拉姆森",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KAGERO",
+      "kind": "DD",
+      "name": "阳炎",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SENDAI",
+      "kind": "CL",
+      "name": "川内",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R03",
+      "kind": "BB",
+      "name": "北卡罗来纳",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-WASHINGTON",
+      "kind": "BB",
+      "name": "华盛顿",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-YAMATO",
+      "kind": "BB",
+      "name": "大和",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R51",
+      "kind": "DD",
+      "name": "邓拉普",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R52",
+      "kind": "DD",
+      "name": "格里德利",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SHIRATSUYU",
+      "kind": "DD",
+      "name": "白露",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUGUMO",
+      "kind": "DD",
+      "name": "夕云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AKIZUKI",
+      "kind": "DD",
+      "name": "秋月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-FUBUKI",
+      "kind": "DD",
+      "name": "吹雪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-HATSUYUKI",
+      "kind": "DD",
+      "name": "初雪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-VINCENNES",
+      "kind": "CA",
+      "name": "文森斯",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-NEW-ORLEANS",
+      "kind": "CA",
+      "name": "新奥尔良",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-SAN-FRANCISCO",
+      "kind": "CA",
+      "name": "旧金山",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-QUINCY",
+      "kind": "CA",
+      "name": "昆西",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-MINNEAPOLIS",
+      "kind": "CA",
+      "name": "明尼阿波里斯",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ASTORIA",
+      "kind": "CA",
+      "name": "阿斯托里亚",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-NORTHAMPTON",
+      "kind": "CA",
+      "name": "北安普敦",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R12",
+      "kind": "CA",
+      "name": "芝加哥",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-PENSACOLA",
+      "kind": "CA",
+      "name": "彭萨科拉",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-SALT-LAKE-CITY",
+      "kind": "CA",
+      "name": "盐湖城",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ST-LOUIS",
+      "kind": "CL",
+      "name": "圣路易斯",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-HELENA",
+      "kind": "CL",
+      "name": "海伦娜",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R29",
+      "kind": "CL",
+      "name": "丹弗",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R26",
+      "kind": "CL",
+      "name": "克利夫兰",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R27",
+      "kind": "CL",
+      "name": "哥伦比亚",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R28",
+      "kind": "CL",
+      "name": "蒙彼利埃",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-CUSHING",
+      "kind": "DD",
+      "name": "库欣",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-PRESTON",
+      "kind": "DD",
+      "name": "普雷斯顿",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-CLAXTON",
+      "kind": "DD",
+      "name": "克拉克斯顿",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-OBANNON",
+      "kind": "DD",
+      "name": "奥班农",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-NICHOLAS",
+      "kind": "DD",
+      "name": "尼古拉斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-CONVERSE",
+      "kind": "DD",
+      "name": "康弗斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-DYSON",
+      "kind": "DD",
+      "name": "戴森",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-LARDNER",
+      "kind": "DD",
+      "name": "拉德纳",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-THATCHER",
+      "kind": "DD",
+      "name": "撒切尔",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-STANLY",
+      "kind": "DD",
+      "name": "斯坦立",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-SPENCE",
+      "kind": "DD",
+      "name": "斯彭斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-CF-AUSBURNE",
+      "kind": "DD",
+      "name": "查尔斯·奥斯本",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-TAYLOR",
+      "kind": "DD",
+      "name": "泰勒",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-FOOTE",
+      "kind": "DD",
+      "name": "福特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-JENKINS",
+      "kind": "DD",
+      "name": "詹金斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-CHEVALIER",
+      "kind": "DD",
+      "name": "谢伐利埃",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-RADFORD",
+      "kind": "DD",
+      "name": "雷德福德",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AOBA",
+      "kind": "CA",
+      "name": "青叶",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KAKO-I",
+      "kind": "CA",
+      "name": "加古(I)",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-FURUTAKA",
+      "kind": "CA",
+      "name": "古鹰",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KINUGASA",
+      "kind": "CA",
+      "name": "衣笠",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MYOKO",
+      "kind": "CA",
+      "name": "妙高",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-HAGURO",
+      "kind": "CA",
+      "name": "羽黑",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AGANO",
+      "kind": "CL",
+      "name": "阿贺野",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NIIZUKI",
+      "kind": "DD",
+      "name": "新月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-TERUZUKI",
+      "kind": "DD",
+      "name": "照月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-WAKATSUKI",
+      "kind": "DD",
+      "name": "若月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUGIRI",
+      "kind": "DD",
+      "name": "夕雾",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AMAGIRI",
+      "kind": "DD",
+      "name": "天雾",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SHIKINAMI",
+      "kind": "DD",
+      "name": "敷波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-URANAMI",
+      "kind": "DD",
+      "name": "浦波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SAZANAMI",
+      "kind": "DD",
+      "name": "涟",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SHIRAYUKI",
+      "kind": "DD",
+      "name": "白雪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AYANAMI",
+      "kind": "DD",
+      "name": "绫波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-OYASHIO",
+      "kind": "DD",
+      "name": "亲潮",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-HATSU-KAZE",
+      "kind": "DD",
+      "name": "初风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-HAMAKAZE",
+      "kind": "DD",
+      "name": "浜风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ISOKAZE",
+      "kind": "DD",
+      "name": "矶风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AKIGUMO",
+      "kind": "DD",
+      "name": "秋云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-TANIKAZE",
+      "kind": "DD",
+      "name": "谷风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUKIKAZE",
+      "kind": "DD",
+      "name": "雪风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KUROSHIO",
+      "kind": "DD",
+      "name": "黑潮",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SAMIDARE",
+      "kind": "DD",
+      "name": "五月雨",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SUZUKAZE",
+      "kind": "DD",
+      "name": "凉风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUDACHI",
+      "kind": "DD",
+      "name": "夕立",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SHIGURE",
+      "kind": "DD",
+      "name": "时雨",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-HARUSAME",
+      "kind": "DD",
+      "name": "春雨",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MURASAME",
+      "kind": "DD",
+      "name": "村雨",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KAWAKAZE",
+      "kind": "DD",
+      "name": "江风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MAKINAMI",
+      "kind": "DD",
+      "name": "卷波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ONAMI",
+      "kind": "DD",
+      "name": "大波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KIYONAMI",
+      "kind": "DD",
+      "name": "清波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NAGANAMI",
+      "kind": "DD",
+      "name": "长波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KAZEKUMO",
+      "kind": "DD",
+      "name": "风云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-TAKANAMI",
+      "kind": "DD",
+      "name": "高波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-BOISE",
+      "kind": "CL",
+      "name": "博伊西",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-FARENHOLT",
+      "kind": "DD",
+      "name": "法伦霍尔特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-DUNCAN",
+      "kind": "DD",
+      "name": "邓肯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-LAFFEY",
+      "kind": "DD",
+      "name": "拉菲",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-BUCHANAN",
+      "kind": "DD",
+      "name": "布坎南",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-MCCALLA",
+      "kind": "DD",
+      "name": "麦卡拉",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-HONOLULU",
+      "kind": "CL",
+      "name": "火奴鲁鲁",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-UZUKI",
+      "kind": "DD",
+      "name": "卯月(I)",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-RALPH-TALBOT",
+      "kind": "DD",
+      "name": "拉尔夫·托尔伯特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-MONSSEN",
+      "kind": "DD",
+      "name": "蒙森",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RAN-AUSTRALIA",
+      "kind": "CA",
+      "name": "澳大利亚",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RAN-CANBERRA",
+      "kind": "CA",
+      "name": "堪培拉",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-BAGLEY",
+      "kind": "DD",
+      "name": "巴格莱",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-PATTERSON",
+      "kind": "DD",
+      "name": "帕特森",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-HELM",
+      "kind": "DD",
+      "name": "赫尔姆",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-WILSON",
+      "kind": "DD",
+      "name": "威尔逊",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R25",
+      "kind": "CL",
+      "name": "圣胡安",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-JARVIS",
+      "kind": "DD",
+      "name": "贾维斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-SELFRIDGE",
+      "kind": "DD",
+      "name": "赛尔弗里纪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-HULL-I",
+      "kind": "DD",
+      "name": "赫尔(I)",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-CHOKAI",
+      "kind": "CA",
+      "name": "鸟海",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-TENRYU",
+      "kind": "CL",
+      "name": "天龙",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUBARI",
+      "kind": "CL",
+      "name": "夕张",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AKATSUKI",
+      "kind": "DD",
+      "name": "晓",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-AMATSU-KAZE",
+      "kind": "DD",
+      "name": "天津风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ASAGUMO",
+      "kind": "DD",
+      "name": "朝云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ASAKAZE",
+      "kind": "DD",
+      "name": "朝风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ATAGO",
+      "kind": "CA",
+      "name": "爱宕",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-CHITOSE",
+      "kind": "AV",
+      "name": "千岁",
+      "slots_balanced": 17,
+      "slots_combat": 16,
+      "slots_transport": 19,
+      "transport_role": "transport_support"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-AZUMA",
+      "kind": "CB",
+      "name": "吾妻",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-ISHIKARI",
+      "kind": "CB",
+      "name": "石狩",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-KAZEGUMO",
+      "kind": "DD",
+      "name": "风云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-MAKINAMI",
+      "kind": "DD",
+      "name": "卷波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-MUSASHI",
+      "kind": "BB",
+      "name": "武藏",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-NAGANAMI",
+      "kind": "DD",
+      "name": "长波",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-SHIMAKAZE",
+      "kind": "DD",
+      "name": "岛风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-ERMA-SHINANO",
+      "kind": "BB",
+      "name": "信浓",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-FUMIZUKI",
+      "kind": "DD",
+      "name": "文月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-HIEI",
+      "kind": "BB",
+      "name": "比叡",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-IKAZUCHI",
+      "kind": "DD",
+      "name": "雷",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-INAZUMA",
+      "kind": "DD",
+      "name": "电",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-JINTSU-I",
+      "kind": "CL",
+      "name": "神通(I)",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KAMIKAZE",
+      "kind": "DD",
+      "name": "神风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-KIRISHIMA",
+      "kind": "BB",
+      "name": "雾岛",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MATSU-KAZE",
+      "kind": "DD",
+      "name": "松风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MIKAZUKI",
+      "kind": "DD",
+      "name": "三日月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MINAZUKI",
+      "kind": "DD",
+      "name": "水无月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MONCHIZUKI",
+      "kind": "DD",
+      "name": "望月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MURAKUMO",
+      "kind": "DD",
+      "name": "丛云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MUTSU",
+      "kind": "BB",
+      "name": "陆奥",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-MUTSUKI",
+      "kind": "DD",
+      "name": "睦月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NACHI",
+      "kind": "CA",
+      "name": "那智",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NAGARA",
+      "kind": "CL",
+      "name": "长良",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NAGATO",
+      "kind": "BB",
+      "name": "长门",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NAGATSUKI",
+      "kind": "DD",
+      "name": "长月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NATSUGUMO",
+      "kind": "DD",
+      "name": "夏云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-NISSHIN",
+      "kind": "AV",
+      "name": "日进",
+      "slots_balanced": 17,
+      "slots_combat": 16,
+      "slots_transport": 19,
+      "transport_role": "transport_support"
+    },
+    {
+      "id": "IBS-U-IJN-OITE",
+      "kind": "DD",
+      "name": "追风",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-SATSUKI",
+      "kind": "DD",
+      "name": "皋月",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-TAKAO",
+      "kind": "CA",
+      "name": "高雄",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-TATSUTA",
+      "kind": "CL",
+      "name": "龙田",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-UZUKI-2",
+      "kind": "DD",
+      "name": "卯月(II)",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YAMAGUMO",
+      "kind": "DD",
+      "name": "山云",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUGURE",
+      "kind": "DD",
+      "name": "夕暮",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-IJN-YUNAGI",
+      "kind": "DD",
+      "name": "夕凪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-KM-HANS-LODY",
+      "kind": "DD",
+      "name": "汉斯·洛迪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-KM-KARL-GALSTER",
+      "kind": "DD",
+      "name": "卡尔加尔斯特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-KM-RICHARD-BEITZEN",
+      "kind": "DD",
+      "name": "里夏德·拜茨恩",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RN-JACKAL",
+      "kind": "DD",
+      "name": "豺",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RN-JAVELIN",
+      "kind": "DD",
+      "name": "标枪",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RN-JERSEY",
+      "kind": "DD",
+      "name": "泽西",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RN-JUPITER",
+      "kind": "DD",
+      "name": "朱庇特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RN-KASHMIR",
+      "kind": "DD",
+      "name": "克什米尔",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-RN-UNNAMED-T05-R01",
+      "kind": "CL",
+      "name": "利安德",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-AARON-WARD",
+      "kind": "DD",
+      "name": "亚伦沃德",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-BAINBRIDGE",
+      "kind": "DD",
+      "name": "班布里奇",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-BARTON",
+      "kind": "DD",
+      "name": "巴顿",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-BENHAM",
+      "kind": "DD",
+      "name": "本汉姆",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-COLORADO",
+      "kind": "BB",
+      "name": "科罗拉多",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-DAHLGREN",
+      "kind": "DD",
+      "name": "达尔格伦",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-DECATUR",
+      "kind": "DD",
+      "name": "迪凯特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-ALASKA",
+      "kind": "CB",
+      "name": "阿拉斯加",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+      "kind": "DD",
+      "name": "艾伦·M·萨姆纳",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-COOPER",
+      "kind": "DD",
+      "name": "库珀",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-DES-MOINES",
+      "kind": "CA",
+      "name": "得梅因",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-GUAM",
+      "kind": "CB",
+      "name": "关岛",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-INGRAHAM",
+      "kind": "DD",
+      "name": "英格拉罕",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-IOWA",
+      "kind": "BB",
+      "name": "衣阿华",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-MISSOURI",
+      "kind": "BB",
+      "name": "密苏里",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-NEW-JERSEY",
+      "kind": "BB",
+      "name": "新泽西",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-SALEM",
+      "kind": "CA",
+      "name": "塞勒姆",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-WISCONSIN",
+      "kind": "BB",
+      "name": "威斯康星",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-ERMA-WORCESTER",
+      "kind": "CL",
+      "name": "伍斯特",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-FOX",
+      "kind": "DD",
+      "name": "福克斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-GEARING",
+      "kind": "DD",
+      "name": "基林",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-GWIN",
+      "kind": "DD",
+      "name": "葛文",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-LA-VALLETTE",
+      "kind": "DD",
+      "name": "拉瓦利特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-MCDONOUGH",
+      "kind": "DD",
+      "name": "麦克多诺",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-OMAHA",
+      "kind": "CL",
+      "name": "奥马哈",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-PERRY",
+      "kind": "DD",
+      "name": "佩里",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-SOUTH-DAKOTA",
+      "kind": "BB",
+      "name": "南达科塔",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-STERETT",
+      "kind": "DD",
+      "name": "史特雷特",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-TRUXTON",
+      "kind": "DD",
+      "name": "特鲁斯顿",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R06",
+      "kind": "BC",
+      "name": "列克星敦",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R07",
+      "kind": "BC",
+      "name": "合众国",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R08",
+      "kind": "BC",
+      "name": "宪法",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R13",
+      "kind": "CA",
+      "name": "休斯顿",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R20",
+      "kind": "CA",
+      "name": "波特兰",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R22",
+      "kind": "CL",
+      "name": "孟菲斯",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R23",
+      "kind": "CL",
+      "name": "亚特兰大",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-UNNAMED-T01-R24",
+      "kind": "CL",
+      "name": "朱诺",
+      "slots_balanced": 5,
+      "slots_combat": 4,
+      "slots_transport": 7,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-WALKE",
+      "kind": "DD",
+      "name": "沃克",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-WEST-VIRGINIA",
+      "kind": "BB",
+      "name": "西弗吉尼亚",
+      "slots_balanced": 7,
+      "slots_combat": 6,
+      "slots_transport": 9,
+      "transport_role": "warship"
+    },
+    {
+      "id": "IBS-U-USN-WOODWORTH",
+      "kind": "DD",
+      "name": "伍德沃斯",
+      "slots_balanced": 3,
+      "slots_combat": 2,
+      "slots_transport": 5,
+      "transport_role": "warship"
+    }
+  ],
+  "simulation_hz": 10,
+  "version": "cas-littoral-v2"
+}

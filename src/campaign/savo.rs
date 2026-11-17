@@ -206,6 +206,7 @@ fn data() -> E<&'static crate::model::Data> {
                 data.ships.push(ship);
             }
         }
+        super::fleet::add_registered_cards(&mut data)?;
         Ok(data)
     })
     .as_ref()
@@ -213,12 +214,11 @@ fn data() -> E<&'static crate::model::Data> {
 }
 
 fn islands() -> Vec<Vec<P>> {
-    // Reuse the Savo/Guadalcanal polygons already projected for Cape
-    // Esperance; the sound is the same chart area and both came from the
-    // same satellite pass. Savo sits well inside this box.
+    // Satellite-traced coastlines anchored on the same field origin as the
+    // digitized chart positions (scripts/refine-basemap-coastlines.py).
     let chart: serde_json::Value = serde_json::from_str(include_str!(
-        "../../data/campaign/period/chart-esperance.json"
-    )).expect("esperance chart");
+        "../../data/campaign/period/chart-savo.json"
+    )).expect("savo chart");
     chart["islands"].as_array().expect("islands").iter().map(|island| {
         island["points"].as_array().expect("points").iter()
             .map(|pt| P { x: pt[0].as_f64().unwrap_or(0.), y: pt[1].as_f64().unwrap_or(0.) })

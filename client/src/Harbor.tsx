@@ -5,8 +5,12 @@ import type { CampaignLaunch } from './campaign-progress';
 import { CHALLENGE_WEEKLY_LIMIT, CHALLENGE_WEEKLY_TICKETS, claimRepeat, weeklyStatus } from './activities/week';
 import { profileNames } from './engine';
 import type { Profile, Side } from './engine';
-import { getGunnery, hulls, lessons, meetsRoster, receiveChallenge, receiveStarter, rosters } from './port';
-import type { Hull, PortLaunch, PortState } from './port';
+import {
+  defaultFleet, fleetPoints, getGunnery, lessons, meetsRoster, ownedShips, receiveChallenge, receiveStarter,
+} from './port';
+import type { PortLaunch, PortState } from './port';
+import { shipCard, shipName, shipRarityName, shipTypeName } from './ship-catalog';
+import { shipPortraitById } from './shipPortraits';
 import { ChallengeLadder } from './activities/ChallengeLadder';
 import { Quartermaster } from './screens/quartermaster/Quartermaster';
 import type { QuartermasterCounter } from './screens/quartermaster/counters';
@@ -42,6 +46,13 @@ function HarborArt() {
 const sectionNames: Record<HarborTab, string> = {
   training: '教学复习', fleet: '舰库与编队', recruit: '军需处', challenge: '越级挑战', archive: '战役航图',
 };
+const mobileTabs: { id: HarborTab; icon: string; label: string }[] = [
+  { id: 'training', icon: '⌂', label: '母港' },
+  { id: 'fleet', icon: '▦', label: '编队' },
+  { id: 'recruit', icon: '✦', label: '军需' },
+  { id: 'challenge', icon: '⚑', label: '挑战' },
+  { id: 'archive', icon: '▤', label: '战役' },
+];
 export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse, onSection, busy, error, online, initialTab = 'training' }: Props) {
   const tab = initialTab;
   const [starterSide, setStarterSide] = useState<Side>(state.preset.side);
@@ -50,11 +61,29 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
   const week = weeklyStatus(state);
   const nextLesson = lessons.find(({ id }) => !state.lessons.includes(id));
   const { preset } = state;
-  const canDeploy = state.starter && meetsRoster(state, preset.side);
+  const owned = ownedShips(state);
+  const sideOwned = ownedShips(state, preset.side);
+  const ready = meetsRoster(state);
+  const canDeploy = state.starter && ready;
+  const filled = preset.ships.filter(id => state.owned[id] === true).length;
+  const totalPoints = fleetPoints(preset.ships);
   // The staged challenge lends its roster from the 202-card registry, so the
   // local dock only has to be unlocked; no own-hull quota applies.
   const canChallenge = state.starter;
-  function setSide(side: Side) { change((s) => ({ ...s, preset: { ...s.preset, side, leaderSlot: 0 } })); }
+  function setSide(side: Side) {
+    change((s) => ({ ...s, preset: { ...s.preset, side, leaderSlot: 0, ships: defaultFleet(s, side) } }));
+  }
+  function setSlot(index: number, id: string) {
+    if (!id) return;
+    change((s) => {
+      const ships = [...s.preset.ships];
+      ships[index] = id;
+      return { ...s, preset: { ...s.preset, ships } };
+    });
+  }
+  function setLeader(leaderSlot: number) {
+    change((s) => ({ ...s, preset: { ...s.preset, leaderSlot } }));
+  }
   return <main className={'harbor' + (tab === 'recruit' ? ' harbor--quartermaster' : '')}>
     <header className="harbor-head">
       <div><span>母港 · 舰队勤务</span><h1>{sectionNames[tab]}</h1></div>
@@ -85,24 +114,32 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
             <button type="button" className={!nextLesson && !state.starter ? 'primary' : ''} disabled={!!nextLesson || state.starter}
               onClick={() => change((s) => receiveStarter(s, starterSide))}>{state.starter ? '已领取初始舰队' : '领取初始舰队'}</button>
           </div>
-          <p className="harbor-fine">结业奖励：所选阵营 4 艘驱逐舰和 1 艘轻巡洋舰、常驻券与 UP 券各 10 张。协同 AI 可免费使用。</p>
+          <p className="harbor-fine">结业奖励：所选阵营 5 艘已核验单舰（逐舰 identity）、常驻券与 UP 券各 10 张。协同 AI 可免费使用。</p>
         </section>}
         {tab === 'fleet' && <section className="harbor-section">
-          <div className="harbor-title"><h3>在港舰型</h3><span>四种已核验舰型</span></div>
-          <div className="hull-inventory">
-            {(Object.entries(hulls) as [Hull, (typeof hulls)[Hull]][]).map(([id, hull]) => <div key={id} className={(state.owned[id] ?? 0) ? '' : 'unowned'}>
-              <span>{hull.kind}</span><strong>{hull.name}</strong><small>拥有 {state.owned[id] ?? 0} 艘</small>
-            </div>)}
+          <div className="harbor-title"><h3>在港单舰</h3><span>{owned.length} 艘已拥有</span></div>
+          <div className="ship-inventory" data-ship-inventory data-owned-count={owned.length}>
+            {owned.map(card => {
+              const art = shipPortraitById(card.id);
+              return <article key={card.id} className="ship-card" data-owned-ship={card.id}>
+                {art ? <img src={art.src} alt={art.name + '舰娘立绘'} loading="lazy" /> : <span className="ship-card__noart">舰影</span>}
+                <span>{shipTypeName(card.type)} · {shipRarityName(card.gachaRarity)}</span>
+                <strong>{card.name}</strong>
+                <small>{card.class ?? '舰级未登记'}</small>
+                <em>{card.points ?? 0} 点 · 已拥有</em>
+              </article>;
+            })}
+            {!owned.length && <p className="harbor-fine">尚无单舰。完成初始舰队或到军港征募后，单舰会出现在这里。</p>}
           </div>
-          <div className="harbor-title"><h3>出航预设</h3><span>{canDeploy ? '可以出航' : '舰艇不足'}</span></div>
+          <div className="harbor-title"><h3>出航预设</h3><span>{canDeploy ? '可以出航' : ready ? '领取初始舰队后可出航' : '舰艇不足'}</span></div>
           <div className="harbor-action preset-fields">
             <label>阵营 <select value={preset.side} onChange={(event) => setSide(event.target.value as Side)}>
               <option value="allies">同盟舰队</option><option value="axis">轴心舰队</option>
             </select></label>
-            <label>领舰 <select value={preset.leaderSlot} onChange={(event) => {
-              const leaderSlot = Number(event.target.value); change((s) => ({ ...s, preset: { ...s.preset, leaderSlot } }));
-            }}>
-              {rosters[preset.side].map((id, index) => <option key={index} value={index}>{hulls[id].name} · 第 {index + 1} 舰位</option>)}
+            <label>领舰 <select data-fleet-leader value={preset.leaderSlot} onChange={(event) => setLeader(Number(event.target.value))}>
+              {preset.ships.map((id, index) => <option key={index} value={index} disabled={!id}>
+                {index + 1} 舰位 · {id ? shipName(id) : '空舰位'}
+              </option>)}
             </select></label>
             <label>协助风格 <select value={preset.profile} onChange={(event) => {
               const profile = event.target.value as Profile; change((s) => ({ ...s, preset: { ...s.preset, profile } }));
@@ -110,14 +147,37 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
               {state.profiles.map((profile) => <option key={profile} value={profile}>{profileNames[profile]}</option>)}
             </select></label>
           </div>
-          <p className="harbor-fine">标准演习要求同阵营 4 驱逐舰、1 轻巡。出航后默认手动，可在战斗内开启托管。</p>
-          <div className="harbor-action"><button type="button" className="primary" disabled={!canDeploy || busy} onClick={() => onLaunch(preset)}>用预设出航</button>
+          <div className="fleet-slots" data-fleet-slots>
+            {preset.ships.map((id, index) => {
+              const card = shipCard(id);
+              const used = new Set(preset.ships.filter((_, slot) => slot !== index));
+              return <label key={index} className="fleet-slot" data-slot={index} data-filled={!!card}>
+                <span>舰位 {index + 1}</span>
+                <select value={card ? id : ''} aria-label={`舰位 ${index + 1}`} onChange={(event) => setSlot(index, event.target.value)}>
+                  {!card && <option value="">选择舰船</option>}
+                  {sideOwned.map(option => <option key={option.id} value={option.id} disabled={used.has(option.id)}>
+                    {option.name} · {shipTypeName(option.type)} · {option.points ?? 0} 点
+                  </option>)}
+                  {card && state.owned[id] !== true && <option value={id}>{card.name} · {shipTypeName(card.type)} · 未拥有</option>}
+                </select>
+                <small>{card ? `${shipTypeName(card.type)} · ${card.points ?? 0} 点 · ${state.owned[id] ? '已拥有' : '未拥有'}` : '空舰位'}</small>
+              </label>;
+            })}
+          </div>
+          <div className="fleet-summary" data-fleet-summary data-ready={ready}>
+            <span>总点价 <b>{totalPoints}</b></span>
+            <span>已拥有舰位 <b>{filled} / 5</b></span>
+            <span className={ready ? 'ok' : 'bad'}>{ready ? '5 舰齐全 · 可以出航' : `还差 ${Math.max(0, 5 - filled)} 艘已拥有单舰`}</span>
+          </div>
+          <div className="harbor-action"><button type="button" className="primary" data-launch-preset disabled={!canDeploy || busy}
+            onClick={() => onLaunch({ ...preset, ships: [...preset.ships] })}>用预设出航</button>
             <button type="button" disabled={state.marks < 6 || state.profiles.includes('gunnery')}
               onClick={() => change(getGunnery)}>{state.profiles.includes('gunnery') ? '已拥有炮战 AI' : '6 勋章兑换炮战 AI'}</button></div>
+          <p className="harbor-fine">出航预设从已拥有单舰中选 5 个同阵营舰位，领舰任选；总点价按排位点表计算。抽卡不要求先完成教学。</p>
         </section>}
         {tab === 'recruit' && <Quartermaster state={state} change={change} busy={busy}
           counter={quarterCounter} onCounter={setQuarterCounter} onRecruit={() => setRecruitOpen(true)}
-          onCampaign={() => onSection?.('archive')} onTraining={() => onSection?.('training')} />}
+          onCampaign={() => onSection?.('archive')} />}
         {tab === 'challenge' && <section className="harbor-section">
           <ChallengeLadder state={state} change={change} onLaunch={onLaunch} busy={busy} ready={canChallenge} />
           <div className="harbor-title"><h3>挑战奖励</h3><span>首通</span></div>
@@ -131,12 +191,18 @@ export function Harbor({ state, change, onReturn, onLaunch, onCampaign, onCourse
         </section>}
         {tab === 'archive' && <CampaignArchive busy={busy} progress={online ? undefined : state.campaignProgress} onCampaign={onCampaign} online={online}
           onClaim={(stageId) => change(current => claimCampaignRewards(current, stageId))}
-          onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night' })} />}
+          onNight={() => onLaunch({ side: preset.side, profile: preset.profile, leaderSlot: preset.leaderSlot, variant: 'night',
+            ...(canDeploy ? { ships: [...preset.ships] } : {}) })} />}
       </section>
     </div>
+    <nav className="harbor-mobile-nav" aria-label="母港区域">
+      {mobileTabs.map(item => <button key={item.id} type="button" aria-pressed={tab === item.id}
+        onClick={() => onSection?.(item.id)}><i aria-hidden="true">{item.icon}</i><span>{item.label}</span></button>)}
+      <button type="button" className="harbor-mobile-nav__draw" data-mobile-draw onClick={() => setRecruitOpen(true)}>
+        <i aria-hidden="true">✦</i><span>征募</span></button>
+    </nav>
     {recruitOpen && <RecruitScreen state={state} change={change} busy={busy}
       onClose={() => setRecruitOpen(false)}
-      onQuartermaster={(counter) => { setRecruitOpen(false); setQuarterCounter(counter); }}
-      onTraining={() => { setRecruitOpen(false); onSection?.('training'); }} />}
+      onQuartermaster={(counter) => { setRecruitOpen(false); setQuarterCounter(counter); }} />}
   </main>;
 }

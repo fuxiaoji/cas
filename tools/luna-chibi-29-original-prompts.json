@@ -1,0 +1,353 @@
+{
+  "policy": "Exact arguments reconstructed by evaluating original logged generation cells with an offline capture stub. No tool or image call executed.",
+  "jobs": [
+    {
+      "identity": "IBS-U-USN-MIDWAY",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background SD shipgirl game sprite for CAS character Midway (IBS-U-USN-MIDWAY). Image 1 is IDENTITY ONLY: preserve her long charcoal-black hair in a low ponytail with a dark navy bow, violet-blue eyes, navy flight-officer jacket with tan collar and gold piping, white shirt, warm brown neck scarf, round aviator goggles resting at the neck, dark navy skirt, stockings and buckled black boots; retain a small folded map folder as a simple accessory. Image 2 is the approved CAS SD drawing style and proportions (Fletcher v2): use its TWO HEADS TALL mascot proportion, head 55–60% of total height, tiny body, short limbs, rounded boots, bold clean dark contour line, simple broad flat color shapes, at most one cel-shadow tone, sparse readable detail. Do not copy its blonde hair, cap, teal scarf or clothing. Image 3 is STYLE ONLY for the extremely compact game-sprite body and simple cel rendering; do not copy its ears, hair, face, clothes or accessories. Draw a single complete front three-quarter standing character facing slightly right, very large cheerful face and huge head, tiny torso and very short arms and legs. Prioritize black ponytail and navy bow, aviator goggles, tan collar, brown scarf and navy outfit; simplify gold trim to a few broad lines. Tiny carrier-themed wearable rigging attached closely behind her hips only: two small grey-blue panels and one miniature airplane badge; no runway, no flight deck, no cart, no aircraft carrier, no hull, and no detached side-view ship or vehicle. Full head, hair, hands and boots visible, centered, with a small transparent margin. Actual alpha transparency. No scenery, background, floor, drop shadow, text, label, logo or watermark. Avoid refined portrait proportions, long legs, delicate tiny details, gradients, painterly rendering, 3D and oversized mechanical equipment. First reference is IDENTITY; second and third are STYLE only.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-midway.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_83fc0b0c70514a0ca84f71f1aa49bb30",
+      "timestamp": "2026-11-12T08:49:57.951Z"
+    },
+    {
+      "identity": "IBS-U-USN-AARON-WARD",
+      "prompt": "Create a new CAS sprite for Aaron Ward / 亚伦沃德, exact characterId IBS-U-USN-AARON-WARD. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette, accessories and compact hip rigging. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, outfit or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL, head occupying 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body visible, readable at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency, no background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 identity details to retain: warm peach-brown short wavy bob, bright teal eyes, white naval cap with navy brim and gold anchor emblem plus large navy ribbon; cream double-breasted coat, navy-and-cream cape with gold rope, teal neck ribbon, navy pleated skirt, plum tights and dark lace-up boots; anchor charm.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-aaron-ward.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_2c426087980d48b4ad6c4ea81c2ae2e2",
+      "timestamp": "2026-11-12T08:54:47.745Z"
+    },
+    {
+      "identity": "IBS-U-USN-WOODWORTH",
+      "prompt": "Create a new CAS sprite for Woodworth / 伍德沃斯, exact characterId IBS-U-USN-WOODWORTH. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette, accessories and compact hip rigging. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, outfit or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL, head occupying 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body visible, readable at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency, no background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 identity details to retain: deep navy-blue hair in a side braid, vivid green eyes, cream sailor hat with dark bow and brass ship-wheel ornament, small flower clips; sage-green cape with cream trim, brown officer dress, white cuffs, dark gloves, belt pouches and brown boots; tiny wheel badge.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-woodworth.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_2c426087980d48b4ad6c4ea81c2ae2e2",
+      "timestamp": "2026-11-12T08:54:47.745Z"
+    },
+    {
+      "identity": "IBS-U-USN-PERRY",
+      "prompt": "Create a new CAS sprite for Perry / 佩里, exact characterId IBS-U-USN-PERRY. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette, accessories and compact hip rigging. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, outfit or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL, head occupying 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body visible, readable at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency, no background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 identity details to retain: short tousled chestnut hair, turquoise eyes, white naval cap with navy and red stripes and gold anchor, navy bow with anchor hair clip; burgundy sailor cape, white sleeves, wine-red pleated skirt with pale ribbon, dark tights and lace-up boots; holds a small navy signal flag.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-perry.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_2c426087980d48b4ad6c4ea81c2ae2e2",
+      "timestamp": "2026-11-12T08:54:47.745Z"
+    },
+    {
+      "identity": "IBS-U-RN-KASHMIR",
+      "prompt": "Create a new CAS sprite for Kashmir / 克什米尔, exact characterId IBS-U-RN-KASHMIR. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette, accessories and compact hip rigging. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, outfit or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL, head occupying 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body visible, readable at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency, no background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 identity details to retain: soft sage-green bob, olive-green eyes, white naval cap with navy ribbon and gold anchor, white flower clip; royal-blue officer coat with cream panels and gold piping, white gloves, plum tights and dark buckled boots; holds a small navy pennant.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-rn-kashmir.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_2c426087980d48b4ad6c4ea81c2ae2e2",
+      "timestamp": "2026-11-12T08:54:47.745Z"
+    },
+    {
+      "identity": "IBS-U-USN-CLAXTON",
+      "prompt": "Create a new CAS sprite for Claxton (克拉克斯顿), exact characterId IBS-U-USN-CLAXTON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and small personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL: head 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire figure visible, easy to recognize at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency. No background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 distinctive identity details: long flowing slate-blue hair with a side braid, amber eyes, cream naval cap with blue band and brass wheel ornament, large brass binoculars; pale sage-green dress with white collar and cuffs under a purple checked sailor capelet, red cord brooch, dark tights and tall brown boots.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-claxton.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_171ce2f7035b49dd9224661f70cf0f3c",
+      "timestamp": "2026-11-12T09:01:45.278Z"
+    },
+    {
+      "identity": "IBS-U-USN-STERETT",
+      "prompt": "Create a new CAS sprite for Sterett (史特雷特), exact characterId IBS-U-USN-STERETT. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and small personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL: head 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire figure visible, easy to recognize at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency. No background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 distinctive identity details: mauve-brown hair in two loose ponytails, violet eyes, ivory naval cap with navy brim, gold anchor and burgundy bow; muted olive short officer coat over deep wine-red dress and pleated skirt, gold compass brooch, dark tights and brown lace-up boots.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-sterett.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_171ce2f7035b49dd9224661f70cf0f3c",
+      "timestamp": "2026-11-12T09:01:45.278Z"
+    },
+    {
+      "identity": "IBS-U-USN-GEARING",
+      "prompt": "Create a new CAS sprite for Gearing (基林), exact characterId IBS-U-USN-GEARING. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and small personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL: head 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire figure visible, easy to recognize at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency. No background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 distinctive identity details: short chestnut hair tied into a small side ponytail with white ribbon, bright green eyes, ivory naval cap with dark band and little radar aerial, navy sailor cape with white trim, pale blue blouse and dark blue bow, navy skirt, dark boots; holds a small green radar disk and a dark clipboard.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-gearing.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_171ce2f7035b49dd9224661f70cf0f3c",
+      "timestamp": "2026-11-12T09:01:45.278Z"
+    },
+    {
+      "identity": "IBS-U-USN-OBANNON",
+      "prompt": "Create a new CAS sprite for O'Bannon (奥班农), exact characterId IBS-U-USN-OBANNON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and small personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Draw one fully clothed mascot at exactly TWO HEADS TALL: head 55–60 percent of total height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat color shapes, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire figure visible, easy to recognize at 80 pixels high. Simplify tiny trims, buttons, chains and machinery. Compact grey naval gear attached at hips only; no ship silhouette or separate side-view vessel. Genuine alpha transparency. No background, ground, drop shadow, text, logo, frame, watermark, gradients, realistic textures, 3D or long adult proportions. Image 1 distinctive identity details: short wavy chestnut-brown hair with pale ribbon, warm golden eyes, ivory naval cap with navy edge and gold anchor, white ruffled blouse, burgundy double-breasted pinafore with gold buttons, navy sailor shoulder cape, cream bow, black tights and dark boots; small navy pennant with gold star.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-obannon.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_171ce2f7035b49dd9224661f70cf0f3c",
+      "timestamp": "2026-11-12T09:01:45.278Z"
+    },
+    {
+      "identity": "IBS-U-USN-WILSON",
+      "prompt": "Create a new CAS sprite for Wilson / 威尔逊, exact characterId IBS-U-USN-WILSON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and simple personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Exactly TWO HEADS TALL, head 55–60% of total character height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat colors, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire single figure visible and recognizable at 80 pixels high. Simplify small trim, buttons and chains. Compact grey naval rigging attached at hips only; no ship silhouette or detached side-view ship. True transparent alpha; no ground, scene, drop shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to preserve: soft plum-brown hair in a loose side ponytail, lavender eyes, ivory flower and large cream hair ribbon; pale mint dress with white collar under a purple plaid capelet, plum neck bow, small brown satchel and a brass compass held open in one hand; brown knee boots.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-wilson.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_372be4e621d440ae9fdc36898cb8fac4",
+      "timestamp": "2026-11-12T09:09:20.743Z"
+    },
+    {
+      "identity": "IBS-U-USN-BAGLEY",
+      "prompt": "Create a new CAS sprite for Bagley / 巴格莱, exact characterId IBS-U-USN-BAGLEY. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and simple personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Exactly TWO HEADS TALL, head 55–60% of total character height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat colors, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire single figure visible and recognizable at 80 pixels high. Simplify small trim, buttons and chains. Compact grey naval rigging attached at hips only; no ship silhouette or detached side-view ship. True transparent alpha; no ground, scene, drop shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to preserve: light strawberry-blonde high ponytail, green eyes, ivory naval cap with navy bow, determined expression; olive sage short cape with cream edging over dark brown officer dress, layered cream underskirt, belt, dark gloves and tall brown boots; holds a folded map and small brass spyglass.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-bagley.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_372be4e621d440ae9fdc36898cb8fac4",
+      "timestamp": "2026-11-12T09:09:20.743Z"
+    },
+    {
+      "identity": "IBS-U-USN-BARTON",
+      "prompt": "Create a new CAS sprite for Barton / 巴顿, exact characterId IBS-U-USN-BARTON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and simple personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Exactly TWO HEADS TALL, head 55–60% of total character height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat colors, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire single figure visible and recognizable at 80 pixels high. Simplify small trim, buttons and chains. Compact grey naval rigging attached at hips only; no ship silhouette or detached side-view ship. True transparent alpha; no ground, scene, drop shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to preserve: short wavy auburn hair, warm amber eyes, ivory naval cap with navy brim, brass wheel and white flower plus burgundy ribbon; burgundy jumper dress with gold buttons and compass medallion over a white blouse, dark tights and brown boots; holds a small folded map.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-barton.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_372be4e621d440ae9fdc36898cb8fac4",
+      "timestamp": "2026-11-12T09:09:20.743Z"
+    },
+    {
+      "identity": "IBS-U-USN-BUCHANAN",
+      "prompt": "Create a new CAS sprite for Buchanan / 布坎南, exact characterId IBS-U-USN-BUCHANAN. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, outfit palette and simple personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only. Do not copy face, ears, hair, clothes or accessories from images 2 or 3. Exactly TWO HEADS TALL, head 55–60% of total character height, tiny torso, very short arms and legs, rounded stubby boots. Bold clean dark outlines, broad flat colors, at most one simple shadow tone, sparse readable details. Front three-quarter standing pose, entire single figure visible and recognizable at 80 pixels high. Simplify small trim, buttons and chains. Compact grey naval rigging attached at hips only; no ship silhouette or detached side-view ship. True transparent alpha; no ground, scene, drop shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to preserve: long wavy blue-grey hair, violet eyes, ivory naval cap with brass wheel and cream flower; chunky mustard-yellow cable-knit cardigan over a white shirt and teal neck ribbon, pleated navy skirt, dark stockings and navy shoes; navy shoulder straps and small white satchel.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-buchanan.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_372be4e621d440ae9fdc36898cb8fac4",
+      "timestamp": "2026-11-12T09:09:20.743Z"
+    },
+    {
+      "identity": "IBS-U-USN-PATTERSON",
+      "prompt": "Create an original CAS sprite for Patterson / 帕特森, exact characterId IBS-U-USN-PATTERSON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, clothing palette, and personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only; do not copy its rabbit ears or any other design. Do not copy the style references' faces, ears, hair, clothing or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby rounded shoes. Bold clean dark contour, broad flat colors, at most one simple cel-shadow tone, sparse readable detail. Front three-quarter standing pose, full body in frame, recognizable at 80 pixels high. Simplify tiny trim, buttons and chains. Compact grey rigging attached at the hips only. No detached ship silhouette or side-view vessel. Genuine alpha transparent background; no floor, scene, ground shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: long lavender hair in a thick side braid tied with a burgundy bow, warm amber eyes, white naval cap with gold anchor and navy ribbon; navy long officer coat with gold shoulder cords, white blouse, burgundy pleated skirt and dark gloves; holds a coil of cream rope in one hand.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-patterson.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_57a5445af7834962880d1005d96f0c1a",
+      "timestamp": "2026-11-12T09:18:58.723Z"
+    },
+    {
+      "identity": "IBS-U-USN-CUSHING",
+      "prompt": "Create an original CAS sprite for Cushing / 库欣, exact characterId IBS-U-USN-CUSHING. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, clothing palette, and personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only; do not copy its rabbit ears or any other design. Do not copy the style references' faces, ears, hair, clothing or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby rounded shoes. Bold clean dark contour, broad flat colors, at most one simple cel-shadow tone, sparse readable detail. Front three-quarter standing pose, full body in frame, recognizable at 80 pixels high. Simplify tiny trim, buttons and chains. Compact grey rigging attached at the hips only. No detached ship silhouette or side-view vessel. Genuine alpha transparent background; no floor, scene, ground shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: short dark navy bob, lavender eyes, the portrait's distinct dark cat ears and fluffy dark tail (preserve only those visible in this identity reference); ivory naval cap with navy band and gold anchor, teal-and-cream sailor cape over a white sailor dress, navy bow, dark tights and ivory lace-up boots.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-cushing.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_57a5445af7834962880d1005d96f0c1a",
+      "timestamp": "2026-11-12T09:18:58.723Z"
+    },
+    {
+      "identity": "IBS-U-USN-CONVERSE",
+      "prompt": "Create an original CAS sprite for Converse / 康弗斯, exact characterId IBS-U-USN-CONVERSE. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, clothing palette, and personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only; do not copy its rabbit ears or any other design. Do not copy the style references' faces, ears, hair, clothing or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby rounded shoes. Bold clean dark contour, broad flat colors, at most one simple cel-shadow tone, sparse readable detail. Front three-quarter standing pose, full body in frame, recognizable at 80 pixels high. Simplify tiny trim, buttons and chains. Compact grey rigging attached at the hips only. No detached ship silhouette or side-view vessel. Genuine alpha transparent background; no floor, scene, ground shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: short teal-blue curly bob, violet eyes, ivory naval cap with navy-and-white bow and gold wheel ornament; long deep-navy hooded coat with pale piping and toggles over a pale peach pleated dress, dark gloves and dark green knee boots.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-converse.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_57a5445af7834962880d1005d96f0c1a",
+      "timestamp": "2026-11-12T09:18:58.723Z"
+    },
+    {
+      "identity": "IBS-U-USN-DYSON",
+      "prompt": "Create an original CAS sprite for Dyson / 戴森, exact characterId IBS-U-USN-DYSON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hair, eyes, clothing palette, and personal accessories. Image 2 is the approved Fletcher v2 STYLE/PROPORTION reference only. Image 3 is a genuine game SD STYLE/PROPORTION reference only; do not copy its rabbit ears or any other design. Do not copy the style references' faces, ears, hair, clothing or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby rounded shoes. Bold clean dark contour, broad flat colors, at most one simple cel-shadow tone, sparse readable detail. Front three-quarter standing pose, full body in frame, recognizable at 80 pixels high. Simplify tiny trim, buttons and chains. Compact grey rigging attached at the hips only. No detached ship silhouette or side-view vessel. Genuine alpha transparent background; no floor, scene, ground shadow, text, logo, border, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: pale platinum-blonde hair in a long thick braid, amber eyes, dark olive naval beret with anchor and two tall pale rabbit-ear decorations matching the identity portrait; dark green flight jacket with cream collar, red badge, brown plaid skirt, dark tights and fur-cuffed brown boots.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-dyson.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_57a5445af7834962880d1005d96f0c1a",
+      "timestamp": "2026-11-12T09:18:58.723Z"
+    },
+    {
+      "identity": "IBS-U-USN-LAMSON",
+      "prompt": "Create one new CAS sprite for Lamson / 拉姆森, exact characterId IBS-U-USN-LAMSON. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve the character's visible hair, eyes, costume colors, and personal prop. Images 2 and 3 are STYLE/PROPORTION ONLY; do not copy their face, ears, hair, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short limbs, rounded stubby shoes. Bold clean dark outline, simple broad flat colors with at most one cel-shadow tone, sparse readable details. Front three-quarter standing pose, complete figure, clearly recognizable at 80 px high. Simplify trim and buttons. Compact grey naval rigging attached at hips only, no detached side-view ship. Real alpha transparency; no backdrop, ground, shadow, text, logo, frame, watermark, gradients, realism, 3D or adult proportions. Image 1 identity details to retain: short mint-silver bob, teal eyes, white sailor cap with dark green band, small flower hair ornament and navy ribbon; pale sage cape over cream double-breasted short coat, muted green skirt, grey knee socks and teal lace-up boots; holds a glowing brass lantern close to her chest.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-lamson.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_4cecb3058811495bb64f0d35c5544457",
+      "timestamp": "2026-11-12T09:27:01.312Z"
+    },
+    {
+      "identity": "IBS-U-USN-RALPH-TALBOT",
+      "prompt": "Create one new CAS sprite for Ralph Talbot / 拉尔夫·托尔伯特, exact characterId IBS-U-USN-RALPH-TALBOT. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve the character's visible hair, eyes, costume colors, and personal prop. Images 2 and 3 are STYLE/PROPORTION ONLY; do not copy their face, ears, hair, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short limbs, rounded stubby shoes. Bold clean dark outline, simple broad flat colors with at most one cel-shadow tone, sparse readable details. Front three-quarter standing pose, complete figure, clearly recognizable at 80 px high. Simplify trim and buttons. Compact grey naval rigging attached at hips only, no detached side-view ship. Real alpha transparency; no backdrop, ground, shadow, text, logo, frame, watermark, gradients, realism, 3D or adult proportions. Image 1 identity details to retain: soft silver-grey hair in two braided side tails, lavender eyes, white naval officer cap with navy ribbon and a small white flower, teal neck bow; crisp white long coat with teal piping and gold buttons over layered grey pleated skirt, dark tights and brown boots; holds folded navigation chart.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-ralph-talbot.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_4cecb3058811495bb64f0d35c5544457",
+      "timestamp": "2026-11-12T09:27:01.312Z"
+    },
+    {
+      "identity": "IBS-U-USN-LARDNER",
+      "prompt": "Create one new CAS sprite for Lardner / 拉德纳, exact characterId IBS-U-USN-LARDNER. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve the character's visible hair, eyes, costume colors, and personal prop. Images 2 and 3 are STYLE/PROPORTION ONLY; do not copy their face, ears, hair, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short limbs, rounded stubby shoes. Bold clean dark outline, simple broad flat colors with at most one cel-shadow tone, sparse readable details. Front three-quarter standing pose, complete figure, clearly recognizable at 80 px high. Simplify trim and buttons. Compact grey naval rigging attached at hips only, no detached side-view ship. Real alpha transparency; no backdrop, ground, shadow, text, logo, frame, watermark, gradients, realism, 3D or adult proportions. Image 1 identity details to retain: short chestnut-brown bob, amber eyes, ivory naval cap with navy band and gold anchor, large dark navy ribbon and brass wheel brooch; burgundy officer jacket over ivory high-neck blouse and navy skirt, dark tights, tall navy boots; holds a small brass telescope.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-lardner.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_4cecb3058811495bb64f0d35c5544457",
+      "timestamp": "2026-11-12T09:27:01.312Z"
+    },
+    {
+      "identity": "IBS-U-USN-FOOTE",
+      "prompt": "Create one new CAS sprite for Foote / 福特, exact characterId IBS-U-USN-FOOTE. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve the character's visible hair, eyes, costume colors, and personal prop. Images 2 and 3 are STYLE/PROPORTION ONLY; do not copy their face, ears, hair, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short limbs, rounded stubby shoes. Bold clean dark outline, simple broad flat colors with at most one cel-shadow tone, sparse readable details. Front three-quarter standing pose, complete figure, clearly recognizable at 80 px high. Simplify trim and buttons. Compact grey naval rigging attached at hips only, no detached side-view ship. Real alpha transparency; no backdrop, ground, shadow, text, logo, frame, watermark, gradients, realism, 3D or adult proportions. Image 1 identity details to retain: long flowing blue hair, bright blue eyes, the portrait's visible long pale rabbit-ear ornaments; dark green military cap, olive-grey long coat with brass buttons, burgundy dress and ribbon, white stockings and brown lace-up boots; holds a coil of rope.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-foote.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_4cecb3058811495bb64f0d35c5544457",
+      "timestamp": "2026-11-12T09:27:01.312Z"
+    },
+    {
+      "identity": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+      "prompt": "Create one new portrait-matched CAS sprite for Allen M. Sumner / 艾伦·M·萨姆纳, exact characterId IBS-U-USN-ERMA-ALLEN-M-SUMNER. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hairstyle, eye color, outfit palette and one simple prop. Images 2 and 3 are STYLE/PROPORTION ONLY; never copy their face, hair, ears, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of full height, tiny torso, very short arms/legs, stubby boots. Bold clean dark outline, broad flat colors, no more than one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body clear, recognizable at 80 px tall. Simplify embroidery and buttons. Compact grey naval rigging attached at hips only; no separate vessel or side-view ship. True transparent alpha. No background, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult anatomy. Image 1 identity details to retain: long charcoal-black hair, warm golden eyes, white naval cap with navy band, small anchor and purple jewel ornament with burgundy ribbon; soft lavender-blue officer dress with pale capelet embroidered with a simple white edge, navy bow and green jewel brooch; dark boots; holds a coil of rope.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-erma-allen-m-sumner.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_63402769828f48458f1110960404dd1c",
+      "timestamp": "2026-11-12T09:33:26.518Z"
+    },
+    {
+      "identity": "IBS-U-USN-GWIN",
+      "prompt": "Create one new portrait-matched CAS sprite for Gwin / 葛文, exact characterId IBS-U-USN-GWIN. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hairstyle, eye color, outfit palette and one simple prop. Images 2 and 3 are STYLE/PROPORTION ONLY; never copy their face, hair, ears, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of full height, tiny torso, very short arms/legs, stubby boots. Bold clean dark outline, broad flat colors, no more than one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body clear, recognizable at 80 px tall. Simplify embroidery and buttons. Compact grey naval rigging attached at hips only; no separate vessel or side-view ship. True transparent alpha. No background, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult anatomy. Image 1 identity details to retain: long lavender hair in a thick side braid tied with navy bows, violet eyes, white naval cap with gold anchor and small flowers; pale pink officer jacket with gold buttons and rope trim over navy pleated skirt, dark tights, tall navy boots; holds an open navy chart book with a wheel emblem.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-gwin.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_63402769828f48458f1110960404dd1c",
+      "timestamp": "2026-11-12T09:33:26.518Z"
+    },
+    {
+      "identity": "IBS-U-USN-MONSSEN",
+      "prompt": "Create one new portrait-matched CAS sprite for Monssen / 蒙森, exact characterId IBS-U-USN-MONSSEN. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hairstyle, eye color, outfit palette and one simple prop. Images 2 and 3 are STYLE/PROPORTION ONLY; never copy their face, hair, ears, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of full height, tiny torso, very short arms/legs, stubby boots. Bold clean dark outline, broad flat colors, no more than one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body clear, recognizable at 80 px tall. Simplify embroidery and buttons. Compact grey naval rigging attached at hips only; no separate vessel or side-view ship. True transparent alpha. No background, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult anatomy. Image 1 identity details to retain: long straight dark hair with blunt bangs, brown eyes, white naval cap with anchor and large red side bow; pale ivory long officer coat with dark green collar and cuffs over a muted red-brown dress, dark tights and lace-up boots; holds a thin brass pointer.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-monssen.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_63402769828f48458f1110960404dd1c",
+      "timestamp": "2026-11-12T09:33:26.518Z"
+    },
+    {
+      "identity": "IBS-U-USN-JENKINS",
+      "prompt": "Create one new portrait-matched CAS sprite for Jenkins / 詹金斯, exact characterId IBS-U-USN-JENKINS. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's hairstyle, eye color, outfit palette and one simple prop. Images 2 and 3 are STYLE/PROPORTION ONLY; never copy their face, hair, ears, clothes or accessories. Exactly TWO HEADS TALL, head 55–60% of full height, tiny torso, very short arms/legs, stubby boots. Bold clean dark outline, broad flat colors, no more than one simple shadow tone, sparse readable detail. Front three-quarter standing pose, full body clear, recognizable at 80 px tall. Simplify embroidery and buttons. Compact grey naval rigging attached at hips only; no separate vessel or side-view ship. True transparent alpha. No background, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult anatomy. Image 1 identity details to retain: long pale-lavender hair in a side braid, soft grey-violet eyes and gentle closed-eye smile, white naval cap with navy band, gold anchor and small flower; pink officer coat with brass buttons over navy pleated skirt, dark stockings and boots; holds an open small brass compass.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-jenkins.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_63402769828f48458f1110960404dd1c",
+      "timestamp": "2026-11-12T09:33:26.518Z"
+    },
+    {
+      "identity": "IBS-U-USN-CHEVALIER",
+      "prompt": "Create one new portrait-matched CAS sprite for Chevalier / 谢伐利埃, exact characterId IBS-U-USN-CHEVALIER. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's own hair, eye color, clothes and distinct accessory. Images 2 and 3 are STYLE/PROPORTION ONLY; do not transfer their face, ears, hairstyle or costume. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Bold dark clean outlines, broad flat color blocks, one shadow tone at most, few readable details. Front three-quarter standing pose, full figure, recognizable at 80 px tall. Simplify small trims and machinery. Compact grey rigging attached at hips only; no vessel silhouette or separate side-view ship. Real transparent alpha; no scene, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: short ash-brown wavy bob, violet eyes, dark navy aviator cap with large brass goggles on top; pale blue flight jacket with cream fur collar and cuffs, white blouse and dark charcoal skirt, white knee socks and navy lace-up boots; holds a cream map.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-chevalier.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_7a7fbc0e39524b18a4751eee2a7004a0",
+      "timestamp": "2026-11-12T09:40:40.774Z"
+    },
+    {
+      "identity": "IBS-U-RN-JACKAL",
+      "prompt": "Create one new portrait-matched CAS sprite for Jackal / 豺, exact characterId IBS-U-RN-JACKAL. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's own hair, eye color, clothes and distinct accessory. Images 2 and 3 are STYLE/PROPORTION ONLY; do not transfer their face, ears, hairstyle or costume. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Bold dark clean outlines, broad flat color blocks, one shadow tone at most, few readable details. Front three-quarter standing pose, full figure, recognizable at 80 px tall. Simplify small trims and machinery. Compact grey rigging attached at hips only; no vessel silhouette or separate side-view ship. Real transparent alpha; no scene, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: long dark chestnut wavy hair, golden-brown eyes, cream naval cap with navy ribbon and anchor; orange short cape over a navy vest and high-neck ivory blouse, long cream skirt with navy stripes, dark tights and brown lace-up boots; holds an open brass compass.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-rn-jackal.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_7a7fbc0e39524b18a4751eee2a7004a0",
+      "timestamp": "2026-11-12T09:40:40.774Z"
+    },
+    {
+      "identity": "IBS-U-USN-SELFRIDGE",
+      "prompt": "Create one new portrait-matched CAS sprite for Selfridge / 赛尔弗里纪, exact characterId IBS-U-USN-SELFRIDGE. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's own hair, eye color, clothes and distinct accessory. Images 2 and 3 are STYLE/PROPORTION ONLY; do not transfer their face, ears, hairstyle or costume. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Bold dark clean outlines, broad flat color blocks, one shadow tone at most, few readable details. Front three-quarter standing pose, full figure, recognizable at 80 px tall. Simplify small trims and machinery. Compact grey rigging attached at hips only; no vessel silhouette or separate side-view ship. Real transparent alpha; no scene, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: long flowing blue-grey hair, violet eyes, ivory naval cap with violet ribbon, flower and gold anchor; pale sage dress with cream panel under a purple plaid sailor capelet, dark brown boots; holds a rolled cream chart.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-selfridge.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_7a7fbc0e39524b18a4751eee2a7004a0",
+      "timestamp": "2026-11-12T09:40:40.774Z"
+    },
+    {
+      "identity": "IBS-U-USN-HULL-I",
+      "prompt": "Create one new portrait-matched CAS sprite for Hull I / 赫尔(I), exact characterId IBS-U-USN-HULL-I. Use case: stylized-concept. Create ONE original transparent-background CAS SD shipgirl game sprite. Image 1 is IDENTITY ONLY: preserve this character's own hair, eye color, clothes and distinct accessory. Images 2 and 3 are STYLE/PROPORTION ONLY; do not transfer their face, ears, hairstyle or costume. Exactly TWO HEADS TALL, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Bold dark clean outlines, broad flat color blocks, one shadow tone at most, few readable details. Front three-quarter standing pose, full figure, recognizable at 80 px tall. Simplify small trims and machinery. Compact grey rigging attached at hips only; no vessel silhouette or separate side-view ship. Real transparent alpha; no scene, floor, shadow, text, logo, frame, watermark, gradients, realism, 3D or long adult proportions. Image 1 identity details to retain: long straight black hair with bangs, warm brown eyes, ivory naval cap with navy band and gold anchor, white flower and muted burgundy bow; deep forest-green blouse with cream sailor collar, long burgundy skirt, white outer coat with gold edge, dark stockings and brown boots; holds a small map.",
+      "referenced_image_paths": [
+        "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-hull-i.webp",
+        "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "transparent_background": true,
+      "call_id": "call_7a7fbc0e39524b18a4751eee2a7004a0",
+      "timestamp": "2026-11-12T09:40:40.774Z"
+    }
+  ]
+}

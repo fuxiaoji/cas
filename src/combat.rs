@@ -151,6 +151,7 @@ impl World {
     }
 
     pub fn detect(&mut self, initial: bool) {
+        if self.open_intel(){self.refresh_open_intel();return;}
         if self.environment().light == crate::night::Light::Night {
             if self.v10_family() && !initial {
                 // cas-realtime-v10: per-second hazard-rate acquisition.
@@ -413,6 +414,7 @@ impl World {
     }
 
     pub fn update_tracks(&mut self) {
+        if self.open_intel(){self.refresh_open_intel();return;}
         let environment = self.environment();
         if environment.light == crate::night::Light::Night {
             self.update_night_tracks();
@@ -497,6 +499,7 @@ impl World {
     }
     pub fn can_gun(&self, s: &Ship) -> bool {
         s.alive()
+            && self.salvage_gun_supply(s)>0
             && s.battery.order.is_none()
             && !self
                 .pending
@@ -507,6 +510,7 @@ impl World {
     }
     pub fn can_torp(&self, s: &Ship) -> bool {
         s.alive()
+            && self.salvage_gun_supply(s)>0
             && s.ammo > 0
             && !self
                 .pending
@@ -547,7 +551,7 @@ impl World {
             .filter(|t| t.id != s.id && t.side == s.side && t.alive())
             .filter(|t| !self.torpedo_depths() || self.torpedo_can_hit(t, deep))
             .any(|t| {
-                let vel = P::bearing(t.h) * (t.speed * KNOT);
+                let vel = P::bearing(t.h) * (t.speed * KNOT * if self.adventure(){10.}else{1.});
                 let offset = t.p - s.p;
                 let den = v - vel.dot(forward);
                 if den <= 0. {
@@ -569,8 +573,10 @@ impl World {
         let Some(t) = &self.data.ships[s.def].torpedo else {
             return (0., 0., false, Some("这艘舰未装鱼雷".into()));
         };
-        let range = t.range_yd * YARD;
-        let (suggest, intercept_range) = intercept(s.p, c, t.speed_knots * KNOT);
+        let (torp_speed,torp_range,_,_)=self.expedition_torp_factors(s);
+        let range = t.range_yd * YARD * torp_range;
+        let mut motion=c.clone();let travel=if self.adventure(){10.}else{1.};motion.speed*=travel;
+        let (suggest, intercept_range) = intercept(s.p, &motion, t.speed_knots * KNOT * travel * torp_speed);
         let h = norm(angle.unwrap_or(suggest));
         let reason = if s.ammo == 0 {
             Some("鱼雷已耗尽")
@@ -591,7 +597,7 @@ impl World {
         (
             h,
             range,
-            self.friendly_torp(s, h, range, t.speed_knots * KNOT, order.deep),
+            self.friendly_torp(s, h, range, t.speed_knots * KNOT * travel * torp_speed, order.deep),
             reason.map(str::to_owned),
         )
     }
@@ -869,6 +875,7 @@ impl World {
     /// 保持窗末发射的登记时序，见实时鱼雷台账。
     fn order_immediate_torpedo(&mut self, owner: usize, r: &Value, id: u32, target: &str, manual: bool) -> E<()> {
         let s = self.ship_for(owner, id)?;
+        if self.salvage_gun_supply(s)==0 { return Err("本航次炮雷补给已耗尽".into()); }
         let c = self.torpedo_contact(s, target)?;
         let torpedo = self.torpedo_order(r)?;
         let angle = r
@@ -973,7 +980,7 @@ impl World {
     pub(crate) fn gun_values(&self,s:&Ship,t:&Ship,b:usize,barrels:u32,radar_only:bool,planned_targets:&[u32],extra:i32,prelight:bool)->(f64,u32){
         let td = &self.data.ships[t.def];
         let gun = &self.data.ships[s.def].gun;
-        let base = n(&self.data.rules["gun_base_hit"][gun.gs.to_string()][b]);
+        let base = n(&self.data.rules["gun_base_hit"][gun.gs.to_string()][b])*self.owned_stats(s).base_hit;
         let mut modifiers = extra;
         modifiers += ((barrels.saturating_sub(1) / 2).min(5)) as i32;
         modifiers += if t.speed < 0.05 {
@@ -1031,6 +1038,12 @@ impl World {
             s.p.dist(t.p) / YARD <= gun.range_yd[0] / 2.
         } {
             modifiers += 4;
+        }
+        // CAS PDF 58 (6-2): low visibility is not restricted to night.
+        // Enable the existing printed -2/-4 tiers only for the new fictional
+        // weather version; old saves and fixed historical scenarios stay frozen.
+        if self.dynamic_weather().is_some() && self.environment().light == crate::night::Light::Day {
+            modifiers += crate::night::night_gun_modifier(self.environment(), crate::night::Lighting::None);
         }
         if s.fire_control_damage {
             modifiers -= 2;
@@ -1101,7 +1114,7 @@ impl World {
             let impact = if roll as f64 <= chance {
                 let multiplier = gun_multiplier(&self.data.rules, volley.battery_barrels, b);
                 let part = f64::from(volley.barrels) / f64::from(volley.battery_barrels) * f64::from(volley.reload) / f64::from(CYCLE);
-                let mut damage = gun.damage[b] * multiplier * part * if self.realtime_point_blank(&s, &t) { 2. } else { 1. };
+                let mut damage = gun.damage[b] * multiplier * part * self.owned_stats(&s).firepower * if self.realtime_point_blank(&s, &t) { 2. } else { 1. };
                 let deck = deck_roll.is_some_and(|die| b >= 2 && die > if b == 2 { 40 } else { 30 });
                 let armor = if deck { td.armor_deck } else { td.armor_belt };
                 let pen = if deck { &gun.pen_deck } else { &gun.pen_belt };
@@ -1115,7 +1128,7 @@ impl World {
                         damage *= 0.1;
                     }
                 }
-                Some(Impact::gun(&t, damage, s.side, penetrated))
+                Some(Impact::gun(&t, damage*self.expedition_shell_factor(&s,&t), s.side, penetrated))
             } else { None };
             self.launch_realtime_shell(&s, &t, &volley.contact, volley.barrels, impact);
         }
@@ -1191,7 +1204,7 @@ impl World {
                 damage = libm::round(damage * 0.1);
             }
         }
-        let impact = Impact::gun(&t, damage, s.side, penetrated);
+        let impact = Impact::gun(&t, damage*self.expedition_shell_factor(&s,&t), s.side, penetrated);
         if self.version == LEGACY_VERSION || shot.radar_only {
             Some(impact)
         } else {
@@ -1202,14 +1215,15 @@ impl World {
     fn fire_torp(&mut self, l: Launch) {
         let s = self.ship(l.ship).unwrap().clone();
         let d = self.data.ships[s.def].torpedo.as_ref().unwrap();
+        let (speed_factor,range_factor,damage_factor,reload_time)=self.expedition_torp_factors(&s);
         let mut torpedo = Torpedo {
             side: l.side,
             ship: l.ship,
             p: s.p,
             h: l.h,
-            remaining: d.range_yd * YARD,
-            speed: d.speed_knots * KNOT,
-            warhead: d.warhead,
+            remaining: d.range_yd * YARD * range_factor,
+            speed: d.speed_knots * KNOT * if self.adventure(){10.}else{1.} * speed_factor,
+            warhead: d.warhead * damage_factor,
             count: l.count,
             traveled: 0.,
             born: self.tick,
@@ -1226,7 +1240,7 @@ impl World {
         let tick = self.tick;
         let per_tube = self.torpedo_depths();
         let v10 = self.v10_family();
-        let reload = d.reload_seconds;
+        let reload = if self.expedition_v2(){Some(reload_time)}else{d.reload_seconds};
         let ship = self.ship_mut(l.ship).unwrap();
         ship.ammo -= l.count;
         ship.torp_cycle = Some(tick / CYCLE);
@@ -1313,7 +1327,7 @@ impl World {
         let ids: Vec<u32> = self
             .ships
             .iter()
-            .filter(|s| s.alive() && s.secondary_ready <= tick)
+            .filter(|s| s.alive() && s.secondary_ready <= tick && self.salvage_gun_supply(s)>0)
             .map(|s| s.id)
             .collect();
         let mut impacts = Vec::new();
@@ -1354,13 +1368,19 @@ impl World {
             if barrels == 0 {
                 continue;
             }
+            // Record every real secondary discharge, including misses. Only
+            // the firing seat's existing plot is used for visual aim; actual
+            // target coordinates, hit rolls and outcomes stay out of this API.
+            if let Some(plot) = self.contacts[s.side].iter().find(|c| c.ship == t.id).map(Contact::p) {
+                self.record_secondary_presentation(&s, gun.caliber_mm, barrels, plot);
+            }
             let chance = self.gun_values(&s, &t, band, barrels, false, &[], 0, false).0;
             if (self.d(100) as f64) <= chance {
                 let td = &self.data.ships[t.def];
                 let deck = band >= 2 && self.d(100) > if band == 2 { 40 } else { 30 };
                 let armor = if deck { td.armor_deck } else { td.armor_belt };
                 let pen = if deck { &gun.pen_deck } else { &gun.pen_belt };
-                let mut damage = gun.damage[band] * gun_multiplier(&self.data.rules, barrels, band);
+                let mut damage = gun.damage[band] * gun_multiplier(&self.data.rules, barrels, band)*self.owned_stats(&s).firepower;
                 if self.realtime_point_blank(&s, &t) {
                     damage *= 2.;
                 }
@@ -1374,7 +1394,7 @@ impl World {
                         damage *= 0.1;
                     }
                 }
-                impacts.push(Impact::gun(&t, damage, s.side, penetrated));
+                impacts.push(Impact::gun(&t, damage*self.expedition_shell_factor(&s,&t), s.side, penetrated));
                 events.push((s.side, s.name.clone(), t.name.clone(), s.p));
             }
             let reload = gun.reload_seconds.unwrap_or(if gun.caliber_mm <= 76. {
@@ -1413,7 +1433,7 @@ impl World {
             let Some(def) = self.data.ships.get(self.ships[index].def).and_then(|d| d.torpedo.as_ref()) else {
                 continue;
             };
-            if def.reload_seconds.is_none() {
+            if def.reload_seconds.is_none() && !self.expedition_v2() {
                 continue;
             }
             for mount in 0..def.mounts.len() {
@@ -1712,12 +1732,12 @@ impl World {
             } else {
                 (dt * self.data.ships[s.def].accel_knots_per_turn / CYCLE as f64 * 0.5).min(desired)
             };
-            let (p, h) = t.at((t.pos + dt * average * KNOT).min(t.end));
+            let (p, h) = t.at((t.pos + dt * average * KNOT * if self.adventure(){10.}else{1.}).min(t.end));
             own.p = p;
             own.h = h;
         }
         let mut target = c.clone();
-        let p = c.p() + P::bearing(c.heading) * (c.speed * KNOT * dt);
+        let p = c.p() + P::bearing(c.heading) * (c.speed * KNOT * dt * if self.adventure(){10.}else{1.});
         target.x = p.x;
         target.y = p.y;
         (own, target)
@@ -1727,6 +1747,32 @@ impl World {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn expedition_limited_torpedo_reload_and_ammunition_tradeoffs_are_real(){
+        let request=json!({"content":"salvage-v4","gameplay_profile":"cas-adventure-v2","fleet":[{"id":"IBS-U-USN-FLETCHER","hp":100,"ammo":100,"level":0}],"mission":{"kind":"salvage","id":"calm","loot_kind":"scrap"},"cargo_v4":{"commander_level":1,"difficulty":"calm","environment":"atoll","weather":"clear","loadouts":{}},"expedition_v2":{"scene":"cult_relay","munitions":{"IBS-U-USN-FLETCHER":{"shell":"he","torpedo":"fast","reserve_reloads":1}}}});
+        let mut w=World::new_salvage(42,serde_json::from_value(request).unwrap()).unwrap();let original=w.ship(1).unwrap().ammo;let spare=w.ship(1).unwrap().torp_reserve.iter().sum::<u32>();assert_eq!(spare,original);
+        let crab=w.ships.iter().find(|s|w.data.ships[s.def].id=="CAS-FICTION-rust_crab").unwrap().clone();let ray=w.ships.iter().find(|s|w.data.ships[s.def].id=="CAS-FICTION-cult_ray").unwrap().clone();
+        assert_eq!(w.expedition_shell_factor(w.ship(1).unwrap(),&crab),0.65);assert_eq!(w.expedition_shell_factor(w.ship(1).unwrap(),&ray),1.3);
+        let d=w.data.ships[w.ship(1).unwrap().def].torpedo.as_ref().unwrap().clone();
+        assert_eq!(w.observation(0)["ships"][0]["torpedoRange"],json!(d.range_yd*YARD*0.70));
+        w.fire_torp(Launch{ship:1,side:0,h:180.,mount:0,count:2,deep:false});assert_eq!(w.ship(1).unwrap().ammo,original-2);assert_eq!(w.ship(1).unwrap().torp_reload_at[0],20);
+        assert!((w.torps[0].remaining/(d.range_yd*YARD)-0.70).abs()<1e-9);assert!((w.torps[0].warhead/d.warhead-0.80).abs()<1e-9);assert!((w.torps[0].speed/(d.speed_knots*KNOT*10.)-1.4).abs()<1e-9);
+        w.tick=19;w.reload_torpedoes();assert_eq!(w.ship(1).unwrap().ammo,original-2);w.tick=20;w.reload_torpedoes();assert_eq!(w.ship(1).unwrap().ammo,original);assert_eq!(w.ship(1).unwrap().torp_reserve.iter().sum::<u32>(),spare-2);
+        let size=d.mounts[0].tubes;w.fire_torp(Launch{ship:1,side:0,h:180.,mount:0,count:size,deep:false});w.tick=40;w.reload_torpedoes();assert_eq!(w.ship(1).unwrap().torp_reserve[0],0);assert_eq!(w.ship(1).unwrap().torp_mount_remaining[0],size-2);
+        w.fire_torp(Launch{ship:1,side:0,h:180.,mount:0,count:size-2,deep:false});w.tick=100;w.reload_torpedoes();assert_eq!(w.ship(1).unwrap().torp_mount_remaining[0],0);
+    }
+
+    #[test]
+    fn adventure_torpedo_travel_changes_without_changing_range_or_ammo_cost() {
+        let mut start=crate::salvage_v3::chapter_start("c1-breakout").unwrap();
+        let mut old=World::new_salvage(6109,start.clone()).unwrap();start.gameplay_profile=crate::adventure::VERSION.into();
+        let mut new=World::new_salvage(6109,start).unwrap();
+        for w in [&mut old,&mut new] {w.fire_torp(Launch{ship:1,side:0,h:90.,mount:0,count:1,deep:false});}
+        assert_eq!(new.torps[0].remaining,old.torps[0].remaining);
+        assert_eq!(new.ship(1).unwrap().ammo,old.ship(1).unwrap().ammo);
+        assert!((new.torps[0].speed/old.torps[0].speed-10.).abs()<1e-10);
+    }
 
     #[test]
     fn cleveland_twelve_barrels_use_printed_eleven_to_twelve_column() {

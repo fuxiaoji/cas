@@ -1,0 +1,810 @@
+{
+  "id": "defeat",
+  "title": "带上剩下的人",
+  "composer": "CAS original procedural score, authored 2026-11-13",
+  "bpm": 64,
+  "tonic_midi": 64,
+  "mode": "minor",
+  "bars": 8,
+  "beats_per_bar": 4,
+  "sections": [
+    {
+      "name": "A",
+      "bar": 0
+    }
+  ],
+  "loop": false,
+  "loop_start_bar": 0,
+  "motif": [
+    [
+      4,
+      3,
+      2,
+      1,
+      0,
+      -99,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      0,
+      -99,
+      -99,
+      1,
+      0,
+      -99
+    ]
+  ],
+  "harmony_degrees": [
+    0,
+    5,
+    3,
+    0
+  ],
+  "notes": [
+    {
+      "instrument": "strings",
+      "beat": 0.0,
+      "duration": 3.9,
+      "pitch": 52,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 0.025,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 0.05,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 0.075,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 0,
+      "duration": 1.7,
+      "pitch": 40,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 2,
+      "duration": 1.7,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 0.0,
+      "duration": 0.95,
+      "pitch": 64,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 1.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 2.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 3.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 0.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "piano",
+      "beat": 2.015,
+      "duration": 1.6,
+      "pitch": 69,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 0,
+      "duration": 2.4,
+      "pitch": 76,
+      "velocity": 0.065,
+      "pan": 0.55
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.075,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 4,
+      "duration": 1.7,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 6,
+      "duration": 1.7,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 4.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 5.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 6.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 7.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 4.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "piano",
+      "beat": 6.015,
+      "duration": 1.6,
+      "pitch": 66,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.0,
+      "duration": 3.9,
+      "pitch": 57,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.025,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.05,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.075,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 8,
+      "duration": 1.7,
+      "pitch": 45,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 10,
+      "duration": 1.7,
+      "pitch": 52,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 8.0,
+      "duration": 0.95,
+      "pitch": 69,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 9.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 10.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 11.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 8.015,
+      "duration": 1.6,
+      "pitch": 64,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.0,
+      "duration": 3.9,
+      "pitch": 52,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.025,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.05,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.075,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 12,
+      "duration": 1.7,
+      "pitch": 40,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 14,
+      "duration": 1.7,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 12.0,
+      "duration": 0.95,
+      "pitch": 64,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 13.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 14.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 15.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 12.015,
+      "duration": 1.6,
+      "pitch": 66,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "piano",
+      "beat": 14.015,
+      "duration": 1.6,
+      "pitch": 64,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.0,
+      "duration": 3.9,
+      "pitch": 52,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.025,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.05,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.075,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 16,
+      "duration": 1.7,
+      "pitch": 40,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 18,
+      "duration": 1.7,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 16.0,
+      "duration": 0.95,
+      "pitch": 64,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 17.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 18.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 19.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 16.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "piano",
+      "beat": 18.015,
+      "duration": 1.6,
+      "pitch": 69,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.075,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 20,
+      "duration": 1.7,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 22,
+      "duration": 1.7,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 20.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 21.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 22.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 23.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 20.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "piano",
+      "beat": 22.015,
+      "duration": 1.6,
+      "pitch": 66,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.0,
+      "duration": 3.9,
+      "pitch": 57,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.025,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.05,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.075,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 24,
+      "duration": 1.7,
+      "pitch": 45,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 26,
+      "duration": 1.7,
+      "pitch": 52,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 24.0,
+      "duration": 0.95,
+      "pitch": 69,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 25.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 26.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 27.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 24.015,
+      "duration": 1.6,
+      "pitch": 64,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.0,
+      "duration": 3.9,
+      "pitch": 52,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.025,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.05,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.075,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 28,
+      "duration": 1.7,
+      "pitch": 40,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 30,
+      "duration": 1.7,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 28.0,
+      "duration": 0.95,
+      "pitch": 64,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 29.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 30.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.07,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 31.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.07,
+      "pan": -0.38
+    },
+    {
+      "instrument": "piano",
+      "beat": 28.015,
+      "duration": 1.6,
+      "pitch": 66,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "piano",
+      "beat": 30.015,
+      "duration": 1.6,
+      "pitch": 64,
+      "velocity": 0.23,
+      "pan": 0.06
+    }
+  ],
+  "sample_rate": 44100,
+  "source_samples": "none; all instrument DSP authored in compose-cas-score.py"
+}

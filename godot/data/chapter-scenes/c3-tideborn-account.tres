@@ -1,0 +1,1245 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=50 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="封好接口以后，潮痕仍蹲在箱子旁边。你以为她在等谁把箱子搬走，伸手时却看见她抓着底部的提带，手指一直没松。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="还差什么？锁扣没有合好吗？我刚才听见两声，应该不是哪一边只挂住了一半。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="都合好了。我在找一个东西。这边的缝里，以前夹过一张维修领料单，我想看看还在不在。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="那张纸只剩下一小半。上面的字被反复折过，中间几乎透了。潮痕认出最后一个笔画，便不再往外扯，而是请拉姆森替她把提带整个拆下来。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="能拆，装回去就得换一颗铆钉。你要留这张纸，还是只看上面的字？我得知道哪一个不能弄坏。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="纸也留。如果拆坏了就照实写，我不想再拿一份看上去干净的抄本，当作事情没有少过什么。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="拉姆森找来一个空盒，把断掉的纸角一起放进去。你在旁边托着箱子，感觉潮痕的手终于松开。她却没有接过纸，像一旦接了，就得把那段话讲完。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="她叫许柯，是维修员。你们看见那份不同意继续的申请，就是她写的。我当时负责转交，后来没有按她写的交出去。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你把上面的字改了？还是把整张纸留在自己手里了？我需要知道你说的“没有交”，到底是哪一步。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="我说她还没考虑好，需要再等等。我没动她的签名，觉得这样就不算替她答应。等那张纸终于进了记录，她已经不能再自己来问。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="德雷顿把手里的工具放到地上，没有出声。远处的水泵启动，墙里的管子抖了一下，你们只好等这阵声音过去。潮痕一直盯着地面那颗拆下来的铆钉。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="当时有人催你这样做吗？我不是想替你找借口。要是还有人用同一个办法留别人的申请，我们得一起查。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="有人催。也有人说都做了这么多，再停下就白费了。但那张纸经过我的手，是我说可以再等。没人拉着我的手替我说。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="这部分记在你自己的证词里。至于她后来为什么不能来，先分清哪些是你看见的，哪些是别人告诉的，不能把每一件事都算成同一个原因。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="潮痕抬头看她，像在等一句斥责被收回来。弗莱彻没有收，也没有让她一直蹲着。她把旁边的空箱让出来，让潮痕坐到可以把纸放平的地方。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "concern"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="我看见的是她没再出来。最后一次探视被退回，说维护期间不便接近。我后来才知道，那个维护期没有人写结束时间。"
+
+tone="hurt"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我们现在还不能告诉她的家人，她一定经历了什么。但能告诉他们申请在哪里，谁压过它，以及你愿意为这一段出面。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="他们要是问我为什么现在才说，我能答什么？说我怕，听起来太轻了。我确实怕，还怕说出来以后，连现在能站的地方也没有。"
+
+tone="hurt"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="那就别把“怕”当答完了。人家问你藏了多久，你说多久；问你保存了什么，你拿出来。她们生气的时候，也别忙着解释自己这些年多难过。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "drayton", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="德雷顿说得不快。你第一次听她用这样的语气和潮痕说话，既没有隔着一层礼貌，也没有替谁拔高嗓门。潮痕点了点头，过了一会儿，又说自己记不清准确日期。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "drayton", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_20"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="记不清就查。你当年领过的东西、排过的班、送过的材料，多少会留一点。今天别硬凑一个日子，给以后的人又添一处要拆的结。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_21"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你把干纸递过去。潮痕写了名字，写到第二行便停下。纸上的“转交”被她划掉，重新写成“暂扣”。这两个字比上面所有字都重。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "hurt"}
+
+[sub_resource type="Resource" id="Line_22"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="我想留在这里帮你们，但如果你们让我走，我也会先把知道的写完。我不想再把有用当成留下来的价钱。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_23"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="你要不要留下，是接下来的安排。你有没有做过这些，是正在核查的事。现在别拿一件换另一件，我们还要一起把船开回去。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_24"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我也不能替许柯原谅你。可我会把这张纸带回去，跟你一起交，不让它最后变成只有你一个人记得说过的话。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_25"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="潮痕把那一小截领料单推到你面前。纸上写的不是遗言，只是“长柄扳手一把，周五还”。她说许柯借走以后，常常比约好的时间早一天送回来。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_26"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="她嫌拖着不还，下回别人就不好意思借。以前我觉得她事太多，连这么一点小东西都要记。我后来才知道，她不在了以后，那把扳手一直没人找。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "perkins", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_27"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="型号能看清。回去我查库房，不保证还在。找不到的话，也别买一把新的塞进去，说这是她原来用的。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_28"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="潮痕说好。她把证词放在未干的字迹旁边晾着，没有再叠起来。你们都等了一会儿，等到那两个写得很重的字不再蹭手，才把纸装进单独的袋子。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_29"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="箱子现在可以搬了吗？我这边的提带短一点，得和你换个方向，不然走到门口会卡住。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_30"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她站起来，替你绕开地上的电线。没有人说这一段已经过去。箱子很重，你们抬到转角，仍然得停下来重新换一次手。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_31"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="箱子卡在转角，拉姆森去找薄垫，你和潮痕只好继续托着。过了一会儿，她说自己以前也在这里卡过一次，那时和她一起搬箱的人骂了一路。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_32"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="她让我转身，我听成了松手。箱子掉下去，里面有一块仪表裂了。我本来想赔，她却先让我以后别装作听懂。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_33"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="许柯？你前面讲她的时候，我还以为她说话一直很有耐心，连借东西都会提前还。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "resolve"}
+
+[sub_resource type="Resource" id="Line_34"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="是她。没有那么有耐心。找不到工具会发火，热水轮到自己时总嫌少，还会把不想吃的菜夹给我。她不是只做过几件好事的人。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_35"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="潮痕说到那道菜，忍不住皱了下鼻子。你问是什么，她说一种晒干的海带梗，怎么煮都嚼不动。许柯每次都说给她留的那份特别嫩。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_36"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你有没有当面说过，其实你也不爱吃？总不会就为了那句话，吃了那么多回吧。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_37"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="说过。她说那下回换我夹给她。后来换了一次，她一口气喝了两杯水，还要假装自己没被噎到。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_38"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你笑出声，随即有点不安，怕在这里笑不合适。潮痕却没有避开，反而又补了一句，说那人第二天照样抱怨她做饭不放够水。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_39"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="你可以笑。我不想以后提到她，所有人都先把声音压低，仿佛她只剩最后那张申请。那张纸很要紧，但她活着的时候也挺吵。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_40"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="这些能写进去吗？不一定给别人看。单独记一份，等找到认识她的人，也许他们愿意接着补。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_41"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="潮痕没有马上答应。她想了一会儿，说有些笑话是许柯以前专门拿来糊弄外人的，怕写得太认真，倒把她说得比本人更傻。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_42"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="先写。我回去读一遍，分不清是不是她故意胡说的地方就问人。找不到人，也留着那句不确定，别替她编一份特别好看的介绍。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_43"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="垫子来了。你们先往我这边转，不是松手，也不是往前推。等我说放再放，我可没第二块能摔的仪表。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_44"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="箱子终于过了转角。潮痕松手以后，先甩了甩发酸的胳膊，又问拉姆森晚上能不能借一张不需要交回的纸。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_45"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="能。别拿防水那种写家常，贵得很。普通纸我有，背面有我写错的零件清单，你不介意就挑一张。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[sub_resource type="Resource" id="Line_46"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="潮痕说不介意。你们继续往前走，她忽然告诉你，那段歌的第三拍其实是故意抢的。她刚刚才记起来，却决定不再假装自己能把后面的调子也一起想起。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+actor_tones={"tideborn": "calm"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c3-tideborn-account"
+
+background="res://assets/story/chapter3/altar.png"
+
+full_cg=false
+
+actors=Array[String](["tideborn", "lamson", "fletcher"])
+
+music_scene="salvage"
+
+location="旧世控制中枢"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19"), SubResource("Line_20"), SubResource("Line_21"), SubResource("Line_22"), SubResource("Line_23"), SubResource("Line_24"), SubResource("Line_25"), SubResource("Line_26"), SubResource("Line_27"), SubResource("Line_28"), SubResource("Line_29"), SubResource("Line_30"), SubResource("Line_31"), SubResource("Line_32"), SubResource("Line_33"), SubResource("Line_34"), SubResource("Line_35"), SubResource("Line_36"), SubResource("Line_37"), SubResource("Line_38"), SubResource("Line_39"), SubResource("Line_40"), SubResource("Line_41"), SubResource("Line_42"), SubResource("Line_43"), SubResource("Line_44"), SubResource("Line_45"), SubResource("Line_46")])

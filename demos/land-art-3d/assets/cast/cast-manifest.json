@@ -1,0 +1,560 @@
+{
+  "format": "cas-land-art-demo-cast-v1",
+  "scope": "Independent 3D art demo only; approved original CAS identities; no combat or account state",
+  "frame_contract": {
+    "canonical_canvas": [
+      512,
+      384
+    ],
+    "foot_pivot": "Nominal [256,368]; exact local_pivot per frame preserves half-pixel source anchors",
+    "pixel_edits": "Only crop approved source rect, translate onto transparent canvas; original RGBA pixel values unchanged"
+  },
+  "characters": [
+    {
+      "id": "MCP-301",
+      "name": "榛穗",
+      "approved": true,
+      "reference_height": 335.0,
+      "frames": [
+        {
+          "name": "idle",
+          "path": "res://assets/cast/MCP-301-00.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            184,
+            354
+          ],
+          "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f",
+          "sha256": "13dfadb2963b31471d1de66f80fc5722d0434dbc4e9aa095e806dd488a786d92",
+          "reference_height": 335.0,
+          "translation": [
+            72,
+            14
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "blink",
+          "path": "res://assets/cast/MCP-301-01.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            170,
+            354
+          ],
+          "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f",
+          "sha256": "efd8475c5fb7c4bbe65255200aca20946a65b3a91a073790cd8f111a945601e4",
+          "reference_height": 335.0,
+          "translation": [
+            86,
+            14
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-a",
+          "path": "res://assets/cast/MCP-301-02.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            207,
+            355
+          ],
+          "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f",
+          "sha256": "99231528df86bc883ffddd81c953794beed771e5a6759922ded0eaf79e57e456",
+          "reference_height": 335.0,
+          "translation": [
+            49,
+            13
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-b",
+          "path": "res://assets/cast/MCP-301-03.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            192,
+            354
+          ],
+          "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f",
+          "sha256": "6e0175d724624a7277b0e53bd4ac10c44ee972055e0cc1df2c9fc6c841c5af9c",
+          "reference_height": 335.0,
+          "translation": [
+            64,
+            14
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-c",
+          "path": "res://assets/cast/MCP-301-04.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "source_rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "source_pivot": [
+            237.0,
+            354
+          ],
+          "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f",
+          "sha256": "a7a60b4e018d9b3be70eb442484079fe995004a77ba64ab8b56051aa46b3df4b",
+          "reference_height": 335.0,
+          "translation": [
+            19,
+            14
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256.0,
+            368
+          ]
+        },
+        {
+          "name": "walk-d",
+          "path": "res://assets/cast/MCP-301-05.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "source_rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "source_pivot": [
+            174,
+            354
+          ],
+          "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f",
+          "sha256": "8bd031113d704f3c1a3a4f5b08abcf2934af6e9996bc8e5891eb8945b75f74e1",
+          "reference_height": 335.0,
+          "translation": [
+            82,
+            14
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "id": "MCP-302",
+      "name": "雪栀",
+      "approved": true,
+      "reference_height": 338.0,
+      "frames": [
+        {
+          "name": "idle",
+          "path": "res://assets/cast/MCP-302-00.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            204,
+            351
+          ],
+          "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8",
+          "sha256": "49727da671d4837d9e47b7be0b06eea1a719ba2950aca5935c7843ada4fd7830",
+          "reference_height": 338.0,
+          "translation": [
+            52,
+            17
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "blink",
+          "path": "res://assets/cast/MCP-302-01.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            205,
+            351
+          ],
+          "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8",
+          "sha256": "ed5de106c7db33213360faf0914d23e19ce629816f1b6f317d670f92e4972f5e",
+          "reference_height": 338.0,
+          "translation": [
+            51,
+            17
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-a",
+          "path": "res://assets/cast/MCP-302-02.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            164,
+            351
+          ],
+          "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8",
+          "sha256": "67d2e2b54d926e2a1ce9b623907b0915677be956a03e5d81213617d18c6b8288",
+          "reference_height": 338.0,
+          "translation": [
+            92,
+            17
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-b",
+          "path": "res://assets/cast/MCP-302-03.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            193.0,
+            351
+          ],
+          "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8",
+          "sha256": "1c4f20fa3df3992b4cb7d219ffcb0cbb7c9aaa6b078104c83ea899d082dee4ec",
+          "reference_height": 338.0,
+          "translation": [
+            63,
+            17
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256.0,
+            368
+          ]
+        },
+        {
+          "name": "walk-c",
+          "path": "res://assets/cast/MCP-302-04.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "source_rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "source_pivot": [
+            244.0,
+            348
+          ],
+          "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8",
+          "sha256": "92c1fd5b90af4f0aab60913f510dc7603d92eb98daff648f6cf68126a238aba8",
+          "reference_height": 338.0,
+          "translation": [
+            12,
+            20
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256.0,
+            368
+          ]
+        },
+        {
+          "name": "walk-d",
+          "path": "res://assets/cast/MCP-302-05.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "source_rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "source_pivot": [
+            182,
+            349
+          ],
+          "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8",
+          "sha256": "397536c37b461365a82eedce014d5d2ce418f375d56e5db0216a93795ade2c79",
+          "reference_height": 338.0,
+          "translation": [
+            74,
+            19
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "id": "MCP-303",
+      "name": "栗遥",
+      "approved": true,
+      "reference_height": 336.5,
+      "frames": [
+        {
+          "name": "idle",
+          "path": "res://assets/cast/MCP-303-00.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "source_rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            197.5,
+            356
+          ],
+          "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce",
+          "sha256": "8ab81016b3589cf866a79eb5a87c1491d6e2dd9f5c4a263221d3561a3fafc543",
+          "reference_height": 336.5,
+          "translation": [
+            58,
+            12
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            255.5,
+            368
+          ]
+        },
+        {
+          "name": "blink",
+          "path": "res://assets/cast/MCP-303-01.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "source_rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            197,
+            357
+          ],
+          "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce",
+          "sha256": "03f36733bf88c8110af93f10b72b39d1ae93ce1b65004c0fe564f9e67aca816f",
+          "reference_height": 336.5,
+          "translation": [
+            59,
+            11
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-a",
+          "path": "res://assets/cast/MCP-303-02.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "source_rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            218,
+            358
+          ],
+          "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce",
+          "sha256": "9a7763ad78c64f810ad46d462a83747c1bdf2910d0df79f3c55910672446886b",
+          "reference_height": 336.5,
+          "translation": [
+            38,
+            10
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        },
+        {
+          "name": "walk-b",
+          "path": "res://assets/cast/MCP-303-03.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "source_rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "source_pivot": [
+            203.0,
+            359
+          ],
+          "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce",
+          "sha256": "1f092f4ed60124f38e9414fe004f9b20f7e12d5ee054bfa43818e5ee1c54a31c",
+          "reference_height": 336.5,
+          "translation": [
+            53,
+            9
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256.0,
+            368
+          ]
+        },
+        {
+          "name": "walk-c",
+          "path": "res://assets/cast/MCP-303-04.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "source_rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "source_pivot": [
+            223.0,
+            357
+          ],
+          "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce",
+          "sha256": "358813cad5efb21eb73ed62b7023e8398e220e9dd9de7c2ba2add4595d1cc30c",
+          "reference_height": 336.5,
+          "translation": [
+            33,
+            11
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256.0,
+            368
+          ]
+        },
+        {
+          "name": "walk-d",
+          "path": "res://assets/cast/MCP-303-05.png",
+          "source": "godot/assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "source_rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "source_pivot": [
+            191,
+            356
+          ],
+          "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce",
+          "sha256": "b1e36ccb71a1c7565e04531fe6b6d322c8b8717d8efe9d5b39ae1a66fa3388b2",
+          "reference_height": 336.5,
+          "translation": [
+            65,
+            12
+          ],
+          "provenance": "approved-existing-expansion-20261115",
+          "local_pivot": [
+            256,
+            368
+          ]
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    }
+  ]
+}

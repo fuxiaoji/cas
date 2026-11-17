@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-11",
+  "generator": "built-in imagegen",
+  "jobs": [
+    {
+      "identity": "IBS-U-USN-PERKINS",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-8b970d3d-dc8d-4d78-b607-d34fe88a453f.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background SD shipgirl sprite for a naval strategy game, corresponding exactly to CAS character Perkins (IBS-U-USN-PERKINS). Input image 1 is the IDENTITY reference: preserve her dark charcoal short bob, two silver hair clips, round thin glasses, grey-blue eyes, composed expression, navy officer coat with pale silver piping and simple shoulder cord, dark skirt, brown belt/satchel, dark ankle boots, small telescope and compact destroyer side rigging. Input image 2 is ONLY the approved direction for scale and line style (Fletcher v2): do not copy its blonde hair, cap, teal scarf or clothing. Input image 3 is ONLY a true game SD body proportion and flat cel-rendering reference: do not copy its face, ears or costume. Draw a complete single 2-head-tall character, oversized head 55–60 percent of total character height, tiny simple torso, very short arms and legs, rounded stubby boots, clean dark outlines and simple flat color with at most one shadow tone. Front three-quarter standing pose, facing slightly right. Shrink her skirt/body instead of preserving realistic adult proportions. Keep her identity readable at 80 pixels tall: glasses, charcoal bob, navy/silver uniform and small telescope are the priority; simplify all tiny chains, buttons and gun details. Two compact grey ship turrets at her hips, no large ship silhouette. Friendly neutral battle-ready pose, full head and feet with small transparent margin. Actual alpha transparency, no backdrop, no floor, no drop shadow, no labels, text or watermark. Avoid thickly painted illustration, gradients, 3D, long limbs, big detailed scenery, oversized weapon framing. Generate a new game sprite; the first reference supplies identity and the second/third supply STYLE only.",
+      "identity_features": [
+        "charcoal bob",
+        "round glasses",
+        "two silver hairclips",
+        "navy silver-trim officer outfit",
+        "small telescope"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-MAURY",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-a5395884-7797-4c01-9bd5-26916038f9a1.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite corresponding exactly to CAS character Maury (IBS-U-USN-MAURY). Input image 1 is the only IDENTITY reference: keep her lively ginger/auburn high side ponytail, amber eyes, brass flight goggles resting on her head with a red band, orange short jacket with broad cream sleeve stripe, cream dress, little red scarf, brown utility belt and gloves, cream short lace-up boots with red socks, and grey compact destroyer hip rigging. She cheerfully holds a tiny pocket watch in one raised hand. Input image 2 is STYLE ONLY (Fletcher v2), do not copy its blonde hair, cap, blue coat or teal scarf. Input image 3 is STYLE ONLY (actual naval game SD); do not copy its animal ears, face or outfit. A single full-body 2-head-tall super-deformed character with a huge head 55–60% of overall body height, very tiny torso and short skirt, extremely short arms and legs and stubby boots. Clean bold dark contour, simple flat colors, one cel shadow tone, very few tiny details. Readable at only 80px tall; prioritize goggles, auburn side ponytail, orange jacket, watch and cream dress. Neutral standing front three-quarter pose facing slightly right with a cheerful open-mouth smile. Compact grey ship turrets at hips only. Entire head, ponytail, boots and ship rigging visible, with small transparent margins. Actual alpha transparency, no scenery, no floor, no ground shadow, no labels, text, logos or watermark. Avoid realistic anatomy, tall body, long legs, painted gradients, 3D, dense metallic tiny details. Generate a new game sprite preserving the first input's character identity and using the other inputs only as proportions/line style.",
+      "identity_features": [
+        "auburn side ponytail",
+        "head-top brass goggles",
+        "orange jacket",
+        "cream dress",
+        "pocket watch"
+      ]
+    },
+    {
+      "identity": "IBS-U-IJN-KAGERO",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-f72357db-5eb4-46a3-bbe5-9d1b3d5ece4d.png",
+      "prompt": "Use case: stylized-concept. Create ONE original SD shipgirl transparent sprite corresponding exactly to CAS Kagero (IBS-U-IJN-KAGERO). Input image 1 is the only CHARACTER IDENTITY reference. Preserve her reddish chestnut hair with a long single braid over one shoulder, warm reddish-brown eyes, red decorative flower/knot hairpin, short muted crimson cape with simple pale wave trim over a black naval dress, muted mauve waist sash, black short boots, compact grey destroyer hip rigging. She holds a small warm lantern raised slightly at one side and a folded cream note at the other. Do not change her into the blonde animal-eared Kagero from another game. Input image 2 (Fletcher v2) is STYLE ONLY; do not transfer blonde hair, hat or blue uniform. Input image 3 (website SD Kagero) is STYLE ONLY, for small game character proportions and simple cel shading; transfer NO ears, hair, face or outfit. Single complete front-three-quarter standing character facing slightly right, TWO HEADS TALL, huge head occupying 55–60% total height, tiny torso, very short hands and legs, little boots. Clean dark outlines, mostly flat colors with only one shadow tone, simple readable shapes and no tiny ornate details. At 80px tall, the chestnut braid, red cape, black skirt and lantern must remain recognizable. Simplify the wave trim to a few broad arcs. Keep rigging compact beside the hips. Actual alpha-transparent background, full head, braid, feet and little lantern in frame with small transparent margins. No scenery, floor, ground shadow, text, label or watermark. Avoid 3D, painterly gradients, realistic body, long limbs, rabbit/animal ears, elaborate full-size battleship, densely detailed guns. This is a new CAS character sprite; first reference IDENTITY, other references STYLE only.",
+      "identity_features": [
+        "chestnut side braid",
+        "red decorative hairpin",
+        "crimson wave-trim cape",
+        "black dress",
+        "lantern and note"
+      ]
+    }
+  ]
+}

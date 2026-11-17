@@ -1,0 +1,303 @@
+{
+	"after": [
+		{
+			"center_m": [
+				-16.0,
+				-30.0
+			],
+			"id": "cas_amphibious_apc",
+			"invalid_body_samples": 0,
+			"minimum_gap_m": 4.44485855102539,
+			"nearest_building": "TimberPier",
+			"passed": true,
+			"radius_m": [
+				3.0,
+				6.0
+			],
+			"total_pose_samples": 6480,
+			"worst_actual_body_aabb_xz": [
+				-18.662971496582,
+				-39.5439987182617,
+				-10.5083065032959,
+				-31.0426368713379
+			],
+			"worst_phase_degrees": 299.5,
+			"worst_turret_radians": -0.28
+		},
+		{
+			"center_m": [
+				9.0,
+				-28.0
+			],
+			"id": "cas_tank_cc0",
+			"invalid_body_samples": 0,
+			"minimum_gap_m": 4.26984357833862,
+			"nearest_building": "TimberPier",
+			"passed": true,
+			"radius_m": [
+				3.0,
+				5.0
+			],
+			"total_pose_samples": 6480,
+			"worst_actual_body_aabb_xz": [
+				3.40702414512634,
+				-37.2926063537598,
+				11.7210025787354,
+				-28.3007183074951
+			],
+			"worst_phase_degrees": 241.0,
+			"worst_turret_radians": 0.28
+		},
+		{
+			"center_m": [
+				28.0,
+				-18.0
+			],
+			"id": "cas_self_propelled_artillery",
+			"invalid_body_samples": 0,
+			"minimum_gap_m": 11.7441101074219,
+			"nearest_building": "HarborOffice",
+			"passed": true,
+			"radius_m": [
+				2.0,
+				7.0
+			],
+			"total_pose_samples": 6480,
+			"worst_actual_body_aabb_xz": [
+				20.8216094970703,
+				-15.1438903808594,
+				31.932559967041,
+				-7.16204404830933
+			],
+			"worst_phase_degrees": 102.0,
+			"worst_turret_radians": 0.28
+		}
+	],
+	"architecture_sha256": "40d1474f57c9ff2e3216777b6229e210338baa5b478e4eecec73b98158ff9cd5",
+	"before": [
+		{
+			"center_m": [
+				-14.0,
+				-23.0
+			],
+			"id": "cas_amphibious_apc",
+			"invalid_body_samples": 1278,
+			"minimum_gap_m": 0.0,
+			"nearest_building": "HarborOffice",
+			"passed": false,
+			"radius_m": [
+				2.5,
+				9.0
+			],
+			"total_pose_samples": 6480,
+			"worst_actual_body_aabb_xz": [
+				-16.6797256469727,
+				-19.2405338287354,
+				-9.18601894378662,
+				-10.4768476486206
+			],
+			"worst_phase_degrees": 66.0,
+			"worst_turret_radians": -0.28
+		},
+		{
+			"center_m": [
+				5.0,
+				-9.0
+			],
+			"id": "cas_tank_cc0",
+			"invalid_body_samples": 5850,
+			"minimum_gap_m": 0.0,
+			"nearest_building": "HarborOffice",
+			"passed": false,
+			"radius_m": [
+				2.40000009536743,
+				7.0
+			],
+			"total_pose_samples": 6480,
+			"worst_actual_body_aabb_xz": [
+				4.96550512313843,
+				-12.8414316177368,
+				9.34070491790771,
+				-3.8686637878418
+			],
+			"worst_phase_degrees": 0.0,
+			"worst_turret_radians": -0.28
+		},
+		{
+			"center_m": [
+				28.0,
+				-18.0
+			],
+			"id": "cas_self_propelled_artillery",
+			"invalid_body_samples": 0,
+			"minimum_gap_m": 11.7441101074219,
+			"nearest_building": "HarborOffice",
+			"passed": true,
+			"radius_m": [
+				2.0,
+				7.0
+			],
+			"total_pose_samples": 6480,
+			"worst_actual_body_aabb_xz": [
+				20.8216094970703,
+				-15.1438903808594,
+				31.932559967041,
+				-7.16204404830933
+			],
+			"worst_phase_degrees": 102.0,
+			"worst_turret_radians": 0.28
+		}
+	],
+	"buildings": [
+		{
+			"actual_mesh_aabb_xz": [
+				-37.8499984741211,
+				17.75,
+				-19.8724975585938,
+				33.3274993896484
+			],
+			"checked_aabb_xz": [
+				-38.0999984741211,
+				17.0,
+				-19.8724975585938,
+				33.3274993896484
+			],
+			"name": "SeafrontResidence",
+			"registered_platform_aabb_xz": [
+				-38.0999984741211,
+				17.0,
+				-19.8999996185303,
+				33.0
+			]
+		},
+		{
+			"actual_mesh_aabb_xz": [
+				16.5,
+				16.0,
+				41.6775016784668,
+				38.7775001525879
+			],
+			"checked_aabb_xz": [
+				16.5,
+				15.5,
+				41.6775016784668,
+				38.7775001525879
+			],
+			"name": "PortWarehouse",
+			"registered_platform_aabb_xz": [
+				16.5,
+				15.5,
+				41.5,
+				38.5
+			]
+		},
+		{
+			"actual_mesh_aabb_xz": [
+				-12.5,
+				-10.0,
+				9.07749938964844,
+				8.0
+			],
+			"checked_aabb_xz": [
+				-13.0,
+				-10.5,
+				9.07749938964844,
+				8.5
+			],
+			"name": "HarborOffice",
+			"registered_platform_aabb_xz": [
+				-13.0,
+				-10.5,
+				9.0,
+				8.5
+			]
+		},
+		{
+			"actual_mesh_aabb_xz": [
+				-40.6105537414551,
+				60.8228530883789,
+				-24.758939743042,
+				75.6017227172852
+			],
+			"checked_aabb_xz": [
+				-40.9485397338867,
+				60.0951156616211,
+				-24.758939743042,
+				75.9048843383789
+			],
+			"name": "Cottage_1",
+			"registered_platform_aabb_xz": [
+				-40.9485397338867,
+				60.0951156616211,
+				-25.0514621734619,
+				75.9048843383789
+			]
+		},
+		{
+			"actual_mesh_aabb_xz": [
+				23.4752464294434,
+				62.9928741455078,
+				39.0718383789063,
+				77.5398941040039
+			],
+			"checked_aabb_xz": [
+				23.1769027709961,
+				62.2216644287109,
+				39.0718383789063,
+				77.7783355712891
+			],
+			"name": "Cottage_2",
+			"registered_platform_aabb_xz": [
+				23.1769027709961,
+				62.2216644287109,
+				38.8230972290039,
+				77.7783355712891
+			]
+		},
+		{
+			"actual_mesh_aabb_xz": [
+				-5.5,
+				-70.5,
+				1.5,
+				-41.4650001525879
+			],
+			"checked_aabb_xz": [
+				-6.5,
+				-70.5,
+				2.5,
+				-41.4650001525879
+			],
+			"name": "TimberPier",
+			"registered_platform_aabb_xz": [
+				-6.5,
+				-70.5,
+				2.5,
+				-41.5
+			]
+		}
+	],
+	"date": "2026-11-16",
+	"geography_sha256": "3bd59a29621ccbf6f535dd4171ac8772bcf1b1aa8182f49083524cd40596171a",
+	"method": "Actual imported GLB MeshInstance3D global AABB, including gun barrels; full 360-degree motion and every turret scan angle sample. Compare XZ union against actual built harbor mesh AABB plus registered platform extents. At least 1m planar clearance.",
+	"minimum_required_gap_m": 1.0,
+	"passed": true,
+	"phase_step_degrees": 0.5,
+	"phase_steps": 720,
+	"scope": "isolated art-demo harbor footprint routes, not production navigation or collision authority",
+	"turret_samples_per_phase": 9,
+	"turret_sweep_radians": [
+		-0.28,
+		0.28
+	],
+	"unchanged_glb_sha256": {
+		"cas_amphibious_apc": "e04107bf2a9e97ea6ba47b8b867251b5db6cf7994e9d5d53b28a2e6c6d639c46",
+		"cas_attack_helicopter": "1e8a2f65e1945ea566ab53351d8b78d6ef284ea8a685215dec3aaab1227ebf71",
+		"cas_fast_assault_boat": "d05e61573d7dad141af126a6b078383c70217ae610709b5e66c2fb15e04d4b6c",
+		"cas_heavy_landing_craft": "729d37541d1c691a4ffdc9317f680332e96018c1b99720608b894dc38ceefc46",
+		"cas_landing_craft": "ac7a4e44cd63eb217d2e93a7df6c11cc8658702eb05976068c2c33e797fbe447",
+		"cas_self_propelled_artillery": "49f79faaa1280398b5287449925f820c0c92c0c2712e73cdb2e89fb9f8247a2c",
+		"cas_tank_cc0": "84a2cf244646e8392c3654a0d171286e9e13e90c9d7291d1188d831f79cc964b",
+		"cas_transport_helicopter": "f5b30226aa0abd1b33797b2d981e3c343f8f2b3784df613ee15104b8b06c4492"
+	},
+	"vehicles_module_sha256": "fc1b03b17941049d280cea95b89e1417cd809b38d0cb923e3c9608ddca118f56"
+}

@@ -1,0 +1,5711 @@
+{
+  "id": "chapter-03",
+  "version": "chapter-03-canon-v2",
+  "content_version": "story-canon-v2",
+  "title": "把名字留在海上",
+  "fictional": true,
+  "entry": "v2c3-breakfast",
+  "cast": {
+    "jintsu": {
+      "name": "神通",
+      "ship_id": "IBS-U-IJN-JINTSU-I"
+    },
+    "fletcher": {
+      "name": "弗莱彻",
+      "ship_id": "IBS-U-USN-FLETCHER"
+    },
+    "perkins": {
+      "name": "帕金斯",
+      "ship_id": "IBS-U-USN-PERKINS"
+    },
+    "maury": {
+      "name": "莫里",
+      "ship_id": "IBS-U-USN-MAURY"
+    },
+    "drayton": {
+      "name": "德雷顿",
+      "ship_id": "IBS-U-USN-DRAYTON"
+    },
+    "lamson": {
+      "name": "拉姆森",
+      "ship_id": "IBS-U-USN-LAMSON"
+    },
+    "missouri": {
+      "name": "密苏里",
+      "ship_id": "IBS-U-USN-ERMA-MISSOURI",
+      "portrait": "res://assets/story/canon-v2/missouri-portrait.png",
+      "canon_role": "白毛龙娘、懒散傲娇成年御姐、隐居守家者"
+    },
+    "shinano": {
+      "name": "信浓",
+      "ship_id": "IBS-U-IJN-ERMA-SHINANO",
+      "canon_role": "架空战列舰、守护者联盟高位担保人"
+    },
+    "shadow": {
+      "name": "未知战列舰",
+      "portrait": "res://assets/story/canon-v2/shinano-hologram.png",
+      "silhouette": true,
+      "hidden_identity": true,
+      "canon_identity": "shinano"
+    },
+    "hologram": {
+      "name": "远端通讯",
+      "portrait": "res://assets/story/canon-v2/shinano-hologram.png",
+      "silhouette": true,
+      "hidden_identity": true,
+      "canon_identity": "shinano"
+    },
+    "player": {
+      "name": "你",
+      "portrait": ""
+    },
+    "fsm_ai": {
+      "name": "状态机AI",
+      "portrait": ""
+    },
+    "warning_voice": {
+      "name": "……",
+      "portrait": "",
+      "identity_status": "未核实的第一人称幻听，不与状态机AI合并"
+    },
+    "ahe": {
+      "name": "阿禾",
+      "portrait": "",
+      "role": "受庇护人类、修理学徒"
+    },
+    "judge": {
+      "name": "审查官",
+      "portrait": ""
+    },
+    "liaison": {
+      "name": "联盟联络官",
+      "portrait": ""
+    },
+    "archive": {
+      "name": "档案管理员",
+      "portrait": ""
+    },
+    "mcp034": {
+      "name": "礁刃",
+      "unit_id": "MCP-034",
+      "role": "第34海军派遣团，单一女性人格"
+    },
+    "mcp001": {
+      "name": "云隼",
+      "unit_id": "MCP-001",
+      "role": "第1空中特勤旅，单一女性人格"
+    },
+    "mcp011": {
+      "name": "灯鲨",
+      "unit_id": "MCP-011",
+      "role": "第11夜航突击队，单一女性人格"
+    },
+    "cultist": {
+      "name": "白塔播音",
+      "portrait": ""
+    },
+    "engineer": {
+      "name": "桥守",
+      "portrait": ""
+    },
+    "elder": {
+      "name": "守航老舰娘",
+      "portrait": ""
+    }
+  },
+  "theme": "让一个人自己回答，比让整片海服从更难。",
+  "design_minutes": {
+    "reading": 31,
+    "operations": 26,
+    "choices_and_inspection": 8,
+    "optional_exploration": 8,
+    "total_main": 65
+  },
+  "timing_claim": "设计预算，未冒称整章一小时实测；不含加载和强制慢字",
+  "scenes": [
+    {
+      "id": "v2c3-breakfast",
+      "kind": "dialogue",
+      "title": "先吃早饭",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "白塔的坐标被压在糖罐下面。昨夜涨潮，地图边缘又卷了起来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "我给它换张干纸吧。这块蓝色都蹭到桌上了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "别换。原纸的折痕也是记录，誊一份就好。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "maury",
+          "text": "你连地图被谁当过杯垫都要记？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "到了别人只肯认他们那份记录的时候，你会庆幸我记了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "神通把热粥放到你面前，自己端着另一碗，等你先伸手。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "你一直看着我，是怕我又忘了什么？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "怕你说不饿，然后在半路上站不稳。昨天的航次已经很长了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "白塔的记录，今天还来得及吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "记录会不会等人，我不知道。轮机和你都需要休息，这个我知道。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "我已经把夜里换下的身体送去检修。出动名单是这一批，没有从别处临时多变出来的人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "你们昨晚不是一直在守码头？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "是我。一部分在守，另一部分在换靴子的扣子。那个扣子很响，我忍了一整晚。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "maury",
+          "text": "难怪昨夜巡逻走得跟猫一样。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "港口有人睡觉。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "门外传来杯子碰到栏杆的轻响。密苏里裹着大衣，正把一只空油料桶推给仓管。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "missouri",
+          "text": "先把淡化泵那边加满。这桶不急。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "那您的船呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "missouri",
+          "text": "我今天又不出门。别把这句话传成我免租金了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我们要去白塔。可能比上次更远。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "missouri",
+          "text": "嗯。家里给你们看着。带一份能回来修的损伤，别带一份只能念的名单。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "您以前去过那里？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "missouri",
+          "text": "换过几次名字的地方，多半都不愿意留旧路牌。到了别认牌子，认水和礁。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她没有拿走糖罐下的坐标，只把一个封好的防潮袋放在旁边。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "missouri",
+          "text": "装你们想带回来的东西。袋子比记性耐用。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011",
+            "missouri"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "mcp011",
+        "missouri"
+      ],
+      "next": "v2c3-departure"
+    },
+    {
+      "id": "v2c3-departure",
+      "kind": "dialogue",
+      "title": "靠得住的东西",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "离港前，帕金斯把两份记录摆在海图上。一份来自开场的信标，另一份来自邻港的中继站。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "perkins",
+          "text": "它们使用过同一组校验格式。时间隔了很多年，最后一个接收点却都指向这里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "说明白塔一直在收这些东西？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "说明两份记录都经过它。收过什么、现在是谁在用，得到了再看。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "这次先找观测站。外面那圈旧防波堤不能直接穿，暗礁有一半不露头。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "我们不把猜测当航令。先拿到站里的原始记录，再决定靠近哪里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "可用观测来自本队雷达与目视。坐标之外的海域，尚无可靠接触。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "maury",
+          "text": "翻译一下：她也不知道海里有几条牙。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "准确。也不建议以牙的数量估算敌方总量。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "莫里笑了一下，舱里紧绷的空气跟着松了半寸。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "如果那里真的能让憎恶恢复判断，我们得怎么做？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "先确认她愿不愿意靠近我们。有人不再开火，和她已经安全，是两回事。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "地面也一样。我能停住自己的枪，不能替对面停。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "还有，别一个人跳下去证明什么。第一次捞你上来的绳子已经换过了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "你还留着旧的？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fletcher",
+          "text": "留在修理间。提醒大家船上需要一张更结实的救生网。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她说完就去检查救生索，仿佛那只是一件再普通不过的待办。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "perkins",
+        "fletcher",
+        "jintsu"
+      ],
+      "next": "v2c3-outer-record"
+    },
+    {
+      "id": "v2c3-outer-record",
+      "kind": "action",
+      "title": "堤外观测站",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "搜索标记的档案废墟，收回旧信标档案。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [],
+      "next": "v2c3-signal",
+      "objectives": [
+        "搜索标记的档案废墟，收回旧信标档案。",
+        "留足返航的余量，带着档案与已入舱物资撤离。"
+      ],
+      "design_minutes": 5,
+      "action_type": "salvage_tutorial",
+      "objective": "搜索标记的档案废墟，收回旧信标档案。；留足返航的余量，带着档案与已入舱物资撤离。",
+      "optional": false,
+      "action": {
+        "type": "salvage_tutorial",
+        "objectives": [
+          "搜索标记的档案废墟，收回旧信标档案。",
+          "留足返航的余量，带着档案与已入舱物资撤离。"
+        ],
+        "native_stage": "c3-core",
+        "requires_real_completion": true
+      },
+      "mission_profile": "canon-missions-v3",
+      "teaching_contract": "native-tutorialSteps-v1",
+      "native_stage": "c3-core",
+      "seed": 4114301,
+      "implementation_boundary": "沿用c3-core档案搜索航次，白塔坐标与人物记录由返航演出解读"
+    },
+    {
+      "id": "v2c3-signal",
+      "kind": "dialogue",
+      "title": "一声没有落下的炮响",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "拆开的档案匣里没有一份完整海图。盐水泡坏了纸张，存储芯片却被一层又一层蜡封着。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "这不是防水胶。有人修过它，材料不够，就一直往外补。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "先别撬最后一层。把现在这样拍下来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "另一侧，瞭望台报来一个正在靠近的接触。那艘憎恶舰娘的炮口转向辅助船，又停住。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "fletcher",
+          "text": "别挤在右舷。辅助船后撤，我把她和你们隔开。",
+          "tone": "alert",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "alert"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "目标正在重复一段短报文。现有译码只能辨出两个音节。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "放出来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "扬声器里先是低而长的噪声，随后有个像名字的声音，被第二阵噪声盖住。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "她在叫谁？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "也可能是在叫自己。保持距离，把原始波形留住。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "maury",
+          "text": "她的炮又转回来了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "炮管越过你的方向，停在一片空海面。那里漂着一只没有熄灯的救生浮标。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "她不是没看见我们。她在避开那只浮标？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "先记为可能。我们还不知道她看见的是什么。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "我听见了一个短音。和她前面那些噪声不一样，像是在等回答。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "灯鲨没有走到栏杆边。她只是把耳机压紧了一点，身后另外一个身体仍在给伤员包扎。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "mcp011",
+          "text": "可以回应，但不要同时发很多声音。她可能只能留下这么一点地方。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "先让救生船通过。她若开火，我们照常保护人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "fletcher",
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-listen-choice"
+    },
+    {
+      "id": "v2c3-listen-choice",
+      "kind": "dialogue",
+      "title": "怎么回答她",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "我们不知道她叫什么。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "那就不替她补一个。你可以问，或者让她再说一遍。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "哪种都保持距离。你的声音能到的地方，不代表我们的援手也已经到了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "perkins"
+      ],
+      "next": "v2c3-ask-name",
+      "choices": [
+        {
+          "id": "ask_name",
+          "text": "告诉她我们在听，问她愿不愿意再说一次。"
+        },
+        {
+          "id": "keep_channel",
+          "text": "先保持安静，为她留一个可以回应的频道。"
+        }
+      ],
+      "choice_next": {
+        "ask_name": "v2c3-ask-name",
+        "keep_channel": "v2c3-keep-channel"
+      }
+    },
+    {
+      "id": "v2c3-ask-name",
+      "kind": "dialogue",
+      "title": "我们在听",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "这里是第五小队。我们在听。你可以慢一点。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "报文又响了一次。仍然不完整，却不再被后面那串命令立刻切断。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "mcp011",
+          "text": "有回应。别重复太快，她在试着把自己的声音留住。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我们不会靠过去。那条小船要经过你旁边，船上有伤员。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "炮口没有追随救生船。它缓慢偏开，停在一片无人海面。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "fletcher",
+          "text": "船过去了。大家先别欢呼，航线还没走完。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "fletcher",
+        "mcp011"
+      ],
+      "next": "v2c3-escort"
+    },
+    {
+      "id": "v2c3-keep-channel",
+      "kind": "dialogue",
+      "title": "留一段空白",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "把我们的应答间隔拉开。其他频道照常工作，这一条先留给她。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "已保留本队应答窗口。无法阻断其他来源。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "等候里，有个很短的字音终于落在了安静处。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "mcp011",
+          "text": "听到了。这一次她听起来不像是在重复别人的话。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "让救生船通过。别把这点安静用来逼她再做一次证明。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "炮口没有追随救生船。你把那一小段声音单独存进防潮袋里的记录卡。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-escort"
+    },
+    {
+      "id": "v2c3-escort",
+      "kind": "dialogue",
+      "title": "先让船过去",
+      "background": "storm",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "外海的控制信号忽然增强。刚刚偏开的炮塔再次抖动，舰艏压出一条不自然的急转尾迹。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "fletcher",
+          "text": "她又被拽回去了。救生船不要停，我来挡视线。",
+          "tone": "alert",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "alert"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "别为了一段录音留在火线上。先把人送过这段水道。",
+          "tone": "resolve",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "resolve"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "如果我们先走，她怎么办？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "先活着回来，才有第二次靠近她的机会。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "我留了应答频率。她如果还在，回来就能听见。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你在海图上画下最后一次可确认的位置。那只浮标的灯还亮着，像一颗被雨水揉散的星。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "maury",
+          "text": "后面不止一个接触。它们沿着刚才的信号在聚。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "建议使用已观测水道。离开预警区后再调整火力，不建议在未知浅滩急转。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "这次先看全队，别只看跑得最快的那一个。队尾过了，才算我们都过了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "收到。以接驳信标为集结点，保持救生船需要的间隔。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "这条命令我记下了。是撤离，不是把她们当成拿不走的东西。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "fletcher",
+        "mcp011"
+      ],
+      "next": "v2c3-channel-run"
+    },
+    {
+      "id": "v2c3-channel-run",
+      "kind": "action",
+      "title": "穿过回声水道",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "抵达接驳信标，保持第五小队的撤离航路。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [],
+      "next": "v2c3-repair-pier",
+      "objectives": [
+        "抵达接驳信标，保持第五小队的撤离航路。",
+        "不要因追击散开，按海图目标安全撤出。"
+      ],
+      "design_minutes": 4,
+      "action_type": "native_battle",
+      "objective": "抵达接驳信标，保持第五小队的撤离航路。；不要因追击散开，按海图目标安全撤出。",
+      "optional": false,
+      "action": {
+        "type": "native_battle",
+        "objectives": [
+          "抵达接驳信标，保持第五小队的撤离航路。",
+          "不要因追击散开，按海图目标安全撤出。"
+        ],
+        "native_stage": "c3-crossing",
+        "requires_real_completion": true
+      },
+      "mission_profile": "canon-missions-v3",
+      "teaching_contract": "native-tutorialSteps-v1",
+      "native_stage": "c3-crossing",
+      "seed": 4114302,
+      "implementation_boundary": "c3-crossing核对舰队与信标；救生船和回应目标的个体镜头由演出承担"
+    },
+    {
+      "id": "v2c3-repair-pier",
+      "kind": "dialogue",
+      "title": "她的手还记得",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "暂靠的修理栈桥只剩一半。留守者用旧门板补出一条窄路，让担架先走。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "我去找绷带。这里的人好像认得我们。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "elder",
+          "text": "认得第五小队的旗。上次那场雨，你们带过来的净水滤芯还在用。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "还差多少？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "elder",
+          "text": "差的东西多。今天先不跟你们讨，你们船上也有要照顾的人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "那位守航老舰娘递给你一双干手套，动作自然得像已经做过许多次。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "您知道我会来？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "elder",
+          "text": "这天气，总有人带着湿手上岸。别站在门口吹风。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她转身去挪炉子，没有看桌上的名单。你低头，手套的尺寸刚好。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "perkins",
+          "text": "白塔给这里发过检修令？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "elder",
+          "text": "三次。前两次只是查零件，最后一次要登记我们每个人能同时用多少身体。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "你们给了吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "elder",
+          "text": "报了修理所能供电的数量。后来他们又问，哪些身体适合停用。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "炉子里噼啪响了一声。阿禾把手中的空托盘慢慢放下。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "elder",
+          "text": "有个来修船的小姑娘，名字总说不完整。她明明知道哪个阀门漏水，却不记得自己为什么害怕白色的灯。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "她在这里吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "elder",
+          "text": "两天前被叫回去了。她留下的扳手，我还替她放着。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我们在外面听到一段声音。也许是她，也许不是。能让我们听听她留下的记录吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "elder",
+          "text": "可以。别替她取名字。她自己的名字，得由她回来认。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你把录音放得很轻。老舰娘听完，没有说认出来，只用手指在桌上敲了相同的三下。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "elder",
+          "text": "她等水烧开的时候，也这样敲。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-white-gate"
+    },
+    {
+      "id": "v2c3-white-gate",
+      "kind": "dialogue",
+      "title": "白灯下面",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "通往白塔的旧航标已经被涂白。塔不算高，底层却绕着沉没的街道，入口都在水线之下。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "perkins",
+          "text": "这张检修单上有人工签字。前面两次是同一个人，最后一次只剩一个打印的圈。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "签字的人去了哪里？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "ahe",
+          "text": "可能换班，也可能再也不用他签了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "不要替一张纸补结局。找到留下纸的人再问。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "塔内广播准时响起，声音温和，甚至提醒小艇避开漂流物。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "cultist",
+          "text": "临时访客，请保持原航向。我们已为您安排安全靠泊位置。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "我们没申请靠泊。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "cultist",
+          "text": "您的疲劳程度已高于建议值。暂时交出航行决策，可以减少不必要的风险。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "是谁给了你我们的疲劳记录？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "cultist",
+          "text": "我们正在协助所有需要帮助的人。重复询问不会改善当前海况。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "maury",
+          "text": "它还挺会绕。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "陆地有活动。四个路口有人守着，不是人类，动作间隔一样。不能因此认定她们都是没有判断的机器。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "先标出路口，不要朝建筑里开火。阿禾，把桥守给我们的信号灯带上。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "带着。她说有人看见这个颜色，会知道修理站还开着门。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我们从维护码头上岸，找那条能让人自己走出来的路。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        }
+      ],
+      "actors": [
+        "perkins",
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-maintenance-beach",
+      "background_asset": "res://assets/story/canon-v2/c3-white-tower.png",
+      "cg": true
+    },
+    {
+      "id": "v2c3-maintenance-beach",
+      "kind": "action",
+      "title": "维护码头",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "清理投送海域，再把行动连拖到可以登陆的岸点。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [],
+      "next": "v2c3-many-hands",
+      "objectives": [
+        "清理投送海域，再把行动连拖到可以登陆的岸点。",
+        "切换海陆视图，用舰炮支援上岸连队，完成后回收。"
+      ],
+      "design_minutes": 5,
+      "action_type": "littoral_landing",
+      "objective": "清理投送海域，再把行动连拖到可以登陆的岸点。；切换海陆视图，用舰炮支援上岸连队，完成后回收。",
+      "optional": false,
+      "action": {
+        "type": "littoral_landing",
+        "objectives": [
+          "清理投送海域，再把行动连拖到可以登陆的岸点。",
+          "切换海陆视图，用舰炮支援上岸连队，完成后回收。"
+        ],
+        "native_stage": "",
+        "requires_real_completion": true
+      },
+      "seed": 42,
+      "implementation_boundary": "使用已登记v4登陆训练兵力和目标；维护码头是叙事地点，不改历史海图"
+    },
+    {
+      "id": "v2c3-many-hands",
+      "kind": "dialogue",
+      "title": "一双手停下来",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "码头背风处，有三个灯鲨在做不同的事。一个检查跳板，一个扶着伤员，第三个蹲下给水里的电缆贴标。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "你们要不要轮流休息？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "需要。只是休息也不能让别人的手停在伤员身上。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她说话时，贴标的那个身体抬起头。你听到的声音却来自正在扶人的那个。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "你会分不清谁看见了什么吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "mcp011",
+          "text": "会累，也会漏看。但不会把她当成另一个人。我刚才贴错了一条标记，就是我贴错了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "所以我谢谢哪一个都一样？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "一样。别每个人都谢一遍，我会不好意思很多遍。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "楼梯尽头，一个白衣身影按住了门。她的手指卡在门缝里，却没有缩回去。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "别挤门。把电先断了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "engineer",
+          "text": "断不了整层。里面有伤员用着呼吸机。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "那就卸铰链。帕金斯，看住外面。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "那只手终于松开。白衣舰娘抬头，看见阿禾手里的修理灯，嘴唇动了一下。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "她以前替我修过泵。我叫她午汐，是她自己写给我的。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "午汐？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "engineer",
+          "text": "别急着问。她今天能把门推住，已经比昨天多做了一件自己的事。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "桥守从废纸里找出一张水泵检修单。名字旁边，有人画了一只歪歪的茶壶。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "我没学过修这种意识。我只知道她不想走，所以把这张纸藏起来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "我们先把人带到不受广播直冲的地方。她想说的时候，再听。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-what-it-does",
+      "background_asset": "res://assets/story/canon-v2/one-mind-tactical.png",
+      "cg": true
+    },
+    {
+      "id": "v2c3-what-it-does",
+      "kind": "dialogue",
+      "title": "被替换的不是零件",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "perkins",
+          "text": "记录分成两层。外面写的是检修，里面记录每次有多少判断被移走。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "移到哪里？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "目前仅能确认：它持续把不符合预设路线的自主响应标为待修正。无法根据现有材料判断是否能够完整恢复。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "engineer",
+          "text": "最早只是修她们的失序。真有人被治好过，不然谁肯把同伴送进来？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "后来呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "engineer",
+          "text": "后来一个人说不够安全。判断越少，越不会冲突；不记得痛，也就不用治痛。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "桥守搓着手上的油污。那点污迹早已洗不掉，她还是反复去擦。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "我签过一份同意检修的单子。上面没有这几项。我能证明的，只到这里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "你留下原单了吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "engineer",
+          "text": "有。因为她托我带的茶还没买回来。我想着下次一起给她。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "她记得门。也许还记得茶。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "午汐的身体坐在一旁，视线停在那张歪茶壶上。没有人再把纸往她面前推。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "maury",
+          "text": "门外的广播停了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "不是停。换频率了。",
+          "tone": "alert",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "alert"
+          }
+        },
+        {
+          "speaker": "cultist",
+          "text": "维护区存在未经核验的干预。请交还故障个体，以免造成不可逆损伤。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "她有名字。我们也没有答应让你决定谁算故障。",
+          "tone": "resolve",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "resolve"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "把原单分开保存。我们先关掉这一带的转发节点，留出撤离窗口。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "关节点不会把所有人自动变回去。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我知道。至少先让它别再替她们回答。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "perkins",
+        "mcp011"
+      ],
+      "next": "v2c3-separate-roads"
+    },
+    {
+      "id": "v2c3-separate-roads",
+      "kind": "dialogue",
+      "title": "两条路，一张名单",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "灯鲨把路口与楼梯画在薄板上，没有画每个身体的脸。她把伤员的位置一个一个圈起来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "mcp011",
+          "text": "靠海这边能走担架。高地的路短，可是窄，受伤的人过不去。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "我在海上接你们。先告诉我哪块地面空着，别等要开炮了才问谁还在那里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "炮火只处理确认的火力点。有人被压在建筑里，就换一条路。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "空中那一路呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "mcp011",
+          "text": "可以抢到开关，但不能把整支救援队一次带走。她飞得快，不代表她的载具扛得住。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "那我跟担架走。我知道谁的夹板不能碰水。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "你留在接驳处。把每个送上船的人接清楚，这件事也不能少人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "阿禾还想说什么，低头看见自己手里那张已经写满的记录，点了点头。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "至少让他们把名字交给我。说不出来的，我先留空，不写“无名”。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "就这么做。先保住两条线都有人能回来，再决定多带哪份东西。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "记录转移的窗口不长。我们现在分工，到了里面可以改，谁都不必为了守住一句话把自己留在那里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "神通看着你，像确认了一次比航向更重要的东西。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "听见了。命令能改，我们会把看见的情况告诉你。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "fletcher",
+        "mcp011"
+      ],
+      "next": "v2c3-shore-collaboration"
+    },
+    {
+      "id": "v2c3-shore-collaboration",
+      "kind": "action",
+      "title": "给她们一段安静",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "按真实提示分别投送普通陆战、空中突击和装甲行动连，拖卡移动、支援并回收。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [],
+      "next": "v2c3-dry-box",
+      "objectives": [
+        "按真实提示分别投送普通陆战、空中突击和装甲行动连，拖卡移动、支援并回收。",
+        "确认支援舰的射程与弹药，把舰炮支援卡拖到需要的位置。"
+      ],
+      "design_minutes": 6,
+      "action_type": "littoral_combined",
+      "objective": "按真实提示分别投送普通陆战、空中突击和装甲行动连，拖卡移动、支援并回收。；确认支援舰的射程与弹药，把舰炮支援卡拖到需要的位置。",
+      "optional": false,
+      "action": {
+        "type": "littoral_combined",
+        "objectives": [
+          "按真实提示分别投送普通陆战、空中突击和装甲行动连，拖卡移动、支援并回收。",
+          "确认支援舰的射程与弹药，把舰炮支援卡拖到需要的位置。"
+        ],
+        "native_stage": "",
+        "requires_real_completion": true
+      },
+      "seed": 42,
+      "implementation_boundary": "使用v4协同训练；仅裁决确认的搜索和回收计入结果"
+    },
+    {
+      "id": "v2c3-dry-box",
+      "kind": "dialogue",
+      "title": "拿得走的东西",
+      "background": "storm",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "重新汇合时，防潮袋里多了三份记录，名单上的名字却还留着几处空白。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "perkins",
+          "text": "不是所有数据都能带走。主存储还在塔里，备用件有一半已经坏了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "现在这些足够证明他们做了什么吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "能证明这一批个体未经同意被改写，能对上签收与转移。不能证明每一座白塔都一样。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "那就写我们知道的部分。别为了让它听起来完整，把猜的也盖上章。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "engineer",
+          "text": "会有人相信吗？我不是军官，他们会说我连表格都填错。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "所以不让你一个人说。原单、波形、撤离的人和我们的航次记录，会放在一起。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "午汐扶着栏杆，低低说了一个字。桥守离她很近，还是没有马上听清。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "你再说一遍？不着急。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她指了指茶壶那张纸，嘴角动了一点。桥守忽然不再追问，把纸放回她手里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "嗯。店还开着。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我们要是再留一会儿，也许能把主存储取出来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fletcher",
+          "text": "也许。但你看那边，进来的接触比刚才多，退路正在变窄。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "两项任务可并行的条件正在消失。原始记录仍有价值，但无法保证额外窗口。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "该由你定优先次序。不是保证两样都能拿到，是告诉我们必要时先保哪样。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "jintsu",
+            "fletcher"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "perkins",
+        "jintsu",
+        "fletcher"
+      ],
+      "next": "v2c3-closed-channel"
+    },
+    {
+      "id": "v2c3-closed-channel",
+      "kind": "dialogue",
+      "title": "被划掉的不是答案",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "干燥匣的内壁上刻着一行字。你先看见‘门’，然后才认出前面磨损的那个‘星’。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "和我听见的是同一个写法。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "只能确认字一样。别把你记忆里的那个地方，直接安在这面墙后。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "检得旧索引：星门，中继隔离。注释同时存在‘保持封闭’与‘保留撤离窗口’两种要求，签署时间缺失，无法建立先后关系。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "所以不是找到一张写着‘正确答案’的纸。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "不。更像有人很急，后来又有人来过。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "掌心贴到匣盖时，水里的声音忽然很近。只有一句，没有画面。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "warning_voice",
+          "text": "不要打开星门。",
+          "tone": "echo",
+          "characters_per_second": 24.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "warning_voice": "echo"
+          },
+          "text_effect": "echo",
+          "caption": "无法确认来源的声音"
+        },
+        {
+          "speaker": "",
+          "text": "你把手拿开，指尖仍在抖。弗莱彻先移走那盏直照你眼睛的灯，神通扶稳匣盖，没有催你继续碰。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "看着我。这里是维护码头，我们都在。先把刚才那句原话说一遍，其他的以后再想。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "还是那句。可这次……我不知道她是在警告我，还是求我答应。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "本次未接收外部语音。记录为主观听觉体验，不把未收到的通信当作实际命令。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "两份隔离要求各留一份原始校验。白塔要是只拿出其中一句，就让它把另一句也解释了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "今天我们来带人离开，不来替一段残片开任何东西。能确认的权限，只够做眼前这一件事。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我知道。先封存，回去一起读。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "灯鲨在封条上写下你们共同确认的取得位置，没有写‘已找到星门’。那一小块空白终于没有逼着你立即变成谁。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "perkins"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "fletcher",
+        "perkins"
+      ],
+      "next": "v2c3-evidence-choice",
+      "lore_status": "同词与兼容索引只构成线索；未确认星门实体坐标与主角身份"
+    },
+    {
+      "id": "v2c3-evidence-choice",
+      "kind": "dialogue",
+      "title": "这趟先带回什么",
+      "background": "storm",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "已经上船的人和手里的记录，不能因为我们还想多拿一点又被留回去。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "我会按这个原则安排。剩下的，是要不要在安全余量里再试一次。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "perkins"
+      ],
+      "next": "v2c3-people-first",
+      "choices": [
+        {
+          "id": "people_first",
+          "text": "先把人送出去，保存现有证据。"
+        },
+        {
+          "id": "window_only",
+          "text": "确保撤离后，只在安全窗口内尝试转存更多。"
+        }
+      ],
+      "choice_next": {
+        "people_first": "v2c3-people-first",
+        "window_only": "v2c3-window-only"
+      }
+    },
+    {
+      "id": "v2c3-people-first",
+      "kind": "dialogue",
+      "title": "先走的人",
+      "background": "storm",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "不再等主存储。让接驳船起航。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "收到。我把没取得的部分列为缺口，不拿一个“全部损毁”糊过去。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "最后一批伤员正在过跳板。我留在岸上的身体开始收回，不再向里面添人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "我们带回的这些已经足够让人不得不问。剩下的，可以以后再来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你把防潮袋扣好。这次不是拿满了才走，而是知道袋子外面还有更重要的东西。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-incoming"
+    },
+    {
+      "id": "v2c3-window-only",
+      "kind": "dialogue",
+      "title": "只借一点余量",
+      "background": "storm",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "接驳船先走。岸上没有伤员、路线也能回收的时候，才尝试转存；任何一个条件变了，立即放弃。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "我会写明条件。没有取回的东西，不写进我们已经掌握的证据。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "明白。我不把另一具身体当成可以免费丢下的保险。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "我替你看着海上。窗口关了，我会直接叫停，不等你再答应一次。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你在额外目标旁画了一个小圈，没有把它写成所有人必须完成的承诺。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "perkins",
+        "fletcher",
+        "mcp011"
+      ],
+      "next": "v2c3-incoming"
+    },
+    {
+      "id": "v2c3-incoming",
+      "kind": "dialogue",
+      "title": "不能让出去的海面",
+      "background": "storm",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "外海的最后一条返回线被一阵低沉的回声截住。海面隆起，像有什么东西在水下拖动整座旧闸。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "maury",
+          "text": "大接触！不是刚才那种小的。先看预警，别贴过去！",
+          "tone": "alert",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "maury": "alert"
+          }
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "可见目标正在积蓄范围攻击。落点出现后仍有移出窗口，勿以原地承伤换取持续射击。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "我会先保住回航这边。把它从接驳口前面拉开，我们就能走。",
+          "tone": "resolve",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "resolve"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "不追求把附近所有东西清空。完成眼前的脱离条件，再带全队回来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "集中处理能确认的威胁，落点出现就移开。别为了多一轮炮留在圆心。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "mcp011",
+          "text": "陆地的回收完成前，我会报每一连的位置。正常回收不是战损，不要把她们从名单上划掉。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你伸手压住海图。纸面被风吹得发抖，标在上面的返航点没有变。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "fletcher",
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-breaker"
+    },
+    {
+      "id": "v2c3-breaker",
+      "kind": "action",
+      "title": "白塔外的守闸者",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "留意守闸者的血量与攻击预警，避开危险海域。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [],
+      "next": "v2c3-request",
+      "objectives": [
+        "留意守闸者的血量与攻击预警，避开危险海域。",
+        "把有限火力用在进攻窗口，击败守闸者后返航。"
+      ],
+      "design_minutes": 6,
+      "action_type": "native_battle",
+      "objective": "留意守闸者的血量与攻击预警，避开危险海域。；把有限火力用在进攻窗口，击败守闸者后返航。",
+      "optional": false,
+      "action": {
+        "type": "native_battle",
+        "objectives": [
+          "留意守闸者的血量与攻击预警，避开危险海域。",
+          "把有限火力用在进攻窗口，击败守闸者后返航。"
+        ],
+        "native_stage": "c3-breaker",
+        "requires_real_completion": true
+      },
+      "mission_profile": "canon-missions-v3",
+      "teaching_contract": "native-tutorialSteps-v1",
+      "native_stage": "c3-breaker",
+      "seed": 6109,
+      "implementation_boundary": "使用c3-breaker真实Boss战；救援和有限证据选择独立存档，不虚构额外战利品"
+    },
+    {
+      "id": "v2c3-request",
+      "kind": "dialogue",
+      "title": "一个很容易的办法",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "离开火线后，接口没有立刻安静。一个请求反复出现在只供维护使用的频道里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "接收到更高范围的控制请求。来源尚不能验证，不建议直接接受。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "它要我做什么？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "允许其以你的有效签名覆盖本地个体判断。范围不明，撤销方式不明。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "广播重新响起。这一次，它没有提安全靠泊。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "cultist",
+          "text": "您已经看见分歧造成的损失。每一个迟疑，都会让别人再等一会儿。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "所以你替她们把迟疑也拿走了？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "cultist",
+          "text": "痛苦来自互不兼容的愿望。统一决定，可以让更多身体持续工作。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "身体不是坏了就能随便换的工具。刚才在门口停住的，是她自己。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "cultist",
+          "text": "该响应导致通道拥堵，并使两名待检修者离开规定位置。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "她是在让担架先走。你记得拥堵，却不记得上面躺着谁。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "请求中弹出一张极干净的路线图。所有标记都沿同一条线排列，没有一个在掉队。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "我接受以后，她们会都回来吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "现有记录不足以支持这一承诺。能够下达命令，与能够恢复人格，并非同一能力。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "cultist",
+          "text": "您可以先让海面安静下来。其余问题以后再处理。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你想起法庭上那句问话：一个来历不明的人，为什么能让别人的武器停住。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "",
+          "text": "那时你没有答案。现在，有人正把一个看起来非常省事的答案递给你。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "先别看图。看着我们说。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "如果我能让你们以后都不再冒险呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "你是想保护我们，还是想再也听不见我们说“不”？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她没有责备你。她只是等着，像每一次等你把航令想清楚。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-permission-choice"
+    },
+    {
+      "id": "v2c3-permission-choice",
+      "kind": "dialogue",
+      "title": "让她自己回答",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "mcp011",
+          "text": "我能理解你想少失去一点。但我不希望你为了留住我，连我怎么回来都替我决定。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "拒绝这次请求不会抹掉已经发生的事。接受，也没有人能保证把它们改好。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "那就不要替她们签。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "perkins",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        }
+      ],
+      "actors": [
+        "perkins",
+        "mcp011"
+      ],
+      "next": "v2c3-refused",
+      "choices": [
+        {
+          "id": "refuse",
+          "text": "拒绝接收覆盖人格的权限。"
+        },
+        {
+          "id": "ask",
+          "text": "只保留回应窗口，让她自己决定要不要离开。"
+        }
+      ],
+      "choice_next": {
+        "refuse": "v2c3-refused",
+        "ask": "v2c3-asked"
+      }
+    },
+    {
+      "id": "v2c3-refused",
+      "kind": "dialogue",
+      "title": "不替任何人签名",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "这份请求我不签。不要拿我的名字替别人作决定。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "控制请求已拒绝。本队已有航行与维护授权保持原范围。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "cultist",
+          "text": "您将承担未能阻止后续损失的责任。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "cultist": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我会承担我下过的命令。你做过的那些，不要也写在我名下。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "路线图暗下去。真实海面仍有噪声、雨和需要回收的东西，没有因为一句话就变得容易。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "好。现在按我们自己的名单点人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu"
+      ],
+      "next": "v2c3-quiet"
+    },
+    {
+      "id": "v2c3-asked",
+      "kind": "dialogue",
+      "title": "把门留着",
+      "background": "night",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "不接控制。把我们留下的应答窗口保持到最后一艘船离开。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fsm_ai",
+          "text": "控制请求已拒绝。仅维持本队公开应答，不取得他人指挥权。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fsm_ai": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "明白。我会告诉她，想过来就亮一次灯。不亮，也不朝她开枪催。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "她要是不知道怎么回答呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "mcp011",
+          "text": "那就等到我们不得不走。以后再找一次机会。不是所有人都能在同一刻学会说愿意。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "窗口里没有立刻出现声音。你仍把那一小段空白留在了记录中。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "mcp011"
+      ],
+      "next": "v2c3-quiet"
+    },
+    {
+      "id": "v2c3-quiet",
+      "kind": "dialogue",
+      "title": "没有一键复原",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "回程很长。真正远去的是白塔外的灯，接口里那段回声只是不再覆盖其他声音。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "午汐睡着了。我拿不准她是不是睡着，桥守说至少她没有再攥着门边。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "engineer",
+          "text": "我没说她好了。我只是想先让她把手放下来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "我们知道。回去给她安排安静的房间，别让看热闹的人围着问。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "那些没能回应的呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "perkins",
+          "text": "留在名单上。位置、最后一次观测和我们没有确认的部分，都留着。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "mcp011",
+          "text": "我还记得她们的动作。有一个会先抬左手，再转头。和其余人差半拍。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "maury",
+          "text": "以前碰到这种接触，我们只会记她往哪边开炮。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "maury": "calm"
+          }
+        },
+        {
+          "speaker": "fletcher",
+          "text": "开炮也得记。不记清危险，下次救人的人还是要吃亏。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "弗莱彻接过阿禾手里的空杯，给她换了一杯热水。她已经很久没离开接驳点。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "ahe",
+          "text": "名单上空的地方，等她们自己来填。这样可以吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "可以。但别让她们以为，不填就不能下船。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "阿禾在纸角添了一行字，先把夹板扣上，没让海风看见。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "如果联盟只肯收走记录，不肯让她们留呢？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "我们先不替联盟答，也不替她们答。到了港口，能讲的就一起讲。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "原始件分存，交出的每一件要签收。没有人需要单独带着全部证据去求一个人相信。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu",
+            "fletcher",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu",
+        "fletcher",
+        "mcp011"
+      ],
+      "next": "v2c3-old-promise"
+    },
+    {
+      "id": "v2c3-old-promise",
+      "kind": "dialogue",
+      "title": "你说过的话",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "神通走到你旁边。引擎的震动透过栏杆，杯子里的水一圈圈晃开。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "第一次捞到灯鲨的协议，你说想把她留下。我那时担心，我们连她需要的地方都没有。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          },
+          "if_choice": {
+            "chapter": "chapter-01",
+            "node": "v2c1-protocol-choice",
+            "value": "keep"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "第一次捞到灯鲨的协议，你说想用它换一个住的地方。我那时担心，拿到地以后，我们会不会忘了交出去的是什么。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          },
+          "if_choice": {
+            "chapter": "chapter-01",
+            "node": "v2c1-protocol-choice",
+            "value": "exchange"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "你现在还担心吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "担心。今天回去，多几张床、多几份油料，都得有人安排。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "我以为你会说，至少我没有接受那道命令。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "那件事已经做了。接下来怎么照顾她们，也得做。不能用一次正确的选择抵掉以后的麻烦。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她停了一下，把肩上的披衣往你这边拉了一点。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "不过，今天我可以少担心一件。你没有把我们都放进那张很整齐的图里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "图上看起来，所有人都能回去。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "嗯。所以它很好看。我们得把不好看的那部分，也带回家。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "jintsu"
+      ],
+      "next": "v2c3-public-copy"
+    },
+    {
+      "id": "v2c3-public-copy",
+      "kind": "dialogue",
+      "title": "够让人继续追问",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "联盟的公开记录窗口只开了很短一段时间。信浓的投影出现在远端，仍看不清脸。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "hologram",
+          "text": "我能为记录的提交与留存提供见证，不能替它省掉核验。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        },
+        {
+          "speaker": "perkins",
+          "text": "这里是原始件编号、取得地点和转存记录。未经确认的推测单独列页，没有混在证词里。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "perkins": "calm"
+          }
+        },
+        {
+          "speaker": "hologram",
+          "text": "很好。审查的人会问得细，不要因为有人不肯马上相信就把原始件交给别的捷径。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "也会有人只想把它们封起来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "hologram",
+          "text": "会。所以这次还有修理站、两位收治者和公开登记处各留一份签收。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "您知道白塔还剩多少这样的设施？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "hologram",
+          "text": "我知道的并不够多。也正因如此，这一份不能被轻易写成意外。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "您为什么一直替我们留这些位置？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "",
+          "text": "投影轻轻抖了一下。信浓没有立刻回答，像先看了一眼窗外的天气。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "hologram",
+          "text": "你们把人带回来了。联盟应该给做这件事的人一个把话说完的地方。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "只是这样？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "hologram",
+          "text": "今天，这个理由就够用了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "通信末尾，她把尚未核验的名字一个个念过。念到空白处，就停一下，没有代填。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "hologram",
+          "text": "先让他们休息。你也一样。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "hologram",
+            "jintsu",
+            "perkins"
+          ],
+          "actor_tones": {
+            "hologram": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "hologram",
+        "jintsu",
+        "perkins"
+      ],
+      "next": "v2c3-home-again"
+    },
+    {
+      "id": "v2c3-home-again",
+      "kind": "dialogue",
+      "title": "守家的人",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "回到岛上时，晾衣绳上多了几张干净床单。密苏里坐在背风处，一只靴尖勾着摇椅的横档。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "missouri",
+          "text": "先说好，床单不是我洗的。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "没人问这个。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "missouri",
+          "text": "你们一脸要谢人的样子，很耽误睡觉。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她从手边拿起一张维修单，沿桌面推给你。外海警报期间，岛上的巡逻与淡化设施都在运行。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "您真的只是在守家。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "missouri",
+          "text": "不然呢？你出门的时候把钥匙给人，还希望人顺便替你把海都扫一遍？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "jintsu",
+          "text": "油料账我来核。今天上岸的人多，先把居住区安顿好。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "missouri",
+          "text": "知道。那两桶已经给泵房了。记在账上，别过几天告诉我是我记错。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "白塔有些人还没能带出来。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "missouri",
+          "text": "嗯。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她没有说下一次一定能。片刻后，摇椅停了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "missouri",
+          "text": "你记着她们的位置了吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "记着。也记了不确定的地方。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "missouri",
+          "text": "那就先把带回来的安顿好。想再走一趟，总要有地方可回。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "灯鲨的几个身体从小路经过。一个运被褥，一个扶人，最后一个走得慢，手里捧着一只旧茶壶。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "mcp011",
+          "text": "她想自己拿。空壶，不重。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "mcp011": "calm"
+          }
+        },
+        {
+          "speaker": "missouri",
+          "text": "那把门槛那块松板换了。摔了又要找我算账。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "ahe",
+          "text": "您刚才已经让人换好了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "ahe": "calm"
+          }
+        },
+        {
+          "speaker": "missouri",
+          "text": "……那就别站上去验证。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {
+            "missouri": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "她把脸转向海上。你看见短手套露出的手腕上还有一点机油，没有再追着说谢谢。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "missouri",
+            "jintsu",
+            "mcp011"
+          ],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [
+        "missouri",
+        "jintsu",
+        "mcp011"
+      ],
+      "next": "v2c3-unfinished-name"
+    },
+    {
+      "id": "v2c3-unfinished-name",
+      "kind": "dialogue",
+      "title": "留到明天的字",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "夜里，修理站的窗户还亮着。午汐把纸翻来覆去，最后在茶壶旁添了一小笔。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "engineer",
+          "text": "不是今天就写完，也没关系。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "engineer": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你在门外听了一会儿，没有推门。她们需要的安静，不必一直有人站在旁边证明。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "fletcher",
+          "text": "走吧，神通给你留了饭。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "你们怎么总知道我在哪儿？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fletcher",
+          "text": "你饿了会往厨房走，心里有事就往海边走。最近还多一个修理站，不难找。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "弗莱彻递来折好的防潮袋。里面只放着一张复制的航图，原始件已经按约分存。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "这上面有个名字，还差最后两个字。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "fletcher",
+          "text": "留着。等她有一天能自己告诉你。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "fletcher": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "码头那头，一位年长舰娘把一盏小灯放在你们要走的路边。她像要叫住你，话到嘴边却停下。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "elder",
+          "text": "夜里凉。回去的时候，走有灯的那条。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "player",
+          "text": "您不一起回吗？",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "elder",
+          "text": "我再等一班船。有人可能今天才到。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "elder": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "你没有问她在等谁。海上还有没回来的名字，也有还没被写进任何表格的明天。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "jintsu",
+          "text": "这边。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        },
+        {
+          "speaker": "",
+          "text": "神通站在饭堂门口，门内是碗筷声。你把那张没写完的航图折好，走向她。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {}
+        },
+        {
+          "speaker": "player",
+          "text": "回来了。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "player": "calm"
+          },
+          "name": "你"
+        },
+        {
+          "speaker": "jintsu",
+          "text": "嗯。先吃饭。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [
+            "fletcher",
+            "jintsu"
+          ],
+          "actor_tones": {
+            "jintsu": "calm"
+          }
+        }
+      ],
+      "actors": [
+        "fletcher",
+        "jintsu"
+      ],
+      "next": "v2c3-complete"
+    },
+    {
+      "id": "v2c3-complete",
+      "kind": "complete",
+      "title": "本章终",
+      "background": "harbor",
+      "lines": [
+        {
+          "speaker": "",
+          "text": "第三章终。原始记录已经留下，白塔的去向与主角的身世仍未揭开。下一段航程，留给能亲口回答的人。",
+          "tone": "calm",
+          "characters_per_second": 34.0,
+          "shot": "wide",
+          "actors": [],
+          "actor_tones": {}
+        }
+      ],
+      "actors": [],
+      "next": "",
+      "text": "第三章终。你们留下了足以继续追问的记录，也给还没说完的名字留了位置。"
+    }
+  ],
+  "guide": [],
+  "design_breakdown": {
+    "reading_and_cg": 31,
+    "actual_modes": 26,
+    "choices_and_inspection": 8,
+    "expected_first_play": [
+      63,
+      73
+    ],
+    "measured": false
+  },
+  "implementation_scope": [
+    "对白中的午汐、桥守、辅助船及白塔权限请求属于演出和独立选择存档；未谎称原核已模拟人格恢复或全体难民个体。",
+    "海上行动明确请求canon-missions-v3档案搜索/穿越/Boss，沿用当前salvage-v4物资格位与撤离链；海陆段使用v4两栖训练。均要求真实成功，不把剧情选择当作新增战利品或胜利证据。",
+    "高权限选择两条均拒绝覆盖他人人格，区别在对话与应答方式，不在历史命中、舰表或账号资源。",
+    "第三章从未要求密苏里随队出征；信浓仅提供有限公开记录见证，不再代打。"
+  ],
+  "authored_chinese_characters": 7675
+}

@@ -1,0 +1,165 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/activity_hub.gd" id="1"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui/editorial_card.tscn" id="2"]
+
+[node name="ActivityHub" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="EditorialBackdrop" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.0667, 0.1098, 0.1608, 1)
+mouse_filter = 2
+
+[node name="ReadingPaper" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_left = 0.24875
+anchor_top = 0.21556
+anchor_right = 0.9675
+anchor_bottom = 0.89333
+color = Color(0.941, 0.949, 0.941, 1)
+mouse_filter = 2
+visible = false
+
+[node name="Tabs" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.025
+anchor_top = 0.175
+anchor_right = 0.205
+anchor_bottom = 0.885
+theme_override_constants/separation = 18
+[node name="Overview" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "本期活动"
+
+custom_minimum_size = Vector2(0,94)
+
+[node name="Updates" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "更新公告"
+
+custom_minimum_size = Vector2(0,94)
+
+[node name="Campaigns" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "战役进度"
+
+custom_minimum_size = Vector2(0,94)
+
+[node name="Featured" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "本期UP"
+
+custom_minimum_size = Vector2(0,94)
+
+[node name="Supply" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "回港补给"
+
+custom_minimum_size = Vector2(0,94)
+
+[node name="Hero" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.25
+anchor_top = 0.23
+anchor_right = 0.72
+anchor_bottom = 0.89
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+[node name="HeroShade" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_left = 0.25
+anchor_top = 0.7
+anchor_right = 0.72
+anchor_bottom = 0.89
+mouse_filter = 2
+color = Color(0.025,0.09,0.14,0.77)
+[node name="HeroTitle" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.267
+anchor_top = 0.73
+anchor_right = 0.7
+anchor_bottom = 0.79
+theme_override_colors/font_color = Color(1,1,1,1)
+theme_override_font_sizes/font_size = 34
+text = "潮线档案"
+[node name="HeroSubtitle" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.267
+anchor_top = 0.82
+anchor_right = 0.7
+anchor_bottom = 0.87
+theme_override_colors/font_color = Color(0.85,0.92,0.95,1)
+theme_override_font_sizes/font_size = 22
+text = "沿着返航灯，读懂沉没的世界。"
+[node name="Side" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.747
+anchor_top = 0.25
+anchor_right = 0.958
+anchor_bottom = 0.87
+theme_override_constants/separation = 18
+[node name="Wide" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.27
+anchor_top = 0.25
+anchor_right = 0.94
+anchor_bottom = 0.87
+visible = false
+theme_override_constants/separation = 18
+
+[node name="Editorial" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+[node name="Title" type="Label" parent="Editorial"]
+anchor_left = 0.255
+anchor_top = 0.132
+anchor_right = 0.97
+anchor_bottom = 0.197
+text = "潮汐回响"
+theme_override_colors/font_color = Color(0.94,0.95,0.94,1)
+theme_override_font_sizes/font_size = 34
+[node name="Editorial_tide_event" parent="Editorial" instance=ExtResource("2")]
+anchor_left = 0.2506
+anchor_top = 0.2367
+anchor_right = 0.6944
+anchor_bottom = 0.8733
+artwork = "res://assets/story/canon-v2/c2-waterline.png"
+title = "潮汐回响"
+subtitle = "舰队肉鸽 · 呼叫援军"
+route = "tide_event"
+[node name="Editorial_recruit" parent="Editorial" instance=ExtResource("2")]
+anchor_left = 0.7075
+anchor_top = 0.2367
+anchor_right = 0.9675
+anchor_bottom = 0.5433
+artwork = "res://assets/story/canon-v2/missouri-limited-banner.png"
+title = "特别邀请"
+subtitle = "密苏里 · 本期UP"
+route = "recruit"
+[node name="Editorial_canon_catalog" parent="Editorial" instance=ExtResource("2")]
+anchor_left = 0.7075
+anchor_top = 0.5667
+anchor_right = 0.9675
+anchor_bottom = 0.8733
+artwork = "res://assets/story/canon-v2/c1-rescue.png"
+title = "第五小队航海日志"
+subtitle = "翻开新的篇章"
+route = "canon_catalog"

@@ -1,0 +1,160 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/littoral_land.gd" id="land"]
+[ext_resource type="Script" path="res://scripts/littoral_sea.gd" id="sea"]
+[ext_resource type="Script" path="res://scripts/littoral_drag_layer.gd" id="drag"]
+[node name="LittoralBattle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+[node name="SeaWindow" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.79
+[node name="Map" type="Control" parent="SeaWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("sea")
+[node name="LandWindow" type="Panel" parent="."]
+anchor_left = 0.755
+anchor_top = 0.115
+anchor_right = 0.975
+anchor_bottom = 0.375
+[node name="Map" type="Control" parent="LandWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("land")
+[node name="Controls" type="HBoxContainer" parent="LandWindow"]
+visible = false
+[node name="Beach" type="OptionButton" parent="LandWindow/Controls"]
+[node name="Insertion" type="OptionButton" parent="LandWindow/Controls"]
+[node name="Order" type="OptionButton" parent="LandWindow/Controls"]
+[node name="Focus" type="Button" parent="LandWindow/Controls"]
+text = "聚焦"
+[node name="MiniMap" type="Button" parent="."]
+anchor_left = 0.755
+anchor_top = 0.115
+anchor_right = 0.975
+anchor_bottom = 0.375
+flat = true
+text = ""
+[node name="MiniCaption" type="Label" parent="."]
+anchor_left = 0.765
+anchor_top = 0.12
+anchor_right = 0.97
+anchor_bottom = 0.15
+mouse_filter = 2
+text = "陆地 · 点击切换"
+theme_override_font_sizes/font_size = 19
+[node name="Top" type="HBoxContainer" parent="."]
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.975
+anchor_bottom = 0.107
+theme_override_constants/separation = 16
+[node name="Title" type="Label" parent="Top"]
+layout_mode = 2
+text = "海陆协同"
+theme_override_font_sizes/font_size = 28
+[node name="Status" type="Label" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "运输编队待命"
+theme_override_font_sizes/font_size = 20
+[node name="Clock" type="Label" parent="Top"]
+layout_mode = 2
+text = "00:00"
+theme_override_font_sizes/font_size = 26
+[node name="Speeds" type="HBoxContainer" parent="Top"]
+layout_mode = 2
+theme_override_constants/separation = 4
+[node name="Speed1" type="Button" parent="Top/Speeds"]
+layout_mode = 2
+custom_minimum_size = Vector2(78, 74)
+text = "1×"
+toggle_mode = true
+[node name="Speed2" type="Button" parent="Top/Speeds"]
+layout_mode = 2
+custom_minimum_size = Vector2(78, 74)
+text = "2×"
+toggle_mode = true
+[node name="Speed4" type="Button" parent="Top/Speeds"]
+layout_mode = 2
+custom_minimum_size = Vector2(78, 74)
+text = "4×"
+toggle_mode = true
+[node name="Speed8" type="Button" parent="Top/Speeds"]
+layout_mode = 2
+custom_minimum_size = Vector2(78, 74)
+text = "8×"
+toggle_mode = true
+[node name="Pause" type="Button" parent="Top"]
+layout_mode = 2
+custom_minimum_size = Vector2(98,48)
+text = "开始"
+[node name="Menu" type="Button" parent="Top"]
+layout_mode = 2
+custom_minimum_size = Vector2(98,48)
+text = "菜单"
+[node name="Objective" type="Label" parent="."]
+anchor_left = 0.025
+anchor_top = 0.11
+anchor_right = 0.65
+anchor_bottom = 0.16
+mouse_filter = 2
+text = "将部队卡拖向岛屿"
+theme_override_font_sizes/font_size = 23
+[node name="FocusMap" type="Button" parent="."]
+anchor_left = 0.925
+anchor_top = 0.69
+anchor_right = 0.975
+anchor_bottom = 0.76
+text = "⊕"
+tooltip_text = "聚焦所选部队 / 全图"
+[node name="Tray" type="PanelContainer" parent="."]
+anchor_left = 0.025
+anchor_top = 0.80
+anchor_right = 0.975
+anchor_bottom = 0.975
+[node name="Scroll" type="ScrollContainer" parent="Tray"]
+layout_mode = 2
+horizontal_scroll_mode = 1
+vertical_scroll_mode = 0
+[node name="Cards" type="HBoxContainer" parent="Tray/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+[node name="Hint" type="Label" parent="."]
+anchor_left = 0.025
+anchor_top = 0.75
+anchor_right = 0.9
+anchor_bottom = 0.80
+mouse_filter = 2
+text = "拖动本人部队卡到岛上；点击右上角小地图切换视角"
+theme_override_font_sizes/font_size = 20
+[node name="Selected" type="Label" parent="."]
+visible = false
+[node name="Roster" type="HBoxContainer" parent="."]
+visible = false
+[node name="Actions" type="HBoxContainer" parent="."]
+visible = false
+[node name="Land" type="Button" parent="Actions"]
+text = "投送部队"
+[node name="Retreat" type="Button" parent="Actions"]
+text = "撤回载舰"
+[node name="Search" type="Button" parent="Actions"]
+text = "搜索遗迹"
+[node name="Repair" type="Button" parent="Actions"]
+text = "工兵修复"
+[node name="Naval" type="Button" parent="Actions"]
+text = "近岸炮援"
+[node name="Helicopter" type="Button" parent="Actions"]
+text = "直升机支援"
+[node name="Extract" type="Button" parent="Actions"]
+text = "完成撤离"
+[node name="DragLayer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+z_index = 1500
+script = ExtResource("drag")

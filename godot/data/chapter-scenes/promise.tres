@@ -1,0 +1,543 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="夜里下起很细的雨。德雷顿在船尾晾那条你借过的毯子，晾了半天，发现越晾越湿，只好连衣架一起搬回走廊。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我来吧。说好了我洗。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="明天。今天它已经比你先累了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她给你留出旁边的位置。港口的灯倒在水里，常常被船经过的尾浪搅碎，过一会儿又自己拼起来。你盯着看，终于不再觉得每一块黑水下面都有东西等着。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我今天有一瞬间想跟那个声音走。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="我猜到了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你不生气？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="有点。我把人从海里捞回来，他转头就想自己跳回去，总得让我有点意见吧。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她说完偏过脸，像是在给你留出反驳的机会。你没反驳。那一点坦白的生气，比一句“我相信你”更容易接住。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="下次我会先告诉你们。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="下次我们也可能不同意。你得听完再做决定。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="好。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="弗莱彻抱着维修图经过，见你们都坐在门口，把原本要说的事停了一下。她最后只把一串钥匙放到你手边。钥匙新磨过，边上还有一点铁屑。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="房间的。里面柜子没锁，不是防你，是锁坏了。想放东西的话，明天我找人来修。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我没有什么东西。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="会有的。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她没有把这句话说得很郑重，像在说迟早会补上缺的螺丝。你把钥匙攥了一会儿，掌心留下两道浅浅的印子，终于有了一样能放进口袋的东西。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="明早还是那个点。左锅汤，右锅颜料——哎，等一下，我刚才是不是说反了？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我会先闻。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她笑出声。有人从走廊另一端喊你们小声一点。你们都压低了声音，却谁也没马上起身，像再坐一会儿，就能让这一天完整地过去。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="promise"
+
+background="res://assets/story/chapter1/drydock-v1.png"
+
+full_cg=false
+
+actors=Array[String](["drayton", "fletcher"])
+
+music_scene="harbor"
+
+location="母港维修坞 · 夜灯初亮"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19")])

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/page_transition.gd" id="1_controller"]
+[ext_resource type="PackedScene" path="res://scenes/ui/page_transition_overlay.tscn" id="2_overlay"]
+
+[node name="PageTransition" type="CanvasLayer"]
+layer=30
+script=ExtResource("1_controller")
+
+[node name="Overlay" parent="." instance=ExtResource("2_overlay")]

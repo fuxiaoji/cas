@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/expedition_operations.gd" id="1"]
+[node name="ExpeditionOperations" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1")
+[node name="Status" type="Label" parent="."]
+anchor_left = 0.0175
+anchor_top = 0.19
+anchor_right = 0.32
+anchor_bottom = 0.23
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.07,0.18,0.25,1)
+theme_override_font_sizes/font_size = 19
+text = "自动打捞待命"
+[node name="Tasks" type="Button" parent="."]
+anchor_left = 0.32875
+anchor_top = 0.74444
+anchor_right = 0.39625
+anchor_bottom = 0.79333
+text = "行动"
+[node name="Fuel" type="ProgressBar" parent="."]
+anchor_left = 0.0175
+anchor_top = 0.245
+anchor_right = 0.17
+anchor_bottom = 0.26
+mouse_filter = 1
+show_percentage = false
+[node name="FuelLabel" type="Label" parent="."]
+anchor_left = 0.0175
+anchor_top = 0.265
+anchor_right = 0.3
+anchor_bottom = 0.302
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.07,0.18,0.25,1)
+theme_override_font_sizes/font_size = 18
+text = "油料充足"
+[node name="Auto" type="Button" parent="."]
+anchor_left = 0.40375
+anchor_top = 0.74444
+anchor_right = 0.47875
+anchor_bottom = 0.79333
+text = "自动打捞"

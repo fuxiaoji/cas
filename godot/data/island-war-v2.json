@@ -1,0 +1,2427 @@
+{
+  "cards": [
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "400米内敌方下一次开火最少推迟3.5秒；不凭空造成伤害。",
+        "duration_s": 3.5,
+        "id": "suppression",
+        "name": "压制射击",
+        "radius": 400.0,
+        "range": 1600.0
+      },
+      "body_count": 24,
+      "combat": {
+        "ammo": 80,
+        "armor": 1.0,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 18.0,
+        "hp": 95.0,
+        "range": 700.0,
+        "reload_seconds": 1.2,
+        "speed": 85.0,
+        "vehicle_id": null,
+        "vision": 1500.0
+      },
+      "company_count": 3,
+      "default_transport": "transport_helicopter",
+      "designation": "第一空中特勤旅",
+      "echelon": "X",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-001",
+      "name": "云隼",
+      "nato_type": "air_assault",
+      "personnel_cap": 2800,
+      "personnel_per_company": 8,
+      "recovery_transport": "transport_helicopter",
+      "role": "air_assault",
+      "source_kind": "original_fictional",
+      "speed": 85.0,
+      "transport": {
+        "airborne": true,
+        "armor": 1.15,
+        "capacity": 8,
+        "hp": 180.0,
+        "id": "transport_helicopter",
+        "kind": "transport_helicopter",
+        "speed": 330.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": true,
+          "armor": 1.15,
+          "capacity": 8,
+          "hp": 180.0,
+          "id": "transport_helicopter",
+          "kind": "transport_helicopter",
+          "speed": 330.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "400米内敌方下一次开火最少推迟3.5秒；不凭空造成伤害。",
+        "duration_s": 3.5,
+        "id": "suppression",
+        "name": "压制射击",
+        "radius": 400.0,
+        "range": 1600.0
+      },
+      "body_count": 45,
+      "combat": {
+        "ammo": 100,
+        "armor": 0.9,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 22.0,
+        "hp": 110.0,
+        "range": 800.0,
+        "reload_seconds": 1.3,
+        "speed": 75.0,
+        "vehicle_id": null,
+        "vision": 1500.0
+      },
+      "company_count": 5,
+      "default_transport": "landing_craft",
+      "designation": "第34海军派遣团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 9,
+      "id": "MCP-034",
+      "name": "礁刃",
+      "nato_type": "marine",
+      "personnel_cap": 4000,
+      "personnel_per_company": 9,
+      "recovery_transport": "landing_craft",
+      "role": "marine",
+      "source_kind": "original_fictional",
+      "speed": 75.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.9,
+        "capacity": 12,
+        "hp": 340.0,
+        "id": "landing_craft",
+        "kind": "landing_craft",
+        "speed": 90.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射150伤害、80米爆炸半径的导弹。",
+        "duration_s": 0.0,
+        "id": "at_missile",
+        "name": "反装甲导弹",
+        "radius": 80.0,
+        "range": 1600.0
+      },
+      "body_count": 24,
+      "combat": {
+        "ammo": 75,
+        "armor": 1.0,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 24.0,
+        "hp": 95.0,
+        "range": 850.0,
+        "reload_seconds": 1.6,
+        "speed": 80.0,
+        "vehicle_id": null,
+        "vision": 1600.0
+      },
+      "company_count": 3,
+      "default_transport": "parachute_aircraft",
+      "designation": "第76空降突击旅",
+      "echelon": "X",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-076",
+      "name": "冬鸢",
+      "nato_type": "airborne_infantry",
+      "personnel_cap": 2800,
+      "personnel_per_company": 8,
+      "recovery_transport": "landing_craft",
+      "role": "airborne",
+      "source_kind": "original_fictional",
+      "speed": 80.0,
+      "transport": {
+        "airborne": true,
+        "armor": 1.3,
+        "capacity": 10,
+        "hp": 240.0,
+        "id": "parachute_aircraft",
+        "kind": "parachute_aircraft",
+        "speed": 410.0,
+        "transport_role": "insertion_only"
+      },
+      "transport_options": [
+        {
+          "airborne": true,
+          "armor": 1.3,
+          "capacity": 10,
+          "hp": 240.0,
+          "id": "parachute_aircraft",
+          "kind": "parachute_aircraft",
+          "speed": 410.0,
+          "transport_role": "insertion_only"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "400米内共享500点有限抢修量，每个存活身体最多恢复35%耐久；不能重造。",
+        "duration_s": 0.0,
+        "id": "field_repair",
+        "name": "战地抢修",
+        "radius": 400.0,
+        "range": 1600.0
+      },
+      "body_count": 12,
+      "combat": {
+        "ammo": 80,
+        "armor": 1.0,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 14.0,
+        "hp": 100.0,
+        "range": 650.0,
+        "reload_seconds": 1.5,
+        "speed": 72.0,
+        "vehicle_id": null,
+        "vision": 1400.0
+      },
+      "company_count": 2,
+      "default_transport": "armored_boat",
+      "designation": "第9海岸工兵营",
+      "echelon": "II",
+      "embodiment": "female_infantry",
+      "entity_count": 6,
+      "id": "MCP-009",
+      "name": "汐锚",
+      "nato_type": "engineer",
+      "personnel_cap": 2200,
+      "personnel_per_company": 6,
+      "recovery_transport": "armored_boat",
+      "role": "engineer",
+      "source_kind": "original_fictional",
+      "speed": 72.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.55,
+        "capacity": 9,
+        "hp": 520.0,
+        "id": "armored_boat",
+        "kind": "armored_boat",
+        "speed": 65.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：350米内友方直射受伤系数降至55%；间接爆炸不受此减伤。",
+        "duration_s": 12.0,
+        "id": "hull_down",
+        "name": "稳固车体",
+        "radius": 350.0,
+        "range": 1600.0
+      },
+      "body_count": 18,
+      "combat": {
+        "ammo": 36,
+        "armor": 0.32,
+        "class": "armor",
+        "collision_radius_m": 3.0,
+        "damage": 140.0,
+        "hp": 600.0,
+        "range": 1500.0,
+        "reload_seconds": 4.2,
+        "speed": 45.0,
+        "vehicle_id": "MCP-022-tank",
+        "vision": 1700.0
+      },
+      "company_count": 3,
+      "default_transport": "heavy_lander",
+      "designation": "第22重装甲旅",
+      "echelon": "X",
+      "embodiment": "one_female_body_operates_one_vehicle",
+      "entity_count": 6,
+      "id": "MCP-022",
+      "name": "铁潮",
+      "nato_type": "armor",
+      "personnel_cap": 2800,
+      "personnel_per_company": 6,
+      "recovery_transport": "heavy_lander",
+      "role": "armor",
+      "source_kind": "original_fictional",
+      "speed": 45.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.42,
+        "capacity": 6,
+        "hp": 800.0,
+        "id": "heavy_lander",
+        "kind": "heavy_lander",
+        "speed": 42.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.42,
+          "capacity": 6,
+          "hp": 800.0,
+          "id": "heavy_lander",
+          "kind": "heavy_lander",
+          "speed": 42.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：350米内友方直射受伤系数降至65%，并降低被发现距离；舰炮、迫击炮等间接爆炸不受此减伤。",
+        "duration_s": 12.0,
+        "id": "smoke",
+        "name": "烟幕掩护",
+        "radius": 350.0,
+        "range": 1600.0
+      },
+      "body_count": 32,
+      "combat": {
+        "ammo": 85,
+        "armor": 1.1,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 23.0,
+        "hp": 85.0,
+        "range": 650.0,
+        "reload_seconds": 1.1,
+        "speed": 95.0,
+        "vehicle_id": null,
+        "vision": 1600.0
+      },
+      "company_count": 4,
+      "default_transport": "fast_boat",
+      "designation": "第11轻装海军陆战团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-011",
+      "name": "灯鲨",
+      "nato_type": "marine",
+      "personnel_cap": 3400,
+      "personnel_per_company": 8,
+      "recovery_transport": "fast_boat",
+      "role": "marine",
+      "source_kind": "original_fictional",
+      "speed": 95.0,
+      "transport": {
+        "airborne": false,
+        "armor": 1.15,
+        "capacity": 6,
+        "hp": 200.0,
+        "id": "fast_boat",
+        "kind": "fast_boat",
+        "speed": 145.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒获得本连1800米内实际实体的主动侦察回波；普通被动观察仍受地形视线限制。",
+        "duration_s": 12.0,
+        "id": "recon_mark",
+        "name": "前沿侦察",
+        "radius": 1800.0,
+        "range": 1600.0
+      },
+      "body_count": 12,
+      "combat": {
+        "ammo": 60,
+        "armor": 1.1,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 16.0,
+        "hp": 80.0,
+        "range": 1000.0,
+        "reload_seconds": 1.3,
+        "speed": 100.0,
+        "vehicle_id": null,
+        "vision": 2400.0
+      },
+      "company_count": 2,
+      "default_transport": "fast_boat",
+      "designation": "第18远海侦察营",
+      "echelon": "II",
+      "embodiment": "female_infantry",
+      "entity_count": 6,
+      "id": "MCP-018",
+      "name": "苔原",
+      "nato_type": "recon",
+      "personnel_cap": 2200,
+      "personnel_per_company": 6,
+      "recovery_transport": "fast_boat",
+      "role": "recon",
+      "source_kind": "original_fictional",
+      "speed": 100.0,
+      "transport": {
+        "airborne": false,
+        "armor": 1.15,
+        "capacity": 6,
+        "hp": 200.0,
+        "id": "fast_boat",
+        "kind": "fast_boat",
+        "speed": 145.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射100伤害、180米爆炸半径的火箭弹。",
+        "duration_s": 0.0,
+        "id": "air_rockets",
+        "name": "火箭齐射",
+        "radius": 180.0,
+        "range": 1600.0
+      },
+      "body_count": 12,
+      "combat": {
+        "ammo": 16,
+        "armor": 0.95,
+        "class": "air",
+        "collision_radius_m": 6.0,
+        "damage": 78.0,
+        "hp": 210.0,
+        "range": 1550.0,
+        "reload_seconds": 2.4,
+        "speed": 260.0,
+        "vehicle_id": "MCP-027-attack_helicopter",
+        "vision": 2200.0
+      },
+      "company_count": 2,
+      "default_transport": "attack_helicopter",
+      "designation": "第27武装航空旅",
+      "echelon": "X",
+      "embodiment": "one_female_body_drives_one_aircraft",
+      "entity_count": 6,
+      "id": "MCP-027",
+      "name": "赤隼",
+      "nato_type": "aviation",
+      "personnel_cap": 2200,
+      "personnel_per_company": 6,
+      "recovery_transport": "attack_helicopter",
+      "role": "gunship",
+      "source_kind": "original_fictional",
+      "speed": 260.0,
+      "transport": {
+        "airborne": true,
+        "armor": 1.2,
+        "capacity": 1,
+        "hp": 155.0,
+        "id": "attack_helicopter",
+        "kind": "attack_helicopter",
+        "speed": 310.0,
+        "transport_role": "combat_same_actor"
+      },
+      "transport_options": [
+        {
+          "airborne": true,
+          "armor": 1.2,
+          "capacity": 1,
+          "hp": 155.0,
+          "id": "attack_helicopter",
+          "kind": "attack_helicopter",
+          "speed": 310.0,
+          "transport_role": "combat_same_actor"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "400米内敌方开火最少推迟3.5秒，持续12秒降低本连被发现距离。",
+        "duration_s": 12.0,
+        "id": "jam",
+        "name": "电磁压制",
+        "radius": 400.0,
+        "range": 1600.0
+      },
+      "body_count": 12,
+      "combat": {
+        "ammo": 65,
+        "armor": 1.0,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 12.0,
+        "hp": 90.0,
+        "range": 700.0,
+        "reload_seconds": 1.6,
+        "speed": 78.0,
+        "vehicle_id": null,
+        "vision": 1900.0
+      },
+      "company_count": 2,
+      "default_transport": "landing_craft",
+      "designation": "第41电子战营",
+      "echelon": "II",
+      "embodiment": "female_infantry",
+      "entity_count": 6,
+      "id": "MCP-041",
+      "name": "雾雀",
+      "nato_type": "electronic",
+      "personnel_cap": 2200,
+      "personnel_per_company": 6,
+      "recovery_transport": "landing_craft",
+      "role": "electronic",
+      "source_kind": "original_fictional",
+      "speed": 78.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.9,
+        "capacity": 12,
+        "hp": 340.0,
+        "id": "landing_craft",
+        "kind": "landing_craft",
+        "speed": 90.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "400米内共享250点有限治疗量，每个存活身体最多恢复35%耐久；不能复活。",
+        "duration_s": 0.0,
+        "id": "triage",
+        "name": "战地救护",
+        "radius": 400.0,
+        "range": 1600.0
+      },
+      "body_count": 24,
+      "combat": {
+        "ammo": 55,
+        "armor": 1.0,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 10.0,
+        "hp": 100.0,
+        "range": 600.0,
+        "reload_seconds": 1.7,
+        "speed": 76.0,
+        "vehicle_id": null,
+        "vision": 1450.0
+      },
+      "company_count": 3,
+      "default_transport": "landing_craft",
+      "designation": "第52海上医疗团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-052",
+      "name": "白鹭",
+      "nato_type": "medic",
+      "personnel_cap": 2800,
+      "personnel_per_company": 8,
+      "recovery_transport": "landing_craft",
+      "role": "medic",
+      "source_kind": "original_fictional",
+      "speed": 76.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.9,
+        "capacity": 12,
+        "hp": 340.0,
+        "id": "landing_craft",
+        "kind": "landing_craft",
+        "speed": 90.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射150伤害、80米爆炸半径的导弹。",
+        "duration_s": 0.0,
+        "id": "at_missile",
+        "name": "反装甲导弹",
+        "radius": 80.0,
+        "range": 1600.0
+      },
+      "body_count": 24,
+      "combat": {
+        "ammo": 28,
+        "armor": 1.1,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 95.0,
+        "hp": 90.0,
+        "range": 1650.0,
+        "reload_seconds": 3.4,
+        "speed": 65.0,
+        "vehicle_id": null,
+        "vision": 1700.0
+      },
+      "company_count": 3,
+      "default_transport": "landing_craft",
+      "designation": "第63反装甲营",
+      "echelon": "II",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-063",
+      "name": "断浪",
+      "nato_type": "antiarmor",
+      "personnel_cap": 2800,
+      "personnel_per_company": 8,
+      "recovery_transport": "landing_craft",
+      "role": "antiarmor",
+      "source_kind": "original_fictional",
+      "speed": 65.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.9,
+        "capacity": 12,
+        "hp": 340.0,
+        "id": "landing_craft",
+        "kind": "landing_craft",
+        "speed": 90.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射180伤害、240米爆炸半径的间接火力。",
+        "duration_s": 0.0,
+        "id": "barrage",
+        "name": "炮兵急袭",
+        "radius": 240.0,
+        "range": 1600.0
+      },
+      "body_count": 18,
+      "combat": {
+        "ammo": 30,
+        "armor": 0.6,
+        "class": "armor",
+        "collision_radius_m": 3.0,
+        "damage": 115.0,
+        "hp": 300.0,
+        "range": 2600.0,
+        "reload_seconds": 4.8,
+        "speed": 36.0,
+        "vehicle_id": "MCP-087-howitzer",
+        "vision": 1600.0
+      },
+      "company_count": 3,
+      "default_transport": "heavy_lander",
+      "designation": "第87岸战炮兵团",
+      "echelon": "III",
+      "embodiment": "one_female_body_operates_one_vehicle",
+      "entity_count": 6,
+      "id": "MCP-087",
+      "name": "砾火",
+      "nato_type": "armor",
+      "personnel_cap": 2800,
+      "personnel_per_company": 6,
+      "recovery_transport": "heavy_lander",
+      "role": "artillery",
+      "source_kind": "original_fictional",
+      "speed": 36.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.42,
+        "capacity": 6,
+        "hp": 800.0,
+        "id": "heavy_lander",
+        "kind": "heavy_lander",
+        "speed": 42.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.42,
+          "capacity": 6,
+          "hp": 800.0,
+          "id": "heavy_lander",
+          "kind": "heavy_lander",
+          "speed": 42.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：本连移动速度提高30%，仍受地形与碰撞限制。",
+        "duration_s": 12.0,
+        "id": "rapid_march",
+        "name": "两栖突进",
+        "radius": 350.0,
+        "range": 1600.0
+      },
+      "body_count": 32,
+      "combat": {
+        "ammo": 60,
+        "armor": 0.52,
+        "class": "amphibious",
+        "collision_radius_m": 3.0,
+        "damage": 55.0,
+        "hp": 360.0,
+        "range": 1100.0,
+        "reload_seconds": 2.2,
+        "speed": 72.0,
+        "vehicle_id": "MCP-103-amphibious_vehicle",
+        "vision": 1600.0
+      },
+      "company_count": 4,
+      "default_transport": "amphibious_vehicle",
+      "designation": "第103两栖机动团",
+      "echelon": "III",
+      "embodiment": "one_female_body_operates_one_vehicle",
+      "entity_count": 8,
+      "id": "MCP-103",
+      "name": "潮梭",
+      "nato_type": "transport",
+      "personnel_cap": 3400,
+      "personnel_per_company": 8,
+      "recovery_transport": "amphibious_vehicle",
+      "role": "transport",
+      "source_kind": "original_fictional",
+      "speed": 72.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.52,
+        "capacity": 1,
+        "hp": 360.0,
+        "id": "amphibious_vehicle",
+        "kind": "amphibious_vehicle",
+        "speed": 85.0,
+        "transport_role": "combat_same_actor"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.52,
+          "capacity": 1,
+          "hp": 360.0,
+          "id": "amphibious_vehicle",
+          "kind": "amphibious_vehicle",
+          "speed": 85.0,
+          "transport_role": "combat_same_actor"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "450米内从本连有限储备补充弹药，每个身体最多补至40发。",
+        "duration_s": 0.0,
+        "id": "resupply",
+        "name": "有限弹药补给",
+        "radius": 450.0,
+        "range": 1600.0
+      },
+      "body_count": 36,
+      "combat": {
+        "ammo": 120,
+        "armor": 0.95,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 13.0,
+        "hp": 105.0,
+        "range": 700.0,
+        "reload_seconds": 1.7,
+        "speed": 66.0,
+        "vehicle_id": null,
+        "vision": 1400.0
+      },
+      "company_count": 4,
+      "default_transport": "armored_boat",
+      "designation": "第116战地补给团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 9,
+      "id": "MCP-116",
+      "name": "银脉",
+      "nato_type": "logistics",
+      "personnel_cap": 3400,
+      "personnel_per_company": 9,
+      "recovery_transport": "armored_boat",
+      "role": "logistics",
+      "source_kind": "original_fictional",
+      "speed": 66.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.55,
+        "capacity": 9,
+        "hp": 520.0,
+        "id": "armored_boat",
+        "kind": "armored_boat",
+        "speed": 65.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射180伤害、35米爆炸半径的精确弹。",
+        "duration_s": 0.0,
+        "id": "precision",
+        "name": "精确狙击",
+        "radius": 35.0,
+        "range": 1600.0
+      },
+      "body_count": 12,
+      "combat": {
+        "ammo": 36,
+        "armor": 1.15,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 72.0,
+        "hp": 75.0,
+        "range": 1850.0,
+        "reload_seconds": 3.1,
+        "speed": 62.0,
+        "vehicle_id": null,
+        "vision": 2300.0
+      },
+      "company_count": 2,
+      "default_transport": "fast_boat",
+      "designation": "第128精确射手营",
+      "echelon": "II",
+      "embodiment": "female_infantry",
+      "entity_count": 6,
+      "id": "MCP-128",
+      "name": "夜莺",
+      "nato_type": "sniper",
+      "personnel_cap": 2200,
+      "personnel_per_company": 6,
+      "recovery_transport": "fast_boat",
+      "role": "sniper",
+      "source_kind": "original_fictional",
+      "speed": 62.0,
+      "transport": {
+        "airborne": false,
+        "armor": 1.15,
+        "capacity": 6,
+        "hp": 200.0,
+        "id": "fast_boat",
+        "kind": "fast_boat",
+        "speed": 145.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射130伤害、240米作用半径的对空弹；只攻击空中实体。",
+        "duration_s": 0.0,
+        "id": "aa_burst",
+        "name": "防空拦截",
+        "radius": 240.0,
+        "range": 1600.0
+      },
+      "body_count": 24,
+      "combat": {
+        "ammo": 60,
+        "armor": 0.95,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 45.0,
+        "hp": 100.0,
+        "range": 2100.0,
+        "reload_seconds": 1.8,
+        "speed": 65.0,
+        "vehicle_id": null,
+        "vision": 2400.0
+      },
+      "company_count": 3,
+      "default_transport": "landing_craft",
+      "designation": "第145机动防空团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-145",
+      "name": "苍穹",
+      "nato_type": "airdefense",
+      "personnel_cap": 2800,
+      "personnel_per_company": 8,
+      "recovery_transport": "landing_craft",
+      "role": "airdefense",
+      "source_kind": "original_fictional",
+      "speed": 65.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.9,
+        "capacity": 12,
+        "hp": 340.0,
+        "id": "landing_craft",
+        "kind": "landing_craft",
+        "speed": 90.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：350米内友方直射受伤系数降至65%，并降低被发现距离；舰炮、迫击炮等间接爆炸不受此减伤。",
+        "duration_s": 12.0,
+        "id": "smoke",
+        "name": "烟幕掩护",
+        "radius": 350.0,
+        "range": 1600.0
+      },
+      "body_count": 36,
+      "combat": {
+        "ammo": 85,
+        "armor": 1.05,
+        "class": "river_infantry",
+        "collision_radius_m": 0.45,
+        "damage": 19.0,
+        "hp": 90.0,
+        "range": 750.0,
+        "reload_seconds": 1.2,
+        "speed": 90.0,
+        "vehicle_id": null,
+        "vision": 1700.0
+      },
+      "company_count": 4,
+      "default_transport": "fast_boat",
+      "designation": "第167河口陆战团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 9,
+      "id": "MCP-167",
+      "name": "苇影",
+      "nato_type": "riverine",
+      "personnel_cap": 3400,
+      "personnel_per_company": 9,
+      "recovery_transport": "fast_boat",
+      "role": "riverine",
+      "source_kind": "original_fictional",
+      "speed": 90.0,
+      "transport": {
+        "airborne": false,
+        "armor": 1.15,
+        "capacity": 6,
+        "hp": 200.0,
+        "id": "fast_boat",
+        "kind": "fast_boat",
+        "speed": 145.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "实际消耗2发弹药，发射220伤害、150米爆炸半径的破障弹。",
+        "duration_s": 0.0,
+        "id": "breach",
+        "name": "爆破破障",
+        "radius": 150.0,
+        "range": 1600.0
+      },
+      "body_count": 24,
+      "combat": {
+        "ammo": 70,
+        "armor": 0.85,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 38.0,
+        "hp": 125.0,
+        "range": 550.0,
+        "reload_seconds": 1.3,
+        "speed": 80.0,
+        "vehicle_id": null,
+        "vision": 1400.0
+      },
+      "company_count": 3,
+      "default_transport": "armored_boat",
+      "designation": "第184破障突击团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 8,
+      "id": "MCP-184",
+      "name": "烬羽",
+      "nato_type": "breacher",
+      "personnel_cap": 2800,
+      "personnel_per_company": 8,
+      "recovery_transport": "armored_boat",
+      "role": "breacher",
+      "source_kind": "original_fictional",
+      "speed": 80.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.55,
+        "capacity": 9,
+        "hp": 520.0,
+        "id": "armored_boat",
+        "kind": "armored_boat",
+        "speed": 65.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：700米内友军装填时间缩至75%，本连移动速度提高30%。",
+        "duration_s": 12.0,
+        "id": "coordination",
+        "name": "联合指挥",
+        "radius": 700.0,
+        "range": 1600.0
+      },
+      "body_count": 12,
+      "combat": {
+        "ammo": 80,
+        "armor": 1.0,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 13.0,
+        "hp": 100.0,
+        "range": 750.0,
+        "reload_seconds": 1.6,
+        "speed": 72.0,
+        "vehicle_id": null,
+        "vision": 1900.0
+      },
+      "company_count": 2,
+      "default_transport": "landing_craft",
+      "designation": "第203联合指挥营",
+      "echelon": "II",
+      "embodiment": "female_infantry",
+      "entity_count": 6,
+      "id": "MCP-203",
+      "name": "星桅",
+      "nato_type": "command",
+      "personnel_cap": 2200,
+      "personnel_per_company": 6,
+      "recovery_transport": "landing_craft",
+      "role": "command",
+      "source_kind": "original_fictional",
+      "speed": 72.0,
+      "transport": {
+        "airborne": false,
+        "armor": 0.9,
+        "capacity": 12,
+        "hp": 340.0,
+        "id": "landing_craft",
+        "kind": "landing_craft",
+        "speed": 90.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": false,
+          "armor": 0.9,
+          "capacity": 12,
+          "hp": 340.0,
+          "id": "landing_craft",
+          "kind": "landing_craft",
+          "speed": 90.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 1.15,
+          "capacity": 6,
+          "hp": 200.0,
+          "id": "fast_boat",
+          "kind": "fast_boat",
+          "speed": 145.0,
+          "transport_role": "both"
+        },
+        {
+          "airborne": false,
+          "armor": 0.55,
+          "capacity": 9,
+          "hp": 520.0,
+          "id": "armored_boat",
+          "kind": "armored_boat",
+          "speed": 65.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "400米内共享250点有限治疗量，每个存活身体最多恢复35%耐久；不能复活。",
+        "duration_s": 0.0,
+        "id": "rescue",
+        "name": "空中救护",
+        "radius": 400.0,
+        "range": 1600.0
+      },
+      "body_count": 18,
+      "combat": {
+        "ammo": 60,
+        "armor": 1.1,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 12.0,
+        "hp": 85.0,
+        "range": 650.0,
+        "reload_seconds": 1.4,
+        "speed": 85.0,
+        "vehicle_id": null,
+        "vision": 1650.0
+      },
+      "company_count": 3,
+      "default_transport": "transport_helicopter",
+      "designation": "第240空中救护团",
+      "echelon": "III",
+      "embodiment": "female_infantry",
+      "entity_count": 6,
+      "id": "MCP-240",
+      "name": "雨燕",
+      "nato_type": "rescue",
+      "personnel_cap": 2800,
+      "personnel_per_company": 6,
+      "recovery_transport": "transport_helicopter",
+      "role": "rescue",
+      "source_kind": "original_fictional",
+      "speed": 85.0,
+      "transport": {
+        "airborne": true,
+        "armor": 1.15,
+        "capacity": 8,
+        "hp": 180.0,
+        "id": "transport_helicopter",
+        "kind": "transport_helicopter",
+        "speed": 330.0,
+        "transport_role": "both"
+      },
+      "transport_options": [
+        {
+          "airborne": true,
+          "armor": 1.15,
+          "capacity": 8,
+          "hp": 180.0,
+          "id": "transport_helicopter",
+          "kind": "transport_helicopter",
+          "speed": 330.0,
+          "transport_role": "both"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：350米内友方直射受伤系数降至65%，并降低被发现距离；舰炮、迫击炮等间接爆炸不受此减伤。",
+        "duration_s": 12.0,
+        "id": "drop_smoke",
+        "name": "伞降烟幕",
+        "radius": 350.0,
+        "range": 1600.0
+      },
+      "body_count": 50,
+      "combat": {
+        "ammo": 80,
+        "armor": 1.15,
+        "class": "infantry",
+        "collision_radius_m": 0.45,
+        "damage": 26.0,
+        "hp": 85.0,
+        "range": 850.0,
+        "reload_seconds": 1.4,
+        "speed": 88.0,
+        "vehicle_id": null,
+        "vision": 1750.0
+      },
+      "company_count": 5,
+      "default_transport": "parachute_aircraft",
+      "designation": "近卫第88伞降旅",
+      "echelon": "X",
+      "embodiment": "female_infantry",
+      "entity_count": 10,
+      "id": "MCP-088",
+      "name": "霜铃",
+      "nato_type": "airborne_infantry",
+      "personnel_cap": 3000,
+      "personnel_per_company": 10,
+      "recovery_transport": "landing_craft",
+      "role": "airborne",
+      "source_kind": "original_fictional",
+      "speed": 88.0,
+      "transport": {
+        "airborne": true,
+        "armor": 1.3,
+        "capacity": 10,
+        "hp": 240.0,
+        "id": "parachute_aircraft",
+        "kind": "parachute_aircraft",
+        "speed": 410.0,
+        "transport_role": "insertion_only"
+      },
+      "transport_options": [
+        {
+          "airborne": true,
+          "armor": 1.3,
+          "capacity": 10,
+          "hp": 240.0,
+          "id": "parachute_aircraft",
+          "kind": "parachute_aircraft",
+          "speed": 410.0,
+          "transport_role": "insertion_only"
+        }
+      ]
+    },
+    {
+      "ability": {
+        "charges": 3,
+        "cooldown": 20.0,
+        "description": "持续12秒：700米内友军装填时间缩至75%；六机使用自身有限弹药。",
+        "duration_s": 12.0,
+        "id": "air_coordination",
+        "name": "六机协同",
+        "radius": 700.0,
+        "range": 1600.0
+      },
+      "body_count": 6,
+      "combat": {
+        "ammo": 12,
+        "armor": 1.2,
+        "class": "air",
+        "collision_radius_m": 6.0,
+        "damage": 60.0,
+        "hp": 155.0,
+        "range": 1450.0,
+        "reload_seconds": 1.8,
+        "speed": 310.0,
+        "vehicle_id": "MCP-006-attack_helicopter",
+        "vision": 2300.0
+      },
+      "company_count": 1,
+      "default_transport": "attack_helicopter",
+      "designation": "第6海上空中突击营",
+      "echelon": "II",
+      "embodiment": "one_female_body_drives_one_aircraft",
+      "entity_count": 6,
+      "id": "MCP-006",
+      "name": "夜枭",
+      "nato_type": "aviation",
+      "personnel_cap": 1200,
+      "personnel_per_company": 6,
+      "recovery_transport": "attack_helicopter",
+      "role": "gunship",
+      "source_kind": "original_fictional",
+      "speed": 310.0,
+      "transport": {
+        "airborne": true,
+        "armor": 1.2,
+        "capacity": 1,
+        "hp": 155.0,
+        "id": "attack_helicopter",
+        "kind": "attack_helicopter",
+        "speed": 310.0,
+        "transport_role": "combat_same_actor"
+      },
+      "transport_options": [
+        {
+          "airborne": true,
+          "armor": 1.2,
+          "capacity": 1,
+          "hp": 155.0,
+          "id": "attack_helicopter",
+          "kind": "attack_helicopter",
+          "speed": 310.0,
+          "transport_role": "combat_same_actor"
+        }
+      ]
+    }
+  ],
+  "deployables": [
+    {
+      "charges": 1,
+      "damage": 140,
+      "kind": "land_mine",
+      "radius_m": 100
+    },
+    {
+      "charges": 1,
+      "damage": 180,
+      "kind": "sea_mine",
+      "radius_m": 180
+    },
+    {
+      "cover_multiplier": 0.65,
+      "hp": 450,
+      "kind": "beach_position",
+      "radius_m": 140
+    }
+  ],
+  "growth": {
+    "max_ascension": 2,
+    "max_damage_bonus": 0.05,
+    "max_hp_bonus": 0.05,
+    "max_level": 30,
+    "max_utility_bonus": 0.01,
+    "specializations": [
+      "assault",
+      "vanguard",
+      "support",
+      "mobility",
+      "precision",
+      "logistics"
+    ]
+  },
+  "islands": [
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 1,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.62
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 3300.0,
+      "id": "shoal_watch",
+      "land_personnel": 18,
+      "level": 1,
+      "local_simulation": true,
+      "name": "浅滩哨所",
+      "palette": "coral",
+      "recommended_points": 1500,
+      "storage": {
+        "alloy": 30,
+        "credits": 300,
+        "protocols": 0,
+        "scrap": 120
+      },
+      "width_m": 2500.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 1,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 1,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 1,
+          "x": 0.78,
+          "y": 0.26
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 3650.0,
+      "id": "rust_quay",
+      "land_personnel": 25,
+      "level": 2,
+      "local_simulation": true,
+      "name": "锈港回收站",
+      "palette": "ochre",
+      "recommended_points": 2400,
+      "storage": {
+        "alloy": 55,
+        "credits": 480,
+        "protocols": 0,
+        "scrap": 190
+      },
+      "width_m": 2830.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 2,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 2,
+          "x": 0.67,
+          "y": 0.72
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-PENSACOLA",
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 4000.0,
+      "id": "cloudbreak",
+      "land_personnel": 32,
+      "level": 3,
+      "local_simulation": true,
+      "name": "断云航空站",
+      "palette": "mint",
+      "recommended_points": 3300,
+      "storage": {
+        "alloy": 80,
+        "credits": 660,
+        "protocols": 0,
+        "scrap": 260
+      },
+      "width_m": 3160.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 2,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 2,
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-9",
+          "kind": "anti_ship",
+          "level": 2,
+          "x": 0.35,
+          "y": 0.2
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-10",
+          "kind": "repair",
+          "level": 2,
+          "x": 0.81,
+          "y": 0.68
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-PENSACOLA",
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 4700.0,
+      "id": "iron_citadel",
+      "land_personnel": 39,
+      "level": 5,
+      "local_simulation": true,
+      "name": "铁潮要塞",
+      "palette": "cobalt",
+      "recommended_points": 4200,
+      "storage": {
+        "alloy": 105,
+        "credits": 840,
+        "protocols": 1,
+        "scrap": 330
+      },
+      "width_m": 3820.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-9",
+          "kind": "anti_ship",
+          "level": 3,
+          "x": 0.35,
+          "y": 0.2
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-10",
+          "kind": "repair",
+          "level": 3,
+          "x": 0.81,
+          "y": 0.68
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-11",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.86
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-12",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.71,
+          "y": 0.32
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-PENSACOLA",
+        "IBS-U-USN-FLETCHER",
+        "IBS-U-USN-PENSACOLA"
+      ],
+      "height_m": 5400.0,
+      "id": "storm_relay",
+      "land_personnel": 46,
+      "level": 7,
+      "local_simulation": true,
+      "name": "风暴中继岛",
+      "palette": "coral",
+      "recommended_points": 5100,
+      "storage": {
+        "alloy": 130,
+        "credits": 1020,
+        "protocols": 1,
+        "scrap": 400
+      },
+      "width_m": 4480.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-9",
+          "kind": "anti_ship",
+          "level": 3,
+          "x": 0.35,
+          "y": 0.2
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-10",
+          "kind": "repair",
+          "level": 3,
+          "x": 0.81,
+          "y": 0.68
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-11",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.86
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-12",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.71,
+          "y": 0.32
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-13",
+          "kind": "mortar",
+          "level": 3,
+          "x": 0.86,
+          "y": 0.78
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-14",
+          "kind": "anti_ship",
+          "level": 3,
+          "x": 0.31,
+          "y": 0.82
+        }
+      ],
+      "garrison": [
+        "CAS-H-IJN-SHOKAKU-1942",
+        "IBS-U-USN-FLETCHER",
+        "IBS-U-USN-PENSACOLA"
+      ],
+      "height_m": 6450.0,
+      "id": "old_arsenal",
+      "land_personnel": 53,
+      "level": 10,
+      "local_simulation": true,
+      "name": "旧世军械岛",
+      "palette": "ochre",
+      "recommended_points": 6000,
+      "storage": {
+        "alloy": 155,
+        "credits": 1200,
+        "protocols": 1,
+        "scrap": 470
+      },
+      "width_m": 5470.0
+    }
+  ],
+  "limits": {
+    "bodies_per_side": 600,
+    "companies_per_side": 96,
+    "match_seconds": 1200,
+    "projectiles": 512,
+    "roster_per_side": 22,
+    "ships_per_side": 6
+  },
+  "max_island_level": 10,
+  "max_seconds": 900,
+  "modes": [
+    "raid",
+    "defense",
+    "exercise"
+  ],
+  "replay": {
+    "read_only": true,
+    "seek_resolution_seconds": 0.1,
+    "source": "seed_configuration_and_validated_commands",
+    "version": "cas-island-war-v1"
+  },
+  "simulation_hz": 10,
+  "source_kind": "original_fictional",
+  "tower_types": [
+    {
+      "ammo": 0,
+      "armor": "reinforced",
+      "damage": 0.0,
+      "hp": 1800.0,
+      "kind": "hq",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "指挥核心",
+      "projectile_speed_mps": 0.0,
+      "radius_m": 0.0,
+      "range_m": 0.0,
+      "reload_seconds": 0.0,
+      "role": "objective",
+      "width_m": 70
+    },
+    {
+      "ammo": 0,
+      "armor": "light",
+      "damage": 0.0,
+      "hp": 650.0,
+      "kind": "warehouse",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "可夺取仓库",
+      "projectile_speed_mps": 0.0,
+      "radius_m": 0.0,
+      "range_m": 0.0,
+      "reload_seconds": 0.0,
+      "role": "storage",
+      "width_m": 50
+    },
+    {
+      "ammo": 240,
+      "armor": "light",
+      "damage": 12.0,
+      "hp": 440.0,
+      "kind": "machine_gun",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "双联机枪塔",
+      "projectile_speed_mps": 1200.0,
+      "radius_m": 32.0,
+      "range_m": 1000.0,
+      "reload_seconds": 0.6,
+      "role": "anti_infantry",
+      "width_m": 20
+    },
+    {
+      "ammo": 45,
+      "armor": "reinforced",
+      "damage": 90.0,
+      "hp": 720.0,
+      "kind": "cannon",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "反装甲加农炮",
+      "projectile_speed_mps": 1000.0,
+      "radius_m": 65.0,
+      "range_m": 1900.0,
+      "reload_seconds": 3.8,
+      "role": "anti_armor",
+      "width_m": 20
+    },
+    {
+      "ammo": 40,
+      "armor": "light",
+      "damage": 42.0,
+      "hp": 400.0,
+      "kind": "mortar",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 350.0,
+      "name": "曲射迫击炮",
+      "projectile_speed_mps": 350.0,
+      "radius_m": 135.0,
+      "range_m": 2450.0,
+      "reload_seconds": 4.2,
+      "role": "indirect",
+      "width_m": 20
+    },
+    {
+      "ammo": 90,
+      "armor": "medium",
+      "damage": 40.0,
+      "hp": 520.0,
+      "kind": "air_defense",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "近程防空塔",
+      "projectile_speed_mps": 1500.0,
+      "radius_m": 85.0,
+      "range_m": 2450.0,
+      "reload_seconds": 1.4,
+      "role": "anti_air",
+      "width_m": 20
+    },
+    {
+      "ammo": 32,
+      "armor": "reinforced",
+      "damage": 24.0,
+      "hp": 850.0,
+      "kind": "anti_ship",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 500.0,
+      "name": "岸防反舰炮",
+      "projectile_speed_mps": 900.0,
+      "radius_m": 80.0,
+      "range_m": 7000.0,
+      "reload_seconds": 6.5,
+      "role": "anti_ship",
+      "width_m": 20
+    },
+    {
+      "ammo": 35,
+      "armor": "light",
+      "damage": 22.0,
+      "hp": 480.0,
+      "kind": "repair",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "有限抢修节点",
+      "projectile_speed_mps": 0.0,
+      "radius_m": 0.0,
+      "range_m": 950.0,
+      "reload_seconds": 3.0,
+      "role": "repair",
+      "width_m": 20
+    }
+  ],
+  "version": "cas-island-war-v2"
+}

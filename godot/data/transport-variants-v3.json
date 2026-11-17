@@ -1,0 +1,1079 @@
+{
+  "version": "cas-transport-art-v3",
+  "source": "built-in image_gen",
+  "historical_rules_affected": false,
+  "columns": 5,
+  "rows": 2,
+  "units": {
+    "MCP-001": {
+      "id": "MCP-001",
+      "vehicle_id": "MCP-001-helicopter",
+      "name": "云隼轻型突击直升机",
+      "default_kind": "helicopter",
+      "art_variant": "light_assault_helicopter",
+      "atlas": "res://assets/tactical/transport/variants-alpha-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            0,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            105,
+            51,
+            322,
+            354
+          ],
+          "scale_reference": 303
+        },
+        "deploying": {
+          "region": [
+            0,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            83,
+            48,
+            350,
+            346
+          ],
+          "scale_reference": 303
+        }
+      },
+      "forward": "north",
+      "display_length": 88,
+      "rotor_procedural": true,
+      "deployment_rotor_uses_intact_body": true,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-034": {
+      "id": "MCP-034",
+      "vehicle_id": "MCP-034-landing_craft",
+      "name": "礁刃重载登陆艇",
+      "default_kind": "landing_craft",
+      "art_variant": "heavy_landing_boat",
+      "atlas": "res://assets/tactical/transport/variants-alpha-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            397,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            76,
+            49,
+            301,
+            353
+          ],
+          "scale_reference": 304
+        },
+        "deploying": {
+          "region": [
+            397,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            76,
+            42,
+            301,
+            353
+          ],
+          "scale_reference": 304
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-076": {
+      "id": "MCP-076",
+      "vehicle_id": "MCP-076-helicopter",
+      "name": "冬鸢倾转旋翼机",
+      "default_kind": "helicopter",
+      "art_variant": "tiltrotor",
+      "atlas": "res://assets/tactical/transport/variants-alpha-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            793,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            15,
+            86,
+            382,
+            345
+          ],
+          "scale_reference": 367
+        },
+        "deploying": {
+          "region": [
+            793,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            12,
+            75,
+            386,
+            343
+          ],
+          "scale_reference": 367
+        }
+      },
+      "forward": "north",
+      "display_length": 88,
+      "rotor_procedural": true,
+      "deployment_rotor_uses_intact_body": true,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-009": {
+      "id": "MCP-009",
+      "vehicle_id": "MCP-009-landing_craft",
+      "name": "汐锚抢修登陆艇",
+      "default_kind": "landing_craft",
+      "art_variant": "engineering_landing_boat",
+      "atlas": "res://assets/tactical/transport/variants-alpha-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1190,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            110,
+            49,
+            308,
+            353
+          ],
+          "scale_reference": 304
+        },
+        "deploying": {
+          "region": [
+            1190,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            110,
+            42,
+            359,
+            355
+          ],
+          "scale_reference": 304
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-022": {
+      "id": "MCP-022",
+      "vehicle_id": "MCP-022-amphibious_vehicle",
+      "name": "铁潮重装两栖战车",
+      "default_kind": "amphibious_vehicle",
+      "art_variant": "heavy_amphibious_tank",
+      "atlas": "res://assets/tactical/transport/variants-alpha-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1586,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            111,
+            48,
+            290,
+            346
+          ],
+          "scale_reference": 298
+        },
+        "deploying": {
+          "region": [
+            1586,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            111,
+            41,
+            290,
+            354
+          ],
+          "scale_reference": 298
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-011": {
+      "id": "MCP-011",
+      "vehicle_id": "MCP-011-landing_craft",
+      "name": "灯鲨高速冲滩艇",
+      "default_kind": "landing_craft",
+      "art_variant": "fast_assault_boat",
+      "atlas": "res://assets/tactical/transport/variants-bravo-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            0,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            185,
+            51,
+            302,
+            344
+          ],
+          "scale_reference": 293
+        },
+        "deploying": {
+          "region": [
+            0,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            183,
+            38,
+            304,
+            334
+          ],
+          "scale_reference": 293
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-018": {
+      "id": "MCP-018",
+      "vehicle_id": "MCP-018-landing_craft",
+      "name": "苔原侦察气垫艇",
+      "default_kind": "landing_craft",
+      "art_variant": "recon_hovercraft",
+      "atlas": "res://assets/tactical/transport/variants-bravo-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            397,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            122,
+            59,
+            316,
+            326
+          ],
+          "scale_reference": 267
+        },
+        "deploying": {
+          "region": [
+            397,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            117,
+            46,
+            322,
+            334
+          ],
+          "scale_reference": 267
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-027": {
+      "id": "MCP-027",
+      "vehicle_id": "MCP-027-helicopter",
+      "name": "赤隼武装直升机",
+      "default_kind": "helicopter",
+      "art_variant": "attack_helicopter",
+      "atlas": "res://assets/tactical/transport/variants-bravo-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            793,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            93,
+            53,
+            306,
+            345
+          ],
+          "scale_reference": 292
+        },
+        "deploying": {
+          "region": [
+            793,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            68,
+            40,
+            332,
+            336
+          ],
+          "scale_reference": 292
+        }
+      },
+      "forward": "north",
+      "display_length": 88,
+      "rotor_procedural": true,
+      "deployment_rotor_uses_intact_body": true,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-041": {
+      "id": "MCP-041",
+      "vehicle_id": "MCP-041-landing_craft",
+      "name": "雾雀电子战登陆艇",
+      "default_kind": "landing_craft",
+      "art_variant": "electronic_warfare_boat",
+      "atlas": "res://assets/tactical/transport/variants-bravo-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1190,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            109,
+            54,
+            251,
+            328
+          ],
+          "scale_reference": 274
+        },
+        "deploying": {
+          "region": [
+            1190,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            106,
+            32,
+            285,
+            334
+          ],
+          "scale_reference": 274
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-052": {
+      "id": "MCP-052",
+      "vehicle_id": "MCP-052-landing_craft",
+      "name": "白鹭战地救护艇",
+      "default_kind": "landing_craft",
+      "art_variant": "medical_landing_boat",
+      "atlas": "res://assets/tactical/transport/variants-bravo-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1586,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            86,
+            49,
+            227,
+            328
+          ],
+          "scale_reference": 279
+        },
+        "deploying": {
+          "region": [
+            1586,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            84,
+            37,
+            229,
+            334
+          ],
+          "scale_reference": 279
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-063": {
+      "id": "MCP-063",
+      "vehicle_id": "MCP-063-landing_craft",
+      "name": "断浪导弹登陆艇",
+      "default_kind": "landing_craft",
+      "art_variant": "missile_landing_boat",
+      "atlas": "res://assets/tactical/transport/variants-charlie-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            0,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            150,
+            56,
+            324,
+            339
+          ],
+          "scale_reference": 283
+        },
+        "deploying": {
+          "region": [
+            0,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            149,
+            32,
+            325,
+            343
+          ],
+          "scale_reference": 283
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-087": {
+      "id": "MCP-087",
+      "vehicle_id": "MCP-087-landing_craft",
+      "name": "砾火火箭支援艇",
+      "default_kind": "landing_craft",
+      "art_variant": "rocket_support_boat",
+      "atlas": "res://assets/tactical/transport/variants-charlie-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            397,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            145,
+            57,
+            289,
+            335
+          ],
+          "scale_reference": 278
+        },
+        "deploying": {
+          "region": [
+            397,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            90,
+            33,
+            343,
+            313
+          ],
+          "scale_reference": 278
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-103": {
+      "id": "MCP-103",
+      "vehicle_id": "MCP-103-amphibious_vehicle",
+      "name": "潮梭轮式两栖输送车",
+      "default_kind": "amphibious_vehicle",
+      "art_variant": "wheeled_amphibious_carrier",
+      "atlas": "res://assets/tactical/transport/variants-charlie-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            793,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            124,
+            54,
+            273,
+            343
+          ],
+          "scale_reference": 289
+        },
+        "deploying": {
+          "region": [
+            793,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            122,
+            33,
+            275,
+            343
+          ],
+          "scale_reference": 289
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-116": {
+      "id": "MCP-116",
+      "vehicle_id": "MCP-116-landing_craft",
+      "name": "银脉装甲补给艇",
+      "default_kind": "landing_craft",
+      "art_variant": "armored_supply_boat",
+      "atlas": "res://assets/tactical/transport/variants-charlie-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1190,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            72,
+            55,
+            302,
+            338
+          ],
+          "scale_reference": 283
+        },
+        "deploying": {
+          "region": [
+            1190,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            70,
+            33,
+            305,
+            343
+          ],
+          "scale_reference": 283
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-128": {
+      "id": "MCP-128",
+      "vehicle_id": "MCP-128-landing_craft",
+      "name": "夜莺低噪潜入艇",
+      "default_kind": "landing_craft",
+      "art_variant": "stealth_insertion_boat",
+      "atlas": "res://assets/tactical/transport/variants-charlie-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1586,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            108,
+            67,
+            241,
+            341
+          ],
+          "scale_reference": 274
+        },
+        "deploying": {
+          "region": [
+            1586,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            108,
+            44,
+            243,
+            316
+          ],
+          "scale_reference": 274
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-145": {
+      "id": "MCP-145",
+      "vehicle_id": "MCP-145-landing_craft",
+      "name": "苍穹防空登陆艇",
+      "default_kind": "landing_craft",
+      "art_variant": "air_defense_boat",
+      "atlas": "res://assets/tactical/transport/variants-delta-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            0,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            187,
+            48,
+            350,
+            348
+          ],
+          "scale_reference": 300
+        },
+        "deploying": {
+          "region": [
+            0,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            187,
+            31,
+            350,
+            346
+          ],
+          "scale_reference": 300
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-167": {
+      "id": "MCP-167",
+      "vehicle_id": "MCP-167-landing_craft",
+      "name": "苇影浅吃水河口艇",
+      "default_kind": "landing_craft",
+      "art_variant": "shallow_river_boat",
+      "atlas": "res://assets/tactical/transport/variants-delta-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            397,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            138,
+            54,
+            329,
+            356
+          ],
+          "scale_reference": 302
+        },
+        "deploying": {
+          "region": [
+            397,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            139,
+            36,
+            329,
+            339
+          ],
+          "scale_reference": 302
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-184": {
+      "id": "MCP-184",
+      "vehicle_id": "MCP-184-landing_craft",
+      "name": "烬羽破障突击艇",
+      "default_kind": "landing_craft",
+      "art_variant": "breaching_assault_boat",
+      "atlas": "res://assets/tactical/transport/variants-delta-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            793,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            111,
+            60,
+            286,
+            351
+          ],
+          "scale_reference": 291
+        },
+        "deploying": {
+          "region": [
+            793,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            106,
+            44,
+            292,
+            347
+          ],
+          "scale_reference": 291
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-203": {
+      "id": "MCP-203",
+      "vehicle_id": "MCP-203-landing_craft",
+      "name": "星桅指挥登陆艇",
+      "default_kind": "landing_craft",
+      "art_variant": "command_landing_boat",
+      "atlas": "res://assets/tactical/transport/variants-delta-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1190,
+            0,
+            396,
+            396
+          ],
+          "anchor": [
+            198.0,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            77,
+            47,
+            230,
+            353
+          ],
+          "scale_reference": 306
+        },
+        "deploying": {
+          "region": [
+            1190,
+            396,
+            396,
+            397
+          ],
+          "anchor": [
+            198.0,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            77,
+            30,
+            396,
+            347
+          ],
+          "scale_reference": 306
+        }
+      },
+      "forward": "north",
+      "display_length": 76,
+      "rotor_procedural": false,
+      "deployment_rotor_uses_intact_body": false,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    },
+    "MCP-240": {
+      "id": "MCP-240",
+      "vehicle_id": "MCP-240-helicopter",
+      "name": "雨燕救援直升机",
+      "default_kind": "helicopter",
+      "art_variant": "rescue_helicopter",
+      "atlas": "res://assets/tactical/transport/variants-delta-v3.png",
+      "frames": {
+        "intact": {
+          "region": [
+            1586,
+            0,
+            397,
+            396
+          ],
+          "anchor": [
+            198.5,
+            198.0
+          ],
+          "alpha_bbox_128": [
+            2,
+            54,
+            259,
+            364
+          ],
+          "scale_reference": 310
+        },
+        "deploying": {
+          "region": [
+            1586,
+            396,
+            397,
+            397
+          ],
+          "anchor": [
+            198.5,
+            198.5
+          ],
+          "alpha_bbox_128": [
+            0,
+            39,
+            278,
+            348
+          ],
+          "scale_reference": 310
+        }
+      },
+      "forward": "north",
+      "display_length": 88,
+      "rotor_procedural": true,
+      "deployment_rotor_uses_intact_body": true,
+      "alternate_family_policy": "generic family atlas with this identity type token and label, never another unit exclusive vehicle"
+    }
+  },
+  "fallback": {
+    "atlas": "res://assets/tactical/transport/transport-atlas-v3.png",
+    "columns": 3,
+    "rows": 3,
+    "kinds": [
+      "landing_craft",
+      "amphibious_vehicle",
+      "helicopter"
+    ]
+  }
+}

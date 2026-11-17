@@ -1,0 +1,2902 @@
+{
+  "id": "title",
+  "title": "归航的第一束光",
+  "composer": "CAS original procedural score, authored 2026-11-13",
+  "bpm": 78,
+  "tonic_midi": 67,
+  "mode": "major",
+  "bars": 24,
+  "beats_per_bar": 4,
+  "sections": [
+    {
+      "name": "A",
+      "bar": 0
+    },
+    {
+      "name": "A-prime",
+      "bar": 8
+    },
+    {
+      "name": "B",
+      "bar": 16
+    }
+  ],
+  "loop": true,
+  "loop_start_bar": 8,
+  "motif": [
+    [
+      0,
+      2,
+      4,
+      5,
+      4,
+      2,
+      1,
+      0
+    ],
+    [
+      2,
+      4,
+      6,
+      7,
+      6,
+      4,
+      2,
+      1
+    ]
+  ],
+  "harmony_degrees": [
+    0,
+    4,
+    5,
+    3,
+    0,
+    2,
+    3,
+    4
+  ],
+  "notes": [
+    {
+      "instrument": "strings",
+      "beat": 0.0,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 0.025,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 0.05,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 0.075,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 0,
+      "duration": 0.62,
+      "pitch": 43,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 2,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 0.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 1.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 2.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 3.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 0.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 2.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 0,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 2,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "bell",
+      "beat": 0,
+      "duration": 2.4,
+      "pitch": 79,
+      "velocity": 0.065,
+      "pan": 0.55
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.0,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.025,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.05,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 4.075,
+      "duration": 3.9,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 4,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 6,
+      "duration": 0.62,
+      "pitch": 57,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 4.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 5.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 6.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 7.0,
+      "duration": 0.95,
+      "pitch": 84,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 4.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 6.015,
+      "duration": 1.6,
+      "pitch": 76,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 4,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 6,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.0,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.025,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.05,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 8.075,
+      "duration": 3.9,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 8,
+      "duration": 0.62,
+      "pitch": 52,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 10,
+      "duration": 0.62,
+      "pitch": 59,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 8.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 9.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 10.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 11.0,
+      "duration": 0.95,
+      "pitch": 86,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 8.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 10.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 8,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 10,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 12.075,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 12,
+      "duration": 0.62,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 14,
+      "duration": 0.62,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 12.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 13.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 14.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 15.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 12.015,
+      "duration": 1.6,
+      "pitch": 69,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 14.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 12,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 14,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.0,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.025,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.05,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 16.075,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 16,
+      "duration": 0.62,
+      "pitch": 43,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 18,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 16.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 17.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 18.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 19.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 16.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 18.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 16,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 18,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.0,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.025,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.05,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 20.075,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 20,
+      "duration": 0.62,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 22,
+      "duration": 0.62,
+      "pitch": 54,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 20.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 21.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 22.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 23.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 20.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 22.015,
+      "duration": 1.6,
+      "pitch": 76,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 20,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 22,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 24.075,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 24,
+      "duration": 0.62,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 26,
+      "duration": 0.62,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 24.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 25.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 26.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 27.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 24.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 26.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 24,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 26,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.0,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.025,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.05,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 28.075,
+      "duration": 3.9,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 28,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 30,
+      "duration": 0.62,
+      "pitch": 57,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 28.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 29.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 30.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 31.0,
+      "duration": 0.95,
+      "pitch": 84,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 28.015,
+      "duration": 1.6,
+      "pitch": 69,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 30.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 28,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 30,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 32.0,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 32.025,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 32.05,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 32.075,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 32,
+      "duration": 0.62,
+      "pitch": 43,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 34,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 32.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 33.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 34.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 35.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 32.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 34.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 32,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 34,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "bell",
+      "beat": 32,
+      "duration": 2.4,
+      "pitch": 79,
+      "velocity": 0.065,
+      "pan": 0.55
+    },
+    {
+      "instrument": "strings",
+      "beat": 36.0,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 36.025,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 36.05,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 36.075,
+      "duration": 3.9,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 36,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 38,
+      "duration": 0.62,
+      "pitch": 57,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 36.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 37.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 38.0,
+      "duration": 0.95,
+      "pitch": 84,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 39.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 36.015,
+      "duration": 1.6,
+      "pitch": 78,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 38.015,
+      "duration": 1.6,
+      "pitch": 79,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 37,
+      "duration": 1.7,
+      "pitch": 66,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 39,
+      "duration": 0.8,
+      "pitch": 69,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 36,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 38,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 40.0,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 40.025,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 40.05,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 40.075,
+      "duration": 3.9,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 40,
+      "duration": 0.62,
+      "pitch": 52,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 42,
+      "duration": 0.62,
+      "pitch": 59,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 40.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 41.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 42.0,
+      "duration": 0.95,
+      "pitch": 86,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 43.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 40.015,
+      "duration": 1.6,
+      "pitch": 78,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 42.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 40,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 42,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 44.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 44.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 44.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 44.075,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 44,
+      "duration": 0.62,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 46,
+      "duration": 0.62,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 44.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 45.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 46.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 47.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 44.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 46.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 45,
+      "duration": 1.7,
+      "pitch": 64,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 47,
+      "duration": 0.8,
+      "pitch": 67,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 44,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 46,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 48.0,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 48.025,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 48.05,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 48.075,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 48,
+      "duration": 0.62,
+      "pitch": 43,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 50,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 48.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 49.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 50.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 51.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 48.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 50.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 48,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 50,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 52.0,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 52.025,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 52.05,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 52.075,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 52,
+      "duration": 0.62,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 54,
+      "duration": 0.62,
+      "pitch": 54,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 52.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 53.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 54.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 55.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 52.015,
+      "duration": 1.6,
+      "pitch": 78,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 54.015,
+      "duration": 1.6,
+      "pitch": 79,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 53,
+      "duration": 1.7,
+      "pitch": 62,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 55,
+      "duration": 0.8,
+      "pitch": 66,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 52,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 54,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 56.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 56.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 56.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 56.075,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 56,
+      "duration": 0.62,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 58,
+      "duration": 0.62,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 56.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 57.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 58.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 59.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 56.015,
+      "duration": 1.6,
+      "pitch": 78,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 58.015,
+      "duration": 1.6,
+      "pitch": 74,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 56,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 58,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 60.0,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 60.025,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 60.05,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 60.075,
+      "duration": 3.9,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 60,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 62,
+      "duration": 0.62,
+      "pitch": 57,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 60.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 61.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 62.0,
+      "duration": 0.95,
+      "pitch": 84,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 63.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 60.015,
+      "duration": 1.6,
+      "pitch": 71,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 62.015,
+      "duration": 1.6,
+      "pitch": 67,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 61,
+      "duration": 1.7,
+      "pitch": 66,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 63,
+      "duration": 0.8,
+      "pitch": 69,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 60,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 62,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 64.0,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 64.025,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 64.05,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 64.075,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 64,
+      "duration": 0.62,
+      "pitch": 43,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 66,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 64.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 65.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 66.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 67.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 64.015,
+      "duration": 1.6,
+      "pitch": 83,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 66.015,
+      "duration": 1.6,
+      "pitch": 86,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 64,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 66,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "bell",
+      "beat": 64,
+      "duration": 2.4,
+      "pitch": 79,
+      "velocity": 0.065,
+      "pan": 0.55
+    },
+    {
+      "instrument": "strings",
+      "beat": 68.0,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 68.025,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 68.05,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 68.075,
+      "duration": 3.9,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 68,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 70,
+      "duration": 0.62,
+      "pitch": 57,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 68.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 69.0,
+      "duration": 0.95,
+      "pitch": 88,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 70.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 71.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 68.015,
+      "duration": 1.6,
+      "pitch": 90,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 70.015,
+      "duration": 1.6,
+      "pitch": 91,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 69,
+      "duration": 1.7,
+      "pitch": 66,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 71,
+      "duration": 0.8,
+      "pitch": 69,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 68,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 70,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 72.0,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 72.025,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 72.05,
+      "duration": 3.9,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 72.075,
+      "duration": 3.9,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 72,
+      "duration": 0.62,
+      "pitch": 52,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 74,
+      "duration": 0.62,
+      "pitch": 59,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 72.0,
+      "duration": 0.95,
+      "pitch": 83,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 73.0,
+      "duration": 0.95,
+      "pitch": 90,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 74.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 75.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 72.015,
+      "duration": 1.6,
+      "pitch": 90,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 74.015,
+      "duration": 1.6,
+      "pitch": 86,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 72,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 74,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 76.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 76.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 76.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 76.075,
+      "duration": 3.9,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 76,
+      "duration": 0.62,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 78,
+      "duration": 0.62,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 76.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 77.0,
+      "duration": 0.95,
+      "pitch": 86,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 78.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 79.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 76.015,
+      "duration": 1.6,
+      "pitch": 83,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 78.015,
+      "duration": 1.6,
+      "pitch": 81,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 77,
+      "duration": 1.7,
+      "pitch": 64,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 79,
+      "duration": 0.8,
+      "pitch": 67,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 76,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 78,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 80.0,
+      "duration": 3.9,
+      "pitch": 55,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 80.025,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 80.05,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 80.075,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 80,
+      "duration": 0.62,
+      "pitch": 43,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 82,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 80.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 81.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 82.0,
+      "duration": 0.95,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 83.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 80.015,
+      "duration": 1.6,
+      "pitch": 83,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 82.015,
+      "duration": 1.6,
+      "pitch": 86,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 80,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 82,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 84.0,
+      "duration": 3.9,
+      "pitch": 59,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 84.025,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 84.05,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 84.075,
+      "duration": 3.9,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 84,
+      "duration": 0.62,
+      "pitch": 47,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 86,
+      "duration": 0.62,
+      "pitch": 54,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 84.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 85.0,
+      "duration": 0.95,
+      "pitch": 84,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 86.0,
+      "duration": 0.95,
+      "pitch": 71,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 87.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 84.015,
+      "duration": 1.6,
+      "pitch": 90,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 86.015,
+      "duration": 1.6,
+      "pitch": 91,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 85,
+      "duration": 1.7,
+      "pitch": 62,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 87,
+      "duration": 0.8,
+      "pitch": 66,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 84,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 86,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 88.0,
+      "duration": 3.9,
+      "pitch": 60,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 88.025,
+      "duration": 3.9,
+      "pitch": 64,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 88.05,
+      "duration": 3.9,
+      "pitch": 67,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 88.075,
+      "duration": 3.9,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 88,
+      "duration": 0.62,
+      "pitch": 48,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 90,
+      "duration": 0.62,
+      "pitch": 55,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 88.0,
+      "duration": 0.95,
+      "pitch": 79,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 89.0,
+      "duration": 0.95,
+      "pitch": 86,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 90.0,
+      "duration": 0.95,
+      "pitch": 72,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 91.0,
+      "duration": 0.95,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 88.015,
+      "duration": 1.6,
+      "pitch": 90,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 90.015,
+      "duration": 1.6,
+      "pitch": 86,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "drum",
+      "beat": 88,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 90,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "strings",
+      "beat": 92.0,
+      "duration": 3.9,
+      "pitch": 62,
+      "velocity": 0.095,
+      "pan": -0.45
+    },
+    {
+      "instrument": "strings",
+      "beat": 92.025,
+      "duration": 3.9,
+      "pitch": 66,
+      "velocity": 0.095,
+      "pan": -0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 92.05,
+      "duration": 3.9,
+      "pitch": 69,
+      "velocity": 0.095,
+      "pan": 0.14
+    },
+    {
+      "instrument": "strings",
+      "beat": 92.075,
+      "duration": 3.9,
+      "pitch": 76,
+      "velocity": 0.095,
+      "pan": 0.45
+    },
+    {
+      "instrument": "bass",
+      "beat": 92,
+      "duration": 0.62,
+      "pitch": 50,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "bass",
+      "beat": 94,
+      "duration": 0.62,
+      "pitch": 57,
+      "velocity": 0.18,
+      "pan": -0.08
+    },
+    {
+      "instrument": "plucked",
+      "beat": 92.0,
+      "duration": 0.95,
+      "pitch": 81,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 93.0,
+      "duration": 0.95,
+      "pitch": 88,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 94.0,
+      "duration": 0.95,
+      "pitch": 74,
+      "velocity": 0.095,
+      "pan": 0.38
+    },
+    {
+      "instrument": "plucked",
+      "beat": 95.0,
+      "duration": 0.95,
+      "pitch": 78,
+      "velocity": 0.095,
+      "pan": -0.38
+    },
+    {
+      "instrument": "bell",
+      "beat": 92.015,
+      "duration": 1.6,
+      "pitch": 83,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "bell",
+      "beat": 94.015,
+      "duration": 1.6,
+      "pitch": 81,
+      "velocity": 0.23,
+      "pan": 0.06
+    },
+    {
+      "instrument": "reed",
+      "beat": 93,
+      "duration": 1.7,
+      "pitch": 66,
+      "velocity": 0.1,
+      "pan": -0.38
+    },
+    {
+      "instrument": "reed",
+      "beat": 95,
+      "duration": 0.8,
+      "pitch": 69,
+      "velocity": 0.09,
+      "pan": -0.38
+    },
+    {
+      "instrument": "drum",
+      "beat": 92,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    },
+    {
+      "instrument": "drum",
+      "beat": 94,
+      "duration": 0.28,
+      "pitch": 36,
+      "velocity": 0.08,
+      "pan": 0
+    }
+  ],
+  "sample_rate": 44100,
+  "source_samples": "none; all instrument DSP authored in compose-cas-score.py"
+}

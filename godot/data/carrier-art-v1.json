@@ -1,0 +1,265 @@
+{
+  "version": "cas-carrier-art-v1",
+  "characters": [
+    {
+      "id": "CAS-H-USN-YORKTOWN-1942",
+      "name": "约克城",
+      "key": "yorktown",
+      "costume": "象牙白与海军蓝军官裙、短披肩，与大黄蜂共享金翼与舰级配色",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/yorktown-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-c709214c-ab0f-4942-8c92-fec107b24e0d.png",
+        "sha256": "8b7f7a83d6936667c311bb03d483ef8d85c56abd6e2606b56644b846c20f25df",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: original anime naval strategy game full-body shipgirl portrait. ONE young young adult woman age 20 age 20, youthful girlish anime appearance, soft rounded face, large sparkling eyes, delicate shoulders, slender graceful limbs, attractive balanced feminine proportions, sweet lively charm, distinctly Japanese anime character art, NOT mature realistic working-woman physique, elegant premium Japanese anime game illustration, crisp polished line art and refined cel shading, beautifully rendered textile folds, expressive face, detailed but compact naval rigging. Yorktown-class elder sister. Long ash-blonde braid, sea-blue eyes, calm dignified young adult woman age 20. Ivory naval officer dress with navy short cape, tailored knee-length skirt, navy gloves and tall boots, brass wing-and-three-stripe clasp. Compact grey carrier flight deck with early-war propeller aircraft at left hip. Class family motifs: ivory/navy, brass wing clasp, three stripes, blue neck ribbon. Full body head to shoes fully inside portrait frame with 8% transparent margins. All costumes complete and tasteful. Actual transparent background, no floor, scenery, frame, text, logo or watermark. Inspired by the variety and finish of naval anime character illustration; entirely original character and costume. No massive mechanical suit, no real ship replacing woman, no extra people. PRIORITY: sweet youthful soft girlish Japanese anime face, bright refined colors, delicate slender frame, attractive feminine proportions; no mature realism, no broad shoulders.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/yorktown-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-c0095514-7e16-400f-b188-447b0c34b35d.png",
+        "sha256": "cf06f44985e30e04aa0503ec362076b8598db90790ddd5fad6637c8866ab96f6",
+        "size": [
+          1199,
+          1312
+        ],
+        "prompt": "Use case: stylized-concept. ONE original transparent SD shipgirl sprite. Image1 is ONLY IDENTITY: Ash-blonde side braid, blue eyes, ivory navy officer cap, ivory naval dress, navy gold short cape, three gold stripes, blue ribbon, navy gloves and tall navy boots, wing clasp. Exactly retain her own colors, face, hair and costume, compact ship flight deck/cargo crane hip rigging. Images2 and3 are ONLY STYLE/PROPORTION, do not copy their blonde bob, ears, clothes or weapons. STRICT TWO HEADS TALL, head55-60% total height, tiny torso, extremely short arms and legs and round little boots, huge cute eyes. Clean bold dark linework, flat large color shapes and one cel shadow tone only. Full figure slightly right-facing front three-quarter standing, sweet lively smile, readable at80px tall. True alpha transparency, no backdrop/floor/shadow/text/logo/second person. No gradients or painterly rendering, no long limbs or realistically proportioned body. Do not merely shrink the portrait.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    },
+    {
+      "id": "CAS-H-USN-HORNET-1942",
+      "name": "大黄蜂",
+      "key": "hornet",
+      "costume": "赭黄航空夹克、海军蓝短裤、护目镜，呼应姐妹舰的金翼与蓝白配色",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/hornet-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-4cd0ba00-a643-4bf7-bf6f-065947627fd2.png",
+        "sha256": "6e01a71f11e56006f9de14cbeb7aa571230292672ff3e1a96b9e0fb01d94bdbf",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: original anime naval strategy game full-body shipgirl portrait. ONE young young adult woman age 20 age 20, youthful girlish anime appearance, soft rounded face, large sparkling eyes, delicate shoulders, slender graceful limbs, attractive balanced feminine proportions, sweet lively charm, distinctly Japanese anime character art, NOT mature realistic working-woman physique, elegant premium Japanese anime game illustration, crisp polished line art and refined cel shading, beautifully rendered textile folds, expressive face, detailed but compact naval rigging. Yorktown-class energetic younger sister, young adult woman age 20. Honey blonde side ponytail, amber eyes, confident grin, ochre cropped aviator leather jacket over ivory blouse, navy pleated shorts, striped thigh socks, lace-up pilot boots, goggles and blue neck ribbon. Brass wing-and-three-stripe clasp connects visually to Yorktown sister. Compact grey carrier flight deck at hip with propeller aircraft. Distinct personality, not a copied existing game character. Full body head to shoes fully inside portrait frame with 8% transparent margins. All costumes complete and tasteful. Actual transparent background, no floor, scenery, frame, text, logo or watermark. Inspired by the variety and finish of naval anime character illustration; entirely original character and costume. No massive mechanical suit, no real ship replacing woman, no extra people. PRIORITY: sweet youthful soft girlish Japanese anime face, bright refined colors, delicate slender frame, attractive feminine proportions; no mature realism, no broad shoulders.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/hornet-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-884745f1-9fca-4300-b217-3491236b0dc0.png",
+        "sha256": "a1147b9b8b8f41ab7955383149f825e39b615ab30235b59b94ecb065728f67cf",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. ONE original transparent SD shipgirl sprite. Image1 is ONLY IDENTITY: Honey blonde side ponytail, amber eyes, goggles, ochre flight jacket with cream fur collar, navy blue ribbon and brass wing clasp, ivory blouse, navy shorts, striped thigh socks and short brown boots. Exactly retain her own colors, face, hair and costume, compact ship flight deck/cargo crane hip rigging. Images2 and3 are ONLY STYLE/PROPORTION, do not copy their blonde bob, ears, clothes or weapons. STRICT TWO HEADS TALL, head55-60% total height, tiny torso, extremely short arms and legs and round little boots, huge cute eyes. Clean bold dark linework, flat large color shapes and one cel shadow tone only. Full figure slightly right-facing front three-quarter standing, sweet lively smile, readable at80px tall. True alpha transparency, no backdrop/floor/shadow/text/logo/second person. No gradients or painterly rendering, no long limbs or realistically proportioned body. Do not merely shrink the portrait.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    },
+    {
+      "id": "CAS-H-IJN-ZUIKAKU-1942",
+      "name": "瑞鹤",
+      "key": "zuikaku",
+      "costume": "翡翠鹤纹旗袍、海军蓝披肩、红绳鹤簪，保留翔鹤级鹤纹家族元素",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/zuikaku-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-63a98b88-1ca9-4ae5-8f65-45b358cd367d.png",
+        "sha256": "8ce7724c01c84d994fb692c74a870c50535db0575e4244eb9077c69b7f435c23",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: original anime naval strategy game full-body shipgirl portrait. ONE young young adult woman age 20 age 20, youthful girlish anime appearance, soft rounded face, large sparkling eyes, delicate shoulders, slender graceful limbs, attractive balanced feminine proportions, sweet lively charm, distinctly Japanese anime character art, NOT mature realistic working-woman physique, elegant premium Japanese anime game illustration, crisp polished line art and refined cel shading, beautifully rendered textile folds, expressive face, detailed but compact naval rigging. Shokaku-class lucky crane motif, young adult woman age 20. Deep chestnut long ponytail, jade eyes, small white crane hairpin. Elegant sea-green fitted qipao with ivory crane embroidery and navy cropped cape, modest side opening over opaque black tights, ankle boots and fitted gloves. White/red cord, paired crane brooch and slim grey twin carrier deck rigging match a Japanese carrier sister-family. Carries folded paper flight chart, confident lively gaze. Original identity, no existing character copying. Full body head to shoes fully inside portrait frame with 8% transparent margins. All costumes complete and tasteful. Actual transparent background, no floor, scenery, frame, text, logo or watermark. Inspired by the variety and finish of naval anime character illustration; entirely original character and costume. No massive mechanical suit, no real ship replacing woman, no extra people. PRIORITY: sweet youthful soft girlish Japanese anime face, bright refined colors, delicate slender frame, attractive feminine proportions; no mature realism, no broad shoulders.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/zuikaku-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-3569d910-e867-4d88-b4b4-04c08f9c3286.png",
+        "sha256": "a64cf883b73bcd69be2c5131f3284dc0133f2142cdd632bc69baa7454614cf26",
+        "size": [
+          1230,
+          1278
+        ],
+        "prompt": "Use case: stylized-concept. Create ONE original transparent SD shipgirl game sprite. Image1 ONLY identity reference: Chestnut ponytail, jade eyes, white crane hairpin, jade qipao with white crane motif and navy cape, white-red cord, opaque black tights and ankle boots. Preserve exactly this character's hairstyle/colors/outfit and small compact ship rigging. Images2 and3 ONLY STYLE and PROPORTION references: do NOT copy their hair, face, costume, cap, animal ears or destroyer weapons. STRICTLY TWO HEADS TALL, huge head 55-60% of full height, tiny torso, extremely short arms and legs, little rounded boots. Crisp dark bold outlines, large simple flat color regions, only one cel shadow tone. Cute expressive large eyes, sweet lively front three-quarter standing facing slightly right. Simplify the carrier deck or cargo crane to compact hip rigging. Readable at only80px tall. Keep full head and feet, transparent margin. Actual alpha background, no floor or ground shadow, no scenery, text, labels, logos, second figure. NO painterly gradients, NO realistic body, NO long legs, NO illustration shrink. Generate a true new chibi sprite, not the portrait cropped down.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    },
+    {
+      "id": "CAS-H-IJN-JUNYO-1942",
+      "name": "隼鹰",
+      "key": "junyo",
+      "costume": "绛红奶油色振袖和服、金扇与燕饰，呼应飞鹰的客轮改装与姐妹舰元素",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/junyo-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-00ea9e16-4345-4802-bd73-94f1ef0a2607.png",
+        "sha256": "8dcb838ab79644335c9a2affc39a5f62534dfbaea6215dcb570e664aadb38f54",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: original anime naval strategy game full-body shipgirl portrait. ONE young young adult woman age 20 age 20, youthful girlish anime appearance, soft rounded face, large sparkling eyes, delicate shoulders, slender graceful limbs, attractive balanced feminine proportions, sweet lively charm, distinctly Japanese anime character art, NOT mature realistic working-woman physique, elegant premium Japanese anime game illustration, crisp polished line art and refined cel shading, beautifully rendered textile folds, expressive face, detailed but compact naval rigging. Converted passenger liner carrier, Junyo/Hiyo class family, young adult woman age 20. Plum wavy bob, violet eyes, art-deco gold hair comb. Luxurious burgundy and champagne modern furisode kimono, long flowing sleeves embroidered with gold swallow and art deco fan, fitted ivory obi, navy naval cape, refined high-low layered hem, opaque thigh socks and neat zori-inspired shoes. Passenger-liner elegance meets practical flight director: small chart case and whistle. Compact grey carrier deck rigging and brass rail motifs. Sister-family common motifs: art deco fan, swallow clasp, cream/gold palette. Warm composed expression. Full body head to shoes fully inside portrait frame with 8% transparent margins. All costumes complete and tasteful. Actual transparent background, no floor, scenery, frame, text, logo or watermark. Inspired by the variety and finish of naval anime character illustration; entirely original character and costume. No massive mechanical suit, no real ship replacing woman, no extra people. Sweet youthful girlish Japanese anime face, large sparkling eyes, delicate shoulders, slim limbs, lovely balanced feminine proportions. Bright refined cel colors. No mature realistic physique.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/junyo-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-67c3087f-92d0-4103-b580-d18223d77f29.png",
+        "sha256": "ea0fef1d783d121c0fa62213b0e3ef6d2a0d8c02a576fba56983a8bd88a618b7",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. ONE original transparent TWO HEAD TALL chibi Junyo shipgirl sprite. Reference1 ONLY identity: short plum wavy bob, purple eyes, gold art deco fan haircomb and gold swallow ornaments; burgundy and champagne modern furisode kimono with gold swallow/fan embroidery, ivory obi and layered cream skirt, navy gold-trim short cape, opaque dark thigh socks, ornate zori-inspired shoes; little whistle and folded chart book, compact grey carrier flight deck at hips. Preserve exactly this face, hair and costume. Reference2 Fletcher and3 Kagero ONLY proportions and line/color STYLE; never copy their hair, cap, ears, clothes or weapons. Huge head55-60% total height, tiny body and skirt, extremely short arms/legs and little rounded shoes. Crisp bold dark outline, simple large flat color regions, just one shadow tone, cute lively large eyes. Full figure slightly right facing front three-quarter stand, readable80px. Actual alpha transparency, no backdrop, floor, shadow, text, labels or logos. No painterly gradients, no tall body, no realistic limbs; not a shrunken portrait.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    },
+    {
+      "id": "CAS-H-IJN-HIYO-1942",
+      "name": "飞鹰",
+      "key": "hiyo",
+      "costume": "淡紫象牙色洋装与和袖、李紫披肩、金扇燕饰，与隼鹰形成姐妹配对",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/hiyo-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-537d9ade-c6f9-43c3-9b16-b81d577742b9.png",
+        "sha256": "7b91ddc0f5273666104512922928dd58d2ed6f1e35d9d150aea95f57e8b7dbc4",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. ONE original full-body anime shipgirl portrait, Hiyo Japanese converted passenger liner carrier, sister of Junyo. Sweet youthful girlish young adult age20, soft delicate face, very large sparkling violet eyes, small nose, slim graceful limbs, delicate shoulders and naturally attractive feminine silhouette, refined Japanese anime cel shading with clean polished lineart, NOT mature realism or muscular body. Long lilac hair in half-up braid with art deco fan and gold swallow hairpin. Imaginative romantic passenger-liner fashion: ivory and lavender fitted high-waist tea dress, deep plum short naval cape with champagne gold fan embroidery, lavender ribbon at neck, detached long kimono-inspired flowing sleeve panels, opaque ivory stockings and neat low heeled ribbon shoes. Small golden swallow-wing clasp, art deco fan motifs and cream/gold accents share family with Junyo while dress and hairstyle remain different. Compact light grey carrier flight deck at hip with tiny propeller planes, delicate brass rails referencing liner conversion. Holds small folded chart, warm sweet confident smile. Entire head and shoes visible, 8% transparent margins, true alpha background, no scenery, ground, text, logo or watermark.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/hiyo-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-93390524-f2ed-40c4-86ce-d7a5c85dfe8d.png",
+        "sha256": "d6e85d24afb8e3a55995956ca964217fa1544d37c5b2d3aded7e5a65e6a2a9b1",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. ONE original transparent SD shipgirl sprite. Image1 is ONLY IDENTITY: Long lilac half-up braided hair, violet eyes, art-deco fan and gold swallow hairpin, ivory-lavender tea dress with flowing kimono sleeve panels, plum naval cape, cream stockings and lavender ribbon shoes. Exactly retain her own colors, face, hair and costume, compact ship flight deck/cargo crane hip rigging. Images2 and3 are ONLY STYLE/PROPORTION, do not copy their blonde bob, ears, clothes or weapons. STRICT TWO HEADS TALL, head55-60% total height, tiny torso, extremely short arms and legs and round little boots, huge cute eyes. Clean bold dark linework, flat large color shapes and one cel shadow tone only. Full figure slightly right-facing front three-quarter standing, sweet lively smile, readable at80px tall. True alpha transparency, no backdrop/floor/shadow/text/logo/second person. No gradients or painterly rendering, no long limbs or realistically proportioned body. Do not merely shrink the portrait.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    },
+    {
+      "id": "CAS-H-USN-LIBERTY-1941",
+      "name": "自由轮",
+      "key": "liberty",
+      "costume": "奶油水手衫、铁锈红领结、海军蓝短外套和短裙裤、货钩发夹",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/liberty-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-f7e6210b-2159-42e9-989e-de920ea5f6f0.png",
+        "sha256": "717c9b62a63debeaeaf9c4c93bf9f951c8a6efd4383b17d3a7c9355db6b8a995",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. Create ONE original youthful girlish anime shipgirl full-body transparent game portrait for Liberty cargo ship class personification. Clearly a young adult age 20, sweet soft round anime face, VERY large luminous amber eyes, tiny nose and delicate mouth, petite delicate shoulders, slim arms and legs, graceful attractive balanced feminine silhouette, smooth bright anime cel coloring, NOT mature muscular realistic dockworker, NOT realistic painted western illustration. Chestnut short fluffy bob, small navy ribbon and cream cargo-hook hairclip, cheerful slightly shy smile. Imaginative refined harbour-courier fashion: fitted cream sailor blouse with terracotta ribbon, cropped indigo puff-sleeve jacket with brass cargo-hook clasps, indigo high-waist SHORT pleated skort, opaque navy thigh socks, neat small brown lace-up ankle boots, white wrist gloves, small cream canvas satchel and tiny manifest clipboard. Cute detailed fashion design with naval texture, premium Japanese anime mobile game art with polished crisp lines. Compact light grey cargo crane and cargo-hold rigging at hips conveys Liberty cargo ship, never bulky or overpowering. Entire head and shoes visible, portrait 2:3 composition, 8 percent transparent padding. TRUE alpha transparent background. No scenery, floor, text, logo, watermark. Original character; youthful anime charm matters more than industrial realism.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/liberty-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-e825c77e-83db-4f0f-9250-3cd3fec208d1.png",
+        "sha256": "b413c72e4855dc59a3aae83e073d32b2fd68c3d16fd566ba646a25f13fff8323",
+        "size": [
+          1295,
+          1214
+        ],
+        "prompt": "Use case: stylized-concept. ONE original transparent SD shipgirl sprite. Image1 is ONLY IDENTITY: Chestnut fluffy bob, amber eyes, navy bow, cargo-hook hairclip, cream sailor blouse and rust ribbon, indigo cropped jacket and short skort, dark thigh socks, brown ankle boots, satchel and clipboard. Exactly retain her own colors, face, hair and costume, compact ship flight deck/cargo crane hip rigging. Images2 and3 are ONLY STYLE/PROPORTION, do not copy their blonde bob, ears, clothes or weapons. STRICT TWO HEADS TALL, head55-60% total height, tiny torso, extremely short arms and legs and round little boots, huge cute eyes. Clean bold dark linework, flat large color shapes and one cel shadow tone only. Full figure slightly right-facing front three-quarter standing, sweet lively smile, readable at80px tall. True alpha transparency, no backdrop/floor/shadow/text/logo/second person. No gradients or painterly rendering, no long limbs or realistically proportioned body. Do not merely shrink the portrait.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    },
+    {
+      "id": "CAS-H-USN-VICTORY-1944",
+      "name": "胜利轮",
+      "key": "victory",
+      "costume": "奶油水手衫、海军蓝裙裤、铁锈红短披肩、货运胸针与卷海图",
+      "status": "generated_internal_visual_review",
+      "source_only": true,
+      "portrait": "res://assets/ships/carrier-20261115/victory-portrait.png",
+      "portrait_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-de1bf2b3-9728-446f-a5e0-992c0079bb20.png",
+        "sha256": "98a15a10fdb52ffd5b6344d4aecbed34194983d6980094414a100a7ce6224e6e",
+        "size": [
+          1024,
+          1536
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: original anime naval strategy game full-body shipgirl portrait. ONE young young adult woman age 20 age 20, youthful girlish anime appearance, soft rounded face, large sparkling eyes, delicate shoulders, slender graceful limbs, attractive balanced feminine proportions, sweet lively charm, distinctly Japanese anime character art, NOT mature realistic working-woman physique, elegant premium Japanese anime game illustration, crisp polished line art and refined cel shading, beautifully rendered textile folds, expressive face, detailed but compact naval rigging. Personification of Victory cargo ship CLASS representative, not an invented named historical hull. Adult woman, copper-red braided crown hair, green eyes. Maritime courier outfit: cream sailor blouse, indigo high-waist culottes, terracotta short utility cape, leather gloves and tall brown boots. Brass cargo-hook emblem and cream neckerchief share Liberty/Victory cargo family visual language, faster modern silhouette. Compact grey cargo derrick and five-hold cargo rigging, holds sealed delivery satchel and rolled route chart. Bright confident expression. Full body head to shoes fully inside portrait frame with 8% transparent margins. All costumes complete and tasteful. Actual transparent background, no floor, scenery, frame, text, logo or watermark. Inspired by the variety and finish of naval anime character illustration; entirely original character and costume. No massive mechanical suit, no real ship replacing woman, no extra people. PRIORITY: sweet youthful soft girlish Japanese anime face, bright refined colors, delicate slender frame, attractive feminine proportions; no mature realism, no broad shoulders.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi": "res://assets/ships/carrier-20261115/victory-chibi.png",
+      "chibi_provenance": {
+        "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dd82-06b2-7a62-9158-d922a39f9b74\\exec-768b731a-baeb-478c-b397-2cb661a3fee9.png",
+        "sha256": "4f85143f0628d2676eb036099ab1981b8b71324a51e5045bbe9fb441ceed09ea",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Create ONE original transparent SD shipgirl game sprite. Image1 ONLY identity reference: Copper red braid crown, green eyes, cream sailor blouse, indigo culottes, rust-orange short cape, cream neckerchief, brown tall boots, cargo hook brooch, satchel and rolled chart. Preserve exactly this character's hairstyle/colors/outfit and small compact ship rigging. Images2 and3 ONLY STYLE and PROPORTION references: do NOT copy their hair, face, costume, cap, animal ears or destroyer weapons. STRICTLY TWO HEADS TALL, huge head 55-60% of full height, tiny torso, extremely short arms and legs, little rounded boots. Crisp dark bold outlines, large simple flat color regions, only one cel shadow tone. Cute expressive large eyes, sweet lively front three-quarter standing facing slightly right. Simplify the carrier deck or cargo crane to compact hip rigging. Readable at only80px tall. Keep full head and feet, transparent margin. Actual alpha background, no floor or ground shadow, no scenery, text, labels, logos, second figure. NO painterly gradients, NO realistic body, NO long legs, NO illustration shrink. Generate a true new chibi sprite, not the portrait cropped down.",
+        "generator": "built-in imagegen",
+        "alpha_preserved": true
+      },
+      "chibi_references": [
+        "own portrait identity only",
+        "res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png style only",
+        "res://assets/characters/chibis/ibs-u-ijn-kagero.png style only"
+      ]
+    }
+  ],
+  "rejected": "First-wave mature portraits not adopted; see style correction. Existing art unmodified."
+}

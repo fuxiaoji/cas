@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Shader" path="res://shaders/cartoon_transition.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" path="res://assets/characters/chibis-generated/ibs-u-usn-fletcher.png" id="2_actor"]
+[ext_resource type="Shader" path="res://shaders/transition_ground_shadow.gdshader" id="3_shadow"]
+[ext_resource type="Script" path="res://scripts/transition_loading_status.gd" id="4_loading"]
+
+[sub_resource type="ShaderMaterial" id="Material_shadow"]
+shader=ExtResource("3_shadow")
+
+[sub_resource type="ShaderMaterial" id="Material_transition"]
+resource_local_to_scene=true
+shader=ExtResource("1_shader")
+shader_parameter/coverage=0.0
+shader_parameter/style=0
+shader_parameter/reveal=false
+
+[sub_resource type="Animation" id="Animation_cover_reveal"]
+resource_name="cover_reveal"
+length=0.56
+tracks/0/type="value"
+tracks/0/imported=false
+tracks/0/enabled=true
+tracks/0/path=NodePath("Mask:material:shader_parameter/coverage")
+tracks/0/interp=1
+tracks/0/loop_wrap=true
+tracks/0/keys={"times":PackedFloat32Array(0,0.235,0.295,0.56),"transitions":PackedFloat32Array(1.5,1,0.65,1),"update":0,"values":[0.0,1.0,1.0,0.0]}
+
+[sub_resource type="AnimationLibrary" id="Library_transition"]
+_data={"cover_reveal":SubResource("Animation_cover_reveal")}
+
+[node name="Overlay" type="Control"]
+layout_mode=3
+anchors_preset=15
+anchor_right=1.0
+anchor_bottom=1.0
+grow_horizontal=2
+grow_vertical=2
+mouse_filter=2
+
+[node name="OldFrame" type="TextureRect" parent="."]
+layout_mode=1
+anchors_preset=15
+anchor_right=1.0
+anchor_bottom=1.0
+grow_horizontal=2
+grow_vertical=2
+mouse_filter=2
+expand_mode=1
+stretch_mode=0
+
+[node name="Mask" type="ColorRect" parent="."]
+material=SubResource("Material_transition")
+layout_mode=1
+anchors_preset=15
+anchor_right=1.0
+anchor_bottom=1.0
+grow_horizontal=2
+grow_vertical=2
+mouse_filter=2
+
+[node name="ActorShadow" type="ColorRect" parent="."]
+layout_mode=0
+offset_right=75.0
+offset_bottom=12.0
+mouse_filter=2
+material=SubResource("Material_shadow")
+
+[node name="Actor" type="TextureRect" parent="."]
+layout_mode=0
+offset_right=144.0
+offset_bottom=144.0
+mouse_filter=2
+texture=ExtResource("2_actor")
+expand_mode=1
+stretch_mode=5
+
+[node name="Timeline" type="AnimationPlayer" parent="."]
+libraries={&"":SubResource("Library_transition")}
+
+[node name="LoadingStatus" type="Control" parent="."]
+visible=false
+layout_mode=1
+anchor_left=0.2
+anchor_top=0.44
+anchor_right=0.8
+anchor_bottom=0.44
+offset_bottom=84.0
+mouse_filter=2
+script=ExtResource("4_loading")
+
+[node name="Label" type="Label" parent="LoadingStatus"]
+layout_mode=1
+anchor_right=1.0
+offset_bottom=42.0
+mouse_filter=2
+theme_override_colors/font_color=Color(0.16,0.31,0.37,1)
+theme_override_font_sizes/font_size=24
+text="正在准备页面"
+horizontal_alignment=1
+vertical_alignment=1
+autowrap_mode=3
+max_lines_visible=2
+
+[node name="Progress" type="ProgressBar" parent="LoadingStatus"]
+layout_mode=1
+anchor_left=0.2
+anchor_right=0.8
+offset_top=60.0
+offset_bottom=65.0
+mouse_filter=2
+max_value=1.0
+step=0.001
+show_percentage=false

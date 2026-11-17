@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-12",
+  "generator": "built-in image_gen",
+  "method": "three-image method: correctly matched subject portrait for identity only; Fletcher v2 and registered Kagero SD for style/proportions only",
+  "jobs": [
+    {
+      "identity": "IBS-U-USN-JENKINS",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-jenkins.webp) is the ONLY identity reference; accurately preserve JENKINS: straight long black hair with blunt bangs, warm brown eyes, ivory long coat with dark green edging, dark green shirt, white bow tie, brick-red long skirt, dark long boots, a red bow on the character's right side, and a slender metal baton held in hand. Do not borrow any character identity from the style references. Input image 2 (Fletcher v2 chibi) is STYLE AND PROPORTIONS ONLY; do not copy its blonde hair, teal eyes, cap, teal scarf, navy coat or outfit. Input image 3 (registered Kagero SD) is STYLE AND PROPORTIONS ONLY; do not copy its face, blonde hair, animal ears, clothing or rigging identity. Create one strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, extremely short arms and legs, stubby boots. Bold clear dark outlines, large flat color blocks, at most one simple shadow layer, few details readable at 80 px tall. Fully clothed, calm neutral standing pose, slight three-quarter front, whole silhouette visible. Keep any small destroyer rigging compact at the hips; no large ship silhouette. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid 2.5-head body, long legs, painterly rendering, gradients, realism, fine details, extra accessories. Character identity: IBS-U-USN-JENKINS.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-jenkins.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-3035ee56-5eb1-4341-a5d4-08bddd869d8f.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-usn-jenkins.png",
+      "sha256": "17142163B5D62FB7E09B397B456D0387E4A926BAD09A7BA15CECE8095F86E67A",
+      "review": "Visually inspected: black long hair/blunt bangs, warm brown eyes, ivory coat with green trim, white bow, brick-red skirt, right-side red bow, held baton; strong head-short-limb SD silhouette. Candidate only, not integrated."
+    },
+    {
+      "identity": "IBS-U-USN-MONSSEN",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-monssen.webp) is the ONLY identity reference; accurately preserve MONSSEN: long pale lavender hair in a large side braid with small white flowers, grey-violet eyes, white naval cap with navy-blue satin ribbon, pink long coat with gold buttons over a white shirt, navy pleated skirt, dark long boots, and both hands opening a small brass pocket watch/compass. Do not borrow any character identity from the style references. Input image 2 (Fletcher v2 chibi) is STYLE AND PROPORTIONS ONLY; do not copy its blonde hair, teal eyes, cap, teal scarf, navy coat or outfit. Input image 3 (registered Kagero SD) is STYLE AND PROPORTIONS ONLY; do not copy its face, blonde hair, animal ears, clothing or rigging identity. Create one strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, extremely short arms and legs, stubby boots. Bold clear dark outlines, large flat color blocks, at most one simple shadow layer, few details readable at 80 px tall. Fully clothed, composed neutral standing pose, slight three-quarter front, whole silhouette visible. Keep any small destroyer rigging compact at the hips; no large ship silhouette. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid 2.5-head body, long legs, painterly rendering, gradients, realism, fine details, extra accessories. Character identity: IBS-U-USN-MONSSEN.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-monssen.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-fc5dbb61-7e86-473b-b023-0c0dfc1fe07f.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-usn-monssen.png",
+      "sha256": "F3AD065BFC827F621FB3482A94AC28BA281191E6FB8C30E155FF9A0D967B7816",
+      "review": "Visually inspected: pale lavender side braid with white flowers, grey-violet eyes, white/navy cap ribbon, pink gold-button coat, navy pleated skirt, dark boots, open brass compass/watch; short-limb SD silhouette. Candidate only, not integrated."
+    }
+  ]
+}

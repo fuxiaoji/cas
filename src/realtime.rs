@@ -26,10 +26,12 @@ pub(crate) struct Timings {
     pub(crate) train: f64,
 }
 
-/// The challenge ladder fields registered identities; every other scenario
-/// keeps its own id-keyed timing rows.
+/// Registered single-ship identities use their source-class gun cadence in
+/// every scenario (challenge, ranked and campaign task forces); scenarios with
+/// their own id-keyed rows are unaffected because class cards have no
+/// separate source_class row.
 fn timing_class<'a>(variant: &str, id: &'a str) -> &'a str {
-    if variant == crate::challenge::VARIANT {
+    if variant == crate::challenge::VARIANT || crate::ranked_fleets::source_class(id).is_some() {
         crate::ranked_fleets::source_class(id).unwrap_or(id)
     } else {
         id
@@ -37,10 +39,11 @@ fn timing_class<'a>(variant: &str, id: &'a str) -> &'a str {
 }
 
 fn timings(version: &str, class: &str) -> Option<Timings> {
+    if version==VERSION {if let Some(t)=crate::littoral_v4::gun_timing(class){return Some(t);}}
     #[cfg(not(target_arch = "wasm32"))]
     let class = if version == VERSION { crate::ranked_fleets::source_class(class).unwrap_or(class) } else { class };
-    if version == crate::campaign::kula::VERSION {
-        if let Some(timing) = crate::campaign::kula::gun_timing(class) { return Some(timing); }
+    if let Some(timing) = crate::campaign::kula::gun_timing(class) {
+        return Some(timing);
     }
     if !matches!(version, LEGACY_VERSION | crate::campaign::live::LEGACY_VERSION) {
         // Reference cadences, independent of the CAS hit and damage tables.
@@ -69,14 +72,17 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
             _ => (),
         }
     }
-    if version == VERSION {
-        // Period per-hull cards (data/ships/period-cards.json). Each cadence is
-        // the one its own registered period runtime already uses for the same
-        // weapon family: 6in/47 Mk16 at 10 s/10 deg-s, 5in/38 singles at the
-        // Fletcher 4 s/28.7 record, 8in/55 Mk9 at 20 s/4 deg-s, 14cm/50 and
-        // 12cm/40 at 8 s, 20cm/50 No.2 at 12 s/6 deg-s, 12cm/45 on the Uzuki
-        // escort fit at 12 s/8 deg-s.
-        match class {
+    // Period and merged single-ship cards are fielded by ranked duels, the
+    // challenge ladder and campaign task forces. Their cadence is the same
+    // weapon-family record in every scenario; scenario class cards keep their
+    // own id-keyed rows below.
+    // Period per-hull cards (data/ships/period-cards.json). Each cadence is
+    // the one its own registered period runtime already uses for the same
+    // weapon family: 6in/47 Mk16 at 10 s/10 deg-s, 5in/38 singles at the
+    // Fletcher 4 s/28.7 record, 8in/55 Mk9 at 20 s/4 deg-s, 14cm/50 and
+    // 12cm/40 at 8 s, 20cm/50 No.2 at 12 s/6 deg-s, 12cm/45 on the Uzuki
+    // escort fit at 12 s/8 deg-s.
+    match class {
             "brooklyn_first_group_1942" | "brooklyn_1" => {
                 return Some(Timings { reload: 10, train: 10. })
             }
@@ -127,7 +133,6 @@ fn timings(version: &str, class: &str) -> Option<Timings> {
                 return Some(Timings { reload: 9, train: 9. })
             }
             _ => (),
-        }
     }
     let (reload, train) = match class {
         "fletcher" | "ausburne" | "claxton" | "dyson" | "converse" | "spence" => (6, 18.),
@@ -251,6 +256,9 @@ pub(crate) fn flight(range_m: f64, max_m: f64) -> (u32, f64) {
 }
 
 impl World {
+    pub(crate) fn expedition_battery_ready_seconds(&self,s:&Ship)->u32{
+        s.battery.turrets.iter().map(|t|t.ready.saturating_sub(self.tick)).min().unwrap_or(0)
+    }
     pub(crate) fn realtime(&self) -> bool {
         is_realtime_version(self.version)
     }
@@ -272,6 +280,9 @@ impl World {
     pub(crate) fn init_realtime(&mut self, version: &'static str) -> E<()> {
         for s in &mut self.ships {
             let def = &self.data.ships[s.def];
+            // Fictional creatures have no naval guns or calibrated turret cadence.
+            // Their visible attacks are adjudicated by salvage-v3's separate rules.
+            if [crate::salvage_v3::VERSION,crate::salvage_v4::VERSION].contains(&self.variant.as_str()) && def.id.starts_with("CAS-FICTION-") {continue;}
             // The staged challenge ladder fields registered identities on the
             // frozen v9 timing, so map them to their loaded class card only for
             // this variant. Campaigns and the legacy exercises keep their own
@@ -484,6 +495,7 @@ impl World {
                 Some("RTS-GUN-04"), None);
         }
         let s = self.ship_for(owner, ship)?;
+        if self.salvage_gun_supply(s)==0 { return Err("本航次主炮补给已耗尽".into()); }
         let (c, _) = self.gun_contact(s, target)?;
         if self.gun_obstructed(s, &c) {
             return Err("近、中射程内有已知舰艇遮挡射线".into());
@@ -576,7 +588,9 @@ impl World {
             let destroyed = s.gun_mount_destroyed.clone();
             let sustained = self.v10_family() && order.salvo > 0;
             let sustaining = self.v10_family();
-            let fail = if !s.alive() || order.mounts.iter().all(|i| destroyed[*i]) {
+            let fail = if self.salvage_gun_supply(s)==0 {
+                Some("本航次主炮补给已耗尽")
+            } else if !s.alive() || order.mounts.iter().all(|i| destroyed[*i]) {
                 Some(if sustained { "炮座失能" } else { "待发炮座已失能" })
             } else if contact.as_ref().is_none_or(|(c, _)| {
                 self.v10_family() && !self.ship(c.ship).is_some_and(Ship::alive)

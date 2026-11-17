@@ -1,0 +1,285 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/harbor_view.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/harbor-day-v2.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/characters/portraits/ibs-u-usn-fletcher.webp" id="3"]
+
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/sortie.svg" id="icon0"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/story.svg" id="icon1"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/compass.svg" id="icon2"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/crew.svg" id="icon3"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/fleet.svg" id="icon4"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/cargo.svg" id="icon5"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/supply.svg" id="icon6"]
+[ext_resource type="Texture2D" path="res://assets/ui/harbor-icons/recruit.svg" id="icon7"]
+
+[sub_resource type="Gradient" id="Gradient_edge"]
+colors = PackedColorArray(0.03,0.1,0.17,0,0.03,0.1,0.17,0.74)
+
+[sub_resource type="GradientTexture2D" id="Edge"]
+gradient = SubResource("Gradient_edge")
+fill_from = Vector2(0,0)
+fill_to = Vector2(0,1)
+
+[node name="Harbor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+z_index = -1
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="SecretaryPortrait" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.086875
+anchor_top = 0.09222222222222222
+anchor_right = 0.553125
+anchor_bottom = 0.9088888888888889
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="EdgeShade" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.6777777777777778
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("Edge")
+expand_mode = 1
+mouse_filter = 2
+
+[node name="Adjust" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.045
+anchor_top = 0.6777777777777778
+anchor_right = 0.1575
+anchor_bottom = 0.7244444444444444
+text = "更换 / 调整"
+
+[node name="Sail" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.6875
+anchor_top = 0.3488888888888889
+anchor_right = 0.9625
+anchor_bottom = 0.4866666666666667
+text = "出航"
+
+[node name="ArenaEntry" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.6875
+anchor_top = 0.5044444444444445
+anchor_right = 0.9625
+anchor_bottom = 0.5866666666666667
+text = "竞技"
+tooltip_text = "本地人机排位与3v3团战"
+
+[node name="Story" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.6875
+anchor_top = 0.6022222222222222
+anchor_right = 0.9625
+anchor_bottom = 0.6844444444444444
+text = "剧情章节"
+
+[node name="Campaign" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.6875
+anchor_top = 0.7
+anchor_right = 0.9625
+anchor_bottom = 0.7822222222222223
+text = "战役航图"
+
+[node name="Crew" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.4375
+anchor_top = 0.8433333333333334
+anchor_right = 0.53625
+anchor_bottom = 0.9588888888888889
+text = "舰娘"
+
+[node name="Fleet" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.544375
+anchor_top = 0.8433333333333334
+anchor_right = 0.643125
+anchor_bottom = 0.9588888888888889
+text = "编队"
+
+[node name="Warehouse" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.65125
+anchor_top = 0.8433333333333334
+anchor_right = 0.75
+anchor_bottom = 0.9588888888888889
+text = "仓库"
+
+[node name="Shop" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.758125
+anchor_top = 0.8433333333333334
+anchor_right = 0.856875
+anchor_bottom = 0.9588888888888889
+text = "军需"
+
+[node name="Recruit" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.865
+anchor_top = 0.8433333333333334
+anchor_right = 0.96375
+anchor_bottom = 0.9588888888888889
+text = "征募"
+
+[node name="Archive" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.045
+anchor_top = 0.8744444444444445
+anchor_right = 0.1575
+anchor_bottom = 0.9311111111111111
+text = "航次档案"
+
+[node name="Service" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.17
+anchor_top = 0.8744444444444445
+anchor_right = 0.2825
+anchor_bottom = 0.9311111111111111
+text = "一键整备"
+
+[node name="SailIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.909375
+anchor_top = 0.38555555555555554
+anchor_right = 0.939375
+anchor_bottom = 0.4388888888888889
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon0")
+modulate = Color(0.949,0.812,0.518,1)
+
+[node name="ArenaIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.70125
+anchor_top = 0.5266666666666666
+anchor_right = 0.72375
+anchor_bottom = 0.5666666666666667
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="StoryIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.70125
+anchor_top = 0.6244444444444445
+anchor_right = 0.72375
+anchor_bottom = 0.6644444444444444
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon1")
+modulate = Color(0.137,0.525,0.604,1)
+
+[node name="CampaignIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.70125
+anchor_top = 0.7222222222222222
+anchor_right = 0.72375
+anchor_bottom = 0.7622222222222222
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon2")
+modulate = Color(0.137,0.525,0.604,1)
+
+[node name="CrewIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.475
+anchor_top = 0.86
+anchor_right = 0.49875
+anchor_bottom = 0.9022222222222223
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon3")
+
+[node name="FleetIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.581875
+anchor_top = 0.86
+anchor_right = 0.605625
+anchor_bottom = 0.9022222222222223
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon4")
+
+[node name="WarehouseIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.68875
+anchor_top = 0.86
+anchor_right = 0.7125
+anchor_bottom = 0.9022222222222223
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon5")
+
+[node name="ShopIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.795625
+anchor_top = 0.86
+anchor_right = 0.819375
+anchor_bottom = 0.9022222222222223
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon6")
+
+[node name="RecruitIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.9025
+anchor_top = 0.86
+anchor_right = 0.92625
+anchor_bottom = 0.9022222222222223
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("icon7")
+
+[node name="SecretaryTag" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.04625
+anchor_top = 0.7311111111111112
+anchor_right = 0.29625
+anchor_bottom = 0.7644444444444445
+text = "秘书舰"
+theme_override_colors/font_color = Color(1,1,1,1)
+theme_override_font_sizes/font_size = 18
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="SecretaryName" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.045
+anchor_top = 0.7711111111111111
+anchor_right = 0.37625
+anchor_bottom = 0.8355555555555556
+text = "弗莱彻"
+theme_override_colors/font_color = Color(1,1,1,1)
+theme_override_font_sizes/font_size = 34
+vertical_alignment = 1
+mouse_filter = 2

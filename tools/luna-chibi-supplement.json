@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-12",
+  "generator": "built-in imagegen",
+  "style_method": "three-image method: matching portrait is identity only; Fletcher v2 and registered Kagero SD are style/proportions only",
+  "entries": [
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R51",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY IDENTITY reference for character IBS-U-USN-UNNAMED-T01-R51: preserve her soft dark-lavender hair with loose side ponytail, muted teal eyes, white naval cap decorated with small flowers and gold wheel ornament, pale sage dress with dark violet capelet, small cream bow and belt satchel with a pocket watch, and her compact naval rigging. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hairstyle, or clothes. Draw a complete single TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Friendly neutral natural standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes, readable at 80px tall. Keep compact small naval rigging beside the waist only, no full ship silhouette. Prioritize her lavender hair, white flowered cap, pale sage and violet outfit, teal eyes, pocket-watch satchel. Full head, hair, both boots and rigging visible, small transparent margins. Actual alpha transparency. No background, checkerboard, floor, cast shadow, text, labels, logo, watermark, gradient, painterly/realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-usn-unnamed-t01-r51.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-ac4dbd47-ff63-4b85-b1a5-ca293c0c4c8d.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-usn-unnamed-t01-r51.png",
+      "sha256": "61c8e0fdc82e775b1c218b910521f4d088fc624620a14d935e76492e7d79528e",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-USN-DUNCAN",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-USN-DUNCAN. Preserve these recognizable features and colors: short tousled dark teal bob, warm brown eyes, navy officer cap with anchor and side flower, navy double-breasted coat with gold piping and shoulder cord, teal necktie, cream skirt and one small gold ship-wheel ornament. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or clothes. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hairstyle, or outfit. Draw a complete single TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging beside waist only, no full ship silhouette. Prioritize the listed identity cues. Full head, hair, both boots and rigging visible with small transparent margins. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-usn-duncan.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-3b1acb18-6ba7-4019-a7fb-33af728249dc.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-usn-duncan.png",
+      "sha256": "5bc188f415fe67f2f11cd1bd05a39daa204500478cc9885ec6d0dce02e0025bf",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-USN-RADFORD",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-USN-RADFORD. Preserve these recognizable features and colors: soft curly light ash-brown bob, violet eyes, white naval cap with teal bow and small flower, pale cream uniform dress with broad teal capelet and teal trim, small round compass held near chest. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or clothes. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hairstyle, or outfit. Draw a complete single TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging beside waist only, no full ship silhouette. Prioritize the listed identity cues. Full head, hair, both boots and rigging visible with small transparent margins. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-usn-radford.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-f2da3506-36db-497e-b394-066121f7beaf.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-usn-radford.png",
+      "sha256": "8415a5f128ea1f70e144ebf6c0ed3294e6e03cf66afb42d42b4aa5623cb4a72c",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-USN-MCDONOUGH",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-USN-MCDONOUGH. Preserve these recognizable features and colors: short deep indigo hair in one loose braid, amber-brown eyes, white naval cap with burgundy ribbon, warm beige short naval jacket with gold shoulder cord, dark navy pleated skirt, compact rope coil as one accessory. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or clothes. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hairstyle, or outfit. Draw a complete single TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging beside waist only, no full ship silhouette. Prioritize the listed identity cues. Full head, hair, both boots and rigging visible with small transparent margins. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-usn-mcdonough.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-4ce974b9-6246-4767-bb9a-9d9464388e56.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-usn-mcdonough.png",
+      "sha256": "27bbc8d9b6ae44903bfa971d9f0df084f67ada15f36773076e722a470e13271f",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-USN-MCCALLA",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-USN-MCCALLA. Preserve these recognizable features and colors: short pale blonde bob, muted hazel eyes, cream naval beret with burgundy band and white flower, burgundy short officer jacket, ivory dress, small brass pocket compass held at chest. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or clothes. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hairstyle, or outfit. Draw a complete single TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging beside waist only, no full ship silhouette. Prioritize the listed identity cues. Full head, hair, both boots and rigging visible with small transparent margins. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-usn-mccalla.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-1bbdcd92-e686-4f98-8907-48af661676de.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-usn-mccalla.png",
+      "sha256": "176eb139ad8c7e2e969591492eae7d27d11dc7b871385995f4877cb532853561",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-UZUKI-2",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-UZUKI-2. Preserve these recognizable features and colors: long dark ash-purple hair in high side ponytail, lavender eyes, small pale pink flower ornament with cream ribbons, pale ivory dress and sea-glass teal capelet with broad sleeve cuffs, small folded navy flag held in one hand. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or costume. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Prioritize the identity cues. Entire hair and both boots visible, with small transparent margin. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly/realistic rendering, long limbs, tiny ornate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-uzuki-2.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-c0ace860-6e37-440c-85a6-ddb544b181b5.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-uzuki-2.png",
+      "sha256": "dece7a183adf627372a0e6f79c92805f5af3d8d5f972e5f9a98e022849b3f738",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-YUNAGI",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-YUNAGI. Preserve these recognizable features and colors: long pale silver hair in one thick side braid, golden amber eyes, dark green naval cap with cream and teal band and small flower, deep forest green short jacket with cream fur collar, cream sweater, burgundy neck ribbon, brown-and-green plaid short skirt, small triangular green flag. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or costume. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Prioritize the identity cues. Entire hair and both boots visible, with small transparent margin. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly/realistic rendering, long limbs, tiny ornate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-yunagi.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-022731bd-163c-49df-8a2e-745dfa92acfd.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-yunagi.png",
+      "sha256": "d397a7ee3bf08e19d56926db55d5c55bb9c805c74062a03fad4ef8e53b191e4a",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-JINTSU-I",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-JINTSU-I. Preserve these recognizable features and colors: very long silvery white hair in a thick front braid, warm brown eyes, small white flower hair ornament, dark teal sleeveless naval bodice over white high-neck blouse, muted coral pleated skirt, white-and-navy short cape, one small flower knot at waist. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or costume. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Prioritize the identity cues. Entire hair and both boots visible, with small transparent margin. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly/realistic rendering, long limbs, tiny ornate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-jintsu-i.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-aca0370f-9c10-4c9c-8903-3585132c5af3.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-jintsu-i.png",
+      "sha256": "7a9bbe2e14d9d1c9810264efa16a55316302bbbd4c0386087042ec2d6d488db8",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-TATSUTA",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-TATSUTA. Preserve these recognizable features and colors: light brown hair in a neat high bun with a small flower, soft violet-brown eyes, simple slate-blue high-neck naval dress, short charcoal-grey shawl, small turquoise brooch at chest. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or costume. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Prioritize the identity cues. Entire hair and both boots visible, with small transparent margin. Actual alpha transparency. No background, floor, ground shadow, text, logo, watermark, gradients, painterly/realistic rendering, long limbs, tiny ornate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-tatsuta.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-d784d301-8d47-4f0a-87fb-f50118072b57.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-tatsuta.png",
+      "sha256": "79ea4755bf879bdfdba04c8fe0a6c82c1d748b3bf1f6ee4b88ab535cb2941939",
+      "review": "Generated and visually inspected: two-heads-tall silhouette, compact rigging, clean outline and flat-color style consistent with approved references; transparency visually confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-MURAKUMO",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-MURAKUMO. Preserve these recognizable features and colors: long pale lavender hair in a thick side braid, clear aqua eyes, white naval cap with navy band and tiny gold flower, dark navy officer coat with gold piping over ivory blouse, deep plum skirt, one small closed dark book held in one hand. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-murakumo.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-65c8b480-c3b0-463c-afd0-58097fa66741.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-murakumo.png",
+      "sha256": "0367b22695d914bd2a9567bad06d723293de6f288a3899dc05dd2e4bcea1fb7c",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-SAMIDARE",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-SAMIDARE. Preserve these recognizable features and colors: short chestnut-brown bob, violet eyes, small fox ears and fluffy brown tail as shown in identity portrait, navy sailor-style coat with cream trim, orange dress/skirt, small orange flower hairpin. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-samidare.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-fd3e3f67-d5c4-41f5-959d-407e337b96d8.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-samidare.png",
+      "sha256": "dcd92c503e0bca4a2a37d88a5232750cd27831cb21ee577ff9b576cb4da77629",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-SUZUKAZE",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-SUZUKAZE. Preserve these recognizable features and colors: short auburn bob, violet eyes, small fox ears and auburn tail with burgundy bow as shown in identity portrait, dark burgundy naval coat-dress with cream panels, a folded pale map held in one hand. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-suzukaze.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-451bafee-28ae-42ed-89f5-c9648e18f715.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-suzukaze.png",
+      "sha256": "c724585442dec93f6b5fd1c7c43eb0cbd308c9f006da22fea50a6a2ce00c9b14",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-HATSUYUKI",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-HATSUYUKI. Preserve these recognizable features and colors: straight dark blue-black bob, warm brown eyes, dark navy aviator cap with large brass goggles perched on top and cream fur rim, pale blue short jacket with fur collar over white blouse, dark pleated skirt, a small rolled chart. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-hatsuyuki.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-f0f53e09-8f01-4060-aef7-2372fd481d9c.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-hatsuyuki.png",
+      "sha256": "a3c721af48f944176df0477da3e8c8c7b940b53f95ac8122d3e8154974e04108",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-HATSU-KAZE",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-HATSU-KAZE. Preserve these recognizable features and colors: very long straight dark navy hair with a large pale flower and cream-green ribbons on one side, violet eyes, dark navy officer jacket with gold piping and cords, large pale sage skirt, white gloves and white short boots. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-hatsu-kaze.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-32d3ab03-4ed9-4b42-a02d-b9e1e1c3fa89.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-hatsu-kaze.png",
+      "sha256": "a0e343f2b64d0c31c572689d47d6b89971939c501e8dd8de84d09b0e53ab6fa3",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    },
+    {
+      "identity": "IBS-U-KM-KARL-GALSTER",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-KM-KARL-GALSTER. Preserve these recognizable features and colors: silver-grey hair in two thick long braids, green eyes, white naval cap with teal band and small flower, dark teal short cape with pale trim over white naval blouse, slate-grey pleated skirt, small teal necktie. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-km-karl-galster.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-45df40ac-a2cd-4bfa-bba3-2cacdaf5378e.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-km-karl-galster.png",
+      "sha256": "b9cb0be15154733ea03624ec29b5bc550f02262e15ed14bd43971203a43a9ff1",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    },
+    {
+      "identity": "IBS-U-IJN-UZUKI",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background 2D chibi shipgirl game sprite for a naval strategy game. Input image 1 is the ONLY identity reference for IBS-U-IJN-UZUKI. Preserve these recognizable features and colors: long dark ash-purple hair in high side ponytail, lavender eyes, pink flower with cream ribbons, mustard-yellow cable-knit short cardigan over a dark teal pleated dress with teal neck bow, a small folded navy pennant. Input image 2 is STYLE AND PROPORTIONS ONLY (approved CAS Fletcher v2); do not copy its blonde hair, cap, face, scarf, or uniform. Input image 3 is STYLE AND PROPORTIONS ONLY (approved small game SD); do not copy its face, ears, hair or clothing. Draw one complete TWO-HEADS-TALL super-deformed mascot, head 55–60% of total height, tiny torso, very short arms and legs, stubby boots. Natural neutral standing pose, front three-quarter, facing slightly right. Bold clean dark outlines, broad flat colors, at most one shadow tone, simple shapes readable at 80px tall. Compact small naval rigging at waist only; no full ship silhouette. Keep identity details simple and recognizable. Entire hair and both boots visible, small transparent margin. Actual alpha transparency. No background, floor, cast shadow, text, labels, logo, watermark, gradients, painterly or realistic rendering, long limbs, tiny intricate details, large ship, or separate side-view ship.",
+      "references": [
+        "godot/assets/characters/portraits/ibs-u-ijn-uzuki.webp",
+        "godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png",
+        "godot/assets/characters/chibis/ibs-u-ijn-kagero.png"
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf26-ad9a-7411-9b60-3b1898ab5388/exec-a8922b01-fac7-4665-bff0-a021a37b7754.png",
+      "target": "godot/assets/characters/chibi-supplement-candidates/ibs-u-ijn-uzuki.png",
+      "sha256": "f23097be89c33e4cd3ea298cf63031f138431b1a95619dd1126b493aeff1320a",
+      "review": "Generated and visually inspected: identity cues match portrait; strict two-heads-tall proportions, compact rigging, bold outline and flat-color approved style; actual transparency confirmed."
+    }
+  ]
+}

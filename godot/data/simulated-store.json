@@ -1,0 +1,49 @@
+{
+  "version": "local-demo-store-v1",
+  "title": "模拟充值",
+  "notice": "仅用于本地试玩，不会付款或扣除真钱。",
+  "packs": [
+    {
+      "id": "demo-60",
+      "name": "试航补给",
+      "origins": 60,
+      "price_label": "模拟价 ¥6",
+      "art": "res://assets/liveops/packs/demo-60.tres"
+    },
+    {
+      "id": "demo-300",
+      "name": "巡航补给",
+      "origins": 300,
+      "price_label": "模拟价 ¥30",
+      "art": "res://assets/liveops/packs/demo-300.tres"
+    },
+    {
+      "id": "demo-980",
+      "name": "远航补给",
+      "origins": 980,
+      "price_label": "模拟价 ¥98",
+      "art": "res://assets/liveops/packs/demo-980.tres"
+    },
+    {
+      "id": "demo-1980",
+      "name": "深海补给",
+      "origins": 1980,
+      "price_label": "模拟价 ¥198",
+      "art": "res://assets/liveops/packs/demo-1980.tres"
+    },
+    {
+      "id": "demo-3280",
+      "name": "舰队补给",
+      "origins": 3280,
+      "price_label": "模拟价 ¥328",
+      "art": "res://assets/liveops/packs/demo-3280.tres"
+    },
+    {
+      "id": "demo-6480",
+      "name": "星海补给",
+      "origins": 6480,
+      "price_label": "模拟价 ¥648",
+      "art": "res://assets/liveops/packs/demo-6480.tres"
+    }
+  ]
+}

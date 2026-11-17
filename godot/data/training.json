@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "source": "client/src/tutorial/curriculum.ts + guide.ts radar subset",
+  "courses": {
+    "day": {
+      "title": "舰桥学堂 · 昼间实操",
+      "steps": [
+        {
+          "id": "bridge-lead",
+          "title": "挑选领舰",
+          "instruction": "在开始演习前，从编队列表选一艘非领舰，按「设为领舰」。",
+          "reason": "先确认谁带队，再绘制编队航线。",
+          "guide": ".staff-tabs button:first-child",
+          "require": [
+            "lead"
+          ]
+        },
+        {
+          "id": "bridge-follow",
+          "title": "让后舰跟上领舰",
+          "instruction": "选「领舰移动」，点出至少两个途经点。等显示「航线可用」后，查看各舰的航迹，再下达航线。",
+          "reason": "领舰先过转向点，后舰沿同一条实际航迹转向。",
+          "guide": ".maneuver-choice",
+          "require": [
+            "followPreview",
+            "followAccepted"
+          ]
+        },
+        {
+          "id": "bridge-sync",
+          "title": "让各舰同时转向",
+          "instruction": "切换「同步移动」，画好参考线后检查每一条平移航迹，确认并下达新航线。",
+          "reason": "同步移动时，各舰不会集中到同一个转向点。",
+          "guide": ".maneuver-choice",
+          "require": [
+            "syncPreview",
+            "syncAccepted"
+          ]
+        },
+        {
+          "id": "bridge-gun",
+          "title": "完成一次实际炮击",
+          "instruction": "按住己方舰上的「炮」拖向可攻击接触，等出现可用炮位后松手。继续推进时钟，看到战情里的实际发射。",
+          "reason": "下令与发射是两件事；结课不看是否命中。",
+          "guide": ".battle-map button.weapon.gun",
+          "require": [
+            "gunOrdered",
+            "gunFired"
+          ]
+        },
+        {
+          "id": "bridge-cancel",
+          "title": "取消一次火力手势",
+          "instruction": "按住炮标或雷标，拖到「拖到这里取消」再松手。",
+          "reason": "在取消区松手不会下令，也不会消耗弹药。",
+          "guide": ".battle-map button.weapon.gun",
+          "require": [
+            "fireCancelled"
+          ]
+        },
+        {
+          "id": "bridge-torpedo-aim",
+          "title": "留出安全雷道",
+          "instruction": "拖住「雷」，在可攻击接触上停留至出现推荐射向。继续拖动，把射向调整到合法扇区内，再松手下令。",
+          "reason": "鱼雷按实际发射方向航行；发射后不会追随敌舰或避让友舰。",
+          "guide": ".battle-map button.weapon.torpedo",
+          "require": [
+            "torpedoAimed",
+            "torpedoAdjusted",
+            "torpedoOrdered"
+          ]
+        },
+        {
+          "id": "bridge-torpedo-fire",
+          "title": "看到鱼雷真正离管",
+          "instruction": "继续推进时钟，留意直航鱼雷和发射记录。如果窗口到来前接触丢失，重新寻找合法射向。",
+          "reason": "确认收到命令不代表已经发射。是否命中不影响结课。",
+          "guide": ".clock-deck",
+          "require": [
+            "torpedoFired"
+          ]
+        },
+        {
+          "id": "bridge-override",
+          "title": "亲自接管一项任务",
+          "instruction": "在「战术 AI」托管一项任务，再亲自下达同类合法命令。",
+          "reason": "手动下令后，该项由你继续指挥，直到重新交还。",
+          "guide": ".staff-tabs button:nth-child(3)",
+          "require": [
+            "override"
+          ]
+        }
+      ]
+    },
+    "follow": {
+      "title": "序章 · 侧翼机动",
+      "steps": [
+        {
+          "id": "bridge-follow",
+          "title": "让后舰跟上领舰",
+          "instruction": "选「领舰移动」，点出至少两个途经点。等显示「航线可用」后，查看各舰的航迹，再下达航线。",
+          "reason": "领舰先过转向点，后舰沿同一条实际航迹转向。",
+          "guide": ".maneuver-choice",
+          "require": [
+            "followPreview",
+            "followAccepted"
+          ]
+        },
+        {
+          "id": "bridge-gun",
+          "title": "完成一次实际炮击",
+          "instruction": "按住己方舰上的「炮」拖向可攻击接触，等出现可用炮位后松手。继续推进时钟，看到战情里的实际发射。",
+          "reason": "下令与发射是两件事；结课不看是否命中。",
+          "guide": ".battle-map button.weapon.gun",
+          "require": [
+            "gunOrdered",
+            "gunFired"
+          ]
+        }
+      ]
+    },
+    "sync": {
+      "title": "序章 · 改令同步",
+      "steps": [
+        {
+          "id": "prologue-withdraw-plan",
+          "title": "撤回尾随草稿",
+          "instruction": "打开领舰移动，画出旧计划的一段，再按「取消草稿」。已生效的航线要靠新命令替换。",
+          "reason": "草稿不会移动舰艇；下一条获准的命令才会替换现行路线。",
+          "guide": ".route-tools",
+          "require": [
+            "draftCancelled"
+          ]
+        },
+        {
+          "id": "bridge-sync",
+          "title": "让各舰同时转向",
+          "instruction": "切换「同步移动」，画好参考线后检查每一条平移航迹，确认并下达新航线。",
+          "reason": "同步移动时，各舰不会集中到同一个转向点。",
+          "guide": ".maneuver-choice",
+          "require": [
+            "syncPreview",
+            "syncAccepted"
+          ]
+        }
+      ]
+    },
+    "torpedo": {
+      "title": "序章 · 编队雷击",
+      "steps": [
+        {
+          "id": "bridge-torpedo-aim",
+          "title": "留出安全雷道",
+          "instruction": "拖住「雷」，在可攻击接触上停留至出现推荐射向。继续拖动，把射向调整到合法扇区内，再松手下令。",
+          "reason": "鱼雷按实际发射方向航行；发射后不会追随敌舰或避让友舰。",
+          "guide": ".battle-map button.weapon.torpedo",
+          "require": [
+            "torpedoAimed",
+            "torpedoAdjusted",
+            "torpedoOrdered"
+          ]
+        },
+        {
+          "id": "bridge-torpedo-fire",
+          "title": "看到鱼雷真正离管",
+          "instruction": "继续推进时钟，留意直航鱼雷和发射记录。如果窗口到来前接触丢失，重新寻找合法射向。",
+          "reason": "确认收到命令不代表已经发射。是否命中不影响结课。",
+          "guide": ".clock-deck",
+          "require": [
+            "torpedoFired"
+          ]
+        }
+      ]
+    },
+    "night": {
+      "title": "夜海初航 · 实战教学",
+      "steps": [
+        {
+          "id": "campaign-night-formation",
+          "title": "先确认领舰和队列",
+          "instruction": "查看「编队」，确认领舰、舰艇数量与队列。",
+          "reason": "夜里也只能从本席观察掌握双方态势。",
+          "guide": ".staff-tabs button:first-child",
+          "require": [
+            "fleetViewed"
+          ]
+        },
+        {
+          "id": "campaign-night-map",
+          "title": "查看自己的海图",
+          "instruction": "点一下海图空处，查看本方舰船、黑暗海域和当前可见接触。",
+          "reason": "海图空白不代表那里没有敌舰。",
+          "guide": ".battle-map",
+          "require": [
+            "mapViewed"
+          ]
+        },
+        {
+          "id": "campaign-night-route",
+          "title": "画一条能走的航路",
+          "instruction": "选择「领舰移动」，画至少两个途经点。同盟席可先朝东到海图 13E 附近，再转北；在「调整航速」设 15 节。",
+          "reason": "预览会检查全队航迹。适当降低接敌航速，可以给照明弹留出距离。",
+          "guide": ".maneuver-choice",
+          "require": [
+            "followPreview"
+          ]
+        },
+        {
+          "id": "campaign-night-follow",
+          "title": "确认尾随航线",
+          "instruction": "在合法预览后按「下达航线」，开始机动接敌。",
+          "reason": "确认前只是草稿；确认后编队才会执行航线。",
+          "guide": ".route-tools",
+          "require": [
+            "followAccepted"
+          ]
+        },
+        {
+          "id": "campaign-night-pulse",
+          "title": "暂停，再推进一秒",
+          "instruction": "开始演习，按「暂停」，然后使用「推进一秒」。留意海图怎样更新。",
+          "reason": "舰船、炮弹、鱼雷和接触共用同一时钟。",
+          "guide": ".clock-deck",
+          "require": [
+            "paused",
+            "stepped"
+          ]
+        },
+        {
+          "id": "campaign-night-contact",
+          "title": "确认当前接触",
+          "instruction": "推进时钟直到发现敌方接触，点一个当前可见接触查看代号和识别情况。",
+          "reason": "已经看见一个位置，并不等于知道对方舰名。",
+          "guide": "[data-contact]",
+          "require": [
+            "contactViewed"
+          ]
+        },
+        {
+          "id": "campaign-night-light",
+          "title": "用照明弹照亮目标",
+          "instruction": "选一艘后列驱逐舰，打开「照明」，对较远的合法接触下令。继续推进；未起亮或距离太近时可重新选择。",
+          "reason": "照明弹在合法射击时点发射；承担照明的炮座当次不再进行常规炮击。",
+          "guide": ".night-tools",
+          "require": [
+            "lightAccepted",
+            "lightApplied"
+          ]
+        },
+        {
+          "id": "campaign-night-guns",
+          "title": "完成一次夜间炮击",
+          "instruction": "拖炮标到当前接触并下令；推进时钟直到战情记录实际炮击。",
+          "reason": "这一步只检查合法炮击，不要求命中。",
+          "guide": ".battle-map button.weapon.gun",
+          "require": [
+            "gunOrdered",
+            "gunFired"
+          ]
+        },
+        {
+          "id": "campaign-night-torpedo",
+          "title": "亲手发出一批鱼雷",
+          "instruction": "在雷击距离内拖住雷标，对可见接触瞄准、调整后下令，再推进到实际发射。",
+          "reason": "先核对己方航迹；只有引擎确认发射才算完成。",
+          "guide": ".battle-map button.weapon.torpedo",
+          "require": [
+            "torpedoAimed",
+            "torpedoOrdered",
+            "torpedoFired"
+          ]
+        },
+        {
+          "id": "campaign-night-cycle",
+          "title": "查看本次正式战情",
+          "instruction": "点开「战情记录」，对照发现接触、照明、发射和判定结果。",
+          "reason": "完成这轮操作即可结课，演习战果仍由正常规则决定。",
+          "guide": ".signal-strip .text-button",
+          "require": [
+            "reportViewed"
+          ]
+        }
+      ]
+    },
+    "radar": {
+      "title": "夜海初航 · 雷达与照明",
+      "steps": [
+        {
+          "id": "campaign-night-radar",
+          "title": "用雷达建立本舰接触",
+          "instruction": "在舰况开启搜索雷达，等待并查看本席雷达回波。",
+          "require": [
+            "radarViewed",
+            "radarPowered",
+            "radarContactViewed"
+          ]
+        },
+        {
+          "id": "campaign-night-contact",
+          "title": "确认当前接触",
+          "instruction": "推进时钟直到发现敌方接触，点一个当前可见接触查看代号和识别情况。",
+          "reason": "已经看见一个位置，并不等于知道对方舰名。",
+          "guide": "[data-contact]",
+          "require": [
+            "contactViewed"
+          ]
+        },
+        {
+          "id": "campaign-night-light",
+          "title": "用照明弹照亮目标",
+          "instruction": "选一艘后列驱逐舰，打开「照明」，对较远的合法接触下令。继续推进；未起亮或距离太近时可重新选择。",
+          "reason": "照明弹在合法射击时点发射；承担照明的炮座当次不再进行常规炮击。",
+          "guide": ".night-tools",
+          "require": [
+            "lightAccepted",
+            "lightApplied"
+          ]
+        },
+        {
+          "id": "campaign-night-cycle",
+          "title": "查看本次正式战情",
+          "instruction": "点开「战情记录」，对照发现接触、照明、发射和判定结果。",
+          "reason": "完成这轮操作即可结课，演习战果仍由正常规则决定。",
+          "guide": ".signal-strip .text-button",
+          "require": [
+            "reportViewed"
+          ]
+        }
+      ]
+    }
+  }
+}

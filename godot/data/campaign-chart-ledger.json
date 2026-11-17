@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-11",
+  "copied_asset": "godot/data/campaign-chart.json",
+  "source": "client/src/campaign-map/chart-data.json",
+  "source_ledger": "client/src/campaign-map/ledger.json",
+  "sha256": "88e847f9790cbbdb8bb39b58f3a874f8ae0759e345633212e69c6b7dedd65f0d",
+  "changes": "Verbatim read-only copy; Godot rasterizes existing SVG coast path in memory. No source or reference project modified.",
+  "scope": "Local developer and test builds, inherited from original CAS atlas ledger. Underlying Natural Earth public-domain land data metadata retained.",
+  "ui_reference": "User-provided previous CAS harbor, formation and campaign screenshots; Arknights/Azur Lane images consulted for hierarchy only, not copied as assets."
+}

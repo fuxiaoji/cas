@@ -3,10 +3,11 @@ import type { ReactNode } from 'react';
 import { AI_SHOP, aiShopBlockReason, aiShopOwned, aiShopStars, aiShopUnlocked, buyAiShopEntry } from '../../ai-shop';
 import type { AiShopEntry } from '../../ai-shop';
 import { sideNames } from '../../engine';
-import { getGunnery, hulls, rosters } from '../../port';
-import type { Hull, PortState } from '../../port';
+import { getGunnery, ownedShips } from '../../port';
+import type { PortState } from '../../port';
+import { FEATURED_SHIP, shipRarityName, shipTypeName } from '../../ship-catalog';
 import { buyWeeklyTicket, claimWeeklySupply, CHALLENGE_WEEKLY_TICKETS, WEEKLY_TICKET_PRICE, weeklyStatus } from '../../activities/week';
-import { shipPortrait } from '../../shipPortraits';
+import { shipPortraitById } from '../../shipPortraits';
 import { Drawer, ShopCard, WalletBar } from '../../widgets/economy';
 import type { ShopAction, ShopMeta, WalletItem } from '../../widgets/economy';
 import { quartermasterCounters } from './counters';
@@ -21,7 +22,6 @@ type Props = {
   onCounter: (counter: QuartermasterCounter) => void;
   onRecruit: () => void;
   onCampaign?: () => void;
-  onTraining?: () => void;
 };
 
 type Notice = { title: string; detail: string };
@@ -45,7 +45,7 @@ type Item = {
 };
 
 const counterCopy: Record<QuartermasterCounter, { kicker: string; title: string; note: string }> = {
-  ships: { kicker: 'COUNTER 01 · 舰船', title: '舰船柜台', note: '征募入口与已拥有舰型摘要；采购不在卡池里。' },
+  ships: { kicker: 'COUNTER 01 · 舰船', title: '舰船柜台', note: '征募入口与已拥有单舰清单；采购不在卡池里。' },
   supply: { kicker: 'COUNTER 02 · 配给', title: '补给配给', note: '每周常驻券与实战补给，沿用现有本机经济。' },
   ai: { kicker: 'COUNTER 03 · 战术', title: 'AI 战术室', note: '按 doctrine 采购风格；解锁读战役通关，价格用常驻券。' },
   exchange: { kicker: 'COUNTER 04 · 兑换', title: '礼包与兑换', note: '舰队勋章与既有兑换；不新增货币，不卖数值。' },
@@ -235,7 +235,7 @@ function defaultItem(counter: QuartermasterCounter) {
   return 'gunnery';
 }
 
-export function Quartermaster({ state, change, busy, counter, onCounter, onRecruit, onCampaign, onTraining }: Props) {
+export function Quartermaster({ state, change, busy, counter, onCounter, onRecruit, onCampaign }: Props) {
   const [selected, setSelected] = useState<string>(() => defaultItem(counter));
   const [notice, setNotice] = useState<Notice>();
   const [orderOpen, setOrderOpen] = useState(false);
@@ -244,9 +244,8 @@ export function Quartermaster({ state, change, busy, counter, onCounter, onRecru
   const copy = counterCopy[counter];
   const unlockedAi = AI_SHOP.filter(entry => aiShopUnlocked(entry, state.campaignProgress)).length;
   const ownedAi = AI_SHOP.filter(entry => aiShopOwned(state, entry)).length;
-  const hullIds = Object.keys(hulls) as Hull[];
-  const ownedShips = hullIds.reduce((sum, id) => sum + (state.owned[id] ?? 0), 0);
-  const ownedTypes = hullIds.filter(id => (state.owned[id] ?? 0) > 0).length;
+  const ownedShipCards = ownedShips(state);
+  const ownedCount = ownedShipCards.length;
 
   useEffect(() => {
     setSelected(defaultItem(counter));
@@ -283,23 +282,30 @@ export function Quartermaster({ state, change, busy, counter, onCounter, onRecru
     {
       key: 'recruit', kicker: '军港征募 · 独立页面', title: '进入军港征募',
       subtitle: '卡池、UP、概率、保底与到港记录在另一处；军需处只负责采购与兑换。',
-      tags: ['常驻池', '阵营 UP 池'], art: shipPortrait(rosters[state.preset.side][1])?.src,
+      tags: ['常驻池', '密苏里 UP'], art: shipPortraitById(FEATURED_SHIP)?.src,
       priceNote: `${state.wallet.standard} 常驻券 · ${state.wallet.up} UP 券`,
-      status: state.starter ? '开放' : '待领取初始舰队', tone: state.starter ? 'ok' : 'locked',
-      reason: state.starter ? undefined : '领取初始舰队后开放征募。',
-      action: { label: state.starter ? '进入军港征募' : '先领取初始舰队', primary: true,
-        disabled: busy || !state.starter, onClick: onRecruit },
+      status: '开放', tone: 'ok',
+      reason: undefined,
+      action: { label: '进入军港征募', primary: true,
+        disabled: busy, onClick: onRecruit },
     },
-    ...hullIds.map((id): Item => ({
-      key: 'hull:' + id, kicker: hulls[id].kind, title: hulls[id].name,
-      subtitle: `${sideNames[hulls[id].side]} · 本机舰型图鉴`,
-      tags: [(state.owned[id] ?? 0) > 0 ? '已入列' : '未入列'],
-      art: shipPortrait(id)?.src,
-      priceNote: `拥有 ${state.owned[id] ?? 0} / ${hulls[id].max}`,
-      status: (state.owned[id] ?? 0) > 0 ? '在港' : '未拥有', tone: (state.owned[id] ?? 0) > 0 ? 'owned' : 'dim',
-      reason: (state.owned[id] ?? 0) >= hulls[id].max ? '该舰型仓位已满，重复到港转舰队勋章。' : undefined,
-      meta: [{ label: '图鉴', value: (state.owned[id] ?? 0) > 0 ? '已登记' : '待征募' }],
+    ...ownedShipCards.map((card): Item => ({
+      key: 'ship:' + card.id, kicker: shipTypeName(card.type), title: card.name,
+      subtitle: `${sideNames[card.side]} · ${card.class ?? '舰级未登记'} · ${shipRarityName(card.gachaRarity)}`,
+      tags: ['已入列'],
+      art: shipPortraitById(card.id)?.src,
+      priceNote: `${card.points ?? 0} 点 · 已拥有`,
+      status: '在港', tone: 'owned',
+      meta: [{ label: '身份', value: card.id }],
+      data: { 'data-owned-ship': card.id },
     })),
+    ...(ownedShipCards.length ? [] : [{
+      key: 'ship-empty', kicker: '舰库', title: '暂无单舰',
+      subtitle: '完成初始舰队或到军港征募，就能在这里看到每一艘已拥有的单舰。',
+      tags: ['空状态'], status: '待征募', tone: 'dim' as const,
+      priceNote: '抽卡入口在上方',
+      action: { label: '进入军港征募', onClick: onRecruit },
+    }]),
   ];
 
   const supplyItems: Item[] = [
@@ -468,8 +474,7 @@ export function Quartermaster({ state, change, busy, counter, onCounter, onRecru
           价格为常驻征募券；provisional 强度会随版本复核，购买记录随本机账号保存。
         </p>}
         {counter === 'ships' && <p className="qm-fine">
-          本机图鉴 4 舰型 · 已拥有 {ownedShips} 艘（{ownedTypes} / 4 舰型）。重复到港自动转舰队勋章；军需处不做抽卡。
-          {onTraining && !state.starter && <> <button type="button" className="qm-text-link" onClick={onTraining}>先去领取初始舰队</button></>}
+          已拥有 {ownedCount} 艘单舰（每艘 identity 唯一）。重复到港自动转舰队勋章；内测期征募不要求先完成教学。
         </p>}
         {counter === 'exchange' && <p className="qm-fine">
           礼包与兑换沿用既有账目：6 勋章炮战 AI、重复到港转勋章、联机账号的舰船礼包与 15/45/120/300 勋章兑换。

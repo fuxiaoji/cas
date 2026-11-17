@@ -1,0 +1,439 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="护航图是在饭桌上画完的。女人收走碗，给你们让出一块干燥桌面。男孩抱着一只装灯芯的铁盒不肯放，说盒扣不好，交给别人就要撒。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="我们送你们穿过外环，到了信标再分开走。谁的动力不稳，现在就说。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="step"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="老人"
+
+text="说了会不让走吗？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="说了我把慢船放前面。等开起来才掉队，就得在危险处重新排。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="老人点点头，报了自己的速度。帕金斯在图上擦掉一段，又画得宽了一些。没有人因为那条线变长而叹气，连德雷顿都收起了玩笑。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="外面有会直线扑击的实体。出现很直的预警带，就离开它将要通过的地方，别拿船头接。它冲完要停一会儿，那时才是还手的机会。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我们不一定要消灭它？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="这次先把人送过去。它不挡路，就别为了追它拆开队形。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="男孩"
+
+text="我能看外面吗？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="能，但不许越过这根绳。听见我喊蹲下就蹲，不用先找我在哪。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="他认真点头，随后问你那块空胸牌是不是忘了写。你说暂时还没想好，他把自己的铅笔掰下一半，说想好了可以借你。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我已经有一支了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="男孩"
+
+text="那你还能给别人一支。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你把两截铅笔放在一起。一截削得很尖，一截被咬出了牙印。弗莱彻等你收好，才把图卷起来，问你最后一遍：有没有哪艘还没算进去。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="最后面那条维修艇。它不载客，不过回程我们还得靠它修桥。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="好。一起带上。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c2-convoy-brief"
+
+background="res://assets/story/chapter2/causeway.png"
+
+full_cg=false
+
+actors=Array[String](["fletcher", "perkins", "drayton"])
+
+music_scene="salvage"
+
+location="流民堤道 · 晨光"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15")])

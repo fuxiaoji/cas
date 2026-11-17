@@ -1,0 +1,67 @@
+{
+  "version": "salvage-v3",
+  "rule": "CAS-FICTION-SEA-01",
+  "source": "原创水世界 PvE 数值；非 CAS 历史舰卡或史料。长度、目标尺寸和无装甲仅为现有玩家武器的目标适配参数。",
+  "species": [
+    {
+      "id": "scavenger",
+      "name": "拾骸兽",
+      "hp": 90,
+      "speed_knots": 16,
+      "length_m": 70,
+      "attack_range_m": 2500,
+      "radius_m": 140,
+      "damage": 8,
+      "warning_seconds": 40,
+      "cooldown_seconds": 80
+    },
+    {
+      "id": "spitter",
+      "name": "骨帆水母",
+      "hp": 140,
+      "speed_knots": 10,
+      "length_m": 100,
+      "attack_range_m": 3800,
+      "radius_m": 180,
+      "damage": 12,
+      "warning_seconds": 50,
+      "cooldown_seconds": 90
+    },
+    {
+      "id": "warden",
+      "name": "礁脊守卫",
+      "hp": 260,
+      "speed_knots": 8,
+      "length_m": 150,
+      "attack_range_m": 3200,
+      "radius_m": 220,
+      "damage": 18,
+      "warning_seconds": 50,
+      "cooldown_seconds": 100
+    },
+    {
+      "id": "leviathan",
+      "name": "渊喉",
+      "hp": 720,
+      "speed_knots": 6,
+      "length_m": 360,
+      "attack_range_m": 6000,
+      "radius_m": 240,
+      "damage": 24,
+      "warning_seconds": 60,
+      "cooldown_seconds": 100
+    },
+    {
+      "id": "aversion",
+      "name": "憎恶巡游者",
+      "hp": 180,
+      "speed_knots": 20,
+      "length_m": 110,
+      "attack_range_m": 4000,
+      "radius_m": 170,
+      "damage": 10,
+      "warning_seconds": 45,
+      "cooldown_seconds": 80
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+[gd_scene format=3]
+[node name="ExpeditionCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0,395)
+layout_mode = 2
+size_flags_horizontal = 3
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+[node name="Body" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+[node name="Art" type="TextureRect" parent="Margin/Body"]
+custom_minimum_size = Vector2(0,170)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+[node name="Title" type="Label" parent="Margin/Body"]
+layout_mode = 2
+text = "近海巡航"
+theme_override_font_sizes/font_size = 27
+[node name="Tagline" type="Label" parent="Margin/Body"]
+visible = false
+layout_mode = 2
+text = "先熟悉搜索与撤离"
+theme_override_font_sizes/font_size = 20
+[node name="Risk" type="Label" parent="Margin/Body"]
+layout_mode = 2
+text = "海怪较少 · 新手推荐"
+theme_override_font_sizes/font_size = 18
+[node name="Reward" type="Label" parent="Margin/Body"]
+layout_mode = 2
+text = "基础补给与养成物资"
+theme_override_font_sizes/font_size = 18
+[node name="Spacer" type="Control" parent="Margin/Body"]
+layout_mode = 2
+mouse_filter = 2
+[node name="Select" type="Button" parent="Margin/Body"]
+custom_minimum_size = Vector2(0,40)
+layout_mode = 2
+text = "选择难度"

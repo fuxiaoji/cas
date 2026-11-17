@@ -159,10 +159,10 @@ impl World {
 
     pub(crate) fn max_speed(&self, ship: &Ship) -> f64 {
         let def = &self.data.ships[ship.def];
-        let damage = def.dp - ship.hp;
+        let stats=self.owned_stats(ship);
+        let damage = def.dp - ship.hp/stats.hp;
         if def.damage_speed.is_empty() {
-            return def
-                .max_knots
+            return (def.max_knots*stats.speed)
                 .min(ship.speed_cap.unwrap_or(f64::INFINITY))
                 .min(self.flooding_speed_limit(ship));
         }
@@ -171,8 +171,8 @@ impl World {
             .iter()
             .rposition(|r| damage + 1e-7 >= r.damage)
             .unwrap_or(0);
-        def.damage_speed[(i + ship.engineering_speed_levels).min(def.damage_speed.len() - 1)]
-            .knots
+        (def.damage_speed[(i + ship.engineering_speed_levels).min(def.damage_speed.len() - 1)]
+            .knots*stats.speed)
             .min(ship.speed_cap.unwrap_or(f64::INFINITY))
             .min(self.flooding_speed_limit(ship))
     }
@@ -380,10 +380,11 @@ impl World {
             }
         }
         let stationary: Vec<_> = others.iter().filter(|s| s.track.is_none()).collect();
+        let travel=if self.adventure(){10.}else{1.};
         let maxt = route
             .paths
             .iter()
-            .map(|(_, t)| ((t.end - t.pos) / (route.speed * KNOT)).ceil() as u32)
+            .map(|(_, t)| ((t.end - t.pos) / (route.speed * KNOT * travel)).ceil() as u32)
             .max()
             .unwrap_or(0)
             .min(self.field.limit.saturating_sub(self.tick));
@@ -391,11 +392,11 @@ impl World {
         for sec in (0..maxt).step_by(4) {
             let span = 4_u32.min(maxt - sec);
             for (i, (id, a, k)) in watch.iter().enumerate().take(route.paths.len()) {
-                let a0 = a.to(a.pos + *k * KNOT * sec as f64);
-                let a1 = a.to(a.pos + *k * KNOT * (sec + span) as f64);
+                let a0 = a.to(a.pos + *k * KNOT * sec as f64 * travel);
+                let a1 = a.to(a.pos + *k * KNOT * (sec + span) as f64 * travel);
                 for (jd, b, q) in watch.iter().skip(i + 1) {
-                    let b0 = b.to(b.pos + *q * KNOT * sec as f64);
-                    let b1 = b.to(b.pos + *q * KNOT * (sec + span) as f64);
+                    let b0 = b.to(b.pos + *q * KNOT * sec as f64 * travel);
+                    let b1 = b.to(b.pos + *q * KNOT * (sec + span) as f64 * travel);
                     if swept_separation(a0, a1, b0, b1) < self.clearance(*id, *jd) {
                         return Err(format!(
                             "约 {} 秒后，{} 与 {} 航路过近",
@@ -445,13 +446,35 @@ impl World {
         let (id, mode, points, speed) = Self::inputs(r)?;
         let f = self.fleet_for(owner, id)?;
         match self.plan_route(owner, id, mode, &points, speed) {
-            Ok(a) => Ok(json!({"valid":true,"speed":a.speed,"paths":paths_json(&a.paths)})),
+            Ok(a) => {
+                let mut value=json!({"valid":true,"speed":a.speed,"paths":paths_json(&a.paths)});
+                if let Some(chance)=self.sync_chance(id,mode) {
+                    value["executionChance"]=json!(chance);
+                    value["executionRule"]=json!("CAS-OWNED-GROWTH-01");
+                    value["executionReadyTick"]=json!(self.salvage.as_ref().unwrap().command_attempts.get(&id).map_or(0,|tick|tick+20));
+                }
+                Ok(value)
+            },
             Err(error) => Ok(json!({"valid":false,"error":error,"speed":f.speed,"paths":[]})),
         }
     }
     pub fn route(&mut self, owner: usize, r: &Value, manual: bool) -> E<()> {
         let (id, mode, points, speed) = Self::inputs(r)?;
         let a = self.plan_route(owner, id, mode, &points, speed)?;
+        if manual {
+            if let Some(chance)=self.sync_chance(id,mode) {
+                let b=self.salvage.as_mut().unwrap();
+                if b.command_attempts.get(&id).is_some_and(|tick|self.tick<tick+20) {
+                    return Err("同步信号正在整理，请在上次尝试20秒后重试".into());
+                }
+                b.command_attempts.insert(id,self.tick);
+                let roll=crate::world::roll(&mut b.command_rng,10000);
+                if f64::from(roll)>chance*10000. {
+                    self.add(1<<owner,"command_failed",format!("同步信号未完成（成功率 {:.2}%）；各舰保持原航线，20秒后可重试",chance*100.),Some("CAS-OWNED-GROWTH-01"),None);
+                    return Ok(());
+                }
+            }
+        }
         self.install_route(id, a, manual);
         Ok(())
     }
@@ -538,6 +561,36 @@ impl World {
         let id = u(r, "fleet")?;
         let f = self.fleet_for(owner, id)?;
         let lead = self.ship(f.leader).ok_or("没有可用领舰")?;
+        if let Some(spacing)=r.get("spacing_m"){
+            // Explicit current-pilot expedition command only. Historical and
+            // earlier reform operations retain their exact geometry below.
+            if !self.expedition.as_ref().is_some_and(|e|e.autopilot.enabled&&e.autopilot.version=="cas-extraction-pilot-v3"){
+                return Err("紧密重整仅供已授权的新版自动搜打撤".into());
+            }
+            let requested=spacing.as_f64().filter(|n|n.is_finite()&&(100.0..=600.0).contains(n)).ok_or("紧密队形间距无效")?;
+            let axis=P::bearing(lead.h);
+            let mut members:Vec<_>=f.members.iter().filter_map(|id|self.ship(*id)).filter(|s|s.alive()&&s.id!=lead.id).collect();
+            members.sort_by(|a,b|(lead.p-a.p).dot(axis).total_cmp(&(lead.p-b.p).dot(axis)).then(a.id.cmp(&b.id)));
+            if members.is_empty(){return Err("编队只有一艘舰，无需收紧队形".into());}
+            let advance=f.members.iter().filter_map(|id|self.ship(*id)).map(|s|self.data.ships[s.def].turn_advance_yards*YARD).fold(0.,f64::max);
+            // Include a zero-length authoritative hold for the leader, so
+            // neither validation nor installation retains a stale old route.
+            let mut paths=vec![(lead.id,Track::new(vec![lead.p],0.,0.))];let mut depth=0.;let mut prior=lead.id;let mut moving=false;
+            for ship in members{
+                if delta(ship.h,lead.h).abs()>6.||(ship.p-lead.p).cross(axis).abs()>75.{return Err("请先完成转向再收紧纵队".into());}
+                depth+=requested.max(self.clearance(prior,ship.id)+50.);prior=ship.id;
+                let goal=lead.p-axis*depth;
+                if (goal-ship.p).dot(axis)< -1.{return Err("现有队形已比所需间距紧密".into());}
+                if goal.dist(ship.p)>1.{
+                    let nodes=curved_route(self.field,ship,&[goal],advance)?;
+                    let length=cumulative(&nodes);paths.push((ship.id,Track::new(nodes,0.,length)));moving=true;
+                }else{paths.push((ship.id,Track::new(vec![ship.p],0.,0.)));}
+            }
+            if !moving{return Err("现有队形已足够紧密".into());}
+            let route=Route{paths,speed:25_f64.min(self.fleet_max(f)),mode:"follow".into(),points:vec![]};
+            if route.speed<4.{return Err("当前舰况不足以执行重整".into());}
+            self.check_route(owner,&route)?;return Ok(route);
+        }
         let axis = f
             .members
             .iter()
@@ -676,6 +729,10 @@ impl World {
         let mut proposal: Vec<(P, f64, f64, Option<f64>)> =
             self.ships.iter().map(|s| (s.p, s.h, 0., None)).collect();
         let curved = self.curved_movement();
+        // Versioned adventure travel changes distance and response only. Weapons,
+        // warning windows, weather and the deterministic clock still tick once.
+        let travel = if self.adventure() {10.}else{1.};
+        let response = if self.adventure() {6.}else{1.};
         for n in 0..self.fleets.len() {
             if curved && self.tick.saturating_sub(1) % CYCLE == 0 {
                 self.fleets[n].turn_degrees = 0.;
@@ -710,10 +767,12 @@ impl World {
                 .fold(100., f64::min);
             let max = self.fleet_max(f);
             let accel = if curved && f.turn_degrees >= 45. { accel * 0.5 } else { accel };
+            let acceleration_step=if self.adventure(){(accel*response/CYCLE as f64).max(4.)}else{accel/CYCLE as f64};
+            let braking_step=if self.adventure(){(brake*response/CYCLE as f64).max(6.)}else{brake/CYCLE as f64};
             let k = if f.actual > target {
-                (f.actual - brake / CYCLE as f64).max(target).min(max)
+                (f.actual - braking_step).max(target).min(max)
             } else {
-                (f.actual + accel / CYCLE as f64).min(target)
+                (f.actual + acceleration_step).min(target)
             };
             let mut next_k = k;
             let mut turn_degrees = f.turn_degrees;
@@ -722,7 +781,7 @@ impl World {
                     .iter()
                     .map(|s| {
                         let t = s.track.as_ref().unwrap();
-                        delta(s.h, t.at((t.pos + k * KNOT).min(t.end)).1).abs()
+                        delta(s.h, t.at((t.pos + k * KNOT * travel).min(t.end)).1).abs()
                     })
                     .fold(0., f64::max);
                 let loss = active
@@ -733,7 +792,7 @@ impl World {
                 next_k = (k - (turn_degrees - f.turn_degrees) / 45. * loss).max(0.);
             } else if let Some(l) = self.ship(f.leader) {
                 if let Some(t) = &l.track {
-                    let next = t.at(t.pos + k * KNOT).1;
+                    let next = t.at(t.pos + k * KNOT * travel).1;
                     let turn = delta(l.h, next).abs();
                     if turn > 5. && !jammed {
                         let loss = active
@@ -750,7 +809,7 @@ impl World {
                     continue;
                 }
                 let t = s.track.as_ref().unwrap();
-                let at = (t.pos + k * KNOT).min(t.end);
+                let at = (t.pos + k * KNOT * travel).min(t.end);
                 let (p, h) = t.at(at);
                 proposal[(s.id - 1) as usize] = (p, h, k, Some(at));
             }
@@ -783,7 +842,7 @@ impl World {
             }
             let rate = if self.data.ships[s.def].size == "C" { 4. } else { 2. };
             let h = norm(s.h + direction * rate);
-            let p = s.p + P::bearing(h) * (s.speed * KNOT);
+            let p = s.p + P::bearing(h) * (s.speed * KNOT * travel);
             proposal[i] = (p, h, s.speed, None);
         }
         let mut halt: Vec<u32> = Vec::new();
@@ -866,6 +925,20 @@ pub(crate) fn paths_json(paths: &[(u32, Track)]) -> Vec<Value> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn current_extraction_compacts_by_real_motion_and_holds_old_leader_route(){
+        let start=serde_json::from_value(json!({"content":"salvage-v4","gameplay_profile":"cas-adventure-v2","fleet":[{"id":"IBS-U-USN-FLETCHER","hp":100,"ammo":100,"level":0},{"id":"IBS-U-USN-PERKINS","hp":100,"ammo":100,"level":0},{"id":"IBS-U-USN-MAURY","hp":100,"ammo":100,"level":0}],"mission":{"kind":"salvage","id":"calm","loot_kind":"scrap"},"cargo_v4":{"commander_level":1,"difficulty":"calm","environment":"atoll","weather":"clear","loadouts":{}},"expedition_v2":{"scene":"sunken_metropolis","munitions":{}}})).unwrap();
+        let mut w=World::new_salvage(40,start).unwrap();let p=w.ship(1).unwrap().p;
+        let q=json!({"op":"reform","fleet":1,"spacing_m":100});assert!(w.reform_plan(0,&q).is_err());
+        crate::extraction_ai::command(&mut w.expedition.as_mut().unwrap().autopilot,&json!({"enabled":true,"version":"cas-extraction-pilot-v3"})).unwrap();
+        w.ship_mut(1).unwrap().track=Some(Track::new(vec![p,p+P{x:1000.,y:0.}],0.,1000.));
+        let before:Vec<_>=w.fleet(1).unwrap().members.iter().map(|id|(*id,w.ship(*id).unwrap().p)).collect();
+        w.reform(0,&q).unwrap();for(id,p)in &before{assert_eq!(w.ship(*id).unwrap().p,*p,"no teleport during planning");}
+        assert!(w.ship(1).unwrap().track.as_ref().unwrap().done());
+        for _ in 0..30{w.tick+=1;w.move_ships();}
+        assert_eq!(w.ship(1).unwrap().p,p);
+        let ids=w.fleet(1).unwrap().members.clone();for pair in ids.windows(2){let distance=w.ship(pair[0]).unwrap().p.dist(w.ship(pair[1]).unwrap().p);assert!(distance>=w.clearance(pair[0],pair[1])+49.9&&distance<200.,"actual compact gap {distance}");}
+    }
 
     #[test]
     fn round_waypoint_keeps_the_same_track_in_preview_and_execution() {

@@ -1,0 +1,40 @@
+[gd_scene format=3]
+[node name="ExpeditionBoard" type="Control"]
+offset_right = 860.0
+offset_bottom = 500.0
+[node name="Situation" type="Label" parent="."]
+offset_right = 860.0
+offset_bottom = 42.0
+text = "区域态势"
+theme_override_font_sizes/font_size = 20
+[node name="Scroll" type="ScrollContainer" parent="."]
+offset_top = 48.0
+offset_right = 860.0
+offset_bottom = 380.0
+horizontal_scroll_mode = 0
+[node name="Tasks" type="VBoxContainer" parent="Scroll"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 7
+[node name="Policy" type="OptionButton" parent="."]
+offset_top = 396.0
+offset_right = 230.0
+offset_bottom = 446.0
+[node name="Toggle" type="Button" parent="."]
+offset_left = 246.0
+offset_top = 396.0
+offset_right = 475.0
+offset_bottom = 446.0
+text = "启动自动打捞"
+[node name="Reason" type="Label" parent="."]
+offset_left = 490.0
+offset_top = 390.0
+offset_right = 860.0
+offset_bottom = 456.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 17
+[node name="Footnote" type="Label" parent="."]
+offset_top = 466.0
+offset_right = 860.0
+offset_bottom = 499.0
+text = "自动指挥只看已发现信息。手动下令即可接管；任务宝箱仍须入舱并撤离。"
+theme_override_font_sizes/font_size = 17

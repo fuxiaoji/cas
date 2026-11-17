@@ -1,0 +1,135 @@
+{
+  "version": "tactical-v3-armor-infantry-design-20261115",
+  "status": "final_native_source_and_targeted_behavior_reviewed",
+  "scope": "仅新显式island-war-v3的022坦克/103两栖车伴随步兵AI和真实车体直射遮挡；087保持炮兵远距支援，不纳入前压协同。最终时序与状态以原核导出为准。历史、已发布v2和既有旧航次冻结。",
+  "experience": "拖动整连即可看见坦克或两栖车在前、已下车步兵在后；有限身体从车侧探出开火，受压退回。掩护减少暴露机会，同时牺牲射界，不给予无条件减伤。",
+  "geometry": {
+    "tank_collision_radius_m": 3,
+    "infantry_collision_radius_m": 0.45,
+    "basis": "存活、实际活动地面车体圆与射手到目标线段相交；不使用屏幕PNG边缘",
+    "target_vehicle_not_self_blocker": true,
+    "air_vehicle_blocks_ground_fire": false,
+    "friendly_hull_blocks_outgoing_direct_shot": true,
+    "hostile_hull_intercepts_direct_shot": true,
+    "area_or_high_arc_fire_ignores_hull_cover": true,
+    "unconditional_incoming_damage_multiplier": 1,
+    "visual_scale_changes_collision_or_length_m": false,
+    "amphibious_vehicle_collision_radius_m": 3
+  },
+  "movement_targets": {
+    "threat_source": "本席实际可见的敌方威胁，不读取未发现身体",
+    "activation_distance_max_m": 2200,
+    "rear_offset_m": {
+      "first_body": 10,
+      "per_body": 1.8,
+      "last_body_by_unit": {
+        "MCP-022": 19,
+        "MCP-103": 22.6
+      }
+    },
+    "rear_lateral_offset_m": 0.7,
+    "peek_body_limit": 2,
+    "peek_offset_relative_to_hull_radius_m": 7,
+    "peek_window_s": 2,
+    "peek_cycle_s": 10,
+    "pressure_retreat_min_s": 2,
+    "pressure_trigger": "真实HP减少；如原核采用近弹压制，须另导出可核验事件，不能靠画面抖动判定",
+    "fallback": "无合法候选点则保留实际位置；死亡车体、撤收或手动接管时不继续强推队形",
+    "motion": "候选只设真实目标，每tick仍走现有逐身体静态/动态碰撞、扫掠与占位，不传送、不挪渲染坐标",
+    "vehicle_standoff_target_m": 480,
+    "eligible_bodies": "仅本连原有、存活、实际活动且已下车的身体；乘坐期间不分配地面掩护目标，不作为可射击步兵。"
+  },
+  "observable_state": [
+    "cover_vehicle_id",
+    "tactical_state",
+    "tactical_goal"
+  ],
+  "observable_state_meaning": "covered表示当前车后掩护行动，不承诺所有方向安全；真正挡弹仍逐条射线和实际车体判定。flanking/fallback分别为探头与受压回撤。",
+  "acceptance": [
+    "022同连始终为1辆独立坦克加6个原身体ID，零乘员座位；103为1辆两栖车加8个原身体ID，原人员真实上下车，不能复制驾驶员或让车成为身体替身。",
+    "103在实际下车后执行车后移动和侧射；实际上车后原身体隐藏/停止地面发射和地面掩护命令，再下车保留原ID、HP及有限枪械状态。",
+    "真实位置在威胁反向形成车后目标；最多两名身体有探头目标，路径和每tick位置仍合法且互不重叠。",
+    "步兵在车后不能穿己方车体开枪，合法侧翼射界才消耗一发并产生真实弹道。",
+    "同一武器同种子正面射向被挡身体时，实际车体拦截而非隐藏减伤；绕到侧翼后可真实伤到步兵。",
+    "近旁范围炮火仍按真实落点和距离伤害，不因车后状态免伤。",
+    "真实受击令该身体至少2秒优先回掩护，动作不重置HP、弹药、连射或换弹时钟。",
+    "手动停止/接管不被协同AI覆盖；车辆毁损或撤收后不再追着幽灵掩护点走。",
+    "身体、车体、碰撞中心、选择投影保持同源；陆图视觉放大不改米制半径、武器射程和海图比例。",
+    "同种子保存读取和native/WASM重演保持行为一致；最终测试需实际裁决，不以目录标签替代。"
+  ],
+  "limitations": [
+    "这是原创加速模式的局部协同，不声称完整现实步坦战术模拟。",
+    "目前采用圆形车体足迹；无装甲分区、弹道穿深和高度逐面遮挡。",
+    "空间遮挡用于实际地面直射；炮火范围伤害、空中攻击和其他已登记规则单独裁决。",
+    "本设计参数不是已通过最终原核/GPU/整场验收的声明。"
+  ],
+  "review": {
+    "scope": "独立只读源码和原核所有者50专项/449全库日志审阅；另运行558项构造/非法输入/目录核验、151真实状态样本的103公开命令流与11行为检查、406图标来源检查。构造/目录验证不冒称实伤/GPU。",
+    "owner_test_log": "artifacts/island-war-v3-tests.log",
+    "owner_targeted_tests_passed": 50,
+    "owner_all_test_log": "artifacts/island-war-v3/core/all-tests.log",
+    "owner_all_tests_passed": 449,
+    "resolved": [
+      "independent vehicle moving accuracy reads actual vehicle velocity",
+      "autonomous hold permits actual per-body cover movement while manual takeover remains stopped"
+    ],
+    "release_acceptance": "native/WASM长重演、正式安装和GPU由核心/root的独立记录负责，不由本设计或素材回执替代。",
+    "previous_core_sha256": "bc8084ee7d6aa5f816ba6fd7adfc8c825ddf29446e4e22c897ddf1483c094598",
+    "status": "022与103最终核来源/真实行为核验通过；旧bc808仅保留为前次阶段记录。",
+    "core_sha256": "298b78ecd20420cf7962fa24125b87d499cf4ba4708a22ba60453f7f64f78977",
+    "independent_native_receipt": "artifacts/tactical-vehicles-v3-20261115/independent-native-final-review.json",
+    "independent_103_actual_behavior_receipt": "artifacts/tactical-vehicles-v3-20261115/independent-103-actual-cover-final.json",
+    "independent_103_behavior_checks": 11,
+    "independent_103_actual_samples": 151,
+    "independent_103_original_body_ids": 32,
+    "independent_103_actual_rifle_launches": 247,
+    "same_tick_flank_fire": {
+      "tick": 33.4,
+      "body_id": 162,
+      "actual_shot_id": 1499,
+      "ammo_before": 268,
+      "ammo_after": 267
+    }
+  },
+  "unit_ids": [
+    "MCP-022",
+    "MCP-103"
+  ],
+  "companies": {
+    "MCP-022": {
+      "independent_vehicle_kind": "tank",
+      "independent_vehicles": 1,
+      "existing_rifle_bodies": 6,
+      "passenger_seats": 0,
+      "additional_bodies": 0
+    },
+    "MCP-103": {
+      "independent_vehicle_kind": "amphibious_vehicle",
+      "independent_vehicles": 1,
+      "existing_rifle_bodies": 8,
+      "passenger_seats": 8,
+      "additional_bodies": 0
+    }
+  },
+  "excluded_unit_ids": [
+    "MCP-087"
+  ],
+  "excluded_role_reason": "自行炮保持远距支援，手枪护卫不跟随前压坦克距离。",
+  "embark_contract": {
+    "unit_id": "MCP-103",
+    "same_existing_body_ids": true,
+    "ground_body_active_while_seated": false,
+    "ground_body_fire_while_seated": false,
+    "cover_goals_while_seated": false,
+    "preserves": [
+      "persona",
+      "body id",
+      "HP",
+      "primary/secondary ammo",
+      "magazine and reserve",
+      "burst/reload clocks"
+    ],
+    "additional_driver_body_count": 0,
+    "tank_has_passenger_seats": false
+  }
+}

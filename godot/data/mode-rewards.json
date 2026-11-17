@@ -1,0 +1,409 @@
+{
+  "version": 1,
+  "source": "client/src/activities/check-in.ts, activities/week.ts, port.ts, campaign-progress.ts",
+  "check_in": [
+    {
+      "credits": 500,
+      "standard_tickets": 2,
+      "id": "rookie-check-in-v1:1"
+    },
+    {
+      "up_tickets": 2,
+      "id": "rookie-check-in-v1:2"
+    },
+    {
+      "credits": 800,
+      "standard_tickets": 3,
+      "id": "rookie-check-in-v1:3"
+    },
+    {
+      "up_tickets": 3,
+      "id": "rookie-check-in-v1:4"
+    },
+    {
+      "credits": 1200,
+      "standard_tickets": 5,
+      "id": "rookie-check-in-v1:5"
+    },
+    {
+      "up_tickets": 5,
+      "id": "rookie-check-in-v1:6"
+    },
+    {
+      "ship_ids": [
+        "IBS-U-USN-UNNAMED-T01-R03"
+      ],
+      "id": "rookie-check-in-v1:7"
+    }
+  ],
+  "campaign": {
+    "CAMP-ALLIES-02": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-ALLIES-03": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-ALLIES-04": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "保存舰队",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "战术星章",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-ALLIES-05": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-ALLIES-10": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-ALLIES-11": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-AXIS-02": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-AXIS-03": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-AXIS-04": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "保存舰队",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "战术星章",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-AXIS-05": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-AXIS-10": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ],
+    "CAMP-AXIS-11": [
+      {
+        "stars": 1,
+        "title": "首通补给",
+        "credits": 400,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 80,
+        "materials": 8
+      },
+      {
+        "stars": 2,
+        "title": "战术胜利奖励",
+        "credits": 200,
+        "tickets": 1,
+        "marks": 0,
+        "origins": 40,
+        "materials": 4
+      },
+      {
+        "stars": 3,
+        "title": "决定胜利奖励",
+        "credits": 0,
+        "tickets": 2,
+        "marks": 10,
+        "origins": 40,
+        "materials": 4
+      }
+    ]
+  },
+  "welcome": {
+    "tickets": 20,
+    "up_tickets": 0
+  },
+  "prologue": {
+    "credits": 2000,
+    "tickets": 10,
+    "up_tickets": 10,
+    "origins": 160,
+    "materials": 20
+  },
+  "weekly": {
+    "repeat_limit": 3,
+    "repeat_tickets": 2,
+    "ticket_cost": 500,
+    "supply_clears": 3,
+    "supply_credits": 500,
+    "supply_tickets": 3
+  },
+  "growth_reward_version": "cas-owned-growth-v1"
+}

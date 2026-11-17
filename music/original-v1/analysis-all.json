@@ -1,0 +1,233 @@
+[
+  {
+    "id": "title",
+    "title": "归航的第一束光",
+    "seconds": 73.84615384615384,
+    "loop_start_seconds": 24.615384615384617,
+    "notes": 355,
+    "sha256": "64b9aa3bc1fdb60955dcb96e77627341945f3f9e15c530da756e147a4cd72ee9",
+    "bytes": 801854,
+    "meter": {
+      "input_i": "-21.79",
+      "input_tp": "-9.99",
+      "input_lra": "1.40",
+      "input_thresh": "-31.79",
+      "output_i": "-21.80",
+      "output_tp": "-10.00",
+      "output_lra": "1.30",
+      "output_thresh": "-31.80",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.20"
+    }
+  },
+  {
+    "id": "harbor_day",
+    "title": "风过晾帆巷",
+    "seconds": 83.47826086956522,
+    "loop_start_seconds": 20.869565217391305,
+    "notes": 728,
+    "sha256": "51c7263a7c69449718ac6b0b554f2bc4cf9dd9291a2e5c9f757d5d19882ba2d8",
+    "bytes": 994667,
+    "meter": {
+      "input_i": "-22.00",
+      "input_tp": "-9.99",
+      "input_lra": "1.30",
+      "input_thresh": "-32.00",
+      "output_i": "-21.96",
+      "output_tp": "-9.88",
+      "output_lra": "1.20",
+      "output_thresh": "-31.96",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.04"
+    }
+  },
+  {
+    "id": "harbor_night",
+    "title": "值班灯与未寄的信",
+    "seconds": 87.27272727272727,
+    "loop_start_seconds": 29.09090909090909,
+    "notes": 301,
+    "sha256": "8d898a3a3a1e6c08e25d98537b093cdec61202a99989365fb287c2f3de3783f0",
+    "bytes": 954899,
+    "meter": {
+      "input_i": "-21.93",
+      "input_tp": "-10.66",
+      "input_lra": "1.70",
+      "input_thresh": "-31.93",
+      "output_i": "-21.84",
+      "output_tp": "-10.73",
+      "output_lra": "1.50",
+      "output_thresh": "-31.84",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.16"
+    }
+  },
+  {
+    "id": "story",
+    "title": "潮线以外的回声",
+    "seconds": 80.0,
+    "loop_start_seconds": 26.666666666666668,
+    "notes": 353,
+    "sha256": "8857e4e29fc43ca4b6e478a1919091d80acfdcb59d5bc1835db812a8b992cfe7",
+    "bytes": 849168,
+    "meter": {
+      "input_i": "-21.91",
+      "input_tp": "-9.38",
+      "input_lra": "1.30",
+      "input_thresh": "-31.91",
+      "output_i": "-21.90",
+      "output_tp": "-9.41",
+      "output_lra": "1.30",
+      "output_thresh": "-31.90",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.10"
+    }
+  },
+  {
+    "id": "story_tension",
+    "title": "水下的第二次呼吸",
+    "seconds": 60.0,
+    "loop_start_seconds": 20.0,
+    "notes": 785,
+    "sha256": "852d61a2d790e9bc375c53d9c40db56c680f1143c455f03a979c58e3010e76fb",
+    "bytes": 870905,
+    "meter": {
+      "input_i": "-21.86",
+      "input_tp": "-11.04",
+      "input_lra": "1.00",
+      "input_thresh": "-31.86",
+      "output_i": "-21.89",
+      "output_tp": "-11.10",
+      "output_lra": "0.90",
+      "output_thresh": "-31.89",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.11"
+    }
+  },
+  {
+    "id": "battle",
+    "title": "与浪锋并肩",
+    "seconds": 60.95238095238095,
+    "loop_start_seconds": 15.238095238095237,
+    "notes": 1100,
+    "sha256": "6d31242a8f8e672727f466e0ef1d9fb230180b338089ebf5b488e28683862fe3",
+    "bytes": 947366,
+    "meter": {
+      "input_i": "-21.90",
+      "input_tp": "-10.37",
+      "input_lra": "0.50",
+      "input_thresh": "-31.90",
+      "output_i": "-21.97",
+      "output_tp": "-10.44",
+      "output_lra": "0.50",
+      "output_thresh": "-31.97",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.03"
+    }
+  },
+  {
+    "id": "landing",
+    "title": "踏上尚温的陆地",
+    "seconds": 68.57142857142857,
+    "loop_start_seconds": 17.142857142857142,
+    "notes": 1100,
+    "sha256": "9ecbe1a3601e84fed6451179d41f18675db9d824c4671857d4dfc331f11e9222",
+    "bytes": 1012424,
+    "meter": {
+      "input_i": "-21.91",
+      "input_tp": "-9.56",
+      "input_lra": "0.70",
+      "input_thresh": "-31.91",
+      "output_i": "-21.98",
+      "output_tp": "-9.64",
+      "output_lra": "0.70",
+      "output_thresh": "-31.98",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.02"
+    }
+  },
+  {
+    "id": "home",
+    "title": "可以种下明天的岛",
+    "seconds": 87.27272727272727,
+    "loop_start_seconds": 21.818181818181817,
+    "notes": 732,
+    "sha256": "3b862a8ff62aa27a1167c20d7b37afc602a51399d21dce47fcf3fdd0e7794384",
+    "bytes": 1068746,
+    "meter": {
+      "input_i": "-21.91",
+      "input_tp": "-9.25",
+      "input_lra": "1.10",
+      "input_thresh": "-31.91",
+      "output_i": "-22.01",
+      "output_tp": "-9.34",
+      "output_lra": "0.90",
+      "output_thresh": "-32.01",
+      "normalization_type": "dynamic",
+      "target_offset": "0.01"
+    }
+  },
+  {
+    "id": "tide",
+    "title": "潮环跃迁",
+    "seconds": 55.65217391304348,
+    "loop_start_seconds": 13.91304347826087,
+    "notes": 1100,
+    "sha256": "23d26d2bb75d397e0905a759f3e76279ca831d1f4c3692f8ee5b63a1d7e84237",
+    "bytes": 882545,
+    "meter": {
+      "input_i": "-21.91",
+      "input_tp": "-10.19",
+      "input_lra": "0.70",
+      "input_thresh": "-31.91",
+      "output_i": "-21.98",
+      "output_tp": "-10.24",
+      "output_lra": "0.60",
+      "output_thresh": "-31.98",
+      "normalization_type": "dynamic",
+      "target_offset": "-0.02"
+    }
+  },
+  {
+    "id": "victory",
+    "title": "灯塔回应",
+    "seconds": 17.77777777777778,
+    "loop_start_seconds": 0.0,
+    "notes": 197,
+    "sha256": "ab3cc25ec3bcb918037c285568871b6b7425ff262a3c5fe41d09bf390b509d70",
+    "bytes": 222308,
+    "meter": {
+      "input_i": "-22.47",
+      "input_tp": "-11.46",
+      "input_lra": "3.70",
+      "input_thresh": "-32.70",
+      "output_i": "-22.26",
+      "output_tp": "-11.48",
+      "output_lra": "0.40",
+      "output_thresh": "-32.38",
+      "normalization_type": "dynamic",
+      "target_offset": "0.26"
+    }
+  },
+  {
+    "id": "defeat",
+    "title": "带上剩下的人",
+    "seconds": 30.0,
+    "loop_start_seconds": 0.0,
+    "notes": 95,
+    "sha256": "c2347062bb108cffe54c34fa8294a14367b3a8996b0aac267b4f261ff2f6da90",
+    "bytes": 290243,
+    "meter": {
+      "input_i": "-22.46",
+      "input_tp": "-10.96",
+      "input_lra": "2.40",
+      "input_thresh": "-32.62",
+      "output_i": "-22.13",
+      "output_tp": "-10.86",
+      "output_lra": "1.60",
+      "output_thresh": "-32.21",
+      "normalization_type": "dynamic",
+      "target_offset": "0.13"
+    }
+  }
+]

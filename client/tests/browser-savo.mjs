@@ -16,12 +16,16 @@ try {
   await page.goto('http://127.0.0.1:5175/');
   await signInLocal(page, 'cas-savo-' + Date.now().toString(36), true);
   await page.locator('.growth-campaign-entry').click();
+  await page.locator('.campaign-lobby').waitFor();
+  await page.getByRole('button', { name: '史料馆', exact: true }).click();
+  await page.locator('.campaign-archive.war-atlas').waitFor();
   const row = page.locator('.war-archive-entries li').filter({ hasText: '萨沃岛' }).first();
   await row.waitFor();
   console.log('status', await row.locator('.war-entry-status').innerText());
   await row.locator('button.war-entry').click();
   await page.getByRole('button', { name: '作战简报', exact: true }).click();
   await page.locator('.war-brief').waitFor();
+  await page.locator('.war-fleet-picker').waitFor();
   await page.getByRole('button', { name: '出航作战', exact: true }).click();
   await page.locator('.battle-map').waitFor();
   const obs = await q('observe');
@@ -31,6 +35,28 @@ try {
   assert.equal(obs.ships.length, 49);  // 49 own-side allied hulls are visible to the seat
   console.log('sea_state', obs.environment.sea_state);
   await page.screenshot({ path: root + 'savo.png' });
+
+  // The 33 fielded unresolved Savo hulls have neither an identity portrait nor
+  // class art. The battle view must show the explicit 无立绘/舰影 figure.
+  const unresolved = obs.ships.find((ship) => !ship.characterId &&
+    !['fletcher', 'kagero', 'cleveland', 'sendai'].includes(ship.classId));
+  assert(unresolved, 'Savo fields unresolved class-only hulls');
+  await page.getByRole('button', { name: '舰体示意', exact: true }).click();
+  await page.locator('.ship-schematic').waitFor();
+  await page.getByLabel('查看舰艇').selectOption(String(unresolved.id));
+  await page.locator('.ship-portrait.is-placeholder').waitFor();
+  assert.match(await page.locator('.ship-portrait.is-placeholder').innerText(), /无立绘/);
+  await page.screenshot({ path: root + 'savo-placeholder.png' });
+  const resolved = obs.ships.find((ship) => ship.characterId);
+  assert(resolved, 'Savo still resolves its identified hulls');
+  await page.getByLabel('查看舰艇').selectOption(String(resolved.id));
+  await page.locator('.ship-portrait[data-character] img').waitFor();
+
   assert.deepEqual(errors, []);
-  await fs.writeFile(root + 'browser-receipt.json', JSON.stringify({ ok: true, stage: obs.campaign.stageId, ships: obs.ships.length, fleets: obs.fleets.length }, null, 2));
+  await fs.writeFile(root + 'browser-receipt.json', JSON.stringify({
+    ok: true, stage: obs.campaign.stageId, ships: obs.ships.length, fleets: obs.fleets.length,
+    identityShips: obs.ships.filter((ship) => ship.characterId).length,
+    placeholderShip: unresolved.name, placeholderClass: unresolved.classId,
+    resolvedShip: resolved.name, resolvedCharacter: resolved.characterId,
+  }, null, 2));
 } finally { await browser.close(); }

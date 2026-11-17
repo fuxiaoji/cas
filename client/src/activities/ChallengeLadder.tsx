@@ -1,4 +1,5 @@
 import type { PortLaunch, PortState } from '../port';
+import { ShipThumb } from '../widgets/ship-thumb';
 import {
   beginChallengeStage,
   challengeLadder,
@@ -43,6 +44,23 @@ function fleetLabel(fleet: ChallengeFleet): string {
   return fleet.ships.map((id) => challengeShipNames[id] ?? id).join('、');
 }
 
+/**
+ * One chip per catalogue identity. The card is the single-ship key: when the
+ * portrait ledger has that identity the chip renders an `<img>`; otherwise
+ * `ShipThumb` renders its explicit kind placeholder instead of an empty box.
+ */
+function FleetRoster({ fleet, label }: { fleet: ChallengeFleet; label: string }) {
+  return <div className="challenge-roster" aria-label={label}>
+    {fleet.ships.map((id, index) => {
+      const name = challengeShipNames[id] ?? id;
+      return <span className="challenge-roster__ship" data-ship={id} key={`${id}:${index}`} title={name}>
+        <ShipThumb size="sm" ship={{ id, name, kind: fleet.kinds[index] }} />
+        <b>{name}</b>
+      </span>;
+    })}
+  </div>;
+}
+
 function minutes(limit: number): string {
   return `${Math.round(limit / 60)} 分钟`;
 }
@@ -65,7 +83,7 @@ export function ChallengeLadder({ state, change, onLaunch, busy, ready }: Props)
     const fleet = selected.player[side];
     change((current) => beginChallengeStage(current, selected.id));
     onLaunch({
-      ...state.preset,
+      side: state.preset.side,
       leaderSlot: fleet.leader_slot,
       profile: selected.profile,
       variant: 'challenge',
@@ -111,6 +129,10 @@ export function ChallengeLadder({ state, change, onLaunch, busy, ready }: Props)
           <div><dt>击沉目标</dt><dd>至少 {selected.required_enemy_losses} 艘</dd></div>
           <div><dt>实测</dt><dd>种子 {selected.evidence.seed} · 敌损 {selected.evidence.result.allies} / 我损 {selected.evidence.result.axis}</dd></div>
         </dl>
+        <div className="challenge-rosters">
+          <div><span>本席 {sideName(side)} 单舰</span><FleetRoster fleet={selected.player[side]} label="本席单舰身份与立绘" /></div>
+          <div><span>敌方 {sideName(side === 'allies' ? 'axis' : 'allies')} 单舰</span><FleetRoster fleet={selected.enemy[side === 'allies' ? 'axis' : 'allies']} label="敌方单舰身份与立绘" /></div>
+        </div>
         <p className="challenge-note">实测为本席与敌方均由 auto AI 操作、步进至时限的结果；手动操作可改变战果。敌编成允许越级，预算只约束本席。</p>
       </> : <>
         <p className="challenge-blocker" role="status">{selected.blocker}</p>

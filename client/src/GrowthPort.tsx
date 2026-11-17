@@ -1,10 +1,11 @@
 // Mother-port view copied from 铁底湾 mobile/src/progression/GrowthPort.tsx at 3ba9c5b.
 // Keep the original mother-port structure; the adapter reads only the CAS account.
 import {useEffect,useRef,useState} from 'react';
-import {hulls,lessons} from './port';
+import {lessons} from './port';
 import type {PortState} from './port';
+import {shipCard,shipTypeName} from './ship-catalog';
 import type {OnlineMeta} from './online';
-import {shipPortrait} from './shipPortraits';
+import {shipPortraitById} from './shipPortraits';
 import './growth-port.css';
 
 export type LobbySection='academy'|'campaign'|'challenge'|'fleet'|'economy'|'activities'|'mail';
@@ -13,13 +14,13 @@ function DockIcon({kind}:{kind:string}){return <svg viewBox="0 0 40 40" fill="no
 export function GrowthPort({state,onNavigate,onHome,onReplayPrologue,onWatch,onOnline,online}:Props){
  const stepTotal=lessons.length;
  const meta={completed_steps:state.lessons,completed_courses:state.courses,
-  owned_ships:Object.entries(state.owned).flatMap(([id,count])=>Array.from({length:count},()=>id)),
+  owned_ships:Object.keys(state.owned),
   wallet:online?online.meta?.wallet:{credits:state.credits,up_tickets:state.wallet.up,standard_tickets:state.wallet.standard,tickets:0,medals:state.marks}};
  const recruitTickets=online?(meta.wallet?.standard_tickets??0)+(meta.wallet?.up_tickets??0)+(meta.wallet?.tickets??0):state.wallet.standard+state.wallet.up;
- const entries=Object.entries(hulls).flatMap(([id,hull])=>{const art=shipPortrait(id);return art?[{id,name:art.name,type:hull.kind,portrait:art.src,personality:id==='fletcher'?'有主见的先锋，遇事先把同伴护在身后。':undefined}]:[]});
+ const entries=Object.keys(state.owned).flatMap(id=>{const card=shipCard(id);const art=shipPortraitById(id);return card&&art?[{id,name:card.name,type:shipTypeName(card.type),portrait:art.src,personality:id==='IBS-U-USN-FLETCHER'?'有主见的先锋，遇事先把同伴护在身后。':undefined}]:[]});
  const availableWatch=entries.filter(ship=>meta.owned_ships.includes(ship.id));
  const activeWatch=availableWatch.find(ship=>ship.id===state.watch)??availableWatch[0];
- const watch=activeWatch??entries.find(ship=>ship.id==='fletcher');
+ const watch=activeWatch??entries[0];
  const [watchSearch,setWatchSearch]=useState('');
  const watchDialog=useRef<HTMLDialogElement>(null);
  const searchTerm=watchSearch.trim().toLowerCase();

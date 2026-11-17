@@ -18,6 +18,7 @@ type Sort = 'points' | 'kind' | 'name';
 
 type Candidate = {
   key: string; pick: string; classId: string; name: string; kind: string; points: number; historical: boolean;
+  identity?: string; slot?: number;
 };
 
 type Formation = { course?: number; speed?: number };
@@ -67,10 +68,13 @@ export function DeploymentScreen({
     setNotice('');
     void ask<FleetPick>({ op: 'campaign_fleet', id: stageId, difficulty }).then((value) => {
       if (!active) return;
-      const known = new Set([...value.historical.map((row) => row.class), ...value.options.map((row) => row.id)]);
+      const known = new Set([
+        ...value.historical.flatMap((row) => [row.identity, row.class].filter((pick): pick is string => !!pick)),
+        ...value.options.map((row) => row.id),
+      ]);
       const saved = readDraft(profileId, stageId, difficulty);
       const usable = saved && saved.picks.length === value.historical.length && saved.picks.every((pick) => known.has(pick))
-        ? saved.picks : value.historical.map((row) => row.class);
+        ? saved.picks : value.historical.map((row) => row.identity ?? row.class);
       setFleet(value);
       setPicks(usable);
       const unlocked = profiles.includes(defaultProfile) ? profiles : [defaultProfile, ...profiles];
@@ -111,46 +115,68 @@ export function DeploymentScreen({
   const historical = fleet?.historical ?? [];
   const options = fleet?.options ?? [];
 
-  const resolved = useMemo(() => {
-    const map = new Map<string, Candidate>();
-    for (const row of historical) {
-      if (!map.has(row.class)) {
-        map.set(row.class, { key: 'hist:' + row.class, pick: row.class, classId: row.class, name: row.name, kind: row.kind, points: row.points, historical: true });
-      }
-    }
-    for (const row of options) {
-      map.set(row.id, { key: 'opt:' + row.id, pick: row.id, classId: row.class, name: row.name, kind: row.kind, points: row.points, historical: false });
-    }
-    return map;
-  }, [fleet]);
+  const optionByPick = useMemo(() => new Map(options.map((row) => [row.id, row])), [fleet]);
+  // The engine prefers the scenario's printed period card for an identity that
+  // belongs to this roster. Its point value is therefore the historical row's
+  // value, not the ranked pool row's provisional value; using the ranked row
+  // would block a default story sortie on a budget the engine accepts.
+  const historicalPoints = useMemo(() => new Map(
+    historical.flatMap((row) => row.identity ? [[row.identity, row.points] as const] : []),
+  ), [fleet]);
 
-  // The picker shows one historical hull per class (the named ship already on
-  // the chart) plus every registered card the scenario data actually loads.
-  const candidates = useMemo(() => {
-    const rows: Candidate[] = [];
-    const seen = new Set<string>();
-    for (const row of historical) {
-      if (seen.has(row.class)) continue;
-      seen.add(row.class);
-      rows.push({ key: 'hist:' + row.class, pick: row.class, classId: row.class, name: row.name, kind: row.kind, points: row.points, historical: true });
+  // One historical candidate per printed hull. Same-class hulls are kept
+  // separate: the identity is the pick when one is pinned, otherwise the class
+  // card is the fallback and the row's own name stays visible.
+  const historicalCandidates = useMemo<Candidate[]>(() => historical.map((row, index) => ({
+    key: 'hist:' + (row.slot ?? index),
+    pick: row.identity ?? row.class,
+    classId: row.class,
+    name: row.name,
+    kind: row.kind,
+    points: row.points,
+    historical: true,
+    identity: row.identity ?? undefined,
+    slot: index,
+  })), [fleet]);
+
+  // Every registered 202-pool row is its own candidate. Deliberately no
+  // class-level dedupe: two hulls of the same class are distinct picks.
+  const candidates = useMemo<Candidate[]>(() => [
+    ...historicalCandidates,
+    ...options.map((row) => ({
+      key: 'opt:' + row.id,
+      pick: row.id,
+      classId: row.class,
+      name: row.name,
+      kind: row.kind,
+      points: historicalPoints.get(row.id) ?? row.points,
+      historical: false,
+      identity: row.id,
+    })),
+  ], [historicalCandidates, historicalPoints, fleet]);
+
+  const candidateByKey = useMemo(() => new Map(candidates.map((candidate) => [candidate.key, candidate])), [candidates]);
+
+  function candidateForPick(pick: string): Candidate | undefined {
+    const option = optionByPick.get(pick);
+    if (option) {
+      return {
+        key: 'opt:' + option.id, pick: option.id, classId: option.class, name: option.name,
+        kind: option.kind, points: historicalPoints.get(option.id) ?? option.points,
+        historical: false, identity: option.id,
+      };
     }
-    for (const row of options) {
-      if (seen.has(row.class)) continue;
-      seen.add(row.class);
-      rows.push({ key: 'opt:' + row.id, pick: row.id, classId: row.class, name: row.name, kind: row.kind, points: row.points, historical: false });
-    }
-    return rows;
-  }, [fleet]);
+    return historicalCandidates.find((candidate) => candidate.pick === pick);
+  }
 
   const budget = fleet?.budget ?? 0;
-  const pointsOf = (pick: string) => resolved.get(pick)?.points ?? 0;
-  const classOf = (pick: string) => resolved.get(pick)?.classId ?? pick;
+  const pointsOf = (pick: string) => candidateForPick(pick)?.points ?? 0;
   const total = picks.reduce((sum, pick) => sum + pointsOf(pick), 0);
   const segments = kinds.map((kind) => ({
     kind,
-    points: picks.filter((pick) => (resolved.get(pick)?.kind ?? '') === kind).reduce((sum, pick) => sum + pointsOf(pick), 0),
+    points: picks.filter((pick) => (candidateForPick(pick)?.kind ?? '') === kind).reduce((sum, pick) => sum + pointsOf(pick), 0),
   }));
-  const validPicks = picks.length === historical.length && picks.every((pick) => resolved.has(pick));
+  const validPicks = picks.length === historical.length && picks.every((pick) => !!candidateForPick(pick));
   const over = total > budget;
   const ready = !!fleet && validPicks && !over && !busy;
 
@@ -161,25 +187,41 @@ export function DeploymentScreen({
 
   function slotView(index: number) {
     const row = historical[index];
-    const pick = picks[index] ?? row?.class ?? '';
-    const candidate = resolved.get(pick);
-    const sameClass = candidate?.classId === row?.class;
+    const pick = picks[index] ?? row?.identity ?? row?.class ?? '';
+    // The slot's own printed hull stays historical whether the draft stored
+    // its identity or an older class-card pick.
+    if (row && (pick === row.identity || pick === row.class)) {
+      return {
+        pick,
+        name: row.name,
+        kind: row.kind,
+        points: row.points,
+        classId: row.class,
+        identity: row.identity ?? undefined,
+        historical: true,
+      };
+    }
+    const candidate = candidateForPick(pick);
     return {
       pick,
-      name: sameClass ? row.name : candidate?.name ?? pick,
+      name: candidate?.name ?? pick,
       kind: candidate?.kind ?? row?.kind ?? '',
       points: candidate?.points ?? row?.points ?? 0,
       classId: candidate?.classId ?? row?.class ?? pick,
+      identity: candidate?.identity,
+      historical: candidate?.historical ?? false,
     };
   }
 
   function openPicker(index: number) {
     setSlot(index);
-    setPendingKey(picks[index]);
     setFilter('all');
     setSearch('');
     setSort('points');
     setNotice('');
+    const row = historical[index];
+    const pick = picks[index] ?? row?.identity ?? row?.class;
+    setPendingKey(pick ? candidateForPick(pick)?.key : undefined);
   }
 
   const visibleCandidates = useMemo(() => {
@@ -192,7 +234,7 @@ export function DeploymentScreen({
   }, [candidates, filter, search, sort]);
 
   const current = slot === undefined ? undefined : slotView(slot);
-  const pending = pendingKey ? resolved.get(pendingKey) : undefined;
+  const pending = pendingKey ? candidateByKey.get(pendingKey) : undefined;
   const pendingOver = !!pending && !!current && total - current.points + pending.points > budget;
   const presetsHere = presets.filter((preset) => preset.stageId === stageId && preset.difficulty === difficulty);
 
@@ -210,7 +252,7 @@ export function DeploymentScreen({
   }
 
   function resetHistorical() {
-    setPicks(historical.map((row) => row.class));
+    setPicks(historical.map((row) => row.identity ?? row.class));
     setNotice('已恢复按历史编制。');
   }
 
@@ -228,7 +270,10 @@ export function DeploymentScreen({
   function loadPreset(id: string) {
     const preset = presets.find((item) => item.id === id);
     if (!preset) return;
-    const known = new Set([...historical.map((row) => row.class), ...options.map((row) => row.id)]);
+    const known = new Set([
+      ...historical.flatMap((row) => [row.identity, row.class].filter((pick): pick is string => !!pick)),
+      ...options.map((row) => row.id),
+    ]);
     if (preset.picks.length !== historical.length || !preset.picks.every((pick) => known.has(pick))) {
       setNotice('该预设与当前关卡编制不符，未载入。');
       return;
@@ -242,7 +287,7 @@ export function DeploymentScreen({
     { ok: picks.length === historical.length, label: '舰位数', detail: `${picks.length} / ${historical.length}` },
     { ok: true, label: '同阵营', detail: sideNames[side] },
     { ok: !over, label: '点价未超', detail: `${total.toLocaleString()} / ${budget.toLocaleString()}` },
-    { ok: picks.every((pick) => resolved.has(pick)), label: '舰卡有效', detail: '已登记时期舰卡' },
+    { ok: picks.every((pick) => !!candidateForPick(pick)), label: '舰卡有效', detail: '已登记时期舰卡' },
     { ok: true, label: '历史阵位保持', detail: '位置 / 航向 / 航速' },
   ];
 
@@ -358,13 +403,13 @@ export function DeploymentScreen({
         <ol className="dep-slots" aria-label="历史舰位">
           {historical.map((row, index) => {
             const view = slotView(index);
-            const isHistorical = view.classId === row.class;
+            const isHistorical = view.historical;
             return <li key={row.slot ?? index}>
               <button type="button" className={'dep-slot' + (index === 0 ? ' is-leader' : '')}
                 onClick={() => openPicker(index)}
                 aria-label={`第 ${index + 1} 舰位，${view.name}，${kindNames[view.kind] ?? view.kind}，${view.points} 分，点击更换`}>
                 <span className="dep-slot__index">{String(index + 1).padStart(2, '0')}</span>
-                <ShipThumb size="sm" ship={{ id: view.pick.startsWith('IBS-') ? view.pick : undefined, classId: view.classId, name: view.name, kind: view.kind }} />
+                <ShipThumb size="sm" ship={{ id: view.identity, classId: view.classId, name: view.name, kind: view.kind }} />
                 <span className="dep-slot__name">
                   <b>{view.name}
                     {isHistorical && <span className="dep-tag">历史舰</span>}
@@ -458,13 +503,13 @@ export function DeploymentScreen({
             const overBudget = total - current.points + candidate.points > budget;
             const same = candidate.pick === current.pick;
             return <li key={candidate.key}>
-              <button type="button" className={'dep-candidate__row' + (pendingKey === candidate.pick ? ' is-selected' : '')}
-                aria-pressed={pendingKey === candidate.pick} disabled={overBudget}
-                onClick={() => setPendingKey(candidate.pick)}>
-                <ShipThumb size="sm" ship={{ id: candidate.pick.startsWith('IBS-') ? candidate.pick : undefined, classId: candidate.classId, name: candidate.name, kind: candidate.kind }} />
+              <button type="button" className={'dep-candidate__row' + (pendingKey === candidate.key ? ' is-selected' : '')}
+                aria-pressed={pendingKey === candidate.key} disabled={overBudget}
+                onClick={() => setPendingKey(candidate.key)}>
+                <ShipThumb size="sm" ship={{ id: candidate.identity, classId: candidate.classId, name: candidate.name, kind: candidate.kind }} />
                 <span className="dep-candidate__name">
                   <b>{candidate.name}{candidate.historical && <span className="dep-tag">历史舰</span>}</b>
-                  <small>{kindNames[candidate.kind] ?? candidate.kind} · {candidate.classId}</small>
+                  <small>{kindNames[candidate.kind] ?? candidate.kind} · {candidate.classId}{candidate.identity && candidate.identity !== candidate.classId ? ` · ${candidate.identity}` : ''}</small>
                 </span>
                 <span className="dep-candidate__points">{candidate.points.toLocaleString()}<small>分</small></span>
                 <span className={'dep-candidate__delta' + (overBudget ? ' is-over' : '')}>

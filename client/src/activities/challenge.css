@@ -23,6 +23,12 @@
 .challenge-detail dl > div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid #2b4651; padding-bottom: 3px; }
 .challenge-detail dt { font-size: 10px; color: #91adb2; }
 .challenge-detail dd { margin: 0; font-size: 11px; color: #e2eded; text-align: right; }
+.challenge-rosters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; margin-top: 8px; }
+.challenge-rosters > div > span { display: block; margin-bottom: 3px; font-size: 9px; color: #91adb2; }
+.challenge-roster { display: flex; flex-wrap: wrap; gap: 3px 5px; }
+.challenge-roster__ship { display: inline-flex; align-items: center; gap: 3px; min-width: 0; padding: 2px 4px 2px 2px; background: #132c39; border: 1px solid #3b5963; }
+.challenge-roster__ship b { overflow: hidden; max-width: 78px; text-overflow: ellipsis; white-space: nowrap; font-size: 9px; font-weight: 500; color: #dbe9e9; }
+.challenge-roster__ship .ship-thumb { width: 20px; height: 24px; }
 .challenge-note { color: #9eb7ba !important; font-size: 10px !important; }
 .challenge-blocker { border-left: 2px solid #c78465; background: #2a2222; padding: 7px 9px; color: #ecc3ad !important; }
 .challenge-lock-note { color: #e3aa8e; font-size: 11px; }
@@ -38,4 +44,6 @@
 @media (max-width: 640px) {
   .challenge-stage-list { grid-template-columns: 1fr; }
   .challenge-detail dl { grid-template-columns: 1fr; }
+  .challenge-rosters { grid-template-columns: 1fr; }
+  .challenge-roster__ship b { max-width: 60px; }
 }

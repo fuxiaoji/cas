@@ -17,13 +17,18 @@ export type Entry = {
 };
 export interface Archive { schema_version: number; content_version: string; scenarios: Entry[] }
 export type FleetOption = { id: string; class: string; name: string; kind: string; points: number };
+export type FleetHistoricalRow = {
+  class: string; name: string; kind: string; points: number; slot: number;
+  /** Single-ship catalogue identity; null when the printed hull has none. */
+  identity?: string | null;
+};
 export type FleetPosition = {
   position: number; fleet: number; name: string; leader?: string; course?: number;
   speed: number; x?: number; y?: number; members: number;
 };
 export type FleetPick = {
   budget: number;
-  historical: { class: string; name: string; kind: string; points: number; slot: number }[];
+  historical: FleetHistoricalRow[];
   options: FleetOption[];
   positions?: FleetPosition[];
   taskForceSupported?: boolean;
@@ -286,13 +291,16 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
     setFleet(undefined); setFleetError('');
     void ask<FleetPick>({ op: 'campaign_fleet', id: brief.stageId, difficulty }).then(value => {
       if (!active) return;
-      setFleet(value); setPicks(value.historical.map(slot => slot.class));
+      setFleet(value); setPicks(value.historical.map(slot => slot.identity ?? slot.class));
     }, (failure) => { if (active) setFleetError(failure instanceof Error ? failure.message : String(failure)); });
     return () => { active = false; };
   }, [brief?.stageId, difficulty, online]);
-  const pointOf = (id: string) => fleet?.options.find(option => option.id === id)?.points
-    ?? fleet?.options.find(option => option.class === id)?.points
-    ?? fleet?.historical.find(slot => slot.class === id)?.points ?? 0;
+  // Printed period cards win over the ranked pool row: the kernel resolves an
+  // identity that belongs to the printed roster back to that scenario card.
+  const pointOf = (id: string) => fleet?.historical.find(slot => (slot.identity ?? slot.class) === id)?.points
+    ?? fleet?.options.find(option => option.id === id)?.points
+    ?? fleet?.historical.find(slot => slot.class === id)?.points
+    ?? fleet?.options.find(option => option.class === id)?.points ?? 0;
   const fleetTotal = picks.reduce((sum, id) => sum + pointOf(id), 0);
   const fleetReady = difficulty !== 'story' || online || (!!fleet &&
     picks.length === fleet.historical.length && fleetTotal <= fleet.budget);
@@ -429,11 +437,31 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
               <p>历史兵力共 {fleet.historical.length} 个舰位。每个舰位可换成同阵营已登记舰卡（历史舰为临时体验）；高难度使用原历史兵力。</p>
               <ol>
                 {fleet.historical.map((slot, index) => {
-                  const value = picks[index] ?? slot.class;
-                  const choices = [...fleet.options];
-                  if (!choices.some(option => option.id === slot.class || option.class === slot.class)) choices.unshift({ ...slot, id: slot.class });
+                  const value = picks[index] ?? slot.identity ?? slot.class;
+                  const historicalPick = slot.identity ?? slot.class;
+                  // One historical option per printed hull (same-class hulls
+                  // included), then every registered single-ship card. The
+                  // class card stays available for older drafts.
+                  const choices: FleetOption[] = [];
+                  const seen = new Set<string>();
+                  const add = (option: FleetOption) => {
+                    if (seen.has(option.id)) return;
+                    seen.add(option.id);
+                    choices.push(option);
+                  };
+                  add({ id: historicalPick, class: slot.class, name: slot.name, kind: slot.kind, points: slot.points });
+                  if (slot.identity && slot.class !== historicalPick) {
+                    add({ id: slot.class, class: slot.class, name: slot.name, kind: slot.kind, points: slot.points });
+                  }
+                  const printedByIdentity = new Map(fleet.historical
+                    .filter((row) => row.identity)
+                    .map((row) => [row.identity as string, row.points]));
+                  fleet.options.forEach((option) => {
+                    const printed = printedByIdentity.get(option.id);
+                    add(printed === undefined ? option : { ...option, points: printed });
+                  });
                   return <li key={slot.slot}>
-                    <span>第 {index + 1} 舰位 · {slot.name}</span>
+                    <span>第 {index + 1} 舰位 · {slot.name}{slot.identity ? ` · ${slot.identity}` : ''}</span>
                     <select value={value} aria-label={`第 ${index + 1} 舰位`} onChange={event => setPicks(current => {
                       const next = [...current]; next[index] = event.target.value; return next;
                     })}>
@@ -446,7 +474,7 @@ export function CampaignArchive({ onNight, onCampaign, progress, onClaim, busy, 
                 })}
               </ol>
               <div className="war-fleet-actions">
-                <button type="button" onClick={() => setPicks(fleet.historical.map(slot => slot.class))}>按历史编制</button>
+                <button type="button" onClick={() => setPicks(fleet.historical.map(slot => slot.identity ?? slot.class))}>按历史编制</button>
                 <span>{fleetTotal > fleet.budget ? `超出 ${fleetTotal - fleet.budget} 分` : '点价在历史兵力预算内'}</span>
               </div>
             </>}

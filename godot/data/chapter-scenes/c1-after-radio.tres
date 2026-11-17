@@ -1,0 +1,543 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="仓库清场以后，你听觉里还留着收音机的底噪。海面没有人说话，栏杆被绳碰一下，你却会转头，像总有人要在后面叫出一个你认不出的名字。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="耳机先给我。我们试试不是听它的时候，你能听见什么。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你把我当医务室的小孩了？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="我把自己也算上。刚才它说话的时候，我有点想把收音机砸了。幸好先看见你的手还在桌上。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她坐到你旁边，挨个指给你听：雨水顺着檐口滴下，补给艇的水泵断续响，远处有人吵谁没关门。你开始分辨哪些声音是此刻真实发生的。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="如果它下次换成我认识的声音呢？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="你也不一定认得出来。我们可以先约一句会变的话。比如晚饭吃什么，刚刚谁抱怨工具箱。让它回答现在的事。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="如果它也知道？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="那就不要只靠口令。看频道来源、位置和记录，多一层核对。没有一种办法能保证永远对，我们只要别把一道检查看成全部。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="帕金斯把主频道的静音键贴上新的触感胶。你闭着眼摸过一遍，能和旁边开关区分。一个小小的凸点，比“不要害怕”更能让手稳下来。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="外堤撤离需要指挥。如果你现在做不了，我来。不是考你能不能撑过去。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我能做。但我想让帕金斯替我核一次每条命令。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="可以。你说目标，我复述，再执行。怕慢的话先把退路画好，不用省掉确认。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你把手放到海图上，没有立刻拿笔。纸边还是湿的，补过一块透明胶带。它并不是一张能保证不出错的图，却记录着刚才谁走过哪里，谁在什么地方等着。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="那个声音说，他能给我一个名字。我真的很想听。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="我知道。我们不是让你假装不想。先把今天该带走的人送到安全处，等回来，你可以把想听的话一条条列出来，我们一起查。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="也可以骂两句。总把自己讲得很懂事，我听着都替你累。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我现在还想不到骂什么。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="那就先欠着。这个不用着急还。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你终于接过耳机，试着按了一下新的凸点。频道安静下来，你能听见自己的呼吸，不很稳，但确实属于此刻的甲板。弗莱彻等你点头，才让大家按刚才定好的顺序开始准备。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c1-after-radio"
+
+background="res://assets/story/chapter1/archive-room-v1.png"
+
+full_cg=false
+
+actors=Array[String](["drayton", "perkins", "fletcher"])
+
+music_scene="salvage"
+
+location="修复资料舱 · 异常来讯"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19")])

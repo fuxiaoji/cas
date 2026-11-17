@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-12",
+  "generator": "built-in image_gen",
+  "method": "three-image method: subject portrait for identity only; Fletcher v2 and registered Kagero SD for style/proportions only",
+  "jobs": [
+    {
+      "identity": "IBS-U-USN-HELM",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-helm.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: warm chestnut bob with soft curls, golden-brown eyes, white US naval cap with gold ship-wheel badge and navy ribbon, burgundy tailored coat with gold piping, white high collar and navy bow, navy skirt; signature open navigation book and a small brass weather mast motif. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her animal ears, face, hair or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-USN-HELM.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-helm.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-132fc462-fcef-461b-bcba-1eeb10a7f515.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-usn-helm.png",
+      "sha256": "8C0D60CB08E9D5ED38ADF559775D9A3D6D1065E10A4B353BE011B6E5FAEB3297",
+      "review": "Visually inspected: recognizable Helm cues (chestnut bob, wheel cap emblem, burgundy/navy uniform, book) and compact rigging; oversized head and short limbs read as SD. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-USN-DAHLGREN",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-dahlgren.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: soft mauve-brown side ponytail, olive-gold eyes, white cap with anchor badge, small cat ears and fluffy tail as in the identity art, muted sage dress with cream sleeves, purple plaid short cape, brown belt and satchel; signature small brass compass in one hand. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her animal ears, face, hair or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-USN-DAHLGREN.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-dahlgren.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-07b9d600-6325-4a71-931e-ed257de0d1b6.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-usn-dahlgren.png",
+      "sha256": "4AADCAB888156FB0BF1D8BDEF994571CB7B450119C33DA03EBA498A7085C415F",
+      "review": "Visually inspected: mauve side ponytail, anchor cap, plaid cape, sage dress, compass, ears and tail match the identity portrait; compact rigging and short limbs. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-USN-DECATUR",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-decatur.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: short tousled sage-green hair, green eyes, white naval cap with anchor emblem and burgundy ribbon, navy cape with cream lining, dark navy duffle coat over peach skirt, dark green boots; signature gold ship-wheel clasp at the chest. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her animal ears, face, hair or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-USN-DECATUR.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-decatur.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-84def852-d6f3-4407-8a92-094218f4c8e0.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-usn-decatur.png",
+      "sha256": "D12A2C36F39664192B39AA0657ABA660341287A22A0045B0445F90CC8CDB11AA",
+      "review": "Visually inspected: green bob, anchor cap, burgundy ribbon, navy cape/coat, peach skirt and green boots match the portrait; oversized head, compact boots and rigging. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-IJN-NATSUGUMO",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-natsugumo.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: long plum-brown hair and fox ears, gold-green eyes, cream sailor cap with flower, purple plaid cape with gold tassels, sage-green dress with cream cuffs, dark tights and brown boots; signature small envelope held at chest. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her animal ears, face, hair or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-IJN-NATSUGUMO.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-natsugumo.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-e3628080-5cd5-4d38-b39d-21a149aedd05.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-ijn-natsugumo.png",
+      "sha256": "C09881B25F9BFE8EEC642577946C517DC628DE107FC2234164233CFE0F22525E",
+      "review": "Visually inspected: long plum hair, ears, flowered cap, purple plaid cape, sage dress, and envelope are present; oversized head and shortened body. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-IJN-YUGUMO",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-yugumo.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: straight long deep navy hair, pale violet eyes, fox ears and pale-tipped fluffy tail exactly as identity art, teal-blue sailor mantle with gold wave trim over a white dress, cream sleeves, gold rope knots and tassels; signature small rolled chart tucked at the waist. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her face, hair, ears or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-IJN-YUGUMO.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-yugumo.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-71491c88-b2ea-4be5-85aa-366cc269dd3c.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-ijn-yugumo.png",
+      "sha256": "C9C32EA14BCFE35AFAAE5C8FBE6A26B7D32DC8002B328B3A832CC86A30B25B70",
+      "review": "Visually inspected: long navy hair, fox ears and tail, teal mantle, gold wave trim and rolled chart are identifiable; short boots/legs and compact rigging. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-IJN-YUGIRI",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-yugiri.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: short wavy chestnut hair, blue-violet eyes, large burgundy hair bow with small white blossoms, burgundy dress with white high collar and gold buttons, short cream-and-dark cape, dark tights; signature tiny plum flower charm at the waist. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her face, hair, ears or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-IJN-YUGIRI.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-yugiri.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-d538fa5e-a292-46bc-9fb8-881d9861ffcf.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-ijn-yugiri.png",
+      "sha256": "EC62895D891A27890940C9D86BDEC29A9E6376618E81CE32A07463E735CE8ECA",
+      "review": "Visually inspected: chestnut bob, burgundy bow and dress, white collar, small blossoms and cape match portrait; short legs and compact rigging. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-IJN-XIFENG",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-xifeng.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: long slate-blue hair, violet eyes, small gold hairpins and plum blossom ornament with purple ribbon, sage green dress, purple checked cape with gold knot and tassels, dark tights and brown boots; signature small brass compass held in one hand. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her face, hair, ears or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-IJN-XIFENG.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-xifeng.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-21223fb8-48fc-4613-aac1-2ac11eece6a9.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-ijn-xifeng.png",
+      "sha256": "BAAE66768CB12963F3AF3A4BBB905EF7CACD544C65F95800F0D4A04D586F25E6",
+      "review": "Visually inspected: slate-blue hair, gold clips, plum blossom ornament, purple plaid cape, sage dress and compass match portrait; compact boots/rigging. Candidate only; not integrated or approved for use."
+    },
+    {
+      "identity": "IBS-U-IJN-ONAMI",
+      "prompt": "Use case: stylized-concept. Asset type: one transparent 2D chibi naval-girl game sprite. Input image 1 (D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-onami.webp) is the ONLY identity reference; preserve this character's distinguishing hair, eyes, outfit palette and one signature accessory described here: short peach-blonde bob with curled side strands, sea-green eyes, large plum bow with gold hair ornament, tan naval coat with burgundy-and-gold trim over dark plum skirt, white blouse and dark plum tights; signature small glowing lantern held at her side. Input image 2 (Fletcher chibi) is STYLE AND PROPORTIONS ONLY; do not copy her blonde hair, white cap design, teal scarf, face details or uniform. Input image 3 (Kagero chibi) is STYLE AND PROPORTIONS ONLY; do not copy her face, hair, ears or costume. Redraw identity 1 as a strict TWO HEADS TALL mascot: head is 55–60% of total height, tiny torso, very short arms and legs, squat compact boots. Bold clear dark outlines, simple flat color blocks, at most one shadow layer, minimal details readable at 80 px tall. Fully clothed, friendly neutral standing pose, slight three-quarter front, full silhouette visible. Compact small destroyer rigging tucked close at hips, never a large ship. Transparent background with real alpha. No text, scenery, floor, shadow, watermark. Avoid tall 2.5-head proportions, long legs, detailed painterly rendering, gradients, realism, extra accessories. Identity: IBS-U-IJN-ONAMI.",
+      "references": [
+        {"path": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-ijn-onami.webp", "role": "identity only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis-generated/ibs-u-usn-fletcher.png", "role": "style and proportions only"},
+        {"path": "D:/desktop/cas/godot/assets/characters/chibis/ibs-u-ijn-kagero.png", "role": "style and proportions only"}
+      ],
+      "source": "C:/Users/fwj/.codex/generated_images/01a1cf29-5b81-7720-9b2e-e572b3eefdce/exec-e5267b1c-f151-4f3f-a709-3ceb29ff430b.png",
+      "target": "godot/assets/characters/chibi-supplement-b-candidates/ibs-u-ijn-onami.png",
+      "sha256": "CA83FBD50F8966E6997DFDAB5187BF73FD41E81E2DE1CBFEC5FDFE31950DFC66",
+      "review": "Visually inspected: peach-blonde bob, plum bow/gold ornament, tan coat, dark plum outfit and lantern match portrait; short limbs and compact rigging. Candidate only; not integrated or approved for use."
+    }
+  ]
+}

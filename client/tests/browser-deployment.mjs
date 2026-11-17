@@ -41,10 +41,28 @@ try {
   const slots = page.locator('.dep-slot');
   assert.equal(await slots.count(), 9, 'the historical column must keep nine slots');
   assert.match(await page.locator('.budget-meter__head b').innerText(), /6,850/);
+  // Same-class printed hulls stay separate rows even though five of the nine
+  // hulls are Fletcher-class cards.
+  const slotText = await slots.allInnerTexts();
+  for (const name of ['法伦霍尔特', '邓肯', '拉菲', '布坎南', '麦卡拉']) {
+    assert(slotText.some((text) => text.includes(name)), `slot list keeps ${name}`);
+  }
   await page.screenshot({ path: out + 'deployment-1360.png' });
 
   await slots.first().click();
   await page.locator('.dep-candidate').waitFor();
+  const candidateText = await page.locator('.dep-candidate__row').allInnerTexts();
+  for (const name of ['法伦霍尔特', '邓肯', '拉菲', '布坎南', '麦卡拉']) {
+    assert(candidateText.some((text) => text.includes(name)), `candidate list keeps same-class hull ${name}`);
+  }
+  const fletcherRows = await page.locator('.dep-candidate__row').filter({ hasText: 'fletcher' }).count();
+  assert(fletcherRows >= 5, `same-class candidates are not deduped (got ${fletcherRows})`);
+  const registeredRows = candidateText.filter((text) => text.includes('IBS-U-')).length;
+  assert(registeredRows > 0, 'registered single-ship cards are candidates');
+  await page.locator('.dep-search').fill('fletcher');
+  await page.locator('.dep-candidate__row').filter({ hasText: '法伦霍尔特' }).waitFor();
+  await page.screenshot({ path: out + 'deployment-candidates.png' });
+  await page.locator('.dep-search').fill('拉姆森');
   await page.locator('.dep-candidate__row').filter({ hasText: '拉姆森' }).click();
   await button('换上该舰').click();
   assert.match(await slots.first().innerText(), /拉姆森/, 'slot 1 must show the swapped ship');
@@ -60,6 +78,8 @@ try {
   assert.match(await slots.first().innerText(), /拉姆森/, 'the saved preset restores the swapped hull');
 
   await page.setViewportSize({ width: 740, height: 360 });
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  assert(overflow <= 1, `740x360 deployment must not scroll horizontally (overflow ${overflow})`);
   await button('参谋').click();
   await page.locator('.dep-sheet').waitFor();
   await page.screenshot({ path: out + 'deployment-740-staff.png' });
@@ -86,7 +106,46 @@ try {
   assert.equal(obs.campaign.difficulty, 'story');
   assert.equal(obs.ships.length, 9, 'the sortie keeps the printed nine hulls');
   assert.equal(obs.ships[0].name, '拉姆森', 'the kernel received the swapped first slot');
+  for (const name of ['邓肯', '拉菲', '布坎南', '麦卡拉']) {
+    assert(obs.ships.some((ship) => ship.name === name), `${name} keeps its own name after the same-class swap`);
+  }
+  const characterShips = obs.ships.filter((ship) => ship.characterId);
+  assert.equal(characterShips.length, 1, 'the swapped identity carries characterId');
+  assert.equal(obs.ships.filter((ship) => !ship.characterId).length, 8, 'the class hulls stay class-only');
   assert.equal(obs.side, 'allies');
+
+  // Portrait resolution: a catalogued class with no ledger identity falls back
+  // to the class representative; an unknown class is an explicit placeholder,
+  // never an empty figure.
+  const portraitFallback = await page.evaluate(async () => {
+    const url = performance.getEntriesByType('resource')
+      .map((entry) => entry.name).find((name) => name.includes('/src/shipPortraits.ts'));
+    const mod = await import(url ?? '/src/shipPortraits.ts');
+    const representative = mod.shipPortrait('fletcher', 'IBS-U-NOT-IN-THE-LEDGER');
+    const unknown = mod.shipPortrait('unknown-class', 'IBS-U-NOT-IN-THE-LEDGER');
+    return { representative: representative?.representative ?? false, hasSrc: !!representative?.src, unknown: unknown ?? null };
+  });
+  assert.equal(portraitFallback.representative, true, 'identity without ledger row falls back to the class representative');
+  assert.equal(portraitFallback.hasSrc, true);
+  assert.equal(portraitFallback.unknown, null, 'unknown class returns undefined for the explicit battle placeholder');
+
+  const shipSelect = page.getByLabel('查看舰艇');
+  await page.getByRole('button', { name: '舰体示意', exact: true }).click();
+  await page.locator('.ship-schematic').waitFor();
+  const placeholderShip = obs.ships.find((ship) => !ship.characterId &&
+    !['fletcher', 'kagero', 'cleveland', 'sendai'].includes(ship.classId));
+  assert(placeholderShip, 'Esperance fields class-only hulls without class art');
+  await shipSelect.selectOption(String(placeholderShip.id));
+  await page.locator('.ship-portrait.is-placeholder').waitFor();
+  assert.match(await page.locator('.ship-portrait.is-placeholder').innerText(), /无立绘/);
+  await page.screenshot({ path: out + 'deployment-placeholder.png' });
+
+  const classShip = obs.ships.find((ship) => !ship.characterId && ship.classId === 'fletcher');
+  assert(classShip, 'Esperance fields a Fletcher class card');
+  await shipSelect.selectOption(String(classShip.id));
+  await page.locator('.ship-portrait figcaption').filter({ hasText: '舰型代表' }).waitFor();
+  assert.equal(await page.locator('.ship-portrait img').count(), 1);
+
   assert.deepEqual(errors, []);
   await page.screenshot({ path: out + 'deployment-launch.png' });
   await fs.writeFile(out + 'receipt.json', JSON.stringify({
@@ -95,6 +154,11 @@ try {
     difficulty: obs.campaign.difficulty,
     ships: obs.ships.length,
     firstShip: obs.ships[0].name,
+    sameClassFletchers: 5,
+    candidateRows: candidateText.length,
+    overflow740: overflow,
+    placeholderShip: placeholderShip.name,
+    classRepresentativeShip: classShip.name,
     draft: '拉姆森',
   }, null, 2));
   console.log('deployment receipt', obs.campaign.stageId, obs.ships.length, obs.ships[0].name);

@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "policy": "按场景内唯一文本片段定位。覆盖角色由被匹配台词的speaker决定；该角色表情持续到本场景下一次覆盖，其他角色与换句不重置它。仅两处明确step，禁止闪屏或每句进场。",
+  "chapters": {
+    "chapter-01": [
+      {
+        "scene_id": "waking",
+        "text_contains": "你看得懂队形？",
+        "tone": "concern",
+        "reason": "弗莱彻发现失忆者突然能读懂航路，先核实，尚未许诺。"
+      },
+      {
+        "scene_id": "waking",
+        "text_contains": "那就先和我们一起。你说航路，我盯着后面。",
+        "tone": "resolve",
+        "reason": "担忧转为承担队尾责任，后面命令延续这个表情。"
+      },
+      {
+        "scene_id": "c1-quay-check",
+        "text_contains": "别捡了就攥手里。你手上那点新血再混进去",
+        "tone": "alert",
+        "reason": "德雷顿看见伤手要碰断锁，短暂认真制止，不以愤怒代替照顾。"
+      },
+      {
+        "scene_id": "c1-quay-check",
+        "text_contains": "锁可以，线先留着。你看，它不用盖房了",
+        "tone": "calm",
+        "reason": "事故来源查明后用先前盖房的玩笑卸下戒备。"
+      },
+      {
+        "scene_id": "message",
+        "text_contains": "报身份和频道。这里是民用仓库。",
+        "tone": "resolve",
+        "motion": "step",
+        "reason": "弗莱彻向收音机前移半步，先划清平民仓库的边界；之后留在原处，不随每句重播。"
+      },
+      {
+        "scene_id": "c1-after-radio",
+        "text_contains": "耳机先给我。我们试试不是听它的时候",
+        "tone": "concern",
+        "reason": "德雷顿担心主角仍陷在广播余音中，先帮忙辨认甲板日常声音。"
+      },
+      {
+        "scene_id": "c1-after-radio",
+        "text_contains": "也可以骂两句。总把自己讲得很懂事",
+        "tone": "calm",
+        "reason": "已有具体核验办法，才恢复她熟悉的低调玩笑。"
+      },
+      {
+        "scene_id": "promise",
+        "text_contains": "有点。我把人从海里捞回来，他转头就想自己跳回去",
+        "tone": "concern",
+        "reason": "夜谈时承认真实的不安，不演成被背叛的暴怒。"
+      },
+      {
+        "scene_id": "promise",
+        "text_contains": "明早还是那个点。左锅汤，右锅颜料",
+        "tone": "calm",
+        "reason": "主角答应先沟通以后，借厨房笑话回到共同生活。"
+      }
+    ],
+    "chapter-02": [
+      {
+        "scene_id": "c2-convoy-brief",
+        "text_contains": "我们送你们穿过外环，到了信标再分开走",
+        "tone": "resolve",
+        "motion": "step",
+        "reason": "弗莱彻走近护航图，承担编序与慢船责任；只是一次小幅接近。"
+      },
+      {
+        "scene_id": "c2-late-boat",
+        "text_contains": "别先当假信号。也可能有人后来过去了",
+        "tone": "concern",
+        "reason": "德雷顿注意到录音里的孩子，谨慎要求核查求救者。"
+      },
+      {
+        "scene_id": "c2-late-boat",
+        "text_contains": "那就一起。有人听第一遍只顾生气",
+        "tone": "calm",
+        "reason": "回接条件与分工明确后，转为可以一起说服住民的日常口吻。"
+      },
+      {
+        "scene_id": "c2-water-vote",
+        "text_contains": "我们会切它。但要先知道切了以后谁家的水会停",
+        "tone": "resolve",
+        "reason": "面对需要立刻开火的压力，弗莱彻坚持先安排住民供水。"
+      },
+      {
+        "scene_id": "c2-break-time",
+        "text_contains": "吃东西，休息一会儿。让帕金斯接。",
+        "tone": "concern",
+        "reason": "从重复读字发现疲劳，关心落在具体交班而非鼓励硬撑。"
+      },
+      {
+        "scene_id": "c2-nurse",
+        "text_contains": "昨晚拉人的时候。今天还能动，就是拧东西会酸。",
+        "tone": "hurt",
+        "reason": "检查牵动拉伤的手腕，使用现有轻度受伤脸，不新增伤口或血。"
+      },
+      {
+        "scene_id": "c2-nurse",
+        "text_contains": "这个我支持。她刚才把我的伤说得很严重",
+        "tone": "calm",
+        "reason": "包扎后能开自己的玩笑，疼痛并不需要用整场痛苦脸表现。"
+      },
+      {
+        "scene_id": "c2-secret",
+        "text_contains": "你为什么没早点说？",
+        "tone": "concern",
+        "reason": "弗莱彻当面追问旧金山隐瞒；维护主角知情权，同时保留同僚关系的复杂感。"
+      }
+    ],
+    "chapter-03": [
+      {
+        "scene_id": "c3-crossing-brief",
+        "text_contains": "我们今天不比谁最快。前面先过",
+        "tone": "resolve",
+        "reason": "过桥前明确队尾空间，把决心放在保护队形上。"
+      },
+      {
+        "scene_id": "c3-empty-room",
+        "text_contains": "那张桌子以前不在这边。值夜班的人嫌这里反光",
+        "tone": "concern",
+        "reason": "熟悉的房间被改动，潮痕第一次无法只靠背好的回答应付现场。"
+      },
+      {
+        "scene_id": "c3-lighthouse",
+        "text_contains": "有一个人。不是你。也不该让你替她还账。",
+        "tone": "concern",
+        "reason": "潮痕在旧照片位置前承认另有故人，拒绝拿主角补偿自己的旧事。"
+      },
+      {
+        "scene_id": "c3-tideborn-account",
+        "text_contains": "她叫许柯，是维修员。你们看见那份不同意继续的申请",
+        "tone": "concern",
+        "reason": "第一次说出姓名与暂扣申请的责任，先保留迟疑和不安。"
+      },
+      {
+        "scene_id": "c3-tideborn-account",
+        "text_contains": "我看见的是她没再出来。最后一次探视被退回",
+        "tone": "hurt",
+        "reason": "说到最后探视被拒时难过，现有受伤脸没有新增外伤，可用于压抑的悲伤。"
+      },
+      {
+        "scene_id": "c3-tideborn-account",
+        "text_contains": "我想留在这里帮你们，但如果你们让我走",
+        "tone": "resolve",
+        "reason": "承诺先写完证词，承担责任的决定先于是否获准留下。"
+      },
+      {
+        "scene_id": "c3-tideborn-account",
+        "text_contains": "是她。没有那么有耐心。找不到工具会发火",
+        "tone": "calm",
+        "reason": "谈故人的脾气与饭菜时恢复日常，不把整段纪念演成持续哭诉。"
+      },
+      {
+        "scene_id": "c3-after",
+        "text_contains": "点名。按刚才的顺序。",
+        "tone": "concern",
+        "reason": "巨兽倒下后先确认所有人的回应，关心仍在，避免直接胜利庆祝脸。"
+      }
+    ]
+  }
+}

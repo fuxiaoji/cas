@@ -61,6 +61,8 @@ pub struct Start {
     /// instead of the printed player groups; the enemy order is untouched.
     #[serde(default)]
     pub groups: Option<Vec<GroupPick>>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub owned_growth: Option<crate::owned_growth::CampaignGrowth>,
 }
 impl Start {
     pub(crate) fn new(stage_id: &str, difficulty: &str) -> Self {
@@ -70,6 +72,7 @@ impl Start {
             content_version: String::new(),
             fleet: None,
             groups: None,
+            owned_growth:None,
         };
         start.content_version = start.expected_content().into();
         start
@@ -304,9 +307,13 @@ fn runtime() -> E<&'static Runtime> {
                 return Err("战役内容版本不一致".into());
             }
             Ok(Runtime {
-                data: Data {
-                    ships: manifest.ships,
-                    rules: World::exercise_data()?.rules.clone(),
+                data: {
+                    let mut data = Data {
+                        ships: manifest.ships,
+                        rules: World::exercise_data()?.rules.clone(),
+                    };
+                    super::fleet::add_registered_cards(&mut data)?;
+                    data
                 },
                 fits: manifest.metadata.instance_fits,
             })
@@ -360,6 +367,11 @@ pub(crate) fn supports_groups(stage_id: &str) -> bool {
 
 impl World {
     pub(crate) fn new_campaign(seed: u32, start: Start, profile: &str) -> E<Self> {
+        let mut world=Self::new_campaign_base(seed,start,profile)?;
+        world.apply_campaign_growth()?;
+        Ok(world)
+    }
+    fn new_campaign_base(seed: u32, start: Start, profile: &str) -> E<Self> {
         let player = start.seat()?;
         let enemy = start.enemy()?;
         if start.content_version != start.expected_content() {
@@ -557,7 +569,11 @@ impl World {
             // debrief also needs this seat's sunk and withdrawn participants.
             let roster: Vec<_> = self.ships.iter().filter(|ship| ship.side == owner).map(|ship| {
                 let class = &self.data.ships[ship.def].id;
-                json!({"name":ship.name,"classId":class,"characterId":character_id(class)})
+                // The ship's own identity wins after a single-ship swap; the
+                // class card and unresolved named hulls keep the pinned
+                // runtime lookup (or null).
+                let character = ship.character.clone().or_else(|| character_id(class).map(str::to_string));
+                json!({"name":ship.name,"classId":class,"characterId":character})
             }).collect();
             view["roster"] = json!(roster);
         }
@@ -938,5 +954,18 @@ mod tests {
             .find(|ship| ship["classId"] == "savo_chokai")
             .expect("Savo prints Chokai");
         assert_eq!(chokai["characterId"], "IBS-U-IJN-CHOKAI");
+        let hobart = {
+            let mut e = Engine::default();
+            let savo = opening(&mut e, "CAMP-ALLIES-10");
+            savo["ships"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|ship| ship["classId"] == "savo_hobart")
+                .cloned()
+                .expect("Savo prints Hobart on the allied seat")
+        };
+        assert!(hobart.get("characterId").is_none(),
+            "the unresolved named hull keeps no borrowed identity");
     }
 }

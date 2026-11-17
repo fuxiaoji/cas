@@ -1,0 +1,87 @@
+{
+  "cargo_v4": {
+    "commander_level": 1,
+    "difficulty": "calm",
+    "environment": "atoll",
+    "loadouts": {
+      "IBS-U-USN-FLETCHER": {
+        "torpedoes": true
+      },
+      "IBS-U-USN-MAURY": {
+        "torpedoes": true
+      },
+      "IBS-U-USN-PERKINS": {
+        "torpedoes": true
+      }
+    },
+    "weather": "auto"
+  },
+  "content": "salvage-v4",
+  "expedition_v2": {
+    "munitions": {
+      "IBS-U-USN-FLETCHER": {
+        "reserve_reloads": 1,
+        "shell": "balanced",
+        "torpedo": "standard"
+      },
+      "IBS-U-USN-MAURY": {
+        "reserve_reloads": 1,
+        "shell": "balanced",
+        "torpedo": "standard"
+      },
+      "IBS-U-USN-PERKINS": {
+        "reserve_reloads": 1,
+        "shell": "he",
+        "torpedo": "standard"
+      }
+    },
+    "scene": "cult_relay"
+  },
+  "fleet": [
+    {
+      "ammo": 60,
+      "command": false,
+      "equipment": false,
+      "hp": 100,
+      "id": "IBS-U-USN-FLETCHER",
+      "level": 0
+    },
+    {
+      "ammo": 60,
+      "command": false,
+      "equipment": false,
+      "hp": 100,
+      "id": "IBS-U-USN-PERKINS",
+      "level": 0
+    },
+    {
+      "ammo": 60,
+      "command": false,
+      "equipment": false,
+      "hp": 100,
+      "id": "IBS-U-USN-MAURY",
+      "level": 0
+    }
+  ],
+  "gameplay_profile": "cas-adventure-v2",
+  "groups": [
+    {
+      "id": "fleet-1",
+      "name": "第一舰队",
+      "ships": [
+        "IBS-U-USN-FLETCHER",
+        "IBS-U-USN-PERKINS",
+        "IBS-U-USN-MAURY"
+      ]
+    }
+  ],
+  "mission": {
+    "enemy_budget": 0,
+    "id": "calm",
+    "kind": "salvage",
+    "loot_kind": "scrap",
+    "player_budget": 0
+  },
+  "owned_growth": "cas-owned-growth-v1",
+  "weather": "salvage-weather-v1"
+}

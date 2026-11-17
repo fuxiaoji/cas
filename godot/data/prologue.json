@@ -1,0 +1,4504 @@
+{
+  "version": 1,
+  "source": "client/src/prologue/story.ts + originalScript.ts",
+  "fictional": true,
+  "personalities": [
+    {
+      "id": "IBS-U-USN-FLETCHER",
+      "name": "弗莱彻",
+      "role": "可靠的先锋",
+      "portrait": "/characters/ships/fletcher-anime-face.png",
+      "line": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+      "response": "好，旗舰信号已经升起。你看海图，我看前方。"
+    },
+    {
+      "id": "IBS-U-USN-PERKINS",
+      "name": "帕金斯",
+      "role": "冷静的参谋",
+      "portrait": "/characters/ships/perkins-anime-face.png",
+      "line": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+      "response": "收到。我会替你守住队形，也会提醒你每一个遗漏。"
+    },
+    {
+      "id": "IBS-U-USN-MAURY",
+      "name": "莫里",
+      "role": "阳光的行动派",
+      "portrait": "/characters/ships/maury-anime-face.png",
+      "line": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+      "response": "交给我！领舰就该先把航路开出来，你跟紧我的信号。"
+    },
+    {
+      "id": "IBS-U-USN-DRAYTON",
+      "name": "德雷顿",
+      "role": "温柔的守望者",
+      "portrait": "/characters/ships/drayton-anime-face.png",
+      "line": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+      "response": "我在。无论海雾多深，我都会把后面的姐妹带回来。"
+    },
+    {
+      "id": "IBS-U-USN-LAMSON",
+      "name": "拉姆森",
+      "role": "细致的技术少女",
+      "portrait": "/characters/ships/lamson-anime-face.png",
+      "line": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+      "response": "明白。领舰、队列、发射顺序，逐项确认，不会掉链子。"
+    }
+  ],
+  "variants": {
+    "IBS-U-USN-FLETCHER|lost": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "没关系，记忆可以以后找。先记住一件事：我们还在这里，你不是一个人。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "好，旗舰信号已经升起。你看海图，我看前方。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "弗莱彻",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-FLETCHER|duty": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "好，旗舰信号已经升起。你看海图，我看前方。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "弗莱彻",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-FLETCHER|trust": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "那就先记住我。我叫白汐，是你的状态机辅助。我会把每一道命令拆给你看。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "好，旗舰信号已经升起。你看海图，我看前方。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "弗莱彻",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-PERKINS|lost": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "没关系，记忆可以以后找。先记住一件事：我们还在这里，你不是一个人。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "收到。我会替你守住队形，也会提醒你每一个遗漏。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-PERKINS|duty": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "收到。我会替你守住队形，也会提醒你每一个遗漏。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-PERKINS|trust": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "那就先记住我。我叫白汐，是你的状态机辅助。我会把每一道命令拆给你看。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "收到。我会替你守住队形，也会提醒你每一个遗漏。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "帕金斯",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-MAURY|lost": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "没关系，记忆可以以后找。先记住一件事：我们还在这里，你不是一个人。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "交给我！领舰就该先把航路开出来，你跟紧我的信号。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "莫里",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-MAURY|duty": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "交给我！领舰就该先把航路开出来，你跟紧我的信号。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "莫里",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-MAURY|trust": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "那就先记住我。我叫白汐，是你的状态机辅助。我会把每一道命令拆给你看。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "交给我！领舰就该先把航路开出来，你跟紧我的信号。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "莫里",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "莫里",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-DRAYTON|lost": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "没关系，记忆可以以后找。先记住一件事：我们还在这里，你不是一个人。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "我在。无论海雾多深，我都会把后面的姐妹带回来。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-DRAYTON|duty": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "我在。无论海雾多深，我都会把后面的姐妹带回来。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-DRAYTON|trust": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "那就先记住我。我叫白汐，是你的状态机辅助。我会把每一道命令拆给你看。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "我在。无论海雾多深，我都会把后面的姐妹带回来。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "德雷顿",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-LAMSON|lost": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "没关系，记忆可以以后找。先记住一件事：我们还在这里，你不是一个人。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "明白。领舰、队列、发射顺序，逐项确认，不会掉链子。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-LAMSON|duty": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你先问舰队的状况……这一点倒是和从前一样。五艘驱逐舰仍在等你的命令。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "明白。领舰、队列、发射顺序，逐项确认，不会掉链子。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ],
+    "IBS-U-USN-LAMSON|trust": [
+      {
+        "step": 0,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "舰队决战 · 同步移动",
+          "subtitle": "海面正在燃烧，而你的记忆停在了炮声之前。"
+        }
+      },
+      {
+        "step": 1,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "指挥官，听得见吗？别闭眼。你现在在第五驱逐编队的舰桥上。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "舰队正在交战。你的伤势已经稳定，但刚才的冲击……你还记得自己的名字吗？",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 2,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "那就先记住我。我叫白汐，是你的状态机辅助。我会把每一道命令拆给你看。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "现在向你移交指挥权。我提供路线与火力建议，最后的决定，由你亲手确认。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 3,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 4,
+        "lines": [
+          {
+            "speaker": "弗莱彻",
+            "text": "弗莱彻，驱逐编队先锋。记忆可以慢慢找，眼前这五艘船，先交给你。",
+            "portrait": "/characters/ships/fletcher-anime-face.png",
+            "shipId": "IBS-U-USN-FLETCHER"
+          },
+          {
+            "speaker": "帕金斯",
+            "text": "帕金斯。别逞强，指挥官。把复杂的命令分成几步，我们会执行得很漂亮。",
+            "portrait": "/characters/ships/perkins-anime-face.png",
+            "shipId": "IBS-U-USN-PERKINS"
+          },
+          {
+            "speaker": "莫里",
+            "text": "莫里报到！想不起来也没关系，先打一场让大家记住的胜仗吧。",
+            "portrait": "/characters/ships/maury-anime-face.png",
+            "shipId": "IBS-U-USN-MAURY"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "我是德雷顿。你的声音还有些发抖……没关系，我们会一起回到有灯的地方。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "拉姆森，动力和鱼雷状态正常。你只管做决定，剩下的我们一起修好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 5,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 6,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "明白。领舰、队列、发射顺序，逐项确认，不会掉链子。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "第五驱逐编队位于敌战列线侧翼。先试一条从敌领舰舰首前方横切的航路。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 7,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 8,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 9,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 10,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 11,
+        "lines": [],
+        "cinema": {
+          "duration": 4200,
+          "title": "领舰抢 T 头 · 草稿预演",
+          "subtitle": "领舰向敌纵队舰首前方横切，队尾沿航迹跟上。"
+        }
+      },
+      {
+        "step": 12,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "尾随航线已经确认。领舰先转，后面的姐妹沿着领舰的航迹通过转向点。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "鱼雷可在机动途中发射。先拖到已发现的敌舰，再在合法扇区里调整发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 13,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 14,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 15,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 16,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 17,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 18,
+        "lines": [
+          {
+            "speaker": "总指挥 · 无线电",
+            "text": "第五驱逐编队，主力正面牵制敌舰。取消横切，改为侧翼雷击！",
+            "portrait": ""
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "改用同步移动。五艘舰在同一时刻转向，但各走各的航迹。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "收到。我们先看清各舰的航迹，再争取一个安全的发射位置。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 19,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 20,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 21,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 22,
+        "lines": [],
+        "cinema": {
+          "duration": 6200,
+          "title": "整队回环 · 航路预览",
+          "subtitle": "五舰同步走完六次右转，回到各自的起始格和原航向。"
+        }
+      },
+      {
+        "step": 23,
+        "lines": [
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "领舰的参考线已经确认，各舰会沿平移后的航路一起转向。现在给鱼雷选一个安全的发射方向。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "拉姆森",
+            "text": "发射管准备好了。鱼雷不会辨认敌我，封存前记得检查友舰航路。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 24,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 25,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 26,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 27,
+        "lines": [],
+        "cinema": null
+      },
+      {
+        "step": 28,
+        "lines": [],
+        "cinema": {
+          "duration": 7600,
+          "title": "同步移动 · 途中雷击",
+          "subtitle": "五舰在预定脉冲发射，鱼雷向敌战列线航行。"
+        }
+      },
+      {
+        "step": 29,
+        "lines": [
+          {
+            "speaker": "拉姆森",
+            "text": "鱼雷已经离管。航迹和战果都有记录，下一次，我们会比这一次配合得更好。",
+            "portrait": "/characters/ships/lamson-anime-face.png",
+            "shipId": "IBS-U-USN-LAMSON"
+          },
+          {
+            "speaker": "白汐 · 状态机辅助",
+            "text": "你可能还没有找回过去，但刚才的命令，每个人都记住了。",
+            "portrait": "/characters/prologue/baixi.png"
+          },
+          {
+            "speaker": "德雷顿",
+            "text": "欢迎回来，指挥官。下一次出航，也请带上我们。",
+            "portrait": "/characters/ships/drayton-anime-face.png",
+            "shipId": "IBS-U-USN-DRAYTON"
+          }
+        ],
+        "cinema": null
+      },
+      {
+        "step": 30,
+        "lines": [],
+        "cinema": null
+      }
+    ]
+  }
+}

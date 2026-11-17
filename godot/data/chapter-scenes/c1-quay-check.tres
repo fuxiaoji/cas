@@ -1,0 +1,751 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=31 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="母港导览快结束时，一个搬运工把你们拦住。他从两个货位之间捡到一只断锁，想知道该送警备处，还是和坏零件一起扔进熔料箱。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="搬运工"
+
+speaker_name=""
+
+text="我问了三个地方，他们都说先放我这儿。再问下去，我得替它盖间房。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="先别给它盖。你在哪儿捡的？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="搬运工"
+
+speaker_name=""
+
+text="卸净水膜那条轨道。早班来就有，里面有一截红线。我怕是谁的东西，没剪。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你向前走一步，帕金斯抬手拦了拦。你很想告诉他们红线和档案可能有关，但还没说出口，忽然想起医务室的木片。你把“可能”两个字补在前面。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="好。现在我们有两个地方出现过相似的线。先别把它们写成同一根。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="该先问谁？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="先问什么时候捡到、谁碰过，再找管货位的人。问“谁偷的”会让所有人只想证明不是自己。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="搬运工领你看轨道。地上有几道铁轮压出的痕，其中一条在断锁旁边突然转向。他说这条是自己今天留下的，还特意把手推车拉来，对了一下轮宽。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你为什么记得？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker="搬运工"
+
+speaker_name=""
+
+text="因为这边有个坑，我每回都得绕。忘一次就要把肩膀也卸在这儿。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你蹲下看那只锁。锁舌断得很齐，边上有新擦过的亮痕；红线却已经吸满海水，结上还粘着一层细沙。它们未必是同一时间坏的。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="别捡了就攥手里。你手上那点新血再混进去，回头拉姆森得把我们全骂一遍。"
+
+tone="alert"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="那就原地拍下来，分开装？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="对。也记谁装的。我们不是在造一份“看起来很有线索”的证据，要让下一个人能知道东西到手以前是什么样。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="货位管理员很快来了，手上沾着没擦干净的油。他认出断锁，说前一天拖车脱轨，把报废的锁撒了一地，已经让人清过一次，可能漏了一只。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="红线也是？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker="管理员"
+
+speaker_name=""
+
+text="这个不知道。平常用麻绳，滑的线扎不牢。你们要查就查，我能给昨天的清理单。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="那张清理单很无聊，列着车轮、锁扣和两个坏轴承。你逐项核过去，发现锁的数量确实少一只。一个刚才还像秘密的东西，忽然只剩一场没有收干净的事故。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="可能是我太想把它们接在一起。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_20"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="想到联系没错。查完发现接不上，也是一件做成了的事。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_21"]
+
+script=ExtResource("2_line")
+
+speaker="搬运工"
+
+speaker_name=""
+
+text="所以我现在能扔了吗？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "alert"}
+
+[sub_resource type="Resource" id="Line_22"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="锁可以，线先留着。你看，它不用盖房了，只剩一条床位。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_23"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="大家都笑了一点，气氛松下来。你们把锁放进报废箱，把线单独封好。帕金斯让你在记录最后写上“断锁来源已核对，红线来源未明”，不要只留下半句悬念。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_24"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="如果以后证明红线也没关系呢？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_25"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="那我们会知道，这条路查过了。下次不用再让搬运工陪我们绕同一个坑。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_26"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="离开时，你向搬运工道谢。他说不用，替他在维修单上把轨道坑再催一次就好。你发现问清一件事并不会使世界更神秘，却会让下一次走过这里的人少绊一下。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_27"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="走吧。刚才那张配给牌还没看完，你要是再一路找断锁，晚饭就真没了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["drayton", "perkins"])
+
+actor_tones={"drayton": "calm"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c1-quay-check"
+
+background="res://assets/backgrounds/harbor-day-v2.png"
+
+full_cg=false
+
+actors=Array[String](["drayton", "perkins"])
+
+music_scene="formation"
+
+location="母港外码头 · 断锁旁"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19"), SubResource("Line_20"), SubResource("Line_21"), SubResource("Line_22"), SubResource("Line_23"), SubResource("Line_24"), SubResource("Line_25"), SubResource("Line_26"), SubResource("Line_27")])

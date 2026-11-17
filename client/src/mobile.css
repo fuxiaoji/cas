@@ -1,0 +1,99 @@
+/* Mobile / handheld interaction layer. Visual tokens stay untouched. */
+.harbor-mobile-nav { display: none; }
+
+@media (max-width: 900px), (max-height: 500px) {
+  .harbor { grid-template-rows: auto minmax(0, 1fr) auto; }
+  .harbor-mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    flex: none;
+    min-height: 52px;
+    padding: 3px 5px calc(3px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--cas-line);
+    background: #0b202a;
+    position: relative;
+    z-index: 6;
+  }
+  .harbor-mobile-nav button {
+    min-height: 44px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 2px;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--cas-muted);
+    font: 600 9px/1 var(--cas-sans);
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  .harbor-mobile-nav button i { font-style: normal; font-size: 14px; line-height: 1; }
+  .harbor-mobile-nav button[aria-pressed="true"] {
+    color: var(--cas-brass-2);
+    background: #16333f;
+    box-shadow: inset 0 2px 0 var(--cas-brass);
+  }
+  .harbor-mobile-nav__draw {
+    color: var(--cas-ink) !important;
+    background: #2a2113 !important;
+  }
+  .harbor-mobile-nav__draw i { color: var(--cas-brass-2); }
+
+  .harbor .harbor-head > button,
+  .harbor .harbor-action button,
+  .harbor .harbor-section button,
+  .harbor .harbor-link {
+    min-height: 40px;
+    touch-action: manipulation;
+  }
+  .harbor .harbor-head { min-height: 48px; padding-block: 6px; }
+  .harbor .harbor-action button { padding-inline: 12px; }
+  .harbor .harbor-content { scrollbar-gutter: stable; overscroll-behavior: contain; }
+
+  .recruit-screen .rs-back,
+  .recruit-screen .rs-record { min-height: 36px; touch-action: manipulation; }
+  .recruit-screen .rs-pools > button { min-height: 44px; }
+  .recruit-screen .rs-stage-links button { min-height: 36px; padding-inline: 12px; }
+  .recruit-screen .rs-draw-actions .cas-btn {
+    min-height: 44px;
+    padding-inline: 14px;
+    font-size: 12px;
+    touch-action: manipulation;
+  }
+  .recruit-screen .rs-draw-actions .cas-btn--primary { min-width: 118px; }
+  .recruit-screen .rs-hint button {
+    margin-left: 7px;
+    min-height: 32px;
+    border: 1px solid var(--rs-brass);
+    background: transparent;
+    color: var(--rs-brass-2);
+    font: 600 10px/1 var(--cas-sans);
+    padding: 0 8px;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .quartermaster .qm-counter { min-height: 44px; }
+  .quartermaster .cas-btn,
+  .quartermaster .qm-acquire,
+  .quartermaster .qm-order-toggle { min-height: 40px; touch-action: manipulation; }
+  .quartermaster .qm-buybar { min-height: 54px; }
+}
+
+@media (pointer: coarse) {
+  .harbor button,
+  .recruit-screen button,
+  .quartermaster button,
+  .growth-port button { touch-action: manipulation; }
+  .harbor-mobile-nav { display: grid; }
+}
+
+@media (max-width: 520px) {
+  .harbor-mobile-nav { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .harbor-mobile-nav button { font-size: 8px; }
+  .harbor-mobile-nav button i { font-size: 13px; }
+}

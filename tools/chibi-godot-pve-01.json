@@ -1,0 +1,26 @@
+[
+  {
+    "identity": "IBS-U-USN-LA-VALLETTE",
+    "generated_file": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-58cc-7a32-ba9d-bd62adc29a8b\\exec-bd3c061d-1479-4938-b3ea-3a460ae7c5f0.png",
+    "prompt": "Use case: stylized-concept. Asset type: single transparent 2D chibi naval-girl game sprite, static battlefield projection. Input image 1 is this CAS character's identity/design reference. Input image 2 is STYLE AND PROPORTIONS ONLY (Fletcher); do not copy its character features. Redraw the FIRST character as a fully clothed, nonsexual tiny super-deformed mascot matching style of second: two-heads-tall, head 55–60% of total height, tiny torso, very short limbs, big readable eyes, bold clean outlines, simple flat cel-color with few shadow shapes. Preserve the first image's hair color/style, eye color, cap/accessories, outfit palette and compact naval rigging. Full body, centered, standing slight three-quarter front, no clipping; feet visible. Compact side gun/torpedo rigging. Transparent background with real alpha, no ground, no checkerboard painted in, no frame, no text, no watermark, no gradients or realistic texture. Identity: IBS-U-USN-LA-VALLETTE. Specifically retain: brown bob hair, violet eyes, white naval cap and burgundy bow, navy gold long coat, burgundy skirt, satchel.",
+    "features": [
+      "brown bob hair, violet eyes, white naval cap and burgundy bow, navy gold long coat, burgundy skirt, satchel"
+    ]
+  },
+  {
+    "identity": "IBS-U-USN-LAFFEY",
+    "generated_file": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-58cc-7a32-ba9d-bd62adc29a8b\\exec-1c1e2816-a738-425d-8139-eba99f05513f.png",
+    "prompt": "Use case: stylized-concept. Asset type: single transparent 2D chibi naval-girl game sprite, static battlefield projection. Input image 1 is this CAS character's identity/design reference. Input image 2 is STYLE AND PROPORTIONS ONLY (Fletcher); do not copy its character features. Redraw the FIRST character as a fully clothed, nonsexual tiny super-deformed mascot matching style of second: two-heads-tall, head 55–60% of total height, tiny torso, very short limbs, big readable eyes, bold clean outlines, simple flat cel-color with few shadow shapes. Preserve the first image's hair color/style, eye color, cap/accessories, outfit palette and compact naval rigging. Full body, centered, standing slight three-quarter front, no clipping; feet visible. Compact side gun/torpedo rigging. Transparent background with real alpha, no ground, no checkerboard painted in, no frame, no text, no watermark, no gradients or realistic texture. Identity: IBS-U-USN-LAFFEY. Specifically retain: dark purple hair tied in low side bun, violet eyes, purple dress, white blouse, dark cape with lavender trim, pocket compass.",
+    "features": [
+      "dark purple hair tied in low side bun, violet eyes, purple dress, white blouse, dark cape with lavender trim, pocket compass"
+    ]
+  },
+  {
+    "identity": "IBS-U-USN-THATCHER",
+    "generated_file": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-58cc-7a32-ba9d-bd62adc29a8b\\exec-2e894520-92cd-4f6c-8702-e58fb813becd.png",
+    "prompt": "Use case: stylized-concept. Asset type: single transparent 2D chibi naval-girl game sprite, static battlefield projection. Input image 1 is this CAS character's identity/design reference. Input image 2 is STYLE AND PROPORTIONS ONLY (Fletcher); do not copy its character features. Redraw the FIRST character as a fully clothed, nonsexual tiny super-deformed mascot matching style of second: two-heads-tall, head 55–60% of total height, tiny torso, very short limbs, big readable eyes, bold clean outlines, simple flat cel-color with few shadow shapes. Preserve the first image's hair color/style, eye color, cap/accessories, outfit palette and compact naval rigging. Full body, centered, standing slight three-quarter front, no clipping; feet visible. Compact side gun/torpedo rigging. Transparent background with real alpha, no ground, no checkerboard painted in, no frame, no text, no watermark, no gradients or realistic texture. Identity: IBS-U-USN-THATCHER. Specifically retain: silver long side braid, blue eyes, white naval cap with flower and navy bow, dark teal vest, coral skirt, white blouse, compass.",
+    "features": [
+      "silver long side braid, blue eyes, white naval cap with flower and navy bow, dark teal vest, coral skirt, white blouse, compass"
+    ]
+  }
+]

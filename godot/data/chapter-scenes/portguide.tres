@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="portguide"
+
+background="res://assets/story/chapter1/drydock-v1.png"
+
+full_cg=false
+
+actors=Array[String](["drayton", "lamson"])
+
+music_scene="harbor"
+
+location="战帮母港 · 维修坞"
+
+lines=Array[ExtResource("2_line")]([])

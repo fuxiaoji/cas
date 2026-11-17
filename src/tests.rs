@@ -732,6 +732,165 @@ fn challenge_has_real_three_ship_roster_and_selected_leader() {
     assert_eq!(r, rebuilt);
 }
 
+const LOCAL_FIVE: [&str; 5] = [
+    "IBS-U-USN-FLETCHER",
+    "IBS-U-USN-UNNAMED-T01-R26",
+    "IBS-U-USN-NEW-ORLEANS",
+    "IBS-U-USN-UNNAMED-T01-R03",
+    "IBS-U-USN-UNNAMED-T01-R06",
+];
+fn local_five() -> Vec<String> {
+    LOCAL_FIVE.iter().map(|id| (*id).to_string()).collect()
+}
+
+#[test]
+fn local_new_replaces_five_slots_with_identities_and_moves_leader_first() {
+    let ids = local_five();
+    let mut e = Engine::default();
+    let start = ask(
+        &mut e,
+        json!({"op":"new","seed":6106,"side":"allies","enemy":"coord","ships":ids,"leaderSlot":2}),
+    );
+    let ships = start["ships"].as_array().unwrap();
+    assert_eq!(ships.len(), 5);
+    let expected = [ids[2].as_str(), ids[0].as_str(), ids[1].as_str(), ids[3].as_str(), ids[4].as_str()];
+    let kinds = ["ca", "dd", "cl", "bb", "bc"];
+    let names = ["新奥尔良", "弗莱彻", "克利夫兰", "北卡罗来纳", "列克星敦"];
+    for (index, ship) in ships.iter().enumerate() {
+        assert_eq!(ship["characterId"], expected[index]);
+        assert_eq!(ship["classId"], expected[index]);
+        assert_eq!(ship["kind"], kinds[index]);
+        assert_eq!(ship["name"], names[index]);
+        assert_eq!(ship["x"], 4200. - 450. * index as f64);
+        assert_eq!(ship["y"], 6550.);
+        assert_eq!(ship["heading"], 90.);
+        assert_eq!(ship["speed"], 0.);
+    }
+    assert_eq!(start["fleets"][0]["name"], "第五驱逐编队");
+    assert_eq!(start["fleets"][0]["mode"], "follow");
+    assert_eq!(start["fleets"][0]["speed"], 26.);
+    assert_eq!(start["fleets"][0]["leader"], 1);
+    assert_eq!(start["fleets"][0]["members"], json!([1, 2, 3, 4, 5]));
+
+    // The observation only exposes part of the hull. Check the actual
+    // replacements (hp, ammunition, torpedo protection, realtime mounts)
+    // against the loaded card through the direct API.
+    let mut w = World::new(6106, 0, "coord", "", "coord", 0).unwrap();
+    w.replace_player_fleet(&ids, 2).unwrap();
+    for (index, id) in expected.iter().enumerate() {
+        let def = w.data.ships.iter().position(|ship| ship.id == *id).unwrap();
+        let ship = &w.ships[index];
+        assert_eq!(ship.def, def);
+        assert_eq!(ship.character.as_deref(), Some(*id));
+        assert_eq!(ship.hp, w.data.ships[def].dp);
+        assert_eq!(
+            ship.ammo,
+            w.data.ships[def].torpedo.as_ref().map_or(0, |torpedo| torpedo.tubes)
+        );
+        assert_eq!(ship.torpedo_protection[0], w.data.ships[def].torpedo_protection_dp);
+        assert_eq!(ship.fires.len(), 0);
+        assert_eq!(ship.flooding.len(), 0);
+        assert_eq!(ship.gun_mount_destroyed.len(), w.data.ships[def].gun.mounts.len());
+        assert_eq!(ship.h, 90.);
+        assert_eq!(ship.speed, 0.);
+        assert_eq!(ship.free_speed, 0.);
+    }
+    assert_eq!(w.fleets[0].leader, 1);
+    assert_eq!(w.fleets[0].members, vec![1, 2, 3, 4, 5]);
+    assert_eq!(w.fleets[0].speed, 26.);
+    assert_eq!(w.fleets[0].mode, "follow");
+}
+
+#[test]
+fn local_new_without_ships_keeps_the_printed_five_and_save_omits_them() {
+    let mut e = Engine::default();
+    let start = ask(&mut e, json!({"op":"new","seed":6106,"side":"allies","enemy":"coord"}));
+    assert_eq!(start["ships"].as_array().unwrap().len(), 5);
+    assert_eq!(start["ships"][0]["classId"], "fletcher");
+    assert_eq!(start["fleets"][0]["name"], "第五驱逐编队");
+    let save = ask(&mut e, json!({"op":"save"}));
+    assert!(save.get("ships").is_none());
+}
+
+#[test]
+fn local_fleet_rejects_duplicates_other_sides_missing_cards_and_fixed_variants() {
+    let mut duplicate = local_five();
+    duplicate[4] = duplicate[0].clone();
+    let cases = [
+        (json!(local_five()[..4].to_vec()), "正好 5"),
+        (json!(duplicate), "不能重复"),
+        (
+            json!([
+                "IBS-U-USN-FLETCHER",
+                "IBS-U-USN-UNNAMED-T01-R26",
+                "IBS-U-USN-NEW-ORLEANS",
+                "IBS-U-USN-UNNAMED-T01-R03",
+                "IBS-U-IJN-KAGERO"
+            ]),
+            "不属于本席阵营",
+        ),
+        (
+            json!([
+                "IBS-U-USN-FLETCHER",
+                "IBS-U-USN-UNNAMED-T01-R26",
+                "IBS-U-USN-NEW-ORLEANS",
+                "IBS-U-USN-UNNAMED-T01-R03",
+                "IBS-U-USN-DOES-NOT-EXIST"
+            ]),
+            "本地没有单舰 identity",
+        ),
+    ];
+    for (ships, needle) in cases {
+        let mut e = Engine::default();
+        let response = e.handle(
+            json!({"op":"new","seed":6106,"side":"allies","enemy":"coord","ships":ships}),
+        );
+        assert_eq!(response["ok"], false, "{response}");
+        assert!(
+            response["error"].as_str().unwrap().contains(needle),
+            "{response}"
+        );
+    }
+    // Fixed rosters keep their printed fleet and refuse a five-pick payload.
+    for variant in ["challenge", "night-training", "prologue"] {
+        let mut e = Engine::default();
+        let response = e.handle(json!({
+            "op":"new","seed":6106,"side":"allies","enemy":"coord",
+            "variant":variant,"ships":local_five()
+        }));
+        assert_eq!(response["ok"], false, "{variant}: {response}");
+        assert!(response["error"].as_str().unwrap().contains("固定编队"), "{variant}: {response}");
+    }
+}
+
+#[test]
+fn local_five_ship_identities_save_and_replay_the_same_hulls() {
+    let ids = local_five();
+    let mut e = Engine::default();
+    let start = ask(
+        &mut e,
+        json!({
+            "op":"new","seed":6106,"side":"allies","enemy":"coord",
+            "realtime":true,"leaderSlot":2,"ships":ids
+        }),
+    );
+    assert_eq!(
+        start["ships"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|ship| ship["characterId"].as_str().unwrap())
+            .collect::<Vec<_>>(),
+        ["IBS-U-USN-NEW-ORLEANS", "IBS-U-USN-FLETCHER", "IBS-U-USN-UNNAMED-T01-R26",
+         "IBS-U-USN-UNNAMED-T01-R03", "IBS-U-USN-UNNAMED-T01-R06"]
+    );
+    let end = ask(&mut e, json!({"op":"step","seconds":120}));
+    let save = ask(&mut e, json!({"op":"save"}));
+    assert_eq!(save["ships"], json!(ids));
+    assert_eq!(ask(&mut e, json!({"op":"replay","save":save})), end);
+    assert_eq!(ask(&mut e, json!({"op":"load","save":save})), end);
+}
+
 #[test]
 fn deployment_lead_change_keeps_route_available() {
     let mut e = battle(6106, "allies", "coord");

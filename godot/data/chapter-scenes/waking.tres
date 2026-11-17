@@ -1,0 +1,543 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="海图铺在一个倒扣的木箱上，边角压着扳手。图上有两条铅笔线，一条划穿黑色的礁区，一条消失在昨夜留下的水渍里。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="红线是原航道，现在走不了。西边这片没测完，拉姆森的舵又受了伤，急弯她跟不上。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="这里为什么画着两层岸线？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="下面是旧城，上面是露出水面的东西。海会涨，楼不会自己走。画一条线容易，信它才会死人。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你伸手碰到纸边。没有完整的回忆回来，只有一些很细碎的感觉：铅笔在指腹上的阻力，手表秒针的声音，以及一句听不清是谁说的“后面的也算上”。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="如果先从这边出去……不，等一下。补给艇会被留在转弯外面。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="你看得懂队形？"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我不知道。只是觉得，不能把线画得这么紧。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="很多人会觉得。我们现在需要的是哪边、什么时候转、谁先走。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="帕金斯没有把图收回去。她把扳手移开，给你腾出一块能落笔的地方。你看了看弗莱彻；她只问了一件事。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="假如走错，你还会留在这里吗？"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我连能去哪儿都不知道。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="那就先和我们一起。你说航路，我盯着后面。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="别被她吓着。她每次出航前都问，不过通常问的是发动机。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="右边的响声近了。先把路线看完，我们会稳住队形。报清楚往哪边走，比急着喊一句有用。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你把第一段线画得很短，留出一个随时能回头的弯。德雷顿把木箱扶稳了。三个人都没有再问你的名字。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="先确认落在后面的那艘。我们得知道大家都能走多快。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="拉姆森，回话。接下来跟我们的航路走，转不过来就喊，别自己硬扛。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="收到了。我还没慢到要你们替我数浪。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="无线电里轻轻笑了一声。你握着那截铅笔，第一次觉得自己不是一件刚被捞上来的东西。前面有雾，后面有人在等你的下一句话。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="waking"
+
+background="res://assets/story/chapter1/deck-storm-v1.png"
+
+full_cg=false
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+music_scene="salvage"
+
+location="破损甲板 · 清晨"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19")])

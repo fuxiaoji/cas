@@ -1,0 +1,46 @@
+{
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "title": "借来的灯，自己的岸",
+      "nodes": 46,
+      "lines": 331,
+      "chinese_characters": 9273,
+      "design_minutes": {
+        "reading": 30,
+        "operations": 35,
+        "optional_pvp": 8,
+        "total_main": 65
+      }
+    },
+    {
+      "id": "chapter-02",
+      "title": "不许熄灭的码头",
+      "nodes": 32,
+      "lines": 261,
+      "chinese_characters": 7571,
+      "design_minutes": {
+        "reading": 30,
+        "operations": 34,
+        "optional_exploration": 5,
+        "total_main": 64
+      }
+    },
+    {
+      "id": "chapter-03",
+      "title": "把名字留在海上",
+      "nodes": 33,
+      "lines": 350,
+      "chinese_characters": 7675,
+      "design_minutes": {
+        "reading": 31,
+        "operations": 26,
+        "choices_and_inspection": 8,
+        "optional_exploration": 8,
+        "total_main": 65
+      }
+    }
+  ],
+  "original_v1_files_written": false,
+  "playtime_measured": false
+}

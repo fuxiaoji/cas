@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/tide_event_hub.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/events/tide-v1/tide-awakening.png" id="2"]
+[node name="TideEventHub" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+[node name="Hero" type="TextureRect" parent="."]
+texture = ExtResource("2")
+anchor_left = 0.38
+anchor_top = 0.12
+anchor_right = 0.97
+anchor_bottom = 0.87
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.04
+anchor_top = 0.14
+anchor_right = 0.46
+anchor_bottom = 0.23
+theme_override_font_sizes/font_size = 58
+text = "潮汐回响"
+[node name="Subtitle" type="Label" parent="."]
+anchor_left = 0.04
+anchor_top = 0.24
+anchor_right = 0.35
+anchor_bottom = 0.33
+autowrap_mode = 2
+text = "旧世界停止计时的那一天，海仍记得我们的名字。"
+[node name="BriefScroll" type="ScrollContainer" parent="."]
+anchor_left = 0.04
+anchor_top = 0.37
+anchor_right = 0.35
+anchor_bottom = 0.85
+horizontal_scroll_mode = 0
+[node name="Body" type="VBoxContainer" parent="BriefScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+[node name="ShopScroll" type="ScrollContainer" parent="."]
+anchor_left = 0.04
+anchor_top = 0.36
+anchor_right = 0.96
+anchor_bottom = 0.88
+horizontal_scroll_mode = 0
+visible = false
+[node name="Products" type="GridContainer" parent="ShopScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 20
+[node name="Tabs" type="HBoxContainer" parent="."]
+anchor_left = 0.46
+anchor_top = 0.91
+anchor_right = 0.96
+anchor_bottom = 0.97
+theme_override_constants/separation = 18
+[node name="Overview" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "回响海域"
+[node name="Story" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "活动故事"
+[node name="Shop" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "回响兑换"

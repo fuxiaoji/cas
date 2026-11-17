@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="boss"
+
+background="res://assets/backgrounds/night-sea-v2.png"
+
+full_cg=false
+
+actors=Array[String](["fletcher", "herald"])
+
+music_scene="salvage"
+
+location="沉没信标 · 教团控制区"
+
+lines=Array[ExtResource("2_line")]([])

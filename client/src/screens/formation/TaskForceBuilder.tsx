@@ -13,6 +13,7 @@ type KindFilter = 'all' | typeof kinds[number];
 
 type Candidate = {
   key: string; pick: string; classId: string; name: string; kind: string; points: number; historical: boolean;
+  identity?: string; slot?: number;
 };
 
 interface Props {
@@ -37,43 +38,49 @@ export function TaskForceBuilder({
   const options = fleet.options ?? [];
   const positions = fleet.positions ?? [];
   const budget = fleet.budget;
+  const historicalPoints = new Map(
+    historical.flatMap((row) => row.identity ? [[row.identity, row.points] as const] : []),
+  );
 
   const resolved = useMemo(() => {
     const map = new Map<string, Candidate>();
     for (const row of historical) {
-      if (!map.has(row.class)) {
-        map.set(row.class, {
-          key: 'hist:' + row.class, pick: row.class, classId: row.class,
+      const pick = row.identity ?? row.class;
+      if (!map.has(pick)) {
+        map.set(pick, {
+          key: 'hist:' + row.slot, pick, classId: row.class,
           name: row.name, kind: row.kind, points: row.points, historical: true,
+          identity: row.identity ?? undefined, slot: row.slot,
         });
       }
     }
     for (const row of options) {
       map.set(row.id, {
         key: 'opt:' + row.id, pick: row.id, classId: row.class,
-        name: row.name, kind: row.kind, points: row.points, historical: false,
+        name: row.name, kind: row.kind, points: historicalPoints.get(row.id) ?? row.points,
+        historical: false, identity: row.id,
       });
     }
     return map;
   }, [fleet]);
 
+  // Every printed hull and every registered single-ship card gets its own
+  // candidate. Same-class hulls are never collapsed into one row.
   const candidates = useMemo(() => {
     const rows: Candidate[] = [];
-    const seen = new Set<string>();
     for (const row of historical) {
-      if (seen.has(row.class)) continue;
-      seen.add(row.class);
+      const pick = row.identity ?? row.class;
       rows.push({
-        key: 'hist:' + row.class, pick: row.class, classId: row.class,
+        key: 'hist:' + row.slot, pick, classId: row.class,
         name: row.name, kind: row.kind, points: row.points, historical: true,
+        identity: row.identity ?? undefined, slot: row.slot,
       });
     }
     for (const row of options) {
-      if (seen.has(row.class)) continue;
-      seen.add(row.class);
       rows.push({
         key: 'opt:' + row.id, pick: row.id, classId: row.class,
-        name: row.name, kind: row.kind, points: row.points, historical: false,
+        name: row.name, kind: row.kind, points: historicalPoints.get(row.id) ?? row.points,
+        historical: false, identity: row.id,
       });
     }
     return rows;
@@ -160,7 +167,7 @@ export function TaskForceBuilder({
                 const candidate = resolved.get(pick);
                 return <li key={`${pick}:${index}`}>
                   <ShipThumb size="sm" ship={{
-                    id: pick.startsWith('IBS-') ? pick : undefined,
+                    id: candidate?.identity,
                     classId: candidate?.classId, name: candidate?.name, kind: candidate?.kind,
                   }} />
                   <span><strong>{candidate?.name ?? pick}</strong><small>{kindNames[candidate?.kind ?? ''] ?? candidate?.kind ?? ''} · {pointsOf(pick).toLocaleString()} 分</small></span>
@@ -225,7 +232,7 @@ export function TaskForceBuilder({
               <button type="button" className="tf-candidate" disabled={overBudget}
                 onClick={() => addShip(picker, candidate.pick)}>
                 <ShipThumb size="sm" ship={{
-                  id: candidate.pick.startsWith('IBS-') ? candidate.pick : undefined,
+                  id: candidate.identity,
                   classId: candidate.classId, name: candidate.name, kind: candidate.kind,
                 }} />
                 <span className="tf-candidate__name">

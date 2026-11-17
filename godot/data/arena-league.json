@@ -1,0 +1,14 @@
+{
+  "version":"cas-local-league-v1",
+  "season":"启航季 · 本地人机",
+  "initial_rating":1000,
+  "tiers":[
+    {"id":"cadet","name":"见习","minimum":0,"color":"91a9b3","rewards":{"origins":20,"credits":1500}},
+    {"id":"bronze","name":"青铜航标","minimum":1000,"color":"bd8a61","rewards":{"origins":40,"credits":2500}},
+    {"id":"silver","name":"白银罗盘","minimum":1150,"color":"a8bdca","rewards":{"origins":60,"credits":4000}},
+    {"id":"gold","name":"黄金领航","minimum":1350,"color":"d9b56c","rewards":{"origins":80,"credits":6000}},
+    {"id":"platinum","name":"铂金舰桥","minimum":1600,"color":"72bdbb","rewards":{"origins":100,"credits":8000}},
+    {"id":"diamond","name":"钻石星海","minimum":1900,"color":"87abd8","rewards":{"origins":120,"credits":10000}},
+    {"id":"admiral","name":"远洋王牌","minimum":2250,"color":"c8a0cc","rewards":{"origins":160,"credits":15000}}
+  ]
+}

@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>CAS · 军需处/征募/编队 四版设计方向</title>
+<style>
+:root{
+  --sans:"Microsoft YaHei UI","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --serif:"Songti SC","SimSun","Noto Serif CJK SC",serif;
+  --kai:"KaiTi","STKaiti","Kaiti SC",serif;
+  --cond:"Bahnschrift Condensed","Bahnschrift","Arial Narrow",sans-serif;
+  --mono:"Cascadia Mono","Consolas","Courier New",monospace;
+  --poster:"Impact","Arial Black","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#1c1c1c}
+img{display:block}
+.board{width:1360px;height:900px;position:relative;overflow:hidden;margin:0 0 26px 0;isolation:isolate}
+.board *{min-width:0}
+.bhead{height:92px;display:flex;align-items:center;gap:18px;padding:0 26px;position:relative;z-index:2}
+.num{font:700 40px/1 var(--cond);letter-spacing:-.04em;opacity:.9}
+.title h1{margin:0;font-size:34px;line-height:1;letter-spacing:.08em}
+.title span{display:block;margin-top:7px;font:600 9px/1 var(--cond);letter-spacing:.26em;text-transform:uppercase}
+.thesis{max-width:410px;margin:0 0 0 10px;font-size:11px;line-height:1.65;letter-spacing:.02em}
+.spec{margin-left:auto;display:flex;align-items:center;gap:18px}
+.swatches{display:flex;gap:5px}
+.swatches i{width:22px;height:22px;display:block;border-radius:50%;box-shadow:0 0 0 1px #0003}
+.type{font:500 9px/1.45 var(--mono);text-align:right;letter-spacing:.08em;opacity:.8}
+.stage{height:760px;display:grid;grid-template-columns:1.34fr 1fr;position:relative;z-index:1}
+.shop{padding:20px 26px 18px;display:flex;flex-direction:column;min-height:0}
+.pk{font:600 9px/1 var(--cond);letter-spacing:.24em;text-transform:uppercase;opacity:.8}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:7px 0 12px}
+.ph h2{margin:0;font-size:24px;line-height:1;letter-spacing:.04em}
+.ph span{font:500 10px/1 var(--mono);opacity:.68}
+.items{display:flex;flex-direction:column;flex:1}
+.item{display:grid;grid-template-columns:92px minmax(0,1fr) 122px;gap:14px;padding:12px 0;position:relative}
+.plate{position:relative;width:92px;height:118px}
+.plate img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.stamp{position:absolute;left:-5px;bottom:8px;padding:2px 6px;font:700 8px/1 var(--cond);letter-spacing:.12em;transform:rotate(-5deg)}
+.copy small{font:500 9px/1.2 var(--mono);letter-spacing:.06em;opacity:.72}
+.copy h3{margin:4px 0 4px;font-size:23px;line-height:1.1;letter-spacing:.02em}
+.copy p{margin:0;font-size:10px;line-height:1.55;opacity:.82;max-width:335px}
+.tags{display:flex;gap:5px;margin-top:7px}
+.tags span{padding:2px 6px;font:500 8px/1 var(--cond);letter-spacing:.08em;border:1px solid currentColor;opacity:.72}
+.cost{text-align:right;padding-top:2px;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.cost b{font:700 16px/1 var(--mono)}
+.cost small{font:500 9px/1.3 var(--mono);opacity:.62}
+.doctrine{display:grid;grid-template-columns:minmax(0,1fr) 104px 94px;align-items:center;gap:14px;margin-top:auto;padding:11px 0 3px}
+.doc-copy small{font:600 8px/1 var(--cond);letter-spacing:.2em;opacity:.65}
+.doc-copy h3{margin:4px 0 3px;font-size:16px;line-height:1.2}
+.doc-copy p{margin:0;font-size:10px;line-height:1.5;opacity:.75}
+.tri{width:100px;height:78px;color:currentColor;opacity:.8}
+.doc-cost{text-align:right}
+.doc-cost b{display:block;font:700 18px/1 var(--mono)}
+.doc-cost small{font:500 9px/1 var(--mono);opacity:.6}
+.side{display:grid;grid-template-rows:1fr 1fr;min-height:0}
+.recruit{padding:18px 22px 16px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.recruit-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.recruit-head span{font:500 9px/1 var(--mono);opacity:.65}
+.recruit-body{display:grid;grid-template-columns:168px minmax(0,1fr);gap:16px;flex:1;min-height:0;margin-top:10px}
+.featured{position:relative;overflow:hidden}
+.featured img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.rate{position:absolute;right:6px;top:6px;padding:4px 6px;font:700 9px/1.1 var(--mono);letter-spacing:.04em}
+.up{position:absolute;left:0;bottom:0;padding:4px 7px;font:700 9px/1 var(--cond);letter-spacing:.1em}
+.recruit-copy{display:flex;flex-direction:column;min-width:0;padding-top:5px}
+.recruit-copy .eyebrow{font:600 8px/1 var(--cond);letter-spacing:.22em;opacity:.62}
+.recruit-copy h2{margin:4px 0 2px;font-size:32px;line-height:1;letter-spacing:.03em}
+.recruit-copy p{margin:0;font-size:10px;line-height:1.6;opacity:.78}
+.pity{margin-top:auto;display:flex;justify-content:space-between;gap:8px;padding:8px 0 7px;font:500 9px/1 var(--mono);opacity:.75}
+.drawbar{display:flex;gap:8px;align-items:center}
+.drawbar .draw{padding:8px 9px;font:500 9px/1 var(--mono);display:flex;gap:8px;align-items:baseline}
+.drawbar .draw b{font-size:13px}
+.drawbar button{flex:1;min-height:37px;font:700 11px/1 var(--sans);letter-spacing:.08em;cursor:pointer}
+.formation{padding:14px 22px 12px;display:flex;flex-direction:column;position:relative}
+.form-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.form-head span{font:500 9px/1 var(--mono);opacity:.65}
+.ships{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;flex:1;align-items:center;margin-top:8px}
+.ship{display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
+.face{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
+.face img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.ship.lead .face::before{content:"★";position:absolute;z-index:2;left:4px;top:2px;font-size:12px}
+.ship.lead .face::after{content:"LEAD";position:absolute;z-index:2;left:0;right:0;bottom:0;padding:2px 0;text-align:center;font:700 7px/1 var(--cond);letter-spacing:.12em}
+.ship b{font-size:11px;line-height:1.15;text-align:center}
+.ship small{font:500 8px/1 var(--mono);opacity:.6;text-align:center}
+.form-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid;margin-top:7px;padding-top:8px}
+.form-foot span{font:600 8px/1 var(--cond);letter-spacing:.14em;opacity:.65}
+.form-foot b{font-size:11px;letter-spacing:.08em}
+.bfoot{height:48px;display:flex;align-items:center;gap:14px;padding:0 26px;position:relative;z-index:2}
+.bfoot span{font:700 8px/1 var(--cond);letter-spacing:.2em;white-space:nowrap;opacity:.55}
+.bfoot p{margin:0;font-size:9px;line-height:1.45;opacity:.72;max-width:960px}
+.bfoot em{margin-left:auto;font:500 8px/1 var(--mono);font-style:normal;opacity:.5;white-space:nowrap}
+
+/* ============ 01 作战档案 ============ */
+.v1{background:#e9e1d2;color:#1d2324;font-family:var(--sans);
+  background-image:radial-gradient(1200px 500px at 8% -10%,#f7f1e2 0%,transparent 60%),repeating-linear-gradient(0deg,#1d232406 0 1px,transparent 1px 28px),linear-gradient(145deg,#ece4d3,#dfd4c0)}
+.v1 .bhead{border-bottom:1px solid #1d2324;background:#e7decc}
+.v1 .num{color:#8d2f2a}
+.v1 .title h1{font-family:var(--serif);font-weight:700}
+.v1 .title span{color:#8d2f2a}
+.v1 .thesis{font-family:var(--kai);font-size:12px;color:#4b4639}
+.v1 .swatches i:nth-child(1){background:#e9e1d2}.v1 .swatches i:nth-child(2){background:#1d2324}.v1 .swatches i:nth-child(3){background:#8d2f2a}.v1 .swatches i:nth-child(4){background:#8a7748}
+.v1 .type{color:#5d5748}
+.v1 .stage{background-image:linear-gradient(90deg,transparent 0 50%,#1d23240a 50% 50.01%,transparent 50.01%)}
+.v1 .shop{border-right:1px solid #b3a68c}
+.v1 .pk{color:#8d2f2a}
+.v1 .ph{border-bottom:1px solid #1d2324}
+.v1 .ph h2{font-family:var(--serif);font-weight:700}
+.v1 .item{border-bottom:1px solid #b9ad96}
+.v1 .item.pick::before{content:"";position:absolute;left:-26px;top:0;bottom:0;width:3px;background:#8d2f2a}
+.v1 .plate{border:5px solid #f6eddd;box-shadow:0 0 0 1px #968a73;filter:saturate(.62) contrast(1.06);background:#d5c9b2}
+.v1 .stamp{background:#8d2f2a;color:#f6eddd;border:1px solid #6d211d}
+.v1 .copy small{color:#6c5a3b}
+.v1 .copy h3{font-family:var(--serif)}
+.v1 .copy p{color:#4c473a}
+.v1 .tags span{color:#6d5b3b}
+.v1 .cost b{color:#8d2f2a}
+.v1 .cost small{color:#6e6148}
+.v1 .doctrine{border-top:1px solid #1d2324}
+.v1 .doc-copy h3{font-family:var(--serif)}
+.v1 .doc-copy p{color:#4c473a}
+.v1 .doc-copy small{color:#8d2f2a}
+.v1 .doc-cost b{color:#8d2f2a}
+.v1 .tri{color:#8d2f2a}
+.v1 .recruit{border-bottom:1px solid #b3a68c;background:#e3d8c4}
+.v1 .recruit .pk{color:#8d2f2a}
+.v1 .featured{border:1px solid #1d2324;padding:5px;background:#f4ebda}
+.v1 .featured img{filter:saturate(.55) contrast(1.05) sepia(.08)}
+.v1 .rate{background:#1d2324;color:#f2e7d3}
+.v1 .up{background:#8d2f2a;color:#f7eddc;border:1px solid #6d211d}
+.v1 .recruit-copy h2{font-family:var(--serif)}
+.v1 .recruit-copy p{color:#4c473a}
+.v1 .pity{color:#6c5a3b;border-bottom:1px dashed #b3a68c}
+.v1 .draw{background:#f4ebda;border:1px solid #b3a68c;color:#4a3b20}
+.v1 .drawbar button{background:#1d2324;color:#f7eddc;border:1px solid #1d2324;font-family:var(--serif)}
+.v1 .formation{background:#eee5d4}
+.v1 .formation .pk{color:#8d2f2a}
+.v1 .ships{padding:3px 0 2px}
+.v1 .face{border:3px solid #f7efe0;box-shadow:0 0 0 1px #968a73;filter:saturate(.6) contrast(1.05);background:#d8ccb5}
+.v1 .ship.lead .face::before{color:#8d2f2a;text-shadow:0 0 3px #f7eddc}
+.v1 .ship.lead .face::after{background:#8d2f2a;color:#f7eddc}
+.v1 .ship small{color:#6e6148}
+.v1 .form-foot{border-top-color:#1d2324}
+.v1 .form-foot b{color:#8d2f2a;font-family:var(--serif)}
+.v1 .bfoot{border-top:1px solid #b3a68c;background:#e3d8c4;color:#5d5748}
+.v1 .bfoot span{color:#8d2f2a}
+
+/* ============ 02 海军部蓝图 ============ */
+.v2{background:#092b39;color:#dcebea;font-family:var(--sans);
+  background-image:linear-gradient(#d6e8e714 1px,transparent 1px),linear-gradient(90deg,#d6e8e714 1px,transparent 1px),radial-gradient(900px 500px at 90% 0%,#0f4252 0%,transparent 62%);
+  background-size:28px 28px,28px 28px,auto}
+.v2 .bhead{border-bottom:1px solid #d6e8e766;background:linear-gradient(180deg,#0a3140,#082532)}
+.v2 .num{color:#efa05e}
+.v2 .title h1{font-family:var(--cond);font-weight:700;letter-spacing:.06em}
+.v2 .title span{color:#efa05e}
+.v2 .thesis{color:#a9c5c6;font-size:10px}
+.v2 .swatches i:nth-child(1){background:#092b39}.v2 .swatches i:nth-child(2){background:#dcebea}.v2 .swatches i:nth-child(3){background:#efa05e}.v2 .swatches i:nth-child(4){background:#4a7c86}
+.v2 .type{color:#8fb1b5}
+.v2 .stage{background-image:linear-gradient(#d6e8e70b 1px,transparent 1px),linear-gradient(90deg,#d6e8e70b 1px,transparent 1px);background-size:28px 28px}
+.v2 .shop{border-right:1px solid #d6e8e755}
+.v2 .pk{color:#efa05e}
+.v2 .ph{border-bottom:1px solid #d6e8e755}
+.v2 .ph h2{font-family:var(--cond);font-weight:700;letter-spacing:.08em}
+.v2 .items{gap:7px;padding-top:8px}
+.v2 .item{border:1px solid #d6e8e766;padding:9px 10px;background:#0a2d3b99}
+.v2 .item.pick{border-color:#efa05e;box-shadow:inset 3px 0 0 #efa05e}
+.v2 .plate{width:92px;height:110px;border:1px solid #d6e8e799;padding:3px}
+.v2 .plate img{filter:grayscale(1) contrast(1.18) brightness(.9)}
+.v2 .stamp{background:#092b39;color:#efa05e;border:1px solid #efa05e;font-family:var(--cond)}
+.v2 .copy small{color:#8fb1b5;font-family:var(--mono)}
+.v2 .copy h3{font-family:var(--cond);font-size:25px;letter-spacing:.04em}
+.v2 .copy p{color:#a9c5c6;font-size:9.5px}
+.v2 .tags span{color:#8fb1b5;border-color:#4a7c86}
+.v2 .cost b{color:#efa05e;font-family:var(--mono)}
+.v2 .cost small{color:#8fb1b5}
+.v2 .doctrine{border-top:1px solid #d6e8e755;margin-top:6px}
+.v2 .doc-copy small{color:#efa05e}
+.v2 .doc-copy h3{font-family:var(--cond)}
+.v2 .doc-copy p{color:#a9c5c6}
+.v2 .doc-cost b{color:#efa05e}
+.v2 .doc-cost small{color:#8fb1b5}
+.v2 .tri{color:#efa05e}
+.v2 .recruit{border-bottom:1px solid #d6e8e755;background:#0a2d3b88}
+.v2 .recruit .pk{color:#efa05e}
+.v2 .featured{border:1px solid #d6e8e799;padding:4px;position:relative}
+.v2 .featured::before,.v2 .featured::after{content:"";position:absolute;width:16px;height:16px;border-color:#efa05e;border-style:solid;z-index:2}
+.v2 .featured::before{left:-1px;top:-1px;border-width:1px 0 0 1px}
+.v2 .featured::after{right:-1px;bottom:-1px;border-width:0 1px 1px 0}
+.v2 .featured img{filter:grayscale(1) contrast(1.1) brightness(.85)}
+.v2 .rate{background:#efa05e;color:#082532;font-family:var(--mono)}
+.v2 .up{background:#092b39;color:#dcebea;border-top:1px solid #efa05e;font-family:var(--cond)}
+.v2 .recruit-copy h2{font-family:var(--cond);font-size:35px;letter-spacing:.05em}
+.v2 .recruit-copy p{color:#a9c5c6}
+.v2 .pity{border-top:1px dashed #d6e8e755;border-bottom:1px dashed #d6e8e755;color:#a9c5c6}
+.v2 .draw{background:#0f4252;border:1px solid #d6e8e755;color:#dcebea}
+.v2 .drawbar button{background:#efa05e;color:#082532;border:1px solid #efa05e;font-family:var(--cond);letter-spacing:.12em}
+.v2 .formation{border-top:1px solid #d6e8e755;background:#092b39}
+.v2 .formation .pk{color:#efa05e}
+.v2 .ship .face{border:1px solid #d6e8e788;background:#0f4252}
+.v2 .ship .face img{filter:grayscale(1) contrast(1.1) brightness(.9)}
+.v2 .ship.lead .face::before{color:#efa05e}
+.v2 .ship.lead .face::after{background:#efa05e;color:#082532;font-family:var(--cond)}
+.v2 .ship small{color:#8fb1b5}
+.v2 .form-foot{border-top-color:#d6e8e755}
+.v2 .form-foot b{color:#efa05e;font-family:var(--cond);letter-spacing:.12em}
+.v2 .bfoot{border-top:1px solid #d6e8e755;background:#082532;color:#8fb1b5}
+.v2 .bfoot span{color:#efa05e}
+.v2 .bfoot em{color:#efa05e}
+
+/* ============ 03 信号旗 ============ */
+.v3{background:#f2e6cf;color:#171513;font-family:var(--sans);
+  background-image:radial-gradient(#17151312 .8px,transparent .9px),linear-gradient(115deg,transparent 0 68%,#c33a2c14 68% 100%);
+  background-size:5px 5px,auto}
+.v3:before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:#c33a2c;z-index:5}
+.v3 .bhead{border-bottom:5px solid #171513;background:#eadbc0}
+.v3 .num{font-family:var(--poster);font-size:44px;color:#c33a2c;letter-spacing:-.02em}
+.v3 .title h1{font-family:var(--sans);font-weight:900;font-size:46px;letter-spacing:.06em}
+.v3 .title span{color:#c33a2c;font-family:var(--poster);font-size:11px;letter-spacing:.18em}
+.v3 .thesis{font-weight:700;font-size:11px;line-height:1.55;text-transform:uppercase;letter-spacing:.02em}
+.v3 .swatches i:nth-child(1){background:#f2e6cf;box-shadow:0 0 0 1px #171513}.v3 .swatches i:nth-child(2){background:#171513}.v3 .swatches i:nth-child(3){background:#c33a2c}.v3 .swatches i:nth-child(4){background:#e7b23d}
+.v3 .type{color:#171513;font-weight:700}
+.v3 .stage{background:transparent}
+.v3 .shop{border-right:5px solid #171513}
+.v3 .pk{color:#c33a2c;font-family:var(--poster);font-size:10px;letter-spacing:.14em}
+.v3 .ph{border-bottom:4px solid #171513;align-items:center}
+.v3 .ph h2{font-family:var(--sans);font-weight:900;font-size:34px;letter-spacing:-.02em}
+.v3 .ph span{font-family:var(--poster);font-size:12px;color:#c33a2c}
+.v3 .items{gap:8px;padding-top:9px}
+.v3 .item{border:3px solid #171513;padding:8px 10px;background:#f6ecd7;box-shadow:5px 5px 0 #171513;grid-template-columns:88px minmax(0,1fr) 108px}
+.v3 .item:nth-child(2){transform:rotate(-.35deg)}
+.v3 .item:nth-child(3){transform:rotate(.3deg)}
+.v3 .item.pick{background:#f9e3b2}
+.v3 .plate{width:88px;height:112px;border:2px solid #171513;filter:grayscale(1) contrast(1.18)}
+.v3 .stamp{background:#171513;color:#f2e6cf;border:2px solid #f2e6cf;font-family:var(--poster);font-size:9px;transform:rotate(-6deg)}
+.v3 .copy small{font-family:var(--mono);font-weight:700;color:#171513;opacity:.7}
+.v3 .copy h3{font-family:var(--sans);font-weight:900;font-size:27px;letter-spacing:-.02em}
+.v3 .copy p{font-weight:600;color:#171513;opacity:.82;font-size:10px}
+.v3 .tags span{border:2px solid #171513;font-weight:800;color:#171513;background:#e7b23d}
+.v3 .cost b{font-family:var(--poster);font-size:19px;color:#c33a2c}
+.v3 .cost small{font-weight:700;color:#171513}
+.v3 .doctrine{border-top:4px solid #171513;margin-top:7px;padding-top:9px}
+.v3 .doc-copy small{color:#c33a2c;font-family:var(--poster);font-size:9px}
+.v3 .doc-copy h3{font-weight:900;font-size:18px}
+.v3 .doc-copy p{font-weight:600;color:#171513;opacity:.8}
+.v3 .doc-cost b{font-family:var(--poster);color:#c33a2c;font-size:22px}
+.v3 .doc-cost small{font-weight:700}
+.v3 .tri{color:#171513}
+.v3 .recruit{border-bottom:5px solid #171513;background:#c33a2c;color:#f7eddb;overflow:hidden}
+.v3 .recruit:before{content:"";position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg,#ffffff14 0deg 9deg,transparent 9deg 18deg);pointer-events:none}
+.v3 .recruit .pk{color:#e7b23d}
+.v3 .recruit-head span{color:#f7eddb;opacity:.8}
+.v3 .featured{border:4px solid #171513;box-shadow:7px 7px 0 #171513;filter:grayscale(1) contrast(1.2)}
+.v3 .rate{background:#171513;color:#e7b23d;font-family:var(--poster);font-size:11px}
+.v3 .up{background:#e7b23d;color:#171513;font-family:var(--poster);font-size:10px}
+.v3 .recruit-copy{position:relative;z-index:1}
+.v3 .recruit-copy .eyebrow{color:#e7b23d;font-family:var(--poster);font-size:9px}
+.v3 .recruit-copy h2{font-family:var(--sans);font-weight:900;font-size:40px;letter-spacing:-.02em;text-transform:uppercase}
+.v3 .recruit-copy p{color:#f7eddb;opacity:.9;font-weight:600}
+.v3 .pity{border-top:2px solid #f7eddb66;border-bottom:2px solid #f7eddb66;color:#f7eddb}
+.v3 .draw{background:#171513;color:#f7eddb;border:2px solid #f7eddb;font-family:var(--poster)}
+.v3 .drawbar button{background:#e7b23d;color:#171513;border:3px solid #171513;font-family:var(--sans);font-weight:900;font-size:13px;box-shadow:4px 4px 0 #171513}
+.v3 .formation{background:#eadbc0}
+.v3 .formation .pk{color:#c33a2c}
+.v3 .ship .face{border:3px solid #171513;filter:grayscale(1) contrast(1.2)}
+.v3 .ship.lead .face::before{color:#e7b23d;text-shadow:0 0 0 #171513}
+.v3 .ship.lead .face::after{background:#c33a2c;color:#f7eddb;font-family:var(--poster)}
+.v3 .ship b{font-weight:900}
+.v3 .ship small{font-weight:700;color:#171513;opacity:.6}
+.v3 .form-foot{border-top:4px solid #171513}
+.v3 .form-foot span{font-family:var(--poster);color:#c33a2c}
+.v3 .form-foot b{background:#171513;color:#f2e6cf;padding:5px 13px;font-family:var(--sans);font-weight:900}
+.v3 .bfoot{border-top:5px solid #171513;background:#171513;color:#f2e6cf}
+.v3 .bfoot span{color:#e7b23d;font-family:var(--poster)}
+.v3 .bfoot em{color:#e7b23d}
+
+/* ============ 04 夜战标图 ============ */
+.v4{background:#0b1112;color:#d9d2c2;font-family:var(--sans);--red:#d64b3c;--amber:#d8a24b;
+  background-image:radial-gradient(1100px 600px at 78% 18%,#1b2a2b 0%,transparent 60%),linear-gradient(#d9d2c208 1px,transparent 1px),linear-gradient(90deg,#d9d2c208 1px,transparent 1px);
+  background-size:auto,44px 44px,44px 44px}
+.v4:before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 82% 64%,transparent 0 58px,#d9d2c20a 59px 60px),linear-gradient(160deg,transparent 55%,#d64b3c0a 55.3%,transparent 55.6%);pointer-events:none}
+.v4 .bhead{border-bottom:1px solid #d9d2c244;background:#0b1112cc}
+.v4 .num{font-family:var(--cond);color:var(--red)}
+.v4 .title h1{font-family:var(--cond);font-weight:700;letter-spacing:.09em}
+.v4 .title span{color:var(--amber)}
+.v4 .thesis{color:#9c9c90;font-family:var(--mono);font-size:9px}
+.v4 .swatches i:nth-child(1){background:#0b1112;box-shadow:0 0 0 1px #d9d2c244}.v4 .swatches i:nth-child(2){background:#d9d2c2}.v4 .swatches i:nth-child(3){background:#d64b3c}.v4 .swatches i:nth-child(4){background:#d8a24b}
+.v4 .type{color:#9c9c90}
+.v4 .stage{background:transparent}
+.v4 .shop{border-right:1px solid #d9d2c233}
+.v4 .pk{color:var(--red)}
+.v4 .ph{border-bottom:1px solid #d9d2c233}
+.v4 .ph h2{font-family:var(--cond);font-weight:700;letter-spacing:.08em}
+.v4 .ph span{color:var(--amber)}
+.v4 .items{gap:1px;padding-top:6px}
+.v4 .item{border-bottom:1px solid #d9d2c21f;padding:10px 0;grid-template-columns:76px minmax(0,1fr) 110px}
+.v4 .item.pick{background:linear-gradient(90deg,#d64b3c14,transparent 70%)}
+.v4 .item.pick:before{content:"";position:absolute;left:-26px;top:0;bottom:0;width:2px;background:var(--red)}
+.v4 .plate{width:76px;height:98px;border:1px solid #d9d2c255}
+.v4 .plate img{filter:grayscale(1) contrast(1.15) brightness(.72)}
+.v4 .stamp{background:#0b1112;color:var(--amber);border:1px solid var(--amber);font-family:var(--cond)}
+.v4 .copy small{color:#9c9c90;font-family:var(--mono)}
+.v4 .copy h3{font-family:var(--cond);font-size:24px;letter-spacing:.04em}
+.v4 .copy p{color:#b5b2a5;font-size:9.5px}
+.v4 .tags span{color:#9c9c90;border-color:#4d5350;font-family:var(--mono)}
+.v4 .cost b{color:var(--amber);font-family:var(--mono)}
+.v4 .cost small{color:#9c9c90}
+.v4 .doctrine{border-top:1px solid #d9d2c233;margin-top:5px}
+.v4 .doc-copy small{color:var(--red)}
+.v4 .doc-copy h3{font-family:var(--cond)}
+.v4 .doc-copy p{color:#b5b2a5}
+.v4 .doc-cost b{color:var(--amber)}
+.v4 .doc-cost small{color:#9c9c90}
+.v4 .tri{color:var(--amber)}
+.v4 .recruit{border-bottom:1px solid #d9d2c233;background:#0b1112aa}
+.v4 .recruit .pk{color:var(--red)}
+.v4 .featured{border:1px solid #d9d2c255;position:relative}
+.v4 .featured:after{content:"";position:absolute;left:50%;top:50%;width:38px;height:38px;transform:translate(-50%,-50%);border:1px solid #d64b3c88;border-radius:50%;box-shadow:0 0 0 1px #0b1112,0 0 0 2px #d64b3c44}
+.v4 .featured:before{content:"";position:absolute;left:50%;top:50%;width:86px;height:1px;background:#d64b3c88;transform:translate(-50%,-50%);box-shadow:0 -18px 0 #d64b3c22,0 18px 0 #d64b3c22}
+.v4 .featured img{filter:grayscale(1) contrast(1.15) brightness(.66)}
+.v4 .rate{background:#0b1112;color:var(--red);border:1px solid var(--red);font-family:var(--mono)}
+.v4 .up{background:var(--red);color:#0b1112;font-family:var(--cond)}
+.v4 .recruit-copy h2{font-family:var(--cond);font-size:37px;letter-spacing:.04em}
+.v4 .recruit-copy p{color:#b5b2a5}
+.v4 .pity{border-top:1px solid #d9d2c222;border-bottom:1px solid #d9d2c222;color:#9c9c90}
+.v4 .draw{background:#141c1d;border:1px solid #d9d2c233;color:#d9d2c2}
+.v4 .drawbar button{background:var(--red);color:#0b1112;border:1px solid var(--red);font-family:var(--cond);letter-spacing:.12em;font-weight:700}
+.v4 .formation{background:#0b1112cc;border-top:1px solid #d9d2c233}
+.v4 .formation .pk{color:var(--red)}
+.v4 .ships{position:relative}
+.v4 .ships:before{content:"";position:absolute;left:4%;right:4%;top:52%;height:1px;background:#d9d2c233;z-index:0}
+.v4 .ship{position:relative;z-index:1}
+.v4 .face{border:1px solid #d9d2c255;filter:grayscale(1) brightness(.75) contrast(1.1);background:#141c1d}
+.v4 .ship.lead .face::before{color:var(--amber)}
+.v4 .ship.lead .face::after{background:var(--red);color:#0b1112;font-family:var(--cond)}
+.v4 .ship b{font-family:var(--cond);font-size:12px;letter-spacing:.03em}
+.v4 .ship small{color:#9c9c90}
+.v4 .form-foot{border-top-color:#d9d2c233}
+.v4 .form-foot span{font-family:var(--mono);color:var(--red)}
+.v4 .form-foot b{color:var(--amber);font-family:var(--cond);letter-spacing:.12em}
+.v4 .bfoot{border-top:1px solid #d9d2c233;background:#0b1112ee;color:#9c9c90}
+.v4 .bfoot span{color:var(--red)}
+.v4 .bfoot em{color:var(--amber)}
+</style>
+</head>
+<body>
+
+<!-- ================= 01 ================= -->
+<section class="board v1" id="board-1">
+  <header class="bhead">
+    <div class="num">01</div>
+    <div class="title"><h1>作战档案</h1><span>OPERATIONS FOLIO</span></div>
+    <p class="thesis">纸张不是装饰，是信息结构：表格、批注、印章、照片板。没有卡片网格，没有发光；单舰是一行档案。</p>
+    <div class="spec">
+      <div class="swatches"><i></i><i></i><i></i><i></i></div>
+      <div class="type">宋体 / 楷体 / 等宽<br>PAPER · INK · OXBLOOD</div>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="shop">
+      <div class="pk">REQUISITION / 军需处</div>
+      <div class="ph"><h2>舰船与战术</h2><span>补给币 12,400 · 勋章 86</span></div>
+      <div class="items">
+        <article class="item pick">
+          <div class="plate"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span class="stamp">已入列</span></div>
+          <div class="copy"><small>DD-445 · 驱逐舰 · 同盟</small><h3>弗莱彻</h3><p>第五驱逐小队领舰；单舰档案，已核验。不是“弗莱彻级”占位。</p><div class="tags"><span>历史舰</span><span>领舰资质</span></div></div>
+          <div class="cost"><b>已拥有</b><small>第 1 舰位</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"><span class="stamp">可征募</span></div>
+          <div class="copy"><small>DD-377 · 驱逐舰 · 同盟</small><h3>帕金斯</h3><p>独立舰卡；同一舰队里与弗莱彻并列，而不是同级复制。</p><div class="tags"><span>已核验</span><span>单舰</span></div></div>
+          <div class="cost"><b>8,800</b><small>补给币</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"><span class="stamp">可征募</span></div>
+          <div class="copy"><small>CL-48 · 轻巡洋舰 · 同盟</small><h3>火奴鲁鲁</h3><p>轻巡洋舰，单独军籍；“轻巡”只作为舰种，不代替舰名。</p><div class="tags"><span>已核验</span><span>轻巡</span></div></div>
+          <div class="cost"><b>14,200</b><small>补给币</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-san-francisco.webp" alt="旧金山"><span class="stamp">可征募</span></div>
+          <div class="copy"><small>CA-38 · 重巡洋舰 · 同盟</small><h3>旧金山</h3><p>重巡洋舰；单舰照片板和独立军籍，不和轻巡/驱逐舰混成一行。</p><div class="tags"><span>已核验</span><span>重巡</span></div></div>
+          <div class="cost"><b>22,400</b><small>补给币</small></div>
+        </article>
+      </div>
+      <div class="doctrine">
+        <div class="doc-copy"><small>AI DOCTRINE / 战术</small><h3>帷幄 · 屏护协同</h3><p>屏护、交叉火力；不是等级，是一套可读的打法。</p></div>
+        <svg class="tri" viewBox="0 0 100 84" aria-hidden="true"><polygon points="50,7 93,77 7,77" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="50" cy="7" r="3" fill="currentColor"/><circle cx="93" cy="77" r="3" fill="currentColor"/><circle cx="7" cy="77" r="3" fill="currentColor"/><line x1="50" y1="7" x2="50" y2="77" stroke="currentColor" stroke-width=".6" stroke-dasharray="2 3"/><line x1="50" y1="7" x2="7" y2="77" stroke="currentColor" stroke-width=".6" stroke-dasharray="2 3"/></svg>
+        <div class="doc-cost"><b>800</b><small>常驻券</small></div>
+      </div>
+    </section>
+    <div class="side">
+      <section class="recruit">
+        <div class="recruit-head"><div class="pk">ENLISTMENT / 军港征募</div><span>常驻券 4,200</span></div>
+        <div class="recruit-body">
+          <div class="featured"><img src="assets/ibs-u-usn-erma-missouri.webp" alt="密苏里"><div class="rate">UR 2%</div><div class="up">UP 50%</div></div>
+          <div class="recruit-copy"><span class="eyebrow">本期旗舰 / FEATURED</span><h2>密苏里</h2><p>不是“战列舰池”。这是一艘有军籍、有立绘、有档案的密苏里。</p><div class="pity"><span>保底 7 / 10</span><span>本期 UP 50%</span></div><div class="drawbar"><div class="draw"><span>十连</span><b>4,500</b></div><button>征募 10</button></div></div>
+        </div>
+      </section>
+      <section class="formation">
+        <div class="form-head"><div class="pk">SORTIE ROSTER / 出击编队</div><span>5 / 5 已编成</span></div>
+        <div class="ships">
+          <div class="ship lead"><div class="face"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN DD</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN DD</small></div>
+        </div>
+        <div class="form-foot"><span>每艘独立 · 不按舰级</span><b>出航 →</b></div>
+      </section>
+    </div>
+  </div>
+  <footer class="bfoot"><span>DESIGN NOTE</span><p>用档案纸、红铅笔、印章和照片板建立“历史资料”的可信度；单舰身份、立绘、编队都在同一张桌上。战斗层仍走夜战，不和纸张层抢。</p><em>frontend-design · 01 / 04</em></footer>
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="board v2" id="board-2">
+  <header class="bhead">
+    <div class="num">02</div>
+    <div class="title"><h1>海军部蓝图</h1><span>ADMIRALTY BLUEPRINT</span></div>
+    <p class="thesis">制图语言：所有信息是标注、尺寸、编号。没有卡片、没有阴影；橙色只做动作和警示。</p>
+    <div class="spec">
+      <div class="swatches"><i></i><i></i><i></i><i></i></div>
+      <div class="type">Bahnschrift / 等宽<br>PRUSSIAN · BONE · SIGNAL</div>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="shop">
+      <div class="pk">SHEET 02 / REQUISITION</div>
+      <div class="ph"><h2>舰船与战术</h2><span>STOCK 12,400 · MARKS 86</span></div>
+      <div class="items">
+        <article class="item pick">
+          <div class="plate"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span class="stamp">IN SERVICE</span></div>
+          <div class="copy"><small>DD-445 / DESTROYER / ALLIED</small><h3>弗莱彻</h3><p>LEAD SHIP / 5TH DESTROYER DIVISION. One hull, one record, one portrait.</p><div class="tags"><span>VERIFIED</span><span>LEAD</span></div></div>
+          <div class="cost"><b>—</b><small>IN SERVICE</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"><span class="stamp">AVAILABLE</span></div>
+          <div class="copy"><small>DD-377 / DESTROYER / ALLIED</small><h3>帕金斯</h3><p>Independent hull card. Same division, separate identity.</p><div class="tags"><span>VERIFIED</span><span>SINGLE HULL</span></div></div>
+          <div class="cost"><b>8,800</b><small>SUPPLY</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"><span class="stamp">AVAILABLE</span></div>
+          <div class="copy"><small>CL-48 / LIGHT CRUISER / ALLIED</small><h3>火奴鲁鲁</h3><p>Hull class is a drawing category, not a substitute for the ship.</p><div class="tags"><span>VERIFIED</span><span>CL</span></div></div>
+          <div class="cost"><b>14,200</b><small>SUPPLY</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-san-francisco.webp" alt="旧金山"><span class="stamp">AVAILABLE</span></div>
+          <div class="copy"><small>CA-38 / HEAVY CRUISER / ALLIED</small><h3>旧金山</h3><p>One plate, one identity. The drawing category does not replace the ship.</p><div class="tags"><span>VERIFIED</span><span>CA</span></div></div>
+          <div class="cost"><b>22,400</b><small>SUPPLY</small></div>
+        </article>
+      </div>
+      <div class="doctrine">
+        <div class="doc-copy"><small>AI DOCTRINE / PLATE 03</small><h3>帷幄 · 屏护协同</h3><p>Screen + crossfire. A readable doctrine, not a tier.</p></div>
+        <svg class="tri" viewBox="0 0 100 84" aria-hidden="true"><polygon points="50,7 93,77 7,77" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="50" cy="7" r="3" fill="currentColor"/><circle cx="93" cy="77" r="3" fill="currentColor"/><circle cx="7" cy="77" r="3" fill="currentColor"/><line x1="50" y1="7" x2="50" y2="77" stroke="currentColor" stroke-width=".6" stroke-dasharray="2 3"/></svg>
+        <div class="doc-cost"><b>800</b><small>TICKETS</small></div>
+      </div>
+    </section>
+    <div class="side">
+      <section class="recruit">
+        <div class="recruit-head"><div class="pk">SHEET 04 / ENLISTMENT</div><span>TICKETS 4,200</span></div>
+        <div class="recruit-body">
+          <div class="featured"><img src="assets/ibs-u-usn-erma-missouri.webp" alt="密苏里"><div class="rate">UR 2%</div><div class="up">UP 50%</div></div>
+          <div class="recruit-copy"><span class="eyebrow">FEATURED HULL / 02-04</span><h2>密苏里</h2><p>One named hull in the pool. Rate and pity are printed, not implied.</p><div class="pity"><span>PITY 7 / 10</span><span>UP 50%</span></div><div class="drawbar"><div class="draw"><span>10×</span><b>4,500</b></div><button>ENLIST 10</button></div></div>
+        </div>
+      </section>
+      <section class="formation">
+        <div class="form-head"><div class="pk">SHEET 05 / SORTIE PLAN</div><span>5 POSITIONS</span></div>
+        <div class="ships">
+          <div class="ship lead"><div class="face"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445 / 01</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377 / 02</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48 / 03</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN / 04</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN / 05</small></div>
+        </div>
+        <div class="form-foot"><span>EACH HULL IS A STATION</span><b>COMMIT →</b></div>
+      </section>
+    </div>
+  </div>
+  <footer class="bfoot"><span>DESIGN NOTE</span><p>把界面当成一张真正的海军部图纸：标题栏、图号、尺寸线、站号。信息越复杂，越应该像工程图一样可读，而不是越多卡片。</p><em>frontend-design · 02 / 04</em></footer>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="board v3" id="board-3">
+  <header class="bhead">
+    <div class="num">03</div>
+    <div class="title"><h1>信号旗</h1><span>SIGNAL POSTER</span></div>
+    <p class="thesis">招贴语言：大字号、红黄黑、半调网点。军需是配给券，征募是动员海报，单舰是领用券。</p>
+    <div class="spec">
+      <div class="swatches"><i></i><i></i><i></i><i></i></div>
+      <div class="type">Impact / 黑体 / 等宽<br>CREAM · INK · SIGNAL RED</div>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="shop">
+      <div class="pk">REQUISITION / 军需处</div>
+      <div class="ph"><h2>舰船配给</h2><span>补给币 12,400</span></div>
+      <div class="items">
+        <article class="item pick">
+          <div class="plate"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span class="stamp">已核发</span></div>
+          <div class="copy"><small>DD-445 / 驱逐舰 / 同盟</small><h3>弗莱彻</h3><p>单舰配给券。领舰章盖在弗莱彻本人名下，不盖在“驱逐舰”上。</p><div class="tags"><span>历史舰</span><span>领舰</span></div></div>
+          <div class="cost"><b>已领</b><small>第 1 舰位</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"><span class="stamp">可领</span></div>
+          <div class="copy"><small>DD-377 / 驱逐舰 / 同盟</small><h3>帕金斯</h3><p>和弗莱彻同级，但这是帕金斯。配给券上写舰名，不写舰级。</p><div class="tags"><span>单舰</span><span>已核验</span></div></div>
+          <div class="cost"><b>8,800</b><small>补给币</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"><span class="stamp">可领</span></div>
+          <div class="copy"><small>CL-48 / 轻巡洋舰 / 同盟</small><h3>火奴鲁鲁</h3><p>轻巡洋舰只是配给分类。她有自己的脸、自己的名字、自己的舰位。</p><div class="tags"><span>单舰</span><span>轻巡</span></div></div>
+          <div class="cost"><b>14,200</b><small>补给币</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-san-francisco.webp" alt="旧金山"><span class="stamp">可领</span></div>
+          <div class="copy"><small>CA-38 / 重巡洋舰 / 同盟</small><h3>旧金山</h3><p>重巡洋舰也有自己的脸；不是“重巡”这个格子。重巡、轻巡、驱逐并排，但各是各的。</p><div class="tags"><span>单舰</span><span>重巡</span></div></div>
+          <div class="cost"><b>22,400</b><small>补给币</small></div>
+        </article>
+      </div>
+      <div class="doctrine">
+        <div class="doc-copy"><small>AI DOCTRINE / 战术配给</small><h3>帷幄 · 屏护协同</h3><p>不是等级，是一套打法；配给券上盖“战术”章。</p></div>
+        <svg class="tri" viewBox="0 0 100 84" aria-hidden="true"><polygon points="50,7 93,77 7,77" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="7" r="3.5" fill="currentColor"/><circle cx="93" cy="77" r="3.5" fill="currentColor"/><circle cx="7" cy="77" r="3.5" fill="currentColor"/></svg>
+        <div class="doc-cost"><b>800</b><small>常驻券</small></div>
+      </div>
+    </section>
+    <div class="side">
+      <section class="recruit">
+        <div class="recruit-head"><div class="pk">ENLISTMENT / 军港征募</div><span>常驻券 4,200</span></div>
+        <div class="recruit-body">
+          <div class="featured"><img src="assets/ibs-u-usn-erma-missouri.webp" alt="密苏里"><div class="rate">UR 2%</div><div class="up">UP 50%</div></div>
+          <div class="recruit-copy"><span class="eyebrow">本期旗舰 / FEATURED</span><h2>密苏里</h2><p>征募不是抽“战列舰”。海报上写的是密苏里，是一艘具体的船。</p><div class="pity"><span>保底 7 / 10</span><span>UP 50%</span></div><div class="drawbar"><div class="draw"><span>十连</span><b>4,500</b></div><button>立即征募</button></div></div>
+        </div>
+      </section>
+      <section class="formation">
+        <div class="form-head"><div class="pk">SORTIE ROSTER / 出击编队</div><span>5 / 5 已编成</span></div>
+        <div class="ships">
+          <div class="ship lead"><div class="face"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN DD</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN DD</small></div>
+        </div>
+        <div class="form-foot"><span>每艘独立 · 不按舰级</span><b>出航 →</b></div>
+      </section>
+    </div>
+  </div>
+  <footer class="bfoot"><span>DESIGN NOTE</span><p>把“征募/配给”做成真实印刷品：套色、半调、裁切线、盖章。它不精致，但有立场；不会看起来像任意一个 AI 生成的深色仪表盘。</p><em>frontend-design · 03 / 04</em></footer>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="board v4" id="board-4">
+  <header class="bhead">
+    <div class="num">04</div>
+    <div class="title"><h1>夜战标图</h1><span>NIGHT PLOT</span></div>
+    <p class="thesis">标图语言：夜战海图是主角；信息以坐标、接触、标记呈现。红/琥珀只做威胁和行动，没有青色霓虹。</p>
+    <div class="spec">
+      <div class="swatches"><i></i><i></i><i></i><i></i></div>
+      <div class="type">Bahnschrift / 等宽<br>GRAPHITE · BONE · SIGNAL</div>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="shop">
+      <div class="pk">PLOT 01 / REQUISITION</div>
+      <div class="ph"><h2>舰船与战术</h2><span>SUPPLY 12,400 · MARKS 86</span></div>
+      <div class="items">
+        <article class="item pick">
+          <div class="plate"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span class="stamp">IN PLOT</span></div>
+          <div class="copy"><small>DD-445 / DESTROYER / ALLIED</small><h3>弗莱彻</h3><p>Lead contact. One hull, one track, one portrait — not a class counter.</p><div class="tags"><span>VERIFIED</span><span>LEAD</span></div></div>
+          <div class="cost"><b>—</b><small>IN SERVICE</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"><span class="stamp">READY</span></div>
+          <div class="copy"><small>DD-377 / DESTROYER / ALLIED</small><h3>帕金斯</h3><p>Separate hull. Separate marker. Separate portrait.</p><div class="tags"><span>VERIFIED</span><span>SINGLE</span></div></div>
+          <div class="cost"><b>8,800</b><small>SUPPLY</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"><span class="stamp">READY</span></div>
+          <div class="copy"><small>CL-48 / LIGHT CRUISER / ALLIED</small><h3>火奴鲁鲁</h3><p>Class is a plotting category; the marker belongs to the ship.</p><div class="tags"><span>VERIFIED</span><span>CL</span></div></div>
+          <div class="cost"><b>14,200</b><small>SUPPLY</small></div>
+        </article>
+        <article class="item">
+          <div class="plate"><img src="assets/ibs-u-usn-san-francisco.webp" alt="旧金山"><span class="stamp">READY</span></div>
+          <div class="copy"><small>CA-38 / HEAVY CRUISER / ALLIED</small><h3>旧金山</h3><p>One hull, one marker. The class is not the identity.</p><div class="tags"><span>VERIFIED</span><span>CA</span></div></div>
+          <div class="cost"><b>22,400</b><small>SUPPLY</small></div>
+        </article>
+      </div>
+      <div class="doctrine">
+        <div class="doc-copy"><small>AI DOCTRINE / PLOT 03</small><h3>帷幄 · 屏护协同</h3><p>Screen + crossfire. A track, not a tier.</p></div>
+        <svg class="tri" viewBox="0 0 100 84" aria-hidden="true"><polygon points="50,7 93,77 7,77" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="50" cy="7" r="3" fill="currentColor"/><circle cx="93" cy="77" r="3" fill="currentColor"/><circle cx="7" cy="77" r="3" fill="currentColor"/><line x1="50" y1="7" x2="50" y2="77" stroke="currentColor" stroke-width=".6" stroke-dasharray="2 3"/></svg>
+        <div class="doc-cost"><b>800</b><small>TICKETS</small></div>
+      </div>
+    </section>
+    <div class="side">
+      <section class="recruit">
+        <div class="recruit-head"><div class="pk">CONTACT 04 / ENLISTMENT</div><span>TICKETS 4,200</span></div>
+        <div class="recruit-body">
+          <div class="featured"><img src="assets/ibs-u-usn-erma-missouri.webp" alt="密苏里"><div class="rate">UR 2%</div><div class="up">UP 50%</div></div>
+          <div class="recruit-copy"><span class="eyebrow">FEATURED CONTACT</span><h2>密苏里</h2><p>A named contact, not a hull class. Rates and pity are plotted, not hidden.</p><div class="pity"><span>PITY 7 / 10</span><span>UP 50%</span></div><div class="drawbar"><div class="draw"><span>10×</span><b>4,500</b></div><button>ENLIST 10</button></div></div>
+        </div>
+      </section>
+      <section class="formation">
+        <div class="form-head"><div class="pk">PLOT 05 / SORTIE</div><span>5 CONTACTS</span></div>
+        <div class="ships">
+          <div class="ship lead"><div class="face"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN</small></div>
+          <div class="ship"><div class="face"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN</small></div>
+        </div>
+        <div class="form-foot"><span>EACH CONTACT IS A SHIP</span><b>COMMIT →</b></div>
+      </section>
+    </div>
+  </div>
+  <footer class="bfoot"><span>DESIGN NOTE</span><p>保留夜战，但去掉“深色+青色发光”的 AI 仪表盘套路。用海图、接触、坐标、信号红来组织信息；战斗前是纸，战斗中才是夜。</p><em>frontend-design · 04 / 04</em></footer>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/liveops_content.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/liveops_announcement.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/events/tide-v1/tide-awakening.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/liveops/missouri-event-v2.png" id="4"]
+
+[sub_resource type="Resource" id="News0"]
+script = ExtResource("2")
+title = "新的航海履历"
+body = "指挥官等级、分段突破和分级资源海域加入试玩。训练与舰装保持小幅增益，历史借用兵力照常可用。"
+
+[sub_resource type="Resource" id="News1"]
+script = ExtResource("2")
+title = "第二、三章 · 无名者的航线"
+body = "从流民连桥到沉城潮门，新增六场实战、场景CG、多人同框与表情眨眼。剧情实战需实际完成，已读段落可以回顾。"
+
+[sub_resource type="Resource" id="News2"]
+script = ExtResource("2")
+title = "潮汐回响 · 版本活动"
+body = "三分钟六波怪潮、实体经验拾取与三选一共鸣强化。守住信标并击败看守，赢取徽片兑换奖励。新增油料与编队/基地双仓库。模拟充值不发生付款。"
+
+[sub_resource type="Resource" id="News3"]
+script = ExtResource("2")
+title = "历史战役持续核验"
+body = "战役开发进度来自当前作战目录，试玩可用与历史核验完成分别标记。原始CAS舰卡、阵位与旧航次保留。"
+
+[resource]
+script = ExtResource("1")
+version = "tidebound-preview-2026-11-12"
+title = "潮汐回响"
+subtitle = "版本活动 · 三分钟的归航灯"
+hero = ExtResource("3")
+featured_art = ExtResource("4")
+announcements = Array[Resource]([SubResource("News0"), SubResource("News1"), SubResource("News2"), SubResource("News3")])

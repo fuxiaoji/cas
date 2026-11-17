@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-11",
+  "skills": [
+    {
+      "name": "game-ui-ux",
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "dcf3bbbb83f365632402c086bf595048aa24aaa8",
+      "license": "Apache-2.0",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\game-ui-ux"
+    },
+    {
+      "name": "procedural-gen",
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "dcf3bbbb83f365632402c086bf595048aa24aaa8",
+      "license": "Apache-2.0",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\procedural-gen"
+    },
+    {
+      "name": "godot-ui-control",
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "dcf3bbbb83f365632402c086bf595048aa24aaa8",
+      "license": "Apache-2.0",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\godot-ui-control"
+    },
+    {
+      "name": "godot-gdscript",
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "dcf3bbbb83f365632402c086bf595048aa24aaa8",
+      "license": "Apache-2.0",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\godot-gdscript"
+    },
+    {
+      "name": "game-feel",
+      "repo": "gamedev-skills/awesome-gamedev-agent-skills",
+      "commit": "dcf3bbbb83f365632402c086bf595048aa24aaa8",
+      "license": "Apache-2.0",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\game-feel"
+    },
+    {
+      "name": "github-frontend-design",
+      "repo": "anthropics/skills",
+      "commit": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+      "license": "Apache-2.0",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\github-frontend-design",
+      "local_change": "Renamed metadata name to avoid shadowing existing frontend-design"
+    },
+    {
+      "name": "game-design",
+      "repo": "saschb2b/skills",
+      "commit": "31a6a1364b73ff24f388f9e35c6e3ccd9baa7d89",
+      "license": "MIT",
+      "installed_path": "C:\\Users\\fwj\\.codex\\skills\\game-design"
+    }
+  ]
+}

@@ -1,0 +1,2277 @@
+{
+  "version": 2,
+  "growth_version": "cas-owned-growth-v1",
+  "max_level": 30,
+  "mastery_max": 1000,
+  "stamina_max": 120,
+  "stamina_regen_seconds": 480,
+  "origins_per_ticket": 160,
+  "initial_origins": 320,
+  "crew_slots": [
+    "helmsman",
+    "gunnery",
+    "damage_control",
+    "command"
+  ],
+  "crew_names": {
+    "helmsman": "舵手组",
+    "gunnery": "火炮组",
+    "damage_control": "损管组",
+    "command": "指挥组"
+  },
+  "items": [
+    {
+      "id": "origins-ticket",
+      "name": "常驻征募券",
+      "category": "exchange",
+      "currency": "origins",
+      "cost": 160,
+      "grants": {
+        "tickets": 1
+      },
+      "description": "160元词兑换1张常驻征募券。"
+    },
+    {
+      "id": "origins-up",
+      "name": "UP征募券",
+      "category": "exchange",
+      "currency": "origins",
+      "cost": 160,
+      "grants": {
+        "up_tickets": 1
+      },
+      "description": "160元词兑换1张UP征募券。"
+    },
+    {
+      "id": "origins-supply",
+      "name": "远航补给",
+      "category": "exchange",
+      "currency": "origins",
+      "cost": 40,
+      "grants": {
+        "ammo_stock": 200,
+        "materials": 5
+      },
+      "description": "200份弹药与5份养成材料。"
+    },
+    {
+      "id": "silver-ammo",
+      "name": "舰队弹药箱",
+      "category": "supply",
+      "currency": "credits",
+      "cost": 160,
+      "grants": {
+        "ammo_stock": 100
+      },
+      "description": "100份库存弹药。"
+    },
+    {
+      "id": "silver-training",
+      "name": "训练教材",
+      "category": "supply",
+      "currency": "credits",
+      "cost": 120,
+      "grants": {
+        "materials": 3
+      },
+      "description": "3份养成材料；不增加熟练度。"
+    },
+    {
+      "id": "bundle:allied-cruiser-detachment",
+      "name": "同盟巡洋支援包",
+      "category": "bundles",
+      "currency": "credits",
+      "cost": 1800,
+      "ship_ids": [
+        "IBS-U-USN-HONOLULU",
+        "IBS-U-USN-MINNEAPOLIS",
+        "IBS-U-USN-SAN-FRANCISCO"
+      ],
+      "limit": 1,
+      "description": "一艘轻巡洋舰与两艘重巡洋舰，给同盟驱逐编队补上远程火力。",
+      "source": "server/catalog.json ship_bundles"
+    },
+    {
+      "id": "bundle:axis-destroyer-screen",
+      "name": "轴心驱逐警戒包",
+      "category": "bundles",
+      "currency": "credits",
+      "cost": 1000,
+      "ship_ids": [
+        "IBS-U-IJN-TAKANAMI",
+        "IBS-U-IJN-OYASHIO",
+        "IBS-U-IJN-MAKINAMI"
+      ],
+      "limit": 1,
+      "description": "三艘驱逐舰组成雷击警戒线，可直接编入轴心低预算舰队。",
+      "source": "server/catalog.json ship_bundles"
+    },
+    {
+      "id": "bundle:axis-cruiser-escort",
+      "name": "轴心巡洋护航包",
+      "category": "bundles",
+      "currency": "credits",
+      "cost": 1600,
+      "ship_ids": [
+        "IBS-U-IJN-AOBA",
+        "IBS-U-IJN-KINUGASA",
+        "IBS-U-IJN-KAGERO"
+      ],
+      "limit": 1,
+      "description": "两艘重巡洋舰加一艘驱逐舰，适合给轴心舰队搭配炮击与雷击分工。",
+      "source": "server/catalog.json ship_bundles"
+    },
+    {
+      "id": "ship:IBS-U-USN-FLETCHER",
+      "name": "弗莱彻",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-FLETCHER",
+      "ship_ids": [
+        "IBS-U-USN-FLETCHER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-PERKINS",
+      "name": "帕金斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-USN-PERKINS",
+      "ship_ids": [
+        "IBS-U-USN-PERKINS"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-MAURY",
+      "name": "莫里",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-USN-MAURY",
+      "ship_ids": [
+        "IBS-U-USN-MAURY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-DRAYTON",
+      "name": "德雷顿",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-USN-DRAYTON",
+      "ship_ids": [
+        "IBS-U-USN-DRAYTON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-TAKANAMI",
+      "name": "高波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-TAKANAMI",
+      "ship_ids": [
+        "IBS-U-IJN-TAKANAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-OYASHIO",
+      "name": "亲潮",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-OYASHIO",
+      "ship_ids": [
+        "IBS-U-IJN-OYASHIO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-KUROSHIO",
+      "name": "黑潮",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-KUROSHIO",
+      "ship_ids": [
+        "IBS-U-IJN-KUROSHIO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-KAGERO",
+      "name": "阳炎",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-KAGERO",
+      "ship_ids": [
+        "IBS-U-IJN-KAGERO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-AKATSUKI",
+      "name": "晓",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-AKATSUKI",
+      "ship_ids": [
+        "IBS-U-IJN-AKATSUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-AKIGUMO",
+      "name": "秋云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-AKIGUMO",
+      "ship_ids": [
+        "IBS-U-IJN-AKIGUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-AKIZUKI",
+      "name": "秋月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-AKIZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-AKIZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-AMAGIRI",
+      "name": "天雾",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-AMAGIRI",
+      "ship_ids": [
+        "IBS-U-IJN-AMAGIRI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-AMATSU-KAZE",
+      "name": "天津风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-AMATSU-KAZE",
+      "ship_ids": [
+        "IBS-U-IJN-AMATSU-KAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ASAGUMO",
+      "name": "朝云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ASAGUMO",
+      "ship_ids": [
+        "IBS-U-IJN-ASAGUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ASAKAZE",
+      "name": "朝风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ASAKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-ASAKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-AYANAMI",
+      "name": "绫波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-AYANAMI",
+      "ship_ids": [
+        "IBS-U-IJN-AYANAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-CHITOSE",
+      "name": "千岁",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 500,
+      "ship_id": "IBS-U-IJN-CHITOSE",
+      "ship_ids": [
+        "IBS-U-IJN-CHITOSE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ERMA-KAZEGUMO",
+      "name": "风云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ERMA-KAZEGUMO",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-KAZEGUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ERMA-MAKINAMI",
+      "name": "卷波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ERMA-MAKINAMI",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-MAKINAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ERMA-NAGANAMI",
+      "name": "长波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ERMA-NAGANAMI",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-NAGANAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ERMA-SHIMAKAZE",
+      "name": "岛风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ERMA-SHIMAKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-ERMA-SHIMAKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-FUBUKI",
+      "name": "吹雪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-FUBUKI",
+      "ship_ids": [
+        "IBS-U-IJN-FUBUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-FUMIZUKI",
+      "name": "文月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-FUMIZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-FUMIZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-HAMAKAZE",
+      "name": "浜风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-HAMAKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-HAMAKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-HARUSAME",
+      "name": "春雨",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-HARUSAME",
+      "ship_ids": [
+        "IBS-U-IJN-HARUSAME"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-HATSU-KAZE",
+      "name": "初风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-HATSU-KAZE",
+      "ship_ids": [
+        "IBS-U-IJN-HATSU-KAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-HATSUYUKI",
+      "name": "初雪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-HATSUYUKI",
+      "ship_ids": [
+        "IBS-U-IJN-HATSUYUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-IKAZUCHI",
+      "name": "雷",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-IKAZUCHI",
+      "ship_ids": [
+        "IBS-U-IJN-IKAZUCHI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-INAZUMA",
+      "name": "电",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-INAZUMA",
+      "ship_ids": [
+        "IBS-U-IJN-INAZUMA"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ISOKAZE",
+      "name": "矶风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ISOKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-ISOKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-KAMIKAZE",
+      "name": "神风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-KAMIKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-KAMIKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-KAWAKAZE",
+      "name": "江风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-KAWAKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-KAWAKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-KAZEKUMO",
+      "name": "风云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-KAZEKUMO",
+      "ship_ids": [
+        "IBS-U-IJN-KAZEKUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-KIYONAMI",
+      "name": "清波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-KIYONAMI",
+      "ship_ids": [
+        "IBS-U-IJN-KIYONAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MATSU-KAZE",
+      "name": "松风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-MATSU-KAZE",
+      "ship_ids": [
+        "IBS-U-IJN-MATSU-KAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MIKAZUKI",
+      "name": "三日月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-MIKAZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-MIKAZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MINAZUKI",
+      "name": "水无月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-MINAZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-MINAZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MONCHIZUKI",
+      "name": "望月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-MONCHIZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-MONCHIZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MURAKUMO",
+      "name": "丛云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-MURAKUMO",
+      "ship_ids": [
+        "IBS-U-IJN-MURAKUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MURASAME",
+      "name": "村雨",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-MURASAME",
+      "ship_ids": [
+        "IBS-U-IJN-MURASAME"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-MUTSUKI",
+      "name": "睦月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-MUTSUKI",
+      "ship_ids": [
+        "IBS-U-IJN-MUTSUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-NAGATSUKI",
+      "name": "长月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-NAGATSUKI",
+      "ship_ids": [
+        "IBS-U-IJN-NAGATSUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-NATSUGUMO",
+      "name": "夏云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-NATSUGUMO",
+      "ship_ids": [
+        "IBS-U-IJN-NATSUGUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-NIIZUKI",
+      "name": "新月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-NIIZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-NIIZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-NISSHIN",
+      "name": "日进",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 500,
+      "ship_id": "IBS-U-IJN-NISSHIN",
+      "ship_ids": [
+        "IBS-U-IJN-NISSHIN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-OITE",
+      "name": "追风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-OITE",
+      "ship_ids": [
+        "IBS-U-IJN-OITE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-ONAMI",
+      "name": "大波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-ONAMI",
+      "ship_ids": [
+        "IBS-U-IJN-ONAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SAMIDARE",
+      "name": "五月雨",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SAMIDARE",
+      "ship_ids": [
+        "IBS-U-IJN-SAMIDARE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SATSUKI",
+      "name": "皋月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-SATSUKI",
+      "ship_ids": [
+        "IBS-U-IJN-SATSUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SAZANAMI",
+      "name": "涟",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SAZANAMI",
+      "ship_ids": [
+        "IBS-U-IJN-SAZANAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SHIGURE",
+      "name": "时雨",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SHIGURE",
+      "ship_ids": [
+        "IBS-U-IJN-SHIGURE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SHIKINAMI",
+      "name": "敷波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SHIKINAMI",
+      "ship_ids": [
+        "IBS-U-IJN-SHIKINAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SHIRATSUYU",
+      "name": "白露",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SHIRATSUYU",
+      "ship_ids": [
+        "IBS-U-IJN-SHIRATSUYU"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SHIRAYUKI",
+      "name": "白雪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SHIRAYUKI",
+      "ship_ids": [
+        "IBS-U-IJN-SHIRAYUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-SUZUKAZE",
+      "name": "凉风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-SUZUKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-SUZUKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-TANIKAZE",
+      "name": "谷风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-TANIKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-TANIKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-TERUZUKI",
+      "name": "照月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-TERUZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-TERUZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-URANAMI",
+      "name": "浦波",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-URANAMI",
+      "ship_ids": [
+        "IBS-U-IJN-URANAMI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-UZUKI",
+      "name": "卯月(I)",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-UZUKI",
+      "ship_ids": [
+        "IBS-U-IJN-UZUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-UZUKI-2",
+      "name": "卯月(II)",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-UZUKI-2",
+      "ship_ids": [
+        "IBS-U-IJN-UZUKI-2"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-WAKATSUKI",
+      "name": "若月",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-WAKATSUKI",
+      "ship_ids": [
+        "IBS-U-IJN-WAKATSUKI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-XIFENG",
+      "name": "夕风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-XIFENG",
+      "ship_ids": [
+        "IBS-U-IJN-XIFENG"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YAMAGUMO",
+      "name": "山云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-YAMAGUMO",
+      "ship_ids": [
+        "IBS-U-IJN-YAMAGUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YUDACHI",
+      "name": "夕立",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-YUDACHI",
+      "ship_ids": [
+        "IBS-U-IJN-YUDACHI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YUGIRI",
+      "name": "夕雾",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-YUGIRI",
+      "ship_ids": [
+        "IBS-U-IJN-YUGIRI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YUGUMO",
+      "name": "夕云",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-YUGUMO",
+      "ship_ids": [
+        "IBS-U-IJN-YUGUMO"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YUGURE",
+      "name": "夕暮",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-YUGURE",
+      "ship_ids": [
+        "IBS-U-IJN-YUGURE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YUKIKAZE",
+      "name": "雪风",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-IJN-YUKIKAZE",
+      "ship_ids": [
+        "IBS-U-IJN-YUKIKAZE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-IJN-YUNAGI",
+      "name": "夕凪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 300,
+      "ship_id": "IBS-U-IJN-YUNAGI",
+      "ship_ids": [
+        "IBS-U-IJN-YUNAGI"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-KM-HANS-LODY",
+      "name": "汉斯·洛迪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-KM-HANS-LODY",
+      "ship_ids": [
+        "IBS-U-KM-HANS-LODY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-KM-KARL-GALSTER",
+      "name": "卡尔加尔斯特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-KM-KARL-GALSTER",
+      "ship_ids": [
+        "IBS-U-KM-KARL-GALSTER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-KM-RICHARD-BEITZEN",
+      "name": "里夏德·拜茨恩",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-KM-RICHARD-BEITZEN",
+      "ship_ids": [
+        "IBS-U-KM-RICHARD-BEITZEN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-RN-JACKAL",
+      "name": "豺",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-RN-JACKAL",
+      "ship_ids": [
+        "IBS-U-RN-JACKAL"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-RN-JAVELIN",
+      "name": "标枪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-RN-JAVELIN",
+      "ship_ids": [
+        "IBS-U-RN-JAVELIN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-RN-JERSEY",
+      "name": "泽西",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-RN-JERSEY",
+      "ship_ids": [
+        "IBS-U-RN-JERSEY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-RN-JUPITER",
+      "name": "朱庇特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-RN-JUPITER",
+      "ship_ids": [
+        "IBS-U-RN-JUPITER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-RN-KASHMIR",
+      "name": "克什米尔",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-RN-KASHMIR",
+      "ship_ids": [
+        "IBS-U-RN-KASHMIR"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-AARON-WARD",
+      "name": "亚伦沃德",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-AARON-WARD",
+      "ship_ids": [
+        "IBS-U-USN-AARON-WARD"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-BAGLEY",
+      "name": "巴格莱",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-BAGLEY",
+      "ship_ids": [
+        "IBS-U-USN-BAGLEY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-BAINBRIDGE",
+      "name": "班布里奇",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-BAINBRIDGE",
+      "ship_ids": [
+        "IBS-U-USN-BAINBRIDGE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-BARTON",
+      "name": "巴顿",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-BARTON",
+      "ship_ids": [
+        "IBS-U-USN-BARTON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-BENHAM",
+      "name": "本汉姆",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-BENHAM",
+      "ship_ids": [
+        "IBS-U-USN-BENHAM"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-BUCHANAN",
+      "name": "布坎南",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-BUCHANAN",
+      "ship_ids": [
+        "IBS-U-USN-BUCHANAN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-CF-AUSBURNE",
+      "name": "查尔斯·奥斯本",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-CF-AUSBURNE",
+      "ship_ids": [
+        "IBS-U-USN-CF-AUSBURNE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-CHEVALIER",
+      "name": "谢伐利埃",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-CHEVALIER",
+      "ship_ids": [
+        "IBS-U-USN-CHEVALIER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-CLAXTON",
+      "name": "克拉克斯顿",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-CLAXTON",
+      "ship_ids": [
+        "IBS-U-USN-CLAXTON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-CONVERSE",
+      "name": "康弗斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-CONVERSE",
+      "ship_ids": [
+        "IBS-U-USN-CONVERSE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-CUSHING",
+      "name": "库欣",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-CUSHING",
+      "ship_ids": [
+        "IBS-U-USN-CUSHING"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-DAHLGREN",
+      "name": "达尔格伦",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-DAHLGREN",
+      "ship_ids": [
+        "IBS-U-USN-DAHLGREN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-DECATUR",
+      "name": "迪凯特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-DECATUR",
+      "ship_ids": [
+        "IBS-U-USN-DECATUR"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-DUNCAN",
+      "name": "邓肯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-DUNCAN",
+      "ship_ids": [
+        "IBS-U-USN-DUNCAN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-DYSON",
+      "name": "戴森",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-DYSON",
+      "ship_ids": [
+        "IBS-U-USN-DYSON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+      "name": "艾伦·M·萨姆纳",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-ERMA-ALLEN-M-SUMNER",
+      "ship_ids": [
+        "IBS-U-USN-ERMA-ALLEN-M-SUMNER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-ERMA-COOPER",
+      "name": "库珀",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-ERMA-COOPER",
+      "ship_ids": [
+        "IBS-U-USN-ERMA-COOPER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-ERMA-INGRAHAM",
+      "name": "英格拉罕",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-ERMA-INGRAHAM",
+      "ship_ids": [
+        "IBS-U-USN-ERMA-INGRAHAM"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-FARENHOLT",
+      "name": "法伦霍尔特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-FARENHOLT",
+      "ship_ids": [
+        "IBS-U-USN-FARENHOLT"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-FOOTE",
+      "name": "福特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-FOOTE",
+      "ship_ids": [
+        "IBS-U-USN-FOOTE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-FOX",
+      "name": "福克斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-FOX",
+      "ship_ids": [
+        "IBS-U-USN-FOX"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-GWIN",
+      "name": "葛文",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-GWIN",
+      "ship_ids": [
+        "IBS-U-USN-GWIN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-HELM",
+      "name": "赫尔姆",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-HELM",
+      "ship_ids": [
+        "IBS-U-USN-HELM"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-HULL-I",
+      "name": "赫尔(I)",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-HULL-I",
+      "ship_ids": [
+        "IBS-U-USN-HULL-I"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-JARVIS",
+      "name": "贾维斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-JARVIS",
+      "ship_ids": [
+        "IBS-U-USN-JARVIS"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-JENKINS",
+      "name": "詹金斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-JENKINS",
+      "ship_ids": [
+        "IBS-U-USN-JENKINS"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-LA-VALLETTE",
+      "name": "拉瓦利特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-LA-VALLETTE",
+      "ship_ids": [
+        "IBS-U-USN-LA-VALLETTE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-LAFFEY",
+      "name": "拉菲",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-LAFFEY",
+      "ship_ids": [
+        "IBS-U-USN-LAFFEY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-LARDNER",
+      "name": "拉德纳",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-LARDNER",
+      "ship_ids": [
+        "IBS-U-USN-LARDNER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-MCCALLA",
+      "name": "麦卡拉",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-MCCALLA",
+      "ship_ids": [
+        "IBS-U-USN-MCCALLA"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-MCDONOUGH",
+      "name": "麦克多诺",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-MCDONOUGH",
+      "ship_ids": [
+        "IBS-U-USN-MCDONOUGH"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-MONSSEN",
+      "name": "蒙森",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-MONSSEN",
+      "ship_ids": [
+        "IBS-U-USN-MONSSEN"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-NICHOLAS",
+      "name": "尼古拉斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-NICHOLAS",
+      "ship_ids": [
+        "IBS-U-USN-NICHOLAS"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-OBANNON",
+      "name": "奥班农",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-OBANNON",
+      "ship_ids": [
+        "IBS-U-USN-OBANNON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-PATTERSON",
+      "name": "帕特森",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-PATTERSON",
+      "ship_ids": [
+        "IBS-U-USN-PATTERSON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-PERRY",
+      "name": "佩里",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-PERRY",
+      "ship_ids": [
+        "IBS-U-USN-PERRY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-PRESTON",
+      "name": "普雷斯顿",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-PRESTON",
+      "ship_ids": [
+        "IBS-U-USN-PRESTON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-RADFORD",
+      "name": "雷德福德",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-RADFORD",
+      "ship_ids": [
+        "IBS-U-USN-RADFORD"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-RALPH-TALBOT",
+      "name": "拉尔夫·托尔伯特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-RALPH-TALBOT",
+      "ship_ids": [
+        "IBS-U-USN-RALPH-TALBOT"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-SELFRIDGE",
+      "name": "赛尔弗里纪",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-SELFRIDGE",
+      "ship_ids": [
+        "IBS-U-USN-SELFRIDGE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-SPENCE",
+      "name": "斯彭斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-SPENCE",
+      "ship_ids": [
+        "IBS-U-USN-SPENCE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-STANLY",
+      "name": "斯坦立",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-STANLY",
+      "ship_ids": [
+        "IBS-U-USN-STANLY"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-STERETT",
+      "name": "史特雷特",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-STERETT",
+      "ship_ids": [
+        "IBS-U-USN-STERETT"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-TAYLOR",
+      "name": "泰勒",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-TAYLOR",
+      "ship_ids": [
+        "IBS-U-USN-TAYLOR"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-THATCHER",
+      "name": "撒切尔",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-THATCHER",
+      "ship_ids": [
+        "IBS-U-USN-THATCHER"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-TRUXTON",
+      "name": "特鲁斯顿",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-TRUXTON",
+      "ship_ids": [
+        "IBS-U-USN-TRUXTON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-UNNAMED-T01-R51",
+      "name": "邓拉普",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-UNNAMED-T01-R51",
+      "ship_ids": [
+        "IBS-U-USN-UNNAMED-T01-R51"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-UNNAMED-T01-R52",
+      "name": "格里德利",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-UNNAMED-T01-R52",
+      "ship_ids": [
+        "IBS-U-USN-UNNAMED-T01-R52"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-WALKE",
+      "name": "沃克",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-WALKE",
+      "ship_ids": [
+        "IBS-U-USN-WALKE"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-WILSON",
+      "name": "威尔逊",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-WILSON",
+      "ship_ids": [
+        "IBS-U-USN-WILSON"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    },
+    {
+      "id": "ship:IBS-U-USN-WOODWORTH",
+      "name": "伍德沃斯",
+      "category": "ships",
+      "currency": "credits",
+      "cost": 400,
+      "ship_id": "IBS-U-USN-WOODWORTH",
+      "ship_ids": [
+        "IBS-U-USN-WOODWORTH"
+      ],
+      "limit": 1,
+      "description": "指定舰娘直接入列，已拥有时不重复出售。",
+      "source": "server/catalog.json credits_price"
+    }
+  ],
+  "missions": [
+    {
+      "id": "salvage",
+      "kind": "salvage",
+      "name": "失落群岛",
+      "description": "搜索遗迹、接敌与撤离，战利品收益高于资源补给航线。",
+      "cost_stamina": 12,
+      "rewards": {
+        "origins": 40,
+        "credits": 650,
+        "materials": 12
+      },
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0
+    },
+    {
+      "id": "silver",
+      "kind": "resources",
+      "name": "补给航线",
+      "description": "近海资源航线：搜索并带回补给。",
+      "cost_stamina": 8,
+      "rewards": {
+        "origins": 10,
+        "credits": 700,
+        "materials": 2
+      },
+      "loot_kind": "scrap",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 1,
+      "player_level": 1,
+      "commander_xp": 60
+    },
+    {
+      "id": "training",
+      "kind": "resources",
+      "name": "训练物资",
+      "description": "真实航行收集养成材料，成功撤离结算。",
+      "cost_stamina": 8,
+      "rewards": {
+        "origins": 10,
+        "credits": 180,
+        "materials": 12,
+        "core_t1": 2
+      },
+      "loot_kind": "alloy",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 1,
+      "player_level": 1,
+      "commander_xp": 60
+    },
+    {
+      "id": "equipment",
+      "kind": "resources",
+      "name": "装备搜寻",
+      "description": "搜寻可装配装备，随机品质在掉落时固定。",
+      "cost_stamina": 10,
+      "rewards": {
+        "origins": 10,
+        "credits": 180,
+        "materials": 4
+      },
+      "loot_kind": "equipment",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 1,
+      "player_level": 1,
+      "commander_xp": 60
+    },
+    {
+      "id": "crew",
+      "kind": "resources",
+      "name": "水手招募",
+      "description": "招募四类水手组，主副词条在获得时固定。",
+      "cost_stamina": 10,
+      "rewards": {
+        "origins": 10,
+        "credits": 180,
+        "materials": 4
+      },
+      "loot_kind": "command",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 1,
+      "player_level": 1,
+      "commander_xp": 60
+    },
+    {
+      "id": "ladder-1000",
+      "kind": "ladder",
+      "name": "1000分天梯",
+      "description": "自有舰队不超过1000分，对阵约1500分AI。击败全部敌舰获胜。",
+      "cost_stamina": 10,
+      "player_budget": 1000,
+      "enemy_budget": 1500,
+      "rewards": {
+        "origins": 80,
+        "credits": 450,
+        "materials": 8
+      },
+      "limit": 3
+    },
+    {
+      "id": "ladder-2000",
+      "kind": "ladder",
+      "name": "2000分天梯",
+      "description": "自有舰队不超过2000分，对阵约3000分AI。击败全部敌舰获胜。",
+      "cost_stamina": 10,
+      "player_budget": 2000,
+      "enemy_budget": 3000,
+      "rewards": {
+        "origins": 80,
+        "credits": 450,
+        "materials": 8
+      },
+      "limit": 3
+    },
+    {
+      "id": "ladder-3000",
+      "kind": "ladder",
+      "name": "3000分天梯",
+      "description": "自有舰队不超过3000分，对阵约4500分AI。击败全部敌舰获胜。",
+      "cost_stamina": 10,
+      "player_budget": 3000,
+      "enemy_budget": 4500,
+      "rewards": {
+        "origins": 80,
+        "credits": 450,
+        "materials": 8
+      },
+      "limit": 3
+    },
+    {
+      "id": "ladder-5000",
+      "kind": "ladder",
+      "name": "5000分天梯",
+      "description": "自有舰队不超过5000分，对阵约7500分AI。击败全部敌舰获胜。",
+      "cost_stamina": 10,
+      "player_budget": 5000,
+      "enemy_budget": 7500,
+      "rewards": {
+        "origins": 80,
+        "credits": 450,
+        "materials": 8
+      },
+      "limit": 3
+    },
+    {
+      "id": "training-t2",
+      "kind": "resources",
+      "name": "进阶训练物资",
+      "description": "在外围残骸区收集目标物资并撤离。",
+      "cost_stamina": 16,
+      "rewards": {
+        "origins": 10,
+        "credits": 250,
+        "materials": 4,
+        "training_t2": 5,
+        "core_t2": 2
+      },
+      "loot_kind": "alloy",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 2,
+      "player_level": 3,
+      "commander_xp": 90
+    },
+    {
+      "id": "equipment-t2",
+      "kind": "resources",
+      "name": "进阶舰装搜寻",
+      "description": "在外围残骸区收集目标物资并撤离。 舰装与水手至少改良品级。",
+      "cost_stamina": 16,
+      "rewards": {
+        "origins": 10,
+        "credits": 250,
+        "materials": 4
+      },
+      "loot_kind": "equipment",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 2,
+      "player_level": 3,
+      "commander_xp": 90
+    },
+    {
+      "id": "crew-t2",
+      "kind": "resources",
+      "name": "进阶水手招募",
+      "description": "在外围残骸区收集目标物资并撤离。 舰装与水手至少改良品级。",
+      "cost_stamina": 16,
+      "rewards": {
+        "origins": 10,
+        "credits": 250,
+        "materials": 4
+      },
+      "loot_kind": "command",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 2,
+      "player_level": 3,
+      "commander_xp": 90
+    },
+    {
+      "id": "training-t3",
+      "kind": "resources",
+      "name": "深层训练物资",
+      "description": "深层海域有渊喉与守卫出没，带回目标物资。",
+      "cost_stamina": 22,
+      "rewards": {
+        "origins": 10,
+        "credits": 330,
+        "materials": 4,
+        "training_t3": 3,
+        "core_t2": 2,
+        "core_t3": 1
+      },
+      "loot_kind": "alloy",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 3,
+      "player_level": 6,
+      "commander_xp": 120
+    },
+    {
+      "id": "equipment-t3",
+      "kind": "resources",
+      "name": "深层舰装搜寻",
+      "description": "深层海域有渊喉与守卫出没，带回目标物资。 舰装与水手至少精良品级。",
+      "cost_stamina": 22,
+      "rewards": {
+        "origins": 10,
+        "credits": 330,
+        "materials": 4
+      },
+      "loot_kind": "equipment",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 3,
+      "player_level": 6,
+      "commander_xp": 120
+    },
+    {
+      "id": "crew-t3",
+      "kind": "resources",
+      "name": "深层水手招募",
+      "description": "深层海域有渊喉与守卫出没，带回目标物资。 舰装与水手至少精良品级。",
+      "cost_stamina": 22,
+      "rewards": {
+        "origins": 10,
+        "credits": 330,
+        "materials": 4
+      },
+      "loot_kind": "command",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 3,
+      "player_level": 6,
+      "commander_xp": 120
+    },
+    {
+      "id": "silver-t2",
+      "kind": "resources",
+      "name": "进阶补给航线",
+      "description": "穿过守卫海域，在前沿接驳区交付补给。",
+      "cost_stamina": 16,
+      "rewards": {
+        "origins": 10,
+        "credits": 1400,
+        "materials": 2
+      },
+      "loot_kind": "scrap",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 2,
+      "player_level": 3,
+      "commander_xp": 90
+    },
+    {
+      "id": "silver-t3",
+      "kind": "resources",
+      "name": "深层补给航线",
+      "description": "深入渊喉出没的海域，装载后在前沿接驳区交付补给。",
+      "cost_stamina": 22,
+      "rewards": {
+        "origins": 10,
+        "credits": 2100,
+        "materials": 2
+      },
+      "loot_kind": "scrap",
+      "player_budget": 0,
+      "enemy_budget": 0,
+      "limit": 0,
+      "tier": 3,
+      "player_level": 6,
+      "commander_xp": 120
+    }
+  ],
+  "payment": {
+    "enabled": false,
+    "reason": "充值与PVP账户服务尚未开放，不会模拟到账。"
+  },
+  "gear_tiers": [
+    {
+      "quality": 1,
+      "name": "制式",
+      "weight": 550,
+      "equipment_bp": 20,
+      "crew_bp": 9
+    },
+    {
+      "quality": 2,
+      "name": "改良",
+      "weight": 250,
+      "equipment_bp": 40,
+      "crew_bp": 13
+    },
+    {
+      "quality": 3,
+      "name": "精良",
+      "weight": 120,
+      "equipment_bp": 60,
+      "crew_bp": 17
+    },
+    {
+      "quality": 4,
+      "name": "稀有",
+      "weight": 60,
+      "equipment_bp": 80,
+      "crew_bp": 21
+    },
+    {
+      "quality": 5,
+      "name": "史诗",
+      "weight": 18,
+      "equipment_bp": 95,
+      "crew_bp": 24
+    },
+    {
+      "quality": 6,
+      "name": "典藏",
+      "weight": 2,
+      "equipment_bp": 100,
+      "crew_bp": 25
+    }
+  ],
+  "gear_drop_version": "gear-v3"
+}

@@ -1,0 +1,543 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="停掉采掘平台的主回路以前，弗莱彻让人召集还在附近取水的几户住民。管事不太理解，说一台在攻击人的机器有什么好商量，赶紧打坏就完了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="我们会切它。但要先知道切了以后谁家的水会停，先让他们存一桶，不然我们走了，他们今天晚上怎么办？"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="能有办法不停水就断武装吗？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="也许有。现在没有完整接线图，我不敢保证。如果你要我试，得先给我一个允许失败的预案。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="住民陆续来了。有个男人说家里的老人离不开净水，有个女人说宁可今天少喝一点，也不想孩子再看见那东西转炮口。他们没有一种能够统一写成“民众意见”的回答。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="管事"
+
+speaker_name=""
+
+text="总得听大多数的吧？我们不可能每个人都答应再动。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="先把会被影响的事列出来。能提前准备的，不用等到投完票再补。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你用一块旧木板记四栏：断水多久、备用水在哪、需要照顾的人、谁留下维修。最开始大家只顾说自己家，列到第三栏时，才有人想起旁边还有一户没来。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="女人"
+
+text="那家孩子发烧了。我去告诉他们，先给他们留一桶。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="我跟你去。你认路，我搬水。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她们走开以后，拉姆森带你看旁通阀。锈得很厉害，却不是完全打不开。她说如果主回路切断，可以先让重力储罐供一段时间，供多久需要实测。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="那我们现在就试？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="可以，但是有人得盯出口，确认出来的是清水。别看见管子有水流，就在木板上写“已经解决”。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="帕金斯把检查顺序写清楚，又让在场的住民复述需要提前做的事。有人念漏一项，她没有笑，只把那一行划得更大，让不识字的人也记住对应的记号。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker="男人"
+
+speaker_name=""
+
+text="你们这样安排，是不是就不用听我们不同意了？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="不是。你们不同意，我们也要知道为什么。只是武装回路正在威胁航路，不能让它继续开。我们要负责的是把这件事做完以后留下的人，不是替你们说大家都满意。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="男人没有点头，但把自家的空桶递来，说能存的话先替旁边那户接。他仍然害怕，你们也没拿这一个动作当成他不再反对的证明。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我以前总觉得下命令，就是选一个最好答案。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="有时候是选一个能做的，再把代价告诉受影响的人。别等他们自己发现，也别叫他们为了让你安心说一句都理解。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_19"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="最后，没有人宣布某个意见以多少票取胜。木板上写满了具体安排，原来只想立刻开火的管事留下两个人帮忙搬桶。你们仍然要去面对平台，却不再把后面的事算成别人的麻烦。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c2-water-vote"
+
+background="res://assets/story/chapter2/mines.png"
+
+full_cg=false
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+music_scene="salvage"
+
+location="旧采掘平台 · 热泉"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18"), SubResource("Line_19")])

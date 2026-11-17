@@ -1,0 +1,439 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="门外的光比你想象中普通。云散开一小块，照在破损的栏杆和起毛的绳上；海面仍然有浮油，浪也没有因为一场胜利变得温柔。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="点名。按刚才的顺序。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="大家轮流回应。有一段频道断了几秒，你握紧耳机，直到拉姆森在另一边骂了一句插头，才发现自己已经站了起来。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="人在。箱子也在。别替我写悼词，先给我留块能修东西的地方。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="那你听见我说你工具箱乱了吗？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="听见了。回去以后你整理。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你笑了一下，笑到一半才觉得很累。潮痕靠着栏杆坐下，没有去看门。你问她，拒绝同步的人后来有没有留下其他东西，她说有，待会儿给你看。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="不用现在。你可以先休息。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker="tideborn"
+
+speaker_name=""
+
+text="你不怕我又拖着不说？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="怕。所以我会再问。但不是趁你还没缓过来的时候。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="她闭上眼，很轻地应了一声。弗莱彻把干布递过来，先擦你的手，再让你擦耳机。你的手心有一道被指甲压出来的痕迹，已经不怎么疼了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["tideborn", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="原记录封存，副本两份。交接表、名单和中止申请都在，没有只拿结论。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="那封信呢？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="也在。信封没有地址，回去以后我们可以查人，而不是替他决定信没有用。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你看向门，还是有一点想回头的冲动。那里面也许有你的名字，也许只有别人替你写好的话。你没有把这个念头藏起来，告诉德雷顿以后，她把频道又检查了一遍。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="以后再来，我们多带一卷胶带。这次总算知道哪儿容易漏了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "lamson", "drayton"])
+
+actor_tones={"fletcher": "concern"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c3-after"
+
+background="res://assets/story/chapter3/gate.png"
+
+full_cg=false
+
+actors=Array[String](["fletcher", "lamson", "drayton"])
+
+music_scene="salvage"
+
+location="潮门 · 初日"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15")])

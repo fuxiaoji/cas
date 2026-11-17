@@ -1,0 +1,517 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="护航队到达信标以后，维修艇的船主又报来一个位置。他说那边有两个人还在收最后一张网，不肯放网走，自己的船也没法开过去劝。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="消息多久以前的？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker="船主"
+
+speaker_name=""
+
+text="早上一遍，刚才又一遍。第二遍我没听全，应该还是他们。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="先听原录音。不按“应该”转过去。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="两段录音放在一起，句子几乎一样。第一段后面有一声碰杯，第二段却多了小孩咳嗽。你问那两个人有没有带孩子，船主皱眉，说没听说。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="别先当假信号。也可能有人后来过去了。我在地图上看看能不能靠近核实，不直接冲那个位置。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="同意。留下护航交接，其他人回接。接收点确认过名单以后再转，不把刚送到的人一扔就算完。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你看着已经走出去的航线，又添了一条回接线。这次不再因为折返觉得自己前面做错了。新的信息到了，计划本来就应该能改，只是不能把改过的理由藏起来。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我们能拖两条船吗？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="看它们有多重、哪边进水、愿不愿意配合。我带备用缆，但不是许愿绳。到了先问情况。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="船主急着说“他们都很轻”，拉姆森抬眼看他。他才慢下来，说那条船以前载过几桶油，发动机有时会熄火，拖过一次，但不知道现在船底怎样。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker="lamson"
+
+speaker_name=""
+
+text="这就有用了。到时候你报你亲眼见过的，别为了让我们去，把危险说小。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="万一到了发现不一样？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="就按看见的重新判断。救人不是先答应能解决所有问题，才有资格出发。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_14"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你让帕金斯把回接的触发条件复述一遍：确认确有本方人员，队尾跟得上，退路可用。德雷顿在旁边补一句，水里漂着的东西先不捡，腾出地方给人坐。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_15"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="灯芯没了可以再做。这句话我等会儿自己去告诉他们，你不用抢着当坏人。"
+
+tone="concern"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_16"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="我可以说。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "concern"}
+
+[sub_resource type="Resource" id="Line_17"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="那就一起。有人听第一遍只顾生气，第二个人换个说法，才听得进去。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[sub_resource type="Resource" id="Line_18"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你们再次离开信标。后面的灯没有消失，仍在标着一条能回去的路。你把那两段录音分开保存，不把“可能有人”改成“确定有人”，也没有因为不确定就关掉它。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["lamson", "drayton", "fletcher"])
+
+actor_tones={"drayton": "calm"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c2-late-boat"
+
+background="res://assets/story/chapter2/causeway.png"
+
+full_cg=false
+
+actors=Array[String](["perkins", "drayton", "fletcher"])
+
+music_scene="salvage"
+
+location="流民堤道 · 晨光"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13"), SubResource("Line_14"), SubResource("Line_15"), SubResource("Line_16"), SubResource("Line_17"), SubResource("Line_18")])

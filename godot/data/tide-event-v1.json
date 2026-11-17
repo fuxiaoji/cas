@@ -1,0 +1,33 @@
+{
+  "version":"cas-event-tide-v1",
+  "title":"潮汐回响",
+  "subtitle":"旧世界停止计时的那一天，海仍记得我们的名字。",
+  "hero":"res://assets/events/tide-v1/tide-awakening.png",
+  "ending":"res://assets/events/tide-v1/tide-homecoming.png",
+  "shop":[
+    {"id":"origins","name":"航路元词","grant":"origins","amount":80,"cost":40,"limit":5,"icon":"recruit"},
+    {"id":"up_ticket","name":"特别邀请","grant":"up_tickets","amount":2,"cost":80,"limit":5,"icon":"ticket"},
+    {"id":"ticket","name":"常驻征募","grant":"tickets","amount":2,"cost":60,"limit":5,"icon":"ticket"},
+    {"id":"record","name":"精研航海记录","grant":"training_t3","amount":3,"cost":35,"limit":20,"icon":"cargo"},
+    {"id":"core","name":"共鸣突破核心","grant":"core_t3","amount":2,"cost":50,"limit":15,"icon":"shield"},
+    {"id":"fuel","name":"返航燃料","grant":"fuel","amount":300,"cost":25,"limit":30,"icon":"cargo"},
+    {"id":"silver","name":"战帮补给金","grant":"credits","amount":3000,"cost":20,"limit":9999,"icon":"coin"}
+  ],
+  "intro":[
+    {"speaker":"旁白","text":"每隔七年，沉城天文台都会升起一轮不属于天空的月亮。战帮称它为潮汐回响。"},
+    {"speaker":"弗莱彻","text":"那不是月亮，是旧时代的观测环。它今晚重新接通了海底的能源站。"},
+    {"speaker":"帕金斯","text":"功率异常。舰装输出暂时放大，连装填系统都在自己重写参数……这份力量离开回响海域就会消失。"},
+    {"speaker":"你","text":"海里的那些东西，也听见了信号？"},
+    {"speaker":"旁白","text":"青色光环一圈圈掠过海面，沉在水底的轮廓开始朝天文台靠近。"},
+    {"speaker":"弗莱彻","text":"我们守住三分钟。边航行边清理，把掉落的回响碎片收回来，舰装还能继续共鸣。"},
+    {"speaker":"帕金斯","text":"每次共鸣有三种选择。别只追着火力走，轮机、装甲和拾取范围也能救命。精英会先到，最后是潮环看守。"},
+    {"speaker":"你","text":"我们来这里，是为了让下一支流民船队看见灯。出发吧。"}
+  ],
+  "epilogue":[
+    {"speaker":"旁白","text":"最后一圈潮汐光环散去，天文台的指针停在了黎明之前。"},
+    {"speaker":"帕金斯","text":"共鸣归零。舰装恢复正常。我们留下了观测记录，还有这些可以换补给的回响徽片。"},
+    {"speaker":"弗莱彻","text":"信标没有熄灭。看，那边的运输船已经找到航道了。"},
+    {"speaker":"你","text":"如果旧世界只留下了一盏灯，我们就让它再亮一晚。"},
+    {"speaker":"旁白","text":"这一次，海没有吞下他们的名字。"}
+  ]
+}

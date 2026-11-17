@@ -891,6 +891,7 @@ impl World {
                 && matches!(
                     self.variant.as_str(),
                     RADAR_DRILL
+                        | crate::littoral_v4::VERSION
                         | crate::campaign::live::VARIANT
                         | crate::campaign::kula::VARIANT
                         | crate::illumination::RADAR_TRAINING
@@ -946,7 +947,7 @@ impl World {
     }
 
     fn mk4_rules_enabled(&self) -> bool {
-        self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT | crate::campaign::kula::VARIANT)
+        self.realtime() && matches!(self.variant.as_str(), RADAR_DRILL | crate::campaign::live::VARIANT | crate::campaign::kula::VARIANT | crate::littoral_v4::VERSION)
     }
 
     pub(crate) fn enable_realtime_mk4(&mut self) -> E<()> {
@@ -955,6 +956,7 @@ impl World {
                 // Only the separately verified 1943 fit in this drill.
                 if s.side == 0 && (self.data.ships[s.def].id == "fletcher"
                     || self.variant == crate::campaign::live::VARIANT
+                    || self.variant == crate::littoral_v4::VERSION && self.data.ships[s.def].id=="IBS-U-USN-FLETCHER"
                     || self.variant == crate::campaign::kula::VARIANT && crate::campaign::kula::uses_mk4(&self.data.ships[s.def].id)) {
                     self.radar.activate_fletcher_mk4(s.id)?;
                 }

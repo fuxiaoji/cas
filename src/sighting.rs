@@ -6,7 +6,9 @@ use crate::{
 
 impl World {
     pub(crate) fn environment(&self) -> Environment {
-        if self.variant == crate::campaign::channel::VARIANT {
+        if let Some(weather) = self.dynamic_weather() {
+            weather.environment(self.tick)
+        } else if self.variant == crate::campaign::channel::VARIANT {
             crate::campaign::channel::ENVIRONMENT
         } else if self.variant == crate::campaign::kula::VARIANT {
             crate::campaign::kula::ENVIRONMENT

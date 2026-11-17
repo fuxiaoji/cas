@@ -1,0 +1,464 @@
+{
+  "version": "tactical-art-v4",
+  "units": {
+    "MCP-306": {
+      "id": "MCP-306",
+      "portrait": "res://assets/tactical/sixth-infantry-20261115/MCP-306-portrait.png",
+      "sprite_sheet": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            315,
+            312
+          ],
+          "bounds": [
+            47,
+            14,
+            251,
+            306
+          ],
+          "pivot": [
+            149.0,
+            306
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            0,
+            315,
+            312
+          ],
+          "bounds": [
+            47,
+            14,
+            252,
+            306
+          ],
+          "pivot": [
+            149.5,
+            306
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            0,
+            316,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            256,
+            306
+          ],
+          "pivot": [
+            152.0,
+            306
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            0,
+            315,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            256,
+            305
+          ],
+          "pivot": [
+            152.0,
+            305
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            312,
+            315,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            255,
+            304
+          ],
+          "pivot": [
+            151.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            312,
+            315,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            255,
+            304
+          ],
+          "pivot": [
+            151.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            312,
+            316,
+            312
+          ],
+          "bounds": [
+            23,
+            15,
+            294,
+            304
+          ],
+          "pivot": [
+            158.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            312,
+            315,
+            312
+          ],
+          "bounds": [
+            22,
+            15,
+            305,
+            304
+          ],
+          "pivot": [
+            163.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            624,
+            315,
+            311
+          ],
+          "bounds": [
+            29,
+            19,
+            259,
+            290
+          ],
+          "pivot": [
+            144.0,
+            290
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            624,
+            315,
+            311
+          ],
+          "bounds": [
+            42,
+            17,
+            256,
+            292
+          ],
+          "pivot": [
+            149.0,
+            292
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            624,
+            316,
+            311
+          ],
+          "bounds": [
+            6,
+            20,
+            276,
+            287
+          ],
+          "pivot": [
+            141.0,
+            287
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            624,
+            315,
+            311
+          ],
+          "bounds": [
+            1,
+            57,
+            296,
+            265
+          ],
+          "pivot": [
+            148.5,
+            161.0
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            935,
+            315,
+            312
+          ],
+          "bounds": [
+            41,
+            6,
+            252,
+            305
+          ],
+          "pivot": [
+            146.5,
+            305
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            935,
+            315,
+            312
+          ],
+          "bounds": [
+            41,
+            6,
+            258,
+            305
+          ],
+          "pivot": [
+            149.5,
+            305
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            935,
+            316,
+            312
+          ],
+          "bounds": [
+            25,
+            12,
+            253,
+            302
+          ],
+          "pivot": [
+            139.0,
+            302
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            935,
+            315,
+            312
+          ],
+          "bounds": [
+            25,
+            10,
+            262,
+            301
+          ],
+          "pivot": [
+            143.5,
+            301
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            19,
+            185,
+            525,
+            586
+          ],
+          "pivot": [
+            272.0,
+            385.5
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            543,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            16,
+            156,
+            522,
+            620
+          ],
+          "pivot": [
+            269.0,
+            388.0
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            17,
+            218,
+            522,
+            580
+          ],
+          "pivot": [
+            269.5,
+            399.0
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            1629,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            15,
+            155,
+            514,
+            598
+          ],
+          "pivot": [
+            264.5,
+            376.5
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7,
+          12,
+          13,
+          6
+        ],
+        "bolt": [
+          12,
+          13
+        ],
+        "heal": [
+          14,
+          15
+        ],
+        "hurt": [
+          8,
+          0
+        ],
+        "search": [
+          9
+        ],
+        "defeated": [
+          11,
+          16,
+          17,
+          18,
+          19
+        ],
+        "fall": [
+          10
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/sixth-infantry-20261115/asset-ledger.json"
+    }
+  }
+}

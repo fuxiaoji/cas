@@ -1,0 +1,12 @@
+{
+  "identity": "IBS-U-USN-MIDWAY",
+  "generated_file": "D:\\desktop\\cas\\godot\\assets\\characters\\chibis-generated-2026-11-12\\ibs-u-usn-midway.png",
+  "generated_source": "C:/Users/fwj/.codex/generated_images/01a1cedb-ffc5-7ff3-aa5b-1d525d21dea3/exec-6df7fb98-e363-4aa1-ab1a-b2d020dda35d.png",
+  "width": 1060,
+  "height": 1484,
+  "sha256": "b7bb0b4988343335aaa10ef5b2f4a352f8611f855f4e867746044935dc227978",
+  "portrait_source": "D:/desktop/cas/godot/assets/characters/portraits/ibs-u-usn-midway.webp",
+  "prompt": "Create one polished, full-body, very cute 2.5-head-tall super-deformed anime shipgirl sprite for CAS character Midway / 中途岛, stable identity IBS-U-USN-MIDWAY. Use the sole input portrait to match only her identity. Preserve long charcoal-black hair in a low ponytail tied with a large navy bow, violet-blue eyes, navy flight officer jacket with tan lapels and fine gold piping, white shirt, warm brown neck scarf, round aviator goggles worn at her collar, fitted dark navy skirt, dark stockings and buckled black boots; retain the small map folder as a hand-held accessory. Chibi anatomy: oversized head about 55 percent of total height, tiny torso, short arms and legs, stubby boots, joyful confident face. Add only compact wearable carrier-girl rigging: a few small navy-and-gold mechanical fins attached close to the back/hips, and one tiny plane-shaped shoulder ornament no larger than her hand. Absolutely do not draw a ship, aircraft carrier, flight deck, runway, cart, vehicle, large platform, or side-view vessel. Clean elegant anime outline, finished cel shading, carefully readable costume details, natural standing pose, centered, full silhouette visible, ample transparent margin. True transparent background, clean alpha. No background, floor, ground shadow, text, logo, frame, watermark, extra people, borrowed character design, realistic tall proportions, oversized machinery.",
+  "status": "rejected_style_candidate; do_not_register",
+  "review_note": "Generated before style steering; uses identity reference only, too detailed and too tall compared with Fletcher-v2 SD style. Retain source for audit only."
+}

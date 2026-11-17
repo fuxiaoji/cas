@@ -1,0 +1,6 @@
+{
+  "trees": ["res://assets/vendor/quaternius-free/BirchTree_1.glb", "res://assets/vendor/quaternius-free/BirchTree_3.glb", "res://assets/vendor/quaternius-free/PineTree_1.glb"],
+  "bushes": ["res://assets/vendor/quaternius-free/Bush_1.glb", "res://assets/vendor/quaternius-free/Bush_2.glb"],
+  "rocks": ["res://assets/vendor/quaternius-free/Rock_1.glb", "res://assets/vendor/quaternius-free/Rock_2.glb", "res://assets/vendor/quaternius-free/Rock_3.glb"],
+  "license": "CC0; original Quaternius Ultimate Nature Pack. Source mapping in quaternius-free/LICENSES.md, SHA and mirror URLs in sources/quaternius-mirror-downloads.json. Kenney models are retained as unused fallback candidates."
+}

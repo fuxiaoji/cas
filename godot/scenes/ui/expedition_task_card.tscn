@@ -1,0 +1,40 @@
+[gd_scene format=3]
+[node name="TaskCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0,106)
+[node name="Margin" type="MarginContainer" parent="."]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+[node name="Body" type="HBoxContainer" parent="Margin"]
+theme_override_constants/separation = 14
+[node name="Icon" type="TextureRect" parent="Margin/Body"]
+custom_minimum_size = Vector2(54,62)
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+[node name="Info" type="VBoxContainer" parent="Margin/Body"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+[node name="Title" type="Label" parent="Margin/Body/Info"]
+text = "临时任务"
+theme_override_font_sizes/font_size = 22
+[node name="Effect" type="Label" parent="Margin/Body/Info"]
+text = "行动收益"
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 17
+[node name="Progress" type="ProgressBar" parent="Margin/Body/Info"]
+custom_minimum_size = Vector2(0,5)
+show_percentage = false
+[node name="Actions" type="HBoxContainer" parent="Margin/Body"]
+theme_override_constants/separation = 6
+alignment = 2
+[node name="Locate" type="Button" parent="Margin/Body/Actions"]
+custom_minimum_size = Vector2(72,44)
+text = "定位"
+[node name="Act" type="Button" parent="Margin/Body/Actions"]
+custom_minimum_size = Vector2(98,44)
+text = "接取"
+[node name="Abandon" type="Button" parent="Margin/Body/Actions"]
+custom_minimum_size = Vector2(58,44)
+text = "放弃"

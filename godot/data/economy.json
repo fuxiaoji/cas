@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "ruleset": "cas-exploration-economy-v1",
+  "scope": "Legacy utility constants retained; new owned PvE follows meta-economy.json and cas-owned-growth-v1. Historical ship cards unchanged.",
+  "initial": {
+    "credits": 2400,
+    "tickets": 10,
+    "medals": 0,
+    "materials": 8,
+    "ammo_stock": 250,
+    "up_tickets": 10
+  },
+  "shop": [
+    {
+      "id": "ammo_pack",
+      "name": "舰队弹药箱",
+      "description": "100 份库存弹药，可在舰库整备。",
+      "cost": 160,
+      "currency": "credits",
+      "grant": "ammo_stock",
+      "amount": 100
+    },
+    {
+      "id": "ticket",
+      "name": "常驻征募券",
+      "description": "一次常驻征募。",
+      "cost": 500,
+      "currency": "credits",
+      "grant": "tickets",
+      "amount": 1
+    }
+  ],
+  "repair_credit_per_percent": 2,
+  "train_credits": 100,
+  "train_materials": 2,
+  "train_xp": 80,
+  "max_level": 30,
+  "sortie_ammo_cost": 10,
+  "extracted_xp": 40,
+  "failed_xp": 0,
+  "salvage_prices": {
+    "scrap": 25,
+    "alloy": 60,
+    "equipment": 200,
+    "command": 250
+  },
+  "gacha": {
+    "weights": {
+      "ur": 2,
+      "elite": 8,
+      "rare": 20,
+      "common": 70
+    },
+    "rare_or_better_after_common": 9,
+    "duplicate_credits": {
+      "ur": 500,
+      "elite": 200,
+      "rare": 100,
+      "common": 50
+    },
+    "featured_id": "IBS-U-USN-ERMA-MISSOURI",
+    "featured_ur_share": 0.5,
+    "featured_art": "res://assets/liveops/missouri-event-v2.png",
+    "duplicate_medals": {
+      "ur": 5,
+      "elite": 3,
+      "rare": 2,
+      "common": 1
+    }
+  },
+  "starter_ids": [
+    "IBS-U-USN-FLETCHER",
+    "IBS-U-USN-PERKINS",
+    "IBS-U-USN-MAURY"
+  ],
+  "max_formation": 0,
+  "effects": {
+    "growth_points_per_level": 20,
+    "equipment_points": 75,
+    "command_points": 50,
+    "base_cargo_slots": 8,
+    "equipment_cargo_slots": 2,
+    "base_search_seconds": 12,
+    "growth_search_reduction_per_level": 0.25,
+    "command_search_reduction": 1,
+    "minimum_search_seconds": 4
+  }
+}

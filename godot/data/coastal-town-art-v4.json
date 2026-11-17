@@ -1,0 +1,560 @@
+{
+  "version": "coastal-town-art-v4",
+  "buildings": [
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        46,
+        73,
+        286,
+        267
+      ],
+      "cell": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        46,
+        73,
+        332,
+        340
+      ],
+      "variant": 0,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        426,
+        45,
+        235,
+        293
+      ],
+      "cell": [
+        362,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        64,
+        45,
+        299,
+        338
+      ],
+      "variant": 1,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        765,
+        76,
+        266,
+        262
+      ],
+      "cell": [
+        724,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        41,
+        76,
+        307,
+        338
+      ],
+      "variant": 2,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        1170,
+        34,
+        195,
+        306
+      ],
+      "cell": [
+        1086,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        84,
+        34,
+        279,
+        340
+      ],
+      "variant": 3,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        42,
+        428,
+        283,
+        231
+      ],
+      "cell": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        42,
+        66,
+        325,
+        297
+      ],
+      "variant": 4,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        396,
+        416,
+        286,
+        254
+      ],
+      "cell": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        34,
+        54,
+        320,
+        308
+      ],
+      "variant": 5,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        765,
+        418,
+        284,
+        248
+      ],
+      "cell": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        41,
+        56,
+        325,
+        304
+      ],
+      "variant": 6,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        1131,
+        392,
+        268,
+        291
+      ],
+      "cell": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        45,
+        30,
+        313,
+        321
+      ],
+      "variant": 7,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        42,
+        747,
+        287,
+        291
+      ],
+      "cell": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        42,
+        23,
+        329,
+        314
+      ],
+      "variant": 8,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        392,
+        763,
+        296,
+        263
+      ],
+      "cell": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        30,
+        39,
+        326,
+        302
+      ],
+      "variant": 9,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        755,
+        747,
+        283,
+        283
+      ],
+      "cell": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        31,
+        23,
+        314,
+        306
+      ],
+      "variant": 10,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-buildings-v4.png",
+      "region": [
+        1109,
+        770,
+        301,
+        265
+      ],
+      "cell": [
+        1086,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        23,
+        46,
+        324,
+        311
+      ],
+      "variant": 11,
+      "bbox_analysis_threshold": 32
+    }
+  ],
+  "props": [
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        101,
+        50,
+        199,
+        284
+      ],
+      "cell": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        101,
+        50,
+        300,
+        334
+      ],
+      "variant": 0,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        448,
+        55,
+        218,
+        277
+      ],
+      "cell": [
+        362,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        86,
+        55,
+        304,
+        332
+      ],
+      "variant": 1,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        816,
+        51,
+        178,
+        281
+      ],
+      "cell": [
+        724,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        92,
+        51,
+        270,
+        332
+      ],
+      "variant": 2,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        1119,
+        130,
+        273,
+        173
+      ],
+      "cell": [
+        1086,
+        0,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        33,
+        130,
+        306,
+        303
+      ],
+      "variant": 3,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        66,
+        446,
+        255,
+        187
+      ],
+      "cell": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        66,
+        84,
+        321,
+        271
+      ],
+      "variant": 4,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        415,
+        416,
+        270,
+        250
+      ],
+      "cell": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        53,
+        54,
+        323,
+        304
+      ],
+      "variant": 5,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        773,
+        426,
+        265,
+        229
+      ],
+      "cell": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        49,
+        64,
+        314,
+        293
+      ],
+      "variant": 6,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        1155,
+        424,
+        217,
+        224
+      ],
+      "cell": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        69,
+        62,
+        286,
+        286
+      ],
+      "variant": 7,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        72,
+        788,
+        227,
+        218
+      ],
+      "cell": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        72,
+        64,
+        299,
+        282
+      ],
+      "variant": 8,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        409,
+        782,
+        274,
+        232
+      ],
+      "cell": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        47,
+        58,
+        321,
+        290
+      ],
+      "variant": 9,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        854,
+        732,
+        109,
+        305
+      ],
+      "cell": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        130,
+        8,
+        239,
+        313
+      ],
+      "variant": 10,
+      "bbox_analysis_threshold": 32
+    },
+    {
+      "atlas": "res://assets/environment/town-v4/coastal-town-props-v4.png",
+      "region": [
+        1118,
+        779,
+        284,
+        219
+      ],
+      "cell": [
+        1086,
+        724,
+        362,
+        362
+      ],
+      "alpha_bbox": [
+        32,
+        55,
+        316,
+        274
+      ],
+      "variant": 11,
+      "bbox_analysis_threshold": 32
+    }
+  ],
+  "source_note": "Original generated modular assets; geometry and collision come from native town records."
+}

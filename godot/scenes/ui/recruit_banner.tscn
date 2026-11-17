@@ -1,0 +1,438 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/recruit_banner.gd" id="1"]
+[sub_resource type="Gradient" id="LeftGradient"]
+colors = PackedColorArray(0.015,0.025,0.045,0.94, 0.015,0.025,0.045,0)
+[sub_resource type="GradientTexture2D" id="LeftShade"]
+gradient = SubResource("LeftGradient")
+fill_from = Vector2(0,0)
+fill_to = Vector2(1,0)
+[sub_resource type="Gradient" id="BottomGradient"]
+colors = PackedColorArray(0.015,0.025,0.04,0, 0.015,0.025,0.04,0.92)
+[sub_resource type="GradientTexture2D" id="BottomShade"]
+gradient = SubResource("BottomGradient")
+fill_from = Vector2(0,0)
+fill_to = Vector2(0,1)
+[node name="RecruitBanner" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="Backdrop" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="LeftShade" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0.65
+anchor_bottom = 1
+texture = SubResource("LeftShade")
+expand_mode = 1
+mouse_filter = 2
+
+[node name="BottomShade" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0.6888888888888889
+anchor_right = 1
+anchor_bottom = 1
+texture = SubResource("BottomShade")
+expand_mode = 1
+mouse_filter = 2
+
+[node name="OriginChip" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_left = 0.56875
+anchor_top = 0.027777777777777776
+anchor_right = 0.7375
+anchor_bottom = 0.08444444444444445
+color = Color(0.015,0.025,0.04,0.65)
+mouse_filter = 2
+
+[node name="TicketChip" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_left = 0.75
+anchor_top = 0.027777777777777776
+anchor_right = 0.96875
+anchor_bottom = 0.08444444444444445
+color = Color(0.015,0.025,0.04,0.65)
+mouse_filter = 2
+
+[node name="OriginIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.576875
+anchor_top = 0.04
+anchor_right = 0.594375
+anchor_bottom = 0.07111111111111111
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.90,0.85,0.73,1)
+mouse_filter = 2
+
+[node name="TicketIcon" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.758125
+anchor_top = 0.04
+anchor_right = 0.775625
+anchor_bottom = 0.07111111111111111
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.90,0.85,0.73,1)
+mouse_filter = 2
+
+[node name="PageTitle" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.17875
+anchor_top = 0.02666666666666667
+anchor_right = 0.4975
+anchor_bottom = 0.08666666666666667
+text = "征募"
+theme_override_font_sizes/font_size = 27
+theme_override_colors/font_color = Color(0.94,0.95,0.95,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Origins" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.599375
+anchor_top = 0.03333333333333333
+anchor_right = 0.731875
+anchor_bottom = 0.0811111111111111
+text = "元词 0"
+theme_override_font_sizes/font_size = 21
+theme_override_colors/font_color = Color(0.94,0.95,0.95,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Tickets" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.780625
+anchor_top = 0.03333333333333333
+anchor_right = 0.963125
+anchor_bottom = 0.0811111111111111
+text = "UP券 0"
+theme_override_font_sizes/font_size = 21
+theme_override_colors/font_color = Color(0.94,0.95,0.95,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Eyebrow" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.215
+anchor_top = 0.19666666666666666
+anchor_right = 0.55875
+anchor_bottom = 0.23666666666666666
+text = "特别邀请"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.89,0.80,0.59,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Headline" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.2125
+anchor_top = 0.2544444444444444
+anchor_right = 0.66875
+anchor_bottom = 0.3411111111111111
+text = "枕着海风的龙"
+theme_override_font_sizes/font_size = 40
+theme_override_colors/font_color = Color(0.95,0.95,0.93,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="CharacterName" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.215
+anchor_top = 0.35888888888888887
+anchor_right = 0.59
+anchor_bottom = 0.4166666666666667
+text = "密苏里"
+theme_override_font_sizes/font_size = 31
+theme_override_colors/font_color = Color(0.95,0.95,0.93,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Tagline" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.215625
+anchor_top = 0.44
+anchor_right = 0.578125
+anchor_bottom = 0.5011111111111111
+text = "不远航。守着你们这盏灯就够了。"
+theme_override_font_sizes/font_size = 21
+theme_override_colors/font_color = Color(0.77,0.80,0.82,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Chance" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.21625
+anchor_top = 0.5822222222222222
+anchor_right = 0.56625
+anchor_bottom = 0.6222222222222222
+text = "UR中50%为密苏里"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.89,0.80,0.59,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="AppearanceHint" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.21625
+anchor_top = 0.52222
+anchor_right = 0.64125
+anchor_bottom = 0.56
+text = "限定UR · 双形象   舰娘Lv.20解锁军装"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.78,0.83,0.86,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Pity" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.21625
+anchor_top = 0.6333333333333333
+anchor_right = 0.60375
+anchor_bottom = 0.6733333333333333
+text = "普通累计 0 / 9 · 九普后至少稀有"
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.72,0.76,0.80,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Toast" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.215
+anchor_top = 0.8155555555555556
+anchor_right = 0.9025
+anchor_bottom = 0.8666666666666667
+text = ""
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.91,0.87,0.79,1)
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.02125
+anchor_top = 0.02666666666666667
+anchor_right = 0.099375
+anchor_bottom = 0.08666666666666667
+text = "‹ 返回"
+theme_override_font_sizes/font_size = 23
+
+[node name="Home" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.103125
+anchor_top = 0.02666666666666667
+anchor_right = 0.161875
+anchor_bottom = 0.08666666666666667
+text = "母港"
+theme_override_font_sizes/font_size = 23
+
+[node name="Probability" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.209375
+anchor_top = 0.9044444444444445
+anchor_right = 0.271875
+anchor_bottom = 0.9644444444444444
+text = "概率"
+theme_override_font_sizes/font_size = 23
+
+[node name="History" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.28
+anchor_top = 0.9044444444444445
+anchor_right = 0.3425
+anchor_bottom = 0.9644444444444444
+text = "记录"
+theme_override_font_sizes/font_size = 23
+
+[node name="Exchange" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.35
+anchor_top = 0.9044444444444445
+anchor_right = 0.4125
+anchor_bottom = 0.9644444444444444
+text = "兑换"
+theme_override_font_sizes/font_size = 23
+
+[node name="Replay" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.418125
+anchor_top = 0.9044444444444445
+anchor_right = 0.524375
+anchor_bottom = 0.9644444444444444
+text = "回看"
+theme_override_font_sizes/font_size = 23
+
+[node name="DrawOne" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.58125
+anchor_top = 0.8944444444444445
+anchor_right = 0.75625
+anchor_bottom = 0.9588888888888889
+text = "征募一次  ×1"
+theme_override_font_sizes/font_size = 25
+
+[node name="DrawTen" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.775
+anchor_top = 0.8944444444444445
+anchor_right = 0.96875
+anchor_bottom = 0.9588888888888889
+text = "征募十次  ×10"
+theme_override_font_sizes/font_size = 25
+
+[node name="Pool_UP" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.0225
+anchor_top = 0.17777777777777778
+anchor_right = 0.181875
+anchor_bottom = 0.3022222222222222
+tooltip_text = "特别邀请"
+clip_contents = true
+
+[node name="Artwork" type="TextureRect" parent="Pool_UP"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="Shade" type="ColorRect" parent="Pool_UP"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+color = Color(0.015,0.025,0.04,0.4)
+mouse_filter = 2
+
+[node name="Caption" type="Label" parent="Pool_UP"]
+layout_mode = 0
+anchor_left = 0.070588125
+anchor_top = 0.45
+anchor_right = 1
+anchor_bottom = 1
+text = "特别邀请"
+theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(0.94,0.95,0.95,1)
+mouse_filter = 2
+
+[node name="Selection" type="ColorRect" parent="Pool_UP"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0.01568625
+anchor_bottom = 1
+color = Color(0.91,0.82,0.62,1)
+mouse_filter = 2
+
+[node name="Pool_Standard" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.0225
+anchor_top = 0.32222222222222224
+anchor_right = 0.181875
+anchor_bottom = 0.44666666666666666
+tooltip_text = "常驻征募"
+clip_contents = true
+
+[node name="Artwork" type="TextureRect" parent="Pool_Standard"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="Shade" type="ColorRect" parent="Pool_Standard"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+color = Color(0.015,0.025,0.04,0.4)
+mouse_filter = 2
+
+[node name="Caption" type="Label" parent="Pool_Standard"]
+layout_mode = 0
+anchor_left = 0.070588125
+anchor_top = 0.45
+anchor_right = 1
+anchor_bottom = 1
+text = "常驻征募"
+theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(0.94,0.95,0.95,1)
+mouse_filter = 2
+
+[node name="Selection" type="ColorRect" parent="Pool_Standard"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0.01568625
+anchor_bottom = 1
+color = Color(0.91,0.82,0.62,1)
+mouse_filter = 2
+
+[node name="Pool_Tactical" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.0225
+anchor_top = 0.4666666666666667
+anchor_right = 0.181875
+anchor_bottom = 0.5911111111111111
+tooltip_text = "战术协议"
+clip_contents = true
+
+[node name="Artwork" type="TextureRect" parent="Pool_Tactical"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+
+[node name="Shade" type="ColorRect" parent="Pool_Tactical"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+color = Color(0.015,0.025,0.04,0.4)
+mouse_filter = 2
+
+[node name="Caption" type="Label" parent="Pool_Tactical"]
+layout_mode = 0
+anchor_left = 0.070588125
+anchor_top = 0.45
+anchor_right = 1
+anchor_bottom = 1
+text = "战术协议"
+theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(0.94,0.95,0.95,1)
+mouse_filter = 2
+
+[node name="Selection" type="ColorRect" parent="Pool_Tactical"]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0.01568625
+anchor_bottom = 1
+color = Color(0.91,0.82,0.62,1)
+mouse_filter = 2
+

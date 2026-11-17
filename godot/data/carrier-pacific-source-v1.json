@@ -1,0 +1,806 @@
+{
+  "version": "cas-pacific-source-v1",
+  "historical_campaign_available": false,
+  "ships": [
+    {
+      "id": "CAS-H-USN-YORKTOWN-1942",
+      "name": "约克城",
+      "ship_class": "Yorktown",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 12,
+        "printed_page": "A-9",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 628,
+      "max_knots": 32,
+      "armor": [
+        8,
+        3,
+        135
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 157,
+          "knots": 24
+        },
+        {
+          "damage": 314,
+          "knots": 16
+        },
+        {
+          "damage": 471,
+          "knots": 8
+        },
+        {
+          "damage": 565,
+          "knots": 0
+        },
+        {
+          "damage": 628,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "CV",
+      "era": "1942 early",
+      "gun_standard": 3,
+      "weapons": [
+        "PW/SW/2P/2S/PA/SA(1)8 Mk24 5in/38"
+      ],
+      "rated_aircraft": 90,
+      "typical_airgroup": {
+        "fighter": 18,
+        "dive_bomber": 36,
+        "torpedo_bomber": 18
+      },
+      "special_rules": [
+        "工程重击造成的速度降低加倍"
+      ],
+      "fitting_caveat": "雷达与轻防空按具体舰及日期分别核验，不把Enterprise 1943改装套用"
+    },
+    {
+      "id": "CAS-H-USN-HORNET-1942",
+      "name": "大黄蜂",
+      "ship_class": "Yorktown",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 12,
+        "printed_page": "A-9",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 628,
+      "max_knots": 32,
+      "armor": [
+        8,
+        3,
+        135
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 32
+        },
+        {
+          "damage": 157,
+          "knots": 24
+        },
+        {
+          "damage": 314,
+          "knots": 16
+        },
+        {
+          "damage": 471,
+          "knots": 8
+        },
+        {
+          "damage": 565,
+          "knots": 0
+        },
+        {
+          "damage": 628,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "CV",
+      "era": "1942 early",
+      "gun_standard": 3,
+      "weapons": [
+        "PW/SW/2P/2S/PA/SA(1)8 Mk24 5in/38"
+      ],
+      "rated_aircraft": 90,
+      "typical_airgroup": {
+        "fighter": 18,
+        "dive_bomber": 36,
+        "torpedo_bomber": 18
+      },
+      "special_rules": [
+        "工程重击造成的速度降低加倍"
+      ],
+      "fitting_caveat": "雷达与轻防空按具体舰及日期分别核验，不把Enterprise 1943改装套用"
+    },
+    {
+      "id": "CAS-H-IJN-ZUIKAKU-1942",
+      "name": "瑞鹤",
+      "ship_class": "Shokaku",
+      "source": {
+        "book": "The_Emperor_s_Fleet.pdf",
+        "pdf_page": 11,
+        "printed_page": "A-8",
+        "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 742,
+      "max_knots": 34,
+      "armor": [
+        8,
+        6,
+        135
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 34
+        },
+        {
+          "damage": 186,
+          "knots": 26
+        },
+        {
+          "damage": 371,
+          "knots": 17
+        },
+        {
+          "damage": 557,
+          "knots": 8
+        },
+        {
+          "damage": 668,
+          "knots": 0
+        },
+        {
+          "damage": 742,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "CV",
+      "era": "1942-08",
+      "gun_standard": 4,
+      "weapons": [
+        "P/S(2)8 Type 89 12.7cm/40"
+      ],
+      "typical_airgroup": {
+        "A6M2": 26,
+        "D3A2": 27,
+        "B5N2": 18
+      },
+      "ordnance": {
+        "No80_800kg": 90,
+        "No25_250kg": 306,
+        "No6_60kg": 540,
+        "Type95_DC_Mod1": 6,
+        "Type91_torpedo": 45
+      },
+      "fitting_caveat": "八月翔鹤装Type21，瑞鹤晚于此；不能为瑞鹤猜定雷达实装日"
+    },
+    {
+      "id": "CAS-H-IJN-JUNYO-1942",
+      "name": "隼鹰",
+      "ship_class": "Junyo",
+      "source": {
+        "book": "The_Emperor_s_Fleet.pdf",
+        "pdf_page": 11,
+        "printed_page": "A-8",
+        "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 463,
+      "max_knots": 25,
+      "armor": [
+        0,
+        0,
+        90
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 25
+        },
+        {
+          "damage": 116,
+          "knots": 19
+        },
+        {
+          "damage": 232,
+          "knots": 13
+        },
+        {
+          "damage": 347,
+          "knots": 6
+        },
+        {
+          "damage": 417,
+          "knots": 0
+        },
+        {
+          "damage": 463,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "CV",
+      "era": "1942-05 class fit",
+      "gun_standard": 4,
+      "weapons": [
+        "P/S(2)6 Type 89 12.7cm/40"
+      ],
+      "airgroup_by_date": {
+        "1942-05": {
+          "A6M": 12,
+          "D3A": 18,
+          "B5N": 18
+        },
+        "1942-10": {
+          "A6M": 18,
+          "D3A": 18,
+          "B5N": 9
+        }
+      },
+      "special_rules": [
+        "商船改装特殊损伤修正 -35%"
+      ],
+      "fitting_caveat": "隼鹰七月、飞鹰八月装Type21；本表五月空群是级卡条目，不声称飞鹰当月已服役"
+    },
+    {
+      "id": "CAS-H-IJN-HIYO-1942",
+      "name": "飞鹰",
+      "ship_class": "Junyo",
+      "source": {
+        "book": "The_Emperor_s_Fleet.pdf",
+        "pdf_page": 11,
+        "printed_page": "A-8",
+        "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 463,
+      "max_knots": 25,
+      "armor": [
+        0,
+        0,
+        90
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 25
+        },
+        {
+          "damage": 116,
+          "knots": 19
+        },
+        {
+          "damage": 232,
+          "knots": 13
+        },
+        {
+          "damage": 347,
+          "knots": 6
+        },
+        {
+          "damage": 417,
+          "knots": 0
+        },
+        {
+          "damage": 463,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "CV",
+      "era": "1942-05 class fit",
+      "gun_standard": 4,
+      "weapons": [
+        "P/S(2)6 Type 89 12.7cm/40"
+      ],
+      "airgroup_by_date": {
+        "1942-05": {
+          "A6M": 12,
+          "D3A": 18,
+          "B5N": 18
+        },
+        "1942-10": {
+          "A6M": 18,
+          "D3A": 18,
+          "B5N": 9
+        }
+      },
+      "special_rules": [
+        "商船改装特殊损伤修正 -35%"
+      ],
+      "fitting_caveat": "隼鹰七月、飞鹰八月装Type21；本表五月空群是级卡条目，不声称飞鹰当月已服役"
+    },
+    {
+      "id": "CAS-H-USN-LIBERTY-1941",
+      "name": "自由轮",
+      "ship_class": "Liberty Ship",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 44,
+        "printed_page": "A-41",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 130,
+      "max_knots": 11,
+      "armor": [
+        0
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 11
+        },
+        {
+          "damage": 33,
+          "knots": 8
+        },
+        {
+          "damage": 65,
+          "knots": 6
+        },
+        {
+          "damage": 98,
+          "knots": 3
+        },
+        {
+          "damage": 117,
+          "knots": 0
+        },
+        {
+          "damage": 130,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "AK",
+      "identity_scope": "class_representative",
+      "displacement": {
+        "value": 7100,
+        "unit": "grt"
+      },
+      "cargo_holds": 5,
+      "gun_standard": 4,
+      "weapons": [
+        "A(1)1 Mk30 5in/38",
+        "F(1)1 Mk22 3in/50"
+      ],
+      "area_aa": 0.6,
+      "light_aa": 2.0,
+      "special_rules": [
+        "民船结构特殊损伤修正 -50%",
+        "单轴：所有工程重击速度损失加倍"
+      ],
+      "cargo_capacity_tonnes": null
+    },
+    {
+      "id": "CAS-H-USN-VICTORY-1944",
+      "name": "胜利轮",
+      "ship_class": "Victory Ship",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 44,
+        "printed_page": "A-41",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "dp": 125,
+      "max_knots": 17,
+      "armor": [
+        0
+      ],
+      "damage_speed": [
+        {
+          "damage": 0,
+          "knots": 17
+        },
+        {
+          "damage": 31,
+          "knots": 13
+        },
+        {
+          "damage": 63,
+          "knots": 9
+        },
+        {
+          "damage": 94,
+          "knots": 4
+        },
+        {
+          "damage": 113,
+          "knots": 0
+        },
+        {
+          "damage": 125,
+          "knots": 0
+        }
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "完整炮表/炮座/雷达/特例消费者未逐项验收；不开放历史或账户出战"
+      ],
+      "kind": "AK",
+      "identity_scope": "class_representative",
+      "displacement": {
+        "value": 4420,
+        "unit": "ltshp"
+      },
+      "cargo_holds": 5,
+      "gun_standard": 4,
+      "weapons": [
+        "A(1)1 Mk37 5in/38",
+        "F(1)1 Mk22 3in/50"
+      ],
+      "area_aa": 0.6,
+      "light_aa": 2.0,
+      "special_rules": [
+        "民船结构特殊损伤修正 -50%",
+        "单轴：所有工程重击速度损失加倍"
+      ],
+      "cargo_capacity_tonnes": null
+    }
+  ],
+  "aircraft": [
+    {
+      "id": "CAS-A-USN-F4F4",
+      "name": "F4F-4 Wildcat",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 76,
+        "printed_page": "B-20",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "role": "fighter",
+      "damage_value": 14,
+      "maneuver_rating": [
+        2.5,
+        2
+      ],
+      "ceiling_m": 10363,
+      "cruise_range_nm": 798,
+      "internal_fuel_kg": 413,
+      "payload_kg": 300,
+      "speed_knots": {
+        "low": [
+          135,
+          240
+        ],
+        "medium": [
+          160,
+          275
+        ],
+        "high": [
+          160,
+          250
+        ]
+      },
+      "loadout_alternatives": [
+        "2×100lb bomb",
+        "2×42USG or 58USG drop tank"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "off_guns": "6 M2 .50cal (1.8)",
+      "in_service": "1941-12..1943"
+    },
+    {
+      "id": "CAS-A-USN-SBD3",
+      "name": "SBD-3 Dauntless",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 102,
+        "printed_page": "B-46",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "role": "dive_bomber",
+      "damage_value": 14,
+      "maneuver_rating": [
+        1.5,
+        1
+      ],
+      "ceiling_m": 8256,
+      "cruise_range_nm": 1260,
+      "internal_fuel_kg": 802,
+      "payload_kg": 726,
+      "speed_knots": {
+        "low": [
+          120,
+          210
+        ],
+        "medium": [
+          135,
+          220
+        ],
+        "high": [
+          null,
+          210
+        ]
+      },
+      "loadout_alternatives": [
+        "2×100lb wing bombs + 1×500lb or 1000lb centerline",
+        "1×1600lb bomb",
+        "2×325lb depth charge"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "off_guns": "2 M2 .50cal (0.6)",
+      "def_guns": "2 Browning .30cal (0.3)",
+      "in_service": "1941-03"
+    },
+    {
+      "id": "CAS-A-USN-TBD1",
+      "name": "TBD-1 Devastator",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 104,
+        "printed_page": "B-48",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "role": "torpedo_bomber",
+      "damage_value": 14,
+      "maneuver_rating": [
+        1.5,
+        1
+      ],
+      "ceiling_m": 6000,
+      "cruise_range_nm": 650,
+      "internal_fuel_kg": 534,
+      "payload_kg": 961,
+      "speed_knots": {
+        "all": [
+          111,
+          180
+        ]
+      },
+      "loadout_alternatives": [
+        "1 Mk7 or Mk13 aerial torpedo",
+        "12×100lb bombs",
+        "2×500lb or 1000lb bombs or 325lb depth charges"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "in_service": "1937-10..1942-06",
+      "special_rules": [
+        "无自封油箱/装甲；中途岛后退出作战服役"
+      ]
+    },
+    {
+      "id": "CAS-A-USN-TBF1",
+      "name": "TBF/TBM-1 Avenger",
+      "source": {
+        "book": "American_Fleets_2012_Standard.pdf",
+        "pdf_page": 104,
+        "printed_page": "B-48",
+        "sha256": "e26386b8c54462f956ed1d0b5ebb75afa5a0f979e44e471cf205d189865e8d5b",
+        "verification": "page_image_reviewed"
+      },
+      "role": "torpedo_bomber",
+      "damage_value": 17,
+      "maneuver_rating": [
+        1.5,
+        1
+      ],
+      "ceiling_m": 6828,
+      "cruise_range_nm": 1090,
+      "internal_fuel_kg": 864,
+      "payload_kg": 960,
+      "speed_knots": {
+        "low": [
+          110,
+          218
+        ],
+        "medium": [
+          126,
+          236
+        ]
+      },
+      "loadout_alternatives": [
+        "1 Mk13 or Mk18 torpedo internally",
+        "4×500lb or 2×1000lb or 1×1600lb or 1×2000lb bomb internally",
+        "275USG internal fuel tank",
+        "12×100lb GP bombs",
+        "4×350lb Mk54 depth charges",
+        "2 Mk24 torpedoes"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "in_service": "1942-01",
+      "special_rules": [
+        "1942后期量产机可装ASB雷达，不按所有早期机默认配置"
+      ]
+    },
+    {
+      "id": "CAS-A-IJN-A6M2-21",
+      "name": "A6M2 Model21 Zero",
+      "source": {
+        "book": "The_Emperor_s_Fleet.pdf",
+        "pdf_page": 72,
+        "printed_page": "B-1",
+        "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+        "verification": "page_image_reviewed"
+      },
+      "role": "fighter",
+      "damage_value": 10,
+      "maneuver_rating": [
+        3.5,
+        2.5
+      ],
+      "ceiling_m": 10300,
+      "cruise_range_nm": 1010,
+      "internal_fuel_kg": 414,
+      "payload_kg": 320,
+      "speed_knots": {
+        "low": [
+          117,
+          250
+        ],
+        "medium": [
+          130,
+          288
+        ],
+        "high": [
+          null,
+          251
+        ]
+      },
+      "loadout_alternatives": [
+        "2×30kg or 60kg bombs + centerline 330L drop tank",
+        "8×10kg or 2×60kg rockets"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "off_guns": "2 Type97 7.7mm + 2 Type99 20mm (1.5)",
+      "in_service": "1941-04",
+      "limiting_dive_knots": 336
+    },
+    {
+      "id": "CAS-A-IJN-D3A1",
+      "name": "D3A1 Val11",
+      "source": {
+        "book": "The_Emperor_s_Fleet.pdf",
+        "pdf_page": 77,
+        "printed_page": "B-6",
+        "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+        "verification": "page_image_reviewed"
+      },
+      "role": "dive_bomber",
+      "damage_value": 11,
+      "maneuver_rating": [
+        2,
+        1
+      ],
+      "ceiling_m": 9300,
+      "cruise_range_nm": 795,
+      "internal_fuel_kg": 722,
+      "payload_kg": 370,
+      "speed_knots": {
+        "low": [
+          100,
+          200
+        ],
+        "medium": [
+          110,
+          226
+        ],
+        "high": [
+          null,
+          244
+        ]
+      },
+      "loadout_alternatives": [
+        "1 centerline 250kg bomb + 1×30kg under each wing"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "off_guns": "2 Type97 7.7mm (0.4)",
+      "def_guns": "1 Type92 7.7mm (0.1)",
+      "in_service": "1940-01"
+    },
+    {
+      "id": "CAS-A-IJN-B5N2",
+      "name": "B5N2 Kate",
+      "source": {
+        "book": "The_Emperor_s_Fleet.pdf",
+        "pdf_page": 75,
+        "printed_page": "B-4",
+        "sha256": "164455ea45bbda9dca7260ac43882cb89024d6989d33d3c0dbb5c18880ce4c53",
+        "verification": "page_image_reviewed"
+      },
+      "role": "torpedo_bomber",
+      "damage_value": 11,
+      "maneuver_rating": [
+        1.5,
+        0.5
+      ],
+      "ceiling_m": 8260,
+      "cruise_range_nm": 1075,
+      "internal_fuel_kg": 787,
+      "payload_kg": 800,
+      "speed_knots": {
+        "low": [
+          100,
+          199
+        ],
+        "medium": [
+          100,
+          204
+        ],
+        "high": [
+          null,
+          204
+        ]
+      },
+      "loadout_alternatives": [
+        "6×60kg bombs",
+        "1×800kg bomb or Type91 torpedo",
+        "3×250kg bombs"
+      ],
+      "readiness": "source_only",
+      "blockers": [
+        "高度/载荷/油门/空战/航空武器原版裁决尚未完整消费；近场玩法参数不可当作本表值"
+      ],
+      "def_guns": "1 Type92 7.7mm flex (0.1)",
+      "in_service": "1939-12"
+    }
+  ],
+  "units": {
+    "speed": "knots",
+    "range": "nautical miles",
+    "armor": "printed CAS rating"
+  },
+  "global_blockers": [
+    "原版完整舰载航空未实现；禁止静默启用source_only",
+    "载机额定数不等于典型空群，巡航总航程不等于作战半径",
+    "原书Sinks用knots=0并以最终dp阈值表示；不赋予沉舰航行能力"
+  ]
+}

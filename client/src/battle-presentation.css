@@ -33,6 +33,9 @@
 .ship-overview.with-portrait { display: grid; grid-template-columns: minmax(72px, 36%) minmax(0, 1fr); align-items: center; gap: 8px; }
 .ship-portrait { position: relative; overflow: hidden; margin: 0; border: 1px solid #577278; background: radial-gradient(ellipse at 49% 34%, #52726b, #182f3c 74%); }
 .ship-portrait img { display: block; width: 100%; height: 145px; object-fit: contain; }
+.ship-portrait.is-placeholder { display: grid; grid-template-rows: 1fr auto; background: repeating-linear-gradient(135deg, #112b36 0 7px, #163440 7px 14px); }
+.ship-portrait__shadow { display: grid; place-items: center; min-height: 145px; color: #9db4b3; font: 11px var(--serif); letter-spacing: .18em; border-bottom: 1px solid #334d58; }
+.ship-portrait__shadow::before { content: ""; width: 26px; height: 72px; margin-bottom: 4px; border: 1px dashed #6d8a8d; border-radius: 48% 48% 38% 38%; }
 .ship-portrait figcaption { display: flex; align-items: baseline; flex-wrap: wrap; justify-content: space-between; gap: 1px 4px; padding: 3px 4px; background: #112b36; border-top: 1px solid #415b60; }
 .ship-portrait strong { color: #edcf98; font-size: 10px; }
 .ship-portrait figcaption span { color: #b4c9c6; font-size: 9px; }
@@ -91,6 +94,7 @@
   .schematic-plate { padding: 2px 4px; }
   .ship-overview.with-portrait { grid-template-columns: minmax(63px, 35%) minmax(0, 1fr); gap: 5px; }
   .ship-portrait img { height: 97px; }
+  .ship-portrait__shadow { min-height: 97px; }
   .ship-overview.with-portrait .hull-meter { flex-wrap: wrap; gap: 1px 5px; }
 }
 @media (max-width: 620px) {

@@ -8,11 +8,12 @@
 use crate::{
     campaign::{Grade, Outcome},
     campaign::live::Start,
-    model::{Ai, Field, Fleet, P, Tactic, YARD},
+    model::{Ai, Data, Field, Fleet, P, Tactic, YARD},
     world::World,
     E,
 };
 use serde_json::json;
+use std::sync::OnceLock;
 
 pub(crate) const VARIANT: &str = "empress";
 pub(crate) const LABEL: &str = "奥古斯塔皇后湾 · 22 舰夜战";
@@ -233,12 +234,23 @@ pub(crate) fn axis_cruisers_inside(w: &World) -> bool {
 }
 
 
+/// Scenario cards plus the 202 registered single-ship cards for the story
+/// point-buy picker. Standard/challenge keep the printed roster.
+fn data() -> E<&'static Data> {
+    static DATA: OnceLock<Result<Data, String>> = OnceLock::new();
+    DATA.get_or_init(|| {
+        let mut data = crate::prologue::data()?.clone();
+        crate::campaign::fleet::add_registered_cards(&mut data)?;
+        Ok(data)
+    })
+    .as_ref()
+    .map_err(Clone::clone)
+}
+
 /// Campaign entry: the same roster as the exercise, with the campaign seat,
 /// stage and 4,200-second limit (0227-0337).
 pub(crate) fn open(seed: u32, start: Start, player: usize, enemy: &str, profile: &str) -> E<World> {
-    // The campaign point-buy pool includes the verified prologue cards.
-    let data = crate::prologue::data()?;
-    let mut w = World::blank(data, seed, player, enemy, VARIANT, profile, 0);
+    let mut w = World::blank(data()?, seed, player, enemy, VARIANT, profile, 0);
     w.campaign = Some(start);
     fill(&mut w)?;
     Ok(w)

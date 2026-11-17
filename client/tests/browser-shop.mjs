@@ -22,7 +22,9 @@ const seed = {
   wallet: { standard: 5000, up: 10 }, marks: 20, pity: { standard: 0, up: 0 },
   owned: { fletcher: 4, cleveland: 1 }, profiles: ['coord'],
   preset: { side: 'allies', leaderSlot: 0, profile: 'coord' },
-  upSide: 'axis', sequence: 0, history: [], credits: 5000, courses: [], attendance: [],
+  upSide: 'axis', sequence: 1, history: [
+    { id: 1, pool: 'standard', hull: 'cleveland', duplicate: false, guaranteed: true },
+  ], credits: 5000, courses: [], attendance: [], watch: 'fletcher',
   challengeReceipts: week, mail: [],
   campaignProgress: {
     'CAMP-ALLIES-02': { best: { story: 2 }, claimed: 2 },
@@ -72,11 +74,15 @@ try {
   assert.match(await page.locator('[data-wallet-item="standard"]').innerText(), /5,000/);
   await page.screenshot({ path: root + 'quartermaster-1360.png' });
 
-  // 1. 舰船柜台: recruit entry plus the four local hulls, no gacha in the shop.
+  // 1. 舰船柜台: recruit entry plus the five owned single-ship cards. The old
+  // 4-hull counts (fletcher 4 / cleveland 1) migrate to five identities.
   await counter('舰船');
   await page.locator('[data-quartermaster-shelf="ships"]').waitFor();
-  assert.equal(await page.locator('[data-quartermaster-grid="ships"] .cas-card').count(), 5);
-  assert.match(await page.locator('[data-quartermaster-shelf="ships"]').innerText(), /已拥有 5 艘（2 \/ 4 舰型）/);
+  assert.equal(await page.locator('[data-quartermaster-grid="ships"] .cas-card').count(), 6);
+  assert.match(await page.locator('[data-quartermaster-shelf="ships"]').innerText(), /已拥有 5 艘单舰/);
+  for (const name of ['弗莱彻', '帕金斯', '莫里', '德雷顿', '火奴鲁鲁']) {
+    assert.match(await page.locator('[data-quartermaster-shelf="ships"]').innerText(), new RegExp(name));
+  }
   assert.ok(await page.getByRole('button', { name: '进入军港征募', exact: true }).count() >= 1);
   await page.screenshot({ path: root + 'quartermaster-ships.png' });
 
@@ -93,6 +99,18 @@ try {
   port = await readPort();
   assert.equal(port.credits, 4500, 'weekly ticket costs 500 credits');
   assert.equal(port.wallet.standard, 5001, 'weekly ticket adds one standard ticket');
+  assert.equal(port.owned.fletcher, undefined, 'legacy hull counters are gone after the first save');
+  assert.deepEqual(Object.keys(port.owned).sort(), [
+    'IBS-U-USN-DRAYTON', 'IBS-U-USN-FLETCHER', 'IBS-U-USN-HONOLULU',
+    'IBS-U-USN-MAURY', 'IBS-U-USN-PERKINS',
+  ].sort(), 'the four Fletcher counters plus Cleveland migrate to five starter identities');
+  assert.deepEqual(port.preset.ships, [
+    'IBS-U-USN-FLETCHER', 'IBS-U-USN-PERKINS', 'IBS-U-USN-MAURY',
+    'IBS-U-USN-DRAYTON', 'IBS-U-USN-HONOLULU',
+  ], 'an old preset without ships receives the five starters');
+  assert.equal(port.history[0].ship, 'IBS-U-USN-HONOLULU', 'old cleveland history migrates to Honolulu');
+  assert.equal(port.history[0].hull, undefined, 'old hull history field is gone');
+  assert.equal(port.watch, undefined, 'the old hull watch is cleared');
   assert.match(await ticketCard.innerText(), /本周已兑换/);
   await page.screenshot({ path: root + 'quartermaster-supply.png' });
 

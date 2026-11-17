@@ -1,0 +1,746 @@
+{
+  "growth": {
+    "max_ascension": 2,
+    "max_damage_bonus": 0.05,
+    "max_hp_bonus": 0.05,
+    "max_level": 30,
+    "max_utility_bonus": 0.01,
+    "specializations": [
+      "assault",
+      "vanguard",
+      "support",
+      "mobility",
+      "precision",
+      "logistics"
+    ]
+  },
+  "islands": [
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 1,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.62
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 3300.0,
+      "id": "shoal_watch",
+      "land_personnel": 18,
+      "level": 1,
+      "local_simulation": true,
+      "name": "浅滩哨所",
+      "palette": "coral",
+      "recommended_points": 1500,
+      "storage": {
+        "alloy": 30,
+        "credits": 300,
+        "protocols": 0,
+        "scrap": 120
+      },
+      "width_m": 2500.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 1,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 1,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 1,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 1,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 1,
+          "x": 0.78,
+          "y": 0.26
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 3650.0,
+      "id": "rust_quay",
+      "land_personnel": 25,
+      "level": 2,
+      "local_simulation": true,
+      "name": "锈港回收站",
+      "palette": "ochre",
+      "recommended_points": 2400,
+      "storage": {
+        "alloy": 55,
+        "credits": 480,
+        "protocols": 0,
+        "scrap": 190
+      },
+      "width_m": 2830.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 2,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 2,
+          "x": 0.67,
+          "y": 0.72
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-PENSACOLA",
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 4000.0,
+      "id": "cloudbreak",
+      "land_personnel": 32,
+      "level": 3,
+      "local_simulation": true,
+      "name": "断云航空站",
+      "palette": "mint",
+      "recommended_points": 3300,
+      "storage": {
+        "alloy": 80,
+        "credits": 660,
+        "protocols": 0,
+        "scrap": 260
+      },
+      "width_m": 3160.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 2,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 2,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 2,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 2,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 2,
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-9",
+          "kind": "anti_ship",
+          "level": 2,
+          "x": 0.35,
+          "y": 0.2
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-10",
+          "kind": "repair",
+          "level": 2,
+          "x": 0.81,
+          "y": 0.68
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-PENSACOLA",
+        "IBS-U-USN-FLETCHER"
+      ],
+      "height_m": 4700.0,
+      "id": "iron_citadel",
+      "land_personnel": 39,
+      "level": 5,
+      "local_simulation": true,
+      "name": "铁潮要塞",
+      "palette": "cobalt",
+      "recommended_points": 4200,
+      "storage": {
+        "alloy": 105,
+        "credits": 840,
+        "protocols": 1,
+        "scrap": 330
+      },
+      "width_m": 3820.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-9",
+          "kind": "anti_ship",
+          "level": 3,
+          "x": 0.35,
+          "y": 0.2
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-10",
+          "kind": "repair",
+          "level": 3,
+          "x": 0.81,
+          "y": 0.68
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-11",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.86
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-12",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.71,
+          "y": 0.32
+        }
+      ],
+      "garrison": [
+        "IBS-U-USN-PENSACOLA",
+        "IBS-U-USN-FLETCHER",
+        "IBS-U-USN-PENSACOLA"
+      ],
+      "height_m": 5400.0,
+      "id": "storm_relay",
+      "land_personnel": 46,
+      "level": 7,
+      "local_simulation": true,
+      "name": "风暴中继岛",
+      "palette": "coral",
+      "recommended_points": 5100,
+      "storage": {
+        "alloy": 130,
+        "credits": 1020,
+        "protocols": 1,
+        "scrap": 400
+      },
+      "width_m": 4480.0
+    },
+    {
+      "forts": [
+        {
+          "hp": 100.0,
+          "id": "fort-1",
+          "kind": "hq",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-2",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.53,
+          "y": 0.28
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-3",
+          "kind": "warehouse",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.73
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-4",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.42
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-5",
+          "kind": "machine_gun",
+          "level": 3,
+          "x": 0.37,
+          "y": 0.62
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-6",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.61,
+          "y": 0.5
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-7",
+          "kind": "mortar",
+          "level": 3,
+          "x": 0.78,
+          "y": 0.26
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-8",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.67,
+          "y": 0.72
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-9",
+          "kind": "anti_ship",
+          "level": 3,
+          "x": 0.35,
+          "y": 0.2
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-10",
+          "kind": "repair",
+          "level": 3,
+          "x": 0.81,
+          "y": 0.68
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-11",
+          "kind": "cannon",
+          "level": 3,
+          "x": 0.56,
+          "y": 0.86
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-12",
+          "kind": "air_defense",
+          "level": 3,
+          "x": 0.71,
+          "y": 0.32
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-13",
+          "kind": "mortar",
+          "level": 3,
+          "x": 0.86,
+          "y": 0.78
+        },
+        {
+          "hp": 100.0,
+          "id": "fort-14",
+          "kind": "anti_ship",
+          "level": 3,
+          "x": 0.31,
+          "y": 0.82
+        }
+      ],
+      "garrison": [
+        "CAS-H-IJN-SHOKAKU-1942",
+        "IBS-U-USN-FLETCHER",
+        "IBS-U-USN-PENSACOLA"
+      ],
+      "height_m": 6450.0,
+      "id": "old_arsenal",
+      "land_personnel": 53,
+      "level": 10,
+      "local_simulation": true,
+      "name": "旧世军械岛",
+      "palette": "ochre",
+      "recommended_points": 6000,
+      "storage": {
+        "alloy": 155,
+        "credits": 1200,
+        "protocols": 1,
+        "scrap": 470
+      },
+      "width_m": 5470.0
+    }
+  ],
+  "max_island_level": 10,
+  "max_seconds": 900,
+  "replay": {
+    "read_only": true,
+    "seek_resolution_seconds": 0.1,
+    "source": "seed_configuration_and_validated_commands",
+    "version": "cas-island-war-v1"
+  },
+  "simulation_hz": 10,
+  "source_kind": "original_fictional",
+  "tower_types": [
+    {
+      "ammo": 0,
+      "armor": "reinforced",
+      "damage": 0.0,
+      "hp": 1800.0,
+      "kind": "hq",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "指挥核心",
+      "projectile_speed_mps": 0.0,
+      "radius_m": 0.0,
+      "range_m": 0.0,
+      "reload_seconds": 0.0,
+      "role": "objective",
+      "width_m": 70
+    },
+    {
+      "ammo": 0,
+      "armor": "light",
+      "damage": 0.0,
+      "hp": 650.0,
+      "kind": "warehouse",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "可夺取仓库",
+      "projectile_speed_mps": 0.0,
+      "radius_m": 0.0,
+      "range_m": 0.0,
+      "reload_seconds": 0.0,
+      "role": "storage",
+      "width_m": 50
+    },
+    {
+      "ammo": 240,
+      "armor": "light",
+      "damage": 12.0,
+      "hp": 440.0,
+      "kind": "machine_gun",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "双联机枪塔",
+      "projectile_speed_mps": 1200.0,
+      "radius_m": 32.0,
+      "range_m": 1000.0,
+      "reload_seconds": 0.6,
+      "role": "anti_infantry",
+      "width_m": 20
+    },
+    {
+      "ammo": 45,
+      "armor": "reinforced",
+      "damage": 90.0,
+      "hp": 720.0,
+      "kind": "cannon",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "反装甲加农炮",
+      "projectile_speed_mps": 1000.0,
+      "radius_m": 65.0,
+      "range_m": 1900.0,
+      "reload_seconds": 3.8,
+      "role": "anti_armor",
+      "width_m": 20
+    },
+    {
+      "ammo": 40,
+      "armor": "light",
+      "damage": 42.0,
+      "hp": 400.0,
+      "kind": "mortar",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 350.0,
+      "name": "曲射迫击炮",
+      "projectile_speed_mps": 350.0,
+      "radius_m": 135.0,
+      "range_m": 2450.0,
+      "reload_seconds": 4.2,
+      "role": "indirect",
+      "width_m": 20
+    },
+    {
+      "ammo": 90,
+      "armor": "medium",
+      "damage": 40.0,
+      "hp": 520.0,
+      "kind": "air_defense",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "近程防空塔",
+      "projectile_speed_mps": 1500.0,
+      "radius_m": 85.0,
+      "range_m": 2450.0,
+      "reload_seconds": 1.4,
+      "role": "anti_air",
+      "width_m": 20
+    },
+    {
+      "ammo": 32,
+      "armor": "reinforced",
+      "damage": 24.0,
+      "hp": 850.0,
+      "kind": "anti_ship",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 500.0,
+      "name": "岸防反舰炮",
+      "projectile_speed_mps": 900.0,
+      "radius_m": 80.0,
+      "range_m": 7000.0,
+      "reload_seconds": 6.5,
+      "role": "anti_ship",
+      "width_m": 20
+    },
+    {
+      "ammo": 35,
+      "armor": "light",
+      "damage": 22.0,
+      "hp": 480.0,
+      "kind": "repair",
+      "level_hp_damage_step": 0.12,
+      "min_range_m": 0.0,
+      "name": "有限抢修节点",
+      "projectile_speed_mps": 0.0,
+      "radius_m": 0.0,
+      "range_m": 950.0,
+      "reload_seconds": 3.0,
+      "role": "repair",
+      "width_m": 20
+    }
+  ],
+  "version": "cas-island-war-v1"
+}

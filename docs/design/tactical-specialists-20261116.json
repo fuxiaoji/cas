@@ -1,0 +1,640 @@
+{
+  "version": "tactical-specialists-design-v1",
+  "status": "design_only_not_runtime",
+  "date": "2026-11-16",
+  "scale": "旧v4加速陆战比较尺度；HP沿用基准×4；速度与射程不是现实军事数据。720m新海岸需要全兵种统一重定标，禁止将本表直接导入。",
+  "common": {
+    "consciousness": "每MCP全部女性身体属于同一成年人格；不同岗位不额外增员",
+    "time": "10Hz，0.1秒粒度；组间隔从末发至下一组首发，空匣换弹替代组间隔。副武器独立。",
+    "accuracy": "锚点线性插值，射程外0，静止无掩体同高地基准；移动乘武器系数，实际仍算遮挡/高差/护具。",
+    "inventory": "总弹含首匣；无召回补弹或取消装填复制；每实际发射扣1；技能次数在明确提交点扣；双方同身份对称。",
+    "transport": "普通艇复用已发布原核数据；容量按真实身体守恒；无额外战斗车/马/飞机。"
+  },
+  "weapons": [
+    {
+      "id": "N311",
+      "name": "N311海勤卡宾枪",
+      "damage": 9,
+      "max_range_m": 650,
+      "burst": 1,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.7,
+      "magazine": 12,
+      "total_including_magazine": 96,
+      "reload_s": 2.4,
+      "accuracy_anchors": [
+        [
+          0,
+          0.8
+        ],
+        [
+          180,
+          0.82
+        ],
+        [
+          400,
+          0.6
+        ],
+        [
+          650,
+          0.22
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "S312",
+      "name": "S312鼓匣冲锋枪",
+      "damage": 5,
+      "max_range_m": 430,
+      "burst": 4,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.5,
+      "magazine": 32,
+      "total_including_magazine": 192,
+      "reload_s": 3,
+      "accuracy_anchors": [
+        [
+          0,
+          0.88
+        ],
+        [
+          100,
+          0.85
+        ],
+        [
+          250,
+          0.52
+        ],
+        [
+          430,
+          0.12
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "C313",
+      "name": "C313警戒卡宾枪",
+      "damage": 7,
+      "max_range_m": 600,
+      "burst": 2,
+      "shot_gap_s": 0.2,
+      "burst_gap_s": 0.9,
+      "magazine": 16,
+      "total_including_magazine": 96,
+      "reload_s": 2.6,
+      "accuracy_anchors": [
+        [
+          0,
+          0.75
+        ],
+        [
+          160,
+          0.78
+        ],
+        [
+          350,
+          0.54
+        ],
+        [
+          600,
+          0.18
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "A313",
+      "name": "A313单发反器材枪",
+      "damage": 72,
+      "max_range_m": 1300,
+      "burst": 1,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0,
+      "magazine": 1,
+      "total_including_magazine": 18,
+      "reload_s": 4.8,
+      "accuracy_anchors": [
+        [
+          0,
+          0.35
+        ],
+        [
+          250,
+          0.78
+        ],
+        [
+          700,
+          0.7
+        ],
+        [
+          1300,
+          0.25
+        ]
+      ],
+      "moving_accuracy_multiplier": 0,
+      "target_multipliers": {
+        "personnel": 0.65,
+        "light_vehicle": 1.35,
+        "heavy_vehicle": 0.12,
+        "structure": 0.5,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "P314",
+      "name": "P314观测员手枪",
+      "damage": 6,
+      "max_range_m": 220,
+      "burst": 1,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.6,
+      "magazine": 10,
+      "total_including_magazine": 40,
+      "reload_s": 2,
+      "accuracy_anchors": [
+        [
+          0,
+          0.8
+        ],
+        [
+          80,
+          0.72
+        ],
+        [
+          220,
+          0.18
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "C314",
+      "name": "C314轻便卡宾枪",
+      "damage": 7,
+      "max_range_m": 620,
+      "burst": 1,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.8,
+      "magazine": 10,
+      "total_including_magazine": 70,
+      "reload_s": 2.5,
+      "accuracy_anchors": [
+        [
+          0,
+          0.75
+        ],
+        [
+          180,
+          0.8
+        ],
+        [
+          400,
+          0.5
+        ],
+        [
+          620,
+          0.18
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "G315",
+      "name": "G315水冷机枪",
+      "damage": 6,
+      "max_range_m": 1150,
+      "burst": 8,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.6,
+      "magazine": 80,
+      "total_including_magazine": 400,
+      "reload_s": 6,
+      "accuracy_anchors": [
+        [
+          0,
+          0.68
+        ],
+        [
+          200,
+          0.82
+        ],
+        [
+          650,
+          0.58
+        ],
+        [
+          1150,
+          0.2
+        ]
+      ],
+      "moving_accuracy_multiplier": 0,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.12,
+        "heavy_vehicle": 0.02,
+        "structure": 0.08,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "P315",
+      "name": "P315机枪手副枪",
+      "damage": 6,
+      "max_range_m": 200,
+      "burst": 1,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.6,
+      "magazine": 10,
+      "total_including_magazine": 50,
+      "reload_s": 2,
+      "accuracy_anchors": [
+        [
+          0,
+          0.78
+        ],
+        [
+          80,
+          0.68
+        ],
+        [
+          200,
+          0.18
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    },
+    {
+      "id": "C316",
+      "name": "C316撤运短卡宾枪",
+      "damage": 7,
+      "max_range_m": 550,
+      "burst": 1,
+      "shot_gap_s": 0.1,
+      "burst_gap_s": 0.9,
+      "magazine": 10,
+      "total_including_magazine": 60,
+      "reload_s": 2.6,
+      "accuracy_anchors": [
+        [
+          0,
+          0.76
+        ],
+        [
+          150,
+          0.75
+        ],
+        [
+          350,
+          0.45
+        ],
+        [
+          550,
+          0.16
+        ]
+      ],
+      "moving_accuracy_multiplier": 0.65,
+      "target_multipliers": {
+        "personnel": 1,
+        "light_vehicle": 0.08,
+        "heavy_vehicle": 0.015,
+        "structure": 0.06,
+        "aircraft": 0.02
+      },
+      "ammo_per_projectile": 1
+    }
+  ],
+  "units": [
+    {
+      "id": "MCP-311",
+      "name": "汐缆",
+      "designation": "第311登舰夺控营",
+      "company_count": 3,
+      "bodies_per_company": 6,
+      "total_bodies": 18,
+      "body_stats": {
+        "baseline_hp": 100.0,
+        "health_scale": 4,
+        "hp": 400,
+        "personnel_damage_multiplier": 0.9,
+        "speed_m_s": 78,
+        "vision_m": 1350
+      },
+      "loadout": {
+        "N311": 6
+      },
+      "transport": {
+        "kind": "ordinary_landing_craft",
+        "per_company": 1,
+        "personnel_capacity": 6,
+        "rule": "复用当前已发布普通艇数据；合法沙岸卸载；船体与身体独立；不因立绘绳索获得登舰功能"
+      },
+      "role": "短通路登舰、夺控设备，适合有限步兵位的港口任务",
+      "counters": "反重甲弱；登临单列暴露；普通陆战火力低于主力团",
+      "active": {
+        "name": "搭缆登临",
+        "charges_per_company": 2,
+        "cooldown_s": 35,
+        "range_m": 45,
+        "description": "仅本席已发现、登记为可登临且相对速度≤2米/秒的友军或任务目标船，最近可达船边到合法甲板锚点≤45米且高差≤8米。3秒设缆，逐身体沿真实绳路以3米/秒攀行，单绳只容1身体，末端2秒翻越。每次连接耗1绳索额度，保留到双方脱离或取消；拒绝非法路径不扣，设缆完成即扣。不可跨岛悬崖、普通建筑或历史舰；不改海战舰HP或自动夺船。途中不能开火；目标移速/距离失格则在当前合法点暂停并优先沿绳撤回，不能瞬移。无甲板/攀行/中断消费者时整项阻断。"
+      },
+      "passive": {
+        "name": "设备夺控",
+        "description": "仅本人身体在任务设备交互半径内且有真实交互通路时，任务定义的夺控累计速率×1.25；同设备只取最高倍率，不与多人倍率重复计算。不增加遗迹收益、不减少战斗占点所需敌情条件。"
+      },
+      "reference_images": [
+        1,
+        10,
+        12
+      ]
+    },
+    {
+      "id": "MCP-312",
+      "name": "雾芥",
+      "designation": "第312烟幕突击营",
+      "company_count": 3,
+      "bodies_per_company": 8,
+      "total_bodies": 24,
+      "body_stats": {
+        "baseline_hp": 105.0,
+        "health_scale": 4,
+        "hp": 420,
+        "personnel_damage_multiplier": 0.82,
+        "speed_m_s": 72,
+        "vision_m": 1200
+      },
+      "loadout": {
+        "S312": 8
+      },
+      "transport": {
+        "kind": "ordinary_landing_craft",
+        "per_company": 1,
+        "personnel_capacity": 8,
+        "rule": "复用当前已发布普通艇数据；合法沙岸卸载；船体与身体独立；不因立绘绳索获得登舰功能"
+      },
+      "role": "遮断长射线，协助友军穿越滩头空地",
+      "counters": "冲锋枪远距弱；烟中自己也看不见；范围炮火不被烟减伤",
+      "active": {
+        "name": "折线烟幕",
+        "charges_per_company": 4,
+        "cooldown_s": 24,
+        "range_m": 280,
+        "radius_m": 55,
+        "duration_s": 14,
+        "description": "每次向合法落点投1烟罐，投掷准备0.8秒、飞行1秒、1.5秒成烟；出手扣1技能额度。烟半径55米、高12米；取真实视线段与烟体相交长度≥12米时阻断双方光学发现与新的直射锁定。已有弹丸继续飞行，间射不减伤，不能清除敌人最后已知点。重叠取并集、不得叠减伤；按共享风矢量漂移，无风静止。无烟体视线消费者时禁用，不能只画烟。"
+      },
+      "passive": {
+        "name": "突击互护",
+        "description": "普通移动中不额外加速或减伤；AI只从本席公开观察选择烟后可达掩体，烟内不透视索敌。特色来自烟路与短枪，而非无条件属性光环。"
+      },
+      "reference_images": [
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "MCP-313",
+      "name": "砾隼",
+      "designation": "第313反器材猎兵营",
+      "company_count": 2,
+      "bodies_per_company": 6,
+      "total_bodies": 12,
+      "body_stats": {
+        "baseline_hp": 85.0,
+        "health_scale": 4,
+        "hp": 340,
+        "personnel_damage_multiplier": 0.98,
+        "speed_m_s": 70,
+        "vision_m": 1650
+      },
+      "loadout": {
+        "A313": 2,
+        "C313": 4
+      },
+      "transport": {
+        "kind": "ordinary_landing_craft",
+        "per_company": 1,
+        "personnel_capacity": 6,
+        "rule": "复用当前已发布普通艇数据；合法沙岸卸载；船体与身体独立；不因立绘绳索获得登舰功能"
+      },
+      "role": "远距离伏击轻装甲和外露武器设施",
+      "counters": "重坦正面几乎无效；每连仅2重枪，移动与近距脆弱",
+      "active": {
+        "name": "稳固伏击",
+        "charges_per_company": null,
+        "cooldown_s": 12,
+        "duration_s": 10,
+        "description": "切换架枪姿态，A313手需停稳2.5秒且有合法地面；接下来最多10秒静止射击精度×1.18，上限0.9，转动射界正前±35度。每枪仍消耗1普通枪弹、正常装填，无免费技能弹。移动/压制/主动转向取消；持续结束后12秒才能重启；无命中或伤害保证。"
+      },
+      "passive": {
+        "name": "轻甲破坏",
+        "description": "A313使用人员/轻车/重车/工事0.65/1.35/0.12/0.5的独立倍率，先算基础伤害×目标倍率再算目标防护；不穿透两目标，不附加熄火或乘员即死。A313普通架设1.8秒、收枪1.2秒，移动禁射；稳定技能准备替代普通架设而非叠加。"
+      },
+      "reference_images": [
+        2,
+        4,
+        15
+      ]
+    },
+    {
+      "id": "MCP-314",
+      "name": "灯穗",
+      "designation": "第314光学观测连队",
+      "company_count": 2,
+      "bodies_per_company": 6,
+      "total_bodies": 12,
+      "body_stats": {
+        "baseline_hp": 75.0,
+        "health_scale": 4,
+        "hp": 300,
+        "personnel_damage_multiplier": 1,
+        "speed_m_s": 90,
+        "vision_m": 1900
+      },
+      "loadout": {
+        "P314": 2,
+        "C314": 4
+      },
+      "transport": {
+        "kind": "ordinary_landing_craft",
+        "per_company": 1,
+        "personnel_capacity": 6,
+        "rule": "复用当前已发布普通艇数据；合法沙岸卸载；船体与身体独立；不因立绘绳索获得登舰功能"
+      },
+      "role": "在高地用光学器材延伸可靠观察，帮助指挥判断路线",
+      "counters": "火力与耐久低；受烟/山体遮挡；不提供免费舰炮或雷达全图透视",
+      "active": {
+        "name": "定向观测",
+        "charges_per_company": null,
+        "cooldown_s": 8,
+        "range_m": 2400,
+        "duration_s": 12,
+        "description": "2名P314观测员可各架1组光学镜但共用连指令；3秒架设，在指定±25度扇区连续观察12秒，范围2400米，仍逐射线检查地形/建筑/植被与烟。只延长本席探测，不提升武器射程、伤害或舰炮命中。移动/压制/收镜即中断并进入8秒冷却，取消前未架好不耗冷却。已失视目标仅保留5秒带时间戳的最后已知位置，不跟踪真态。"
+      },
+      "passive": {
+        "name": "观测接力",
+        "description": "无线电仅传递本席已观察接触，不能复原被遮挡目标。AI优先已有可达高地，不能凭装备赋予攀崖；不替代128有限舰炮航空标记。"
+      },
+      "reference_images": [
+        7,
+        14
+      ]
+    },
+    {
+      "id": "MCP-315",
+      "name": "铎垒",
+      "designation": "第315装甲机枪营",
+      "company_count": 2,
+      "bodies_per_company": 8,
+      "total_bodies": 16,
+      "body_stats": {
+        "baseline_hp": 120.0,
+        "health_scale": 4,
+        "hp": 480,
+        "personnel_damage_multiplier": 0.72,
+        "speed_m_s": 56,
+        "vision_m": 1350
+      },
+      "loadout": {
+        "G315": 2,
+        "C313": 6
+      },
+      "transport": {
+        "kind": "ordinary_landing_craft",
+        "per_company": 1,
+        "personnel_capacity": 8,
+        "rule": "复用当前已发布普通艇数据；合法沙岸卸载；船体与身体独立；不因立绘绳索获得登舰功能"
+      },
+      "role": "架枪控制通道与防守展开面",
+      "counters": "沉重，转移慢；两机枪弹药有限，侧后与迫击炮反制",
+      "active": {
+        "name": "扇区封锁",
+        "charges_per_company": null,
+        "cooldown_s": 8,
+        "duration_s": 12,
+        "description": "本连两机枪架设3秒，选定120度扇区，最多12秒仅在扇区内按真实命中曲线与有限弹药射击。有效压制定义为同一目标3秒内实际命中≥3发，则目标下次射击时间推迟0.8秒；同一目标4秒内最多触发1次，对车/塔无效。每发扣普通弹，不扣虚构技能库存，不穿墙。移动/压制/改向取消；收枪2秒；冷却8秒从结束计。"
+      },
+      "passive": {
+        "name": "定置支撑",
+        "description": "普通G315也必须架设3秒、收枪2秒，移动禁射，机枪手携P315各1把且不能同时开火。护甲仅×0.72人员承伤，不视为车辆或盾牌；不额外方向免疫。"
+      },
+      "reference_images": [
+        11,
+        13
+      ],
+      "secondary_loadout": {
+        "primary_weapon": "G315",
+        "secondary_weapon": "P315",
+        "bodies_per_company": 2
+      }
+    },
+    {
+      "id": "MCP-316",
+      "name": "栖禾",
+      "designation": "第316战地撤运营",
+      "company_count": 3,
+      "bodies_per_company": 6,
+      "total_bodies": 18,
+      "body_stats": {
+        "baseline_hp": 90.0,
+        "health_scale": 4,
+        "hp": 360,
+        "personnel_damage_multiplier": 0.94,
+        "speed_m_s": 82,
+        "vision_m": 1300
+      },
+      "loadout": {
+        "C316": 6
+      },
+      "transport": {
+        "kind": "ordinary_landing_craft",
+        "per_company": 1,
+        "personnel_capacity": 6,
+        "rule": "复用当前已发布普通艇数据；合法沙岸卸载；船体与身体独立；不因立绘绳索获得登舰功能"
+      },
+      "role": "维持后撤通路、把尚存活重伤身体送回艇位",
+      "counters": "两人担架组不能射击；搬运慢、额外占舱；不复活、不补血",
+      "active": {
+        "name": "担架撤运",
+        "charges_per_company": null,
+        "cooldown_s": 0,
+        "range_m": 12,
+        "description": "每连最多2副担架，每副占本人2名搬运身体；只选本席已知、HP>0且≤自身最大HP25%的友军人员。两搬运员到目标12米内准备3秒，目标停止射击/自行移动，位置由真实担架锚点连续更新，以36米/秒沿合法地面通路撤运。三身体都有独立HP与碰撞，搬运不提供无敌或减伤；任一搬运员倒下原地放下，另一人不得瞬移回队。不搬运坐骑/车辆。治疗超过25%后可原地放下；死亡记死亡不能登艇冒充回收。艇上按三真实身体占3位，患者仍归原unit/company，结算只计一次，身体与担架/载舰状态随存读保留。"
+      },
+      "passive": {
+        "name": "撤离分工",
+        "description": "托管先找可达安全会合点与真实空艇位，再指派担架组，其余两名警戒。没有可达路线/空位则给公开原因等待；不免费生成艇或突破普通艇岸型。不同于052的生命恢复和116保障增益；本单位只改变运输状态。"
+      },
+      "reference_images": [
+        5,
+        6,
+        9,
+        12,
+        15
+      ]
+    }
+  ],
+  "blockers": [
+    "未写原核目录、招募、账户、教学或战斗代码",
+    "连续登临甲板锚点/绳路/动态中断与死亡处理",
+    "三维烟体视线与风场及双方对称",
+    "持续光学扇区与公开接触时间戳",
+    "压制去重与枪械架设/转向/存读",
+    "跨连患者归属/担架碰撞/艇位/回收结算",
+    "新720m地理全兵种统一速度、射程、战斗时长预算",
+    "具体枪型图与岗位动作SD未生成；立绘代表主岗位而非全连武器表",
+    "native/WASM逐字节重演、两席真实对局、Godot/浏览器交互与多种子平衡待实施"
+  ]
+}

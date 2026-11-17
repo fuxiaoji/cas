@@ -1,0 +1,211 @@
+{
+  "scope": "Only static narrative/data integrity; no claim of real-play duration or engine completion.",
+  "chapters": [
+    {
+      "id": "chapter-01",
+      "nodes": 46,
+      "routes": 4,
+      "all_nodes_reachable": true,
+      "all_routes_complete": true,
+      "route_chinese_characters": [
+        8994,
+        9012
+      ],
+      "authored_chinese_characters": 9273,
+      "actions": 13,
+      "optional_actions": [
+        "v2c1-ranked",
+        "v2c1-team"
+      ],
+      "sha256": "eb75231becb11449f5355cd31ec8eae56634c1111e74b94cbdfd94cc76125b66"
+    },
+    {
+      "id": "chapter-02",
+      "nodes": 32,
+      "routes": 2,
+      "all_nodes_reachable": true,
+      "all_routes_complete": true,
+      "route_chinese_characters": [
+        7416,
+        7433
+      ],
+      "authored_chinese_characters": 7571,
+      "actions": 5,
+      "optional_actions": [],
+      "sha256": "4724baf1a4c8a662744b07348fd4771c4543e30c2f94e9d57cf251512c474dde"
+    },
+    {
+      "id": "chapter-03",
+      "nodes": 33,
+      "routes": 8,
+      "all_nodes_reachable": true,
+      "all_routes_complete": true,
+      "route_chinese_characters": [
+        7264,
+        7297
+      ],
+      "authored_chinese_characters": 7675,
+      "actions": 5,
+      "optional_actions": [],
+      "sha256": "dc4f79aa29730188e3010191c55e7ae17c3459abf351e7766889e971a52309bd"
+    }
+  ],
+  "asset_anchors": [
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-beacon",
+      "asset": "res://assets/story/canon-v2/c1-rescue.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-guarantor",
+      "asset": "res://assets/story/canon-v2/shinano-silhouette.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-borrowed-army",
+      "asset": "res://assets/story/canon-v2/shinano-silhouette.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-turtle-awake",
+      "asset": "res://assets/story/canon-v2/missouri_awakening.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/missouri_home.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/ship-form.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/ship-form.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/one-mind-crew.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/one-mind-crew.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/one-mind-crew.png"
+    },
+    {
+      "chapter": "chapter-01",
+      "node": "v2c1-rent",
+      "asset": "res://assets/story/canon-v2/one-mind-crew.png"
+    },
+    {
+      "chapter": "chapter-02",
+      "node": "v2c2-oil-book",
+      "asset": "res://assets/story/canon-v2/missouri_home.png"
+    },
+    {
+      "chapter": "chapter-02",
+      "node": "v2c2-south-quay",
+      "asset": "res://assets/story/canon-v2/c2-waterline.png"
+    },
+    {
+      "chapter": "chapter-02",
+      "node": "v2c2-second-cup",
+      "asset": "res://assets/story/canon-v2/c2-waterline.png"
+    },
+    {
+      "chapter": "chapter-02",
+      "node": "v2c2-rent-night",
+      "asset": "res://assets/story/canon-v2/missouri_home.png"
+    },
+    {
+      "chapter": "chapter-03",
+      "node": "v2c3-white-gate",
+      "asset": "res://assets/story/canon-v2/c3-white-tower.png"
+    },
+    {
+      "chapter": "chapter-03",
+      "node": "v2c3-many-hands",
+      "asset": "res://assets/story/canon-v2/one-mind-tactical.png"
+    }
+  ],
+  "protocol_paths": [
+    {
+      "choices": {
+        "v2c1-protocol-choice": "keep"
+      },
+      "events": [
+        "recovered",
+        "alliance",
+        "returned",
+        "bound"
+      ],
+      "bound_once": true
+    },
+    {
+      "choices": {
+        "v2c1-protocol-choice": "keep"
+      },
+      "events": [
+        "recovered",
+        "alliance",
+        "returned",
+        "bound"
+      ],
+      "bound_once": true
+    },
+    {
+      "choices": {
+        "v2c1-protocol-choice": "exchange"
+      },
+      "events": [
+        "recovered",
+        "alliance",
+        "returned",
+        "bound"
+      ],
+      "bound_once": true
+    },
+    {
+      "choices": {
+        "v2c1-protocol-choice": "exchange"
+      },
+      "events": [
+        "recovered",
+        "alliance",
+        "returned",
+        "bound"
+      ],
+      "bound_once": true
+    }
+  ],
+  "warnings": [
+    "Four-CA reinforcement, CA-class monster and Missouri fire are cutscene scope, not a newly implemented native battle.",
+    "New launches explicitly request canon-missions-v3; native task tests, escort behavior and current-mechanic completion are audited separately by the engine integration owner. Existing saved older missions keep their snapshot/version.",
+    "Reader word counts include all alternate branches; route ranges count a single path and include conditional callback lines before filtering.",
+    "No real elapsed one-hour claim. Runtime and native receipt tests are tracked separately by the integration owner."
+  ],
+  "new_illustration_bindings": {
+    "missouri_form_and_crew": "v2c1-rent (after personal name reveal)",
+    "tactical_identity": "MCP-011 / v2c3-many-hands",
+    "early_harbor_spoiler": false,
+    "actions_or_rewards_added": false
+  },
+  "opening_and_lore": {
+    "first_person_entry": "v2c1-drifting",
+    "jintsu_rescue": true,
+    "warning_voice_distinct_from_fsm": true,
+    "chapters_have_separate_lore_clues": true,
+    "claims_endgame_explanation_confirmed": false,
+    "new_mission_profile": "canon-missions-v3",
+    "actual_cargo_place_required": true
+  }
+}

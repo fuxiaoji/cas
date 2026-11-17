@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/home_replay_controls.gd" id="1"]
+
+[node name="HomeReplayControls" type="PanelContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -118.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
+
+[node name="Column" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Row" type="HBoxContainer" parent="Margin/Column"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Margin/Column/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "岛屿攻防录像 · 本地演练"
+text_overrun_behavior = 3
+
+[node name="Time" type="Label" parent="Margin/Column/Row"]
+layout_mode = 2
+text = "00:00 / 00:00"
+
+[node name="Play" type="Button" parent="Margin/Column/Row"]
+custom_minimum_size = Vector2(72,42)
+layout_mode = 2
+text = "播放"
+
+[node name="Seek" type="HSlider" parent="Margin/Column"]
+custom_minimum_size = Vector2(0,30)
+layout_mode = 2
+step = 0.1

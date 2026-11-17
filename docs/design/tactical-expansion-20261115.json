@@ -1,0 +1,68 @@
+{
+  "version": "tactical-expansion-art-v1",
+  "status": "art_and_design_only_not_runtime",
+  "profiles": [
+    {
+      "id": "MCP-301",
+      "name": "榛穗",
+      "role": "海岸步枪团",
+      "companies": 4,
+      "bodies": 8,
+      "ref": 0,
+      "identity": "warm chestnut medium hair in a loose side braid, amber eyes, gentle confident smile. Cocoa-brown hooded hip-length field coat, pale cream and muted plaid scarf TUCKED securely into chest harness, ivory full-finger gloves, dark brown pleated knee-length skirt over opaque charcoal tights, lace-up brown ankle combat boots. Small cream hair clip shaped as two grains.",
+      "gear": "compact olive plate carrier worn OVER coat, three rifle magazines, compact radio and headset, sealed brown satchel, compact original assault rifle held safely at low ready",
+      "tactic": "6步枪、1轻机枪、1射手步枪；中距离交替掩护",
+      "weakness": "近距爆发一般、缺乏重反甲"
+    },
+    {
+      "id": "MCP-302",
+      "name": "雪栀",
+      "role": "重装登陆营",
+      "companies": 3,
+      "bodies": 8,
+      "ref": 1,
+      "identity": "soft silver-white bob haircut, teal eyes, cheerful determined smile, small navy beret. Ivory quilted short field jacket, navy inner layers, charcoal and navy plaid knee-length pleated skirt over opaque dark grey tights, light grey knitted gaiter-like boot cuffs over BLACK reinforced lace-up combat boots, dark navy full-finger gloves.",
+      "gear": "compact heavier slate-blue plate carrier OVER jacket with soft neck guard and shoulder pads, limited magazine pouches, knee protection, radio, compact original light machine gun held low ready; no ballistic shield",
+      "tactic": "6步枪、2轻机枪；重护具、慢推进、建立滩头",
+      "weakness": "转移慢、怕炮击与侧袭"
+    },
+    {
+      "id": "MCP-303",
+      "name": "栗遥",
+      "role": "轻装机动步兵团",
+      "companies": 5,
+      "bodies": 6,
+      "ref": 4,
+      "identity": "short dark brown ponytail, bright green eyes, playful lively smile. Navy cropped aviator-style field jacket with narrow charcoal fleece collar, muted pale-blue collared shirt, grey navy plaid knee-length skirt over opaque grey tights, black grippy lace-up ankle boots, thin brown full-finger tactical gloves, slim slate headband.",
+      "gear": "lightweight low-profile magazine chest rig OVER jacket, small radio, waterproof crossbody dispatch bag secured close to body, compact original carbine with sling",
+      "tactic": "5卡宾枪、1轻机枪；多路侧翼与快速转移",
+      "weakness": "单连少、正面火力较弱"
+    },
+    {
+      "id": "MCP-304",
+      "name": "雾棠",
+      "role": "两栖轮式突击营",
+      "companies": 2,
+      "bodies": 6,
+      "ref": 2,
+      "identity": "long muted plum hair in a low bun with short curled side locks, violet eyes, calm friendly smile. Cream blouse with modest rounded collar under a cocoa-brown belted tactical pinafore dress, mid-calf A-line hem with functional side splits over opaque charcoal leggings, brown mid-height lace-up waterproof combat boots, ivory full-finger gloves. Subtle russet beret.",
+      "gear": "slim brown plate insert vest integrated OVER bodice, compact magazine pouches and secured utility belt, vehicle crew headset, clipped waterproof map case, compact original carbine held low ready. A dress-inspired functional outfit, complete and mobile.",
+      "tactic": "每连1辆两栖轮式战车、6身体；机炮压制步兵/轻甲，快速抢岸",
+      "weakness": "防护较轻、重反甲不足",
+      "vehicle": "low compact eight-wheeled amphibious infantry fighting vehicle, sea-green with ivory identification stripe and tiny rust accent, small single autocannon turret, TWO distinct rear waterjets, folded bow wave deflector, six passenger seats, independent equipment"
+    },
+    {
+      "id": "MCP-305",
+      "name": "霜岑",
+      "role": "两栖履带火力营",
+      "companies": 2,
+      "bodies": 6,
+      "ref": 5,
+      "identity": "long ash-blue hair in two low loose braids, soft blue eyes, reserved sweet expression. Ivory stand-collar knee-length weatherproof field coat with dark buttons and grey piping; small charcoal plaid skirt hem visible beneath coat; opaque grey tights, black reinforced ankle combat boots, grey full-finger gloves. Pale blue small hair ribbon.",
+      "gear": "slate compact tactical plate carrier OVER coat, vehicle crew headset, secured dark grey dispatch bag, compact magazine pouches, compact original carbine with sling. Neatly secured coat tails clear of mechanical parts.",
+      "tactic": "每连1辆两栖履带突击炮车、6身体；直射火炮支援，慢速破火点",
+      "weakness": "航渡慢、射速低、炮弹少、怕近身反甲",
+      "vehicle": "compact fully amphibious tracked assault gun, broad buoyant hull in slate-blue grey with ivory identification stripe, short low recoil single direct fire gun turret distinctly larger caliber than autocannon, rear waterjet outlets, folded bow wave deflector, six passenger seats, independent equipment"
+    }
+  ]
+}

@@ -1,0 +1,394 @@
+{
+  "version": "cas-combined-arms-art-v4",
+  "casualties": {
+    "MCP-034": {
+      "atlas": "res://assets/tactical/casualties/MCP-034-v4.png",
+      "size": [
+        2172,
+        724
+      ],
+      "columns": 3,
+      "rows": 1,
+      "frames": [
+        {
+          "region": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            23,
+            724,
+            724
+          ]
+        },
+        {
+          "region": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            1,
+            9,
+            720,
+            724
+          ]
+        },
+        {
+          "region": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            23,
+            716,
+            724
+          ]
+        }
+      ]
+    },
+    "MCP-001": {
+      "atlas": "res://assets/tactical/casualties/MCP-001-v4.png",
+      "size": [
+        2172,
+        724
+      ],
+      "columns": 3,
+      "rows": 1,
+      "frames": [
+        {
+          "region": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            15,
+            0,
+            724,
+            724
+          ]
+        },
+        {
+          "region": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            1,
+            0,
+            724,
+            724
+          ]
+        },
+        {
+          "region": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            21,
+            709,
+            724
+          ]
+        }
+      ]
+    },
+    "MCP-076": {
+      "atlas": "res://assets/tactical/casualties/MCP-076-v4.png",
+      "size": [
+        2172,
+        724
+      ],
+      "columns": 3,
+      "rows": 1,
+      "frames": [
+        {
+          "region": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            13,
+            724,
+            709
+          ]
+        },
+        {
+          "region": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            8,
+            724,
+            724
+          ]
+        },
+        {
+          "region": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            21,
+            706,
+            709
+          ]
+        }
+      ]
+    },
+    "MCP-009": {
+      "atlas": "res://assets/tactical/casualties/MCP-009-v4.png",
+      "size": [
+        2172,
+        724
+      ],
+      "columns": 3,
+      "rows": 1,
+      "frames": [
+        {
+          "region": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            0,
+            55,
+            724,
+            724
+          ]
+        },
+        {
+          "region": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            1,
+            21,
+            720,
+            708
+          ]
+        },
+        {
+          "region": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            1,
+            29,
+            710,
+            724
+          ]
+        }
+      ]
+    },
+    "MCP-022": {
+      "atlas": "res://assets/tactical/casualties/MCP-022-v4.png",
+      "size": [
+        2172,
+        724
+      ],
+      "columns": 3,
+      "rows": 1,
+      "frames": [
+        {
+          "region": [
+            0,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            55,
+            47,
+            724,
+            724
+          ]
+        },
+        {
+          "region": [
+            724,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            1,
+            17,
+            706,
+            710
+          ]
+        },
+        {
+          "region": [
+            1448,
+            0,
+            724,
+            724
+          ],
+          "alpha_bbox": [
+            1,
+            55,
+            678,
+            724
+          ]
+        }
+      ]
+    }
+  },
+  "land_enemies": {
+    "land_rust_crab": {
+      "atlas": "res://assets/tactical/enemies/land-enemies-v4.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "columns": 4,
+      "rows": 4,
+      "row": 0
+    },
+    "land_cult_sentinel": {
+      "atlas": "res://assets/tactical/enemies/land-enemies-v4.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "columns": 4,
+      "rows": 4,
+      "row": 1
+    },
+    "land_spore_hound": {
+      "atlas": "res://assets/tactical/enemies/land-enemies-v4.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "columns": 4,
+      "rows": 4,
+      "row": 2
+    },
+    "land_siege_drone": {
+      "atlas": "res://assets/tactical/enemies/land-enemies-v4.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "columns": 4,
+      "rows": 4,
+      "row": 3
+    }
+  },
+  "aircraft": {
+    "F4F": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 0,
+      "row": 0
+    },
+    "SBD": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 1,
+      "row": 0
+    },
+    "TBD": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 2,
+      "row": 0
+    },
+    "A6M2": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 3,
+      "row": 0
+    },
+    "D3A2": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 0,
+      "row": 1
+    },
+    "B5N2": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 1,
+      "row": 1
+    },
+    "support_helicopter": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 2,
+      "row": 1
+    },
+    "attack_helicopter": {
+      "atlas": "res://assets/tactical/aircraft/aircraft-v4.png",
+      "columns": 4,
+      "rows": 2,
+      "column": 3,
+      "row": 1
+    }
+  },
+  "ships": {
+    "CAS-H-USN-ENTERPRISE-1942": {
+      "atlas": "res://assets/ships/aviation-v4/CAS-H-USN-ENTERPRISE-1942.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "portrait": "res://assets/ships/aviation-v4/CAS-H-USN-ENTERPRISE-1942.png"
+    },
+    "CAS-H-IJN-SHOKAKU-1942": {
+      "atlas": "res://assets/ships/aviation-v4/CAS-H-IJN-SHOKAKU-1942.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "portrait": "res://assets/ships/aviation-v4/CAS-H-IJN-SHOKAKU-1942.png"
+    },
+    "CAS-O-LHA-RETURNLIGHT": {
+      "portrait": "res://assets/ships/aviation-v4/CAS-O-LHA-RETURNLIGHT.png"
+    },
+    "CAS-O-APV-TIDEBRIDGE": {
+      "portrait": "res://assets/ships/aviation-v4/CAS-O-APV-TIDEBRIDGE.png"
+    }
+  }
+}

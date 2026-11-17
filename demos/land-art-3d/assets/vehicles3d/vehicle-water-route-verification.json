@@ -1,0 +1,173 @@
+{
+	"after": [
+		{
+			"center_m": [
+				-24.0,
+				-86.0
+			],
+			"highest_bed_under_hull_m": -2.51548109322479,
+			"id": "cas_landing_craft",
+			"invalid_samples": 0,
+			"minimum_keel_clearance_m": 1.68171559694641,
+			"minimum_seaward_distance_proxy_m": 11.5447827067806,
+			"minimum_water_depth_m": 2.60548109322479,
+			"passed": true,
+			"radius_m": [
+				9.0,
+				5.0
+			],
+			"samples_per_phase": 55,
+			"total_body_samples": 39600,
+			"worst_phase_degrees": 173.0,
+			"worst_world_point": [
+				-34.0395660400391,
+				-78.1000442504883
+			]
+		},
+		{
+			"center_m": [
+				-56.0,
+				-112.0
+			],
+			"highest_bed_under_hull_m": -3.21810783933992,
+			"id": "cas_heavy_landing_craft",
+			"invalid_samples": 0,
+			"minimum_keel_clearance_m": 1.90680540105909,
+			"minimum_seaward_distance_proxy_m": 17.802385329668,
+			"minimum_water_depth_m": 3.30810783933992,
+			"passed": true,
+			"radius_m": [
+				13.0,
+				8.0
+			],
+			"samples_per_phase": 102,
+			"total_body_samples": 73440,
+			"worst_phase_degrees": 166.0,
+			"worst_world_point": [
+				-67.6129913330078,
+				-97.684455871582
+			]
+		},
+		{
+			"center_m": [
+				10.0,
+				-72.0
+			],
+			"highest_bed_under_hull_m": -3.77827610116739,
+			"id": "cas_fast_assault_boat",
+			"invalid_samples": 0,
+			"minimum_keel_clearance_m": 3.2812845809818,
+			"minimum_seaward_distance_proxy_m": 18.2956529150156,
+			"minimum_water_depth_m": 3.86827610116739,
+			"passed": true,
+			"radius_m": [
+				12.0,
+				7.0
+			],
+			"samples_per_phase": 28,
+			"total_body_samples": 20160,
+			"worst_phase_degrees": 161.0,
+			"worst_world_point": [
+				-0.71265983581543,
+				-65.3427200317383
+			]
+		}
+	],
+	"before": [
+		{
+			"center_m": [
+				-28.0,
+				-64.0
+			],
+			"highest_bed_under_hull_m": 1.3030154343593,
+			"id": "cas_landing_craft",
+			"invalid_samples": 32065,
+			"minimum_keel_clearance_m": -2.13678093063768,
+			"minimum_seaward_distance_proxy_m": -12.1943550527878,
+			"minimum_water_depth_m": -1.2130154343593,
+			"passed": false,
+			"radius_m": [
+				9.0,
+				5.0
+			],
+			"samples_per_phase": 55,
+			"total_body_samples": 39600,
+			"worst_phase_degrees": 173.0,
+			"worst_world_point": [
+				-38.0395660400391,
+				-56.100040435791
+			]
+		},
+		{
+			"center_m": [
+				-62.0,
+				-80.0
+			],
+			"highest_bed_under_hull_m": 12.7263775600596,
+			"id": "cas_heavy_landing_craft",
+			"invalid_samples": 62260,
+			"minimum_keel_clearance_m": -14.0376799983404,
+			"minimum_seaward_distance_proxy_m": -13.7905598750724,
+			"minimum_water_depth_m": -12.6363775600596,
+			"passed": false,
+			"radius_m": [
+				12.0,
+				6.0
+			],
+			"samples_per_phase": 102,
+			"total_body_samples": 73440,
+			"worst_phase_degrees": 194.5,
+			"worst_world_point": [
+				-82.3671646118164,
+				-72.6864852905273
+			]
+		},
+		{
+			"center_m": [
+				10.0,
+				-72.0
+			],
+			"highest_bed_under_hull_m": -3.77827610116739,
+			"id": "cas_fast_assault_boat",
+			"invalid_samples": 0,
+			"minimum_keel_clearance_m": 3.2812845809818,
+			"minimum_seaward_distance_proxy_m": 18.2956529150156,
+			"minimum_water_depth_m": 3.86827610116739,
+			"passed": true,
+			"radius_m": [
+				12.0,
+				7.0
+			],
+			"samples_per_phase": 28,
+			"total_body_samples": 20160,
+			"worst_phase_degrees": 161.0,
+			"worst_world_point": [
+				-0.71265983581543,
+				-65.3427200317383
+			]
+		}
+	],
+	"date": "2026-11-16",
+	"geography": {
+		"authority_scope": "visual_demo",
+		"axes": "Godot X east / Z north; production adapter must map core XY explicitly",
+		"bounds_m": [
+			-360.0,
+			-360.0,
+			360.0,
+			360.0
+		],
+		"note": "visual sample only; production landing/path/collision/AI not installed",
+		"seed": 714,
+		"units": "metres",
+		"version": "coastal-visual-demo-v2"
+	},
+	"geography_sha256": "3bd59a29621ccbf6f535dd4171ac8772bcf1b1aa8182f49083524cd40596171a",
+	"method": "Full 360-degree route, complete rest model AABB footprint (four corners and <=1.5m interior grid), 0.15m horizontal allowance, both source height_at and rendered terrain triangles. Conservative keel includes all bob/roll/pitch extrema independent of phase.",
+	"minimum_required_keel_clearance_m": 0.75,
+	"passed": true,
+	"phase_step_degrees": 0.5,
+	"phase_steps": 720,
+	"scope": "isolated art-demo routes, seed714; not production navigation authority",
+	"vehicles_module_sha256": "fc1b03b17941049d280cea95b89e1417cd809b38d0cb923e3c9608ddca118f56"
+}

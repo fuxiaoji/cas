@@ -12,3 +12,30 @@
 /desktop/bin/
 /desktop/obj/
 /target-acceptance/
+/godot/.godot/
+/godot/bin/
+/tools/npm-cache/
+/scripts/__pycache__/
+/tools/**/node_modules/
+/tools/**/build/
+/target-carrier/
+
+# Build outputs, installers and generated galleries (not published)
+/target-*/
+/output/
+/packages/
+/docs/art/
+/godot/assets/
+/tools/blender-runtime/
+/tools/godot-mcp-runtime/
+/tools/spine-reference/
+/tools/anthropic-skills/
+/tools/design-skills/
+/tools/gamedev-skills/
+/tools/godot-mcp/
+/demos/**/.godot/
+
+# Local scratch and Windows shortcuts
+/hello.py
+/test_hello.py
+*.lnk

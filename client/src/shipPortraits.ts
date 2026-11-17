@@ -4,9 +4,10 @@ import identityLedger from './assets/portraits/all/ledger.json';
 // The authoritative ledger binds one portrait to each IBS-U-* catalogue
 // identity.  The 167 identities whose 700x1050 WebP was already pinned for the
 // free-economy pool reuse that file; the other 43 are 512x768 WebPs in
-// assets/portraits/all.  Class representatives are only a fallback for slots
-// that carry no identity at all (the four local-recruit hulls and historical
-// class cards); they never stand in for a named ship.
+// assets/portraits/all.  Class representatives are the registered fallback for
+// a slot with no identity and, when a catalogued identity has no ledger row,
+// the last resort before an explicit "no portrait" placeholder.  Unknown
+// classes never borrow an unrelated ship.
 //
 // Only the four registered class-representative PNGs are imported.  The older
 // named battle PNGs stay in the ledger as provenance but are no longer loaded
@@ -75,12 +76,15 @@ function pinnedIdentity(name: string) {
 
 /**
  * Battle / formation resolver.  A supplied character id is authoritative: the
- * identity's own art is returned, or nothing if that identity has no ledger
- * row.  It never falls through to a same-class girl.  The class representative
- * is used only when no identity is supplied at all (historical class cards).
+ * identity's own art is returned.  If that identity has no ledger row, the
+ * registered class representative may stand in (marked `representative`) so a
+ * named hull never renders as an unexplained blank; an unknown class still
+ * returns undefined and the caller must show its explicit placeholder.
  */
 export function shipPortrait(classId?: string, characterId?: string): ShipPortrait | undefined {
-  if (characterId) return identityArt(identityById.get(characterId));
+  if (characterId) {
+    return identityArt(identityById.get(characterId)) ?? classArt(classId);
+  }
   return classArt(classId);
 }
 

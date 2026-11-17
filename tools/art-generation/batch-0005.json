@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-11",
+  "generator": "built-in imagegen",
+  "jobs": [
+    {
+      "identity": "IBS-U-USN-VINCENNES",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-f696cd45-301b-48ce-93bf-e714b41969ac.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite, CAS 文森斯 IBS-U-USN-VINCENNES. FIRST image=identity only: preserve light blonde hair in short side coils and small braids, actual tan cat ears and slim tan tail from CAS portrait, turquoise eyes, little gold/blue round hair jewel and burgundy ribbons, rust-red bolero over cream dress, broad ivory waist bow and brown boots; small navy book with gold anchor. SECOND image=Fletcher SD STYLE ONLY, no identity transfer. Full two-head-tall character, head55–60% of total height, tiny torso, very short limbs/stubby boots; clean dark outlines, flat cel colors, only one shadow tone, very sparse tiny detail, front three-quarter standing facing slightly right. Original hair/eye/costume palette, actual head traits and small held object must match input1. Compact grey CA hip turrets, whole head/feet/accessories visible, small alpha margin, readable at80px. Real transparent background, no floor/scenery/shadow/labels/text/watermark/frame/extra characters. Avoid tall anatomy,long limbs,3D,painterly gradients,dense lace/chain/gun detail.",
+      "identity_features": [
+        "light blonde hair in short side coils and small braids, actual tan cat ears and slim tan tail from CAS portrait, turquoise eyes, little gold/blue round hair jewel and burgundy ribbons, rust-red bolero over cream dress, broad ivory waist bow and brown boots; small navy book with gold anchor"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-NEW-ORLEANS",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-0f7fb69c-0d99-47fe-9bcb-3b45150d38e9.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite, CAS 新奥尔良 IBS-U-USN-NEW-ORLEANS. FIRST image=identity only: preserve short tightly curly plum-purple bob, violet eyes, small tilted navy sailor pillbox cap with cream flower and blue/ivory ribbons, deep navy cape and naval dress with pale blue geometric hem/trim, little gold shoulder cord and ivory boots; small brass hinged compass. SECOND image=Fletcher SD STYLE ONLY, no identity transfer. Full two-head-tall character, head55–60% of total height, tiny torso, very short limbs/stubby boots; clean dark outlines, flat cel colors, only one shadow tone, very sparse tiny detail, front three-quarter standing facing slightly right. Original hair/eye/costume palette, actual head traits and small held object must match input1. Compact grey CA hip turrets, whole head/feet/accessories visible, small alpha margin, readable at80px. Real transparent background, no floor/scenery/shadow/labels/text/watermark/frame/extra characters. Avoid tall anatomy,long limbs,3D,painterly gradients,dense lace/chain/gun detail.",
+      "identity_features": [
+        "short tightly curly plum-purple bob, violet eyes, small tilted navy sailor pillbox cap with cream flower and blue/ivory ribbons, deep navy cape and naval dress with pale blue geometric hem/trim, little gold shoulder cord and ivory boots; small brass hinged compass"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-SAN-FRANCISCO",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-059624b9-57fa-4cb4-b3bb-966f5241b959.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite, CAS 旧金山 IBS-U-USN-SAN-FRANCISCO. FIRST image=identity only: preserve short wavy brown bob, amber eyes, distinctive tiny gold suspension-bridge hairpin, ivory sailor cape/coat with orange-brown striped neck scarf over brick-red skirt, brown gloves and dark boots; little brass lantern. SECOND image=Fletcher SD STYLE ONLY, no identity transfer. Full two-head-tall character, head55–60% of total height, tiny torso, very short limbs/stubby boots; clean dark outlines, flat cel colors, only one shadow tone, very sparse tiny detail, front three-quarter standing facing slightly right. Original hair/eye/costume palette, actual head traits and small held object must match input1. Compact grey CA hip turrets, whole head/feet/accessories visible, small alpha margin, readable at80px. Real transparent background, no floor/scenery/shadow/labels/text/watermark/frame/extra characters. Avoid tall anatomy,long limbs,3D,painterly gradients,dense lace/chain/gun detail.",
+      "identity_features": [
+        "short wavy brown bob, amber eyes, distinctive tiny gold suspension-bridge hairpin, ivory sailor cape/coat with orange-brown striped neck scarf over brick-red skirt, brown gloves and dark boots; little brass lantern"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-QUINCY",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-a10ade2c-5acf-4c37-b1f8-23af6e18d54c.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite, CAS 昆西 IBS-U-USN-QUINCY. FIRST image=identity only: preserve short blue-teal bob, violet eyes, small oval gold-and-blue hairpin and ivory ribbon, ivory gold-trim officer coat over navy dress with pale hem stripe, white stockings and navy shoes; small coil of tan rope in one hand. SECOND image=Fletcher SD STYLE ONLY, no identity transfer. Full two-head-tall character, head55–60% of total height, tiny torso, very short limbs/stubby boots; clean dark outlines, flat cel colors, only one shadow tone, very sparse tiny detail, front three-quarter standing facing slightly right. Original hair/eye/costume palette, actual head traits and small held object must match input1. Compact grey CA hip turrets, whole head/feet/accessories visible, small alpha margin, readable at80px. Real transparent background, no floor/scenery/shadow/labels/text/watermark/frame/extra characters. Avoid tall anatomy,long limbs,3D,painterly gradients,dense lace/chain/gun detail.",
+      "identity_features": [
+        "short blue-teal bob, violet eyes, small oval gold-and-blue hairpin and ivory ribbon, ivory gold-trim officer coat over navy dress with pale hem stripe, white stockings and navy shoes; small coil of tan rope in one hand"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-MINNEAPOLIS",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-68672829-0192-4d42-a684-56ef41f0cbc5.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite, CAS 明尼阿波里斯 IBS-U-USN-MINNEAPOLIS. FIRST image=identity only: preserve dark near-black hair in braided low updo with navy ribbon and silver wheel ornament, cool grey-green eyes, navy silver-trim officer jacket and skirt, pale sage diagonal sash, white gloves and dark boots; hold a small cream map/chart and point at it. SECOND image=Fletcher SD STYLE ONLY, no identity transfer. Full two-head-tall character, head55–60% of total height, tiny torso, very short limbs/stubby boots; clean dark outlines, flat cel colors, only one shadow tone, very sparse tiny detail, front three-quarter standing facing slightly right. Original hair/eye/costume palette, actual head traits and small held object must match input1. Compact grey CA hip turrets, whole head/feet/accessories visible, small alpha margin, readable at80px. Real transparent background, no floor/scenery/shadow/labels/text/watermark/frame/extra characters. Avoid tall anatomy,long limbs,3D,painterly gradients,dense lace/chain/gun detail.",
+      "identity_features": [
+        "dark near-black hair in braided low updo with navy ribbon and silver wheel ornament, cool grey-green eyes, navy silver-trim officer jacket and skirt, pale sage diagonal sash, white gloves and dark boots; hold a small cream map/chart and point at it"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-UNNAMED-T01-R20",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-f9f542b4-90a1-4971-8289-5f5b02e720bf.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD game sprite, CAS 波特兰 IBS-U-USN-UNNAMED-T01-R20. FIRST image=identity only: preserve long snowy-white hair in one thick side braid, turquoise eyes, actual large white rabbit-ear headband and little cream flowers/green ribbon from CAS portrait, dark green fur-collared jacket, cream blouse, short brown plaid skirt and brown boots; small open brass compass. SECOND image=Fletcher SD STYLE ONLY, no identity transfer. Full two-head-tall character, head55–60% of total height, tiny torso, very short limbs/stubby boots; clean dark outlines, flat cel colors, only one shadow tone, very sparse tiny detail, front three-quarter standing facing slightly right. Original hair/eye/costume palette, actual head traits and small held object must match input1. Compact grey CA hip turrets, whole head/feet/accessories visible, small alpha margin, readable at80px. Real transparent background, no floor/scenery/shadow/labels/text/watermark/frame/extra characters. Avoid tall anatomy,long limbs,3D,painterly gradients,dense lace/chain/gun detail.",
+      "identity_features": [
+        "long snowy-white hair in one thick side braid, turquoise eyes, actual large white rabbit-ear headband and little cream flowers/green ribbon from CAS portrait, dark green fur-collared jacket, cream blouse, short brown plaid skirt and brown boots; small open brass compass"
+      ]
+    }
+  ]
+}

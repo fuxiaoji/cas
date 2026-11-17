@@ -1,0 +1,1098 @@
+{
+  "version": "tactical-vehicles-v3",
+  "orientation": "N=up/E=right/S=down/W=left; heading north zero clockwise; TL/TR/BL/BR",
+  "vehicles": {
+    "self_propelled_gun": {
+      "atlas": "res://assets/tactical/vehicles-v3/self_propelled_gun.png",
+      "frames": {
+        "N": {
+          "region": [
+            207,
+            16,
+            215,
+            565
+          ],
+          "anchor": [
+            106.859,
+            340.907
+          ],
+          "scale_reference": 541,
+          "alpha_bbox_128": [
+            12,
+            12,
+            203,
+            553
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            629,
+            218,
+            591,
+            226
+          ],
+          "anchor": [
+            226.898,
+            112.958
+          ],
+          "scale_reference": 567,
+          "alpha_bbox_128": [
+            12,
+            12,
+            579,
+            214
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            207,
+            640,
+            215,
+            581
+          ],
+          "anchor": [
+            107.0,
+            227.03
+          ],
+          "scale_reference": 557,
+          "alpha_bbox_128": [
+            12,
+            12,
+            203,
+            569
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            626,
+            809,
+            586,
+            226
+          ],
+          "anchor": [
+            359.185,
+            112.726
+          ],
+          "scale_reference": 562,
+          "alpha_bbox_128": [
+            12,
+            12,
+            574,
+            214
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 10.5,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/self_propelled_gun.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "95da556a1093ba7925e904225379799929424226efddec15ecc029915b5ce3a5",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "kayak": {
+      "atlas": "res://assets/tactical/vehicles-v3/kayak.png",
+      "frames": {
+        "N": {
+          "region": [
+            211,
+            3,
+            206,
+            596
+          ],
+          "anchor": [
+            102.419,
+            310.235
+          ],
+          "scale_reference": 572,
+          "alpha_bbox_128": [
+            12,
+            12,
+            194,
+            584
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            614,
+            216,
+            602,
+            199
+          ],
+          "anchor": [
+            287.191,
+            98.79
+          ],
+          "scale_reference": 578,
+          "alpha_bbox_128": [
+            12,
+            12,
+            590,
+            187
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            211,
+            645,
+            206,
+            599
+          ],
+          "anchor": [
+            102.311,
+            286.802
+          ],
+          "scale_reference": 575,
+          "alpha_bbox_128": [
+            12,
+            12,
+            194,
+            587
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            622,
+            836,
+            605,
+            202
+          ],
+          "anchor": [
+            314.391,
+            99.971
+          ],
+          "scale_reference": 581,
+          "alpha_bbox_128": [
+            12,
+            12,
+            593,
+            190
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 4.2,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/kayak.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "8fac4902a7033f7d80e4eb986aea5fad7eaeea18d888359a4eca687fe851193c",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "landing_craft": {
+      "atlas": "res://assets/tactical/vehicles-v3/landing_craft.png",
+      "frames": {
+        "N": {
+          "region": [
+            190,
+            32,
+            249,
+            574
+          ],
+          "anchor": [
+            123.765,
+            279.748
+          ],
+          "scale_reference": 550,
+          "alpha_bbox_128": [
+            12,
+            12,
+            237,
+            562
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            638,
+            195,
+            588,
+            263
+          ],
+          "anchor": [
+            300.164,
+            138.33
+          ],
+          "scale_reference": 564,
+          "alpha_bbox_128": [
+            12,
+            12,
+            576,
+            251
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            187,
+            649,
+            252,
+            574
+          ],
+          "anchor": [
+            125.53,
+            294.427
+          ],
+          "scale_reference": 550,
+          "alpha_bbox_128": [
+            12,
+            12,
+            240,
+            562
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            644,
+            804,
+            589,
+            247
+          ],
+          "anchor": [
+            286.52,
+            124.032
+          ],
+          "scale_reference": 565,
+          "alpha_bbox_128": [
+            12,
+            12,
+            577,
+            235
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 12.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/landing_craft.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "b8f42f967f922f060edc2f40a78b1b54017de088c015d8772384366f0369cb7c",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "armored_boat": {
+      "atlas": "res://assets/tactical/vehicles-v3/armored_boat.png",
+      "frames": {
+        "N": {
+          "region": [
+            175,
+            25,
+            275,
+            569
+          ],
+          "anchor": [
+            137.1,
+            298.787
+          ],
+          "scale_reference": 545,
+          "alpha_bbox_128": [
+            12,
+            12,
+            263,
+            557
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            652,
+            191,
+            556,
+            265
+          ],
+          "anchor": [
+            264.239,
+            132.352
+          ],
+          "scale_reference": 532,
+          "alpha_bbox_128": [
+            12,
+            12,
+            544,
+            253
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            176,
+            647,
+            274,
+            566
+          ],
+          "anchor": [
+            136.698,
+            267.757
+          ],
+          "scale_reference": 542,
+          "alpha_bbox_128": [
+            12,
+            12,
+            262,
+            554
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            654,
+            789,
+            566,
+            272
+          ],
+          "anchor": [
+            298.911,
+            136.404
+          ],
+          "scale_reference": 542,
+          "alpha_bbox_128": [
+            12,
+            12,
+            554,
+            260
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 11.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/armored_boat.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "b6d845c0ca63a23d8076e9ba5aebfe1d15c1717047d4453f02a8fc35f74941ca",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "heavy_lander": {
+      "atlas": "res://assets/tactical/vehicles-v3/heavy_lander.png",
+      "frames": {
+        "N": {
+          "region": [
+            148,
+            26,
+            332,
+            576
+          ],
+          "anchor": [
+            165.364,
+            282.134
+          ],
+          "scale_reference": 552,
+          "alpha_bbox_128": [
+            12,
+            12,
+            320,
+            564
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            625,
+            145,
+            603,
+            337
+          ],
+          "anchor": [
+            306.589,
+            168.502
+          ],
+          "scale_reference": 579,
+          "alpha_bbox_128": [
+            12,
+            12,
+            591,
+            325
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            148,
+            652,
+            331,
+            571
+          ],
+          "anchor": [
+            164.961,
+            291.434
+          ],
+          "scale_reference": 547,
+          "alpha_bbox_128": [
+            12,
+            12,
+            319,
+            559
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            644,
+            772,
+            602,
+            335
+          ],
+          "anchor": [
+            294.566,
+            167.681
+          ],
+          "scale_reference": 578,
+          "alpha_bbox_128": [
+            12,
+            12,
+            590,
+            323
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 24.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/heavy_lander.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "ee23a043b16a6049aef22298ff1df25ac0fc1119d6e70f9b252fdd096dc2f7cb",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "amphibious_vehicle": {
+      "atlas": "res://assets/tactical/vehicles-v3/amphibious_vehicle.png",
+      "frames": {
+        "N": {
+          "region": [
+            173,
+            9,
+            284,
+            582
+          ],
+          "anchor": [
+            141.246,
+            303.602
+          ],
+          "scale_reference": 558,
+          "alpha_bbox_128": [
+            12,
+            12,
+            272,
+            570
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            639,
+            188,
+            599,
+            273
+          ],
+          "anchor": [
+            287.004,
+            135.879
+          ],
+          "scale_reference": 575,
+          "alpha_bbox_128": [
+            12,
+            12,
+            587,
+            261
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            170,
+            648,
+            288,
+            587
+          ],
+          "anchor": [
+            142.985,
+            280.606
+          ],
+          "scale_reference": 563,
+          "alpha_bbox_128": [
+            12,
+            12,
+            276,
+            575
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            617,
+            787,
+            616,
+            280
+          ],
+          "anchor": [
+            320.013,
+            139.177
+          ],
+          "scale_reference": 592,
+          "alpha_bbox_128": [
+            12,
+            12,
+            604,
+            268
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 8.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/amphibious_vehicle.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "8680b7fe3a3a71fb87d2563ef19f627afcedc7ca55a5518e5a2c47e56043d790",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "attack_helicopter": {
+      "atlas": "res://assets/tactical/vehicles-v3/attack_helicopter.png",
+      "frames": {
+        "N": {
+          "region": [
+            139,
+            23,
+            348,
+            577
+          ],
+          "anchor": [
+            174.547,
+            262.653
+          ],
+          "scale_reference": 553,
+          "alpha_bbox_128": [
+            12,
+            12,
+            336,
+            565
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            627,
+            121,
+            570,
+            351
+          ],
+          "anchor": [
+            299.716,
+            174.475
+          ],
+          "scale_reference": 546,
+          "alpha_bbox_128": [
+            12,
+            12,
+            558,
+            339
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            140,
+            642,
+            347,
+            581
+          ],
+          "anchor": [
+            173.02,
+            315.524
+          ],
+          "scale_reference": 557,
+          "alpha_bbox_128": [
+            12,
+            12,
+            335,
+            569
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            659,
+            747,
+            580,
+            356
+          ],
+          "anchor": [
+            277.366,
+            177.76
+          ],
+          "scale_reference": 556,
+          "alpha_bbox_128": [
+            12,
+            12,
+            568,
+            344
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 16.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/attack_helicopter.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "35fe52963b042f7b6792dfc74bf0155aa18b224bd35127d77f810ce94303c6a3",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "transport_helicopter": {
+      "atlas": "res://assets/tactical/vehicles-v3/transport_helicopter.png",
+      "frames": {
+        "N": {
+          "region": [
+            140,
+            18,
+            347,
+            605
+          ],
+          "anchor": [
+            173.216,
+            258.106
+          ],
+          "scale_reference": 581,
+          "alpha_bbox_128": [
+            12,
+            12,
+            335,
+            593
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            631,
+            94,
+            595,
+            362
+          ],
+          "anchor": [
+            330.912,
+            187.85
+          ],
+          "scale_reference": 571,
+          "alpha_bbox_128": [
+            12,
+            12,
+            583,
+            350
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            142,
+            628,
+            340,
+            601
+          ],
+          "anchor": [
+            172.48,
+            340.658
+          ],
+          "scale_reference": 577,
+          "alpha_bbox_128": [
+            12,
+            12,
+            328,
+            589
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            631,
+            770,
+            622,
+            350
+          ],
+          "anchor": [
+            264.486,
+            172.937
+          ],
+          "scale_reference": 598,
+          "alpha_bbox_128": [
+            12,
+            12,
+            610,
+            338
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 18.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/transport_helicopter.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "44f2e26c855ec03bf4fc9343f80c271035f4679edd5b1f987b4b6196ac97b1f2",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "tank": {
+      "atlas": "res://assets/tactical/vehicles-v3/tank.png",
+      "frames": {
+        "N": {
+          "region": [
+            143,
+            24,
+            344,
+            586
+          ],
+          "anchor": [
+            171.179,
+            323.588
+          ],
+          "scale_reference": 562,
+          "alpha_bbox_128": [
+            12,
+            12,
+            332,
+            574
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            629,
+            156,
+            591,
+            348
+          ],
+          "anchor": [
+            266.27,
+            173.808
+          ],
+          "scale_reference": 567,
+          "alpha_bbox_128": [
+            12,
+            12,
+            579,
+            336
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            143,
+            647,
+            344,
+            584
+          ],
+          "anchor": [
+            171.494,
+            260.488
+          ],
+          "scale_reference": 560,
+          "alpha_bbox_128": [
+            12,
+            12,
+            332,
+            572
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            591,
+            754,
+            598,
+            343
+          ],
+          "anchor": [
+            328.016,
+            171.141
+          ],
+          "scale_reference": 574,
+          "alpha_bbox_128": [
+            12,
+            12,
+            586,
+            331
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 9.5,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/tank.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "7eacb55010073c9c6f4a0b914f6e0e991cd3b7fbd6a3867ccfa9c56accffa582",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "fast_boat": {
+      "atlas": "res://assets/tactical/vehicles-v3/fast_boat.png",
+      "frames": {
+        "N": {
+          "region": [
+            189,
+            36,
+            250,
+            551
+          ],
+          "anchor": [
+            124.987,
+            294.496
+          ],
+          "scale_reference": 527,
+          "alpha_bbox_128": [
+            12,
+            12,
+            238,
+            539
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            631,
+            198,
+            575,
+            239
+          ],
+          "anchor": [
+            270.396,
+            119.067
+          ],
+          "scale_reference": 551,
+          "alpha_bbox_128": [
+            12,
+            12,
+            563,
+            227
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            188,
+            664,
+            253,
+            553
+          ],
+          "anchor": [
+            125.543,
+            256.386
+          ],
+          "scale_reference": 529,
+          "alpha_bbox_128": [
+            12,
+            12,
+            241,
+            541
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            634,
+            817,
+            579,
+            242
+          ],
+          "anchor": [
+            305.144,
+            119.773
+          ],
+          "scale_reference": 555,
+          "alpha_bbox_128": [
+            12,
+            12,
+            567,
+            230
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 7.2,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/fast_boat.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "8f98615545b03eba91f0eb8eb6e326808bf2b7371e130cdb4a3caec02bcf7332",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "transport_aircraft": {
+      "atlas": "res://assets/tactical/vehicles-v3/transport_aircraft.png",
+      "frames": {
+        "N": {
+          "region": [
+            19,
+            43,
+            589,
+            558
+          ],
+          "anchor": [
+            294.261,
+            276.58
+          ],
+          "scale_reference": 534,
+          "alpha_bbox_128": [
+            12,
+            12,
+            577,
+            546
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            655,
+            22,
+            563,
+            582
+          ],
+          "anchor": [
+            291.208,
+            290.54
+          ],
+          "scale_reference": 539,
+          "alpha_bbox_128": [
+            12,
+            12,
+            551,
+            570
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            19,
+            653,
+            589,
+            557
+          ],
+          "anchor": [
+            294.199,
+            280.639
+          ],
+          "scale_reference": 533,
+          "alpha_bbox_128": [
+            12,
+            12,
+            577,
+            545
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            663,
+            650,
+            562,
+            581
+          ],
+          "anchor": [
+            270.808,
+            289.449
+          ],
+          "scale_reference": 538,
+          "alpha_bbox_128": [
+            12,
+            12,
+            550,
+            569
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 25.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/transport_aircraft.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "41dfd5da35e53b527610bc517c48868b8764e693a3e8f82b6797cc936d7047cc",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    },
+    "aa_turret": {
+      "atlas": "res://assets/tactical/vehicles-v3/aa_turret.png",
+      "frames": {
+        "N": {
+          "region": [
+            118,
+            22,
+            391,
+            525
+          ],
+          "anchor": [
+            194.817,
+            310.063
+          ],
+          "scale_reference": 501,
+          "alpha_bbox_128": [
+            12,
+            12,
+            379,
+            513
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            705,
+            148,
+            513,
+            400
+          ],
+          "anchor": [
+            205.425,
+            195.633
+          ],
+          "scale_reference": 489,
+          "alpha_bbox_128": [
+            12,
+            12,
+            501,
+            388
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            118,
+            707,
+            390,
+            517
+          ],
+          "anchor": [
+            195.228,
+            211.056
+          ],
+          "scale_reference": 493,
+          "alpha_bbox_128": [
+            12,
+            12,
+            378,
+            505
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            625,
+            707,
+            512,
+            406
+          ],
+          "anchor": [
+            305.258,
+            202.8
+          ],
+          "scale_reference": 488,
+          "alpha_bbox_128": [
+            12,
+            12,
+            500,
+            394
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 6.0,
+      "source_record": "docs/art/tactical-vehicles-v3-20261115/aa_turret.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "f9a9692e1cd9728f1d06d29205e629fefa486bb54b535adcc834c04deeb4ed40",
+      "dimension_basis": "Nominal dimensions of original fictional equipment artwork, expressed in metres; not a historical ship or vehicle transcription."
+    }
+  }
+}

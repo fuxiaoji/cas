@@ -1,0 +1,13 @@
+{
+  "version": "cas-home-economy-v2",
+  "scope": "opt-in candidate orders; existing home production and historical rules remain unchanged",
+  "max_order_seconds": 28800,
+  "wallet_output_cap": 1000000000,
+  "recipes": [
+    {"id":"civilian_order","name":"民生后勤订单","facility_kinds":["recycler"],"future_facility_kind":"farm","seconds":600,"home_cost":{"scrap":4,"energy":2},"wallet_cost":{},"home_output":{"credits":20},"wallet_output":{},"description":"回收站承接居民订单，获得岛屿补给；这里的补给不是银币。"},
+    {"id":"port_trade","name":"浮材出口","facility_kinds":["dock"],"future_facility_kind":"trade_port","seconds":600,"home_cost":{"scrap":24,"energy":4},"wallet_cost":{},"home_output":{},"wallet_output":{"credits":120},"description":"预付浮材并安排一次商运，收益进入已有银币钱包。"},
+    {"id":"alloy_refining","name":"合金精炼订单","facility_kinds":["forge"],"future_facility_kind":"factory","seconds":900,"home_cost":{"scrap":30,"energy":10},"wallet_cost":{},"home_output":{"alloy":12},"wallet_output":{},"description":"使用额外回收原料进行精炼，与既有基础产线分别记账。"},
+    {"id":"navigation_record","name":"整理基础航海记录","facility_kinds":["hq"],"future_facility_kind":"training_ground","seconds":900,"home_cost":{"credits":60,"energy":12},"wallet_cost":{},"home_output":{},"wallet_output":{"materials":2},"description":"产出已有舰娘训练可消耗的基础航海记录，不是新的经验货币。"},
+    {"id":"core_restoration","name":"修复锈蚀突破核心","facility_kinds":["medical"],"future_facility_kind":"research","seconds":1800,"home_cost":{"alloy":45,"energy":25,"protocols":1},"wallet_cost":{},"home_output":{},"wallet_output":{"core_t1":1},"description":"消耗探索得到的协议片，修复既有舰娘突破所需的基础核心。"}
+  ]
+}

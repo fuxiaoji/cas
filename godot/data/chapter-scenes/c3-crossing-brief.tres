@@ -1,0 +1,387 @@
+[gd_resource type="Resource" script_class="CasChapterSceneVisual" load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://scripts/chapter_scene_resource.gd" id="1_scene"]
+
+[ext_resource type="Script" path="res://scripts/chapter_line_resource.gd" id="2_line"]
+
+[sub_resource type="Resource" id="Line_0"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="断桥像一把被水拗断的尺，只剩几截支柱标着从前的路。帕金斯在海图上标出能走的空当，你照着看过去，却觉得另一个缺口更宽。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_1"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="右边为什么不走？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_2"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="看起来宽，下面有半截桥面。吃水浅的能挤，后面的未必。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={}
+
+[sub_resource type="Resource" id="Line_3"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="我们今天不比谁最快。前面先过，后面就得有足够地方转，不要把全队塞在桥洞里等一轮攻击。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_4"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="听见回声别跟着转弯。有东西会在你已经掉头的时候喊第二次。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_5"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="你以前上过这个当？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_6"]
+
+script=ExtResource("2_line")
+
+speaker="drayton"
+
+speaker_name=""
+
+text="差一点。后来发现它每次都喊同样一句，连喘气的位置都没换。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_7"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你们一起听了一遍录音。那句“靠这边”很像人在用力招手，听第二遍才发现尾音被切得过于干净。你把它和拉姆森真正的呼叫放在一起，区别突然就明显了。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_8"]
+
+script=ExtResource("2_line")
+
+speaker="perkins"
+
+speaker_name=""
+
+text="看它身上的亮斑，越挤在一起，下一阵水就越近。先离开那些水纹，再还手。它停住也别立刻贴过去，可能只是换口气，等你靠近。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_9"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="如果我分不清哪个是你们？"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_10"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="看频道和位置。再不确定，就问一遍刚才的命令。我们会回完整的话，它只会把上一句还给你。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_11"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name=""
+
+text="你问弗莱彻，今天的第一条命令是什么。她没有嫌你多事，重复了一遍“不把全队塞在桥洞里”。德雷顿说自己记住了，声音里终于带一点笑。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_12"]
+
+script=ExtResource("2_line")
+
+speaker=""
+
+speaker_name="你"
+
+text="那就走中间这条。先过去的不要停在出口，给后面留路。"
+
+tone="calm"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[sub_resource type="Resource" id="Line_13"]
+
+script=ExtResource("2_line")
+
+speaker="fletcher"
+
+speaker_name=""
+
+text="第五队，按这条航路。潮痕，你和我们一起报位置。"
+
+tone="resolve"
+
+shot="wide"
+
+motion="none"
+
+text_effect="none"
+
+characters_per_second=34.0
+
+caption=""
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+actor_tones={"fletcher": "resolve"}
+
+[resource]
+
+script=ExtResource("1_scene")
+
+scene_id="c3-crossing-brief"
+
+background="res://assets/story/chapter3/storm.png"
+
+full_cg=false
+
+actors=Array[String](["perkins", "fletcher", "drayton"])
+
+music_scene="salvage"
+
+location="风暴灯塔 · 拂晓"
+
+lines=Array[ExtResource("2_line")]([SubResource("Line_0"), SubResource("Line_1"), SubResource("Line_2"), SubResource("Line_3"), SubResource("Line_4"), SubResource("Line_5"), SubResource("Line_6"), SubResource("Line_7"), SubResource("Line_8"), SubResource("Line_9"), SubResource("Line_10"), SubResource("Line_11"), SubResource("Line_12"), SubResource("Line_13")])

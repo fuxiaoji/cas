@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+const root=resolve(import.meta.dirname,'..'),out=resolve(root,'artifacts/adventure-core');await mkdir(out,{recursive:true});
+const native=process.env.CAS_ADVENTURE_NATIVE||resolve(root,'target/adventure-build/release/cas-sim.exe');
+const wasm=await readFile(resolve(root,'target/wasm32-unknown-unknown/release/cas_core.wasm'));
+const canonical=v=>JSON.stringify(v,(_,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.entries(x).sort(([a],[b])=>a.localeCompare(b,'en'))):x);
+const start=(difficulty='calm',environment='atoll')=>({content:'salvage-v4',gameplay_profile:'cas-adventure-v1',fleet:[{id:'IBS-U-USN-FLETCHER',hp:100,ammo:100,level:0}],mission:{kind:'salvage',id:difficulty,loot_kind:'scrap'},cargo_v4:{commander_level:1,difficulty,environment,weather:'clear',loadouts:{}}});
+const runNative=(path,requests)=>{const p=spawnSync(path,[],{input:requests.map(JSON.stringify).join('\n')+'\n',encoding:'utf8',maxBuffer:192*1024*1024});assert.equal(p.status,0,p.stderr);return p.stdout.trim().split(/\r?\n/).map(JSON.parse);};
+const results=[];
+async function verify(name,run){const {instance}=await WebAssembly.instantiate(wasm,{}),api=instance.exports,requests=[],responses=[];const enc=new TextEncoder(),dec=new TextDecoder();
+ const raw=q=>{requests.push(q);const bytes=enc.encode(JSON.stringify(q)),p=api.cas_alloc(bytes.length)>>>0;new Uint8Array(api.memory.buffer,p,bytes.length).set(bytes);const r=api.cas_request(p,bytes.length)>>>0;const a=JSON.parse(dec.decode(new Uint8Array(api.memory.buffer,r,api.cas_response_len()>>>0)));responses.push(a);return a;};
+ const ask=q=>{const r=raw(q);assert.equal(r.ok,true,`${name}: ${JSON.stringify(r)}`);return r.data;};
+ const details=run(ask,raw);assert.equal(canonical(runNative(native,requests)),canonical(responses),name+' native/WASM');
+ const result={name,nativeWasmEqual:true,requests:requests.length,...details};results.push(result);await writeFile(resolve(out,name+'-commands.json'),JSON.stringify(requests,null,2));console.log(JSON.stringify(result));}
+for(const environment of ['atoll','fractured','fjord','drowned_city'])for(const difficulty of ['calm','standard','hazard'])await verify(`${environment}-${difficulty}`,(ask)=>{
+ const q={op:'new_salvage',seed:43,start:start(difficulty,environment)};let v=ask(q);assert.equal(v.salvage.generatorVersion,'archipelago-adventure-1');assert.equal(v.salvage.adventure.movement_multiplier,10);assert.equal(v.salvage.adventure.acceleration_multiplier,6);
+ const shape=canonical(v.islands);assert.equal(canonical(ask(q).islands),shape);assert.notEqual(canonical(ask({...q,seed:44}).islands),shape);
+ v=ask(q);v=ask({op:'step',seconds:8});assert.ok(v.contacts.some(c=>c.health>0&&c.max_health>=c.health&&c.attack.counter));
+ const save=ask({op:'save'});assert.equal(save.salvage.gameplay_profile,'cas-adventure-v1');assert.equal(canonical(ask({op:'load',save})),canonical(v));assert.equal(canonical(ask({op:'replay',save})),canonical(v));
+ return {islands:v.islands.length,layout:v.salvage.adventure.terrain_layout,visibleMonsters:v.contacts.length,seedChangesTopology:true,saveReplay:true};
+});
+for(const id of ['c1-breakout','c1-salvage','c1-boss'])await verify(id,ask=>{let v=ask({op:'new_chapter',id,seed:6109,gameplay_profile:'cas-adventure-v1'});const theme=v.salvage.terrainTheme;
+ for(let t=0;t<100&&v.salvage.telegraphs.length===0;t++)v=ask({op:'step',seconds:1});assert.ok(v.salvage.telegraphs.length>0);assert.ok(v.salvage.telegraphs.every(t=>['circle','capsule'].includes(t.shape)&&t.counter&&t.name));assert.ok(v.salvage.telegraphs.every(t=>t.impact_tick-t.start_tick<=8));
+ const save=ask({op:'save'});assert.equal(canonical(ask({op:'load',save})),canonical(v));assert.equal(canonical(ask({op:'replay',save})),canonical(v));return {theme,publicWarnings:v.salvage.telegraphs.map(t=>t.shape),saveReplay:true};});
+await verify('actual-loot-and-extraction',(ask,raw)=>{let v=ask({op:'new_salvage',seed:40,start:start()});const x=v.ships[0].x,y=v.ships[0].y;
+ ask({op:'route',fleet:1,mode:'follow',speed:6,points:[{x:x+400,y}]});v=ask({op:'step',seconds:8});assert.ok(v.ships[0].x-x>150);assert.equal(v.tick,8);
+ ask({op:'search_salvage',ruin:1});v=ask({op:'step',seconds:8});assert.equal(v.salvage.cargo_grid.items.length,4);
+ v=ask({op:'cargo_place',item:'v4-1-0',x:0,y:0,rotation:0});assert.equal(v.salvage.cargo.length,1);const before=canonical(v.salvage.cargo_grid);
+ assert.equal(raw({op:'cargo_place',item:'v4-1-1',x:0,y:0,rotation:0}).ok,false);assert.equal(canonical(ask({op:'observe'}).salvage.cargo_grid),before);
+ ask({op:'salvage_extract',exit:0});v=ask({op:'step',seconds:12});assert.equal(v.salvage.extracted,true);assert.equal(v.result.primary,true);assert.equal(canonical(ask({op:'replay',save:ask({op:'save'})})),canonical(v));return {tick:v.tick,realNavigation:true,actualLootItems:v.salvage.cargo.length,realExtraction:true};});
+await verify('invalid-profile-rejection',(ask,raw)=>{for(const edit of [{gameplay_profile:'future'},{content:'salvage-v3',cargo_v4:undefined},{mission:{kind:'resources',id:'silver',loot_kind:'scrap'}}])assert.equal(raw({op:'new_salvage',seed:42,start:{...start(),...edit}}).ok,false);return {invalidProfilesRejected:3};});
+const frozen=[];for(const content of ['salvage-v1','salvage-v2','salvage-v3','salvage-v4']){const s=content==='salvage-v4'?start():{content,fleet:[{id:'IBS-U-USN-FLETCHER',hp:100,ammo:100,level:1}]};delete s.gameplay_profile;frozen.push({op:'new_salvage',seed:40,start:s},{op:'route',fleet:1,mode:'follow',speed:6,points:[{x:4000,y:2200}]},{op:'step',seconds:10},{op:'save'});}
+for(const id of ['c1-breakout','c1-salvage','c1-boss'])frozen.push({op:'new_chapter',id,seed:6109},{op:'step',seconds:65},{op:'save'});
+frozen.push({op:'new_campaign',id:'CAMP-ALLIES-03',difficulty:'story',seed:6106},{op:'step',seconds:30},{op:'save'});
+const baseline=runNative(resolve(root,'target/adventure-baseline/cas-sim.exe'),frozen),current=runNative(native,frozen);assert.equal(canonical(current),canonical(baseline),'all old content and chapter/campaign observations+saves remain frozen');
+await writeFile(resolve(out,'frozen-commands.json'),JSON.stringify(frozen,null,2));
+const report={passed:results.length,oldV1V2V3V4ChapterCampaignFrozen:true,frozenRequests:frozen.length,frozenResponseSha256:createHash('sha256').update(canonical(current)).digest('hex'),baselineSha256:createHash('sha256').update(await readFile(resolve(root,'target/adventure-baseline/cas-sim.exe'))).digest('hex'),native,sha256:createHash('sha256').update(await readFile(native)).digest('hex'),wasmSha256:createHash('sha256').update(wasm).digest('hex'),results};await writeFile(resolve(out,'parity.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({passed:results.length,frozenRequests:frozen.length}));

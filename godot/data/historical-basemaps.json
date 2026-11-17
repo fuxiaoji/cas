@@ -1,0 +1,14 @@
+{
+  "version": "historical-satellite-v1",
+  "source": "Unmodified client/public/maps/ironbottom.jpg; ArcGIS World_Imagery z10, previously cached in artifacts/basemap",
+  "registration_source": "client/src/basemaps.ts and client/public/maps/manifest.json",
+  "texture": "res://assets/maps/ironbottom.jpg",
+  "bounds": {"lon_w":158.203125,"lon_e":161.015625,"lat_n":-8.059229627200187,"lat_s":-10.141931686131025},
+  "fields": {
+    "savo":{"lon_w":159.5834,"lat_origin":-9.417},
+    "esperance":{"lon_w":159.5894,"lat_origin":-9.3419},
+    "tassafaronga":{"lon_w":159.6902,"lat_origin":-9.3545}
+  },
+  "historical_variants":["savo","esperance","tassafaronga","kula-gulf-rts","empress","channel-action-rts","cape-st-george-rts"],
+  "unregistered_policy":"Use the original flat tactical chart. Never guess a geographic origin or substitute a different battlefield photograph."
+}

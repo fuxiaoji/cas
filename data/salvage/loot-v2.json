@@ -1,0 +1,22 @@
+{
+  "version":"expedition-loot-v2",
+  "source":"原创水世界搜打撤物品；非历史舰表。value为基础银币价格，风险按10/14/19乘后整除10。",
+  "items":[
+    {"id":"water_filter","kind":"scrap","name":"净水滤芯","shape":[[0,0],[1,0]],"kg":18,"value":160,"use":"sell"},
+    {"id":"copper_coil","kind":"alloy","name":"旧港铜线圈","shape":[[0,0],[1,0],[0,1],[1,1]],"kg":85,"value":240,"use":"sell"},
+    {"id":"cult_processor","kind":"scrap","name":"拜教推理芯片","shape":[[0,0]],"kg":12,"value":750,"use":"sell"},
+    {"id":"memory_core","kind":"command","name":"溺城记忆匣","shape":[[0,0],[0,1],[1,1]],"kg":10,"value":1200,"use":"sell"},
+    {"id":"medical_case","kind":"scrap","name":"防水医疗箱","shape":[[0,0],[1,0]],"kg":25,"value":390,"use":"sell"},
+    {"id":"old_camera","kind":"scrap","name":"旧世相机","shape":[[0,0],[0,1]],"kg":8,"value":280,"use":"sell"},
+    {"id":"porcelain","kind":"alloy","name":"完整瓷茶具","shape":[[0,0],[1,0],[0,1],[1,1]],"kg":35,"value":440,"use":"sell"},
+    {"id":"sealed_ledger","kind":"command","name":"战帮密封账册","shape":[[0,0]],"kg":3,"value":340,"use":"sell"},
+    {"id":"fuel_cell","kind":"scrap","name":"潮能电池","shape":[[0,0],[1,0],[2,0]],"kg":70,"value":620,"use":"sell"},
+    {"id":"turbine_rotor","kind":"alloy","name":"沉没电站转子","shape":[[0,0],[1,0],[2,0],[1,1]],"kg":150,"value":850,"use":"sell"},
+    {"id":"navigation_gyro","kind":"equipment","name":"精密航向仪","shape":[[0,0],[0,1],[1,1]],"kg":45,"value":980,"use":"sell"},
+    {"id":"ai_relic","kind":"command","name":"旧神谕运算棱镜","shape":[[0,0],[1,0],[2,0],[0,1],[2,1]],"kg":55,"value":2400,"use":"sell"},
+    {"id":"thermal_crystal","kind":"alloy","name":"热泉共鸣晶","shape":[[0,0],[0,1]],"kg":20,"value":1450,"use":"sell"},
+    {"id":"sealed_gear","kind":"equipment","name":"封存舰装箱","shape":[[0,0],[0,1],[1,1]],"kg":90,"value":1000,"use":"unpack"},
+    {"id":"crew_archive","kind":"command","name":"失踪水手档案","shape":[[0,0],[1,0],[2,0]],"kg":35,"value":900,"use":"unpack"},
+    {"id":"cult_banner","kind":"scrap","name":"旧世界祭潮织锦","shape":[[0,0],[1,0],[0,1],[1,1],[0,2],[1,2]],"kg":14,"value":2100,"use":"sell"}
+  ]
+}

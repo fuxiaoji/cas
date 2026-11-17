@@ -1,5 +1,6 @@
 use crate::{model::*, movement::fallback_leader, projectile::Shell, radar::{RadarState, RADAR_DRILL, RADAR_VERSION}};
 use serde_json::{json, Value};
+use std::collections::BTreeSet;
 use std::sync::OnceLock;
 use crate::campaign::{kula, live};
 
@@ -11,6 +12,16 @@ pub(crate) fn u(r: &Value, k: &str) -> E<u32> {
 }
 static DATA: OnceLock<Result<Data, String>> = OnceLock::new();
 pub struct World {
+    pub(crate) arena:Option<crate::arena::Start>,
+    pub(crate) fuel:Option<crate::fuel::Tank>,
+    pub(crate) intel_profile:String,
+    pub(crate) expedition:Option<crate::expedition::Run>,
+    pub(crate) amphibious_expedition:Option<crate::amphibious_expedition::Run>,
+    pub(crate) v4_gun_supply:Option<std::collections::BTreeMap<u32,u32>>,
+    pub(crate) ecology:Option<crate::salvage_v3::Ecology>,
+    pub(crate) owned_growth:Vec<crate::owned_growth::Stats>,
+    pub(crate) owned_practice:Vec<u32>,
+    pub(crate) salvage: Option<crate::salvage::Battle>,
     pub(crate) field: Field,
     pub(crate) campaign: Option<live::Start>,
     pub(crate) campaign_result: Option<crate::campaign::Outcome>,
@@ -32,6 +43,8 @@ pub struct World {
     pub fire_hold: [u32; 2],
     pub fire_hold_rolled: bool,
     pub shells: Vec<Shell>,
+    /// Optional, non-authoritative visual records; never serialized into Saved.
+    pub(crate) projectile_fx: crate::projectile_presentation::Presentation,
     pub version: &'static str,
     pub event_ids: [u32; 2],
     pub shell_ids: [u32; 2],
@@ -65,6 +78,9 @@ pub struct World {
     pub(crate) challenge_goal: Option<u32>,
     pub(crate) challenge_stage: Option<String>,
     pub(crate) challenge_label: Option<String>,
+    /// The exact five single-ship identities chosen for a local exercise.
+    /// Saved and replayed so `load`/`replay` rebuild the same fleet.
+    pub(crate) local_ships: Option<Vec<String>>,
 }
 impl World {
     pub(crate) fn exercise_data() -> E<&'static Data> {
@@ -77,8 +93,41 @@ impl World {
             .map_err(Clone::clone)
     }
 
+    /// Exercise cards plus the 202 registered single-ship identities. The
+    /// printed exercise hulls keep their ids and any collision keeps the
+    /// exercise card; the catalogue cards are only targets for an explicit
+    /// local fleet pick.
+    pub(crate) fn local_data() -> E<&'static Data> {
+        static LOCAL: OnceLock<Result<Data, String>> = OnceLock::new();
+        LOCAL
+            .get_or_init(|| {
+                let mut data = Self::exercise_data()?.clone();
+                crate::campaign::fleet::add_registered_cards(&mut data)?;
+                Ok(data)
+            })
+            .as_ref()
+            .map_err(Clone::clone)
+    }
+
+    /// Local exercises with a replaceable five-ship player fleet. Campaigns,
+    /// the challenge ladder, the prologue, the historical Empress exercise and
+    /// the fixed teaching drills keep their printed rosters.
+    pub(crate) fn supports_local_fleet(variant: &str) -> bool {
+        matches!(variant, "" | "night")
+    }
+
     pub(crate) fn blank(data: &'static Data, seed: u32, player: usize, enemy: &str, variant: &str, profile: &str, leader_slot: usize) -> Self {
         Self {
+            arena:None,
+            fuel:None,
+            intel_profile:String::new(),
+            ecology:None,
+            expedition:None,
+            amphibious_expedition:None,
+            v4_gun_supply:None,
+            owned_growth:vec![],
+            owned_practice:vec![],
+            salvage: None,
             field: Field::EXERCISE,
             campaign: None,
             campaign_result: None,
@@ -98,6 +147,7 @@ impl World {
             fire_hold: [0, 0],
             fire_hold_rolled: false,
             shells: vec![],
+            projectile_fx: Default::default(),
             version: match variant { RADAR_DRILL=>RADAR_VERSION,crate::illumination::TRAINING=>crate::illumination::VERSION,_=>VERSION },
             event_ids: [0, 0],
             shell_ids: [0, 0],
@@ -126,6 +176,7 @@ impl World {
             challenge_goal: None,
             challenge_stage: None,
             challenge_label: None,
+            local_ships: None,
         }
     }
 
@@ -146,7 +197,11 @@ impl World {
         if variant == crate::prologue::VARIANT {
             return crate::prologue::open(seed, player, enemy, profile, leader_slot);
         }
-        let data = Self::exercise_data()?;
+        let data = if variant == crate::empress::VARIANT {
+            Self::exercise_data()?
+        } else {
+            Self::local_data()?
+        };
         let mut w = Self::blank(data, seed, player, enemy, variant, profile, leader_slot);
         if variant == crate::empress::VARIANT {
             crate::empress::fill(&mut w)?;
@@ -289,21 +344,33 @@ impl World {
 
     pub(crate) fn spawn(&mut self, def: usize, side: usize, fleet: u32, name: String, p: P, h: f64) -> E<u32> {
         let d = &self.data.ships[def];
-        if (!self.host_duel || self.ranked_duel.is_none())
+        if self.arena.is_none() && !crate::salvage::is_variant(&self.variant) && self.variant!=crate::littoral_v4::VERSION && (!self.host_duel || self.ranked_duel.is_none())
             && ![side_name(side), if side == 0 { "blue" } else { "red" }].contains(&d.side.as_str())
         {
             return Err(format!("{} 的阵营与开局席位不符", d.id));
         }
         if !d.dp.is_finite() || d.dp <= 0.
             || d.gun.range_yd.len() != 4 || d.gun.damage.len() != 4
-            || d.gun.barrels == 0 || d.gun.mounts.iter().map(|m| m.barrels).sum::<u32>() != d.gun.barrels
+            || (d.gun.barrels == 0 && !([crate::salvage_v3::VERSION,crate::salvage_v4::VERSION].contains(&self.variant.as_str()) && d.id.starts_with("CAS-FICTION-"))) || d.gun.mounts.iter().map(|m| m.barrels).sum::<u32>() != d.gun.barrels
             || !self.field.contains(p)
         {
             return Err(format!("{} 的阵营、舰卡或出生点无效", d.id));
         }
         let id = (self.ships.len() + 1) as u32;
+        // A registered identity is the single-ship key: `IBS-U-*` cards are
+        // themselves the catalogue identity, while campaign period/class
+        // cards resolve through the pinned runtime table. Unresolved named
+        // hulls keep `None` instead of borrowing a same-class character.
+        let character = if d.id.starts_with("IBS-U-") {
+            Some(d.id.clone())
+        } else {
+            self.campaign
+                .as_ref()
+                .and_then(|_| live::character_id(&d.id))
+                .map(str::to_string)
+        };
         self.ships.push(Ship {
-            id, def, side, fleet: Some(fleet), name, p, h, speed: 0., escaped: false,
+            id, def, side, fleet: Some(fleet), name, character, p, h, speed: 0., escaped: false,
             hp: d.dp, ammo: d.torpedo.as_ref().map_or(0, |t| t.tubes),
             gun_cycle: None, illumination_cycle: None, torp_cycle: None,
             torp_mount_remaining: d.torpedo.iter().flat_map(|t| t.mounts.iter().map(|m| m.tubes)).collect(),
@@ -331,7 +398,130 @@ impl World {
         }
         Ok(id)
     }
+
+    /// Replace the five player slots with five registered single-ship
+    /// identities in one local exercise. Slot positions, headings, speeds and
+    /// the formation stay one-to-one. `leader_slot` is an index into `ids`:
+    /// that hull takes the leading slot and the remaining picks keep their
+    /// scenario order (the same ordering as `World::new(leader_slot)`).
+    ///
+    /// Everything is validated before a hull is touched. A missing local card
+    /// is an explicit error; this never falls back to the printed Fletcher.
+    pub(crate) fn replace_player_fleet(&mut self, ids: &[String], leader_slot: usize) -> E<()> {
+        if ids.len() != 5 {
+            return Err(format!("单舰编队必须正好 5 艘（收到 {} 艘）", ids.len()));
+        }
+        if leader_slot >= ids.len() {
+            return Err("领舰位置无效".into());
+        }
+        let player_ships: Vec<u32> = self
+            .ships
+            .iter()
+            .filter(|ship| ship.side == self.player)
+            .map(|ship| ship.id)
+            .collect();
+        if player_ships.len() != 5 {
+            return Err(format!(
+                "当前演习的玩家编队不是 5 艘（有 {} 艘），不能替换单舰",
+                player_ships.len()
+            ));
+        }
+        let player_fleets: Vec<u32> = self
+            .fleets
+            .iter()
+            .filter(|fleet| fleet.side == self.player)
+            .map(|fleet| fleet.id)
+            .collect();
+        if player_fleets.len() != 1 {
+            return Err("单舰编队需要唯一的玩家编队".into());
+        }
+        let seat = if self.player == 0 { ["allies", "blue"] } else { ["axis", "red"] };
+        let mut seen = BTreeSet::new();
+        let mut picked = Vec::with_capacity(ids.len());
+        for id in ids {
+            if !seen.insert(id.as_str()) {
+                return Err(format!("单舰编队不能重复 identity：{id}"));
+            }
+            let def = self
+                .data
+                .ships
+                .iter()
+                .position(|ship| ship.id == *id)
+                .ok_or_else(|| format!("本地没有单舰 identity {id} 的已登记舰卡，不能替换"))?;
+            let card = &self.data.ships[def];
+            if !seat.contains(&card.side.as_str()) {
+                return Err(format!("{}（{id}）不属于本席阵营", card.name));
+            }
+            picked.push(def);
+        }
+        // The lead pick moves to the front; the other picks keep their
+        // scenario slot order.
+        let mut order: Vec<usize> = (0..ids.len()).collect();
+        let lead = order.remove(leader_slot);
+        order.insert(0, lead);
+        // Pre-flight the fresh hulls. `spawn` has the same constraints; doing
+        // it here keeps a rejected fleet from leaving a half-swapped roster.
+        for &def in &picked {
+            let card = &self.data.ships[def];
+            if !card.dp.is_finite()
+                || card.dp <= 0.
+                || card.gun.range_yd.len() != 4
+                || card.gun.damage.len() != 4
+                || card.gun.barrels == 0
+                || card.gun.mounts.iter().map(|mount| mount.barrels).sum::<u32>()
+                    != card.gun.barrels
+            {
+                return Err(format!("{} 的舰卡无效，不能替换", card.name));
+            }
+        }
+        let mut plan = Vec::with_capacity(player_ships.len());
+        for (position, ship_id) in player_ships.iter().enumerate() {
+            let def = picked[order[position]];
+            let (p, h, speed, free_speed, fleet) = {
+                let old = self.ship(*ship_id).expect("player hull");
+                (old.p, old.h, old.speed, old.free_speed, old.fleet.unwrap_or(player_fleets[0]))
+            };
+            if !self.field.contains(p) {
+                return Err(format!("{} 的初始位置不在海图内", self.data.ships[def].name));
+            }
+            plan.push((*ship_id, def, ids[order[position]].clone(), p, h, speed, free_speed, fleet));
+        }
+        for (ship_id, def, identity, p, h, speed, free_speed, fleet) in plan {
+            let name = self.data.ships[def].name.clone();
+            let _fresh_id = self.spawn(def, self.player, fleet, name, p, h)?;
+            let mut fresh = self.ships.pop().expect("fresh hull");
+            fresh.character = identity.starts_with("IBS-U-").then_some(identity);
+            let old = &mut self.ships[(ship_id - 1) as usize];
+            *old = crate::model::Ship {
+                id: ship_id,
+                p,
+                h,
+                speed,
+                free_speed,
+                fleet: Some(fleet),
+                ..fresh
+            };
+        }
+        self.gun_streak.truncate(self.ships.len());
+        self.surface_damage.truncate(self.ships.len());
+        let fleet = self.fleet_mut(player_fleets[0]).expect("player fleet");
+        fleet.members = player_ships.clone();
+        fleet.leader = player_ships[0];
+        fleet.points.clear();
+        fleet.last_ai_route = 0;
+        if self.realtime() {
+            let version = self.version;
+            self.init_realtime(version)?;
+        }
+        self.detect(true);
+        self.radar_detect();
+        self.local_ships = Some(ids.to_vec());
+        Ok(())
+    }
+
     pub fn from_save(s: Saved, tick: u32) -> E<Self> {
+        if s.arena.is_some() && (s.salvage.is_some()||s.campaign.is_some()||s.ranked.is_some()||s.duel||s.ships.is_some()||s.challenge_stage.is_some()||s.variant!=crate::arena::VARIANT||s.version!=crate::realtime::VERSION||s.side!="allies"||s.enemy!="coord"||s.profile!="coord"||s.leader_slot!=0||s.intel_profile!=crate::intel::VERSION){return Err("竞技存档与内容版本不符".into());}
+        if s.variant==crate::arena::VARIANT && s.arena.is_none(){return Err("竞技存档缺少初始编成".into());}
         let version = match s.version.as_str() {
             VERSION => VERSION,
             LEGACY_VERSION => LEGACY_VERSION,
@@ -411,8 +601,28 @@ impl World {
         {
             return Err("存档命令时序无效".into());
         }
+        if s.ships.is_some()
+            && (s.campaign.is_some() || s.ranked.is_some() || !Self::supports_local_fleet(&s.variant))
+        {
+            return Err("该存档的想定不支持单舰编队".into());
+        }
+        // A custom local fleet was built from the un-reordered five slots and
+        // then had its leader moved to the front. Rebuild it the same way, not
+        // through `new`'s default leader reorder.
+        let base_leader_slot = if s.ships.is_some() { 0 } else { s.leader_slot };
         let profile = if s.profile.is_empty() { "coord" } else { &s.profile };
-        let mut w = if let Some(ranked) = s.ranked {
+        if s.salvage.is_some() != crate::salvage::is_variant(&s.variant) {
+            return Err("打捞内容版本与存档不符".into());
+        }
+        let mut w = if let Some(start) = s.arena {
+            if s.seed!=start.seed{return Err("竞技种子与存档不符".into());} Self::new_arena(start)?
+        } else if let Some(start) = s.salvage {
+            if start.content!=s.variant {return Err("打捞存档配置与内容版本不符".into());}
+            if s.campaign.is_some() || s.ranked.is_some() || s.duel || s.ships.is_some() {
+                return Err("打捞存档混入其他模式".into());
+            }
+            Self::new_salvage(s.seed, start)?
+        } else if let Some(ranked) = s.ranked {
             #[cfg(not(target_arch = "wasm32"))]
             { Self::new_ranked_duel(s.seed, ranked)? }
             #[cfg(target_arch = "wasm32")]
@@ -437,8 +647,12 @@ impl World {
             &s.enemy,
             &s.variant,
             profile,
-            s.leader_slot,
+            base_leader_slot,
         )? };
+        if let Some(ships) = &s.ships {
+            w.leader_slot = s.leader_slot;
+            w.replace_player_fleet(ships, s.leader_slot)?;
+        }
         if !ranked && realtime && w.campaign.is_none() {
             w.init_realtime(version)?;
         } else {
@@ -447,6 +661,7 @@ impl World {
         if s.duel && !ranked {
             w.set_duel_seats();
         }
+        w.apply_intel(&s.intel_profile)?;
         let mut commands = s.commands.into_iter().peekable();
         loop {
             while commands
@@ -470,6 +685,9 @@ impl World {
     }
     pub fn save(&self) -> Saved {
         Saved {
+            arena:self.arena.clone(),
+            intel_profile:self.intel_profile.clone(),
+            salvage: self.salvage.as_ref().map(|b| b.start.clone()),
             version: self.version.into(),
             seed: self.seed,
             side: side_name(self.player).into(),
@@ -483,6 +701,7 @@ impl World {
             duel: self.host_duel,
             ranked: self.ranked_duel.clone(),
             challenge_stage: self.challenge_stage.clone(),
+            ships: self.local_ships.clone(),
         }
     }
     pub fn ship(&self, id: u32) -> Option<&Ship> {
@@ -619,12 +838,18 @@ impl World {
                 "systems":{"guns":guns,"tubes":tubes,"directorDamaged":s.fire_control_damage,
                     "engineeringLevels":s.engineering_speed_levels,"fires":s.fires.len(),"floods":s.flooding.len(),"maxSpeed":self.max_speed(s)},
                 "id":s.id,"name":s.name,"classId":d.id,"kind":d.kind.to_ascii_lowercase(),"fleet":s.fleet,"x":s.p.x,"y":s.p.y,
-                "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":d.dp,
+                "heading":s.h,"speed":s.speed,"hp":s.hp,"maxHp":self.hull_max_hp(s),
+                "hullLengthM":d.length_m.max(75.),"hullLengthSource":if d.length_m>=75. {"registered"} else {"engine-clearance-default"},
                 "gun":self.can_gun(s),"torpedo":self.can_torp(s),"ammo":s.ammo});
             if let Some(&strings)=self.drum_strings.get((s.id-1) as usize) {
                 data["drumStrings"] = json!(strings);
             }
-            if (self.variant == crate::prologue::VARIANT || self.ranked_duel.is_some()) && d.id.starts_with("IBS-U-") {
+            if let Some(character) = &s.character {
+                data["characterId"] = json!(character);
+            } else if d.id.starts_with("IBS-U-") {
+                // Challenge, prologue and ranked cards carry the catalogue
+                // identity as their card id. This also covers seats whose
+                // variant is not one of the older special cases.
                 data["characterId"] = json!(d.id);
             } else if let Some(character) = self.campaign.as_ref().and_then(|_| live::character_id(&d.id)) {
                 data["characterId"] = json!(character);
@@ -750,6 +975,10 @@ impl World {
             "scenario":match self.variant.as_str(){"challenge"=>self.challenge_label.as_deref().unwrap_or("越级挑战"),"night"=>"夜航接敌 · 5 对 5 演习",crate::empress::VARIANT=>crate::empress::LABEL,crate::illumination::TRAINING=>"夜战初阵 · 照明实操",crate::illumination::RADAR_TRAINING=>"夜海初航 · 雷达与照明",RADAR_DRILL=>"1943 雷达接敌 · 虚构演习",live::VARIANT=>live::LABEL,crate::campaign::channel::VARIANT=>crate::campaign::channel::LABEL,kula::VARIANT=>kula::LABEL,crate::prologue::VARIANT=>crate::prologue::TITLE,_=>SCENARIO},"variant":self.variant,"ships":ships,"fleets":fleets,"contacts":self.contacts[owner],"torpedoes":torpedoes,"smoke":smoke_view,
             "events":events,"shells":shells,"version":self.version,"environment":self.environment(),"settling":self.result.is_none() && self.action_closed(),"result":self.result_for(owner),"islands":self.islands});
         if let Some(campaign) = self.campaign_view(owner) { view["campaign"] = campaign; }
+        if !self.owned_practice.is_empty() && owner==self.player {
+            view["ownedGrowth"]=json!({"version":crate::owned_growth::VERSION,"scope":"自有舰战役演练",
+                "ships":self.ships.iter().filter(|s|s.side==owner).map(|s|json!({"id":s.character,"practice":(self.owned_practice[s.id as usize-1]/30).min(30)})).collect::<Vec<_>>()});
+        }
         if self.radar_enabled() {
             let mut reports = self.radar.observation(owner, &self.ships);
             if matches!(self.variant.as_str(), live::VARIANT | kula::VARIANT) {
@@ -775,6 +1004,20 @@ impl World {
         if let Some(ranked) = &self.ranked_duel {
             view["scenario"] = json!(if ranked.budget == 3000 { "三千分护航战" } else { "万分战列舰战" });
         }
+        if self.arena.is_some() {view["arena"]=crate::arena::view(self);view["scenario"]=json!(if self.arena.as_ref().unwrap().mode=="team3"{"三对三 · 人机联合演习"}else{"万分排位 · 人机演习"});}
+        if self.salvage.is_some() {
+            view["scenario"] = json!("失落群岛 · 打捞远征");
+            view["salvage"] = self.salvage_view();
+            if let Some(weather) = self.dynamic_weather() { view["weather"] = weather.view(self.tick); }
+        }
+        if self.ecology.is_some() { self.ecology_view(owner,&mut view); }
+        if self.story_mission(){self.story_mission_view(&mut view);}
+        if self.variant==crate::salvage_v4::VERSION {self.cargo_view(&mut view);}
+        self.adventure_view(&mut view);
+        self.expedition_view(owner,&mut view);
+        self.amphibious_view(&mut view);
+        self.fuel_view(&mut view);
+        self.intel_view(owner,&mut view);
         view
     }
     pub fn external(&mut self, r: Value) -> E<()> {
@@ -787,6 +1030,18 @@ impl World {
         }
     }
     pub(crate) fn external_for(&mut self, s: usize, r: Value) -> E<()> {
+        self.dispatch_external(s,r,true)
+    }
+    pub(crate) fn dispatch_external(&mut self,s:usize,r:Value,record:bool)->E<()> {
+        if let Some(start)=&self.arena {
+            let owned=start.groups.iter().map(|g|g.ships.len() as u32).sum::<u32>();
+            if r["op"]=="detach"&&self.fleets.iter().filter(|f|f.side==0&&f.members.iter().all(|id|*id<=owned)).count()>=4{return Err("竞技最多同时指挥四个编队".into());}
+            if r.get("ship").and_then(Value::as_u64).is_some_and(|id|id>owned as u64)
+                || r.get("fleet").and_then(Value::as_u64).and_then(|id|self.fleet(id as u32)).is_some_and(|f|f.members.iter().any(|id|*id>owned)) {
+                return Err("AI队友与对手拥有独立指挥权，只能控制自己的编队".into());
+            }
+        }
+        if s==self.player&&self.fuel_empty()&&["route","speed","resume"].contains(&r["op"].as_str().unwrap_or(""))&&!(r["op"]=="speed"&&r["speed"].as_f64()==Some(0.)){return Err("油料耗尽，无法启动推进".into());}
         if s > 1 || (!self.host_duel && s != self.player) {
             return Err("当前席位不可下令".into());
         }
@@ -806,6 +1061,10 @@ impl World {
             }
         }
         match r.get("op").and_then(Value::as_str) {
+            Some("expedition_task"|"expedition_interact"|"extraction_autopilot")=>self.expedition_command(&r)?,
+            Some("expedition_land_deploy"|"expedition_land_order"|"expedition_land_task"|"expedition_land_recover"|"expedition_land_autopilot")=>self.amphibious_command(&r)?,
+            Some("cargo_place" | "cargo_drop" | "cargo_sort" | "search_salvage" | "cancel_search") => self.cargo_command(&r)?,
+            Some("salvage_collect" | "salvage_extract" | "salvage_cancel" | "salvage_drop" | "salvage_abandon") => self.salvage_command(&r)?,
             Some("route") => self.route(s, &r, true)?,
             Some("lead") => self.lead(s, &r)?,
             Some("detach") => self.detach(s, &r)?,
@@ -840,14 +1099,20 @@ impl World {
             }
             _ => return Err("存档包含无效命令".into()),
         }
+        if record {
+        if self.amphibious_expedition.is_some() && matches!(r["op"].as_str(),Some("expedition_land_deploy"|"expedition_land_order"|"expedition_land_task"|"expedition_land_recover")){if let Some(run)=&mut self.expedition{run.autopilot.enabled=false;run.autopilot.reason="指挥官接管陆军操作".into();}}
+        if let Some(run)=&mut self.expedition{crate::extraction_ai::manual_override(&mut run.autopilot,&r,self.tick);}
         self.commands.push(Entry {
             tick: self.tick,
             request: r,
             seat: self.host_duel.then(|| side_name(s).into()),
         });
+        }
         Ok(())
     }
     fn action_closed(&self) -> bool {
+        if self.variant==crate::littoral_v4::VERSION {return self.tick>=self.field.limit;}
+        if self.salvage.is_some() { return self.result.is_some() || self.tick >= self.field.limit; }
         self.tick >= self.field.limit || if self.variant == live::VARIANT {
             !self.ships.iter().any(|s| s.side == 1 && s.alive())
         } else if matches!(self.variant.as_str(), crate::campaign::channel::VARIANT | kula::VARIANT) {
@@ -876,7 +1141,10 @@ impl World {
             self.check_outcome();
             return;
         }
+        self.weather_events();
+        self.advance_owned_practice();
         let before: Vec<_> = self.ships.iter().map(|s| s.p).collect();
+        if self.fuel.is_some(){self.advance_fuel();}
         self.move_ships();
         self.move_torpedoes(&before);
         self.reload_torpedoes();
@@ -921,6 +1189,12 @@ impl World {
             self.flush_realtime_surface_damage();
         }
         self.radar_prune();
+        if self.ecology.is_some() { self.advance_ecology(); }
+        if self.variant==crate::salvage_v4::VERSION {self.advance_cargo_v4();}
+        if self.story_mission(){self.advance_story_mission();}
+        if self.expedition.is_some(){self.advance_expedition();}
+        if self.amphibious_expedition.is_some(){self.advance_amphibious_expedition();}
+        if self.salvage.is_some() { self.advance_salvage(); }
         self.check_outcome();
         if self.variant == crate::prologue::VARIANT && self.result.is_none() && !self.action_closed() {
             self.prologue_fire();
@@ -930,8 +1204,11 @@ impl World {
         {
             self.drive_ai();
         }
+        if self.open_intel(){self.refresh_open_intel();}
+        if self.expedition.is_some(){self.advance_extraction_ai();}
     }
     pub fn sank(&mut self, id: u32) {
+        self.expedition_record_defeat(id);
         let Some(s) = self.ship(id) else { return };
         let (owner, fl, p, name) = (s.side, s.fleet, s.p, s.name.clone());
         self.add(
@@ -1029,6 +1306,9 @@ impl World {
     }
 
     fn check_outcome(&mut self) {
+        if self.variant==crate::littoral_v4::VERSION {return;}
+        if self.arena.is_some(){self.arena_result();return;}
+        if self.salvage.is_some() { return; }
         let lost: Vec<u32> = (0..2)
             .map(|side| {
                 self.ships
@@ -1114,7 +1394,7 @@ impl World {
     /// Set the fleet's ordered speed without replanning the route. The
     /// formation still accelerates/decelerates through the normal movement
     /// code; only the target speed changes.
-    fn fleet_speed(&mut self, owner: usize, r: &Value) -> E<()> {
+    pub(crate) fn fleet_speed(&mut self, owner: usize, r: &Value) -> E<()> {
         let id = u(r, "fleet")?;
         let speed = r["speed"]
             .as_f64()

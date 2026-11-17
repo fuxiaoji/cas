@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>CAS · 四版新方向 × 四场景</title>
+<style>
+:root{
+  --sans:"Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+  --serif:"Songti SC","SimSun",serif;
+  --kai:"KaiTi","STKaiti",serif;
+  --cond:"Bahnschrift Condensed","Bahnschrift","Arial Narrow",sans-serif;
+  --mono:"Cascadia Mono","Consolas",monospace;
+  --poster:"Impact","Arial Black",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#191919}
+img{display:block}
+.board{width:1360px;height:900px;margin:0 0 26px;position:relative;overflow:hidden;color:var(--ink);background:var(--bg);font-family:var(--font)}
+.board *{min-width:0}
+.dh{height:86px;display:flex;align-items:center;gap:18px;padding:0 24px;position:relative;z-index:4}
+.dh .num{font:700 38px/1 var(--cond);color:var(--accent);letter-spacing:-.04em}
+.dh h1{margin:0;font-size:31px;line-height:1;letter-spacing:.08em}
+.dh .sub{display:block;margin-top:6px;font:600 8px/1 var(--cond);letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.dh .thesis{max-width:430px;margin:0 0 0 8px;font-size:10px;line-height:1.6;opacity:.8}
+.dh .spec{margin-left:auto;display:flex;align-items:center;gap:16px}
+.sw{display:flex;gap:4px}.sw i{width:20px;height:20px;border-radius:50%;display:block;box-shadow:0 0 0 1px #0004}
+.ty{font:500 8px/1.55 var(--mono);letter-spacing:.06em;text-align:right;opacity:.7}
+.grid{height:762px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;padding:0 18px;position:relative;z-index:2}
+.scene{position:relative;overflow:hidden;padding:12px 15px;display:flex;flex-direction:column}
+.k{font:600 7px/1 var(--cond);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);position:relative;z-index:2}
+.scene h2,.scene h3{margin:0;font-weight:700}
+.scene p{margin:0}
+.bf{height:52px;display:flex;align-items:center;gap:14px;padding:0 24px;position:relative;z-index:4;border-top:1px solid var(--line)}
+.bf b{font:700 8px/1 var(--cond);letter-spacing:.18em;color:var(--accent);white-space:nowrap}
+.bf p{margin:0;font-size:8.5px;line-height:1.45;opacity:.65;max-width:1000px}
+.bf em{margin-left:auto;font:500 8px/1 var(--mono);font-style:normal;opacity:.4;white-space:nowrap}
+
+/* common scene pieces */
+.hb-body{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;flex:1;min-height:0;position:relative;z-index:2;padding-top:7px}
+.hb-copy{display:flex;flex-direction:column;min-height:0}
+.hb-copy h2{font-size:42px;line-height:.95;letter-spacing:.06em;color:var(--ink)}
+.hb-copy p{font-size:9px;line-height:1.55;opacity:.75;max-width:270px;margin-top:7px}
+.hb-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.hb-actions span{padding:5px 8px;font:600 8px/1 var(--cond);letter-spacing:.1em;border:1px solid var(--line);color:var(--ink)}
+.hb-art{position:relative;overflow:hidden;min-height:0}
+.hb-art img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.hb-art span{position:absolute;left:0;right:0;bottom:0;padding:4px 6px;font:600 8px/1 var(--mono);background:var(--bg);color:var(--ink)}
+.cp-body{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;flex:1;min-height:0;padding-top:6px;position:relative;z-index:2}
+.cp-map{position:relative;overflow:hidden;background:var(--map);border:1px solid var(--line)}
+.cp-map:before{content:"";position:absolute;inset:0;background:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:34px 34px;opacity:.3}
+.cp-map:after{content:"";position:absolute;left:8%;top:62%;width:76%;height:1px;background:var(--accent);transform:rotate(-9deg);transform-origin:left;box-shadow:0 22px 0 var(--accent),0 44px 0 var(--accent)}
+.pin{position:absolute;width:15px;height:15px;border-radius:50%;border:1px solid var(--accent);background:var(--bg);z-index:2}
+.pin:after{content:"";position:absolute;left:5px;top:5px;width:3px;height:3px;border-radius:50%;background:var(--accent)}
+.pin.a{left:28%;top:38%}.pin.b{left:56%;top:53%}.pin.c{left:79%;top:31%}
+.map-tag{position:absolute;left:8px;bottom:6px;font:500 7px/1 var(--mono);color:var(--accent);letter-spacing:.1em}
+.cp-brief{display:flex;flex-direction:column;min-height:0}
+.cp-brief small{font:500 7px/1 var(--mono);color:var(--accent);letter-spacing:.12em}
+.cp-brief h3{font-size:21px;line-height:1.1;margin:4px 0 5px;color:var(--ink)}
+.cp-brief p{font-size:8.5px;line-height:1.5;opacity:.72}
+.cp-facts{margin:7px 0 0;padding:6px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:3px}
+.cp-facts div{display:flex;justify-content:space-between;gap:5px;font:500 8px/1.2 var(--mono)}
+.cp-facts span{opacity:.55}.cp-facts b{font-weight:600;color:var(--accent)}
+.cp-go{margin-top:auto;padding:6px 8px;text-align:center;font:700 9px/1 var(--cond);letter-spacing:.14em;background:var(--accent);color:var(--bg)}
+.fm-row{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;flex:1;align-items:center;padding-top:6px;position:relative;z-index:2}
+.fs{display:flex;flex-direction:column;gap:3px;min-width:0}
+.fs .ph{position:relative;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line)}
+.fs .ph img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.fs b{font-size:10px;line-height:1.15;text-align:center;color:var(--ink)}
+.fs small{font:500 7px/1 var(--mono);text-align:center;opacity:.55}
+.fs.lead .ph:after{content:"LEAD";position:absolute;left:0;right:0;bottom:0;padding:2px 0;text-align:center;font:700 6px/1 var(--cond);letter-spacing:.12em;background:var(--accent);color:var(--bg)}
+.fm-foot{display:flex;align-items:center;justify-content:space-between;gap:7px;border-top:1px solid var(--line);padding-top:6px;margin-top:6px;position:relative;z-index:2}
+.fm-foot span{font:600 7px/1 var(--cond);letter-spacing:.1em;opacity:.6}
+.fm-foot b{font:700 9px/1 var(--cond);letter-spacing:.1em;color:var(--accent)}
+.bt-body{position:relative;flex:1;min-height:0;margin-top:5px;border:1px solid var(--line);overflow:hidden;background:var(--sea)}
+.bt-body:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 55% 48%,transparent 0 44px,var(--line) 45px 46px,transparent 47px 96px,var(--line) 97px 98px,transparent 99px),linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:auto,38px 38px,38px 38px;opacity:.5}
+.track{position:absolute;height:1px;background:var(--accent);transform-origin:left;opacity:.75}
+.t1{left:26%;top:60%;width:38%;transform:rotate(-22deg)}
+.t2{left:48%;top:57%;width:28%;transform:rotate(18deg)}
+.t3{left:16%;top:34%;width:31%;transform:rotate(12deg)}
+.contact{position:absolute;width:25px;height:25px;border-radius:50%;border:1px solid var(--accent);z-index:2;display:flex;align-items:center;justify-content:center;font:700 7px/1 var(--mono);color:var(--accent);background:color-mix(in srgb,var(--bg) 75%,transparent)}
+.contact:after{content:"";position:absolute;inset:3px;border-radius:50%;border:1px dotted var(--accent);opacity:.55}
+.c1{left:20%;top:65%}.c2{left:39%;top:49%}.c3{left:55%;top:58%}.c4{left:69%;top:38%}.c5{left:80%;top:57%}
+.bt-hud{position:absolute;left:7px;right:7px;bottom:6px;display:flex;gap:5px;z-index:2}
+.bt-hud span{padding:3px 5px;font:600 7px/1 var(--mono);border:1px solid var(--line);color:var(--accent);background:var(--bg)}
+.bt-title{position:absolute;left:8px;top:6px;z-index:2;font:700 9px/1.2 var(--cond);letter-spacing:.1em;color:var(--ink)}
+.bt-title small{display:block;font:500 7px/1.4 var(--mono);color:var(--accent);letter-spacing:.06em}
+
+/* ========= 05 远洋装饰 ========= */
+.d5{--bg:#111413;--ink:#f2e8d3;--accent:#c9a66b;--line:#c9a66b55;--map:#0d3d35;--sea:#0c3731;--font:"Bodoni MT","Didot","Georgia",serif;
+  background:radial-gradient(1000px 500px at 86% -10%,#0f4c4233,transparent 60%),#111413}
+.d5 .dh{border-bottom:1px solid #c9a66b66;background:linear-gradient(180deg,#151918,#111413)}
+.d5 .dh h1{font-family:var(--font);letter-spacing:.09em}
+.d5 .dh .sub{font-family:var(--cond)}
+.d5 .thesis{font-family:var(--serif);font-size:10.5px}
+.d5 .scene{border:1px solid #c9a66b33;background:linear-gradient(150deg,#151a18,#111413 70%)}
+.d5 .scene:nth-child(1){background:radial-gradient(700px 300px at 80% 0%,#0f4c4244,transparent 70%),#131716}
+.d5 .hb-copy h2{font-family:var(--font);font-size:58px;letter-spacing:.03em}
+.d5 .hb-copy h2:after{content:"";display:block;width:52px;height:1px;background:#c9a66b;margin:9px 0 0}
+.d5 .hb-copy p{font-family:var(--serif)}
+.d5 .hb-art{border:1px solid #c9a66b66;padding:4px}
+.d5 .hb-art img{filter:saturate(.78) sepia(.06)}
+.d5 .hb-art span{background:#0d3d35;color:#c9a66b;border-top:1px solid #c9a66b55}
+.d5 .hb-actions span{background:transparent;border-color:#c9a66b77;color:#f2e8d3;font-family:var(--cond)}
+.d5 .cp-map{background:#0d3d35}
+.d5 .cp-map:after{box-shadow:0 22px 0 #c9a66b,0 44px 0 #c9a66b}
+.d5 .cp-brief h3{font-family:var(--font);font-size:26px}
+.d5 .cp-brief p{font-family:var(--serif)}
+.d5 .cp-go{background:#c9a66b;color:#111413}
+.d5 .fs .ph{border-color:#c9a66b66;filter:saturate(.8)}
+.d5 .fs b{font-family:var(--serif)}
+.d5 .fs.lead .ph:after{background:#c9a66b;color:#111413}
+.d5 .bt-body{background:#0c3731}
+.d5 .contact{background:#111413;color:#c9a66b;border-color:#c9a66b}
+.d5 .bt-hud span{background:#111413;color:#c9a66b;border-color:#c9a66b66}
+.d5 .bf{border-top-color:#c9a66b55;background:#0f1211}
+.d5 .bf p{font-family:var(--serif)}
+.d5 .bf b{font-family:var(--cond)}
+
+/* ========= 06 战地日报 ========= */
+.d6{--bg:#e9e1d0;--ink:#171614;--accent:#b5362b;--line:#17161433;--map:#ded4bd;--sea:#ded4bd;--font:"Georgia","Times New Roman",var(--serif);
+  background:#e9e1d0;background-image:radial-gradient(#17161410 .7px,transparent .8px);background-size:4px 4px}
+.d6 .dh{border-bottom:4px solid #171614;background:#e9e1d0}
+.d6 .dh h1{font-family:var(--sans);font-weight:900;letter-spacing:.12em}
+.d6 .dh .sub{font-family:var(--sans);font-weight:700;color:#b5362b}
+.d6 .thesis{font-family:var(--sans);font-weight:600;font-size:9.5px;text-transform:uppercase;line-height:1.55}
+.d6 .scene{border:1px solid #17161466;background:#eee7d7;padding:11px 13px}
+.d6 .k{color:#b5362b;font-family:var(--sans);font-weight:800;border-bottom:1px solid #171614;padding-bottom:4px;letter-spacing:.14em}
+.d6 .hb-body{grid-template-columns:1.3fr .7fr;gap:10px;padding-top:7px}
+.d6 .hb-copy h2{font-family:var(--sans);font-weight:900;font-size:36px;line-height:1;letter-spacing:-.02em;text-transform:uppercase}
+.d6 .hb-copy h2:before{content:"VOL. IV · 太平洋舰队版";display:block;font:700 7px/1 var(--sans);letter-spacing:.18em;color:#b5362b;margin-bottom:5px}
+.d6 .hb-copy p{font-size:9px;line-height:1.5;columns:2;column-gap:10px;font-family:var(--serif)}
+.d6 .hb-actions span{border:1px solid #171614;background:#e9e1d0;font-family:var(--sans);font-weight:700}
+.d6 .hb-art{border:1px solid #171614;padding:3px;filter:grayscale(1) contrast(1.25)}
+.d6 .hb-art span{background:#171614;color:#e9e1d0;font-family:var(--sans)}
+.d6 .cp-map{background:#ded4bd}
+.d6 .cp-map:after{box-shadow:0 22px 0 #b5362b,0 44px 0 #b5362b;opacity:.7}
+.d6 .pin{border-color:#b5362b;background:#ded4bd}
+.d6 .pin:after{background:#b5362b}
+.d6 .cp-brief h3{font-family:var(--sans);font-weight:900;text-transform:uppercase;font-size:18px}
+.d6 .cp-brief p{font-family:var(--serif)}
+.d6 .cp-go{background:#171614;color:#e9e1d0;font-family:var(--sans)}
+.d6 .fs .ph{border-color:#171614;filter:grayscale(1) contrast(1.2)}
+.d6 .fs b{font-family:var(--sans);font-weight:800}
+.d6 .fs.lead .ph:after{background:#b5362b;color:#e9e1d0;font-family:var(--sans)}
+.d6 .bt-body{background:#ded4bd}
+.d6 .bt-body:before{opacity:.3}
+.d6 .contact{background:#e9e1d0;color:#b5362b;border-color:#171614}
+.d6 .bt-hud span{background:#e9e1d0;color:#171614;border-color:#171614}
+.d6 .bt-title{color:#171614;font-family:var(--sans);font-weight:900}
+.d6 .bf{border-top:4px solid #171614;background:#171614;color:#e9e1d0}
+.d6 .bf b{color:#e9e1d0}
+.d6 .bf p{opacity:.7;font-family:var(--sans)}
+
+/* ========= 07 船坞混凝土 ========= */
+.d7{--bg:#8c887d;--ink:#131313;--accent:#e0562f;--line:#13131355;--map:#a9a59a;--sea:#77746b;--font:"Bahnschrift Condensed","Bahnschrift","Arial Narrow",sans-serif;
+  background:#8c887d;background-image:linear-gradient(90deg,#00000008 1px,transparent 1px),linear-gradient(#00000008 1px,transparent 1px);background-size:22px 22px}
+.d7 .dh{border-bottom:4px solid #131313;background:#b2ada1}
+.d7 .dh h1{font-family:var(--font);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.d7 .dh .sub{font-family:var(--font);color:#e0562f;letter-spacing:.18em}
+.d7 .thesis{font-family:var(--sans);font-weight:600;font-size:9.5px}
+.d7 .scene{border:2px solid #131313;background:#a9a59a;box-shadow:5px 5px 0 #131313}
+.d7 .k{color:#131313;font-family:var(--font);font-weight:700;background:#e0562f;padding:3px 6px;display:inline-block;align-self:flex-start}
+.d7 .hb-copy h2{font-family:var(--font);font-size:54px;line-height:.9;text-transform:uppercase;letter-spacing:-.01em}
+.d7 .hb-copy h2:after{content:"SHIFT 02 / PIER 3";display:block;font:700 8px/1 var(--font);letter-spacing:.12em;color:#e0562f;margin-top:5px}
+.d7 .hb-copy p{font-family:var(--sans);font-weight:600;background:#8c887d;padding:4px 6px;border-left:4px solid #e0562f}
+.d7 .hb-actions span{border:2px solid #131313;background:#e0562f;color:#131313;font-family:var(--font);font-weight:700;box-shadow:3px 3px 0 #131313}
+.d7 .hb-art{border:2px solid #131313;filter:grayscale(1) contrast(1.1);background:#77746b}
+.d7 .hb-art span{background:#131313;color:#e0562f;font-family:var(--font)}
+.d7 .cp-map{background:#a9a59a;border:2px solid #131313}
+.d7 .cp-map:after{background:#131313;box-shadow:0 22px 0 #e0562f,0 44px 0 #131313;opacity:.85}
+.d7 .cp-brief h3{font-family:var(--font);text-transform:uppercase;font-size:22px}
+.d7 .cp-brief p{font-family:var(--sans);font-weight:600}
+.d7 .cp-go{background:#131313;color:#e0562f;font-family:var(--font);text-transform:uppercase;box-shadow:4px 4px 0 #e0562f}
+.d7 .fs .ph{border:2px solid #131313;filter:grayscale(1) contrast(1.15)}
+.d7 .fs b{font-family:var(--font);text-transform:uppercase}
+.d7 .fs small{font-family:var(--font);font-weight:700}
+.d7 .fs.lead .ph:after{background:#e0562f;color:#131313;font-family:var(--font)}
+.d7 .bt-body{background:#77746b;border:2px solid #131313}
+.d7 .bt-body:before{opacity:.25}
+.d7 .contact{background:#131313;color:#e0562f;border:2px solid #e0562f;font-family:var(--font)}
+.d7 .bt-hud span{background:#131313;color:#e0562f;border:1px solid #e0562f;font-family:var(--font)}
+.d7 .bt-title{color:#131313;font-family:var(--font);text-transform:uppercase;background:#e0562f;padding:3px 6px;align-self:flex-start}
+.d7 .bf{border-top:4px solid #131313;background:#131313;color:#a9a59a}
+.d7 .bf b{color:#e0562f;font-family:var(--font)}
+.d7 .bf p{opacity:.7;font-family:var(--sans)}
+
+/* ========= 08 海图室 ========= */
+.d8{--bg:#e7ddc5;--ink:#173530;--accent:#a25c36;--line:#17353055;--map:#ddd2b9;--sea:#d8cdb4;--font:"Baskerville","Georgia",var(--serif);
+  background:#e7ddc5;background-image:radial-gradient(#17353012 .6px,transparent .7px);background-size:4px 4px}
+.d8 .dh{border-bottom:1px solid #173530;background:#e7ddc5}
+.d8 .dh h1{font-family:var(--serif);font-weight:700;letter-spacing:.12em}
+.d8 .dh .sub{font-family:var(--mono);color:#a25c36;letter-spacing:.16em}
+.d8 .thesis{font-family:var(--serif);font-size:10px}
+.d8 .scene{border:1px solid #17353066;background:#e7ddc5}
+.d8 .k{color:#a25c36;font-family:var(--mono);letter-spacing:.12em;border-bottom:1px solid #17353055;padding-bottom:4px}
+.d8 .hb-body{grid-template-columns:1.2fr .8fr}
+.d8 .hb-copy h2{font-family:var(--serif);font-size:54px}
+.d8 .hb-copy h2:after{content:"ADMIRALTY CHART ROOM · 03";display:block;font:500 7px/1 var(--mono);letter-spacing:.1em;color:#a25c36;margin-top:6px}
+.d8 .hb-copy p{font-family:var(--serif)}
+.d8 .hb-actions span{border:1px solid #173530;background:transparent;color:#173530;font-family:var(--mono)}
+.d8 .hb-art{border:1px solid #173530;padding:4px;background:#ddd2b9}
+.d8 .hb-art img{filter:saturate(.75) contrast(1.05)}
+.d8 .hb-art span{background:#173530;color:#e7ddc5;font-family:var(--mono)}
+.d8 .cp-map{background:#ddd2b9}
+.d8 .cp-map:before{opacity:.25}
+.d8 .cp-map:after{background:#a25c36;box-shadow:0 22px 0 #a25c36,0 44px 0 #a25c36;opacity:.7}
+.d8 .pin{border-color:#173530;background:#ddd2b9}
+.d8 .pin:after{background:#a25c36}
+.d8 .cp-brief h3{font-family:var(--serif);font-size:24px}
+.d8 .cp-brief p{font-family:var(--serif)}
+.d8 .cp-go{background:#173530;color:#e7ddc5;font-family:var(--mono)}
+.d8 .fs .ph{border:1px solid #173530;filter:saturate(.75) contrast(1.05)}
+.d8 .fs b{font-family:var(--serif)}
+.d8 .fs.lead .ph:after{background:#a25c36;color:#e7ddc5;font-family:var(--mono)}
+.d8 .bt-body{background:#d8cdb4;border:1px solid #173530}
+.d8 .bt-body:before{opacity:.3}
+.d8 .contact{background:#e7ddc5;color:#173530;border:1px solid #173530}
+.d8 .bt-hud span{background:#e7ddc5;color:#173530;border:1px solid #173530;font-family:var(--mono)}
+.d8 .bt-title{color:#173530;font-family:var(--serif)}
+.d8 .bf{border-top:1px solid #173530;background:#e7ddc5}
+.d8 .bf p{font-family:var(--serif)}
+.d8 .bf b{color:#a25c36;font-family:var(--mono)}
+</style>
+</head>
+<body>
+
+<!-- 05 -->
+<section class="board d5" id="d5">
+  <header class="dh"><div class="num">05</div><div><h1>远洋装饰</h1><span class="sub">OCEAN LINER DECO</span></div><p class="thesis">把母港做成旗舰的远洋沙龙：黑漆、象牙、香槟金、祖母绿；几何放射线，细金线；数据像舱单，不像仪表盘。</p><div class="spec"><div class="sw"><i style="background:#111413"></i><i style="background:#f2e8d3"></i><i style="background:#c9a66b"></i><i style="background:#0f4c42"></i></div><div class="ty">Bodoni / 宋体 / 等宽<br>BLACK · IVORY · CHAMPAGNE</div></div></header>
+  <div class="grid">
+    <section class="scene hb"><div class="k">01 / 母港</div><div class="hb-body"><div class="hb-copy"><h2>母港</h2><p>旗舰沙龙。战役、军需、征募在同一张黑漆桌上；弗莱彻是领舰，不是一个“驱逐舰”数量。</p><div class="hb-actions"><span>战役航图</span><span>军需处</span><span>军港征募</span></div></div><div class="hb-art"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span>弗莱彻 · DD-445 · 领舰</span></div></div></section>
+    <section class="scene cp"><div class="k">02 / 战役航图</div><div class="cp-body"><div class="cp-map"><span class="pin a"></span><span class="pin b"></span><span class="pin c"></span><span class="map-tag">SOLOMONS / 08°S 160°E</span></div><div class="cp-brief"><small>CAMP-ALLIES-02 · STORY</small><h3>埃斯佩兰斯角</h3><p>夜战。9 个历史舰位，换舰不换位；每艘船独立。</p><div class="cp-facts"><div><span>编成</span><b>9 舰</b></div><div><span>点价</span><b>6,825</b></div><div><span>目标</span><b>击退夜袭</b></div></div><div class="cp-go">出 航</div></div></div></section>
+    <section class="scene fm"><div class="k">03 / 出击编队</div><div class="fm-row"><div class="fs lead"><div class="ph"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445 / 01</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377 / 02</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48 / 03</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN / 04</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN / 05</small></div></div><div class="fm-foot"><span>5 / 5 · EACH HULL IS A GUEST</span><b>出 航 →</b></div></section>
+    <section class="scene bt"><div class="k">04 / 夜战</div><div class="bt-body"><div class="bt-title">NIGHT ACTION<small>22:40 / 5 CONTACTS</small></div><span class="track t1"></span><span class="track t2"></span><span class="track t3"></span><span class="contact c1">01</span><span class="contact c2">02</span><span class="contact c3">03</span><span class="contact c4">04</span><span class="contact c5">05</span><div class="bt-hud"><span>22:40</span><span>航速 26</span><span>接触 5</span><span>主炮 就绪</span></div></div></section>
+  </div>
+  <footer class="bf"><b>DESIGN NOTE</b><p>用远洋邮轮的装饰几何、香槟金和祖母绿，把“母港”变成一个有身份的场所；单舰像被邀请的客人，有自己的名字和位置，不是舰级货架。</p><em>frontend-design · 05 / 08</em></footer>
+</section>
+
+<!-- 06 -->
+<section class="board d6" id="d6">
+  <header class="dh"><div class="num">06</div><div><h1>战地日报</h1><span class="sub">FIELD DISPATCH</span></div><p class="thesis">把母港、航图、编队做成一份战地报纸：头条、栏目、名单、号外；黑白+信号红，半调照片；信息密度高但不靠卡片。</p><div class="spec"><div class="sw"><i style="background:#e9e1d0"></i><i style="background:#171614"></i><i style="background:#b5362b"></i><i style="background:#ded4bd"></i></div><div class="ty">Georgia / 宋体 / 窄体<br>NEWSPRINT · INK · RED</div></div></header>
+  <div class="grid">
+    <section class="scene hb"><div class="k">01 / 母港 · 头版</div><div class="hb-body"><div class="hb-copy"><h2>第五舰队返港</h2><p>母港不是菜单，是旗舰的报纸头版。战役、军需、征募各有一条线；弗莱彻和帕金斯是两条独立电讯，不是“驱逐舰”一栏。</p><div class="hb-actions"><span>作战航图</span><span>军需处</span><span>征募处</span></div></div><div class="hb-art"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span>弗莱彻 · 领舰 · 头版照片</span></div></div></section>
+    <section class="scene cp"><div class="k">02 / 战役航图 · 战地附图</div><div class="cp-body"><div class="cp-map"><span class="pin a"></span><span class="pin b"></span><span class="pin c"></span><span class="map-tag">WAR MAP / SOLOMONS</span></div><div class="cp-brief"><small>CAMP-ALLIES-02 · 战地电讯</small><h3>埃斯佩兰斯角</h3><p>夜战专电。9 舰；每艘具名；历史阵位锁定。</p><div class="cp-facts"><div><span>舰位</span><b>9</b></div><div><span>预算</span><b>6,825</b></div><div><span>签发</span><b>南太平洋</b></div></div><div class="cp-go">出 航</div></div></div></section>
+    <section class="scene fm"><div class="k">03 / 出击编队 · 名单</div><div class="fm-row"><div class="fs lead"><div class="ph"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445 / 领舰</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN DD</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN DD</small></div></div><div class="fm-foot"><span>5 / 5 · 每艘独立具名</span><b>签 发 →</b></div></section>
+    <section class="scene bt"><div class="k">04 / 夜战 · 号外</div><div class="bt-body"><div class="bt-title">EXTRA<small>NIGHT ACTION / 22:40</small></div><span class="track t1"></span><span class="track t2"></span><span class="track t3"></span><span class="contact c1">01</span><span class="contact c2">02</span><span class="contact c3">03</span><span class="contact c4">04</span><span class="contact c5">05</span><div class="bt-hud"><span>22:40</span><span>26 节</span><span>5 接触</span><span>炮 就绪</span></div></div></section>
+  </div>
+  <footer class="bf"><b>DESIGN NOTE</b><p>报纸语言天然适合“档案 + 战报 + 名单”：头条建立层级，栏目承载信息，半调照片给舰娘质感；它不会像卡片网格，也不会像 AI 仪表盘。</p><em>frontend-design · 06 / 08</em></footer>
+</section>
+
+<!-- 07 -->
+<section class="board d7" id="d7">
+  <header class="dh"><div class="num">07</div><div><h1>船坞混凝土</h1><span class="sub">DOCKYARD BRUTALIST</span></div><p class="thesis">混凝土、黑钢、安全橙；像船坞的班次牌、工单、船体分段的编号。粗、硬、有重量；单舰是船体编号，不是货架 SKU。</p><div class="spec"><div class="sw"><i style="background:#8c887d"></i><i style="background:#131313"></i><i style="background:#e0562f"></i><i style="background:#a9a59a"></i></div><div class="ty">Bahnschrift / 等宽<br>CONCRETE · STEEL · ORANGE</div></div></header>
+  <div class="grid">
+    <section class="scene hb"><div class="k">01 / 母港 · SHIFT 02</div><div class="hb-body"><div class="hb-copy"><h2>母港</h2><p>今天的班次牌。出击、军需、征募是三个工位；弗莱彻是领舰，有独立船体编号。</p><div class="hb-actions"><span>作战航图</span><span>军需工位</span><span>征募工位</span></div></div><div class="hb-art"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span>HULL DD-445 / 弗莱彻</span></div></div></section>
+    <section class="scene cp"><div class="k">02 / 战役航图 · 工单</div><div class="cp-body"><div class="cp-map"><span class="pin a"></span><span class="pin b"></span><span class="pin c"></span><span class="map-tag">WORK ORDER / SOLOMONS</span></div><div class="cp-brief"><small>JOB CAMP-ALLIES-02</small><h3>埃斯佩兰斯角</h3><p>9 个船位，按历史图纸锁定。换舰不换位。</p><div class="cp-facts"><div><span>HULLS</span><b>9</b></div><div><span>BUDGET</span><b>6,825</b></div><div><span>SHIFT</span><b>NIGHT</b></div></div><div class="cp-go">开 工</div></div></div></section>
+    <section class="scene fm"><div class="k">03 / 出击编队 · 船体分段</div><div class="fm-row"><div class="fs lead"><div class="ph"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445 / 01</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377 / 02</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48 / 03</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN / 04</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN / 05</small></div></div><div class="fm-foot"><span>5 / 5 · HULL BLOCKS LOCKED</span><b>开 工 →</b></div></section>
+    <section class="scene bt"><div class="k">04 / 夜战 · 危险区</div><div class="bt-body"><div class="bt-title">HAZARD PLOT<small>22:40 / 5 CONTACTS</small></div><span class="track t1"></span><span class="track t2"></span><span class="track t3"></span><span class="contact c1">01</span><span class="contact c2">02</span><span class="contact c3">03</span><span class="contact c4">04</span><span class="contact c5">05</span><div class="bt-hud"><span>22:40</span><span>26 KN</span><span>5 CONTACT</span><span>GUN READY</span></div></div></section>
+  </div>
+  <footer class="bf"><b>DESIGN NOTE</b><p>用船坞的混凝土、黑钢、安全橙和工单语言，建立“重工业”的可信度；每艘舰是船体分段/编号，不是抽卡货架。适合军需与编队，也可以压住战斗界面。</p><em>frontend-design · 07 / 08</em></footer>
+</section>
+
+<!-- 08 -->
+<section class="board d8" id="d8">
+  <header class="dh"><div class="num">08</div><div><h1>海图室</h1><span class="sub">HYDROGRAPHIC CHART</span></div><p class="thesis">把整个规划层做成海图室：羊皮纸、海绿、铜、红；等深线、罗经、站位表。单舰是海图上的一个具名站位，不是卡片。</p><div class="spec"><div class="sw"><i style="background:#e7ddc5"></i><i style="background:#173530"></i><i style="background:#a25c36"></i><i style="background:#2f5e57"></i></div><div class="ty">Baskerville / 宋体 / 等宽<br>PARCHMENT · SEA GREEN · COPPER</div></div></header>
+  <div class="grid">
+    <section class="scene hb"><div class="k">01 / 母港 · 海图室</div><div class="hb-body"><div class="hb-copy"><h2>母港</h2><p>海图室是母港的桌面。每条航线、每艘舰、每个舰位都在图上；弗莱彻是领舰，有独立站位。</p><div class="hb-actions"><span>作战航图</span><span>军需处</span><span>征募处</span></div></div><div class="hb-art"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"><span>弗莱彻 · DD-445 · 领舰</span></div></div></section>
+    <section class="scene cp"><div class="k">02 / 战役航图 · 海图</div><div class="cp-body"><div class="cp-map"><span class="pin a"></span><span class="pin b"></span><span class="pin c"></span><span class="map-tag">CHART 03 / SOLOMONS / 1:250,000</span></div><div class="cp-brief"><small>CHART CAMP-ALLIES-02</small><h3>埃斯佩兰斯角</h3><p>等深线与夜航路线；9 个具名舰位，按原图锁定。</p><div class="cp-facts"><div><span>舰位</span><b>9</b></div><div><span>点价</span><b>6,825</b></div><div><span>水深</span><b>1,200m</b></div></div><div class="cp-go">出 航</div></div></div></section>
+    <section class="scene fm"><div class="k">03 / 出击编队 · 站位表</div><div class="fm-row"><div class="fs lead"><div class="ph"><img src="assets/ibs-u-usn-fletcher.webp" alt="弗莱彻"></div><b>弗莱彻</b><small>DD-445 / 01</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-perkins.webp" alt="帕金斯"></div><b>帕金斯</b><small>DD-377 / 02</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-usn-honolulu.webp" alt="火奴鲁鲁"></div><b>火奴鲁鲁</b><small>CL-48 / 03</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-kagero.webp" alt="阳炎"></div><b>阳炎</b><small>IJN / 04</small></div><div class="fs"><div class="ph"><img src="assets/ibs-u-ijn-takanami.webp" alt="高波"></div><b>高波</b><small>IJN / 05</small></div></div><div class="fm-foot"><span>5 / 5 · EVERY BERTH IS NAMED</span><b>出 航 →</b></div></section>
+    <section class="scene bt"><div class="k">04 / 夜战 · 标图</div><div class="bt-body"><div class="bt-title">PLOT<small>22:40 / 5 CONTACTS</small></div><span class="track t1"></span><span class="track t2"></span><span class="track t3"></span><span class="contact c1">01</span><span class="contact c2">02</span><span class="contact c3">03</span><span class="contact c4">04</span><span class="contact c5">05</span><div class="bt-hud"><span>22:40</span><span>26 节</span><span>5 接触</span><span>炮 就绪</span></div></div></section>
+  </div>
+  <footer class="bf"><b>DESIGN NOTE</b><p>海图室是最“历史”的方向：所有信息都能落在图、站位、等深线和罗经上；单舰是具名站位，战斗是同一张图的延续。它治的是“卡片 + 发光仪表盘”的 AI 感。</p><em>frontend-design · 08 / 08</em></footer>
+</section>
+
+</body>
+</html>

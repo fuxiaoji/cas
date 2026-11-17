@@ -1,0 +1,15 @@
+{
+  "trees": [
+    "res://assets/vendor/nature-refine/CommonTree_1.glb",
+    "res://assets/vendor/nature-refine/CommonTree_3.glb",
+    "res://assets/vendor/nature-refine/CommonTree_5.glb"
+  ],
+  "bushes": ["res://assets/vendor/quaternius-free/Bush_1.glb", "res://assets/vendor/quaternius-free/Bush_2.glb"],
+  "rocks": ["res://assets/vendor/quaternius-free/Rock_1.glb", "res://assets/vendor/quaternius-free/Rock_2.glb", "res://assets/vendor/quaternius-free/Rock_3.glb"],
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "pack": "Ultimate Nature Pack",
+  "official_url": "https://quaternius.com/packs/ultimatenature.html",
+  "public_conversion_mirror": "https://github.com/trebeljahr/quaternius-showcase",
+  "note": "Three fuller broadleaf silhouettes replace the thin birch and umbrella pine. This selection is Ultimate Nature, not the incomplete MegaKit download archived under source/."
+}

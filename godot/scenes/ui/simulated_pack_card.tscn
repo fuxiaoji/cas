@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/simulated_pack_card.gd" id="1"]
+
+[node name="SimulatedPackCard" type="PanelContainer"]
+custom_minimum_size = Vector2(475, 245)
+script = ExtResource("1")
+
+[node name="Body" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Body"]
+layout_mode = 0
+offset_left = 185
+offset_top = 18
+offset_right = 455
+offset_bottom = 60
+text = "试航补给"
+theme_override_font_sizes/font_size = 25
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Art" type="TextureRect" parent="Body"]
+layout_mode = 0
+offset_left = 14
+offset_top = 20
+offset_right = 169
+offset_bottom = 190
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Body"]
+layout_mode = 0
+offset_left = 185
+offset_top = 69
+offset_right = 455
+offset_bottom = 117
+text = "60 元词"
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Price" type="Label" parent="Body"]
+layout_mode = 0
+offset_left = 185
+offset_top = 127
+offset_right = 455
+offset_bottom = 159
+text = "模拟价 ¥6"
+theme_override_font_sizes/font_size = 21
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Buy" type="Button" parent="Body"]
+layout_mode = 0
+offset_left = 185
+offset_top = 174
+offset_right = 448
+offset_bottom = 224
+text = "生成模拟订单"
+theme_override_font_sizes/font_size = 22

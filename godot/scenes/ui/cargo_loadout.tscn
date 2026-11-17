@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[node name="CargoLoadout" type="Control"]
+offset_left = 370.0
+offset_top = 220.0
+offset_right = 1230.0
+offset_bottom = 700.0
+
+[node name="Caption" type="Label" parent="."]
+offset_right = 855.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.368, 0.443, 0.51, 1)
+theme_override_font_sizes/font_size = 19
+text = "载货空间由指挥官、舰船吨位和实际编入的运输舰共同提供。"
+autowrap_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+offset_top = 55.0
+offset_right = 860.0
+offset_bottom = 390.0
+horizontal_scroll_mode = 0
+
+[node name="Ships" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Capacity" type="Label" parent="."]
+offset_top = 412.0
+offset_right = 580.0
+offset_bottom = 467.0
+theme_override_colors/font_color = Color(0.094, 0.184, 0.274, 1)
+theme_override_font_sizes/font_size = 25
+text = "预计载货空间"
+
+[node name="Complete" type="Button" parent="."]
+offset_left = 620.0
+offset_top = 412.0
+offset_right = 860.0
+offset_bottom = 467.0
+text = "完成装载"

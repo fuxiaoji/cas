@@ -20,6 +20,10 @@ pub(crate) struct Shell {
     reaction: bool,
     impact: Option<Impact>,
     arc_height_m: Option<f64>,
+    // Own-seat visual metadata only. Shell itself is not serialized; Saved
+    // rebuilds authoritative flight and this metadata from the command log.
+    firing_ship: u32,
+    caliber_mm: f64,
 }
 
 impl World {
@@ -66,6 +70,8 @@ impl World {
             reaction,
             impact,
             arc_height_m: None,
+            firing_ship: from.id,
+            caliber_mm: self.data.ships[from.def].gun.caliber_mm,
         });
     }
 
@@ -78,7 +84,7 @@ impl World {
         impact: Option<Impact>,
     ) {
         let max = self.data.ships[from.def].gun.range_yd[3] * YARD;
-        let velocity = P::bearing(contact.heading) * (contact.speed * KNOT);
+        let velocity = P::bearing(contact.heading) * (contact.speed * KNOT * if self.adventure(){10.}else{1.});
         let known = contact.p();
         let mut plotted = known;
         // Iterate the intercept using only this seat's plot. Radar echoes have
@@ -96,7 +102,21 @@ impl World {
         self.shells.push(Shell {
             view_ids, from: from.p, to, launch_tick: self.tick, impact_tick: self.tick + duration,
             owner: from.side, barrels, reaction: false, impact, arc_height_m: Some(arc_height),
+            firing_ship: from.id, caliber_mm: self.data.ships[from.def].gun.caliber_mm,
         });
+    }
+
+    /// Metadata for this seat's already-public live shells only. It must not
+    /// identify an enemy firing ship or disclose its armament.
+    pub(crate) fn main_projectile_presentation(&self, owner: usize) -> Vec<Value> {
+        self.shells.iter().filter(|shell| shell.owner == owner).filter_map(|shell| {
+            let id = shell.view_ids[owner]?;
+            Some(json!({
+                "id":format!("main:{id}"), "shell_id":id, "tick":shell.launch_tick,
+                "own_ship":shell.firing_ship, "battery":"main", "caliber_mm":shell.caliber_mm,
+                "barrels":shell.barrels, "from":shell.from, "to":shell.to,
+            }))
+        }).collect()
     }
 
     pub(crate) fn shell_observation(&self, owner: usize) -> Vec<Value> {

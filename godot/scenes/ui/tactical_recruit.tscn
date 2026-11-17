@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/tactical_recruit.gd" id="1"]
+[node name="TacticalRecruit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+[node name="Backing" type="ColorRect" parent="."]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+color = Color(0.055,0.085,0.125,1)
+mouse_filter = 2
+[node name="Portrait" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.51
+anchor_top = 0.12
+anchor_right = 1
+anchor_bottom = 1
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+[node name="Layout" type="Control" parent="."]
+layout_mode = 0
+anchor_left = 0
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 1
+theme_override_constants/separation = 8
+[node name="Title" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.24
+anchor_top = 0.185
+anchor_right = 0.63
+anchor_bottom = 0.26
+theme_override_font_sizes/font_size = 48
+text = "群星协议"
+[node name="Subtitle" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.242
+anchor_top = 0.277
+anchor_right = 0.6
+anchor_bottom = 0.325
+theme_override_font_sizes/font_size = 21
+text = "二十战术人格 · 各有分工，一同归队"
+autowrap_mode = 2
+[node name="Spacer" type="Control" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+visible = false
+
+[node name="Designation" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.242
+anchor_top = 0.415
+anchor_right = 0.61
+anchor_bottom = 0.46
+theme_override_font_sizes/font_size = 20
+text = "第001空中特勤队"
+[node name="Name" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.24
+anchor_top = 0.47
+anchor_right = 0.67
+anchor_bottom = 0.54
+theme_override_font_sizes/font_size = 40
+text = "云隼"
+[node name="Description" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.242
+anchor_top = 0.565
+anchor_right = 0.54
+anchor_bottom = 0.775
+theme_override_font_sizes/font_size = 21
+text = "直升机投送与近距空中支援。"
+autowrap_mode = 2
+[node name="FeaturedScroll" type="ScrollContainer" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.025
+anchor_top = 0.15
+anchor_right = 0.201
+anchor_bottom = 0.965
+
+horizontal_scroll_mode = 0
+
+[node name="Featured" type="VBoxContainer" parent="Layout/FeaturedScroll"]
+layout_mode = 2
+theme_override_constants/separation = 7
+[node name="Hint" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.242
+anchor_top = 0.795
+anchor_right = 0.62
+anchor_bottom = 0.835
+theme_override_font_sizes/font_size = 17
+text = "0 / 20 已收录"
+[node name="Balance" type="Label" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.64
+anchor_top = 0.025
+anchor_right = 0.965
+anchor_bottom = 0.08
+theme_override_font_sizes/font_size = 21
+text = "协议券 0    元词 0"
+[node name="Actions" type="HBoxContainer" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.585
+anchor_top = 0.892
+anchor_right = 0.965
+anchor_bottom = 0.962
+theme_override_constants/separation = 10
+[node name="DrawOne" type="Button" parent="Layout/Actions"]
+custom_minimum_size = Vector2(0,76)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "同步一次"
+[node name="DrawTen" type="Button" parent="Layout/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "同步十次"
+[node name="Archive" type="Button" parent="Layout/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "全编制档案"
+[node name="Probability" type="Button" parent="Layout"]
+layout_mode = 0
+anchor_left = 0.242
+anchor_top = 0.847
+anchor_right = 0.45
+anchor_bottom = 0.89
+text = "概率与保底 · 二十编制"

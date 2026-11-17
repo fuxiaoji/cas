@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CasExpeditionDesign" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/expedition_design.gd" id="1"]
+[resource]
+script = ExtResource("1")
+difficulties = Array[Dictionary]([{
+"id":"calm", "name":"近海巡航", "tagline":"先熟悉搜索与撤离", "risk":"海怪较少 · 新手推荐", "reward":"基础补给与养成物资", "art":"res://assets/expedition/calm.png", "fallback":"res://assets/story/chapter1/gate.png"
+},{
+"id":"standard", "name":"交锋航路", "tagline":"探索、交战、取舍", "risk":"海怪巡游 · 保持机动", "reward":"更多材料与改良物件", "art":"res://assets/expedition/standard.png", "fallback":"res://assets/story/chapter1/drydock-v1.png"
+},{
+"id":"hazard", "name":"深渊禁区", "tagline":"带走宝物，及时脱离", "risk":"强敌出没 · 建议整备后出航", "reward":"精良物资与高价值残骸", "art":"res://assets/expedition/hazard.png", "fallback":"res://assets/story/chapter1/deck-storm-v1.png"
+}])
+environments = Array[Dictionary]([{"id":"atoll","name":"珊瑚环礁","icon":"sun"},{"id":"fractured","name":"碎裂群岛","icon":"compass"},{"id":"fjord","name":"峡湾水道","icon":"fleet"},{"id":"drowned_city","name":"淹没都市","icon":"archive"}])
+weather = Array[Dictionary]([{"id":"auto","name":"自动变化","icon":"compass"},{"id":"clear","name":"晴空","icon":"sun"},{"id":"rain","name":"阵雨","icon":"shield"},{"id":"fog","name":"海雾","icon":"search"}])
+scenes = Array[Dictionary]([{"id":"sunken_metropolis","name":"溺城街区","icon":"archive"},{"id":"cult_relay","name":"拜教中继","icon":"radar"},{"id":"storm_wrecks","name":"风暴船冢","icon":"anchor"},{"id":"thermal_vent","name":"热泉裂谷","icon":"sun"},{"id":"refugee_causeway","name":"流民堤道","icon":"fleet"}])

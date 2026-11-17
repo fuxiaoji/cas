@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="CasPlayerGrowthRules" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/player_growth_rules.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+materials = Array[Dictionary]([
+  {
+    "id": "materials",
+    "name": "基础航海记录",
+    "tier": 1,
+    "xp": 40,
+    "atlas": 0
+  },
+  {
+    "id": "training_t2",
+    "name": "进阶航海记录",
+    "tier": 2,
+    "xp": 160,
+    "atlas": 1
+  },
+  {
+    "id": "training_t3",
+    "name": "精研航海记录",
+    "tier": 3,
+    "xp": 640,
+    "atlas": 2
+  },
+  {
+    "id": "core_t1",
+    "name": "锈蚀突破核心",
+    "tier": 1,
+    "atlas": 3
+  },
+  {
+    "id": "core_t2",
+    "name": "精密突破核心",
+    "tier": 2,
+    "atlas": 4
+  },
+  {
+    "id": "core_t3",
+    "name": "共鸣突破核心",
+    "tier": 3,
+    "atlas": 5
+  }
+])
+ascensions = Array[Dictionary]([
+  {
+    "player_level": 3,
+    "credits": 400,
+    "materials": {
+      "core_t1": 4
+    }
+  },
+  {
+    "player_level": 6,
+    "credits": 900,
+    "materials": {
+      "core_t2": 3,
+      "core_t3": 1
+    }
+  }
+])
+gear_types = Array[Dictionary]([
+  {
+    "id": "fire_control",
+    "name": "火控测距仪",
+    "stat": "base_hit",
+    "atlas": 0
+  },
+  {
+    "id": "propulsion",
+    "name": "轮机增压器",
+    "stat": "speed",
+    "atlas": 1
+  },
+  {
+    "id": "bulkhead",
+    "name": "复合隔舱",
+    "stat": "hp",
+    "atlas": 2
+  },
+  {
+    "id": "balanced",
+    "name": "平衡改装套件",
+    "stat": "balanced",
+    "atlas": 3
+  },
+  {
+    "id": "ballistics",
+    "name": "弹道计算仪",
+    "stat": "firepower",
+    "atlas": 4
+  }
+])

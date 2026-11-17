@@ -250,10 +250,13 @@ export function ShipSchematic({ ship, ships, select, tick = 0, torpedo }: {
         {ships.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}
       </select>}
     </div>
-    <div className={'ship-overview' + (portrait ? ' with-portrait' : '')}>
-      {portrait && <figure className="ship-portrait" data-character={portrait.id}>
+    <div className="ship-overview with-portrait">
+      {portrait ? <figure className="ship-portrait" data-character={portrait.id}>
         <img key={portrait.id} src={portrait.src} alt={portrait.name + '舰娘立绘'} decoding="async" />
         <figcaption><strong>{portrait.name}</strong>{portrait.representative && <span>舰型代表</span>}</figcaption>
+      </figure> : <figure className="ship-portrait is-placeholder" data-portrait="placeholder">
+        <div className="ship-portrait__shadow" aria-hidden="true">舰影</div>
+        <figcaption><strong>无立绘</strong><span>以舰影与舰况代替</span></figcaption>
       </figure>}
       <div className="ship-overview-state">
         <div className="hull-meter"><span>舰体耐久</span><b>{hp} / {ship.maxHp} DP</b></div>

@@ -1,0 +1,2643 @@
+{
+  "version": "tactical-expansion-art-v4",
+  "units": {
+    "MCP-301": {
+      "id": "MCP-301",
+      "portrait": "res://assets/tactical/expansion-20261115/MCP-301-portrait.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            73,
+            20,
+            296,
+            354
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            58,
+            19,
+            281,
+            354
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            58,
+            20,
+            281,
+            355
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            58,
+            19,
+            281,
+            354
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            73,
+            19,
+            296,
+            354
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            58,
+            19,
+            281,
+            354
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            50,
+            26,
+            308,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            50,
+            26,
+            336,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            59,
+            22,
+            303,
+            346
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            53,
+            26,
+            362,
+            342
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            354.0
+          ],
+          "bounds": [
+            0,
+            27,
+            362,
+            328
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            169.0,
+            208.5
+          ],
+          "bounds": [
+            0,
+            88,
+            338,
+            329
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-301-sprite.png",
+          "reference_height": 335.0
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7
+        ],
+        "hurt": [
+          8
+        ],
+        "search": [
+          9
+        ],
+        "fall": [
+          10
+        ],
+        "defeated": [
+          11
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/tactical-expansion-20261115/asset-ledger.json",
+      "source_sha256": "2410f9c73e0242024f725c803867dc0b718ccf7ba95dc1b5bb832764cd35f84f"
+    },
+    "MCP-302": {
+      "id": "MCP-302",
+      "portrait": "res://assets/tactical/expansion-20261115/MCP-302-portrait.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            76,
+            12,
+            292,
+            351
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            77,
+            11,
+            291,
+            351
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            77,
+            12,
+            291,
+            351
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            76,
+            11,
+            294,
+            351
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            75,
+            13,
+            291,
+            348
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            76,
+            13,
+            284,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            58,
+            16,
+            313,
+            348
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            58,
+            16,
+            336,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            65,
+            18,
+            307,
+            346
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            61,
+            21,
+            284,
+            345
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            351.0
+          ],
+          "bounds": [
+            17,
+            34,
+            362,
+            336
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            170.0,
+            208.5
+          ],
+          "bounds": [
+            0,
+            81,
+            340,
+            336
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-302-sprite.png",
+          "reference_height": 339.0
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7
+        ],
+        "hurt": [
+          8
+        ],
+        "search": [
+          9
+        ],
+        "fall": [
+          10
+        ],
+        "defeated": [
+          11
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/tactical-expansion-20261115/asset-ledger.json",
+      "source_sha256": "e5477d00cc204849f08f2d30d282d804e5612fc41624c3c01fab646f019c8af8"
+    },
+    "MCP-303": {
+      "id": "MCP-303",
+      "portrait": "res://assets/tactical/expansion-20261115/MCP-303-portrait.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            20,
+            306,
+            356
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            20,
+            335,
+            356
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            27,
+            20,
+            305,
+            358
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            20,
+            306,
+            358
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            21,
+            306,
+            356
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            21,
+            332,
+            355
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            27,
+            21,
+            312,
+            353
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            27,
+            21,
+            354,
+            353
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            20,
+            317,
+            350
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            28,
+            21,
+            306,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            356.0
+          ],
+          "bounds": [
+            8,
+            25,
+            306,
+            346
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            175.5,
+            217.5
+          ],
+          "bounds": [
+            6,
+            86,
+            345,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-303-sprite.png",
+          "reference_height": 336.0
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7
+        ],
+        "hurt": [
+          8
+        ],
+        "search": [
+          9
+        ],
+        "fall": [
+          10
+        ],
+        "defeated": [
+          11
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/tactical-expansion-20261115/asset-ledger.json",
+      "source_sha256": "9afed07709ee97a2eff530366542997adf7507cb2eb10bf2df67888977eac9ce"
+    },
+    "MCP-304": {
+      "id": "MCP-304",
+      "portrait": "res://assets/tactical/expansion-20261115/MCP-304-portrait.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            49,
+            21,
+            317,
+            353
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            48,
+            21,
+            316,
+            353
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            46,
+            22,
+            311,
+            353
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            44,
+            22,
+            311,
+            353
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            48,
+            22,
+            316,
+            352
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            45,
+            22,
+            313,
+            352
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            37,
+            24,
+            309,
+            351
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            38,
+            24,
+            354,
+            351
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            48,
+            24,
+            320,
+            347
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            45,
+            21,
+            312,
+            339
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            353.0
+          ],
+          "bounds": [
+            9,
+            30,
+            293,
+            347
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            174.0,
+            205.0
+          ],
+          "bounds": [
+            8,
+            69,
+            340,
+            341
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-304-sprite.png",
+          "reference_height": 331.0
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7
+        ],
+        "hurt": [
+          8
+        ],
+        "search": [
+          9
+        ],
+        "fall": [
+          10
+        ],
+        "defeated": [
+          11
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/tactical-expansion-20261115/asset-ledger.json",
+      "source_sha256": "659a02a03bbd90bc5062f0b8e308074e7e15ceb640562b729721518e5cd8187b"
+    },
+    "MCP-305": {
+      "id": "MCP-305",
+      "portrait": "res://assets/tactical/expansion-20261115/MCP-305-portrait.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            76,
+            12,
+            292,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            76,
+            12,
+            292,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            77,
+            12,
+            292,
+            348
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            77,
+            12,
+            293,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            77,
+            13,
+            293,
+            348
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            77,
+            13,
+            293,
+            349
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            63,
+            18,
+            313,
+            347
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            65,
+            18,
+            343,
+            346
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            67,
+            15,
+            312,
+            345
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            65,
+            19,
+            295,
+            344
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            349.0
+          ],
+          "bounds": [
+            11,
+            35,
+            298,
+            330
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            173.5,
+            208.5
+          ],
+          "bounds": [
+            1,
+            88,
+            346,
+            329
+          ],
+          "source": "res://assets/tactical/expansion-20261115/MCP-305-sprite.png",
+          "reference_height": 336.5
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7
+        ],
+        "hurt": [
+          8
+        ],
+        "search": [
+          9
+        ],
+        "fall": [
+          10
+        ],
+        "defeated": [
+          11
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/tactical-expansion-20261115/asset-ledger.json",
+      "source_sha256": "d67b9d36a9adfac55aad70a39fb5b1c3f7c4423351a250dd5e738e5a250ce671"
+    },
+    "MCP-306": {
+      "id": "MCP-306",
+      "portrait": "res://assets/tactical/sixth-infantry-20261115/MCP-306-portrait.png",
+      "sprite_sheet": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+      "art_status": "approved_original_identity_handoff",
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            315,
+            312
+          ],
+          "bounds": [
+            47,
+            14,
+            251,
+            306
+          ],
+          "pivot": [
+            149.0,
+            306
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            0,
+            315,
+            312
+          ],
+          "bounds": [
+            47,
+            14,
+            252,
+            306
+          ],
+          "pivot": [
+            149.5,
+            306
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            0,
+            316,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            256,
+            306
+          ],
+          "pivot": [
+            152.0,
+            306
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            0,
+            315,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            256,
+            305
+          ],
+          "pivot": [
+            152.0,
+            305
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            312,
+            315,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            255,
+            304
+          ],
+          "pivot": [
+            151.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            312,
+            315,
+            312
+          ],
+          "bounds": [
+            48,
+            14,
+            255,
+            304
+          ],
+          "pivot": [
+            151.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            312,
+            316,
+            312
+          ],
+          "bounds": [
+            23,
+            15,
+            294,
+            304
+          ],
+          "pivot": [
+            158.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            312,
+            315,
+            312
+          ],
+          "bounds": [
+            22,
+            15,
+            305,
+            304
+          ],
+          "pivot": [
+            163.5,
+            304
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            624,
+            315,
+            311
+          ],
+          "bounds": [
+            29,
+            19,
+            259,
+            290
+          ],
+          "pivot": [
+            144.0,
+            290
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            624,
+            315,
+            311
+          ],
+          "bounds": [
+            42,
+            17,
+            256,
+            292
+          ],
+          "pivot": [
+            149.0,
+            292
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            624,
+            316,
+            311
+          ],
+          "bounds": [
+            6,
+            20,
+            276,
+            287
+          ],
+          "pivot": [
+            141.0,
+            287
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            624,
+            315,
+            311
+          ],
+          "bounds": [
+            1,
+            57,
+            296,
+            265
+          ],
+          "pivot": [
+            148.5,
+            161.0
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            935,
+            315,
+            312
+          ],
+          "bounds": [
+            41,
+            6,
+            252,
+            305
+          ],
+          "pivot": [
+            146.5,
+            305
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            315,
+            935,
+            315,
+            312
+          ],
+          "bounds": [
+            41,
+            6,
+            258,
+            305
+          ],
+          "pivot": [
+            149.5,
+            305
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            630,
+            935,
+            316,
+            312
+          ],
+          "bounds": [
+            25,
+            12,
+            253,
+            302
+          ],
+          "pivot": [
+            139.0,
+            302
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            946,
+            935,
+            315,
+            312
+          ],
+          "bounds": [
+            25,
+            10,
+            262,
+            301
+          ],
+          "pivot": [
+            143.5,
+            301
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-sprite.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            0,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            19,
+            185,
+            525,
+            586
+          ],
+          "pivot": [
+            272.0,
+            385.5
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            543,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            16,
+            156,
+            522,
+            620
+          ],
+          "pivot": [
+            269.0,
+            388.0
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            17,
+            218,
+            522,
+            580
+          ],
+          "pivot": [
+            269.5,
+            399.0
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        },
+        {
+          "rect": [
+            1629,
+            0,
+            543,
+            724
+          ],
+          "bounds": [
+            15,
+            155,
+            514,
+            598
+          ],
+          "pivot": [
+            264.5,
+            376.5
+          ],
+          "source": "res://assets/tactical/sixth-infantry-20261115/MCP-306-casualty.png",
+          "reference_height": 291.5
+        }
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1
+        ],
+        "walk": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "fire": [
+          6,
+          7,
+          12,
+          13,
+          6
+        ],
+        "bolt": [
+          12,
+          13
+        ],
+        "heal": [
+          14,
+          15
+        ],
+        "hurt": [
+          8,
+          0
+        ],
+        "search": [
+          9
+        ],
+        "defeated": [
+          11,
+          16,
+          17,
+          18,
+          19
+        ],
+        "fall": [
+          10
+        ],
+        "deploy": [
+          0
+        ],
+        "parachuting": [
+          0
+        ]
+      },
+      "source_ledger": "docs/art/sixth-infantry-20261115/asset-ledger.json"
+    }
+  },
+  "vehicles": {
+    "MCP-304": {
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dddf-c2c5-7b43-91ca-8d61611f3713\\exec-b73f08b4-2863-4348-90eb-ce0238fac985.png",
+      "prompt": "Use case: precise-object-edit. EDIT this 4x3 transparent12frame vehicle atlas. Keep the EXACT same vehicle design, hull, wheel/track count, weapon, colors and action ORDER. Fix ONLY cell isolation and scale: each of the12 COMPLETE vehicle silhouettes including water wake and muzzle flash must be uniformly SMALLER, occupying at most65% of its own square cell width/height, with at least17.5% perfectly EMPTY TRANSPARENT padding along ALL four edges of EACH CELL. Reconstruct any clipped part. Same scale across all12 frames. Absolutely NO overlap across internal cell boundaries: water wakes and muzzle flashes must fit entirely inside their OWN cell and not touch neighbors. Keep wave effects short and compact. 4 columns by3 rows, exact4:3 ratio, no text/grid/lines/background/floor/halo. Clean true alpha, remove colored edge speckles.",
+      "references": [
+        "C:\\Users\\fwj\\.codex\\generated_images\\01a1dddf-c2c5-7b43-91ca-8d61611f3713\\exec-acd9cf74-9efb-462e-95c5-c9ed139f0156.png"
+      ],
+      "path": "res://assets/tactical/expansion-20261115/MCP-304-vehicle.png",
+      "sha256": "d49cb44104c61718aea87cf7e820c7a69db81b0e76c7a4126bc79eea0b27c953",
+      "size": [
+        1448,
+        1086
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 906578,
+      "source_bytes_preserved": true,
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            69,
+            103,
+            298,
+            293
+          ]
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            69,
+            102,
+            298,
+            293
+          ]
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            70,
+            103,
+            299,
+            293
+          ]
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            70,
+            102,
+            299,
+            293
+          ]
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            66,
+            82,
+            309,
+            268
+          ]
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            64,
+            82,
+            309,
+            267
+          ]
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            58,
+            82,
+            307,
+            286
+          ]
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            67,
+            82,
+            299,
+            273
+          ]
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            70,
+            76,
+            299,
+            266
+          ]
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            70,
+            77,
+            298,
+            267
+          ]
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            57,
+            76,
+            299,
+            274
+          ]
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            71,
+            76,
+            299,
+            266
+          ]
+        }
+      ],
+      "animations": {
+        "idle": {
+          "frames": [
+            0
+          ],
+          "fps": 1,
+          "loop": true
+        },
+        "drive": {
+          "frames": [
+            1,
+            2,
+            3,
+            2
+          ],
+          "fps": 8,
+          "loop": true
+        },
+        "swim": {
+          "frames": [
+            4,
+            5,
+            6,
+            5
+          ],
+          "fps": 5,
+          "loop": true
+        },
+        "beach": {
+          "frames": [
+            4,
+            5,
+            6,
+            7,
+            0
+          ],
+          "fps": 3,
+          "loop": false
+        },
+        "fire": {
+          "frames": [
+            8,
+            9,
+            8
+          ],
+          "fps": 8,
+          "loop": false
+        },
+        "ramp": {
+          "frames": [
+            10
+          ],
+          "fps": 1,
+          "loop": true
+        },
+        "disabled": {
+          "frames": [
+            11
+          ],
+          "fps": 1,
+          "loop": false
+        }
+      },
+      "grid": [
+        4,
+        3
+      ],
+      "single_angle": true,
+      "reference_height": 190.0,
+      "visual_only": true,
+      "cell_alpha_bounds": [
+        [
+          69,
+          103,
+          298,
+          293
+        ],
+        [
+          69,
+          102,
+          298,
+          293
+        ],
+        [
+          70,
+          103,
+          299,
+          293
+        ],
+        [
+          70,
+          102,
+          299,
+          293
+        ],
+        [
+          66,
+          82,
+          309,
+          268
+        ],
+        [
+          64,
+          82,
+          309,
+          267
+        ],
+        [
+          58,
+          82,
+          307,
+          286
+        ],
+        [
+          67,
+          82,
+          299,
+          273
+        ],
+        [
+          70,
+          76,
+          299,
+          266
+        ],
+        [
+          70,
+          77,
+          298,
+          267
+        ],
+        [
+          57,
+          76,
+          299,
+          274
+        ],
+        [
+          71,
+          76,
+          299,
+          266
+        ]
+      ]
+    },
+    "MCP-305": {
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1dddf-c2c5-7b43-91ca-8d61611f3713\\exec-5aa51e64-7e4e-4be9-ab7f-77bc3ad085c2.png",
+      "prompt": "Use case: precise-object-edit. EDIT this 4x3 transparent12frame vehicle atlas. Keep the EXACT same vehicle design, hull, wheel/track count, weapon, colors and action ORDER. Fix ONLY cell isolation and scale: each of the12 COMPLETE vehicle silhouettes including water wake and muzzle flash must be uniformly SMALLER, occupying at most65% of its own square cell width/height, with at least17.5% perfectly EMPTY TRANSPARENT padding along ALL four edges of EACH CELL. Reconstruct any clipped part. Same scale across all12 frames. Absolutely NO overlap across internal cell boundaries: water wakes and muzzle flashes must fit entirely inside their OWN cell and not touch neighbors. Keep wave effects short and compact. 4 columns by3 rows, exact4:3 ratio, no text/grid/lines/background/floor/halo. Clean true alpha, remove colored edge speckles.",
+      "references": [
+        "C:\\Users\\fwj\\.codex\\generated_images\\01a1dddf-c2c5-7b43-91ca-8d61611f3713\\exec-d56755be-b73f-4a21-96a7-73e5d82c33d6.png"
+      ],
+      "path": "res://assets/tactical/expansion-20261115/MCP-305-vehicle.png",
+      "sha256": "a443f1820e885c43bc0a12a90fe57fd75673bff06ea4fa5d33e524d9a61cc144",
+      "size": [
+        1448,
+        1086
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 1213234,
+      "source_bytes_preserved": true,
+      "frames": [
+        {
+          "rect": [
+            0,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            83,
+            100,
+            295,
+            267
+          ]
+        },
+        {
+          "rect": [
+            362,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            79,
+            100,
+            291,
+            267
+          ]
+        },
+        {
+          "rect": [
+            724,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            73,
+            100,
+            286,
+            266
+          ]
+        },
+        {
+          "rect": [
+            1086,
+            0,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            66,
+            100,
+            280,
+            267
+          ]
+        },
+        {
+          "rect": [
+            0,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            83,
+            82,
+            298,
+            246
+          ]
+        },
+        {
+          "rect": [
+            362,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            70,
+            82,
+            296,
+            265
+          ]
+        },
+        {
+          "rect": [
+            724,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            58,
+            82,
+            292,
+            271
+          ]
+        },
+        {
+          "rect": [
+            1086,
+            362,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            69,
+            82,
+            280,
+            248
+          ]
+        },
+        {
+          "rect": [
+            0,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            84,
+            65,
+            295,
+            235
+          ]
+        },
+        {
+          "rect": [
+            362,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            79,
+            50,
+            291,
+            234
+          ]
+        },
+        {
+          "rect": [
+            724,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            74,
+            69,
+            286,
+            242
+          ]
+        },
+        {
+          "rect": [
+            1086,
+            724,
+            362,
+            362
+          ],
+          "pivot": [
+            181.0,
+            289.6
+          ],
+          "bounds": [
+            67,
+            70,
+            281,
+            234
+          ]
+        }
+      ],
+      "animations": {
+        "idle": {
+          "frames": [
+            0
+          ],
+          "fps": 1,
+          "loop": true
+        },
+        "drive": {
+          "frames": [
+            1,
+            2,
+            3,
+            2
+          ],
+          "fps": 8,
+          "loop": true
+        },
+        "swim": {
+          "frames": [
+            4,
+            5,
+            6,
+            5
+          ],
+          "fps": 5,
+          "loop": true
+        },
+        "beach": {
+          "frames": [
+            4,
+            5,
+            6,
+            7,
+            0
+          ],
+          "fps": 3,
+          "loop": false
+        },
+        "fire": {
+          "frames": [
+            8,
+            9,
+            8
+          ],
+          "fps": 8,
+          "loop": false
+        },
+        "ramp": {
+          "frames": [
+            10
+          ],
+          "fps": 1,
+          "loop": true
+        },
+        "disabled": {
+          "frames": [
+            11
+          ],
+          "fps": 1,
+          "loop": false
+        }
+      },
+      "grid": [
+        4,
+        3
+      ],
+      "single_angle": true,
+      "reference_height": 167.0,
+      "visual_only": true,
+      "cell_alpha_bounds": [
+        [
+          83,
+          100,
+          295,
+          267
+        ],
+        [
+          79,
+          100,
+          291,
+          267
+        ],
+        [
+          73,
+          100,
+          286,
+          266
+        ],
+        [
+          66,
+          100,
+          280,
+          267
+        ],
+        [
+          83,
+          82,
+          298,
+          246
+        ],
+        [
+          70,
+          82,
+          296,
+          265
+        ],
+        [
+          58,
+          82,
+          292,
+          271
+        ],
+        [
+          69,
+          82,
+          280,
+          248
+        ],
+        [
+          84,
+          65,
+          295,
+          235
+        ],
+        [
+          79,
+          50,
+          291,
+          234
+        ],
+        [
+          74,
+          69,
+          286,
+          242
+        ],
+        [
+          67,
+          70,
+          281,
+          234
+        ]
+      ]
+    }
+  }
+}

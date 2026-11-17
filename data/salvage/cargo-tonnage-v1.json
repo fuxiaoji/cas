@@ -1,0 +1,67 @@
+{
+  "version": "cargo-tonnage-v1",
+  "ships": {
+    "IBS-U-USN-FLETCHER": {
+      "tons": 2200,
+      "source": "data\\campaign\\period\\cape-st-george-1943.json class Fletcher"
+    },
+    "IBS-U-IJN-MONCHIZUKI": {
+      "tons": 1336,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-MIKAZUKI": {
+      "tons": 1336,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-NAGATSUKI": {
+      "tons": 1336,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-SATSUKI": {
+      "tons": 1336,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-YUNAGI": {
+      "tons": 1422,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-MINAZUKI": {
+      "tons": 1336,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-MATSU-KAZE": {
+      "tons": 1422,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    },
+    "IBS-U-IJN-FUMIZUKI": {
+      "tons": 1336,
+      "source": "data/ships/apd-source-cards.json",
+      "cargo_role": "transport",
+      "role_source": "data/ships/apd-source-cards.json catalog APD transport role; CAS ShipDef remains DD"
+    }
+  },
+  "fallback": {
+    "DD": 2000,
+    "APD": 1400,
+    "CL": 6500,
+    "CA": 10000,
+    "BB": 30000,
+    "BC": 30000,
+    "CV": 20000
+  },
+  "note": "Missing explicit source displacement uses clearly marked fictional cargo-budget tonnage by hull kind; not a CAS ship-card assertion."
+}

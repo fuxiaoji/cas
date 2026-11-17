@@ -1,0 +1,239 @@
+{
+  "version": "tactical-vehicles-v4",
+  "orientation": "N=up/E=right/S=down/W=left; heading north zero clockwise; TL/TR/BL/BR",
+  "scope": "Two original equipment-only directional art overrides; no gameplay statistics override.",
+  "vehicles": {
+    "amphibious_wheeled_ifv": {
+      "atlas": "res://assets/tactical/vehicles-v4/amphibious_wheeled_ifv.png",
+      "frames": {
+        "N": {
+          "region": [
+            163,
+            52,
+            264,
+            481
+          ],
+          "anchor": [
+            132.0,
+            240.5
+          ],
+          "scale_reference": 457,
+          "alpha_bbox_128": [
+            12,
+            12,
+            240,
+            457
+          ],
+          "hull_bbox": [
+            12,
+            12,
+            240,
+            457
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            599,
+            163,
+            502,
+            277
+          ],
+          "anchor": [
+            251.0,
+            138.5
+          ],
+          "scale_reference": 478,
+          "alpha_bbox_128": [
+            12,
+            12,
+            478,
+            253
+          ],
+          "hull_bbox": [
+            12,
+            12,
+            478,
+            253
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            166,
+            699,
+            271,
+            496
+          ],
+          "anchor": [
+            135.5,
+            248.0
+          ],
+          "scale_reference": 472,
+          "alpha_bbox_128": [
+            12,
+            12,
+            247,
+            472
+          ],
+          "hull_bbox": [
+            12,
+            12,
+            247,
+            472
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            601,
+            785,
+            507,
+            280
+          ],
+          "anchor": [
+            253.5,
+            140.0
+          ],
+          "scale_reference": 483,
+          "alpha_bbox_128": [
+            12,
+            12,
+            483,
+            256
+          ],
+          "hull_bbox": [
+            12,
+            12,
+            483,
+            256
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 6.9,
+      "source_record": "docs/art/home-daily-20261115/amphibious_wheeled_ifv.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "e8a5c02cd9e2a468f678738a85ce29e46af3bd3c24dfac0226b5f8053e179362",
+      "dimension_basis": "Nominal original fictional hull length in metres, excluding cannon and antenna overhang. Not a historical transcription or gameplay collision override.",
+      "anchor_basis": "Manually reviewed hull centre, excluding gun/antenna overhang; all four original orientations are separate drawings."
+    },
+    "amphibious_tracked_gun": {
+      "atlas": "res://assets/tactical/vehicles-v4/amphibious_tracked_gun.png",
+      "frames": {
+        "N": {
+          "region": [
+            163,
+            60,
+            298,
+            507
+          ],
+          "anchor": [
+            149.0,
+            289.0
+          ],
+          "scale_reference": 412,
+          "alpha_bbox_128": [
+            12,
+            12,
+            274,
+            483
+          ],
+          "hull_bbox": [
+            12,
+            83,
+            274,
+            412
+          ],
+          "forward_deg": 0
+        },
+        "E": {
+          "region": [
+            681,
+            159,
+            453,
+            310
+          ],
+          "anchor": [
+            226.5,
+            175.0
+          ],
+          "scale_reference": 429,
+          "alpha_bbox_128": [
+            12,
+            12,
+            429,
+            286
+          ],
+          "hull_bbox": [
+            12,
+            52,
+            429,
+            246
+          ],
+          "forward_deg": 90
+        },
+        "S": {
+          "region": [
+            163,
+            689,
+            299,
+            472
+          ],
+          "anchor": [
+            149.5,
+            228.5
+          ],
+          "scale_reference": 433,
+          "alpha_bbox_128": [
+            12,
+            12,
+            275,
+            448
+          ],
+          "hull_bbox": [
+            12,
+            12,
+            275,
+            433
+          ],
+          "forward_deg": 180
+        },
+        "W": {
+          "region": [
+            663,
+            733,
+            463,
+            324
+          ],
+          "anchor": [
+            231.5,
+            185.0
+          ],
+          "scale_reference": 439,
+          "alpha_bbox_128": [
+            12,
+            12,
+            439,
+            300
+          ],
+          "hull_bbox": [
+            12,
+            58,
+            439,
+            254
+          ],
+          "forward_deg": 270
+        }
+      },
+      "length_m": 7.4,
+      "source_record": "docs/art/home-daily-20261115/amphibious_tracked_gun.json",
+      "status": "approved",
+      "render_role": "equipment_only",
+      "source_sha256": "55c84609f1343fe14d8a820e8f0fd20c1a9b3c154aa1e691d7fc12c27c8e4147",
+      "dimension_basis": "Nominal original fictional hull length in metres, excluding cannon and antenna overhang. Not a historical transcription or gameplay collision override.",
+      "anchor_basis": "Manually reviewed hull centre, excluding gun/antenna overhang; all four original orientations are separate drawings."
+    }
+  }
+}

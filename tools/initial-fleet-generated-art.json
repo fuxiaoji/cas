@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-11",
+  "generator": "built-in imagegen",
+  "jobs": [
+    {
+      "identity": "IBS-U-USN-HONOLULU",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-63ba5bc4-1bf4-458e-bcf8-d29266315046.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent-background SD naval-game sprite for CAS Honolulu (IBS-U-USN-HONOLULU). Image 1 is IDENTITY ONLY: preserve her long warm chestnut hair tied low with a dark teal bow, golden-brown eyes, wide cream summer/naval hat decorated with a large coral hibiscus and green leaves, coral pink officer dress with cream front panel and gold trim, dark teal neck bow/belt/underskirt, white gloves, small brown shoes, compact grey cruiser hip rigging. She holds a tiny round pink flower-pattern tin with both hands at waist height. Images 2 and 3 are STYLE ONLY: use the extremely short SD proportions and simple flat cel line style, never copy their hair, face, ears or clothing. Whole single character at 2 heads tall, huge head and hat occupying 55–60% total character height, tiny torso, very short skirt/body and legs, stubby shoes. Clean dark outline, broad flat color shapes, single shadow tone, sparse decorative detail, readable as a sprite 80 pixels high. Prioritize the coral dress, flowered cream hat, teal bow and chestnut hair; simplify embroidery to one small flower emblem or omit tiny detail. Full body front three-quarter standing pose slightly facing right, warm cheerful face. Compact grey turrets at hips do not dominate the silhouette. Entire hat, hair, rigging and shoes inside frame with little transparent margin. Genuine alpha transparency, no background, floor, ground shadow, frame, labels, text or watermark. Avoid long realistic anatomy, tall body, 3D, painterly rendering, elaborate lace, dense ship machinery, extra characters. First reference supplies CAS identity; second/third supply style only. Do not use the red-haired white-uniform Honolulu of other games.",
+      "identity_features": [
+        "chestnut low tied hair",
+        "cream hat with coral hibiscus",
+        "coral pink dress",
+        "teal bows",
+        "small round flower tin"
+      ]
+    },
+    {
+      "identity": "IBS-U-USN-DRAYTON",
+      "source": "C:\\Users\\fwj\\.codex\\generated_images\\01a1c984-c646-7920-bd4e-14a6bfccf8b7\\exec-e324bde2-2f2e-4754-83bf-4405f41e1e42.png",
+      "prompt": "Use case: stylized-concept. Create ONE original transparent SD naval game sprite for CAS Drayton (IBS-U-USN-DRAYTON). Image 1 is the only IDENTITY reference: preserve her pale lavender long wavy hair with a large ivory bow, violet eyes, soft gentle smile, lilac and cream naval dress with a little cream shoulder cape, violet neck bow with gold wheel brooch, small cream drawstring pouch with a purple ribbon held in her hands, lilac short shoes and white socks, compact grey destroyer rigging at her hips. Images 2 and 3 are STYLE ONLY, the large-head short-limb proportions and simple flat cel linework; copy NONE of their hair, eyes, ears, hats or clothing. Single whole 2-head-tall character, head with hair takes 55–60% full height, very tiny body and short bell skirt, very short arms/legs, stubby shoes. Clean dark outlines and simplified broad flat color shapes with only one shadow tone; no fine lace, embroidery, chain or machinery detail. Must read at 80px tall: ivory bow, lavender hair, lilac dress and little cream pouch are the key identifiers. Neutral standing front three-quarter pose slightly facing right. Keep the full large bow, hair, compact hip turrets and little shoes visible with a small transparent margin. Real alpha transparent background, no scenery, ground, shadow, text, watermark or frame. Avoid tall adult proportions, long legs, 3D, painterly gradients, dense ornament or extra characters. First input supplies CAS identity; second/third only stylistic proportions and linework.",
+      "identity_features": [
+        "lavender wavy hair",
+        "large ivory bow",
+        "violet eyes",
+        "lilac cream dress",
+        "cream pouch with purple ribbon"
+      ]
+    }
+  ]
+}

@@ -255,6 +255,18 @@ mod tests {
     use super::*;
 
     #[test]
+    fn prologue_squadron_reports_catalogue_identities() {
+        let world = World::new(6106, 0, "gunnery", VARIANT, "coord", 0).unwrap();
+        let view = world.observation(0);
+        let ships = view["ships"].as_array().unwrap();
+        let squadron: Vec<_> = ships.iter().filter(|ship| ship["fleet"] == 1).collect();
+        assert_eq!(squadron.len(), 5);
+        assert!(squadron.iter().all(|ship| ship["characterId"]
+            .as_str().is_some_and(|id| id.starts_with("IBS-U-USN-"))));
+        assert_eq!(squadron[0]["characterId"], "IBS-U-USN-FLETCHER");
+    }
+
+    #[test]
     fn handover_uses_real_battleship_fire_and_inflight_torpedoes() {
         let mut world = World::new(6106, 0, "gunnery", VARIANT, "coord", 0).unwrap();
         for _ in 0..HANDOVER_TICK {

@@ -1,0 +1,411 @@
+{
+  "version": "cas-island-war-v3",
+  "loan_units": [
+    "MCP-001",
+    "MCP-034",
+    "MCP-076",
+    "MCP-009",
+    "MCP-022",
+    "MCP-011",
+    "MCP-018",
+    "MCP-027",
+    "MCP-041",
+    "MCP-052",
+    "MCP-063",
+    "MCP-087",
+    "MCP-103",
+    "MCP-116",
+    "MCP-128",
+    "MCP-145",
+    "MCP-167",
+    "MCP-184",
+    "MCP-203",
+    "MCP-240",
+    "MCP-088",
+    "MCP-006"
+  ],
+  "lessons": {
+    "landing": {
+      "request": {
+        "op": "new_island_battle",
+        "version": "cas-island-war-v3",
+        "seed": 714,
+        "mode": "exercise",
+        "ships": [
+          {
+            "id": "CAS-H-USN-ENTERPRISE-1942",
+            "hp": 100,
+            "ammo": 100
+          },
+          {
+            "id": "CAS-O-APV-TIDEBRIDGE",
+            "hp": 100,
+            "ammo": 100
+          }
+        ],
+        "roster": [
+          "MCP-011",
+          "MCP-034",
+          "MCP-006"
+        ],
+        "transport_preset": "combat",
+        "company_layout": "multi-company-v1",
+        "island": {
+          "npc_id": "",
+          "island_level": 1
+        },
+        "defender": {
+          "ships": [
+            {
+              "id": "CAS-H-IJN-SHOKAKU-1942",
+              "hp": 15,
+              "ammo": 0
+            }
+          ],
+          "roster": [
+            "MCP-034"
+          ],
+          "unit_condition": [
+            {
+              "id": "MCP-034",
+              "hp": 15
+            }
+          ]
+        },
+        "lesson": "landing"
+      },
+      "default_autonomy": false,
+      "placement": {
+        "source": "view.littoral.land.terrain.beaches",
+        "beach_id": 2
+      },
+      "return_requirement": "real_success_and_training_complete",
+      "borrowed_only": true
+    },
+    "weapons": {
+      "request": {
+        "op": "new_island_battle",
+        "version": "cas-island-war-v3",
+        "seed": 714,
+        "mode": "exercise",
+        "ships": [
+          {
+            "id": "CAS-H-USN-ENTERPRISE-1942",
+            "hp": 100,
+            "ammo": 100
+          },
+          {
+            "id": "CAS-O-APV-TIDEBRIDGE",
+            "hp": 100,
+            "ammo": 100
+          }
+        ],
+        "roster": [
+          "MCP-063",
+          "MCP-034"
+        ],
+        "transport_preset": "combat",
+        "company_layout": "multi-company-v1",
+        "island": {
+          "npc_id": "",
+          "island_level": 1
+        },
+        "defender": {
+          "ships": [
+            {
+              "id": "CAS-H-IJN-SHOKAKU-1942",
+              "hp": 15,
+              "ammo": 0
+            }
+          ],
+          "roster": [
+            "MCP-022",
+            "MCP-034"
+          ],
+          "unit_condition": [
+            {
+              "id": "MCP-022",
+              "hp": 100
+            },
+            {
+              "id": "MCP-034",
+              "hp": 100
+            }
+          ],
+          "vehicle_condition": [
+            {
+              "id": "MCP-022",
+              "company": 1,
+              "hp_percent": 5
+            },
+            {
+              "id": "MCP-022",
+              "company": 2,
+              "hp_percent": 5
+            },
+            {
+              "id": "MCP-022",
+              "company": 3,
+              "hp_percent": 5
+            }
+          ]
+        },
+        "lesson": "weapons",
+        "training_delay_seconds": 120
+      },
+      "default_autonomy": false,
+      "placement": {
+        "source": "view.littoral.land.terrain.beaches",
+        "beach_id": 2
+      },
+      "return_requirement": "real_success_and_training_complete",
+      "borrowed_only": true
+    },
+    "artillery": {
+      "request": {
+        "op": "new_island_battle",
+        "version": "cas-island-war-v3",
+        "seed": 714,
+        "mode": "exercise",
+        "ships": [
+          {
+            "id": "CAS-H-USN-ENTERPRISE-1942",
+            "hp": 100,
+            "ammo": 100
+          },
+          {
+            "id": "CAS-O-APV-TIDEBRIDGE",
+            "hp": 100,
+            "ammo": 100
+          }
+        ],
+        "roster": [
+          "MCP-087",
+          "MCP-034"
+        ],
+        "transport_preset": "combat",
+        "company_layout": "multi-company-v1",
+        "island": {
+          "npc_id": "",
+          "island_level": 1
+        },
+        "defender": {
+          "ships": [
+            {
+              "id": "CAS-H-IJN-SHOKAKU-1942",
+              "hp": 15,
+              "ammo": 0
+            }
+          ],
+          "roster": [
+            "MCP-034"
+          ],
+          "unit_condition": [
+            {
+              "id": "MCP-034",
+              "hp": 15
+            }
+          ]
+        },
+        "lesson": "artillery"
+      },
+      "default_autonomy": false,
+      "placement": {
+        "source": "view.littoral.land.terrain.beaches",
+        "beach_id": 2
+      },
+      "return_requirement": "real_success_and_training_complete",
+      "borrowed_only": true
+    },
+    "airborne": {
+      "request": {
+        "op": "new_island_battle",
+        "version": "cas-island-war-v3",
+        "seed": 714,
+        "mode": "exercise",
+        "ships": [
+          {
+            "id": "IBS-U-USN-ERMA-IOWA",
+            "hp": 100,
+            "ammo": 100
+          },
+          {
+            "id": "CAS-H-USN-ENTERPRISE-1942",
+            "hp": 100,
+            "ammo": 100
+          }
+        ],
+        "roster": [
+          "MCP-034",
+          "MCP-088",
+          "MCP-011"
+        ],
+        "transport_preset": "combat",
+        "company_layout": "multi-company-v1",
+        "island": {
+          "npc_id": "",
+          "island_level": 1
+        },
+        "defender": {
+          "ships": [
+            {
+              "id": "CAS-H-IJN-SHOKAKU-1942",
+              "hp": 15,
+              "ammo": 0
+            }
+          ],
+          "roster": [
+            "MCP-006",
+            "MCP-088"
+          ],
+          "unit_condition": [
+            {
+              "id": "MCP-006",
+              "hp": 35
+            },
+            {
+              "id": "MCP-088",
+              "hp": 5
+            }
+          ]
+        },
+        "lesson": "airborne",
+        "training_delay_seconds": 45
+      },
+      "default_autonomy": false,
+      "placement": {
+        "source": "view.littoral.land.terrain.beaches",
+        "beach_id": 2
+      },
+      "return_requirement": "real_success_and_training_complete",
+      "borrowed_only": true
+    },
+    "roles": {
+      "request": {
+        "op": "new_island_battle",
+        "version": "cas-island-war-v3",
+        "seed": 714,
+        "mode": "exercise",
+        "ships": [
+          {
+            "id": "IBS-U-USN-ERMA-IOWA",
+            "hp": 100,
+            "ammo": 100
+          },
+          {
+            "id": "CAS-H-USN-ENTERPRISE-1942",
+            "hp": 100,
+            "ammo": 100
+          }
+        ],
+        "roster": [
+          "MCP-203",
+          "MCP-184",
+          "MCP-145",
+          "MCP-128",
+          "MCP-009",
+          "MCP-116"
+        ],
+        "transport_preset": "combat",
+        "company_layout": "multi-company-v1",
+        "island": {
+          "npc_id": "",
+          "island_level": 1
+        },
+        "defender": {
+          "ships": [
+            {
+              "id": "CAS-H-IJN-SHOKAKU-1942",
+              "hp": 15,
+              "ammo": 0
+            }
+          ],
+          "roster": [
+            "MCP-034",
+            "MCP-027"
+          ],
+          "unit_condition": [
+            {
+              "id": "MCP-034",
+              "hp": 30
+            },
+            {
+              "id": "MCP-027",
+              "hp": 100
+            }
+          ]
+        },
+        "lesson": "roles",
+        "training_delay_seconds": 90
+      },
+      "default_autonomy": false,
+      "placement": {
+        "source": "view.littoral.land.terrain.beaches",
+        "beach_id": 2
+      },
+      "return_requirement": "real_success_and_training_complete",
+      "borrowed_only": true
+    },
+    "combined_arms": {
+      "request": {
+        "op": "new_island_battle",
+        "version": "cas-island-war-v3",
+        "seed": 714,
+        "mode": "exercise",
+        "ships": [
+          {
+            "id": "CAS-H-USN-ENTERPRISE-1942",
+            "hp": 100,
+            "ammo": 100
+          },
+          {
+            "id": "CAS-O-APV-TIDEBRIDGE",
+            "hp": 100,
+            "ammo": 100
+          }
+        ],
+        "roster": [
+          "MCP-022",
+          "MCP-103",
+          "MCP-087",
+          "MCP-027",
+          "MCP-006",
+          "MCP-034"
+        ],
+        "transport_preset": "combat",
+        "company_layout": "multi-company-v1",
+        "island": {
+          "npc_id": "",
+          "island_level": 1
+        },
+        "defender": {
+          "ships": [
+            {
+              "id": "CAS-H-IJN-SHOKAKU-1942",
+              "hp": 15,
+              "ammo": 0
+            }
+          ],
+          "roster": [
+            "MCP-034"
+          ],
+          "unit_condition": [
+            {
+              "id": "MCP-034",
+              "hp": 15
+            }
+          ]
+        },
+        "lesson": "combined_arms",
+        "training_delay_seconds": 90
+      },
+      "default_autonomy": false,
+      "placement": {
+        "source": "view.littoral.land.terrain.beaches",
+        "beach_id": 2
+      },
+      "return_requirement": "real_success_and_training_complete",
+      "borrowed_only": true
+    }
+  }
+}

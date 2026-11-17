@@ -71,6 +71,24 @@
 .hull-inventory > div.unowned { color: #b1c8c7; background: #112b38; }
 .hull-inventory span, .hull-inventory small { font-size: 10px; color: var(--muted); }
 .hull-inventory strong { font-size: 12px; }
+/* Single-ship catalogue: one card per owned identity, five fleet slots. */
+.ship-inventory { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 5px; margin-bottom: 15px; }
+.ship-card { display: flex; flex-direction: column; gap: 3px; min-width: 0; border: 1px solid #425d64; background: #112b38; padding: 7px; color: var(--brass); }
+.ship-card img { display: block; width: 100%; height: 72px; object-fit: cover; object-position: 50% 10%; border: 1px solid #314a54; background: #0e2733; }
+.ship-card__noart { display: grid; place-items: center; height: 72px; border: 1px dashed #314a54; color: var(--muted); font-size: 10px; }
+.ship-card span, .ship-card small { font-size: 10px; color: var(--muted); overflow-wrap: anywhere; }
+.ship-card strong { font-size: 12px; }
+.ship-card em { font-style: normal; color: #9fbbb9; font: 10px var(--numbers); }
+.fleet-slots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; margin-top: 10px; }
+.fleet-slot { display: flex; flex-direction: column; gap: 4px; min-width: 0; border: 1px solid #425d64; padding: 7px; }
+.fleet-slot[data-filled="false"] { background: #112b38; }
+.fleet-slot > span { color: #9fbbb9; font: 10px var(--numbers); }
+.fleet-slot select { width: 100%; min-width: 0; font-size: 11px; }
+.fleet-slot small { font-size: 10px; color: var(--muted); overflow-wrap: anywhere; }
+.fleet-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: 9px; color: var(--muted); font-size: 11px; }
+.fleet-summary b { color: var(--brass); font: 13px var(--numbers); }
+.fleet-summary .ok { color: #9dd0c3; }
+.fleet-summary .bad { color: #efaf92; }
 .recruit-result { display: grid; gap: 5px; background: #213638; border-left: 2px solid #b59363; margin-top: 12px; padding: 10px; }
 .recruit-result > span, .recruit-result small { font-size: 11px; color: var(--muted); }
 .recruit-result strong { color: var(--brass); font: 700 21px var(--serif); }

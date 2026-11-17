@@ -1,0 +1,11 @@
+// Summarize archived measurements only; no simulation or benchmark is fabricated.
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+const root=resolve(import.meta.dirname,'..'),load=async f=>JSON.parse(await readFile(resolve(root,f),'utf8'));
+const native=await load('artifacts/tide-v2-core/native-receipt.json');
+const old=[];for(const name of ['normal-42','normal-43']){const file=`artifacts/tide-play/${name}.json`,v=await load(file);old.push({file,seed:v.seed,kills30:v.trace.find(r=>r.tick===30)?.kills,kills180:v.outcome.kills,success:v.outcome.success,upgradeChoices:v.choices});}
+const gpu=await load('artifacts/godot/tide-performance/baseline.json');
+const cases=[];for(const r of native.results){if(r.kind==='protocol')continue;const evidence=`artifacts/tide-v2-core/${r.name}-native.json`,v=await load(evidence);cases.push({file:evidence,name:r.name,seed:r.seed,firstKillSeconds:r.firstKill,firstOfferSeconds:r.firstOffer,kills30:v.trace.find(t=>t.tick===30)?.kills,kills180:r.kills,members:r.members,actualFiringMembers:r.fired,reinforcements:r.reinforcements,success:r.result.success,stepMilliseconds:r.timings.step,loadMilliseconds:r.timings.load,replayMilliseconds:r.timings.replay,saveBytes:r.saveBytes,entityPeaks:r.peaks,undefeatedBossHealth:v.terminal.contacts.find(c=>c.boss)?.health??null});}
+const result={nativeBinary:native.binary,nativeSha256:native.sha256,clockHz:10,measurementIncludes:'Native simulation, JSON encoding/decoding and process roundtrip; render frame time is measured separately.',archivedV1Gameplay:old,archivedV1Gpu:{file:'artifacts/godot/tide-performance/baseline.json',manifest:gpu.manifest,checkpointMilliseconds:gpu.checkpoint_ms,routeIssueMilliseconds:gpu.route_issue_ms},cases,note:'The independent three-seed v1 CPU run was returned as session output only and is not represented here as an archived benchmark. Final release native/WASM raw execution is recorded separately in parity-receipt.json.'};
+await writeFile(resolve(root,'artifacts/tide-v2-core/bench-comparison.json'),JSON.stringify(result,null,2));
+console.log(JSON.stringify({cases:cases.length,nativeSha256:native.sha256,oldKills30:old.map(r=>r.kills30),newKills30:cases.slice(0,3).map(r=>r.kills30),maxStepP95Milliseconds:Math.max(...cases.map(r=>r.stepMilliseconds.p95))}));

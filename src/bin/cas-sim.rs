@@ -1,7 +1,7 @@
 use cas_core::Engine;
 use serde_json::{json, Value};
 use std::{
-    io::{self, BufRead},
+    io::{self, BufRead, Write},
     process::ExitCode,
 };
 fn main() -> ExitCode {
@@ -49,11 +49,55 @@ fn main() -> ExitCode {
     } else {
         for line in io::stdin().lock().lines().map_while(Result::ok) {
             let r = match serde_json::from_str::<Value>(&line) {
-                Ok(r) => engine.handle_host(r),
+                Ok(mut request) => {
+                    normalize_integral_numbers(&mut request);
+                    if matches!(request["op"].as_str(),Some("load"|"replay")) && request["serialized"].is_string() {
+                        match serde_json::from_str::<Value>(request["serialized"].as_str().unwrap()) {
+                            Ok(save) => { request["save"]=save; }
+                            Err(error) => {println!("{}",json!({"ok":false,"error":format!("无法读取原始战斗存档：{error}")}));continue;}
+                        }
+                    }
+                    let saving=request["op"]=="save" && request["serialized"]==true;
+                    let mut result=engine.handle_host(request);
+                    // Native Godot JSON numbers are doubles. Keep the exact source
+                    // bytes as an opaque string when persisting an engine save.
+                    if saving && result["ok"]==true {
+                        result["serialized"]=Value::String(serde_json::to_string(&result["data"]).unwrap());
+                    }
+                    result
+                },
                 Err(e) => json!({"ok":false,"error":e.to_string()}),
             };
             println!("{r}");
+            let _=io::stdout().flush();
         }
     }
     ExitCode::SUCCESS
+}
+
+
+fn normalize_integral_numbers(value:&mut Value) {
+    match value {
+        Value::Array(items)=>for item in items {normalize_integral_numbers(item)},
+        Value::Object(fields)=>for item in fields.values_mut() {normalize_integral_numbers(item)},
+        Value::Number(number) if number.is_f64()=> {
+            if let Some(n)=number.as_f64().filter(|n|n.fract()==0. && n.abs()<=9_007_199_254_740_991.) {
+                *value=if n>=0. {json!(n as u64)} else {json!(n as i64)};
+            }
+        }
+        _=>(),
+    }
+}
+
+#[cfg(test)]
+mod bridge_tests {
+    use super::*;
+    #[test]
+    fn godot_integral_doubles_are_accepted_without_rounding_coordinates() {
+        let mut r=json!({"seed":42.0,"start":{"fleet":[{"hp":100.0,"ammo":50.0,"level":1.0}]},"x":35.125});
+        normalize_integral_numbers(&mut r);
+        assert_eq!(r["seed"].as_u64(),Some(42));
+        assert_eq!(r["start"]["fleet"][0]["hp"].as_u64(),Some(100));
+        assert_eq!(r["x"].as_f64(),Some(35.125));
+    }
 }
